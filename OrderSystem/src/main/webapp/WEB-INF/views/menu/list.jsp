@@ -17,6 +17,7 @@
 						<span>${item.menuName}</span>
 						<span>${item.menuPhoto}</span>
 						<span>${item.menuPrice}</span>
+						<button>담기</button>
 					</li>
 				</c:forEach>
 			</c:when>

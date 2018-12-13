@@ -6,10 +6,11 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 
-<!-- 	<typeAliases>
+	<typeAliases>
+		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
 	</typeAliases>
 
-	<mappers>
-		
-	</mappers> -->
+ 	<mappers>
+		<mapper resource="mybatis/menu.xml"/>
+	</mappers>
 </configuration>

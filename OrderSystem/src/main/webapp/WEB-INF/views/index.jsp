@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>메인 페이지 입니다.</h1>
+<a href="menu/list">메뉴</a>
 </body>
 </html>

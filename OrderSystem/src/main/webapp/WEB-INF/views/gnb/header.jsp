@@ -21,7 +21,7 @@
  
  $(document).ajaxStart(function(){
 // 	 start = false;
-	$('.wrap-loading').show();
+// 	$('.wrap-loading').show();
 	start = false;
  
  });
@@ -48,9 +48,14 @@
 
 // 			},
 			success:function(data){
-				var co = [ ];
+				var co = [];
 				co.push(document.cookie);
-				console.log(co);
+				
+				
+				for(var i =0; i < co.length; i++){
+ 					$('#cartBox').html(co);	
+					console.log(co[i] + "쿠키 길이는 : "+data);
+				}
 				start = true;
 			}
 			
@@ -63,6 +68,10 @@
  		$.ajax({
  			url:'${pageContext.request.contextPath}/cartDel',
  			success:function(data){
+ 				var co = [];
+				co.push(document.cookie);
+				
+ 				$('#cartBox').html(co);
  				start = true;
  			}
  		});
@@ -105,6 +114,11 @@
 	</div>
 
 	<a>장바구니</a>
+	<div>
+		<div id="cartBox">
+		
+		</div>
+	</div>
 	<button onclick="cartDel()">장바구니 비우기</button>
 </body>
 </html>

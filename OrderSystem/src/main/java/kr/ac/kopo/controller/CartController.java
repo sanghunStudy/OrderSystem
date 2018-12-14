@@ -21,10 +21,12 @@ public class CartController {
 	
 	@RequestMapping(value="/cart" , method=RequestMethod.POST)
 	@ResponseBody
-	Cookie[] cartAdd(String code,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+	int cartAdd(String code,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		
 		Cookie [] cookiesAll = null;
 		 Cookie[] cookies = request.getCookies();
+		 
+		int cookieSize = cookies.length;
 		  if(cookies.length > 1) {
 			  for(int i=1; i < cookies.length; i++) {
 				  if(cookies[i].getName().equals(code)) {
@@ -67,7 +69,7 @@ public class CartController {
 				  cookiesAll = request.getCookies();
 		  }
 		  
-		  return cookiesAll;//요녀석이 잘못됐었나봄
+		  return cookieSize;//요녀석이 잘못됐었나봄
 	}
 	
 	@RequestMapping("/cartDel")

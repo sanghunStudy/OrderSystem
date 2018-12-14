@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>전체메뉴</title>
 </head>
+<header>
+<jsp:include page="../gnb/header.jsp" flush="true" />
+</header>
 <body>
 	<h1>전체메뉴입니다</h1>
 	<ul>
@@ -17,7 +20,7 @@
 						<span>${item.menuName}</span>
 						<span>${item.menuPhoto}</span>
 						<span>${item.menuPrice}</span>
-						<button>담기</button>
+						<button type="button" onclick="cartAdd(${item.menuId});">담기</button>
 					</li>
 				</c:forEach>
 			</c:when>

@@ -23,39 +23,51 @@ public class CartController {
 	@ResponseBody
 	Cookie[] cartAdd(String code,HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		
-		
+		Cookie [] cookiesAll = null;
 		 Cookie[] cookies = request.getCookies();
-		  if(cookies != null) {
-			  for(int i=0; i < cookies.length; i++) {
+		  if(cookies.length > 1) {
+			  for(int i=1; i < cookies.length; i++) {
 				  if(cookies[i].getName().equals(code)) {
-					  System.out.println(cookies[i].getName()+"중복되는이름");
+					  System.out.println("중복되는이름 : "+cookies[i].getName()+ "code값 : " + code );
 					  int cookiesAmout = Integer.parseInt(cookies[i].getValue());
-					  System.out.println(cookies[i].getValue()+"기존 값");
+//					  System.out.println(cookies[i].getValue()+"기존 값");
 					  
 					  int val = cookiesAmout +1;
 					  String cookiesVal = Integer.toString(val);
 					  cookies[i].setValue(cookiesVal);
-					  System.out.println(cookies[i].getValue()+"변경된 값");
+//					  System.out.println(cookies[i].getValue()+"변경된 값");
+					  cookies[i].setPath(path);
+					  cookies[i].setMaxAge(60*60*24*1);
 					  response.addCookie(cookies[i]);
+					  cookiesAll = request.getCookies();
 					  break;
 				  
-			  }else {
-				  System.out.println("이름이 없을 경우");
-				  String amount ="1";  
-					Cookie cookie = new Cookie(code, URLEncoder.encode(amount, encoding));
-					  cookie.setPath(path);
-					  cookie.setMaxAge(60*60*24*1);
-					  response.addCookie(cookie);	
-			  }
-				  
+				  }else {//자바에서 넘겨줄때 오류난듯 자스로 쿠키 얻어오니까 매우 잘됨;;	
+					  System.out.println("이름이 없을 경우 네임값 : "+cookies[i].getName()+"CODE 값 : "+ code);
+					  String amount ="1";  
+						Cookie cookie = new Cookie(code, URLEncoder.encode(amount, encoding));
+						  cookie.setPath(path);
+						  cookie.setMaxAge(60*60*24*1);
+						
+						  response.addCookie(cookie);	
+						  cookiesAll = request.getCookies();
+				  }
 
-				  System.out.println("메뉴번호"+cookies[i].getName());
-				  System.out.println("수량"+cookies[i].getValue());
-		  }
+				  
+			  }
 	
 		
-	}
-		  return cookies;
+		  }else {
+			  System.out.println("쿠키가 없을 경우");
+			  String amount ="1";  
+				Cookie cookie = new Cookie(code, URLEncoder.encode(amount, encoding));
+				  cookie.setPath(path);
+				  cookie.setMaxAge(60*60*24*1);
+				  response.addCookie(cookie);
+				  cookiesAll = request.getCookies();
+		  }
+		  
+		  return cookiesAll;//요녀석이 잘못됐었나봄
 	}
 	
 	@RequestMapping("/cartDel")

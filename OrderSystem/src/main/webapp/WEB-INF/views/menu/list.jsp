@@ -17,9 +17,9 @@
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 					<li>
-						<span>${item.menuName}</span>
+						<span id="menuName${item.menuId}">${item.menuName}</span>
 						<span>${item.menuPhoto}</span>
-						<span>${item.menuPrice}</span>
+						<span id="menuPrice${item.menuId}">${item.menuPrice}</span>
 						<button type="button" onclick="cartAdd(${item.menuId});">담기</button>
 					</li>
 				</c:forEach>

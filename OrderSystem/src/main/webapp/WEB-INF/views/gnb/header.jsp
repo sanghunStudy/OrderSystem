@@ -10,7 +10,35 @@
 /* window.onload = function(){
 }
  */	
- 
+ function getCookie(c_name)
+
+	{
+
+		var i,x,y,ARRcookies=document.cookie.split(";");
+
+		for (i=0;i<ARRcookies.length;i++)
+
+		{
+
+		  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+
+		  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+
+		  x=x.replace(/^\s+|\s+$/g,"");
+
+		  if (x==c_name)
+
+			{
+
+			return unescape(y);
+
+			}
+
+		  }
+
+	}
+
+
  
  var start = true;
  
@@ -52,10 +80,33 @@
 				co.push(document.cookie);
 				
 				
-				for(var i =0; i < co.length; i++){
- 					$('#cartBox').html(co);	
-					console.log(co[i] + "쿠키 길이는 : "+data);
-				}
+				var hi = getCookie(menuCode);//누른 녀석의 쿠키 밸류값 가져옴 즉 amount
+				var menuName = $('#menuName'+menuCode).text();
+				var menuPrice = $('#menuPrice'+menuCode).text();
+				
+				console.log(hi);
+				
+				
+				
+				
+				var tag = '<div>'+
+				'<p>메뉴명 : </p> <span id="cartName'+menuCode+'"></span>'+
+				'<p>가격 : </p> <span id="cartPrice'+menuCode+'"></span>'+
+				'<p>수량 : </p> <span id="amount'+menuCode+'"></span>'+
+				'<p>합계 : </p> <span id="totalPrice'+menuCode+'"></span>'+
+				'</div>'
+				
+				
+				$('#cartBox').html(tag);
+				
+				$('#cartName'+menuCode).text(menuName);
+				$('#cartPrice'+menuCode).text(menuPrice);
+				$('#amount'+menuCode).text(hi);
+				$('#totalPrice'+menuCode).text(hi*menuPrice);
+// 				for(var i =0; i < co.length; i++){
+//  					$('#cartBox').html(co);	
+// 					console.log(co[i] + "쿠키 길이는 : "+data);
+// 				}
 				start = true;
 			}
 			
@@ -68,10 +119,9 @@
  		$.ajax({
  			url:'${pageContext.request.contextPath}/cartDel',
  			success:function(data){
- 				var co = [];
-				co.push(document.cookie);
-				
- 				$('#cartBox').html(co);
+ 				
+ 				$('#cartBox').html('');
+
  				start = true;
  			}
  		});
@@ -116,7 +166,11 @@
 	<a>장바구니</a>
 	<div>
 		<div id="cartBox">
-		
+		<!-- 
+			<p>메뉴명 : </p> <span id="cartName'+menuCode+'"></span>
+			<p>가격 : </p> <span id="cartPrice'+menuCode+'"></span>
+			<p>수량 : </p> <span id="amount'+menuCode+'"></span>
+			<p>합계 : </p> <span id="totalPrice'+menuCode+'"></span> -->
 		</div>
 	</div>
 	<button onclick="cartDel()">장바구니 비우기</button>

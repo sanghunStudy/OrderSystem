@@ -22,10 +22,10 @@
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 				<tr>
-					<td>${item.review_id}</td>
-					<td><a href="view?code=${item.review_id}">${item.review_title}</a></td>
+					<td>${item.reviewId}</td>
+					<td><a href="view?code=${item.reviewId}">${item.reviewTitle}</a></td>
 					<td>${item.id}</td>
-					<td>${item.review_date}</td>
+					<td>${item.reviewDate}</td>
 					<td></td>
 					<td></td>
 				</tr>

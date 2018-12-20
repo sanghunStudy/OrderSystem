@@ -7,13 +7,13 @@
 	</select>
 	
 	<select id="item" resultType="ReviewBoard">
-		SELECT * FROM review_board WHERE review_id=#{review_id}
+		SELECT * FROM review_board WHERE review_id=#{reviewId}
 	</select>
 	
 	<insert id="add">
 		INSERT INTO review_board(review_id, review_title, review_contents, review_date, review_photo, 
 		review_views, review_score, id)
-		VALUES (#{review_id}, #{review_title}, #{review_contents}, NOW(), null, #{review_views},
+		VALUES (#{reviewId}, #{reviewTitle}, #{reviewContents}, NOW(), null, #{reviewViews},
 		null, #{id})
 	</insert>
 </mapper>

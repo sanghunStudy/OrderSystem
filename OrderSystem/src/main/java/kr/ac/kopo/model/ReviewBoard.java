@@ -4,56 +4,58 @@ import java.util.Date;
 
 public class ReviewBoard {
 	
-	int review_id;
-	String review_title;
-	String review_contents;
-	Date review_date;
-	String review_photo;
-	int review_views;
-	int review_score;
+	int reviewId;
+	String reviewTitle;
+	String reviewContents;
+	Date reviewDate;
+	String reviewPhoto;
+	int reviewViews;
+	int reviewScore;
 	String id;
 	
-	public int getReview_id() {
-		return review_id;
+	
+	
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public String getReview_title() {
-		return review_title;
+	public String getReviewTitle() {
+		return reviewTitle;
 	}
-	public void setReview_title(String review_title) {
-		this.review_title = review_title;
+	public void setReviewTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
 	}
-	public String getReview_contents() {
-		return review_contents;
+	public String getReviewContents() {
+		return reviewContents;
 	}
-	public void setReview_contents(String review_contents) {
-		this.review_contents = review_contents;
+	public void setReviewContents(String reviewContents) {
+		this.reviewContents = reviewContents;
 	}
-	public Date getReview_date() {
-		return review_date;
+	public Date getReviewDate() {
+		return reviewDate;
 	}
-	public void setReview_date(Date review_date) {
-		this.review_date = review_date;
+	public void setReviewDate(Date reviewDate) {
+		this.reviewDate = reviewDate;
 	}
-	public String getReview_photo() {
-		return review_photo;
+	public String getReviewPhoto() {
+		return reviewPhoto;
 	}
-	public void setReview_photo(String review_photo) {
-		this.review_photo = review_photo;
+	public void setReviewPhoto(String reviewPhoto) {
+		this.reviewPhoto = reviewPhoto;
 	}
-	public int getReview_views() {
-		return review_views;
+	public int getReviewViews() {
+		return reviewViews;
 	}
-	public void setReview_views(int review_views) {
-		this.review_views = review_views;
+	public void setReviewViews(int reviewViews) {
+		this.reviewViews = reviewViews;
 	}
-	public int getReview_score() {
-		return review_score;
+	public int getReviewScore() {
+		return reviewScore;
 	}
-	public void setReview_score(int review_score) {
-		this.review_score = review_score;
+	public void setReviewScore(int reviewScore) {
+		this.reviewScore = reviewScore;
 	}
 	public String getId() {
 		return id;

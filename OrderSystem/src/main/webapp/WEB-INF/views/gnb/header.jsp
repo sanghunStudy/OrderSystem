@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>OrderSystem</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
+<!-- <script>
 /* window.onload = function(){
 }
  */	
@@ -127,7 +128,80 @@
  		});
  	}
 
+</script> -->
+
+<script>
+
+window.onload = function(){
+		cartList();
+
+}
+	function cartList(){
+		$.ajax({
+			url:'${pageContext.request.contextPath}/cartList',
+			success : function(response) {
+				
+				console.log(response);
+				for(var i=0; i < response.length; i++){
+						
+						document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
+						document.getElementById('cartPrice').innerHTML += "<Strong>"+response[i].menuPrice+" </Strong>";
+						document.getElementById('amount').innerHTML += "<Strong>"+response[i].amount+" </Strong>"	
+						document.getElementById('totalPrice').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
+				}
+			}
+			
+		
+		});	
+	}
+	
+	function cartAdd(menuCode) {
+		document.getElementById('cartName').innerHTML = "";
+		document.getElementById('cartPrice').innerHTML = "";
+		document.getElementById('amount').innerHTML = "";
+		document.getElementById('totalPrice').innerHTML = "";
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/cartAdd',
+			type : 'post',
+			async : false,
+			data : {
+				'code' : menuCode
+			},
+			success : function(response) {
+				
+				console.log(response);
+				for(var i=0; i < response.length; i++){
+						
+						document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
+						document.getElementById('cartPrice').innerHTML += "<Strong>"+response[i].menuPrice+" </Strong>";
+						document.getElementById('amount').innerHTML += "<Strong>"+response[i].amount+" </Strong>"	
+						document.getElementById('totalPrice').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
+				}
+			}
+		});
+	}
+	
+	function cartDel(menuCode){
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/cartDel',
+			data:{
+				'code' : menuCode
+			},
+			success:function(){
+
+				document.getElementById('cartName').innerHTML = "";
+				document.getElementById('cartPrice').innerHTML = "";
+				document.getElementById('amount').innerHTML = "";
+				document.getElementById('totalPrice').innerHTML = "";
+				
+				cartList();
+			}
+		});
+	}
 </script>
+
 
 <style type="text/css">
 .wrap-loading { /*화면 전체를 어둡게 합니다.*/
@@ -148,29 +222,27 @@
 	margin-left: -21px;
 	margin-top: -21px;
 }
-
-
 </style>
 
 
 </head>
 <body>
-	<div class="wrap-loading">
+	<%-- 	<div class="wrap-loading">
 
 		<div>
 			<img src="${pageContext.request.contextPath}/resources/images/loading1.gif" />
 		</div>
 
-	</div>
+	</div> --%>
 
-	<a>장바구니</a>
+
 	<div>
 		<div id="cartBox">
-		<!-- 
-			<p>메뉴명 : </p> <span id="cartName'+menuCode+'"></span>
-			<p>가격 : </p> <span id="cartPrice'+menuCode+'"></span>
-			<p>수량 : </p> <span id="amount'+menuCode+'"></span>
-			<p>합계 : </p> <span id="totalPrice'+menuCode+'"></span> -->
+			
+			<p>메뉴명 : </p> <span id="cartName"></span>
+			<p>가격 : </p> <span id="cartPrice"></span>
+			<p>수량 : </p> <span id="amount"></span>
+			<p>합계 : </p> <span id="totalPrice"></span>
 		</div>
 	</div>
 	<button onclick="cartDel()">장바구니 비우기</button>

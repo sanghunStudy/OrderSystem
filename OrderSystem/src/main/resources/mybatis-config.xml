@@ -8,9 +8,11 @@
 
 	<typeAliases>
 		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
+		<typeAlias type="kr.ac.kopo.model.ReviewBoard" alias="ReviewBoard"/>
 	</typeAliases>
 
  	<mappers>
 		<mapper resource="mybatis/menu.xml"/>
+		<mapper resource="mybatis/reviewboard.xml"/>
 	</mappers>
 </configuration>

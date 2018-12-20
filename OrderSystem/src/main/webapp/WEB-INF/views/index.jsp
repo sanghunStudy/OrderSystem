@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>메인 페이지 입니다.</h1>
-<a href="menu/list">메뉴</a>
+<ul>
+<li><a href="menu/list">메뉴</a></li>
+<li><a href="review_board/list">후기게시판</a></li>
+</ul>
 </body>
 </html>

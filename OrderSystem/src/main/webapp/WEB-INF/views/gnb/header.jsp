@@ -137,6 +137,8 @@ window.onload = function(){
 
 }
 	function cartList(){
+		
+		var total = 0;
 		$.ajax({
 			url:'${pageContext.request.contextPath}/cartList',
 			success : function(response) {
@@ -147,8 +149,13 @@ window.onload = function(){
 						document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
 						document.getElementById('cartPrice').innerHTML += "<Strong>"+response[i].menuPrice+" </Strong>";
 						document.getElementById('amount').innerHTML += "<Strong>"+response[i].amount+" </Strong>"	
-						document.getElementById('totalPrice').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
+						document.getElementById('Price').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
+						total += response[i].amount * response[i].menuPrice;
+						
+						
 				}
+				document.getElementById('totalPrice').innerHTML = "<Strong>"+total+"</Strong>";
+				console.log(total + '<<<');
 			}
 			
 		
@@ -159,7 +166,12 @@ window.onload = function(){
 		document.getElementById('cartName').innerHTML = "";
 		document.getElementById('cartPrice').innerHTML = "";
 		document.getElementById('amount').innerHTML = "";
+		document.getElementById('Price').innerHTML = "";
 		document.getElementById('totalPrice').innerHTML = "";
+		
+		
+		var total = 0;
+		
 		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/cartAdd',
@@ -170,14 +182,19 @@ window.onload = function(){
 			},
 			success : function(response) {
 				
-				console.log(response);
+// 				cartList();
 				for(var i=0; i < response.length; i++){
-						
-						document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
-						document.getElementById('cartPrice').innerHTML += "<Strong>"+response[i].menuPrice+" </Strong>";
-						document.getElementById('amount').innerHTML += "<Strong>"+response[i].amount+" </Strong>"	
-						document.getElementById('totalPrice').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
-				}
+					
+					document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
+					document.getElementById('cartPrice').innerHTML += "<Strong>"+response[i].menuPrice+" </Strong>";
+					document.getElementById('amount').innerHTML += "<Strong>"+response[i].amount+" </Strong>"	
+					document.getElementById('Price').innerHTML += "<Strong>"+response[i].amount * response[i].menuPrice+" </Strong>"
+					
+					total += response[i].amount * response[i].menuPrice;
+					
+					
+			}
+			document.getElementById('totalPrice').innerHTML = "<Strong>"+total+"</Strong>";
 			}
 		});
 	}
@@ -194,6 +211,7 @@ window.onload = function(){
 				document.getElementById('cartName').innerHTML = "";
 				document.getElementById('cartPrice').innerHTML = "";
 				document.getElementById('amount').innerHTML = "";
+				document.getElementById('Price').innerHTML = "";
 				document.getElementById('totalPrice').innerHTML = "";
 				
 				cartList();
@@ -242,7 +260,8 @@ window.onload = function(){
 			<p>메뉴명 : </p> <span id="cartName"></span>
 			<p>가격 : </p> <span id="cartPrice"></span>
 			<p>수량 : </p> <span id="amount"></span>
-			<p>합계 : </p> <span id="totalPrice"></span>
+			<p>메뉴별 합계 : </p> <span id="Price"></span>
+			<p>총 합계 : </p> <span id="totalPrice"></span>
 		</div>
 	</div>
 	<button onclick="cartDel()">장바구니 비우기</button>

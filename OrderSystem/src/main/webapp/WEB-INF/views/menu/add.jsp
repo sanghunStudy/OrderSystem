@@ -25,6 +25,26 @@ $(function() {
 		
 		formData.append("file",file);
 		
+		$.ajax({
+			type: "post",
+			url: "/uploadAjax",
+			data: formData,
+			dataType: "text",
+			processData: false,
+			contentType: false,
+			success: function(data) {
+				var str = "";
+				if(checkImageType(data)) {
+					str = "<div><img src='displayFile?filName="+data+"'></div>";
+				} else {
+					str = "<div>"+data+"</div>";
+				}
+				
+				str += "<button>삭제<button>";
+				$(".uploadList").append(str);
+			}
+		});
+		
 	});
 });
 </script>
@@ -37,14 +57,15 @@ $(function() {
 </style>
 </head>
 <body>
-	<form action="add" method="post">
+	<form action="uploadAjax" method="post" enctype="multipart/form-data">
 		<div>
 			<label>메뉴이름: </label>
 			<input type="text" name="menuName">
 		</div>
 		<div>
 			<label>메뉴사진: </label>
-			<div class="fileDrop"></div>
+			<div class="fileDrop">여기다 이미지를 끌어다 놓으세요</div>
+			<div class="uploadList"></div>
 		</div>
 		<div>
 			<label>가격: </label>

@@ -5,4 +5,9 @@
 	<select id="list" resultType="Menu">
 		select * from menu
 	</select>
+	
+	<insert id="add" parameterType="Menu">
+		insert into menu(menu_name,menu_photo,menu_price)
+		values(#{menuName},#{menuPhoto},#{menuPrice})
+	</insert>
 </mapper>

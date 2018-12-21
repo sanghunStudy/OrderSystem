@@ -29,5 +29,6 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	<a href="add">메뉴추가</a>
 </body>
 </html>

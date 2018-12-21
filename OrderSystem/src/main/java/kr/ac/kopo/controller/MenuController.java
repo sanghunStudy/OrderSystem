@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.ac.kopo.model.Menu;
 import kr.ac.kopo.service.MenuService;
@@ -26,4 +27,17 @@ public class MenuController {
 		
 		return path + "list";
 	}
+	
+	@RequestMapping(value="/add")
+	String add() {
+		return path + "add";
+	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	String add(Menu menu) {
+		service.add(menu);
+		
+		return "redirect:list";
+	} 
+	
 }

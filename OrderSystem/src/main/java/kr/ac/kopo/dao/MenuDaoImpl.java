@@ -19,4 +19,9 @@ public class MenuDaoImpl implements MenuDao {
 		return sql.selectList("menu.list");
 	}
 
+	@Override
+	public void add(Menu menu) {
+		sql.insert("menu.add", menu);
+	}
+
 }

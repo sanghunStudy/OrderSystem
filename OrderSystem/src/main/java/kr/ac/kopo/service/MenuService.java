@@ -8,4 +8,6 @@ public interface MenuService {
 
 	List<Menu> list();
 
+	void add(Menu menu);
+
 }

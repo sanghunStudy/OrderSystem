@@ -24,16 +24,21 @@ $(function() {
 		var formData = new FormData();
 		
 		formData.append("file",file);
-		
+		//여기 url부분 수정해서 컨트롤러랑 ajax 통신되게 해놨음
 		$.ajax({
 			type: "post",
-			url: "/uploadAjax",
+			url: "${pageContext.request.contextPath}/menu/uploadAjax",
 			data: formData,
 			dataType: "text",
 			processData: false,
 			contentType: false,
 			success: function(data) {
+				
+				console.log(data);
 				var str = "";
+				//여기서 checkImageType() 함수가 트루 펄스 구분하는거 같은데 여기서 오류남
+				//if 문에 저 함수대신 data만 넣고 테스트 해보면 화면상 이미지 태그가 생기긴 하지만 컨트롤러에서 실제 경로에 파일 생성을 못해서 
+				//화면상으로는 404 이미지 나옴 이미지 경로 찾을수 없을때 뜨는 표시가 생김
 				if(checkImageType(data)) {
 					str = "<div><img src='displayFile?filName="+data+"'></div>";
 				} else {

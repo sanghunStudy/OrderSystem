@@ -20,10 +20,24 @@ public class CartController {
 
 	private static final String encoding = "UTF-8";
 	private static final String path = "/";
-
+	
+	final String paths = "order/";
+	
 	@Autowired
 	CartService cservice;
-
+	
+	//로그인 기능이 구현되면 회원별 장바구니 목록이 나와야 하기 때문에 모든 메서드에 아이디 추가해줘야됨
+	
+	@RequestMapping("/cartView")
+	String cartView(Model model) {
+		
+	List<Bucket> list =	cservice.cartList();
+		
+	model.addAttribute("cartList", list);
+	
+		return paths+"cartView";
+	}
+	
 	@RequestMapping("/cartAdd")
 	@ResponseBody
 	List<Bucket> cartAdd(int code,Model model) {
@@ -52,7 +66,28 @@ public class CartController {
 	void cartDel(int code) {
 		cservice.cartDel(code);
 	}
-
+	
+	@RequestMapping("/itemDelete")
+	String itemDelete(int code) {
+		cservice.cartDel(code);
+		return "redirect:cartView";
+	}
+	
+	@RequestMapping("/Pcartchange")
+	String Pcartchange(int code) {
+		
+		cservice.amountUpdate(code);
+		
+		return "redirect:cartView";
+	}
+	
+	@RequestMapping("/Mcartchange")
+	String Mcartchange(int code) {
+		
+		cservice.MamountUpdate(code);
+		
+		return "redirect:cartView";
+	}
 	/*
 	 * @RequestMapping(value = "/cart", method = RequestMethod.POST)
 	 * 

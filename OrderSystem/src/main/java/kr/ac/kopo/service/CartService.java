@@ -16,4 +16,6 @@ public interface CartService {
 
 	void cartDel(int code);
 
+	void MamountUpdate(int code);
+
 }

@@ -45,4 +45,10 @@ public class CartDaoImpl implements CartDao {
 		sql.delete("cart.cartDel", code);
 	}
 
+	@Override
+	public void MamountUpdate(int code) {
+		// TODO Auto-generated method stub
+		sql.update("cart.MamountUpdate",code);
+	}
+
 }

@@ -16,4 +16,6 @@ public interface CartDao {
 
 	void cartDel(int code);
 
+	void MamountUpdate(int code);
+
 }

@@ -12,7 +12,13 @@
 		values
 		(#{code},null,1)
 	</insert>
+	
+	<update id="MamountUpdate">
+		update bucket
+		set amount = amount -1
+		where menu_id = #{code}
 
+	</update>
 	<update id="amountUpdate">
 		update bucket
 		set amount = amount +1

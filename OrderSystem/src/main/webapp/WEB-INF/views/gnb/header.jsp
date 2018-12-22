@@ -131,11 +131,12 @@
 </script> -->
 
 <script>
-
+//실행했을때 리스트 가져오게하기
 window.onload = function(){
 		cartList();
 
 }
+	//장바구니 리스트
 	function cartList(){
 		
 		var total = 0;
@@ -161,7 +162,7 @@ window.onload = function(){
 		
 		});	
 	}
-	
+	//장바구니 등록
 	function cartAdd(menuCode) {
 		document.getElementById('cartName').innerHTML = "";
 		document.getElementById('cartPrice').innerHTML = "";
@@ -182,7 +183,7 @@ window.onload = function(){
 			},
 			success : function(response) {
 				
-// 				cartList();
+// 				cartList(); 함수 호출 사용하면 코드는 줄여주지만 화면에 버벅거림이 생겨서 주석처리하고 반복문 돌림.. 
 				for(var i=0; i < response.length; i++){
 					
 					document.getElementById('cartName').innerHTML += "<Strong>"+response[i].menuName+" </Strong><button onclick='cartDel(" + response[i].menuId + ")'> 삭제 </button>";
@@ -198,7 +199,7 @@ window.onload = function(){
 			}
 		});
 	}
-	
+	//삭제
 	function cartDel(menuCode){
 		
 		$.ajax({
@@ -264,6 +265,6 @@ window.onload = function(){
 			<p>총 합계 : </p> <span id="totalPrice"></span>
 		</div>
 	</div>
-	<button onclick="cartDel()">장바구니 비우기</button>
+	<a href="${pageContext.request.contextPath}/cartView"><button>장바구니 보기</button></a>
 </body>
 </html>

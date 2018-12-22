@@ -45,4 +45,10 @@ public class CartServiceImpl implements CartService {
 		cDao.cartDel(code);
 	}
 
+	@Override
+	public void MamountUpdate(int code) {
+		// TODO Auto-generated method stub
+		cDao.MamountUpdate(code);
+	}
+
 }

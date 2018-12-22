@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +21,27 @@ public class CartController {
 
 	private static final String encoding = "UTF-8";
 	private static final String path = "/";
-	
+
 	final String paths = "order/";
-	
+
 	@Autowired
 	CartService cservice;
-	
-	//로그인 기능이 구현되면 회원별 장바구니 목록이 나와야 하기 때문에 모든 메서드에 아이디 추가해줘야됨
-	
+
+	// 로그인 기능이 구현되면 회원별 장바구니 목록이 나와야 하기 때문에 모든 메서드에 아이디 추가해줘야됨
+
 	@RequestMapping("/cartView")
 	String cartView(Model model) {
-		
-	List<Bucket> list =	cservice.cartList();
-		
-	model.addAttribute("cartList", list);
-	
-		return paths+"cartView";
+
+		List<Bucket> list = cservice.cartList();
+
+		model.addAttribute("cartList", list);
+
+		return paths + "cartView";
 	}
-	
+
 	@RequestMapping("/cartAdd")
 	@ResponseBody
-	List<Bucket> cartAdd(int code,Model model) {
+	List<Bucket> cartAdd(int code, Model model) {
 
 		if (cservice.amountSelect(code) == 0) {
 
@@ -48,10 +49,11 @@ public class CartController {
 		} else {
 			cservice.amountUpdate(code);
 		}
-/*		List<Bucket> list = cservice.cartList();
-
-		model.addAttribute("cart", list);
-		*/
+		/*
+		 * List<Bucket> list = cservice.cartList();
+		 * 
+		 * model.addAttribute("cart", list);
+		 */
 		return cartList();
 	}
 
@@ -61,31 +63,47 @@ public class CartController {
 		List<Bucket> list = cservice.cartList();
 		return list;
 	}
+
 	@RequestMapping("/cartDel")
 	@ResponseBody
 	void cartDel(int code) {
 		cservice.cartDel(code);
 	}
-	
+
 	@RequestMapping("/itemDelete")
 	String itemDelete(int code) {
 		cservice.cartDel(code);
 		return "redirect:cartView";
 	}
-	
+
 	@RequestMapping("/Pcartchange")
 	String Pcartchange(int code) {
-		
+
 		cservice.amountUpdate(code);
-		
+
 		return "redirect:cartView";
 	}
-	
+
 	@RequestMapping("/Mcartchange")
 	String Mcartchange(int code) {
-		
+
 		cservice.MamountUpdate(code);
-		
+
+		return "redirect:cartView";
+	}
+
+	@RequestMapping("/chkDel")
+	String chkDel(HttpServletRequest request) {
+
+		String[] array = request.getParameterValues("menuId");
+
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i] + "<<체크박스 값");
+
+			int code = Integer.parseInt(array[i]);
+			cservice.cartDel(code);
+		}
+
 		return "redirect:cartView";
 	}
 	/*
@@ -125,24 +143,22 @@ public class CartController {
 	 * 
 	 * return cookieSize;// 요녀석이 잘못됐었나봄 }
 	 */
-/*
-	@RequestMapping("/cartDel")
-	void cartDel(HttpServletRequest request, HttpServletResponse response) {
+	/*
+	 * @RequestMapping("/cartDel") void cartDel(HttpServletRequest request,
+	 * HttpServletResponse response) {
+	 * 
+	 * Cookie[] cookies = request.getCookies();
+	 * 
+	 * if (cookies != null) {
+	 * 
+	 * for (int i = 0; i < cookies.length; i++) { cookies[i].setPath(path);
+	 * cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
+	 * 
+	 * response.addCookie(cookies[i]); // 응답 헤더에 추가
+	 * 
+	 * }
+	 * 
+	 * } }
+	 */
 
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-
-			for (int i = 0; i < cookies.length; i++) {
-				cookies[i].setPath(path);
-				cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
-
-				response.addCookie(cookies[i]); // 응답 헤더에 추가
-
-			}
-
-		}
-	}
-*/
-	
 }

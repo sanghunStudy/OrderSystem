@@ -8,6 +8,12 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 $(function() {
+	function checkImageType(fileName) {
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		
+		return fileName.match(pattern);
+	}
+	
 	$(".fileDrop").on("dragenter dragover", function(event) {
 		event.preventDefault();
 	});
@@ -51,6 +57,15 @@ $(function() {
 		});
 		
 	});
+	
+	function getOriginalName(fileName){
+		if(checkImageType(fileName)) {
+			return;
+		}
+		
+		var idx = fileName.indexOf("_")+1;
+		return fileName.substr(idx);
+	}
 });
 </script>
 <style type="text/css">

@@ -11,6 +11,7 @@
 <ul>
 <li><a href="menu/list">메뉴</a></li>
 <li><a href="review_board/list">후기게시판</a></li>
+<li><a href="notice/list">공지사항</a></li>
 </ul>
 </body>
 </html>

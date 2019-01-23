@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<select id="total" resultType="Integer">
+		select count(*) from notice
+	</select>
+
+	<select id="list" resultType="Notice" parameterType="PageVo">
+		select * from notice order by notice_id desc LIMIT ${rowStart-1},10
+	</select>
+	
+	<select id="view" resultType="Notice">
+		select * from notice where notice_id = #{nid}
+	</select>
+	
+	<insert id="add">
+		insert into notice
+		(notice_title,notice_contents,notice_date,notice_photo,id)
+		values(#{noticeTitle},#{noticeContents},NOW(),#{noticePhoto},#{id})
+	</insert>
+	
+	<update id="views">
+	update notice
+	set notice_views = notice_views+1
+	where notice_id = #{nid}
+	</update>
+	
+	<update id="update">
+	update notice 
+	set notice_title = #{noticeTitle} , notice_contents = #{noticeContents}, notice_photo = #{noticePhoto}
+	where notice_id = #{noticeId}
+	</update>
+	
+	<delete id="delete">
+		delete from notice where notice_id = #{nid}
+	</delete>
+</mapper>

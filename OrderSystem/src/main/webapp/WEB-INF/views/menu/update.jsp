@@ -9,6 +9,7 @@
 <body>
 	<form action="update" method="post">
 		<div>
+			<input name="menuId" type="hidden" value="${item.menuId}"/>
 		</div>
 		<div>
 			<label>메뉴이름: </label>

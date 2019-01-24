@@ -3,11 +3,12 @@ package kr.ac.kopo.dao;
 import java.util.List;
 
 import kr.ac.kopo.model.Notice;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.SearchVO;
 
 public interface NoticeDao {
 
-	List<Notice> list(PageVO pageVo);
+	List<SearchVO> list(SearchVO searchVO);
 
 	void add(Notice notice);
 
@@ -19,6 +20,10 @@ public interface NoticeDao {
 
 	void views(int nid);
 
-	int totalCount();
+	int totalCount(SearchVO searchVO);
+
+	void fileUp(String filenames, String realnames, String filesizes);
+
+	List<FileVO> fileSelect(int nid);
 
 }

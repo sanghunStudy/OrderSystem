@@ -1,18 +1,27 @@
 package kr.ac.kopo.model;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class Notice {
 	
-	int noticeId;
-	String noticeTitle;
-	String noticeContents;
-	Date noticeDate;
-	int noticeViews;
-	String noticePhoto;
-	String id;
+	private int noticeId;
+	private String noticeTitle;
+	private String noticeContents;
+	private Date noticeDate;
+	private int noticeViews;
+	private String noticePhoto;
+	private String id;
+	private List<MultipartFile> uploadfile;
 	
-	
+	public List<MultipartFile> getUploadfile() {
+		return uploadfile;
+	}
+	public void setUploadfile(List<MultipartFile> uploadfile) {
+		this.uploadfile = uploadfile;
+	}
 	public int getNoticeId() {
 		return noticeId;
 	}

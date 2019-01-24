@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.NoticeDao;
 import kr.ac.kopo.model.Notice;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Service
 public class NoticeServcieImpl implements NoticeServcie {
@@ -17,9 +18,9 @@ public class NoticeServcieImpl implements NoticeServcie {
 	
 	
 	@Override
-	public List<Notice> list(PageVO pageVo) {
+	public List<SearchVO> list(SearchVO searchVO) {
 		
-		return dao.list(pageVo);
+		return dao.list(searchVO);
 	}
 
 
@@ -58,9 +59,22 @@ public class NoticeServcieImpl implements NoticeServcie {
 
 
 	@Override
-	public int totalCount() {
+	public int totalCount(SearchVO searchVO) {
 		// TODO Auto-generated method stub
-		return dao.totalCount();
+		return dao.totalCount(searchVO);
+	}
+
+	@Override
+	public void fileUp(String filenames, String realnames, String filesizes) {
+		// TODO Auto-generated method stub
+		dao.fileUp(filenames,realnames,filesizes);
+	}
+
+
+	@Override
+	public List<FileVO> fileSelect(int nid) {
+		// TODO Auto-generated method stub
+		return dao.fileSelect(nid);
 	}
 
 }

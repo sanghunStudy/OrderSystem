@@ -3,36 +3,68 @@
 
 <mapper namespace="notice">
 
-	<select id="total" resultType="Integer">
-		select count(*) from notice
+	<sql id="includeBoard">
+		<if test="searchKeyword != null and searchKeyword != ''">
+			where notice_id != 0 and(
+			<foreach item="item" index="index" collection="searchTypeArr"
+				separator="or">
+
+				${item} like concat('%', #{searchKeyword}, '%')
+
+			</foreach>
+			)
+		</if>
+	</sql>
+
+	<select id="fileSelect" resultType="FileVO">
+		SELECT FILENO, FILENAME, REALNAME, FILESIZE
+		FROM TBL_BOARDFILE
+		WHERE notice_id=#{nid}
+		ORDER BY FILENO DESC
+
 	</select>
 
-	<select id="list" resultType="Notice" parameterType="PageVo">
-		select * from notice order by notice_id desc LIMIT ${rowStart-1},10
+
+	<insert id="fileUp" parameterType="HashMap">
+		insert into tbl_boardfile (notice_id,filename,realname,filesize)
+		values((SELECT IFNULL(MAX(notice_id),0)+1 FROM notice),#{filename},#{realname},#{filesize})
+	</insert>
+
+	<select id="total" resultType="Integer" parameterType="SearchVO">
+		select count(*) from notice
+		<include refid="includeBoard" />
 	</select>
-	
+
+	<select id="list" resultType="Notice" parameterType="SearchVO">
+		select * from notice
+		<include refid="includeBoard" />
+		order by notice_id desc LIMIT ${rowStart-1},10
+	</select>
+
 	<select id="view" resultType="Notice">
-		select * from notice where notice_id = #{nid}
+		select * from notice where
+		notice_id = #{nid}
 	</select>
-	
+
 	<insert id="add">
 		insert into notice
 		(notice_title,notice_contents,notice_date,notice_photo,id)
 		values(#{noticeTitle},#{noticeContents},NOW(),#{noticePhoto},#{id})
 	</insert>
-	
+
 	<update id="views">
-	update notice
-	set notice_views = notice_views+1
-	where notice_id = #{nid}
+		update notice
+		set notice_views = notice_views+1
+		where notice_id = #{nid}
 	</update>
-	
+
 	<update id="update">
-	update notice 
-	set notice_title = #{noticeTitle} , notice_contents = #{noticeContents}, notice_photo = #{noticePhoto}
-	where notice_id = #{noticeId}
+		update notice
+		set notice_title = #{noticeTitle} , notice_contents = #{noticeContents},
+		notice_photo = #{noticePhoto}
+		where notice_id = #{noticeId}
 	</update>
-	
+
 	<delete id="delete">
 		delete from notice where notice_id = #{nid}
 	</delete>

@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+<script>
+$(function(){
+	$('.output').html($')
+});
+</script>
 </head>
 <body>
 	<label>글 번호</label>
@@ -25,11 +39,8 @@
 	<P><fmt:formatDate value="${item.noticeDate}" pattern="yyyy-MM-dd"/></P>
 	
 	<label>내용</label>
-	<textarea rows="5" cols="50" readonly="readonly">${item.noticeContents}</textarea>
-	
-	<label>첨부파일</label>
-	<p>${noticePhoto}</p>
-	
+	<div>${item.noticeContents}</div>
+		
 <a href="add?nid=${item.noticeId}">수정</a> <a href="delete?nid=${item.noticeId}">삭제</a>
 
 <a href="list">목록</a>

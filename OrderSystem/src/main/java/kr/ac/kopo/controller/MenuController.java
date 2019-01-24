@@ -27,7 +27,7 @@ import kr.ac.kopo.util.MediaUtils;
 @RequestMapping("/menu")
 public class MenuController {
 	
-	//@Resource(name="uploadPath")
+	//@Resource(name = "uploadPath")
 	private String uploadPath;
 	
 	final String path = "menu/";
@@ -104,6 +104,29 @@ public class MenuController {
 			in.close();
 		}
 		return entity;
+	}
+	
+	@RequestMapping(value="/update")
+	String update(int menuId, Model model) {
+		Menu item = service.item(menuId);
+		
+		model.addAttribute("item", item);
+		
+		return path + "update";
+	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	String update(Menu item) {
+		service.update(item);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")
+	String delete(int menuId) {
+		service.delete(menuId);
+		
+		return "redirect:list";
 	}
 	
 }

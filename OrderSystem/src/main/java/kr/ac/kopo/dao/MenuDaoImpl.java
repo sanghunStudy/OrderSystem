@@ -24,4 +24,19 @@ public class MenuDaoImpl implements MenuDao {
 		sql.insert("menu.add", menu);
 	}
 
+	@Override
+	public Menu item(int menuId) {
+		return sql.selectOne("menu.item", menuId);
+	}
+
+	@Override
+	public void update(Menu item) {
+		sql.update("menu.update", item);
+	}
+
+	@Override
+	public void delete(int menuId) {
+		sql.delete("menu.delete", menuId);
+	}
+
 }

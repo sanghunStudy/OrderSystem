@@ -14,11 +14,55 @@ $(function() {
 		return fileName.match(pattern);
 	}
 	
-	$(".fileDrop").on("dragenter dragover", function(event) {
+	$(".fileDrop").on("dragenter", function(event) {
 		event.preventDefault();
 	});
+	
+	$(".fileDrop").on("dragover", dragOver)
+	$(".fileDrop").on("drop", uploadFiles)
+	
+	function dragOver(e) {
+		e.stopPropagation();
+	    e.preventDefault();
+	    if (e.type == "dragover") {
+	        $(e.target).css({
+	            "background-color": "black",
+	            "outline-offset": "-20px"
+	        });
+	    } else {
+	        $(e.target).css({
+	            "background-color": "gray",
+	            "outline-offset": "-10px"
+	        });
+	    }
+	}
+	
+	function uploadFiles(e) {
+		e.stopPropagation();
+	    e.preventDefault();
+	    dragOver(e);
+	 
+	    e.dataTransfer = e.originalEvent.dataTransfer;
+	    var files = e.target.files || e.dataTransfer.files;
+	 
+	    if (files.length > 1) {
+	        alert('하나만 올리세요');
+	        return;
+	    }
+	    
+	    if (files[0].type.match(/image.*/)) {
+	        $(e.target).css({
+	            "background-image": "url(" + window.URL.createObjectURL(files[0]) + ")",
+	            "outline": "none",
+	            "background-size": "100% 100%"
+	        });
+	    }else{
+	      alert('이미지가 아닙니다.');
+	      return;
+	    }
+	}
 
-	$(".fileDrop").on("drop", function(event) {
+/*	$(".fileDrop").on("drop", function(event) {
 		event.preventDefault();
 		
 		var files = event.originalEvent.dataTransfer.files;
@@ -29,10 +73,10 @@ $(function() {
 		
 		var formData = new FormData();
 		
-		formData.append("file",file);
+		formData.append("file",file); 
 		//여기 url부분 수정해서 컨트롤러랑 ajax 통신되게 해놨음
 		$.ajax({
-			type: "post",
+			type: 'POST',
 			url: "${pageContext.request.contextPath}/menu/uploadAjax",
 			data: formData,
 			dataType: "text",
@@ -56,7 +100,7 @@ $(function() {
 			}
 		});
 		
-	});
+	});*/
 	
 	function getOriginalName(fileName){
 		if(checkImageType(fileName)) {
@@ -70,7 +114,7 @@ $(function() {
 </script>
 <style type="text/css">
 	.fileDrop {
-		width:100%;
+		width:300px;
 		height:300px;
 		border:1px solid black;
 	}

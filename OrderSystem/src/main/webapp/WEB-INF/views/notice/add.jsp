@@ -53,6 +53,27 @@
     }
 
 </script>
+
+<!-- 첨부파일 -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/guupload/css/guupload.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/guupload/guUploadManager.js"></script>
+<script type="text/javascript">
+var guManager=null;
+
+window.onload = function() {
+	var option = {
+			listtype: "thumbnail",
+			fileid: "guupload",
+			uploadURL: "upload",
+			form: document.form1
+	}
+	guManager = new guUploadManager(option);
+}	
+
+function formSubmit(){
+	guManager.uploadFiles();
+}
+</script>
 </head>
 <body>
 	<h1>summernote</h1>
@@ -72,8 +93,13 @@
 	<td><label>내용</label></td>
 	<td><textarea id="summernote" name="noticeContents">${item.noticeContents}</textarea></td>
 	</tr>
+
+	<tr>
+	<td><label>첨부파일</label></td>
+	<td><div id="guupload" class="guupload" style="width: 500px; height: 120px;"></div></td>
+	</tr>
 	</table>
-	<input type="submit" value="등록"/>	
+	<input type="submit" value="등록" onclick='formSubmit()' />	
 	</form>	
     
 </body>

@@ -107,23 +107,26 @@ public class NoticeController {
 	@RequestMapping(value="/add" , method=RequestMethod.POST)
 	String add(HttpServletRequest request, Notice notice) {
 
-//		String realname = request.getParameter("filename");
-//		String filesize = request.getParameter("realname");
-//		String filename = request.getParameter("filesize");
-//    	String[] reallist = realname.split(",");
-//    	String[] filelist = filename.split(",");
-//    	String[] sizelist = filesize.split(",");
-//
-//		
+		String realname = request.getParameter("filename");
+		String filesize = request.getParameter("realname");
+		String filename = request.getParameter("filesize");
+    	String[] reallist = realname.split(",");
+    	String[] filelist = filename.split(",");
+    	String[] sizelist = filesize.split(",");
+
+		
 		if(notice.getNoticeId() > 0) {
 			service.update(notice);
 		}else{
-
-			/*for(int i=0; i < filelist.length; i++) {
+			service.add(notice);
+			System.out.println(filesize.length()+"파일사이즈 랭스스스");
+			//첨부파일이 있을 경우에만 실행
+			if(filesize.length() > 0) {
+				for(int i=0; i < filelist.length; i++) {	
+					service.fileUp(filelist[i],reallist[i],sizelist[i]);
+				}	
+			}
 				
-				service.fileUp(filelist[i],reallist[i],sizelist[i]);
-			}*/
-			service.add(notice);	
 		}
 		
 		return "redirect:list";

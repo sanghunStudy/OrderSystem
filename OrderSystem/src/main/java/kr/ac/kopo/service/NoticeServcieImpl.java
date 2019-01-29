@@ -32,14 +32,12 @@ public class NoticeServcieImpl implements NoticeServcie {
 
 	@Override
 	public Notice view(int nid) {
-		// TODO Auto-generated method stub
 		return dao.view(nid);
 	}
 
 
 	@Override
 	public void delete(int nid) {
-		// TODO Auto-generated method stub
 		dao.delete(nid);
 	}
 

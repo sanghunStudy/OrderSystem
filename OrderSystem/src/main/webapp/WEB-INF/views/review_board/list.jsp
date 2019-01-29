@@ -23,7 +23,7 @@
 				<c:forEach var="item" items="${list}">
 				<tr>
 					<td>${item.reviewId}</td>
-					<td><a href="view?code=${item.reviewId}">${item.reviewTitle}</a></td>
+					<td><a href="view?reviewId=${item.reviewId}">${item.reviewTitle}</a></td>
 					<td>${item.id}</td>
 					<td>${item.reviewDate}</td>
 					<td></td>

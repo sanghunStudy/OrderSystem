@@ -5,15 +5,44 @@
 	<select id="list" resultType="ReviewBoard">
 		select * from review_board
 	</select>
-	
+
 	<select id="item" resultType="ReviewBoard">
-		SELECT * FROM review_board WHERE review_id=#{reviewId}
+		SELECT * FROM review_board WHERE
+		review_id=#{reviewId}
 	</select>
-	
+
 	<insert id="add">
-		INSERT INTO review_board(review_id, review_title, review_contents, review_date, review_photo, 
-		review_views, review_score, id)
-		VALUES (#{reviewId}, #{reviewTitle}, #{reviewContents}, NOW(), null, #{reviewViews},
+		INSERT INTO review_board(review_id, review_title,
+		review_contents, review_date, review_photo,
+		review_views, review_score,
+		id)
+		VALUES (#{reviewId}, #{reviewTitle},
+		#{reviewContents}, NOW(), null,
+		#{reviewViews},
 		null, #{id})
 	</insert>
+
+	<update id="update">
+		update review_board
+		set review_title = #{reviewTitle} ,
+		review_contents = #{reviewContents},
+		review_photo = #{reviewPhoto}
+		where review_id = #{reviewId}
+	</update>
+	
+	<select id="view" resultType="ReviewBoard">
+		select * from review_board where
+		review_id = #{reviewId}
+	</select>
+
+	<update id="views">
+		update review_board
+		set review_views = review_views+1
+		where review_id = #{reviewId}
+	</update>
+	
+	<delete id="delete">
+		delete from review_board where review_id = #{reviewId}
+	</delete>
+
 </mapper>

@@ -48,7 +48,6 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public void views(int nid) {
-		// TODO Auto-generated method stub
 		sql.update("notice.views",nid);
 	}
 
@@ -73,7 +72,6 @@ public class NoticeDaoImpl implements NoticeDao {
 
 	@Override
 	public List<FileVO> fileSelect(int nid) {
-		// TODO Auto-generated method stub
 		return sql.selectList("notice.fileSelect",nid);
 	}
 

@@ -44,7 +44,29 @@
 		select * from notice where
 		notice_id = #{nid}
 	</select>
+	
+<!-- 	댓글 -->
 
+	<select id="commentList" resultType="NComment">
+		select * from notice_comment where notice_id = #{noticeId};
+	</select>
+	
+	<insert id="commentAdd">
+		insert into notice_comment
+		(id,notice_id,ncoment_content,ncoment_date)
+		values(#{id},#{noticeId},#{ncomentContent},NOW())
+	</insert>
+	
+	<delete id="commentDel">
+		delete from notice_comment where ncoment_id = #{ncomentId}
+	</delete>
+	
+	<update id="commentUpdate">
+		update notice_comment
+			set ncoment_content = #{ncomentContent}, ncoment_date = NOW()
+			where ncoment_id = #{ncomentId}
+	</update>
+	
 	<insert id="add">
 		insert into notice
 		(notice_title,notice_contents,notice_date,notice_photo,id)

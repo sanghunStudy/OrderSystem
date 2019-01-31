@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
@@ -18,7 +19,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	SqlSession sql;
 	
 	@Override
-	public List<SearchVO> list(SearchVO searchVO) {
+	public List<Notice> list(SearchVO searchVO) {
 		
 		return sql.selectList("notice.list",searchVO);
 	}
@@ -73,6 +74,30 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public List<FileVO> fileSelect(int nid) {
 		return sql.selectList("notice.fileSelect",nid);
+	}
+
+	@Override
+	public void commentAdd(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		sql.insert("notice.commentAdd",nComment);
+	}
+
+	@Override
+	public List<NoticeComment> commentList(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		return sql.selectList("notice.commentList",nComment);
+	}
+
+	@Override
+	public void commentDel(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		sql.delete("notice.commentDel",nComment);
+	}
+
+	@Override
+	public void commentUpdate(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		sql.update("notice.commentUpdate", nComment);
 	}
 
 }

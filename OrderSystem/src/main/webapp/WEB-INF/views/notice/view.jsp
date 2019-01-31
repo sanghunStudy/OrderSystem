@@ -15,11 +15,6 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
-<script>
-$(function(){
-	$('.output').html($')
-});
-</script>
 </head>
 <body>
 	<label>글 번호</label>
@@ -40,6 +35,8 @@ $(function(){
 	
 	<label>내용</label>
 	<div>${item.noticeContents}</div>
+	
+	<jsp:include page="comment.jsp" flush="true" />
 		
 <a href="add?nid=${item.noticeId}">수정</a> <a href="delete?nid=${item.noticeId}">삭제</a>
 

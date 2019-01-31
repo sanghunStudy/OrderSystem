@@ -8,7 +8,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/orderSystem" />
 		<property name="username" value="root"/>
-		<property name="password" value="qwer"/>
+		<property name="password" value="1234"/>
  	</bean>  
     
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

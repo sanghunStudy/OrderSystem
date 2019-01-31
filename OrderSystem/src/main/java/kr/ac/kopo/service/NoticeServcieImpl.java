@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.NoticeDao;
 import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
@@ -18,7 +19,7 @@ public class NoticeServcieImpl implements NoticeServcie {
 	
 	
 	@Override
-	public List<SearchVO> list(SearchVO searchVO) {
+	public List<Notice> list(SearchVO searchVO) {
 		
 		return dao.list(searchVO);
 	}
@@ -73,6 +74,34 @@ public class NoticeServcieImpl implements NoticeServcie {
 	public List<FileVO> fileSelect(int nid) {
 		// TODO Auto-generated method stub
 		return dao.fileSelect(nid);
+	}
+
+
+	@Override
+	public void commentAdd(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		dao.commentAdd(nComment);
+	}
+
+
+	@Override
+	public List<NoticeComment> commentList(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		return dao.commentList(nComment);
+	}
+
+
+	@Override
+	public void conmentDel(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		dao.commentDel(nComment);
+	}
+
+
+	@Override
+	public void commentUpdate(NoticeComment nComment) {
+		// TODO Auto-generated method stub
+		dao.commentUpdate(nComment);
 	}
 
 }

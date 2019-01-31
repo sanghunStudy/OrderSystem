@@ -4,22 +4,30 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.NoticeServcie;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
@@ -40,7 +48,7 @@ public class NoticeController {
 	
 	
 	
-	List<SearchVO> list = service.list(searchVO);
+	List<Notice> list = service.list(searchVO);
 	
 	model.addAttribute("list", list);
 	model.addAttribute("SearchVO",searchVO);
@@ -152,4 +160,54 @@ public class NoticeController {
 		service.delete(nid);
 		return "redirect:list";
 	}
+	//댓글 crud
+	
+	@RequestMapping("/commentUpdate")
+	@ResponseBody
+	String commentUpdate(NoticeComment NComment) {
+		service.commentUpdate(NComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentDel")
+	@ResponseBody
+	String commentDel(NoticeComment NComment) {
+		service.conmentDel(NComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentAdd")
+	@ResponseBody
+	String commentAdd(NoticeComment NComment) {
+		service.commentAdd(NComment);
+		return "success";
+	}
+
+	@RequestMapping("/commentList")
+	@ResponseBody
+	ResponseEntity commentList(NoticeComment NComment,HttpServletRequest request){
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
+        // 해당 게시물 댓글
+        List<NoticeComment> commentVO = service.commentList(NComment);
+        
+        if(commentVO.size() > 0){
+            for(int i=0; i<commentVO.size(); i++){
+                HashMap hm = new HashMap();
+                hm.put("c_code", commentVO.get(i).getNcomentId());
+                hm.put("comment", commentVO.get(i).getNcomentContent());
+                hm.put("writer", commentVO.get(i).getId());
+                hm.put("NcomentDate", commentVO.get(i).getNcomentDate());
+                
+                hmlist.add(hm);
+            }
+            
+        }
+        
+        JSONArray json = new JSONArray(hmlist);  	
+		
+		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
+
 }

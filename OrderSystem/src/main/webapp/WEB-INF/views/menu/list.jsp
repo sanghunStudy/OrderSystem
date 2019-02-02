@@ -31,6 +31,19 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	<div>
+		<c:if test="${pageVO.totalPage>1}">
+			<div class="paging">
+				<c:forEach var="i" begin="${pageVO.pageStart}" end="${pageVO.pageEnd}" step="1">
+					<c:url var="pageLink" value="list">
+					<c:param name="page" value="${i}"/>
+					</c:url>
+						<a href="${pageLink}"><c:out value="${i}"></c:out></a>
+				</c:forEach>
+			</div>
+		</c:if>
+	</div>
 	<a href="add">메뉴추가</a>
+	<a href="../">메인으로</a>
 </body>
 </html>

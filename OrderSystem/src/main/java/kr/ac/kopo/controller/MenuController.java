@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.ac.kopo.model.Menu;
 import kr.ac.kopo.service.MenuService;
 import kr.ac.kopo.util.MediaUtils;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Controller
 @RequestMapping("/menu")
@@ -39,13 +39,13 @@ public class MenuController {
 	MenuService service;
 	
 	@RequestMapping("/list")
-	String list(PageVO pageVO,Model model) {
-		pageVO.pageCalculate(service.total(pageVO));
+	String list(SearchVO searchVO,Model model) {
+		searchVO.pageCalculate(service.total(searchVO));
 		
-		List<Menu> list = service.list(pageVO);
+		List<Menu> list = service.list(searchVO);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("searchVO", searchVO);
 		
 		return path + "list";
 	}

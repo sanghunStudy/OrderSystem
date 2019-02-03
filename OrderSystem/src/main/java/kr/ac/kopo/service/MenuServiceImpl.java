@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.MenuDao;
 import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -16,8 +16,8 @@ public class MenuServiceImpl implements MenuService {
 	MenuDao dao;
 
 	@Override
-	public List<Menu> list(PageVO pageVO) {
-		return dao.list(pageVO);
+	public List<Menu> list(SearchVO searchVO) {
+		return dao.list(searchVO);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int total(PageVO pageVO) {
-		return dao.total(pageVO);
+	public int total(SearchVO searchVO) {
+		return dao.total(searchVO);
 	}
 
 }

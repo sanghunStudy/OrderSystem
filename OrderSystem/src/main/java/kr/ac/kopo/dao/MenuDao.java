@@ -3,11 +3,11 @@ package kr.ac.kopo.dao;
 import java.util.List;
 
 import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 public interface MenuDao {
 
-	List<Menu> list(PageVO pageVO);
+	List<Menu> list(SearchVO searchVO);
 
 	void add(Menu menu);
 
@@ -17,6 +17,6 @@ public interface MenuDao {
 
 	void delete(int menuId);
 
-	int total(PageVO pageVO);
+	int total(SearchVO searchVO);
 
 }

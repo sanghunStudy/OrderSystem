@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Repository
 public class MenuDaoImpl implements MenuDao {
@@ -16,8 +16,8 @@ public class MenuDaoImpl implements MenuDao {
 	SqlSession sql;
 
 	@Override
-	public List<Menu> list(PageVO pageVO) {
-		return sql.selectList("menu.list", pageVO);
+	public List<Menu> list(SearchVO searchVO) {
+		return sql.selectList("menu.list", searchVO);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public int total(PageVO pageVO) {
-		return sql.selectOne("menu.total", pageVO);
+	public int total(SearchVO searchVO) {
+		return sql.selectOne("menu.total", searchVO);
 	}
 
 }

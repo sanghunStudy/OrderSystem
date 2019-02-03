@@ -3,11 +3,11 @@ package kr.ac.kopo.service;
 import java.util.List;
 
 import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 public interface MenuService {
 
-	List<Menu> list(PageVO pageVO);
+	List<Menu> list(SearchVO searchVO);
 
 	void add(Menu menu);
 
@@ -17,6 +17,6 @@ public interface MenuService {
 
 	void delete(int menuId);
 	
-	int total(PageVO pageVO);
+	int total(SearchVO searchVO);
 
 }

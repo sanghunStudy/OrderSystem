@@ -12,15 +12,15 @@
 
 <script>
 	function fn_formSubmit(page) {
-		
-		if(page == undefined){
+
+		if (page == undefined) {
 			document.getElementById('page').value = 1;
 			document.getElementById('form1').submit();
-		}else{
+		} else {
 			document.getElementById('page').value = page;
-			document.getElementById('form1').submit();	
+			document.getElementById('form1').submit();
 		}
-		
+
 	}
 </script>
 </head>
@@ -58,40 +58,43 @@
 	</table>
 
 	<div>
-			<c:if test="${SearchVO.totalPage>1}">
-				<c:if test="${SearchVO.page>1}">
-					<a href="javascript:fn_formSubmit(1);">처음</a>
-					<a href="javascript:fn_formSubmit(${SearchVO.page-1});">이전</a>
-				</c:if>
-
-				<c:forEach var="i" begin="${SearchVO.pageStart}"
-					end="${SearchVO.pageEnd}" step="1">
-					<c:choose>
-						<c:when test="${i eq SearchVO.page}">
-							<c:out value="${i}" />
-						</c:when>
-						<c:otherwise>
-							<a href="javascript:fn_formSubmit(${i});"><c:out value="${i}" /></a>
-						</c:otherwise>
-					</c:choose>
-					<c:if test="${not status.last}">|</c:if>
-				</c:forEach>
-
-				<c:if test="${SearchVO.totalPage > SearchVO.page}">
-					<a href="javascript:fn_formSubmit(${SearchVO.page+1});">다음</a>
-					<a href="javascript:fn_formSubmit(${SearchVO.totalPage});">마지막</a>
-				</c:if>
-				
-
+		<c:if test="${SearchVO.totalPage>1}">
+			<c:if test="${SearchVO.page>1}">
+				<a href="javascript:fn_formSubmit(1);">처음</a>
+				<a href="javascript:fn_formSubmit(${SearchVO.page-1});">이전</a>
 			</c:if>
-		</div>
+<%-- 			<c:if test="${SearchVO.page>5}"> --%>
+<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page-5});">이전 5개</a> --%>
+<%-- 			</c:if> --%>
+
+			<c:forEach var="i" begin="${SearchVO.pageStart}"
+				end="${SearchVO.pageEnd}" step="1">
+				<c:choose>
+					<c:when test="${i eq SearchVO.page}">
+						<c:out value="${i}" />
+					</c:when>
+					<c:otherwise>
+						<a href="javascript:fn_formSubmit(${i});"><c:out value="${i}" /></a>
+					</c:otherwise>
+				</c:choose>
+				<c:if test="${not status.last}">|</c:if>
+			</c:forEach>
+
+			<c:if test="${SearchVO.totalPage > SearchVO.page}">
+				<a href="javascript:fn_formSubmit(${SearchVO.page+1});">다음</a>
+				<a href="javascript:fn_formSubmit(${SearchVO.totalPage});">마지막</a>
+<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page+5});">다음 5개</a> --%>
+			</c:if>
+
+		</c:if>
+	</div>
 
 
 
 	<form id="form1" name="form1" method="post">
 		<%-- 		<jsp:include page="../gnb/paging.jsp" flush="true" /> --%>
 		<input type="hidden" name="page" id="page" value="" />
-			<div>
+		<div>
 			<input type="checkbox" name="searchType" value="notice_title"
 				<c:if test="${fn:indexOf(SearchVO.searchType, 'notice_title')!=-1}">checked="checked"</c:if> />
 			<label class="chkselect" for="searchType1">제목</label> <input

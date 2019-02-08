@@ -12,6 +12,19 @@
 </head>
 <header>
 <jsp:include page="../gnb/header.jsp" flush="true" />
+<script>
+	function fn_formSubmit(page) {
+		
+		if(page == undefined){
+			document.getElementById('page').value = 1;
+			document.getElementById('form1').submit();
+		}else{
+			document.getElementById('page').value = page;
+			document.getElementById('form1').submit();	
+		}
+		
+	}
+</script>
 </header>
 <body>
 	<h1>전체메뉴입니다</h1>
@@ -55,6 +68,8 @@
 	</div>
 	<form id="form1" name="form1" method="post">
 		<div>
+		<input type="hidden" name="page" id="page" value="" />
+		
 			<input type="checkbox" name="searchType" value="menu_name"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">메뉴이름</label>

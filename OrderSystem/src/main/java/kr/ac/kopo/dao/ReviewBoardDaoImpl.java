@@ -1,18 +1,13 @@
 package kr.ac.kopo.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.util.BoardReplyVO;
-import kr.ac.kopo.util.FileVO;
-import kr.ac.kopo.util.PageVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository

@@ -1,7 +1,7 @@
 package kr.ac.kopo.util;
 
 public class PageVO {
-	private int displayRowCount =3; //한번에 출력할 개수
+	private int displayRowCount =10; //한번에 출력할 개수
 	private int rowStart, rowEnd; //시작 행번호, 끝 행번호
 	private int totalPage,totalRow=0,//전체 페이지수,전체 데이터수
 				page =1,pageStart,pageEnd;//현재 페이지, 시작페이지

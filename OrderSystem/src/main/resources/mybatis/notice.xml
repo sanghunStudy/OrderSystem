@@ -37,7 +37,7 @@
 	<select id="list" resultType="Notice" parameterType="SearchVO">
 		select * from notice
 		<include refid="includeBoard" />
-		order by notice_id desc LIMIT ${rowStart-1},${displayRowCount}
+		order by notice_id desc LIMIT ${rowStart-1},10
 	</select>
 
 	<select id="view" resultType="Notice">

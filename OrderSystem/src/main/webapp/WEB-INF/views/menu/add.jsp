@@ -121,15 +121,16 @@ $(function() {
 </style>
 </head>
 <body>
-	<form action="uploadAjax" method="post" enctype="multipart/form-data">
+	<form action="add" method="post" enctype="multipart/form-data">
 		<div>
 			<label>메뉴이름: </label>
 			<input type="text" name="menuName">
 		</div>
 		<div>
 			<label>메뉴사진: </label>
-			<div class="fileDrop">여기다 이미지를 끌어다 놓으세요</div>
-			<div class="uploadList"></div>
+<!--  		<div class="fileDrop">여기다 이미지를 끌어다 놓으세요</div>
+			<div class="uploadList"></div> -->
+			<input type="text" name="menuPhoto">
 		</div>
 		<div>
 			<label>가격: </label>

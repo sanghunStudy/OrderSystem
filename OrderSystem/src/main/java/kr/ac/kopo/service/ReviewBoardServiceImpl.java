@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.ReviewBoardDao;
+import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
+import kr.ac.kopo.util.BoardReplyVO;
 import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Service
 public class ReviewBoardServiceImpl implements ReviewBoardService {
@@ -16,8 +19,8 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	ReviewBoardDao dao;
 	
 	@Override
-	public List<ReviewBoard> list() {
-		return dao.list();
+	public List<SearchVO> list(SearchVO searchVO) {
+		return dao.list(searchVO);
 	}
 
 	@Override
@@ -48,6 +51,21 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	@Override
 	public void update(ReviewBoard item) {
 		dao.update(item);
+	}
+
+	@Override
+	public void delete(int reviewId) {
+		dao.delete(reviewId);
+	}
+
+	@Override
+	public int totalCount(SearchVO searchVO) {
+		return dao.totalCount(searchVO);
+	}
+
+	@Override
+	public void insertBoardReply(BoardReplyVO boardReplyVO) {
+		dao.insertBoardReply(boardReplyVO);
 	}
 
 }

@@ -2,6 +2,8 @@ package kr.ac.kopo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.service.ReviewBoardService;
+import kr.ac.kopo.util.BoardReplyVO;
 import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Controller
 @RequestMapping("/review_board")
@@ -24,12 +29,24 @@ public class ReviewBoardController {
 	ReviewBoardService service;
 	
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<ReviewBoard> list = service.list();
+	public String list(Model model, SearchVO searchVO) {
 		
+		searchVO.pageCalculate(service.totalCount(searchVO));
+
+		List<SearchVO> list = service.list(searchVO);
+		
+		model.addAttribute("SearchVO", searchVO);
 		model.addAttribute("list", list);
 		
 		return path + "list";
+	}
+	
+	@RequestMapping("/reply")
+	public String Reply(BoardReplyVO boardReplyVO) {
+		
+		service.insertBoardReply(boardReplyVO);
+		
+		return "redirect:board5Read?reviewId=" + boardReplyVO.getReviewId();
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
@@ -71,6 +88,14 @@ public class ReviewBoardController {
 	public String update(ReviewBoard item) {
 		
 		service.update(item);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(int reviewId) {
+		
+		service.delete(reviewId);
 		
 		return "redirect:list";
 	}

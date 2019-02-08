@@ -1,13 +1,19 @@
 package kr.ac.kopo.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
+import kr.ac.kopo.util.BoardReplyVO;
 import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.PageVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Repository
 public class ReviewBoardDaoImpl implements ReviewBoardDao {
@@ -16,8 +22,9 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 	SqlSession sql;
 	
 	@Override
-	public List<ReviewBoard> list() {
-		return sql.selectList("reviewboard.list");
+	public List<SearchVO> list(SearchVO searchVO) {;
+		
+		return sql.selectList("reviewboard.list", searchVO);
 	}
 
 	@Override
@@ -51,8 +58,26 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 
 	@Override
 	public void update(ReviewBoard item) {
-		sql.update("revicewboard.update", item);
+		sql.update("reviewboard.update", item);
 	}
 
+	@Override
+	public void delete(int reviewId) {
+		sql.delete("reviewboard.delete", reviewId);
+	}
+
+	@Override
+	public int totalCount(SearchVO searchVO) {
+		return sql.selectOne("reviewboard.total", searchVO);
+	}
+
+	@Override
+	public void insertBoardReply(BoardReplyVO boardReplyVO) {
+		if(boardReplyVO.getReviewId()==null || "".equals(boardReplyVO.getReviewId())) {
+			sql.insert("reviewboard.insertReply",boardReplyVO);
+		} else {
+			sql.insert("reviewboard.updateReply",boardReplyVO);
+		}
+	}
 
 }

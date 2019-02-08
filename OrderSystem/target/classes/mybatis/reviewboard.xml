@@ -2,9 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reviewboard">
-	<select id="list" resultType="ReviewBoard">
+
+	<select id="list" resultType="ReviewBoard"
+		parameterType="SearchVO">
 		select * from review_board
+		<include refid="includeBoard" />
+		order by review_id desc LIMIT ${rowStart-1},10
 	</select>
+
+	<sql id="includeBoard">
+		<if test="searchKeyword != null and searchKeyword != ''">
+			where review_id != 0 and(
+			<foreach item="item" index="index" collection="searchTypeArr"
+				separator="or">
+
+				${item} like concat('%', #{searchKeyword}, '%')
+
+			</foreach>
+			)
+		</if>
+	</sql>
+
+	<select id="total" resultType="Integer" parameterType="SearchVO">
+		select count(*) from review_board
+		<include refid="includeBoard" />
+	</select>
+
+	<insert id="insertReply" parameterType="BoardReplyVO">
+		<selectKey resultType="String" keyProperty="rcommentId"
+			order="BEFORE">
+			SELECT IFNULL(MAX(rcomment_id),0)+1 FROM review_comment
+		</selectKey>
+
+		INSERT INTO review_comment(review_id, rcomment_id, rcomment_writer ,
+		rcomment_df,
+		rcomment_contents, rcomment_date)
+		VALUES (#{reviewId},
+		#{rcommentId}, #{rcommentWriter}, 'N', #{rcommentContents}, NOW())
+	</insert>
+
+	<update id="updateReply"
+		parameterType="BoardReplyVO">
+		UPDATE review_comment
+		SET rcomment_contents=#{rcommentContents}
+		WHERE rcomment_id=#{rcommentId}
+	</update>
 
 	<select id="item" resultType="ReviewBoard">
 		SELECT * FROM review_board WHERE
@@ -14,22 +56,22 @@
 	<insert id="add">
 		INSERT INTO review_board(review_id, review_title,
 		review_contents, review_date, review_photo,
-		review_views, review_score,
-		id)
-		VALUES (#{reviewId}, #{reviewTitle},
+		review_score)
+		VALUES (null,
+		#{reviewTitle},
 		#{reviewContents}, NOW(), null,
-		#{reviewViews},
-		null, #{id})
+		null)
 	</insert>
 
 	<update id="update">
 		update review_board
-		set review_title = #{reviewTitle} ,
+		set review_title = #{reviewTitle}
+		,
 		review_contents = #{reviewContents},
 		review_photo = #{reviewPhoto}
 		where review_id = #{reviewId}
 	</update>
-	
+
 	<select id="view" resultType="ReviewBoard">
 		select * from review_board where
 		review_id = #{reviewId}
@@ -40,9 +82,10 @@
 		set review_views = review_views+1
 		where review_id = #{reviewId}
 	</update>
-	
+
 	<delete id="delete">
-		delete from review_board where review_id = #{reviewId}
+		delete from review_board where review_id =
+		#{reviewId}
 	</delete>
 
 </mapper>

@@ -87,10 +87,10 @@
 		<%-- 		<jsp:include page="../gnb/paging.jsp" flush="true" /> --%>
 		<input type="hidden" name="page" id="page" value="" />
 		<div>
-			<input type="checkbox" name="searchType" value="notice_title"
+			<input type="checkbox" name="searchType" value="review_title"
 				<c:if test="${fn:indexOf(SearchVO.searchType, 'review_title')!=-1}">checked="checked"</c:if> />
 			<label class="chkselect" for="searchType1">제목</label> <input
-				type="checkbox" name="searchType" value="notice_contents"
+				type="checkbox" name="searchType" value="review_contents"
 				<c:if test="${fn:indexOf(SearchVO.searchType, 'review_contents')!=-1}">checked="checked"</c:if> />
 			<label class="chkselect" for="searchType2">내용</label> <input
 				type="text" name="searchKeyword"

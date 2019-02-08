@@ -59,7 +59,7 @@
 							<c:out value="${i}"/>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageLink}"><c:out value="${i}"></c:out></a>
+							<a href="javascript:fn_formSubmit(${i});"><c:out value="${i}" /></a>
 						</c:otherwise>
 						</c:choose>
 				</c:forEach>
@@ -67,9 +67,9 @@
 		</c:if>
 	</div>
 	<form id="form1" name="form1" method="post">
-		<div>
-		<input type="hidden" name="page" id="page" value="" />
 		
+		<input type="hidden" name="page" id="page" value="" />
+		<div>
 			<input type="checkbox" name="searchType" value="menu_name"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">메뉴이름</label>

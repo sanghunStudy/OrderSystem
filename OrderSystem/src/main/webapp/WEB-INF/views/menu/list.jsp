@@ -49,6 +49,10 @@
 	</ul>
 	<div>
 		<c:if test="${searchVO.totalPage>1}">
+			<c:if test="${searchVO.page>1}">
+				<a href="javascript:fn_formSubmit(1);">처음</a>
+				<a href="javascript:fn_formSubmit(${searchVO.page-1});">이전</a>
+			</c:if>
 			<div class="paging">
 				<c:forEach var="i" begin="${searchVO.pageStart}" end="${searchVO.pageEnd}" step="1">
 					<c:url var="pageLink" value="list">
@@ -64,6 +68,10 @@
 						</c:choose>
 				</c:forEach>
 			</div>
+			<c:if test="${searchVO.totalPage>searchVO.page}">
+				<a href="javascript:fn_formSubmit(${searchVO.page+1});">다음</a>
+				<a href="javascript:fn_formSubmit(${serachVO.totalPage});">끝</a>
+			</c:if>
 		</c:if>
 	</div>
 	<form id="form1" name="form1" method="post">

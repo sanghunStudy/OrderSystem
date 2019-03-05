@@ -7,10 +7,10 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="kr.ac.kopo.model.ReviewBoardComment" alias="RComment"/>
 		<typeAlias type="kr.ac.kopo.model.NoticeComment" alias="NComment"/>
 		<typeAlias type="kr.ac.kopo.util.FileVO" alias="FileVO"/>
 		<typeAlias type="kr.ac.kopo.util.SearchVO" alias="SearchVO"/>
-		<typeAlias type="kr.ac.kopo.util.BoardReplyVO" alias="BoardReplyVO"/>
 		<typeAlias type="kr.ac.kopo.util.PageVO" alias="PageVo"/>
 		<typeAlias type="kr.ac.kopo.model.Notice" alias="Notice"/>
 		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>

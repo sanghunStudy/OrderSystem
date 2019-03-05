@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.dao.ReviewBoardDao;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
-import kr.ac.kopo.util.BoardReplyVO;
+import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
@@ -64,8 +64,23 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	}
 
 	@Override
-	public void insertBoardReply(BoardReplyVO boardReplyVO) {
-		dao.insertBoardReply(boardReplyVO);
+	public void commentUpdate(ReviewBoardComment rComment) {
+		dao.commentUpdate(rComment);
+	}
+
+	@Override
+	public void conmmentDel(ReviewBoardComment rComment) {
+		dao.commentDel(rComment);
+	}
+
+	@Override
+	public void commentAdd(ReviewBoardComment rComment) {
+		dao.commentAdd(rComment);
+	}
+
+	@Override
+	public List<ReviewBoardComment> commentList(ReviewBoardComment rComment) {
+		return dao.commentList(rComment);
 	}
 
 }

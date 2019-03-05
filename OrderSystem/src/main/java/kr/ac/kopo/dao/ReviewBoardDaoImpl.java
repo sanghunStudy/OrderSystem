@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.ReviewBoard;
-import kr.ac.kopo.util.BoardReplyVO;
+import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository
@@ -67,12 +67,23 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 	}
 
 	@Override
-	public void insertBoardReply(BoardReplyVO boardReplyVO) {
-		if(boardReplyVO.getReviewId()==null || "".equals(boardReplyVO.getReviewId())) {
-			sql.insert("reviewboard.insertReply",boardReplyVO);
-		} else {
-			sql.insert("reviewboard.updateReply",boardReplyVO);
-		}
+	public void commentUpdate(ReviewBoardComment rComment) {
+		sql.update("reviewboard.commentUpdate", rComment);
+	}
+
+	@Override
+	public void commentDel(ReviewBoardComment rComment) {
+		sql.delete("reviewboard.commentDelete", rComment);
+	}
+
+	@Override
+	public void commentAdd(ReviewBoardComment rComment) {
+		sql.insert("reviewboard.commentAdd", rComment);
+	}
+
+	@Override
+	public List<ReviewBoardComment> commentList(ReviewBoardComment rComment) {
+		return sql.selectList("reviewboard.commentList", rComment);
 	}
 
 }

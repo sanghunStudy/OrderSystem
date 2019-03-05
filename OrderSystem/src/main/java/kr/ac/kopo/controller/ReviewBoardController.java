@@ -1,16 +1,26 @@
 package kr.ac.kopo.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.model.ReviewBoard;
+import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.service.ReviewBoardService;
-import kr.ac.kopo.util.BoardReplyVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Controller
@@ -32,14 +42,6 @@ public class ReviewBoardController {
 		model.addAttribute("list", list);
 		
 		return path + "list";
-	}
-	
-	@RequestMapping("/reply")
-	public String Reply(BoardReplyVO boardReplyVO) {
-		
-		service.insertBoardReply(boardReplyVO);
-		
-		return "redirect:board5Read?reviewId=" + boardReplyVO.getReviewId();
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
@@ -91,5 +93,55 @@ public class ReviewBoardController {
 		service.delete(reviewId);
 		
 		return "redirect:list";
+	}
+	
+	//댓글 crud
+	
+	@RequestMapping("/commentUpdate")
+	@ResponseBody
+	String commentUpdate(ReviewBoardComment RComment) {
+		service.commentUpdate(RComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentDel")
+	@ResponseBody
+	String commentDel(ReviewBoardComment RComment) {
+		service.conmmentDel(RComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentAdd")
+	@ResponseBody
+	String commentAdd(ReviewBoardComment RComment) {
+		service.commentAdd(RComment);
+		return "success";
+	}
+
+	@RequestMapping("/commentList")
+	@ResponseBody
+	ResponseEntity commentList(ReviewBoardComment RComment,HttpServletRequest request){
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
+        // 해당 게시물 댓글
+        List<ReviewBoardComment> commentVO = service.commentList(RComment);
+        
+        if(commentVO.size() > 0){
+            for(int i=0; i<commentVO.size(); i++){
+                HashMap hm = new HashMap();
+                hm.put("c_code", commentVO.get(i).getRcommentId());
+                hm.put("comment", commentVO.get(i).getRcommentContent());
+                hm.put("writer", commentVO.get(i).getId());
+                hm.put("RcommentDate", commentVO.get(i).getRcommentDate());
+                
+                hmlist.add(hm);
+            }
+            
+        }
+        
+        JSONArray json = new JSONArray(hmlist);  	
+		
+		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 }

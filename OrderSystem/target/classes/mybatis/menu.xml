@@ -40,4 +40,5 @@
 	<delete id="delete">
 		delete from menu where menu_id=#{menuId}
 	</delete>
+	
 </mapper>

@@ -33,11 +33,8 @@
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 					<li>
-						<span id="menuName${item.menuId}">${item.menuName}</span>
-						<span>${item.menuPhoto}</span>
+						<span id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a></span>
 						<span id="menuPrice${item.menuId}">${item.menuPrice}</span>
-						<span><a href="update?menuId=${item.menuId}">변경</a></span>
-						<span><a href="delete?menuId=${item.menuId}">삭제</a></span>
 						<button type="button" onclick="cartAdd(${item.menuId});">담기</button>
 					</li>
 				</c:forEach>

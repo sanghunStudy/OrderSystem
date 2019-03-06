@@ -133,4 +133,12 @@ public class MenuController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping("/view")
+	String view(Model model, int menuId) {
+		Menu item = service.item(menuId);
+		
+		model.addAttribute("item", item);
+		
+		return path + "view";
+	}
 }

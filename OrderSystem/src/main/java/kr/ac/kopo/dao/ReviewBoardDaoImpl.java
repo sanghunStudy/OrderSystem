@@ -1,5 +1,6 @@
 package kr.ac.kopo.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -73,7 +74,7 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 
 	@Override
 	public void commentDel(ReviewBoardComment rComment) {
-		sql.delete("reviewboard.commentDelete", rComment);
+		sql.delete("reviewboard.commentDel", rComment);
 	}
 
 	@Override

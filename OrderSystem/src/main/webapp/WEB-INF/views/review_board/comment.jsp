@@ -15,7 +15,7 @@
 		
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath}/reviewboard/commentAdd',
+			url:'${pageContext.request.contextPath}/review_board/commentAdd',
 			data:$('#commentForm').serialize(),
 			success:function(data){
 				if(data == 'success'){
@@ -30,7 +30,7 @@
 		   
 	    $.ajax({
 	        type:'GET',
-	        url : '${pageContext.request.contextPath}/reviewboard/commentList',
+	        url : '${pageContext.request.contextPath}/review_board/commentList',
 	        dataType : "json",
 	        data:$("#commentForm").serialize(),
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -78,7 +78,7 @@
 	    var updateContent = $('[name=content_'+code+']').val();
 	    
 	    $.ajax({
-	        url : '${pageContext.request.contextPath}/reviewboard/commentUpdate',
+	        url : '${pageContext.request.contextPath}/review_board/commentUpdate',
 	        type : 'post',
 	        data : {'rcommentContent' : updateContent, 'rcommentId' : code},
 	        success : function(data){
@@ -105,7 +105,7 @@
 	function fn_delete(code){
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath}/reviewboardcomment/commentDel',
+			url:'${pageContext.request.contextPath}/review_board/commentDel',
 			data:{'rcommentId':code},
 			success:function(data){
 				if(data == 'success'){

@@ -7,6 +7,7 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="kr.ac.kopo.model.MenuComment" alias="MComment"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoardComment" alias="RComment"/>
 		<typeAlias type="kr.ac.kopo.model.NoticeComment" alias="NComment"/>
 		<typeAlias type="kr.ac.kopo.util.FileVO" alias="FileVO"/>

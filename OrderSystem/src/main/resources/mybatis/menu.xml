@@ -41,4 +41,24 @@
 		delete from menu where menu_id=#{menuId}
 	</delete>
 	
+	<select id="commentList" resultType="MComment">
+		select * from menu_comment where menu_id=#{menuId}
+	</select>
+	
+	<insert id="commentAdd" parameterType="MComment">
+		insert into menu_comment
+		(id,menu_id,mcomment_content,mcomment_date)
+		values(#{id},#{menuId},#{mcommentContent},NOW())
+	</insert>
+	
+	<delete id="commentDel">
+		delete from menu_comment where mcomment_id = #{mcommentId}
+	</delete>
+	
+	<update id="commentUpdate">
+		update menu_comment
+		set mcomment_content = #{mcommentContent}, mcomment_date=NOW()
+		where mcomment_id = #{mcommentId}
+	</update>
+	
 </mapper>

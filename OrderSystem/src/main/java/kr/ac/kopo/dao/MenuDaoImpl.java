@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.Menu;
+import kr.ac.kopo.model.MenuComment;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository
@@ -43,6 +44,26 @@ public class MenuDaoImpl implements MenuDao {
 	@Override
 	public int total(SearchVO searchVO) {
 		return sql.selectOne("menu.total", searchVO);
+	}
+
+	@Override
+	public List<MenuComment> commentList(MenuComment mComment) {
+		return sql.selectList("menu.commentList", mComment);
+	}
+
+	@Override
+	public void commentAdd(MenuComment mComment) {
+		sql.insert("menu.commentAdd",mComment);
+	}
+
+	@Override
+	public void commentDel(MenuComment mComment) {
+		sql.delete("menu.commentDel", mComment);
+	}
+
+	@Override
+	public void commentUpdate(MenuComment mComment) {
+		sql.update("menu.commentUpdate", mComment);
 	}
 
 }

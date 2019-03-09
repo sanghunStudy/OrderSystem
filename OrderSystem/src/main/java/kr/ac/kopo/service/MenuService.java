@@ -3,6 +3,7 @@ package kr.ac.kopo.service;
 import java.util.List;
 
 import kr.ac.kopo.model.Menu;
+import kr.ac.kopo.model.MenuComment;
 import kr.ac.kopo.util.SearchVO;
 
 public interface MenuService {
@@ -18,5 +19,13 @@ public interface MenuService {
 	void delete(int menuId);
 	
 	int total(SearchVO searchVO);
+
+	List<MenuComment> commentList(MenuComment mComment);
+
+	void commentAdd(MenuComment mComment);
+
+	void commentDel(MenuComment mComment);
+
+	void commentUpdate(MenuComment mComment);
 
 }

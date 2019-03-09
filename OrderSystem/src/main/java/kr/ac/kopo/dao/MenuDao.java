@@ -3,6 +3,7 @@ package kr.ac.kopo.dao;
 import java.util.List;
 
 import kr.ac.kopo.model.Menu;
+import kr.ac.kopo.model.MenuComment;
 import kr.ac.kopo.util.SearchVO;
 
 public interface MenuDao {
@@ -18,5 +19,13 @@ public interface MenuDao {
 	void delete(int menuId);
 
 	int total(SearchVO searchVO);
+
+	List<MenuComment> commentList(MenuComment mComment);
+
+	void commentAdd(MenuComment mComment);
+
+	void commentDel(MenuComment mComment);
+
+	void commentUpdate(MenuComment mComment);
 
 }

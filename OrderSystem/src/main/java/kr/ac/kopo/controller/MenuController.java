@@ -2,9 +2,14 @@ package kr.ac.kopo.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.Menu;
+import kr.ac.kopo.model.MenuComment;
+import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.MenuService;
 import kr.ac.kopo.util.MediaUtils;
 import kr.ac.kopo.util.SearchVO;
@@ -140,5 +147,54 @@ public class MenuController {
 		model.addAttribute("item", item);
 		
 		return path + "view";
+	}
+	
+	@RequestMapping("/commentList")
+	@ResponseBody
+	ResponseEntity commentList(MenuComment MComment,HttpServletRequest request) {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+		
+		List<MenuComment> commentVO = service.commentList(MComment);
+		
+		if(commentVO.size() > 0){
+            for(int i=0; i<commentVO.size(); i++){
+                HashMap hm = new HashMap();
+                
+                System.out.println(commentVO.get(i).getMcommentContent());
+                hm.put("c_code", commentVO.get(i).getMcommentId());
+                hm.put("comment", commentVO.get(i).getMcommentContent());
+                hm.put("writer", commentVO.get(i).getId());
+                hm.put("McommentDate", commentVO.get(i).getMcommentDate());
+                
+                hmlist.add(hm);
+            }
+            
+        }
+        
+        JSONArray json = new JSONArray(hmlist);  	
+		
+		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("/commentAdd")
+	@ResponseBody
+	String commnetAdd(MenuComment MComment) {
+		service.commentAdd(MComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentDel")
+	@ResponseBody
+	String commentsDel(MenuComment MComment) {
+		service.commentDel(MComment);
+		return "success";
+	}
+	
+	@RequestMapping("/commentUpdate")
+	@ResponseBody
+	String commentUpdate(MenuComment MComment) {
+		service.commentUpdate(MComment);
+		return "success";
 	}
 }

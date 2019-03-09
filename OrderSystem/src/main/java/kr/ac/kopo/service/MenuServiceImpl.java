@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.MenuDao;
 import kr.ac.kopo.model.Menu;
+import kr.ac.kopo.model.MenuComment;
 import kr.ac.kopo.util.SearchVO;
 
 @Service
@@ -43,6 +44,26 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int total(SearchVO searchVO) {
 		return dao.total(searchVO);
+	}
+
+	@Override
+	public List<MenuComment> commentList(MenuComment mComment) {
+		return dao.commentList(mComment);
+	}
+
+	@Override
+	public void commentAdd(MenuComment mComment) {
+		dao.commentAdd(mComment);
+	}
+
+	@Override
+	public void commentDel(MenuComment mComment) {
+		dao.commentDel(mComment);
+	}
+
+	@Override
+	public void commentUpdate(MenuComment mComment) {
+		dao.commentUpdate(mComment);
 	}
 
 }

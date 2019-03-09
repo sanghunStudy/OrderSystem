@@ -3,7 +3,7 @@ package kr.ac.kopo.model;
 public class Menu {
 	int menuId;
 	String menuName;
-	String menuPhoto;
+	String menuContent;
 	int menuPrice;
 	
 	public int getMenuId() {
@@ -18,11 +18,11 @@ public class Menu {
 	public void setMenuName(String menuName) {
 		this.menuName = menuName;
 	}
-	public String getMenuPhoto() {
-		return menuPhoto;
+	public String getMenuContent() {
+		return menuContent;
 	}
-	public void setMenuPhoto(String menuPhoto) {
-		this.menuPhoto = menuPhoto;
+	public void setMenuContent(String menuContent) {
+		this.menuContent = menuContent;
 	}
 	public int getMenuPrice() {
 		return menuPrice;

@@ -1,12 +1,16 @@
 package kr.ac.kopo.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -19,8 +23,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,12 +41,7 @@ import kr.ac.kopo.util.SearchVO;
 @RequestMapping("/menu")
 public class MenuController {
 	
-	//@Resource(name = "uploadPath")
-	private String uploadPath;
-	
 	final String path = "menu/";
-	static final Logger logger=LoggerFactory.getLogger(MenuController.class);
-	
 	
 	@Autowired
 	MenuService service;
@@ -67,54 +68,6 @@ public class MenuController {
 		service.add(menu);
 		
 		return "redirect:list";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/uploadAjax",method=RequestMethod.POST)
-	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
-		
-		logger.info("originalName: " + file.getOriginalFilename());
-		logger.info("size: " + file.getSize());
-		logger.info("contentType: " + file.getContentType());
-		
-		System.out.println(file.getOriginalFilename());
-		
-		return new ResponseEntity<String>(file.getOriginalFilename(), HttpStatus.CREATED);
-	}
-	
-	@ResponseBody
-	@RequestMapping("/displayFile")
-	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
-		InputStream in = null;
-		ResponseEntity<byte[]> entity = null;
-		
-		logger.info("FILE NAME : " + fileName);
-		
-		try {
-			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-			
-			MediaType mType = MediaUtils.getMediaType(formatName);
-			
-			HttpHeaders headers = new HttpHeaders();
-			
-			in = new FileInputStream(uploadPath+fileName);
-			
-			if (mType != null) {
-				headers.setContentType(mType);
-			} else {
-				fileName = fileName.substring(fileName.indexOf("_")+1);
-				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-				headers.add("Content-Disposition", "attachment; filename=\""+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+ "\"");
-			}
-			
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.CREATED);
-		} catch(Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		} finally {
-			in.close();
-		}
-		return entity;
 	}
 	
 	@RequestMapping(value="/update")
@@ -196,5 +149,31 @@ public class MenuController {
 	String commentUpdate(MenuComment MComment) {
 		service.commentUpdate(MComment);
 		return "success";
+	}
+	
+	@RequestMapping("/profileUpload")
+	public void profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		UUID uuid = UUID.randomUUID();
+
+		// 업로드할 파일 이름
+		String org_filename = file.getOriginalFilename();
+		String str_filename = uuid.toString() + org_filename;
+
+		System.out.println("원본 파일명 : " + org_filename);
+		System.out.println("저장할 파일명 : " + str_filename);
+
+		String filepath = "c:\\upload\\" + str_filename;
+		System.out.println("파일경로 : " + filepath);
+
+		File f = new File(filepath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		file.transferTo(f);
+		out.println("/upload/"+str_filename);
+		out.close();
 	}
 }

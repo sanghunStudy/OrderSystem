@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="add" parameterType="Menu">
-		insert into menu(menu_name,menu_photo,menu_price)
-		values(#{menuName},#{menuPhoto},#{menuPrice})
+		insert into menu(menu_name,menu_content,menu_price)
+		values(#{menuName},#{menuContent},#{menuPrice})
 	</insert>
 	
 	<select id="item" resultType="Menu">
@@ -33,7 +33,7 @@
 	</select>
 	
 	<update id="update" parameterType="Menu">
-		update menu set menu_name=#{menuName},menu_photo=#{menuPhoto},menu_price=#{menuPrice}
+		update menu set menu_name=#{menuName},menu_content=#{menuContent},menu_price=#{menuPrice}
 		where menu_id=#{menuId}
 	</update>
 	

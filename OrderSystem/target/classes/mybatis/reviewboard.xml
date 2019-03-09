@@ -67,27 +67,29 @@
 		delete from review_board where review_id =
 		#{reviewId}
 	</delete>
-	
-	<!-- 	댓글 -->
+
+	<!-- 댓글 -->
 
 	<select id="commentList" resultType="RComment">
-		select * from reviewboard_comment where review_id = #{reviewId};
+		select * from
+		reviewboard_comment where review_id = #{reviewId};
 	</select>
-	
+
 	<insert id="commentAdd">
 		insert into reviewboard_comment
 		(review_id,rcomment_content,rcomment_date, id)
 		values(#{reviewId},#{rcommentContent},NOW(), #{id})
 	</insert>
-	
+
 	<delete id="commentDel">
-		delete from reviewboard_comment where rcomment_id = #{rcommentId}
+		delete from reviewboard_comment where rcomment_id =
+		#{rcommentId}
 	</delete>
-	
+
 	<update id="commentUpdate">
 		update reviewboard_comment
-			set rcomment_content = #{rcommentContent}, rcomment_date = NOW()
-			where rcomment_id = #{rcommentId}
+		set rcomment_content = #{rcommentContent}, rcomment_date = NOW()
+		where rcomment_id = #{rcommentId}
 	</update>
 
 </mapper>

@@ -9,7 +9,6 @@ import kr.ac.kopo.dao.ReviewBoardDao;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
-import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Service
@@ -82,5 +81,6 @@ public class ReviewBoardServiceImpl implements ReviewBoardService {
 	public List<ReviewBoardComment> commentList(ReviewBoardComment rComment) {
 		return dao.commentList(rComment);
 	}
+
 
 }

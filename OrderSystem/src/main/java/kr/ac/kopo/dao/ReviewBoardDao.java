@@ -5,7 +5,7 @@ import java.util.List;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
-import kr.ac.kopo.util.FileVO;
+
 import kr.ac.kopo.util.PageVO;
 import kr.ac.kopo.util.SearchVO;
 

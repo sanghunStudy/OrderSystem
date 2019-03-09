@@ -25,6 +25,9 @@
 					pattern="yyyy-mm-dd" /></span>
 		</div>
 		<div>
+			<span>${item.reviewPhoto}</span>
+		</div>
+		<div>
 			<span>${item.reviewViews}</span>
 		</div>
 		<div>${item.reviewTitle}</div>

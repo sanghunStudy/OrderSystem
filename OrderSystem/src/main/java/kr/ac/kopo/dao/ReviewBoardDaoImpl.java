@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
+import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository

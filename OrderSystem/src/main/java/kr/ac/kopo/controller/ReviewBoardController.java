@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
@@ -52,17 +54,56 @@ public class ReviewBoardController {
 		return path + "list";
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.GET)
-	public String add() {
-		
-		return path + "add";
+	@RequestMapping("/profileUpload")
+	public void profileUpload(String email, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		// 업로드할 폴더 경로
+		String realFolder = request.getSession().getServletContext().getRealPath("profileUpload");
+		UUID uuid = UUID.randomUUID();
+
+		// 업로드할 파일 이름
+		String org_filename = file.getOriginalFilename();
+		String str_filename = uuid.toString() + org_filename;
+
+		System.out.println("원본 파일명 : " + org_filename);
+		System.out.println("저장할 파일명 : " + str_filename);
+
+		String filepath = "c:\\upload\\" + str_filename;
+		System.out.println("파일경로 : " + filepath);
+
+		File f = new File(filepath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		file.transferTo(f);
+		out.println("/upload/"+str_filename);
+		out.close();
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String add(ReviewBoard item) {
+	@RequestMapping(value="/add" , method=RequestMethod.GET)
+	String add(Model model) {
+
+		return path+"add";
+	}
+	
+	@RequestMapping(value = "/upload")
+	public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) throws IllegalStateException, IOException {
+	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+	   	
+		File f = new File("c:\\upload\\" + newfilename);
 		
-		service.add(item);
+			Filedata.transferTo(f);
+		   	response.getWriter().write(newfilename);
+	}
+	
+	//jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
+	@RequestMapping(value="/add" , method=RequestMethod.POST)
+	String add(ReviewBoard reviewboard) {
 		
+		service.add(reviewboard);
+	
 		return "redirect:list";
 	}
 	
@@ -137,7 +178,7 @@ public class ReviewBoardController {
         
         if(commentVO.size() > 0){
             for(int i=0; i<commentVO.size(); i++){
-                HashMap hm = new HashMap();
+                HashMap<String, Comparable> hm = new HashMap();
                 hm.put("c_code", commentVO.get(i).getRcommentId());
                 hm.put("comment", commentVO.get(i).getRcommentContent());
                 hm.put("writer", commentVO.get(i).getId());

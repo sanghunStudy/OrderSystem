@@ -12,9 +12,16 @@ public class ReviewBoard {
 	int reviewViews;
 	int reviewScore;
 	String id;
+	int reCnt;
 	
 	
 	
+	public int getReCnt() {
+		return reCnt;
+	}
+	public void setReCnt(int reCnt) {
+		this.reCnt = reCnt;
+	}
 	public int getReviewId() {
 		return reviewId;
 	}

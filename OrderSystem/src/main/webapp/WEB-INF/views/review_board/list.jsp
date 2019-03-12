@@ -38,7 +38,10 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td>${item.reviewId}</td>
-						<td><a href="view?reviewId=${item.reviewId}">${item.reviewTitle}</a></td>
+						<td><a href="view?reviewId=${item.reviewId}">${item.reviewTitle}</a>
+						<span style="color: red;">
+						[${item.reCnt}]
+						</span></td>
 						<td>${item.id}</td>
 						<td><fmt:formatDate value="${item.reviewDate}"
 									pattern="yyyy-MM-dd" /></td>

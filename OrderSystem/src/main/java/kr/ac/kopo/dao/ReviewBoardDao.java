@@ -36,5 +36,4 @@ public interface ReviewBoardDao {
 	void commentAdd(ReviewBoardComment rComment);
 
 	List<ReviewBoardComment> commentList(ReviewBoardComment rComment);
-	
 }

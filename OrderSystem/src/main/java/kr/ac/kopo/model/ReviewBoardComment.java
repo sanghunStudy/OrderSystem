@@ -8,8 +8,7 @@ public class ReviewBoardComment {
 	private String rcommentContent;
 	private String rcommentDate;
 	private int reviewId;
-	
-	
+
 	public int getRcommentId() {
 		return rcommentId;
 	}

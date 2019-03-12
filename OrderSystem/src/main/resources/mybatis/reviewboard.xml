@@ -5,11 +5,21 @@
 
 	<select id="list" resultType="ReviewBoard"
 		parameterType="SearchVO">
-		select * from review_board
+		select review_id, review_title, review_contents, review_date,
+		review_photo, review_views, review_score, id, (select
+		count(rcomment_id) from reviewboard_comment a where a.review_id =
+		b.review_id)as reCnt
+		from review_board b
 		<include refid="includeBoard" />
-		order by review_id desc LIMIT ${rowStart-1},10
+		order by b.review_id desc LIMIT ${rowStart-1},10
 	</select>
 
+	<select id="reCnt">
+		select count(*)
+		from review_board
+		where
+		review_id=#{reviewId}
+	</select>
 	<sql id="includeBoard">
 		<if test="searchKeyword != null and searchKeyword != ''">
 			where review_id != 0 and(
@@ -88,8 +98,10 @@
 
 	<update id="commentUpdate">
 		update reviewboard_comment
-		set rcomment_content = #{rcommentContent}, rcomment_date = NOW()
-		where rcomment_id = #{rcommentId}
+		set rcomment_content =
+		#{rcommentContent}, rcomment_date = NOW()
+		where rcomment_id =
+		#{rcommentId}
 	</update>
 
 </mapper>

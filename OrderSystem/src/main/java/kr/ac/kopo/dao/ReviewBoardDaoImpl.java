@@ -2,6 +2,7 @@ package kr.ac.kopo.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,7 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 	public List<ReviewBoardComment> commentList(ReviewBoardComment rComment) {
 		return sql.selectList("reviewboard.commentList", rComment);
 	}
-
+	
+	
+	
 }

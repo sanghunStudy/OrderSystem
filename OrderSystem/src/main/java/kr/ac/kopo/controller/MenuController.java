@@ -101,6 +101,7 @@ public class MenuController {
 	
 	@RequestMapping("/view")
 	String view(Model model, int menuId) {
+		service.views(menuId);
 		Menu item = service.item(menuId);
 		
 		model.addAttribute("item", item);

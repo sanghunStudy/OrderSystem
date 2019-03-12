@@ -1,12 +1,27 @@
 package kr.ac.kopo.model;
 
+import java.util.Date;
+
 public class Menu {
 	int menuId;
 	String menuName;
 	String menuContent;
-	int menuPrice;
 	int cnt;
+	Date menuDate;
+	int menuViews;
 	
+	public Date getMenuDate() {
+		return menuDate;
+	}
+	public void setMenuDate(Date menuDate) {
+		this.menuDate = menuDate;
+	}
+	public int getMenuViews() {
+		return menuViews;
+	}
+	public void setMenuViews(int menuViews) {
+		this.menuViews = menuViews;
+	}
 	public int getCnt() {
 		return cnt;
 	}
@@ -30,11 +45,5 @@ public class Menu {
 	}
 	public void setMenuContent(String menuContent) {
 		this.menuContent = menuContent;
-	}
-	public int getMenuPrice() {
-		return menuPrice;
-	}
-	public void setMenuPrice(int menuPrice) {
-		this.menuPrice = menuPrice;
 	}
 }

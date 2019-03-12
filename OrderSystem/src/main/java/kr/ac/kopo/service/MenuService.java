@@ -28,4 +28,6 @@ public interface MenuService {
 
 	void commentUpdate(MenuComment mComment);
 
+	void views(int menuId);
+
 }

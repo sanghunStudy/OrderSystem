@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="add" parameterType="Menu">
-		insert into menu(menu_name,menu_content,menu_price)
-		values(#{menuName},#{menuContent},#{menuPrice})
+		insert into menu(menu_name,menu_content,menu_date)
+		values(#{menuName},#{menuContent},NOW())
 	</insert>
 	
 	<select id="item" resultType="Menu">
@@ -33,7 +33,7 @@
 	</select>
 	
 	<update id="update" parameterType="Menu">
-		update menu set menu_name=#{menuName},menu_content=#{menuContent},menu_price=#{menuPrice}
+		update menu set menu_name=#{menuName},menu_content=#{menuContent}
 		where menu_id=#{menuId}
 	</update>
 	
@@ -59,6 +59,12 @@
 		update menu_comment
 		set mcomment_content = #{mcommentContent}, mcomment_date=NOW()
 		where mcomment_id = #{mcommentId}
+	</update>
+	
+	<update id="views" parameterType="Menu">
+		update menu
+		set menu_views= menu_views+1
+		where menu_id=#{menuId}
 	</update>
 	
 </mapper>

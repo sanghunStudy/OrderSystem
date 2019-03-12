@@ -30,11 +30,17 @@
 <body>
 	<h1>전체메뉴입니다</h1>
 	<table>
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>작성일</th>
+		</tr>
 		<c:choose>
 			<c:when test="${Nlist.size() > 0}">
-				<c:forEach var="Nitem" items="${Nlist}">
+				<c:forEach var="Nitem" items="${Nlist}" begin="0" end="5" step="1">
 					<tr>
-						<td id="${Nitem.noticeId}">${Nitem.noticeTitle}</td>
+						<td>${Nitem.noticeId}</td>
+						<td><a href="${pageContext.request.contextPath}/notice/view?nid="${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
 						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
@@ -47,8 +53,9 @@
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 					<tr>
+						<td>${item.menuId}</td>
 						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a><a>[${item.cnt}]</a></td>
-						<td id="menuPrice${item.menuId}">${item.menuPrice}</td>
+						<td id="menuDate${item.menuId}"><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></td>
 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td>
 					</tr>
 				</c:forEach>

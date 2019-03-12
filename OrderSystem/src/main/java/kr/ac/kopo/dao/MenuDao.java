@@ -28,4 +28,6 @@ public interface MenuDao {
 
 	void commentUpdate(MenuComment mComment);
 
+	void views(int menuId);
+
 }

@@ -64,10 +64,6 @@ function sendFile(file, el) {
 			<label>컨텐츠: </label>
 			<textarea name="menuContent" id="summernote" value=""></textarea>
 		</div>
-		<div>
-			<label>가격: </label>
-			<input type="Integer" name="menuPrice">
-		</div>
 		
 		<div>
 			<input type="submit" value="등록">

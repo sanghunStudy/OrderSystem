@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${item.menuId}</title>
+<title>${item.menuId}.${item.menuName}</title>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -23,7 +24,10 @@
 			<a>컨텐츠 : <span>${item.menuContent}</span></a>
 		</div>
 		<div>
-			<a>가격 : <span>${item.menuPrice}</span></a>
+			<a>작성일 : <span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></a>
+		</div>
+		<div>
+			<a>조회수 : <span>${item.menuViews}</span></a>
 		</div>
 	</div>
 	

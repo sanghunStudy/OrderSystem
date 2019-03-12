@@ -66,4 +66,9 @@ public class MenuDaoImpl implements MenuDao {
 		sql.update("menu.commentUpdate", mComment);
 	}
 
+	@Override
+	public void views(int menuId) {
+		sql.update("menu.views", menuId);
+	}
+
 }

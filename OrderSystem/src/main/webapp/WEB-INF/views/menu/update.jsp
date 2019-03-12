@@ -68,10 +68,6 @@ function sendFile(file, el) {
 			<textarea name="menuContent" id="summernote">${item.menuContent}</textarea>
 		</div>
 		<div>
-			<label>메뉴가격: </label>
-			<input name="menuPrice" type="Integer" value="${item.menuPrice}">
-		</div>
-		<div>
 			<input type="submit" value="수정">
 		</div>
 	</form>

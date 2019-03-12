@@ -66,4 +66,9 @@ public class MenuServiceImpl implements MenuService {
 		dao.commentUpdate(mComment);
 	}
 
+	@Override
+	public void views(int menuId) {
+		dao.views(menuId);
+	}
+
 }

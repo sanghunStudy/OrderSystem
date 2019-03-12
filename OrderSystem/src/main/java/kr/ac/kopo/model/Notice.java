@@ -14,6 +14,13 @@ public class Notice {
 	private int noticeViews;
 	private String noticePhoto;
 	private String id;
+	private int cnt;
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	private List<MultipartFile> uploadfile;
 	
 	public List<MultipartFile> getUploadfile() {

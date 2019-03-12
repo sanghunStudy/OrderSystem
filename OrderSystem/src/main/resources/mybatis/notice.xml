@@ -26,7 +26,7 @@
 
 	<insert id="fileUp" parameterType="HashMap">
 		insert into tbl_boardfile (notice_id,filename,realname,filesize)
-		values((SELECT IFNULL(MAX(notice_id),0)+1 FROM notice),#{filename},#{realname},#{filesize})
+		values((SELECT IFNULL(MAX(notice_id),0) FROM notice),#{filename},#{realname},#{filesize})
 	</insert>
 
 	<select id="total" resultType="Integer" parameterType="SearchVO">
@@ -35,9 +35,10 @@
 	</select>
 
 	<select id="list" resultType="Notice" parameterType="SearchVO">
-		select * from notice
+		select notice.notice_id,notice.notice_title,notice.notice_date,notice.notice_views,notice.id, (select count(*) 
+		from notice_comment comment where comment.notice_id = notice.notice_id) as cnt from notice
 		<include refid="includeBoard" />
-		order by notice_id desc LIMIT ${rowStart-1},10
+		order by notice_id desc LIMIT ${rowStart-1},${displayRowCount}
 	</select>
 
 	<select id="view" resultType="Notice">

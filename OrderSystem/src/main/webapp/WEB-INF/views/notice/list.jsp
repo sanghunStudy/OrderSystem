@@ -33,6 +33,7 @@
 				<th>아이디</th>
 				<th>조회수</th>
 				<th>작성일자</th>
+				
 			</tr>
 		</thead>
 		<c:choose>
@@ -41,7 +42,7 @@
 					<c:forEach var="item" items="${list}">
 						<tr>
 							<td>${item.noticeId}</td>
-							<td><a href="view?nid=${item.noticeId}">${item.noticeTitle}</a></td>
+							<td><a href="view?nid=${item.noticeId}">${item.noticeTitle}</a>(${item.cnt})</td>
 							<td>${item.id}</td>
 							<td>${item.noticeViews}</td>
 							<td><fmt:formatDate value="${item.noticeDate}"
@@ -110,5 +111,19 @@
 		</div>
 	</form>
 	<a href="add?nid=0">글쓰기</a>
+	<script>
+	function changeSelect(){
+		var select = document.getElementById("displayRowCount");
+
+		document.getElementById('selectForm').submit();
+	}
+	</script>
+	<form id="selectForm" name="selectForm">
+	<select name="displayRowCount" onchange="changeSelect()">
+		<option value="10" ${SearchVO.displayRowCount == 10?'selected="selected"':''} > 10개</option>
+		<option value="20" ${SearchVO.displayRowCount == 20?'selected="selected"':''}> 20개</option>
+		<option value="30" ${SearchVO.displayRowCount == 30?'selected="selected"':''}> 30개</option>
+	</select>
+	</form>
 </body>
 </html>

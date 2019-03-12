@@ -5,7 +5,14 @@ public class Menu {
 	String menuName;
 	String menuContent;
 	int menuPrice;
+	int cnt;
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getMenuId() {
 		return menuId;
 	}

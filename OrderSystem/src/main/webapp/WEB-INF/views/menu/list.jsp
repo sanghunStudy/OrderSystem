@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,22 +29,37 @@
 </header>
 <body>
 	<h1>전체메뉴입니다</h1>
-	<ul>
+	<table>
 		<c:choose>
-			<c:when test="${list.size() > 0}">
-				<c:forEach var="item" items="${list}">
-					<li>
-						<span id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a></span>
-						<span id="menuPrice${item.menuId}">${item.menuPrice}</span>
-						<button type="button" onclick="cartAdd(${item.menuId});">담기</button>
-					</li>
+			<c:when test="${Nlist.size() > 0}">
+				<c:forEach var="Nitem" items="${Nlist}">
+					<tr>
+						<td id="${Nitem.noticeId}">${Nitem.noticeTitle}</td>
+						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
+					</tr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<li>등록된 메뉴가 없습니다.</li>
+				
 			</c:otherwise>
 		</c:choose>
-	</ul>
+		<c:choose>
+			<c:when test="${list.size() > 0}">
+				<c:forEach var="item" items="${list}">
+					<tr>
+						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a><a>[${item.cnt}]</a></td>
+						<td id="menuPrice${item.menuId}">${item.menuPrice}</td>
+						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td>
+					</tr>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td>등록된 메뉴가 없습니다.</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+	</table>
 	<div>
 		<c:if test="${searchVO.totalPage>1}">
 			<c:if test="${searchVO.page>1}">

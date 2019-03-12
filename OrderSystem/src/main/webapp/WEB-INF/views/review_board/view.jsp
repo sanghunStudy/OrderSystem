@@ -39,8 +39,8 @@
 
 	<jsp:include page="comment.jsp" flush="true" />
 
-	<a href="add?nid=${item.noticeId}">수정</a>
-	<a href="delete?nid=${item.noticeId}">삭제</a>
+	<a href="add?reviewId=${item.reviewId}">수정</a>
+	<a href="delete?reviewId=${item.reviewId}">삭제</a>
 
 </body>
 </html>

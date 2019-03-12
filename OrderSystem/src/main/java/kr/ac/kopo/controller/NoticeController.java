@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.NoticeServcie;
+import kr.ac.kopo.service.ReviewBoardService;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
@@ -40,6 +41,8 @@ public class NoticeController {
 	
 	@Autowired
 	NoticeServcie service;
+	@Autowired
+	ReviewBoardService Rservice;
 	
 	@RequestMapping("/list")
 	String list(Model model , SearchVO searchVO) {
@@ -49,7 +52,9 @@ public class NoticeController {
 	
 	
 	List<Notice> list = service.list(searchVO);
+	List<SearchVO> Rlist = Rservice.list(searchVO);
 	
+	model.addAttribute("Rlist",Rlist);
 	model.addAttribute("list", list);
 	model.addAttribute("SearchVO",searchVO);
 		return path+"list";

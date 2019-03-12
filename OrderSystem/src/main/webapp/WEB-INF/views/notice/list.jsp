@@ -33,9 +33,28 @@
 				<th>아이디</th>
 				<th>조회수</th>
 				<th>작성일자</th>
-				
+
 			</tr>
 		</thead>
+		<c:choose>
+			<c:when test="${Rlist.size()>0 }">
+				<tbody>
+					<c:forEach var="Ritem" items="${Rlist}"  begin="0" end="2" step="1">
+						<tr>
+							<td>${Ritem.reviewId}</td>
+							<td><a href="${pageContext.request.contextPath}/review_board/view?reviewId=${Ritem.reviewId}">${Ritem.reviewTitle}</a></td>
+							<td>${Ritem.id}</td>
+							<td>${Ritem.reviewViews}</td>
+							<td><fmt:formatDate value="${Ritem.reviewDate}"
+									pattern="yyyy-MM-dd" /></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</c:when>
+			<c:otherwise>
+				<p>등록된 게시글이 없습니다.</p>
+			</c:otherwise>
+		</c:choose>
 		<c:choose>
 			<c:when test="${list.size() > 0}">
 				<tbody>
@@ -64,9 +83,9 @@
 				<a href="javascript:fn_formSubmit(1);">처음</a>
 				<a href="javascript:fn_formSubmit(${SearchVO.page-1});">이전</a>
 			</c:if>
-<%-- 			<c:if test="${SearchVO.page>5}"> --%>
-<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page-5});">이전 5개</a> --%>
-<%-- 			</c:if> --%>
+			<%-- 			<c:if test="${SearchVO.page>5}"> --%>
+			<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page-5});">이전 5개</a> --%>
+			<%-- 			</c:if> --%>
 
 			<c:forEach var="i" begin="${SearchVO.pageStart}"
 				end="${SearchVO.pageEnd}" step="1">
@@ -84,7 +103,7 @@
 			<c:if test="${SearchVO.totalPage > SearchVO.page}">
 				<a href="javascript:fn_formSubmit(${SearchVO.page+1});">다음</a>
 				<a href="javascript:fn_formSubmit(${SearchVO.totalPage});">마지막</a>
-<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page+5});">다음 5개</a> --%>
+				<%-- 				<a href="javascript:fn_formSubmit(${SearchVO.page+5});">다음 5개</a> --%>
 			</c:if>
 
 		</c:if>
@@ -112,18 +131,24 @@
 	</form>
 	<a href="add?nid=0">글쓰기</a>
 	<script>
-	function changeSelect(){
-		var select = document.getElementById("displayRowCount");
+		function changeSelect() {
+			var select = document.getElementById("displayRowCount");
 
-		document.getElementById('selectForm').submit();
-	}
+			document.getElementById('selectForm').submit();
+		}
 	</script>
 	<form id="selectForm" name="selectForm">
-	<select name="displayRowCount" onchange="changeSelect()">
-		<option value="10" ${SearchVO.displayRowCount == 10?'selected="selected"':''} > 10개</option>
-		<option value="20" ${SearchVO.displayRowCount == 20?'selected="selected"':''}> 20개</option>
-		<option value="30" ${SearchVO.displayRowCount == 30?'selected="selected"':''}> 30개</option>
-	</select>
+		<select name="displayRowCount" onchange="changeSelect()">
+			<option value="10"
+				${SearchVO.displayRowCount == 10?'selected="selected"':''}>
+				10개</option>
+			<option value="20"
+				${SearchVO.displayRowCount == 20?'selected="selected"':''}>
+				20개</option>
+			<option value="30"
+				${SearchVO.displayRowCount == 30?'selected="selected"':''}>
+				30개</option>
+		</select>
 	</form>
 </body>
 </html>

@@ -20,7 +20,7 @@
 	<select id="list" resultType="Menu" parameterType="searchVO">
 		select * , (select count(*) from menu_comment m where m.menu_id=menu.menu_id) as cnt from menu
 		<include refid="includeBoard"/>
-		order by menu_id desc LIMIT ${rowStart-1},10
+		order by menu_id desc LIMIT ${rowStart-1},${displayRowCount}
 	</select>
 	
 	<insert id="add" parameterType="Menu">

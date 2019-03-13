@@ -40,7 +40,7 @@
 				<c:forEach var="Nitem" items="${Nlist}" begin="0" end="5" step="1">
 					<tr>
 						<td>${Nitem.noticeId}</td>
-						<td><a href="${pageContext.request.contextPath}/notice/view?nid="${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/notice/view?nid=${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
 						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
@@ -113,5 +113,23 @@
 	</form>
 	<a href="add">메뉴추가</a>
 	<a href="../">메인으로</a>
+	<script>
+		function changeSelect() {
+			document.getElementById("selectForm").submit();
+		}
+	</script>
+	<form id="selectForm" name="selectForm">
+		<select name="displayRowCount" onchange="changeSelect()">
+			<option value="10"
+				${searchVO.displayRowCount == 10?'selected="selected"':''}>
+				10개</option>
+			<option value="20"
+				${searchVO.displayRowCount == 20?'selected="selected"':''}>
+				20개</option>
+			<option value="30"
+				${searchVO.displayRowCount == 30?'selected="selected"':''}>
+				30개</option>
+		</select>
+	</form>
 </body>
 </html>

@@ -10,7 +10,7 @@
 	$(function(){
 		getCommentList();
 	});
-// 댓글 쓰기
+
 	function fn_comment(code){
 		
 		$.ajax({
@@ -25,20 +25,7 @@
 			}
 		});
 	}
-	function fn_comment(code){
-		
-		$.ajax({
-			type:'post',
-			url:'${pageContext.request.contextPath}/review_board/commentAdd',
-			data:$('#commentForm').serialize(),
-			success:function(data){
-				if(data == 'success'){
-					getCommentList();
-					$('#comment').val("");
-				}
-			}
-		});
-	}
+	
 	function getCommentList(){
 		   
 	    $.ajax({
@@ -59,7 +46,6 @@
 	                	html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong> <strong>"+data[0].RcomentDate+"</strong></h6>";
 	                    html += "<tr><td><div class='commentContent"+data[i].c_code+"'>"+data[i].comment;
-	                    html += "<a href='#' onclick='fn_comment("+data[i].c_code+ ",\"" +data[i].comment+ "\")'>답글</a>";
 	                   	html += "<a href='#' onclick='fn_update("+data[i].c_code+ ",\"" +data[i].comment+ "\")'>수정</a>";
 	                   	html += "<a href='#' onclick='fn_delete("+data[i].c_code+ ")'>삭제</a>";
 	                   	html += "</div></td></tr>";
@@ -156,6 +142,7 @@
 		<input type="hidden" id="reviewId" name="reviewId" value="${item.reviewId}">
 	</form>
 </div>
+
 <div class="container">
     <form id="commentListForm" name="commentListForm" method="post">
         <div id="commentList">

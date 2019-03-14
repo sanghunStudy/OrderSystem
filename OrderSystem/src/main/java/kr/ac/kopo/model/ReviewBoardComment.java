@@ -8,7 +8,29 @@ public class ReviewBoardComment {
 	private String rcommentContent;
 	private String rcommentDate;
 	private int reviewId;
+	private int redepth; //깊이
+	private int reorder; //순서
+	private int reparent; // 부모
+	
 
+	public int getRedepth() {
+		return redepth;
+	}
+	public void setRedepth(int redepth) {
+		this.redepth = redepth;
+	}
+	public int getReorder() {
+		return reorder;
+	}
+	public void setReorder(int reorder) {
+		this.reorder = reorder;
+	}
+	public int getReparent() {
+		return reparent;
+	}
+	public void setReparent(int reparent) {
+		this.reparent = reparent;
+	}
 	public int getRcommentId() {
 		return rcommentId;
 	}

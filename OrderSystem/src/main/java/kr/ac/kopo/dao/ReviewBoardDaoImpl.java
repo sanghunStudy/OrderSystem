@@ -81,7 +81,23 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 
 	@Override
 	public void commentAdd(ReviewBoardComment rComment) {
-		sql.insert("reviewboard.commentAdd", rComment);
+		
+		if(rComment.getRcommentId() == 0 || "".equals(rComment.getRcommentId())) {
+			if(rComment.getReparent() != 0) {
+				ReviewBoardComment replyInfo = sql.selectOne("reviewboard.reviewboardCommentParent", rComment.getReparent());
+				rComment.setRedepth(replyInfo.getRedepth());
+				rComment.setReorder(replyInfo.getReorder()+1);
+				sql.selectOne("reviewboard.updateboardCommentOrder", replyInfo);
+			} else {
+				int reorder = sql.selectOne("reviewboard.selectboardCommentMaxOrder", rComment.getReviewId());
+				rComment.setReorder(reorder);
+			}
+			
+			sql.insert("reviewboard.commentAdd", rComment);
+		} else {
+			sql.insert("reviewboard.updateboardComment", rComment);
+		}
+		// sql.insert("reviewboard.commentAdd", rComment); //
 	}
 
 	@Override

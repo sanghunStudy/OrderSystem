@@ -19,9 +19,9 @@ public class NoticeServcieImpl implements NoticeServcie {
 	
 	
 	@Override
-	public List<Notice> list(SearchVO searchVO) {
+	public List<Notice> list(SearchVO NsearchVO) {
 		
-		return dao.list(searchVO);
+		return dao.list(NsearchVO);
 	}
 
 
@@ -102,6 +102,13 @@ public class NoticeServcieImpl implements NoticeServcie {
 	public void commentUpdate(NoticeComment nComment) {
 		// TODO Auto-generated method stub
 		dao.commentUpdate(nComment);
+	}
+
+
+	@Override
+	public List<Notice> staticList() {
+		// TODO Auto-generated method stub
+		return dao.staticList();
 	}
 
 }

@@ -244,7 +244,7 @@
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.11.2</version>
-		</dependency>
+		</dependency> 
 	</dependencies>
 	<build>
 		<plugins>

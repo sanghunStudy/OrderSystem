@@ -55,7 +55,7 @@ public class MenuController {
 		searchVO.pageCalculate(service.total(searchVO));
 		
 		List<Menu> list = service.list(searchVO);
-		List<Notice> Nlist = Nservice.list(searchVO);
+		List<Notice> Nlist = Nservice.staticList();
 		
 		model.addAttribute("Nlist", Nlist);
 		model.addAttribute("list", list);

@@ -16,6 +16,9 @@
 		</if>
 	</sql>
 
+	<select id="staticList" resultType="Notice">
+		select notice.notice_id,notice.notice_title,notice.notice_date,notice.notice_views,notice.id from notice
+	</select>
 	<select id="fileSelect" resultType="FileVO">
 		SELECT FILENO, FILENAME, REALNAME, FILESIZE
 		FROM TBL_BOARDFILE

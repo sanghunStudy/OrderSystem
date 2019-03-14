@@ -38,31 +38,27 @@ import kr.ac.kopo.util.SearchVO;
 public class NoticeController {
 
 	final String path = "notice/";
-	
+
 	@Autowired
 	NoticeServcie service;
 	@Autowired
 	ReviewBoardService Rservice;
-	
+
 	@RequestMapping("/list")
-	String list(Model model , SearchVO searchVO) {
-	
-	searchVO.pageCalculate(service.totalCount(searchVO));
-	
-	
-	
-	List<Notice> list = service.list(searchVO);
-	List<SearchVO> Rlist = Rservice.list(searchVO);
-	
-	model.addAttribute("Rlist",Rlist);
-	model.addAttribute("list", list);
-	model.addAttribute("SearchVO",searchVO);
-		return path+"list";
+	String list(Model model, SearchVO searchVO) {
+
+		searchVO.pageCalculate(service.totalCount(searchVO));
+
+		List<Notice> list = service.list(searchVO);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("SearchVO", searchVO);
+		return path + "list";
 	}
-	
-	
+
 	@RequestMapping("/profileUpload")
-	public void profileUpload(String email, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void profileUpload(String email, MultipartFile file, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
@@ -84,103 +80,101 @@ public class NoticeController {
 			f.mkdirs();
 		}
 		file.transferTo(f);
-		out.println("/upload/"+str_filename);
+		out.println("/upload/" + str_filename);
 		out.close();
 	}
-	
-	//이번에는 수정과 등록을 분리하지 않고 하나로 합쳐보았다.
-	//nid 의 값이 있을경우 해당 글의 정보를 가져와서 수정화면 아니라면 그냥 입려화면이다.
-	@RequestMapping(value="/add" , method=RequestMethod.GET)
+
+	// 이번에는 수정과 등록을 분리하지 않고 하나로 합쳐보았다.
+	// nid 의 값이 있을경우 해당 글의 정보를 가져와서 수정화면 아니라면 그냥 입려화면이다.
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	String add(int nid, Model model) {
-		
-		if(nid != 0) {
+
+		if (nid != 0) {
 			List<FileVO> file = service.fileSelect(nid);
 			Notice item = service.view(nid);
 			model.addAttribute("item", item);
-			model.addAttribute("file",file);
-			
+			model.addAttribute("file", file);
+
 		}
-		
-		return path+"add";
+
+		return path + "add";
 	}
-	
+
 	@RequestMapping(value = "/upload")
-	public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) throws IllegalStateException, IOException {
-	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-	   	
+	public void upload(HttpServletResponse response, HttpServletRequest request,
+			@RequestParam("Filedata") MultipartFile Filedata) throws IllegalStateException, IOException {
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random() * 10));
+
 		File f = new File("c:\\upload\\" + newfilename);
-		
-			Filedata.transferTo(f);
-		   	response.getWriter().write(newfilename);
+
+		Filedata.transferTo(f);
+		response.getWriter().write(newfilename);
 	}
-	
-	
-	//jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
-	@RequestMapping(value="/add" , method=RequestMethod.POST)
+
+	// jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	String add(HttpServletRequest request, Notice notice) {
 
 		String realname = request.getParameter("filename");
 		String filesize = request.getParameter("realname");
 		String filename = request.getParameter("filesize");
-    	String[] reallist = realname.split(",");
-    	String[] filelist = filename.split(",");
-    	String[] sizelist = filesize.split(",");
+		String[] reallist = realname.split(",");
+		String[] filelist = filename.split(",");
+		String[] sizelist = filesize.split(",");
 
-		
-		if(notice.getNoticeId() > 0) {
+		if (notice.getNoticeId() > 0) {
 			service.update(notice);
-		}else{
+		} else {
 			service.add(notice);
-			System.out.println(filesize.length()+"파일사이즈 랭스스스");
-			//첨부파일이 있을 경우에만 실행
-			if(filesize.length() > 0) {
-				for(int i=0; i < filelist.length; i++) {	
-					service.fileUp(filelist[i],reallist[i],sizelist[i]);
-				}	
+			System.out.println(filesize.length() + "파일사이즈 랭스스스");
+			// 첨부파일이 있을 경우에만 실행
+			if (filesize.length() > 0) {
+				for (int i = 0; i < filelist.length; i++) {
+					service.fileUp(filelist[i], reallist[i], sizelist[i]);
+				}
 			}
-				
+
 		}
-		
+
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping("/view")
 	String view(Model model, int nid) {
-		//조회수
+		// 조회수
 		service.views(nid);
-		
+
 		Notice item = service.view(nid);
 		List<FileVO> file = service.fileSelect(nid);
-		
-		model.addAttribute("item",item);
-		model.addAttribute("file",file);
-		
-		return path+"view";
+
+		model.addAttribute("item", item);
+		model.addAttribute("file", file);
+
+		return path + "view";
 	}
-	
-	
+
 	@RequestMapping("/delete")
 	String delete(int nid) {
 		service.delete(nid);
 		return "redirect:list";
 	}
-	//댓글 crud
-	
+	// 댓글 crud
+
 	@RequestMapping("/commentUpdate")
 	@ResponseBody
 	String commentUpdate(NoticeComment NComment) {
 		service.commentUpdate(NComment);
 		return "success";
 	}
-	
+
 	@RequestMapping("/commentDel")
 	@ResponseBody
 	String commentDel(NoticeComment NComment) {
 		service.conmentDel(NComment);
 		return "success";
 	}
-	
+
 	@RequestMapping("/commentAdd")
 	@ResponseBody
 	String commentAdd(NoticeComment NComment) {
@@ -190,28 +184,28 @@ public class NoticeController {
 
 	@RequestMapping("/commentList")
 	@ResponseBody
-	ResponseEntity commentList(NoticeComment NComment,HttpServletRequest request){
-        HttpHeaders responseHeaders = new HttpHeaders();
-        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
-        
-        // 해당 게시물 댓글
-        List<NoticeComment> commentVO = service.commentList(NComment);
-        
-        if(commentVO.size() > 0){
-            for(int i=0; i<commentVO.size(); i++){
-                HashMap hm = new HashMap();
-                hm.put("c_code", commentVO.get(i).getNcomentId());
-                hm.put("comment", commentVO.get(i).getNcomentContent());
-                hm.put("writer", commentVO.get(i).getId());
-                hm.put("NcomentDate", commentVO.get(i).getNcomentDate());
-                
-                hmlist.add(hm);
-            }
-            
-        }
-        
-        JSONArray json = new JSONArray(hmlist);  	
-		
+	ResponseEntity commentList(NoticeComment NComment, HttpServletRequest request) {
+		HttpHeaders responseHeaders = new HttpHeaders();
+		ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+
+		// 해당 게시물 댓글
+		List<NoticeComment> commentVO = service.commentList(NComment);
+
+		if (commentVO.size() > 0) {
+			for (int i = 0; i < commentVO.size(); i++) {
+				HashMap hm = new HashMap();
+				hm.put("c_code", commentVO.get(i).getNcomentId());
+				hm.put("comment", commentVO.get(i).getNcomentContent());
+				hm.put("writer", commentVO.get(i).getId());
+				hm.put("NcomentDate", commentVO.get(i).getNcomentDate());
+
+				hmlist.add(hm);
+			}
+
+		}
+
+		JSONArray json = new JSONArray(hmlist);
+
 		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 

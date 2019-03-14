@@ -35,4 +35,6 @@ public interface NoticeDao {
 
 	void commentUpdate(NoticeComment nComment);
 
+	List<Notice> staticList();
+
 }

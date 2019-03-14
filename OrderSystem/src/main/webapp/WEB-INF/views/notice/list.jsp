@@ -37,25 +37,6 @@
 			</tr>
 		</thead>
 		<c:choose>
-			<c:when test="${Rlist.size()>0 }">
-				<tbody>
-					<c:forEach var="Ritem" items="${Rlist}"  begin="0" end="2" step="1">
-						<tr>
-							<td>${Ritem.reviewId}</td>
-							<td><a href="${pageContext.request.contextPath}/review_board/view?reviewId=${Ritem.reviewId}">${Ritem.reviewTitle}</a></td>
-							<td>${Ritem.id}</td>
-							<td>${Ritem.reviewViews}</td>
-							<td><fmt:formatDate value="${Ritem.reviewDate}"
-									pattern="yyyy-MM-dd" /></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</c:when>
-			<c:otherwise>
-				<p>등록된 게시글이 없습니다.</p>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
 			<c:when test="${list.size() > 0}">
 				<tbody>
 					<c:forEach var="item" items="${list}">

@@ -100,4 +100,10 @@ public class NoticeDaoImpl implements NoticeDao {
 		sql.update("notice.commentUpdate", nComment);
 	}
 
+	@Override
+	public List<Notice> staticList() {
+		// TODO Auto-generated method stub
+		return sql.selectList("notice.staticList");
+	}
+
 }

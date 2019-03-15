@@ -27,7 +27,9 @@
 	}
 	
 	function getCommentList(){
-		   
+		
+		var userId = ${sessionScope.user};
+		
 	    $.ajax({
 	        type:'GET',
 	        url : '${pageContext.request.contextPath}/notice/commentList',
@@ -46,8 +48,11 @@
 	                	html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong> <strong>"+data[0].NcomentDate+"</strong></h6>";
 	                    html += "<tr><td><div class='commentContent"+data[i].c_code+"'>"+data[i].comment;
-	                   	html += "<a href='#' onclick='fn_update("+data[i].c_code+ ",\"" +data[i].comment+ "\")'>수정</a>";
-	                   	html += "<a href='#' onclick='fn_delete("+data[i].c_code+ ")'>삭제</a>";
+	                 
+	                    if(data[i].writer == userId){
+		                    html += "<a href='#' onclick='fn_update("+data[i].c_code+ ",\"" +data[i].comment+ "\")'>수정</a>";
+		                   	html += "<a href='#' onclick='fn_delete("+data[i].c_code+ ")'>삭제</a>";	
+	                    }
 	                   	html += "</div></td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";

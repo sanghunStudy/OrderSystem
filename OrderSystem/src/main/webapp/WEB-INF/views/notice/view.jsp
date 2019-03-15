@@ -37,9 +37,9 @@
 	<div>${item.noticeContents}</div>
 	
 	<jsp:include page="comment.jsp" flush="true" />
-		
-<a href="add?nid=${item.noticeId}">수정</a> <a href="delete?nid=${item.noticeId}">삭제</a>
-
+	<c:if test="${item.id == sessionScope.user}">	
+	<a href="add?nid=${item.noticeId}">수정</a> <a href="delete?nid=${item.noticeId}">삭제</a>
+	</c:if>
 <a href="list">목록</a>
 </body>
 </html>

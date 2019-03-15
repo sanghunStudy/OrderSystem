@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +89,7 @@ public class NoticeController {
 	// nid 의 값이 있을경우 해당 글의 정보를 가져와서 수정화면 아니라면 그냥 입려화면이다.
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	String add(int nid, Model model) {
-
+			
 		if (nid != 0) {
 			List<FileVO> file = service.fileSelect(nid);
 			Notice item = service.view(nid);
@@ -114,7 +115,7 @@ public class NoticeController {
 
 	// jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	String add(HttpServletRequest request, Notice notice) {
+	String add(HttpServletRequest request, Notice notice, HttpSession session) {
 
 		String realname = request.getParameter("filename");
 		String filesize = request.getParameter("realname");
@@ -122,7 +123,9 @@ public class NoticeController {
 		String[] reallist = realname.split(",");
 		String[] filelist = filename.split(",");
 		String[] sizelist = filesize.split(",");
-
+		
+		String id = (String)session.getAttribute("user");
+		notice.setId(id);
 		if (notice.getNoticeId() > 0) {
 			service.update(notice);
 		} else {
@@ -177,14 +180,16 @@ public class NoticeController {
 
 	@RequestMapping("/commentAdd")
 	@ResponseBody
-	String commentAdd(NoticeComment NComment) {
+	String commentAdd(NoticeComment NComment, HttpSession session) {
+		String id = (String)session.getAttribute("user");
+		NComment.setId(id);
 		service.commentAdd(NComment);
 		return "success";
 	}
 
 	@RequestMapping("/commentList")
 	@ResponseBody
-	ResponseEntity commentList(NoticeComment NComment, HttpServletRequest request) {
+	ResponseEntity<String> commentList(NoticeComment NComment, HttpServletRequest request) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
 
@@ -206,7 +211,7 @@ public class NoticeController {
 
 		JSONArray json = new JSONArray(hmlist);
 
-		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<String>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 
 }

@@ -17,6 +17,7 @@
 		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoard" alias="ReviewBoard"/>
 		<typeAlias type="kr.ac.kopo.model.Bucket" alias="Bucket"/>
+		<typeAlias type="kr.ac.kopo.model.User" alias="User"/>
 	</typeAliases>
 
  	<mappers>
@@ -24,5 +25,6 @@
 		<mapper resource="mybatis/cart.xml"/>
 		<mapper resource="mybatis/menu.xml"/>
 		<mapper resource="mybatis/reviewboard.xml"/>
+		<mapper resource="mybatis/user.xml"/>
 	</mappers>
 </configuration>

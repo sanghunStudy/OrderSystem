@@ -15,15 +15,27 @@
 <jsp:include page="../gnb/header.jsp" flush="true" />
 <script>
 	function fn_formSubmit(page) {
-		
-		if(page == undefined){
-			document.getElementById('page').value = 1;
-			document.getElementById('form1').submit();
-		}else{
-			document.getElementById('page').value = page;
-			document.getElementById('form1').submit();	
+		var searchTypeCheck = false;
+		var arr_SearchType = document.getElementsByName("searchType");
+		for(var i=0; i < arr_SearchType.length; i++) {
+			if(arr_SearchType[i].checked == true) {
+				searchTypeCheck = true;
+				break;
+			}
 		}
 		
+		if(searchTypeCheck == false) {
+			alert("검색할 종류를 선택해주세요");
+			return false;
+		} else {
+			if(page == undefined){
+				document.getElementById('page').value = 1;
+				document.getElementById('form1').submit();
+			}else{
+				document.getElementById('page').value = page;
+				document.getElementById('form1').submit();	
+			}
+		}
 	}
 </script>
 </header>
@@ -101,8 +113,8 @@
 			<input type="checkbox" name="searchType" value="menu_name"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">메뉴이름</label>
-			<input type="checkbox" name="searchType" value="menu_photo"
-			<c:if test="${fn:indexOf(searchVO.searchType,'menu_photo') != -1}">checked="checked"</c:if>/>
+			<input type="checkbox" name="searchType" value="menu_content"
+			<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType2">메뉴사진</label>
 			<input type="text" name="searchKeyword" 
 			style="width:150px;" maxlength="50" 

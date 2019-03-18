@@ -3,6 +3,7 @@ package kr.ac.kopo.dao;
 import java.util.List;
 
 import kr.ac.kopo.model.User;
+import kr.ac.kopo.model.UserVO;
 
 public interface UserDao {
 
@@ -18,4 +19,5 @@ public interface UserDao {
 
 	boolean login(User user);
 
+	UserVO selectUser(String username);
 }

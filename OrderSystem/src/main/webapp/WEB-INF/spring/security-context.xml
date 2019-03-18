@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+
+	xmlns:beans="http://www.springframework.org/schema/beans"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-3.2.xsd
+			">
+
+<!-- MemberService에서 다른 service가 호출되지 않았던 문제 해결
+1. 다른 bean에 접근이 가능하도록 autowire="byType" 설정해줌
+2. beans의 namespace에 context에 관한 부분을 선언하고 context:annotation-config 선언
+3. context:component-scan을 통해 kr.ac.kopo를 스캔함 -->
+
+	<context:annotation-config />
+	<context:component-scan base-package="kr.ac.kopo" />
+
+	<!-- resorces 폴더 안의 파일들은 필터를 거치지 않는다. -->
+	<http pattern="/resources/**" security="none"></http>
+
+	<!-- auto-config='true'로 설정하면 기본 로인페이지/http기본인증/로그아웃 등의 기능을 제공 use-expressions='true'는 
+		SpEL을 사용한다는 의미 -->
+	<http auto-config='true' use-expressions="true">
+
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/admin/**"
+			access="hasRole('ADMIN')" />
+		<intercept-url pattern="/**"
+			access="hasRole('USER,ADMIN')" />
+		<intercept-url pattern="/resources/**"
+			access="permitAll" />
+
+		<!-- <intercept-url pattern="/**" -->
+		<!-- access="hasRole('ROLE_USER')" /> -->
+
+
+		<!--login-page 로그인 페이지 주소 username-parameter 로그인 페이지 form에 있는 username을 
+			저장할 변수이름 login-processing-url 로그인 페이지 form action에 입력할 주소 지정 default-target-url 
+			성공시 호출할 주소 authentication-failure-url 실패시 호출할 주소 -->
+		<form-login login-page="/login" default-target-url="/"
+			username-parameter="username" password-parameter="password"
+			authentication-failure-url="/login?error"
+			always-use-default-target='true' />
+
+
+
+		<logout invalidate-session="true" logout-url="/logout"
+			logout-success-url="/" />
+
+
+		<!-- enable csrf protection -->
+
+		<csrf />
+
+	</http>
+
+
+	<!-- provider -->
+	<!-- db에 있는 정보를 조회해서 로그인하는 방식 -->
+	<authentication-manager>
+		<authentication-provider
+			user-service-ref="memberService" />
+
+	</authentication-manager>
+	<beans:bean id="memberService"
+		class="kr.ac.kopo.util.MemberService" autowire="byType">
+	</beans:bean>
+
+	<!-- 지정해준 아이디와 비밀번호로 로그인하는 방식 -->
+	<!-- <authentication-manager> -->
+	<!-- <authentication-provider> -->
+	<!-- <user-service> -->
+	<!-- <user name="username" password="password" -->
+	<!-- authorities="ROLE_USER" /> -->
+	<!-- </user-service> -->
+	<!-- </authentication-provider> -->
+	<!-- </authentication-manager> -->
+
+
+
+</beans:beans>

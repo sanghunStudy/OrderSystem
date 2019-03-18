@@ -16,6 +16,7 @@ public class RootController {
 
 	@Autowired
 	UserService service;
+
 	
 	@RequestMapping("/")
 	String index() {
@@ -23,7 +24,7 @@ public class RootController {
 		return "index";
 	}
 
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	/*@RequestMapping(value="/login", method=RequestMethod.GET)
 	String login() {
 		return "login";
 	}
@@ -38,7 +39,7 @@ public class RootController {
 		}
 		
 		return "redirect:.";
-	}
+	}*/
 	
 	@RequestMapping("/logout")
 	String logout(HttpSession session) {

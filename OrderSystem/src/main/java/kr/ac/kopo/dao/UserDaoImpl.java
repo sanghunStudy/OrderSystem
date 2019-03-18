@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.User;
+import kr.ac.kopo.model.UserVO;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -47,5 +49,11 @@ public class UserDaoImpl implements UserDao {
 		else {
 			return true;
 		}
+	}
+
+	@Override
+	public UserVO selectUser(String username) {
+			System.out.println("UserVO select() DaoImpl <<<<<<"+username);
+		return sql.selectOne("user.select", username);
 	}
 }

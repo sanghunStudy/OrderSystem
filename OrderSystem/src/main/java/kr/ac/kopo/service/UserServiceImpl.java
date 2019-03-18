@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.UserDao;
 import kr.ac.kopo.model.User;
+import kr.ac.kopo.model.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,6 +43,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		return dao.login(user);
+	}
+
+	@Override
+	public UserVO selectUser(String username) {
+		System.out.println("UserVO select() serviceImpl <<<<<<"+username);
+		return dao.selectUser(username);
 	}
 
 }

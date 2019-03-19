@@ -16,11 +16,11 @@
 		<li><a href="review_board/list">후기게시판</a></li>
 		<li><a href="notice/list">공지사항</a></li>
 		<li><a href="gps/getLocation">위치정보 테스트</a></li>
-		<li><a href="member/add">회원가입</a></li>
-		
+
 <!-- 		spring-security로 현재 인증한 사용자인지 판단하여 로그인 로그아웃 버튼 출력	 -->
 		<sec:authorize access="isAnonymous()">
-		<li><a href="<c:url value="login"/>">로그인</a>	
+		<li><a href="member/add">회원가입</a></li>
+		<li><a href="<c:url value="login"/>">로그인</a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 		<!-- 인증된 사용자면 principal에 있는 username을 찾아서 화면에 보여준다. -->

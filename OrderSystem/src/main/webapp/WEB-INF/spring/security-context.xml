@@ -34,11 +34,11 @@
 	<http auto-config='true' use-expressions="true">
 
 		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/**" access="permitAll" />
 		<intercept-url pattern="/admin/**"
 			access="hasRole('ADMIN')" />
-		<intercept-url pattern="/**"
-			access="hasRole('USER,ADMIN')" />
+<!-- 		<intercept-url pattern="/**" -->
+<!-- 			access="hasRole('USER,ADMIN')" /> -->
 		<intercept-url pattern="/resources/**"
 			access="permitAll" />
 

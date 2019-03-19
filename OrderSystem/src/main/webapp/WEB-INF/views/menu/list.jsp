@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +25,16 @@
 			}
 		}
 		
-		if(searchTypeCheck == false) {
+		var Pages = document.getElementById('page');
+		
+		if(searchTypeCheck == false && Pages == null) {
+			document.getElementById('page').value = page;
+			document.getElementById('form1').submit();
+		} else if(searchTypeCheck == false) {
 			alert("검색할 종류를 선택해주세요");
 			return false;
-		} else {
+		} 
+		else {
 			if(page == undefined){
 				document.getElementById('page').value = 1;
 				document.getElementById('form1').submit();
@@ -109,6 +116,7 @@
 	<form id="form1" name="form1" method="post">
 		
 		<input type="hidden" name="page" id="page" value="" />
+		<sec:csrfInput />
 		<div>
 			<input type="checkbox" name="searchType" value="menu_name"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>

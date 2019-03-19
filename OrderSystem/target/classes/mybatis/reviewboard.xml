@@ -104,21 +104,5 @@
 		#{rcommentId}
 	</update>
 	
-	<!-- 대댓글 -->
-	   <select id="selectboardCommentParent" parameterType="String">
-        SELECT review_id, REDEPTH+1 REDEPTH, REORDER 
-          FROM reviewboard_comment
-         WHERE rcomment_id =#{reparent}
-    </select>
-    <select id="selectboardCommentMaxOrder" resultType="Integer" parameterType="String">
-        SELECT IFNULL(MAX(REORDER),0)+1
-          FROM reviewboard_comment
-         WHERE review_id=#{reviewId}
-    </select>
-   <update id="updateBoard6ReplyOrder" parameterType="gu.board6.BoardReplyVO"> 
-        UPDATE reviewboard_comment
-           SET REORDER = REORDER + 1 
-         WHERE review_id=#{reviewId} AND REORDER>#{reorder}       
-    </update>
 
 </mapper>

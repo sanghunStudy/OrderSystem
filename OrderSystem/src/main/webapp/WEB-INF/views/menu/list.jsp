@@ -27,12 +27,14 @@
 		
 		var Pages = document.getElementById('page');
 		
-		if(searchTypeCheck == false && Pages == null) {
-			document.getElementById('page').value = page;
-			document.getElementById('form1').submit();
-		} else if(searchTypeCheck == false) {
-			alert("검색할 종류를 선택해주세요");
-			return false;
+		if(searchTypeCheck == false) {
+			if(page == undefined) {
+				alert("검색할 종류를 선택해주세요");
+				return false;
+			} else{
+				document.getElementById('page').value = page;
+				document.getElementById('form1').submit();
+			} 
 		} 
 		else {
 			if(page == undefined){

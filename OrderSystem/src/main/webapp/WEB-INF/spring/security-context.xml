@@ -38,12 +38,12 @@
 		<intercept-url pattern="/admin/**"
 			access="hasRole('ADMIN')" />
 <!-- 		<intercept-url pattern="/**" -->
-<!-- 			access="hasRole('USER,ADMIN')" /> -->
+<!-- 			access="hasRole('ROLE_USER,ROLE_ADMIN')" /> -->
 		<intercept-url pattern="/resources/**"
 			access="permitAll" />
 
-		<!-- <intercept-url pattern="/**" -->
-		<!-- access="hasRole('ROLE_USER')" /> -->
+<!-- 		<intercept-url pattern="/**" -->
+<!-- 		access="hasRole('ROLE_USER')" /> -->
 
 
 		<!--login-page 로그인 페이지 주소 username-parameter 로그인 페이지 form에 있는 username을 

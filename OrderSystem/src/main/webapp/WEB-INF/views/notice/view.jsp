@@ -49,15 +49,16 @@
 	<jsp:include page="comment.jsp" flush="true" />
 
 <!--  스프링 시큐리티로 작성자와 현재 로그인중인 회원의 정보를 비교해서 일치하면 수정,삭제 가능하게 해야하는데 아직 모르겠음 수정필요함!!! -->
-	<sec:authorize access="isAuthenticated()">
-		<a href="add?nid=${item.noticeId}">수정</a>
-		<a href="delete?nid=${item.noticeId}">삭제</a>
-	</sec:authorize>
-<%-- 	기존에 쓰던 세션방식
-<c:if test="${item.id == sessionScope.user}"> --%>
-<%-- 	<a href="add?nid=${item.noticeId}">수정</a> --%>
+<%-- 	<sec:authorize access="isAuthenticated()"> --%>
+<%-- 		<a href="add?nid=${item.noticeId}">수정</a> --%>
 <%-- 		<a href="delete?nid=${item.noticeId}">삭제</a> --%>
-<%-- 	</c:if> --%>
+<%-- 	</sec:authorize> --%>
+<%-- 	기존에 쓰던 세션방식 --%>
+
+<c:if test="${item.id == securityId}">
+ 	<a href="add?nid=${item.noticeId}">수정</a>
+ 		<a href="delete?nid=${item.noticeId}">삭제</a>
+	</c:if> 
 	<a href="list">목록</a>
 </body>
 </html>

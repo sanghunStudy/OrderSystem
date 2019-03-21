@@ -96,7 +96,7 @@
 	<form id="form1" name="form1" action="add?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		<sec:csrfInput />
 		
-		<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>">
+<%-- 		<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>"> --%>
 		<input type="hidden" name="noticeId"
 			value="${item.noticeId == null ?0 : item.noticeId}">
 		<table>

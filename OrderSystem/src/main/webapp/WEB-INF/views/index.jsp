@@ -25,6 +25,7 @@
 		<sec:authorize access="isAuthenticated()">
 		<!-- 인증된 사용자면 principal에 있는 username을 찾아서 화면에 보여준다. -->
 		<p>환영합니다 <sec:authentication property="principal.username"/> 님!</p>
+		<a href="member/MyPage?id= <sec:authentication property="principal.username"/>">마이페이지</a>
 		<li><a href="#" onclick="document.getElementById('logoutForm').submit();">로그아웃</a></li>
 			<form id="logoutForm" action="logout" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

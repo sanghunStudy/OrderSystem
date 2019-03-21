@@ -19,6 +19,21 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
+	
+	@RequestMapping(value="/ExerciseJournal",method=RequestMethod.GET)
+	public String ExerciseJournal() {
+		
+		return path+"ExerciseJournal";
+	}
+	
+	@RequestMapping("/MyPage")
+	public String MyPage() {
+		
+		return path + "MyPage";
+	}
+	
+	
+	
 	@RequestMapping("/list")
 	public String list(Model model) {
 		List<User> list = service.list();

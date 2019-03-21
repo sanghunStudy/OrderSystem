@@ -9,11 +9,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/moment_min.js"></script>
 <script>
 
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
+// var token = $("meta[name='_csrf']").attr("content");
+// var header = $("meta[name='_csrf_header']").attr("content");
+
+	var securityId = "${securityId}";
 
 	$(function(){
 		getCommentList();
+	
+		document.getElementById("comentBtn").onclick = function(){
+			if(securityId == "null" || securityId == 'anonymousUser')
+				alert('로그인 후 이용 가능합니다.');
+			else
+				fn_comment('${item.noticeId}')
+		}
+		
 	});
 
 	//등록
@@ -59,11 +69,11 @@ var header = $("meta[name='_csrf_header']").attr("content");
 	                	html += "<div>";
 	                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong> <strong>"+data[0].NcomentDate+"</strong></h6>";
 	                    html += "<tr><td><div class='commentContent"+data[i].c_code+"'>"+data[i].comment;
-	                 
-// 	                    if(data[i].writer == userId){
+	                 //로그인한 아이디와 작성자가 같으면 수정삭제 가능
+	                    if(data[i].writer == securityId){
 		                    html += "<a href='#' onclick='fn_update("+data[i].c_code+ ",\"" +data[i].comment+ "\")'>수정</a>";
 		                   	html += "<a href='#' onclick='fn_delete("+data[i].c_code+ ")'>삭제</a>";	
-// 	                    }
+	                    }
 	                   	html += "</div></td></tr>";
 	                    html += "</table></div>";
 	                    html += "</div>";
@@ -154,12 +164,12 @@ var header = $("meta[name='_csrf_header']").attr("content");
 				<table>
 					<tr>
 						<td>
-							<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>">
+<%-- 							<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>"> --%>
 						</td>
 						<td>
 							<textarea rows="3" cols="30" id="comment" name="ncomentContent" placeholder="댓글을 입력하세요"></textarea>
 						<div>
-							<a href="#" onclick="fn_comment('${item.noticeId}')">등록</a>
+							<a href="#" id="comentBtn" onclick="fn_comment('${item.noticeId}')">등록</a>
 						</div>
 						</td>
 					</tr>

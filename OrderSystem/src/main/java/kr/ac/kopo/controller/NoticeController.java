@@ -3,6 +3,7 @@ package kr.ac.kopo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,13 +48,14 @@ public class NoticeController {
 	@Autowired
 	ReviewBoardService Rservice;
 
+	
 	@RequestMapping("/list")
 	String list(Model model, SearchVO searchVO) {
 
 		searchVO.pageCalculate(service.totalCount(searchVO));
 
 		List<Notice> list = service.list(searchVO);
-		
+
 		model.addAttribute("list", list);
 		model.addAttribute("SearchVO", searchVO);
 		return path + "list";
@@ -89,7 +93,7 @@ public class NoticeController {
 	// nid 의 값이 있을경우 해당 글의 정보를 가져와서 수정화면 아니라면 그냥 입려화면이다.
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	String add(int nid, Model model) {
-			
+
 		if (nid != 0) {
 			List<FileVO> file = service.fileSelect(nid);
 			Notice item = service.view(nid);
@@ -115,7 +119,7 @@ public class NoticeController {
 
 	// jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	String add(HttpServletRequest request, Notice notice, HttpSession session) {
+	String add(HttpServletRequest request, Notice notice, Principal principal) {
 
 		String realname = request.getParameter("filename");
 		String filesize = request.getParameter("realname");
@@ -123,9 +127,9 @@ public class NoticeController {
 		String[] reallist = realname.split(",");
 		String[] filelist = filename.split(",");
 		String[] sizelist = filesize.split(",");
-		
-		String id = (String)session.getAttribute("user");
-		notice.setId(id);
+
+		notice.setId(principal.getName());
+
 		if (notice.getNoticeId() > 0) {
 			service.update(notice);
 		} else {
@@ -143,6 +147,7 @@ public class NoticeController {
 		return "redirect:list";
 	}
 
+	//상세보기 화면
 	@RequestMapping("/view")
 	String view(Model model, int nid) {
 		// 조회수
@@ -154,6 +159,18 @@ public class NoticeController {
 		model.addAttribute("item", item);
 		model.addAttribute("file", file);
 
+		// 현재 로그인한 사용자 정보 가져오기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		
+		//현재 로그인중인 회원의 아이디 가져오기
+		//회원가입시 anonymousUser이 아이디로 가입은 막자.
+		System.out.println(authentication.getName());
+		if (authentication.getName() == null || authentication.getName() == "anonymousUser")
+			model.addAttribute("securityId", "null");
+		else
+			model.addAttribute("securityId", authentication.getName());
+
 		return path + "view";
 	}
 
@@ -162,6 +179,8 @@ public class NoticeController {
 		service.delete(nid);
 		return "redirect:list";
 	}
+	
+	
 	// 댓글 crud
 
 	@RequestMapping("/commentUpdate")
@@ -180,9 +199,12 @@ public class NoticeController {
 
 	@RequestMapping("/commentAdd")
 	@ResponseBody
-	String commentAdd(NoticeComment NComment, HttpSession session) {
-		String id = (String)session.getAttribute("user");
-		NComment.setId(id);
+	String commentAdd(NoticeComment NComment, Principal principal) {
+
+		System.out.println(principal.getName());
+
+		NComment.setId(principal.getName());
+
 		service.commentAdd(NComment);
 		return "success";
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,6 +119,7 @@
 <body>
 <div>
 	<form id="commentForm" name="commentForm" action="post">
+	<sec:csrfInput />
 		<div>
 			<div>
 				<span><strong>댓글</strong></span><span id="cCnt"></span>
@@ -141,6 +143,7 @@
 </div>
 <div class="container">
     <form id="commentListForm" name="commentListForm" method="post">
+    <sec:csrfInput />
         <div id="commentList">
         </div>
     </form>

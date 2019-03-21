@@ -25,8 +25,6 @@
 			}
 		}
 		
-		var Pages = document.getElementById('page');
-		
 		if(searchTypeCheck == false) {
 			if(page == undefined) {
 				alert("검색할 종류를 선택해주세요");
@@ -60,7 +58,7 @@
 			<c:when test="${Nlist.size() > 0}">
 				<c:forEach var="Nitem" items="${Nlist}" begin="0" end="5" step="1">
 					<tr>
-						<td>${Nitem.noticeId}</td>
+						<td style="color:#ff0000;">공지</td>
 						<td><a href="${pageContext.request.contextPath}/notice/view?nid=${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
 						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
 					</tr>

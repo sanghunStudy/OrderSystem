@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,8 @@ function sendFile(file, el) {
 </script>
 </head>
 <body>
-	<form action="add" method="post" enctype="multipart/form-data">
+	<form action="add?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+	<sec:csrfInput />
 		<div>
 			<label>메뉴이름: </label>
 			<input type="text" name="menuName">

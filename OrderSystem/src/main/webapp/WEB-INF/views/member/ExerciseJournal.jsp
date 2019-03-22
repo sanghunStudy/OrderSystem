@@ -270,6 +270,21 @@
 					}
 
 				});//태그 삭제 함수 끝
+				
+			$(document).on("click","#titleDel",function(){
+				//나의 부모의 첫번째 자식 요소의 텍스트값  = Main 운동(h3태그) 가져오기				
+				var hTagTitle = $(this).parent().children().eq(0).text();
+				//이 내용이 Main 운동 이라면 삭제가 안되고 아니라면 삭제처리
+				if(hTagTitle == "Main 운동"){
+					alert("메인 운동은 삭제 하실 수 없습니다.");	
+				}else{
+					//선택한 버튼이 속해있는 테이블 아이디 값을 찾아와서 지운다.
+					var closestId = $(this).closest("thead").parent().attr("id");
+					var removeId = "#"+closestId;
+					$(removeId).remove();
+				}
+					
+			});
 
 	}//window.onload
 
@@ -398,7 +413,7 @@ body {
 
 						</tr>
 						<tr>
-							<th colspan="4"><h3>Main 운동</h3></th>
+							<th colspan="4"><h3>Main 운동</h3><button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
 							<th><label> Set(세트수) </label></th>
@@ -409,7 +424,7 @@ body {
 					</thead>
 					<tbody id="items">
 						<tr>
-							<td><p>1</p>
+							<td><p>1</p></td>
 							<td><input type="number" min="1" value="10"></td>
 							<td><input type="number" min="1"></td>
 						</tr>

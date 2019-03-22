@@ -109,7 +109,7 @@
 <!-- 			</div> -->
 			<c:if test="${searchVO.totalPage>searchVO.page}">
 				<a href="javascript:fn_formSubmit(${searchVO.page+1});">다음</a>
-				<a href="javascript:fn_formSubmit(${serachVO.totalPage});">끝</a>
+				<a href="javascript:fn_formSubmit(${searchVO.totalPage});">끝</a>
 			</c:if>
 		</c:if>
 	</div>

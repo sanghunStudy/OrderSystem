@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,12 +133,14 @@
 		// When the user clicks on <span> (x), close the modal
 		span.onclick = function() {
 			modal.style.display = "none";
+			location.reload();
 		}
 
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 			if (event.target == modal) {
 				modal.style.display = "none";
+				location.reload();
 			}
 		}
 
@@ -201,9 +204,11 @@
 					//길이가 9이면 없는거니까 생성
 					if (titleTure == 9) {
 						var cloneEl = $("#tableSample").clone().find("h3")
-								.text(title).end().find("tbody").attr("id",
+								.text(title).end().find("#exName").val(title)
+								.end().find("tbody").attr("id",
 										"items" + cloneCount).end().attr("id",
-										"table" + cloneCount).attr("style","display:block").insertAfter(
+										"table" + cloneCount).attr("style",
+										"display:block").insertAfter(
 										"[id^=table]:last");
 
 						cloneEl.appendTo('#frm');
@@ -220,7 +225,7 @@
 						"click",
 						"#ElBtn",
 						function ElBtn() {
-										console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
+							// 										console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
 
 							//클릭한 버튼의 조상에 바로 아래 형제 = tbody 의 id를 가져와서 변수에 담아준다.
 							var closestId = $(this).closest("thead").next()
@@ -232,20 +237,36 @@
 							var i = $(this).closest("thead").next().children(
 									".hi").length + 2;
 							//
+							// 							var setNum;
+							// 							for(var set =0; set<i; set++){
+							// 									console.log(set+"<<<<<<<<set");
+							// 									setNum = set+1;
+							// 									if(i == setNum){
+							// 										setNum = setNum+1;
+							// 									}
+							// 							}
 
-							var items = "<tr class='"+ i +" hi'>"
+							var items = "<tr class='"+ i +" hi' id='"+closestId+i+"'>"
 									+ "<td><p>"
 									+ i
-									+ "</p></td>"
-									+ "<td><input type='number' min='1'  value='10'/></td>"
-									+ "<td><input type='number' min='1'/></td>"
+									+ "</p>"
+									+ "<input type='hidden' min='1' name='set' value='"+i+"'/>"
+									+ "</td>"
+									+ "<td><input type='number' min='1' name='Reps' value='10'/></td>"
+									+ "<td><input type='number' min='1' name='lb' value=''/></td>"
+									// 							+ "<td><button type='button' id='oneElDel'>-</button></td>"
 									+ "</tr>"
-
-// 							El.innerHTML += items;
-									$(items).appendTo(El);
+							$(items).appendTo(El);
 							i++;
+							// 							El.innerHTML += items;
 
 						});//태그 추가 함수 끝
+		//개별 input 태그 삭제
+		$(document).on("click", "#oneElDel", function() {
+			console.log($(this).closest("tr").attr("id") + "<<<<<<<부모");
+			var inputDelId = "#" + $(this).closest("tr").attr("id");
+			$(inputDelId).remove('tr');
+		})
 
 		//input 삭제 함수
 		$(document).on(
@@ -298,6 +319,8 @@
 		// 	  var field = document.getElementById(target);
 		// 	  document.getElementById('field').removeChild(field);
 	}
+	
+
 </script>
 
 <style>
@@ -400,7 +423,8 @@ body {
 
 		<!-- Modal content -->
 		<div id="modal-content" class="modal-content">
-
+		
+		
 			<table id="tableSample" style="display: none;">
 				<thead id="itemad">
 					<tr>
@@ -411,6 +435,8 @@ body {
 					</tr>
 					<tr>
 						<th colspan="4"><h3>Main 운동</h3>
+							<input type="hidden" id="exName" name="ExerciseName"
+							value="Main 운동" />
 							<button id="titleDel" type="button">삭제</button></th>
 					</tr>
 					<tr>
@@ -422,16 +448,20 @@ body {
 				</thead>
 				<tbody id="ite">
 					<tr>
-						<td><p>1</p></td>
-						<td><input type="number" min="1" value="10"></td>
-						<td><input type="number" min="1"></td>
+						<td><p>1</p>
+							<input type="hidden" name="set" value="1" /></td>
+						<td><input type="number" name="Reps" min="1" value="10"></td>
+						<td><input type="number" name="lb" min="1" value=""></td>
 					</tr>
 				</tbody>
 			</table>
+			
 			<span class="close">&times;</span>
 
 			<button id="ElAdd">종목추가</button>
-			<form id="frm">
+			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button>
+			<form id="frm" class="sform" action="ExerciseJournal" method="post">
+				<sec:csrfInput />
 				<table id="table">
 					<thead id="itemsHead">
 						<tr>
@@ -442,6 +472,7 @@ body {
 						</tr>
 						<tr>
 							<th colspan="4"><h3>Main 운동</h3>
+								<input type="hidden" name="ExerciseName" value="Main 운동" />
 								<button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
@@ -453,9 +484,10 @@ body {
 					</thead>
 					<tbody id="items">
 						<tr>
-							<td><p>1</p></td>
-							<td><input type="number" min="1" value="10"></td>
-							<td><input type="number" min="1"></td>
+							<td><p>1</p>
+								<input type="hidden" name="set" value="1" /></td>
+							<td><input type="number" name="Reps" min="1" value="10"></td>
+							<td><input type="number" name="lb" min="1"></td>
 						</tr>
 					</tbody>
 				</table>

@@ -200,16 +200,16 @@
 					var titleTure = $(':contains(' + title + ')').length;
 					//길이가 9이면 없는거니까 생성
 					if (titleTure == 9) {
-						var cloneEl = $("#table").clone().find("h3")
+						var cloneEl = $("#tableSample").clone().find("h3")
 								.text(title).end().find("tbody").attr("id",
 										"items" + cloneCount).end().attr("id",
-										"table" + cloneCount).insertAfter(
+										"table" + cloneCount).attr("style","display:block").insertAfter(
 										"[id^=table]:last");
 
 						cloneEl.appendTo('#frm');
 						cloneCount++;
-					//9가 아니면 있는거니까 경고창 출력
-					}else{
+						//9가 아니면 있는거니까 경고창 출력
+					} else {
 						alert("이미 선택한 종목입니다.");
 					}
 				});
@@ -220,7 +220,7 @@
 						"click",
 						"#ElBtn",
 						function ElBtn() {
-							// 			console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
+										console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
 
 							//클릭한 버튼의 조상에 바로 아래 형제 = tbody 의 id를 가져와서 변수에 담아준다.
 							var closestId = $(this).closest("thead").next()
@@ -241,8 +241,8 @@
 									+ "<td><input type='number' min='1'/></td>"
 									+ "</tr>"
 
-							El.innerHTML += items;
-
+// 							El.innerHTML += items;
+									$(items).appendTo(El);
 							i++;
 
 						});//태그 추가 함수 끝
@@ -270,21 +270,21 @@
 					}
 
 				});//태그 삭제 함수 끝
-				
-			$(document).on("click","#titleDel",function(){
-				//나의 부모의 첫번째 자식 요소의 텍스트값  = Main 운동(h3태그) 가져오기				
-				var hTagTitle = $(this).parent().children().eq(0).text();
-				//이 내용이 Main 운동 이라면 삭제가 안되고 아니라면 삭제처리
-				if(hTagTitle == "Main 운동"){
-					alert("메인 운동은 삭제 하실 수 없습니다.");	
-				}else{
-					//선택한 버튼이 속해있는 테이블 아이디 값을 찾아와서 지운다.
-					var closestId = $(this).closest("thead").parent().attr("id");
-					var removeId = "#"+closestId;
-					$(removeId).remove();
-				}
-					
-			});
+
+		$(document).on("click", "#titleDel", function() {
+			//나의 부모의 첫번째 자식 요소의 텍스트값  = Main 운동(h3태그) 가져오기				
+			var hTagTitle = $(this).parent().children().eq(0).text();
+			//이 내용이 Main 운동 이라면 삭제가 안되고 아니라면 삭제처리
+			if (hTagTitle == "Main 운동") {
+				alert("메인 운동은 삭제 하실 수 없습니다.");
+			} else {
+				//선택한 버튼이 속해있는 테이블 아이디 값을 찾아와서 지운다.
+				var closestId = $(this).closest("thead").parent().attr("id");
+				var removeId = "#" + closestId;
+				$(removeId).remove();
+			}
+
+		});
 
 	}//window.onload
 
@@ -400,6 +400,34 @@ body {
 
 		<!-- Modal content -->
 		<div id="modal-content" class="modal-content">
+
+			<table id="tableSample" style="display: none;">
+				<thead id="itemad">
+					<tr>
+						<!-- 추가적인 input을 생성하는 버튼 -->
+						<th colspan="2"><button id="ElBtn" type="button">+</button></th>
+						<th colspan="2"><button id="ElDel" type="button">-</button></th>
+
+					</tr>
+					<tr>
+						<th colspan="4"><h3>Main 운동</h3>
+							<button id="titleDel" type="button">삭제</button></th>
+					</tr>
+					<tr>
+						<th><label> Set(세트수) </label></th>
+						<th><label> Reps(반복횟수) </label></th>
+						<th><label> lb(무게)</label></th>
+
+					</tr>
+				</thead>
+				<tbody id="ite">
+					<tr>
+						<td><p>1</p></td>
+						<td><input type="number" min="1" value="10"></td>
+						<td><input type="number" min="1"></td>
+					</tr>
+				</tbody>
+			</table>
 			<span class="close">&times;</span>
 
 			<button id="ElAdd">종목추가</button>
@@ -413,7 +441,8 @@ body {
 
 						</tr>
 						<tr>
-							<th colspan="4"><h3>Main 운동</h3><button id="titleDel" type="button">삭제</button></th>
+							<th colspan="4"><h3>Main 운동</h3>
+								<button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
 							<th><label> Set(세트수) </label></th>

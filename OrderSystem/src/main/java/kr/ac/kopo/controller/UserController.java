@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.ac.kopo.model.ExerciseJournalList;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.service.UserService;
 
@@ -24,6 +26,13 @@ public class UserController {
 	public String ExerciseJournal() {
 		
 		return path+"ExerciseJournal";
+	}
+	
+	@RequestMapping(value="/ExerciseJournal", method=RequestMethod.POST)
+	public String ExerciseJournal(@ModelAttribute ExerciseJournalList ejl) {
+		
+		System.out.println(ejl.getEj());
+		return "redirect:MyPage";
 	}
 	
 	@RequestMapping("/MyPage")

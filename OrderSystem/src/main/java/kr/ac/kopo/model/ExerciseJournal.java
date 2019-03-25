@@ -13,15 +13,15 @@ public class ExerciseJournal {
 	private Integer Reps;
 	private Integer lb;
 	
-	private List<ExerciseJournal> ExerciseJournalVOList;
-
-	
-	public List<ExerciseJournal> getExerciseJournalVOList() {
-		return ExerciseJournalVOList;
-	}
-	public void setExerciseJournalVOList(List<ExerciseJournal> exerciseJournalVOList) {
-		ExerciseJournalVOList = exerciseJournalVOList;
-	}
+//	private List<ExerciseJournal> ExerciseJournalVOList;
+//
+//	
+//	public List<ExerciseJournal> getExerciseJournalVOList() {
+//		return ExerciseJournalVOList;
+//	}
+//	public void setExerciseJournalVOList(List<ExerciseJournal> exerciseJournalVOList) {
+//		ExerciseJournalVOList = exerciseJournalVOList;
+//	}
 	
 	public String getTitle() {
 		return title;
@@ -68,9 +68,9 @@ public class ExerciseJournal {
 	@Override
 	public String toString() {
 		return "ExerciseJournal [ExerciseDate=" + ExerciseDate + ", id=" + id + ", title=" + title + ", ExerciseName="
-				+ ExerciseName + ", set=" + set + ", Reps=" + Reps + ", lb=" + lb + ", ExerciseJournalVOList="
-				+ ExerciseJournalVOList + "]";
+				+ ExerciseName + ", set=" + set + ", Reps=" + Reps + ", lb=" + lb + "]";
 	}
+	
 	
 	
 

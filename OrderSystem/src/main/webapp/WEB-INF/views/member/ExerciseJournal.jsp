@@ -204,7 +204,7 @@
 					//길이가 9이면 없는거니까 생성
 					if (titleTure == 9) {
 						var cloneEl = $("#tableSample").clone().find("h3")
-								.text(title).end().find("#exName").val(title)
+								.text(title).end().find("#exName").val(title).attr("name","ej["+cloneCount+"].ExerciseName")
 								.end().find("tbody").attr("id",
 										"items" + cloneCount).end().attr("id",
 										"table" + cloneCount).attr("style",
@@ -246,14 +246,17 @@
 							// 									}
 							// 							}
 
+							var j = $(this).closest("thead").next().children(
+									".hi").length +1;
+							
 							var items = "<tr class='"+ i +" hi' id='"+closestId+i+"'>"
 									+ "<td><p>"
 									+ i
 									+ "</p>"
-									+ "<input type='hidden' min='1' name='set' value='"+i+"'/>"
+									+ "<input type='hidden' min='1' name='ej["+j+"].set' value='"+i+"'/>"
 									+ "</td>"
-									+ "<td><input type='number' min='1' name='Reps' value='10'/></td>"
-									+ "<td><input type='number' min='1' name='lb' value=''/></td>"
+									+ "<td><input type='number' min='1' name='ej["+j+"].Reps' value='10'/></td>"
+									+ "<td><input type='number' min='1' name='ej["+j+"].lb' value=''/></td>"
 									// 							+ "<td><button type='button' id='oneElDel'>-</button></td>"
 									+ "</tr>"
 							$(items).appendTo(El);
@@ -321,6 +324,14 @@
 	}
 	
 
+	function ElSubmit(){
+		var tableArray =[];
+		
+		
+		tableArray.push($("#table").val());
+		
+		console.log(tableArray);
+	}
 </script>
 
 <style>
@@ -435,7 +446,7 @@ body {
 					</tr>
 					<tr>
 						<th colspan="4"><h3>Main 운동</h3>
-							<input type="hidden" id="exName" name="ExerciseName"
+							<input type="hidden" id="exName" name="ej[0].ExerciseName"
 							value="Main 운동" />
 							<button id="titleDel" type="button">삭제</button></th>
 					</tr>
@@ -459,6 +470,7 @@ body {
 			<span class="close">&times;</span>
 
 			<button id="ElAdd">종목추가</button>
+<!-- 			<button id="ElSubmit" onclick="ElSubmit();">작성완료</button> -->
 			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button>
 			<form id="frm" class="sform" action="ExerciseJournal" method="post">
 				<sec:csrfInput />
@@ -472,7 +484,7 @@ body {
 						</tr>
 						<tr>
 							<th colspan="4"><h3>Main 운동</h3>
-								<input type="hidden" name="ExerciseName" value="Main 운동" />
+								<input type="hidden" name="ej[0].ExerciseName" value="Main 운동" />
 								<button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
@@ -485,9 +497,9 @@ body {
 					<tbody id="items">
 						<tr>
 							<td><p>1</p>
-								<input type="hidden" name="set" value="1" /></td>
-							<td><input type="number" name="Reps" min="1" value="10"></td>
-							<td><input type="number" name="lb" min="1"></td>
+								<input type="hidden" name="ej[0].set" value="1" /></td>
+							<td><input type="number" name="ej[0].Reps" min="1" value="10"></td>
+							<td><input type="number" name="ej[0].lb" min="1"></td>
 						</tr>
 					</tbody>
 				</table>

@@ -8,28 +8,28 @@ public class ReviewBoardComment {
 	private String rcommentContent;
 	private String rcommentDate;
 	private int reviewId;
-	private int redepth; //깊이
-	private int reorder; //순서
-	private int reparent; // 부모
-	
+	private int rcommentDepth;
+	private int rcommentParent;
+	private int rcommentOrder;
 
-	public int getRedepth() {
-		return redepth;
+	
+	public int getRcommentOrder() {
+		return rcommentOrder;
 	}
-	public void setRedepth(int redepth) {
-		this.redepth = redepth;
+	public void setRcommentOrder(int rcommentOrder) {
+		this.rcommentOrder = rcommentOrder;
 	}
-	public int getReorder() {
-		return reorder;
+	public int getRcommentDepth() {
+		return rcommentDepth;
 	}
-	public void setReorder(int reorder) {
-		this.reorder = reorder;
+	public void setRcommentDepth(int rcommentDepth) {
+		this.rcommentDepth = rcommentDepth;
 	}
-	public int getReparent() {
-		return reparent;
+	public int getRcommentParent() {
+		return rcommentParent;
 	}
-	public void setReparent(int reparent) {
-		this.reparent = reparent;
+	public void setRcommentParent(int rcommentParent) {
+		this.rcommentParent = rcommentParent;
 	}
 	public int getRcommentId() {
 		return rcommentId;

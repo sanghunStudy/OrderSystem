@@ -5,6 +5,7 @@ import java.util.List;
 import kr.ac.kopo.model.Notice;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
+import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
 public interface ReviewBoardService {
@@ -34,5 +35,9 @@ public interface ReviewBoardService {
 	void commentAdd(ReviewBoardComment rComment);
 
 	List<ReviewBoardComment> commentList(ReviewBoardComment rComment);
+
+	List<ReviewBoardComment> rcommentList(ReviewBoardComment rComment);
+
+	void recommentAdd(ReviewBoardComment rComment);
 
 }

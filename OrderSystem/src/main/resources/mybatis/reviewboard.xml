@@ -14,6 +14,9 @@
 		order by b.review_id desc LIMIT ${rowStart-1},10
 	</select>
 
+	<!-- <select id="fileSelect" resultType="FileVO"> select fileno, filename, 
+		realname, filesize from tbl_boardfile where review_id=#{reviewId} order by 
+		fileno desc </select> -->
 	<select id="reCnt">
 		select count(*)
 		from review_board
@@ -79,16 +82,32 @@
 	</delete>
 
 	<!-- 댓글 -->
+	<!--<select id="recommentList" resultType="RComment"> select * from reviewboard_comment 
+		where group_id = #{groupId}; </select> <insert id="recommentAdd"> insert 
+		into reviewboard_comment (id, review_id, rcomment_content, rcomment_date) 
+		values(#{id}, #{reviewId}, #{rcommentContent},NOW()) </insert> -->
+
+	<select id="rcommentList" resultType="RComment">
+		select * from
+		reviewboard_comment where review_id = #{reviewId} and rcomment_parent = #{rcommentParent} and rcomment_depth = 1;
+	</select>
 
 	<select id="commentList" resultType="RComment">
 		select * from
-		reviewboard_comment where review_id = #{reviewId};
+		reviewboard_comment where review_id = #{reviewId} and rcomment_order = 0;
 	</select>
 
 	<insert id="commentAdd">
 		insert into reviewboard_comment
-		(review_id,rcomment_content,rcomment_date, id)
-		values(#{reviewId},#{rcommentContent},NOW(), #{id})
+		(id,review_id,rcomment_content,rcomment_date, rcomment_parent)
+		values(#{id}, #{reviewId}, #{rcommentContent},NOW(), (select 
+		ifnull(max(a.rcomment_parent),0)+1 from reviewboard_comment a))
+	</insert>
+	
+	<insert id="recommentAdd">
+		insert into reviewboard_comment
+		(id,review_id,rcomment_content,rcomment_date, rcomment_parent, rcomment_depth, rcomment_order)
+		values(#{id}, #{reviewId},#{rcommentContent},NOW(), #{rcommentParent}, rcomment_depth + 1, rcomment_order +1)
 	</insert>
 
 	<delete id="commentDel">
@@ -103,6 +122,6 @@
 		where rcomment_id =
 		#{rcommentId}
 	</update>
-	
+
 
 </mapper>

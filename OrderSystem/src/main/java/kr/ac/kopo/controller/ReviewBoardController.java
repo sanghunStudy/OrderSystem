@@ -3,6 +3,7 @@ package kr.ac.kopo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,7 @@ import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.service.ReviewBoardService;
+import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Controller
@@ -162,10 +166,29 @@ public class ReviewBoardController {
 	
 	@RequestMapping("/commentAdd")
 	@ResponseBody
-	String commentAdd(ReviewBoardComment RComment) {
+	String commentAdd(ReviewBoardComment RComment, Principal principal) {
+		
+		System.out.println(principal.getName());
+
+		RComment.setId(principal.getName());
+		
 		service.commentAdd(RComment);
 		return "success";
 	}
+	
+	@RequestMapping("/recommentAdd")
+	@ResponseBody
+	String recommentAdd(ReviewBoardComment RComment, Principal principal) {
+		
+		System.out.println(principal.getName());
+
+		RComment.setId(principal.getName());
+		System.out.println(RComment.getRcommentContent()+"<<<<<<RComment.getRcommentContent()");
+		System.out.println(RComment.getReviewId()+"<<<<<<RComment.getReviewId()");
+		service.recommentAdd(RComment);
+		return "success";
+	}
+	
 
 	@RequestMapping("/commentList")
 	@ResponseBody
@@ -182,8 +205,37 @@ public class ReviewBoardController {
                 hm.put("c_code", commentVO.get(i).getRcommentId());
                 hm.put("comment", commentVO.get(i).getRcommentContent());
                 hm.put("writer", commentVO.get(i).getId());
-                hm.put("RcommentDate", commentVO.get(i).getRcommentDate());
-                
+                hm.put("depth", commentVO.get(i).getRcommentDepth());
+                hm.put("parent", commentVO.get(i).getRcommentParent());
+                hm.put("order", commentVO.get(i).getRcommentOrder());
+                hmlist.add(hm);
+            }
+            
+        }
+        
+        JSONArray json = new JSONArray(hmlist);  	
+		
+		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("/rcommentList")
+	@ResponseBody
+	ResponseEntity rcommentList(ReviewBoardComment RComment,HttpServletRequest request){
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
+        // 해당 게시물 댓글
+        List<ReviewBoardComment> commentVO = service.rcommentList(RComment);
+        
+        if(commentVO.size() > 0){
+            for(int i=0; i<commentVO.size(); i++){
+                HashMap<String, Comparable> hm = new HashMap();
+                hm.put("c_code", commentVO.get(i).getRcommentId());
+                hm.put("comment", commentVO.get(i).getRcommentContent());
+                hm.put("writer", commentVO.get(i).getId());
+                hm.put("depth", commentVO.get(i).getRcommentDepth());
+                hm.put("parent", commentVO.get(i).getRcommentParent());
+                hm.put("order", commentVO.get(i).getRcommentOrder());
                 hmlist.add(hm);
             }
             

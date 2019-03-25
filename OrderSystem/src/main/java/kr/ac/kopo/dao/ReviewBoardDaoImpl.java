@@ -89,7 +89,17 @@ public class ReviewBoardDaoImpl implements ReviewBoardDao {
 	public List<ReviewBoardComment> commentList(ReviewBoardComment rComment) {
 		return sql.selectList("reviewboard.commentList", rComment);
 	}
-	
+
+	@Override
+	public List<ReviewBoardComment> rcommentList(ReviewBoardComment rComment) {
+		return sql.selectList("reviewboard.rcommentList", rComment);
+	}
+
+	@Override
+	public void recommentAdd(ReviewBoardComment rComment) {
+		sql.insert("reviewboard.recommentAdd", rComment);
+	}
+
 	
 	
 }

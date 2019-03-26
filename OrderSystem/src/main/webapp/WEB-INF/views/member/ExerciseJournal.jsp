@@ -324,14 +324,18 @@
 	}
 	
 
-	function ElSubmit(){
+	$(document).on("click", "#ElSubmit",function(){
 		var tableArray =[];
 		
 		
 		tableArray.push($("#table").val());
 		
+		var tableArray = new Array();
+		$("#table").find("input").each(function(){
+			tableArray.push($(this).attr("value"));
+		});
 		console.log(tableArray);
-	}
+	});
 </script>
 
 <style>
@@ -469,9 +473,10 @@ body {
 			
 			<span class="close">&times;</span>
 
+			
+<!-- 			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button> -->
 			<button id="ElAdd">종목추가</button>
-<!-- 			<button id="ElSubmit" onclick="ElSubmit();">작성완료</button> -->
-			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button>
+			<button id="ElSubmit">작성완료</button>
 			<form id="frm" class="sform" action="ExerciseJournal" method="post">
 				<sec:csrfInput />
 				<table id="table">
@@ -499,7 +504,7 @@ body {
 							<td><p>1</p>
 								<input type="hidden" name="ej[0].set" value="1" /></td>
 							<td><input type="number" name="ej[0].Reps" min="1" value="10"></td>
-							<td><input type="number" name="ej[0].lb" min="1"></td>
+							<td><input type="number" name="ej[0].lb" min="1" value=""></td>
 						</tr>
 					</tbody>
 				</table>

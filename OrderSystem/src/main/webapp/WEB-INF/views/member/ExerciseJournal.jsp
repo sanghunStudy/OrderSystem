@@ -203,7 +203,7 @@
 					var titleTure = $(':contains(' + title + ')').length;
 					//길이가 9이면 없는거니까 생성
 					if (titleTure == 9) {
-						var cloneEl = $("#tableSample").clone().find("h3")
+						var cloneEl = $("#Sample").clone().find("h3")
 								.text(title).end().find("#exName").val(title).attr("name","ej["+cloneCount+"].ExerciseName")
 								.end().find("tbody").attr("id",
 										"items" + cloneCount).end().attr("id",
@@ -256,7 +256,7 @@
 									+ "<input type='hidden' min='1' name='ej["+j+"].set' value='"+i+"'/>"
 									+ "</td>"
 									+ "<td><input type='number' min='1' name='ej["+j+"].Reps' value='10'/></td>"
-									+ "<td><input type='number' min='1' name='ej["+j+"].lb' value=''/></td>"
+									+ "<td><input type='number' min='1' name='ej["+j+"].lb'/></td>"
 									// 							+ "<td><button type='button' id='oneElDel'>-</button></td>"
 									+ "</tr>"
 							$(items).appendTo(El);
@@ -323,7 +323,7 @@
 		// 	  document.getElementById('field').removeChild(field);
 	}
 	
-
+//작성완료 버튼을 눌렀을때 아이디가 table을 포함하는 모든 table 태그의 input의 value값을 가지고 와서 배열에 담아준다.
 	$(document).on("click", "#ElSubmit",function(){
 		var tableArray =[];
 		
@@ -331,8 +331,11 @@
 		tableArray.push($("#table").val());
 		
 		var tableArray = new Array();
-		$("#table").find("input").each(function(){
-			tableArray.push($(this).attr("value"));
+		//제이쿼리 선택자가 유동적일때 id ^= a a로 시작하는것
+		//id *= a a가 포함된것
+		//id $= a a로 끝나는것
+		$("table[id*='table']").find("input").each(function(){
+			tableArray.push($(this).prop("value"));
 		});
 		console.log(tableArray);
 	});
@@ -440,7 +443,7 @@ body {
 		<div id="modal-content" class="modal-content">
 		
 		
-			<table id="tableSample" style="display: none;">
+			<table id="Sample" style="display: none;">
 				<thead id="itemad">
 					<tr>
 						<!-- 추가적인 input을 생성하는 버튼 -->
@@ -504,7 +507,7 @@ body {
 							<td><p>1</p>
 								<input type="hidden" name="ej[0].set" value="1" /></td>
 							<td><input type="number" name="ej[0].Reps" min="1" value="10"></td>
-							<td><input type="number" name="ej[0].lb" min="1" value=""></td>
+							<td><input type="number" name="ej[0].lb" min="1"></td>
 						</tr>
 					</tbody>
 				</table>

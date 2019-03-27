@@ -14,18 +14,27 @@
 	});
 	
 	function fn_comment(code){
+		var commentCheck = document.getElementById("comment").value;
 		
-		$.ajax({
-			type:'post',
-			url:'${pageContext.request.contextPath}/menu/commentAdd',
-			data:$('#commentForm').serialize(),
-			success:function(data){
-				if(data == 'success'){
-					getCommentList();
-					$('#comment').val("");
+ 		if(commentCheck == "" || commentCheck == null){
+ 			alert("댓글내용을 입력해 주세요");
+ 		} else {
+			$.ajax({
+				type:'post',
+				url:'${pageContext.request.contextPath}/menu/commentAdd',
+				data:$('#commentForm').serialize(),
+				 beforeSend : function(xhr)
+	             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+					   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	             },
+				success:function(data){
+					if(data == 'success'){
+						getCommentList();
+						$('#comment').val("");
+					}
 				}
-			}
-		});
+			});
+ 		}	
 	}
 
 	function getCommentList() {
@@ -36,14 +45,14 @@
 			data:$("#commentForm").serialize(),
 			contentType: "application/x-www-urlencoded; charset=UTF-8",
 			success: function(data){
-				console.log(data);
+// 				console.log(data);
 				var html="";
 				var cCnt=data.length;
 				
 				if(data.length > 0){
 					
 					for(i=0;i<data.length;i++){
-						console.log(data[i]);
+// 						console.log(data[i]);
 						html += "<div>";
 						html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong><strong>"+data[0].McommentDate+"</strong></h6>";
 						html += "<tr><td><div class='commentContent"+data[i].c_code+"'>"+data[i].comment;
@@ -78,6 +87,10 @@
 			type:'post',
 			url:'${pageContext.request.contextPath}/menu/commentDel',
 			data:{'mcommentId':code},
+			 beforeSend : function(xhr)
+             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+             },
 			success:function(data){
 				if(data == 'success'){
 					getCommentList();
@@ -94,6 +107,10 @@
 			url: '${pageContext.request.contextPath}/menu/commentUpdate',
 			type: 'post',
 			data: {'mcommentContent':updateContent,'mcommentId':code},
+			 beforeSend : function(xhr)
+             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+             },
 			success: function(data){
 				if(data == 'success'){
 					getCommentList();

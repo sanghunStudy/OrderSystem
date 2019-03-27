@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>	
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,11 +27,18 @@
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <script>
+
+	
+
+//클릭한 날짜를 담을 변수선언
+var ClickDateStr;
+var DayTitle;
 	document.addEventListener('DOMContentLoaded', function() {
+	
 		var calendarEl = document.getElementById('calendar');
 
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			plugins : [ 'interaction', 'dayGrid', 'timeGrid' ],
+			plugins : [ 'interactionPlugin','interaction', 'dayGrid', 'timeGrid' ],
 			header : {
 				left : 'prev,next today',
 				center : 'title',
@@ -38,10 +46,22 @@
 			},
 			defaultDate : '2019-03-12',
 			navLinks : true, // can click day/week names to navigate views
+			 
+			dateClick: function(info) {
+				//클릭한 날짜를 전역변수에 담아준다.
+				ClickDateStr = info.dateStr;
+			    
+// 				alert('Clicked on: ' + info.dateStr);
+// 			    alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+// 			    alert('Current view: ' + info.view.type);
+			    // change the day's background color just for fun
+// 			    info.dayEl.style.backgroundColor = 'red';
+			  },
 			selectable : true,
 			selectMirror : true,
 			select : function(arg) {
 				var title = prompt('제목을 입력하세요 !');
+				DayTitle = title;
 				if (title) {
 					calendar.addEvent({
 						title : title,
@@ -112,7 +132,7 @@
 			//           start: '2019-03-28'
 			//         }
 			]
-		});
+		});//calendar 끝
 
 		calendar.render();
 	});
@@ -327,10 +347,19 @@
 	
 //작성완료 버튼을 눌렀을때 아이디가 table을 포함하는 모든 table 태그의 input의 value값을 가지고 와서 배열에 담아준다.
 	$(document).on("click", "#ElSubmit",function(){
-		
-		
+// 		console.log(ClickDateStr+"<클릭한 날짜");
+// 		console.log(DayTitle + "<입력한 제목");
 		var tableArray = new Array();
 
+		//전역 변수로 선언하여 받아온 클릭한 날짜와 입력한 제목을 넣어준다.
+		tableArray.push(
+				{
+					"ExerciseDate":ClickDateStr
+				},
+				{
+					"title":DayTitle
+				}
+						);
 		//제이쿼리 선택자가 유동적일때 id ^= a a로 시작하는것
 		//id *= a a가 포함된것
 		//id $= a a로 끝나는것
@@ -345,7 +374,7 @@
 						);
 		});
 				
-		var JsonData = JSONArray.stringify(tableArray);
+		var JsonData = JSON.stringify(tableArray);
 		console.log(JsonData);
 		
 		$.ajax({
@@ -466,8 +495,8 @@ body {
 
 		<!-- Modal content -->
 		<div id="modal-content" class="modal-content">
-		
-		
+
+
 			<table id="Sample" style="display: none;">
 				<thead id="itemad">
 					<tr>
@@ -477,9 +506,8 @@ body {
 
 					</tr>
 					<tr>
-						<th colspan="4"><h3>Main 운동</h3>
-							<input type="hidden" id="exName" name="ExerciseName"
-							value="Main 운동" />
+						<th colspan="4"><h3>Main 운동</h3> <input type="hidden"
+							id="exName" name="ExerciseName" value="Main 운동" />
 							<button id="titleDel" type="button">삭제</button></th>
 					</tr>
 					<tr>
@@ -491,18 +519,17 @@ body {
 				</thead>
 				<tbody id="ite">
 					<tr>
-						<td><p>1</p>
-							<input type="hidden" name="set" value="1" /></td>
+						<td><p>1</p> <input type="hidden" name="set" value="1" /></td>
 						<td><input type="number" name="Reps" min="1" value="10"></td>
 						<td><input type="number" name="lb" min="1" value=""></td>
 					</tr>
 				</tbody>
 			</table>
-			
+
 			<span class="close">&times;</span>
 
-			
-<!-- 			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button> -->
+
+			<!-- 			<button id="ElSubmit" onclick="document.getElementById('frm').submit();">작성완료</button> -->
 			<button id="ElAdd">종목추가</button>
 			<button id="ElSubmit">작성완료</button>
 			<form id="frm" class="sform" action="ExerciseJournal" method="post">
@@ -516,8 +543,8 @@ body {
 
 						</tr>
 						<tr>
-							<th colspan="4"><h3>Main 운동</h3>
-								<input type="hidden" name="ExerciseName" value="Main 운동" />
+							<th colspan="4"><h3>Main 운동</h3> <input type="hidden"
+								name="ExerciseName" value="Main 운동" />
 								<button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
@@ -529,8 +556,7 @@ body {
 					</thead>
 					<tbody id="tbodyItems">
 						<tr>
-							<td><p>1</p>
-								<input type="hidden" name="set" value="1" /></td>
+							<td><p>1</p> <input type="hidden" name="set" value="1" /></td>
 							<td><input type="number" name="Reps" min="1" value="10"></td>
 							<td><input type="number" name="lb" min="1"></td>
 						</tr>

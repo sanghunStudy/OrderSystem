@@ -1,5 +1,6 @@
 package kr.ac.kopo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,11 +41,23 @@ public class UserController {
 	
 	@RequestMapping(value="/ExerciseJournalSubmit", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> saveCode(@RequestBody Map<String, Object> param) {
+	public List<Map<String,Object>> saveCode(@RequestBody List<Map<String, Object>> param) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		String result = null;
 		
+		for(int i=0; i<param.size(); i++) {
+			Map<String,Object> map = param.get(i);
+			System.out.println(param.get(i));
+//			System.out.println( map.get("ExerciseName"));
+//			System.out.println( map.get("set"));
+//			System.out.println( map.get("Reps"));
+//			System.out.println( map.get("lb"));
+//			
+//			result = map.get("set");
+//			resultMap.put("test", result);
+		}
 		
-		
-		System.out.println(param+"param");
+//		System.out.println(resultMap.get("test")+"result");
 	
 		return param;
 	}

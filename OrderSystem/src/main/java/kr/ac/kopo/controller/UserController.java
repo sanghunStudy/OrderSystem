@@ -1,13 +1,16 @@
 package kr.ac.kopo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.model.ExerciseJournalList;
 import kr.ac.kopo.model.User;
@@ -34,6 +37,19 @@ public class UserController {
 		System.out.println(ejl.getEj());
 		return "redirect:MyPage";
 	}
+	
+	@RequestMapping(value="/ExerciseJournalSubmit", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> saveCode(@RequestBody Map<String, Object> param) {
+		
+		
+		
+		System.out.println(param+"param");
+	
+		return param;
+	}
+	
+	
 	
 	@RequestMapping("/MyPage")
 	public String MyPage() {

@@ -204,9 +204,9 @@
 					//길이가 9이면 없는거니까 생성
 					if (titleTure == 9) {
 						var cloneEl = $("#Sample").clone().find("h3")
-								.text(title).end().find("#exName").val(title).attr("name","ej["+cloneCount+"].ExerciseName")
+								.text(title).end().find("#exName").val(title).attr("name","ExerciseName")
 								.end().find("tbody").attr("id",
-										"items" + cloneCount).end().attr("id",
+										"tbodyItems" + cloneCount).end().attr("id",
 										"table" + cloneCount).attr("style",
 										"display:block").insertAfter(
 										"[id^=table]:last");
@@ -225,11 +225,13 @@
 						"click",
 						"#ElBtn",
 						function ElBtn() {
-							// 										console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
+// 							console.log($(this).closest("thead").next().children(".hi").length+"<<<<<<자기의 tbody id값");
 
 							//클릭한 버튼의 조상에 바로 아래 형제 = tbody 의 id를 가져와서 변수에 담아준다.
 							var closestId = $(this).closest("thead").next()
 									.attr("id");
+							
+// 							console.log(closestId);
 							//해당 아이디로 element를 찾는다.
 							var El = document.getElementById(closestId);
 
@@ -249,14 +251,14 @@
 							var j = $(this).closest("thead").next().children(
 									".hi").length +1;
 							
-							var items = "<tr class='"+ i +" hi' id='"+closestId+i+"'>"
+							var items = "<tr class='"+ i +" hi'>"
 									+ "<td><p>"
 									+ i
 									+ "</p>"
-									+ "<input type='hidden' min='1' name='ej["+j+"].set' value='"+i+"'/>"
+									+ "<input type='hidden' min='1' name='set' value='"+i+"'/>"
 									+ "</td>"
-									+ "<td><input type='number' min='1' name='ej["+j+"].Reps' value='10'/></td>"
-									+ "<td><input type='number' min='1' name='ej["+j+"].lb'/></td>"
+									+ "<td><input type='number' min='1' name='Reps' value='10'/></td>"
+									+ "<td><input type='number' min='1' name='lb'/></td>"
 									// 							+ "<td><button type='button' id='oneElDel'>-</button></td>"
 									+ "</tr>"
 							$(items).appendTo(El);
@@ -325,19 +327,42 @@
 	
 //작성완료 버튼을 눌렀을때 아이디가 table을 포함하는 모든 table 태그의 input의 value값을 가지고 와서 배열에 담아준다.
 	$(document).on("click", "#ElSubmit",function(){
-		var tableArray =[];
 		
-		
-		tableArray.push($("#table").val());
 		
 		var tableArray = new Array();
+
 		//제이쿼리 선택자가 유동적일때 id ^= a a로 시작하는것
 		//id *= a a가 포함된것
 		//id $= a a로 끝나는것
 		$("table[id*='table']").find("input").each(function(){
-			tableArray.push($(this).prop("value"));
+			var tableVal = $(this).prop("value");
+			var tableName = $(this).prop("name");
+			//tableName 변수에 들어있는 값을 키 값으로 써주기 위해 []안에 넣어서 처리 해준다.
+			tableArray.push(
+					{
+						[tableName]:tableVal
+					}
+						);
 		});
-		console.log(tableArray);
+				
+		var JsonData = JSONArray.stringify(tableArray);
+		console.log(JsonData);
+		
+		$.ajax({
+			type:'post',
+			async:false,
+			contentType:'application/json;charset=UTF-8',
+			beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+            },
+			data:JSON.stringify(tableArray),
+			dataType:'json',
+			url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
+			success:function(res){
+				console.log(res);
+			}
+		});
 	});
 </script>
 
@@ -453,7 +478,7 @@ body {
 					</tr>
 					<tr>
 						<th colspan="4"><h3>Main 운동</h3>
-							<input type="hidden" id="exName" name="ej[0].ExerciseName"
+							<input type="hidden" id="exName" name="ExerciseName"
 							value="Main 운동" />
 							<button id="titleDel" type="button">삭제</button></th>
 					</tr>
@@ -492,7 +517,7 @@ body {
 						</tr>
 						<tr>
 							<th colspan="4"><h3>Main 운동</h3>
-								<input type="hidden" name="ej[0].ExerciseName" value="Main 운동" />
+								<input type="hidden" name="ExerciseName" value="Main 운동" />
 								<button id="titleDel" type="button">삭제</button></th>
 						</tr>
 						<tr>
@@ -502,12 +527,12 @@ body {
 
 						</tr>
 					</thead>
-					<tbody id="items">
+					<tbody id="tbodyItems">
 						<tr>
 							<td><p>1</p>
-								<input type="hidden" name="ej[0].set" value="1" /></td>
-							<td><input type="number" name="ej[0].Reps" min="1" value="10"></td>
-							<td><input type="number" name="ej[0].lb" min="1"></td>
+								<input type="hidden" name="set" value="1" /></td>
+							<td><input type="number" name="Reps" min="1" value="10"></td>
+							<td><input type="number" name="lb" min="1"></td>
 						</tr>
 					</tbody>
 				</table>

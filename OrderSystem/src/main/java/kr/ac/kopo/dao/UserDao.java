@@ -31,5 +31,7 @@ public interface UserDao {
 
 	List<ExerciseJournal> ExerciseJournalList(String id);
 
+	ExerciseJournal ExerciseJournalOne(int exerciseCode);
+
 
 }

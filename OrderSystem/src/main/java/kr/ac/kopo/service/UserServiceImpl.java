@@ -104,4 +104,9 @@ public class UserServiceImpl implements UserService {
 		return dao.ExerciseJournalList(id);
 	}
 
+	@Override
+	public ExerciseJournal ExerciseJournalOne(int exerciseCode) {
+		return dao.ExerciseJournalOne(exerciseCode);
+	}
+
 }

@@ -27,4 +27,6 @@ public interface UserService {
 	void saveCode(List<Map<String, Object>> param,Principal principal);
 
 	List<ExerciseJournal> ExerciseJournalList(String id);
+
+	ExerciseJournal ExerciseJournalOne(int exerciseCode);
 }

@@ -31,15 +31,48 @@
 
 <script>
 
-	
+$(document).ready(function(){
+	ajaxLoad();//시작하자마자ajax로드해서 리스트를 달력에 뿌려준다.
+});	
+
 
 //클릭한 날짜를 담을 변수선언
 var ClickDateStr;
 var DayTitle;
 
+function ajaxLoad(){
+	$.ajax 
+	({ 
+	 type: "GET", 
+	 contentType: "application/json; charset=utf-8", 
+	 url: "${pageContext.request.contextPath}/member/ExerciseJournalList", 
+	 dataType: 'json', 
+	 success: function (data) 
+	 { 
+		 console.log(data);
+	//배열선언 뿌려줄 리스트를 담을
+	  var events = []; 
+		for(var i =0; i <data.EJ.length; i++){
+			events.push({
+				exerciseCode:data.EJ[i].exerciseCode,
+				title : data.EJ[i].title,
+				start : data.EJ[i].start,
 
-	document.addEventListener('DOMContentLoaded', function() {
-		
+			});
+		}//for끝 
+	  
+	  calendarLoad(events);//달력 호출하면서 뿌려줄 목록을 넘겨준다. 
+	 },//success 끝 
+	 error: function (xhr, err) { 
+	  alert("ERROR! - readyState: " + xhr.readyState + "<br/>status: " + xhr.status + "<br/>responseText: " + xhr.responseText); 
+	 } 
+	}); //ajax 끝
+
+}//ajaxLoad
+
+//달력 로드하기
+function calendarLoad (eventData) {
+		console.log(eventData);//ajax 결과값 받아와서 출력
 		var calendarEl = document.getElementById('calendar');
 
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -81,44 +114,41 @@ var DayTitle;
 			},
 			editable : true,
 			eventLimit : true, // allow "more" link when too many events
-			events :function(start, end, timezone, callback) 
-		     {$.ajax 
-			      ({ 
-			       type: "GET", 
-			       contentType: "application/json; charset=utf-8", 
-			       url: "${pageContext.request.contextPath}/member/ExerciseJournalList", 
-			       dataType: 'json', 
-			       success: function (data) 
-			       { 
-// 					alert('ajax 성공');
-			        var events = []; 
-			        $.each(data, function (index, value) { 
-
-			         events.push({ 
-			          id: value['id'], 
-			          title: value['title'], 
-			          date: value['start'] 
-			          //all data 
-			         }); 
-			         console.log(value) 
-			        }); //반복문 끝
-			        console.log(events + "<<<<<events");
-			        callback(events); 
-			       },//success 끝 
-			       error: function (xhr, err) { 
-			        alert("ERROR! - readyState: " + xhr.readyState + "<br/>status: " + xhr.status + "<br/>responseText: " + xhr.responseText); 
-			       } 
-			      }); 
-		     }
-		});//ajax 끝
+			events : eventData,
+			//제목을 클릭했을때 이벤트 발생
+			eventClick: function(info){
+// 				console.log(info.event.extendedProps.exerciseCode);
+// 			    alert('Event: ' + info.event.title);
+				//클릭한 제목의 db 코드번호
+				var eventTitle = info.event.extendedProps.exerciseCode;
+			    $.ajax({
+					url:"${pageContext.request.contextPath}/member/ExerciseJournalOne",
+					type:"post",
+					data:{
+						"exerciseCode":eventTitle
+					},
+					beforeSend : function(xhr)
+		            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+		                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		            },
+					success:function(res){
+						console.log(res);
+						
+					}
+			    });//ajax 끝
+			    
+			}
+		});
 		calendar.render();
-		});//events 끝
+		}//events 끝
 		
 
 
 
-	var sungwoon = document.getElementsByClassName('fc-content');
 
+
+	var sungwoon = document.getElementsByClassName('fc-content');
+//모달창
 	function modalPop() {
 
 		//Get the modal
@@ -146,8 +176,7 @@ var DayTitle;
 
 	}
 
-	//팝업
-
+	//팝업 내부
 	window.onload = function() {
 
 		//제목을 클릭하면 해당 태그의 클래스를 가져옴 
@@ -238,15 +267,6 @@ var DayTitle;
 							//클릭한 버튼의 조상에 바로 아래 형제의 자식= tr중 hi라는 클래스의 길이를 가져오고 +2 시켜준다.
 							var i = $(this).closest("thead").next().children(
 									".hi").length + 2;
-							//
-							// 							var setNum;
-							// 							for(var set =0; set<i; set++){
-							// 									console.log(set+"<<<<<<<<set");
-							// 									setNum = set+1;
-							// 									if(i == setNum){
-							// 										setNum = setNum+1;
-							// 									}
-							// 							}
 
 							var j = $(this).closest("thead").next().children(
 									".hi").length +1;
@@ -263,7 +283,6 @@ var DayTitle;
 									+ "</tr>"
 							$(items).appendTo(El);
 							i++;
-							// 							El.innerHTML += items;
 
 						});//태그 추가 함수 끝
 		//개별 input 태그 삭제
@@ -296,7 +315,7 @@ var DayTitle;
 					}
 
 				});//태그 삭제 함수 끝
-
+			//운동 종목 삭제 함수
 		$(document).on("click", "#titleDel", function() {
 			//나의 부모의 첫번째 자식 요소의 텍스트값  = Main 운동(h3태그) 가져오기				
 			var hTagTitle = $(this).parent().children().eq(0).text();
@@ -310,20 +329,10 @@ var DayTitle;
 				$(removeId).remove();
 			}
 
-		});
+		});//운동종목 삭제함수 끝
 
 	}//window.onload
 
-	//클릭하면 제목 삭제해야됨
-	function tagetDelete(el) {
-
-		// 	  alert(el);
-		// 	  var target = el.parentNode.getAttribute('target');
-		// 	  alert(target);
-
-		// 	  var field = document.getElementById(target);
-		// 	  document.getElementById('field').removeChild(field);
-	}
 	
 //작성완료 버튼을 눌렀을때 아이디가 table을 포함하는 모든 table 태그의 input의 value값을 가지고 와서 배열에 담아준다.
 	$(document).on("click", "#ElSubmit",function(){
@@ -369,7 +378,8 @@ var DayTitle;
 			dataType:'json',
 			url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
 			success:function(res){
-				console.log(res);
+// 				console.log(res);
+				location.reload();
 			}
 		});
 	});

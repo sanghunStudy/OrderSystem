@@ -55,6 +55,16 @@ public class UserController {
 		map.put("EJ",EJ);
 		return map;
 	}
+	//운동일지 제목 클릭시 상세내용 가져오기 ORM
+	@RequestMapping(value="/ExerciseJournalOne", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> ExerciseJournalOne(int exerciseCode){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		ExerciseJournal oneEJ = service.ExerciseJournalOne(exerciseCode);
+		map.put("oneEJ", oneEJ);
+		return map;
+	}
 	
 	
 	@RequestMapping("/MyPage")

@@ -1,11 +1,25 @@
 package kr.ac.kopo.model;
 
-import java.util.Date;
-import java.util.List;
-
 public class ExerciseJournal {
-
-	private Date ExerciseDate;
+	
+	//타이틀 번호
+	private int ExerciseCode;
+	//입력한 날짜 달력에 뿌려주기 위해 start로 이름 지정
+	private String start;
+	
+	
+	public int getExerciseCode() {
+		return ExerciseCode;
+	}
+	public void setExerciseCode(int exerciseCode) {
+		ExerciseCode = exerciseCode;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
 	private String id;
 	private String title;
 	private String ExerciseName;
@@ -13,15 +27,6 @@ public class ExerciseJournal {
 	private Integer Reps;
 	private Integer lb;
 	
-//	private List<ExerciseJournal> ExerciseJournalVOList;
-//
-//	
-//	public List<ExerciseJournal> getExerciseJournalVOList() {
-//		return ExerciseJournalVOList;
-//	}
-//	public void setExerciseJournalVOList(List<ExerciseJournal> exerciseJournalVOList) {
-//		ExerciseJournalVOList = exerciseJournalVOList;
-//	}
 	
 	public String getTitle() {
 		return title;
@@ -53,23 +58,13 @@ public class ExerciseJournal {
 	public void setLb(Integer lb) {
 		this.lb = lb;
 	}
-	public Date getExerciseDate() {
-		return ExerciseDate;
-	}
-	public void setExerciseDate(Date exerciseDate) {
-		ExerciseDate = exerciseDate;
-	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	@Override
-	public String toString() {
-		return "ExerciseJournal [ExerciseDate=" + ExerciseDate + ", id=" + id + ", title=" + title + ", ExerciseName="
-				+ ExerciseName + ", set=" + set + ", Reps=" + Reps + ", lb=" + lb + "]";
-	}
+	
 	
 	
 	

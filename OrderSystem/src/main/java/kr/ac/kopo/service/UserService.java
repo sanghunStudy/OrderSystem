@@ -1,7 +1,10 @@
 package kr.ac.kopo.service;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
+import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
 
@@ -20,4 +23,8 @@ public interface UserService {
 	boolean login(User user);
 
 	UserVO selectUser(String username);
+
+	void saveCode(List<Map<String, Object>> param,Principal principal);
+
+	List<ExerciseJournal> ExerciseJournalList(String id);
 }

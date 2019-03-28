@@ -25,7 +25,10 @@
 <script
 	src='${pageContext.request.contextPath}/resources/js/packages/timegrid/main.js'></script>
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	src='${pageContext.request.contextPath}/resources/js/packages/moment/main.js'></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
 
 	
@@ -33,8 +36,10 @@
 //클릭한 날짜를 담을 변수선언
 var ClickDateStr;
 var DayTitle;
+
+
 	document.addEventListener('DOMContentLoaded', function() {
-	
+		
 		var calendarEl = document.getElementById('calendar');
 
 		var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -76,66 +81,41 @@ var DayTitle;
 			},
 			editable : true,
 			eventLimit : true, // allow "more" link when too many events
-			events : [
-			//         {
-			//           title: 'All Day Event',
-			//           start: '2019-03-01'
-			//         },
-			//         {
-			//           title: 'Long Event',
-			//           start: '2019-03-07',
-			//           end: '2019-03-10'
-			//         },
-			//         {
-			//           groupId: 999,
-			//           title: 'Repeating Event',
-			//           start: '2019-03-09T16:00:00'
-			//         },
-			//         {
-			//           groupId: 999,
-			//           title: 'Repeating Event',
-			//           start: '2019-03-16T16:00:00'
-			//         },
-			//         {
-			//           title: 'Conference',
-			//           start: '2019-03-11',
-			//           end: '2019-03-13'
-			//         },
-			//         {
-			//           title: 'Meeting',
-			//           start: '2019-03-12T10:30:00',
-			//           end: '2019-03-12T12:30:00'
-			//         },
-			//         {
-			//           title: 'Lunch',
-			//           start: '2019-03-12T12:00:00'
-			//         },
-			//         {
-			//           title: 'Meeting',
-			//           start: '2019-03-12T14:30:00'
-			//         },
-			//         {
-			//           title: 'Happy Hour',
-			//           start: '2019-03-12T17:30:00'
-			//         },
-			//         {
-			//           title: 'Dinner',
-			//           start: '2019-03-12T20:00:00'
-			//         },
-			//         {
-			//           title: 'Birthday Party',
-			//           start: '2019-03-13T07:00:00'
-			//         },
-			//         {
-			//           title: 'Click for Google',
-			//           url: 'http://google.com/',
-			//           start: '2019-03-28'
-			//         }
-			]
-		});//calendar 끝
+			events :function(start, end, timezone, callback) 
+		     {$.ajax 
+			      ({ 
+			       type: "GET", 
+			       contentType: "application/json; charset=utf-8", 
+			       url: "${pageContext.request.contextPath}/member/ExerciseJournalList", 
+			       dataType: 'json', 
+			       success: function (data) 
+			       { 
+// 					alert('ajax 성공');
+			        var events = []; 
+			        $.each(data, function (index, value) { 
 
+			         events.push({ 
+			          id: value['id'], 
+			          title: value['title'], 
+			          date: value['start'] 
+			          //all data 
+			         }); 
+			         console.log(value) 
+			        }); //반복문 끝
+			        console.log(events + "<<<<<events");
+			        callback(events); 
+			       },//success 끝 
+			       error: function (xhr, err) { 
+			        alert("ERROR! - readyState: " + xhr.readyState + "<br/>status: " + xhr.status + "<br/>responseText: " + xhr.responseText); 
+			       } 
+			      }); 
+		     }
+		});//ajax 끝
 		calendar.render();
-	});
+		});//events 끝
+		
+
+
 
 	var sungwoon = document.getElementsByClassName('fc-content');
 

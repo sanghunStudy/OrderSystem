@@ -1,7 +1,9 @@
 package kr.ac.kopo.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
 
@@ -20,4 +22,14 @@ public interface UserDao {
 	boolean login(User user);
 
 	UserVO selectUser(String username);
+
+	void saveCode(Object object);
+
+	void saveTitle(Object object);
+
+	void saveContents(int set, int reps, int lb);
+
+	List<ExerciseJournal> ExerciseJournalList(String id);
+
+
 }

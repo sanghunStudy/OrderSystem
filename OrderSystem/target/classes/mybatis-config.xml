@@ -19,6 +19,7 @@
 		<typeAlias type="kr.ac.kopo.model.Bucket" alias="Bucket"/>
 		<typeAlias type="kr.ac.kopo.model.User" alias="User"/>
 		<typeAlias type="kr.ac.kopo.model.UserVO" alias="UserVO"/>
+		<typeAlias type="kr.ac.kopo.model.ExerciseJournal" alias="ExerciseJournal"/>
 	</typeAliases>
 
  	<mappers>

@@ -31,4 +31,20 @@
 	<delete id="delete">
 		delete from member where id=#{id}
 	</delete>
+	<insert id="saveCode">
+		insert into exercise_item (id,Exercise_date,title)
+		values(#{id},#{ExerciseDate},#{title})
+	</insert>
+	<insert id="saveTitle">
+		insert into exercise_title(Exercise_code,Exercise_name)
+		values((select ifnull(max(exercise_code),0) from exercise_item),#{ExerciseName})
+	</insert>
+	<insert id="saveContents" parameterType="java.util.HashMap">
+		insert into exercise_contents(Exercise_title_code,Exercise_set,Exercise_reps,Exercise_lb)
+		values((select ifnull(max(Exercise_title_code),0) from exercise_title),${ExerciseSet},${ExerciseReps},${ExerciseLb})
+	</insert>
+	
+	<select id="exerciseJournal" resultType="ExerciseJournal">
+		select Exercise_code,exercise_date as start,title from exercise_item where id = #{id}
+	</select>
 </mapper>

@@ -35,21 +35,110 @@
 </style>
 </head>
 <body>
-	<form>
 		<div id="app">
 			<label>사용중량</label> <input v-model="x" type="number" id="kg">
             <label>반복횟수</label> <input v-model="y" type="number" id="reps">
 			<label>추산1RM : </label> <span id="onerm">{{ sum }}</span>
-		</div>
-	</form>
-	 <script>
+		
+	 
+	<table id="onet">
+		<thead>
+			<tr>
+				<th>Warm up set</th>
+				<th>%1RM</th>
+				<th>중량</th>
+				<th>reps</th>
+				<th>셋트당 휴식시간</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>50%</td>
+				<td>{{ one }}</td>
+				<td>8</td>
+				<td>~2분</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>60%</td>
+				<td>{{ two }}</td>
+				<td>5</td>
+				<td>~2분</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>70%</td>
+				<td>{{ three }}</td>
+				<td>3</td>
+				<td>~3분</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>80%</td>
+				<td>{{ four }}</td>
+				<td>1</td>
+				<td>~3분</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>90%</td>
+				<td>{{ five }}</td>
+				<td>1</td>
+				<td>~5분</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>95%</td>
+				<td>{{ six }}</td>
+				<td>1</td>
+				<td>5-15분</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>100%</td>
+				<td>{{ seven }}</td>
+				<td>1</td>
+				<td>5-15분</td>
+			</tr>
+			<tr>
+				<th>NEW 1RM SET</th>
+				<th colspan="4">컨디션에 따라 NEW 1RM SET 진행하세요.</th>
+			</tr>
+			<tr>
+				<td>8+</td>
+				<td>102%</td>
+				<td>{{ eight }}</td>
+				<td>1</td>
+				<td>5-15분</td>
+			</tr>
+			<tr>
+				<td>9+</td>
+				<td>102% from New PR</td>
+				<td>{{ nine }}</td>
+				<td>1</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<script>
     
         var app = new Vue({
         el: '#app',
         data: {
             x: 0,
             y: 0,
-            sum: 0
+            sum: 0,
+            one: 0,
+            two: 0,
+            three: 0,
+            four: 0,
+            five: 0,
+            six: 0,
+            seven: 0,
+            eight: 0,
+            nine: 0
         },
         watch : {
 			x : function(v) {
@@ -68,89 +157,24 @@
                 if(isNaN(result)) this.sum = 0;
                 else 
                 this.sum = result;
+            },
+            
+            sum : function(v) {
+            	var mp = [];
+            	
+            	var selectone = this.sum * 0.5;
+            	var result = 999;
+            	for(var i = 0; i < selectone; i++){
+            		mp[i] = i * 2.5;
+            	} console.log(mp);
+            	for(var i =0; i < mp.length; i++){
+            		if(Math.abs(selectone-mp[i]) < result)
+            			result = mp[i];
+            	} console.log(result);
+            	this.one = result;
             }
 		}
         });
     </script>
-	<table id="onet">
-		<thead>
-			<tr>
-				<th>Warm up set</th>
-				<th>%1RM</th>
-				<th>중량</th>
-				<th>reps</th>
-				<th>셋트당 휴식시간</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>50%</td>
-				<td id="fifty"></td>
-				<td>8</td>
-				<td>~2분</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>60%</td>
-				<td id="sixty"></td>
-				<td>5</td>
-				<td>~2분</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>70%</td>
-				<td id="seventy"></td>
-				<td>3</td>
-				<td>~3분</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>80%</td>
-				<td id="eighty"></td>
-				<td>1</td>
-				<td>~3분</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>90%</td>
-				<td id="ninety"></td>
-				<td>1</td>
-				<td>~5분</td>
-			</tr>
-			<tr>
-				<td>6</td>
-				<td>95%</td>
-				<td id="ninetyfive"></td>
-				<td>1</td>
-				<td>5-15분</td>
-			</tr>
-			<tr>
-				<td>7</td>
-				<td>100%</td>
-				<td id="onehundred"></td>
-				<td>1</td>
-				<td>5-15분</td>
-			</tr>
-			<tr>
-				<th>NEW 1RM SET</th>
-				<th colspan="4">컨디션에 따라 NEW 1RM SET 진행하세요.</th>
-			</tr>
-			<tr>
-				<td>8+</td>
-				<td>102%</td>
-				<td id="onehundredtwo"></td>
-				<td>1</td>
-				<td>5-15분</td>
-			</tr>
-			<tr>
-				<td>9+</td>
-				<td>102% from New PR</td>
-				<td id=""></td>
-				<td>1</td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
 </body>
 </html>

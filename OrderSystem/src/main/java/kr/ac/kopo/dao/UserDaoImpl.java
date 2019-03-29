@@ -93,8 +93,8 @@ public class UserDaoImpl implements UserDao {
 	
 	//사용자가 클릭한 제목의 일지 가져오기
 	@Override
-	public ExerciseJournal ExerciseJournalOne(int exerciseCode) {
-		return sql.selectOne("user.exerciseJournalOne", exerciseCode);
+	public List<ExerciseJournal> ExerciseJournalOne(int exerciseCode) {
+		return sql.selectList("user.exerciseJournalOne", exerciseCode);
 	}
 
 }

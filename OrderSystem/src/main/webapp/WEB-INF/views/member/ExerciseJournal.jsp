@@ -57,6 +57,7 @@ function ajaxLoad(){
 				exerciseCode:data.EJ[i].exerciseCode,
 				title : data.EJ[i].title,
 				start : data.EJ[i].start,
+				url:'${pageContext.request.contextPath}/member/ExerciseJournalView?exerciseCode='+data.EJ[i].exerciseCode,
 
 			});
 		}//for끝 
@@ -115,6 +116,7 @@ function calendarLoad (eventData) {
 			editable : true,
 			eventLimit : true, // allow "more" link when too many events
 			events : eventData,
+			
 			//제목을 클릭했을때 이벤트 발생
 			eventClick: function(info){
 // 				console.log(info.event.extendedProps.exerciseCode);
@@ -133,6 +135,7 @@ function calendarLoad (eventData) {
 		            },
 					success:function(res){
 						console.log(res);
+						modalPop(res);
 						
 					}
 			    });//ajax 끝

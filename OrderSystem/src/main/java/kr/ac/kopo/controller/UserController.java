@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,17 +55,24 @@ public class UserController {
 		return map;
 	}
 	//운동일지 제목 클릭시 상세내용 가져오기 ORM
-	@RequestMapping(value="/ExerciseJournalOne", method = RequestMethod.POST)
-	@ResponseBody
-	public HashMap<String, Object> ExerciseJournalOne(int exerciseCode){
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		ExerciseJournal oneEJ = service.ExerciseJournalOne(exerciseCode);
-		map.put("oneEJ", oneEJ);
-		return map;
-	}
+//	@RequestMapping(value="/ExerciseJournalOne", method = RequestMethod.POST)
+//	@ResponseBody
+//	public HashMap<String, Object> ExerciseJournalOne(int exerciseCode){
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		
+//		List<ExerciseJournal> oneEJ = service.ExerciseJournalOne(exerciseCode);
+//		map.put("oneEJ", oneEJ);
+//		return map;
+//	}
 	
-	
+	//운동일지 제목 클릭시 상세내용 가져오기 화면전환 버전
+		@RequestMapping(value="/ExerciseJournalView", method = RequestMethod.GET)
+		public String ExerciseJournalOne(int exerciseCode, Model model){
+			
+			List<ExerciseJournal> oneEJ = service.ExerciseJournalOne(exerciseCode);
+			model.addAttribute("oneEJ",oneEJ);
+			return path + "ExerciseJournalView";
+		}
 	@RequestMapping("/MyPage")
 	public String MyPage() {
 

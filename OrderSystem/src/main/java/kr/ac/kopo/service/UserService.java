@@ -28,5 +28,5 @@ public interface UserService {
 
 	List<ExerciseJournal> ExerciseJournalList(String id);
 
-	ExerciseJournal ExerciseJournalOne(int exerciseCode);
+	List<ExerciseJournal> ExerciseJournalOne(int exerciseCode);
 }

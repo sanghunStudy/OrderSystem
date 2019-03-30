@@ -163,14 +163,18 @@
             	var mp = [];
             	
             	var selectone = this.sum * 0.5;
-            	var result = 999;
+            	var min = 999.9;
+            	var result = 0;
             	for(var i = 0; i < selectone; i++){
             		mp[i] = i * 2.5;
-            	} console.log(mp);
-            	for(var i =0; i < mp.length; i++){
-            		if(Math.abs(selectone-mp[i]) < result)
+            	}  
+            	for(var i = 1; i < mp.length; i++){
+           
+            		if(Math.abs(selectone-mp[i]) < min){
+            			min = selectone-mp[i];
             			result = mp[i];
-            	} console.log(result);
+            		}
+            	} 
             	this.one = result;
             }
 		}

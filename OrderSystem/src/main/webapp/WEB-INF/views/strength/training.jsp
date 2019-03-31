@@ -6,26 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript">
-	/* function calconerm() {
-		var kg = document.getElementById("kg").value;
-		kg = Number(kg);
-		var reps = document.getElementById("reps").value;
-		reps = Number(reps);
-		var onerm = Math.floor(kg * (1 + (reps / 30)));
-		document.getElementById("onerm").value = onerm;
-	} */
-	/* 
-	function OnermPercent() {
-		var onerm = document.getElementById("onerm").value;
-		onerm = Number(onerm);
-		var maxonerm = onerm+2.5;
-		var twodpfive;
-		for(var i=0; i<=maxonerm; i++)
-			var twodpfive[i] = 2.5*i;
-		console.log(twodpfive);
-	} */
-</script>
+
 <script src="https://unpkg.com/vue"></script>
 <style>
 #onet{
@@ -143,7 +124,7 @@
         watch : {
 			x : function(v) {
                
-               var result = Math.floor(Number(v) * (1 + (Number(this.y) / 30)));
+               	var result = Math.floor(Number(v) * (1 + (Number(this.y) / 30)));
 				
                 if(isNaN(result)) this.sum = 0;
                 else 
@@ -162,20 +143,36 @@
             sum : function(v) {
             	var mp = [];
             	
-            	var selectone = this.sum * 0.5;
-            	var min = 999.9;
-            	var result = 0;
-            	for(var i = 0; i < selectone; i++){
-            		mp[i] = i * 2.5;
-            	}  
-            	for(var i = 1; i < mp.length; i++){
-           
-            		if(Math.abs(selectone-mp[i]) < min){
-            			min = selectone-mp[i];
-            			result = mp[i];
+            	var percent = [0.5,0.6,0.7,0.8,0.9,0.95,1.0,1.02];
+            	
+            	for (var u = 0; u <= percent.length; u++){
+            		var selectone = this.sum * percent[u];
+                	var min = 999.9;
+                	var result = 0;
+            		
+            		for(var i = 0; i < selectone; i++){
+            			mp[i] = i * 2.5;
+            		}  
+            		for(var i = 1; i < mp.length; i++){
+           			
+            			if(Math.abs(selectone-mp[i]) < min){
+            				min = selectone-mp[i];
+            				result = mp[i];
+            			}
             		}
-            	} 
-            	this.one = result;
+            		switch(u){
+            		case 0: this.one = result; break;
+            		case 1: this.two = result; break;
+            		case 2: this.three = result; break;
+            		case 3: this.four = result; break;
+            		case 4: this.five = result; break;
+            		case 5: this.six = result; break;
+            		case 6: this.seven = result; break;
+            		case 7: this.eight = result; break;
+            		case 8: this.nine = result; break;
+            		default:break;
+            		}
+            	}
             }
 		}
         });

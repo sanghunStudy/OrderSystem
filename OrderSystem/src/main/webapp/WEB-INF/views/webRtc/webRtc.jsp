@@ -10,8 +10,9 @@
 	integrity="sha256-TXsBwvYEO87oOjPQ9ifcb7wn3IrrW91dhj6EMEtRLvM="
 	crossorigin="anonymous"></script>
 
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script src="http://cdn.sockjs.org/sockjs-0.3.4.js"></script>
+
+<!-- <script	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> -->
 </head>
 <body>
 	<video autoplay></video>
@@ -144,10 +145,10 @@
 
 		console.log("<c:url value="/echo"/>");
 
-		console.log("ws://" + uriGet2 + "/echo");
-		// 		let sock = new SockJS("<c:url value="/echo"/>");
+		console.log("ws://" + uriGet2 + "/kopo/opo/webRtc");
+				let sock = new SockJS("<c:url value="/webRtc"/>");
 
-		let sock = new WebSocket("ws://" + uriGet2 + "/kopo/opo/webRtc");
+// 		let sock = new WebSocket("ws://" + uriGet2 + "/kopo/opo/webRtc");
 		sock.onmessage = onMessage;
 
 		sock.onclose = onClose;
@@ -202,10 +203,13 @@
 				var video = document.querySelector('video');
 
 				//inserting our stream to the video tag     
-				video.src = window.URL.createObjectURL(stream);
+// 				video.src = window.URL.createObjectURL(stream);
+				video.srcObject=stream;
+				video.play();
+				
 			}, function(err) {
 			});
-
+			
 		} else {
 			alert("WebRTC is not supported");
 		}

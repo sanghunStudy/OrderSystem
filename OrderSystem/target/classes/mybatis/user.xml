@@ -3,31 +3,35 @@
 
 <mapper namespace="user">
 	<select id="select" resultType="UserVO">
-		select * from user where username = #{username}
+		select * from user where username
+		= #{username}
 	</select>
 
 	<select id="login" resultType="User">
-		SELECT * FROM member where id=#{id} AND pw=#{pw}
+		SELECT * FROM member where
+		id=#{id} AND pw=#{pw}
 	</select>
 
 	<select id="list" resultType="User">
 		select id, pw, nicname, savings
 		from member
 	</select>
-	
+
 	<select id="item" resultType="User">
 		select * from member where id=#{id}
 	</select>
-	
+
 	<insert id="add" parameterType="User">
-		insert into member(id, pw, nicname)
+		insert into member(id, pw,
+		nicname)
 		values(#{id}, #{pw}, #{nicname})
 	</insert>
-	
+
 	<update id="update">
-		update member set id=#{id}, pw=#{pw}, nicname=#{nicname}
+		update member set id=#{id}, pw=#{pw},
+		nicname=#{nicname}
 	</update>
-	
+
 	<delete id="delete">
 		delete from member where id=#{id}
 	</delete>
@@ -38,48 +42,92 @@
 	</insert>
 	<!-- 운동일지 운동 종목 입력 -->
 	<insert id="saveTitle">
-		insert into exercise_title(Exercise_code,Exercise_name)
-		values((select ifnull(max(exercise_code),0) from exercise_item),#{ExerciseName})
+		insert into
+		exercise_title(Exercise_code,Exercise_name)
+		values((select
+		ifnull(max(exercise_code),0) from exercise_item),#{ExerciseName})
 	</insert>
 	<!-- 운동일지 운동 횟수 입력 -->
 	<insert id="saveContents" parameterType="java.util.HashMap">
-		insert into exercise_contents(Exercise_title_code,Exercise_set,Exercise_reps,Exercise_lb)
-		values((select ifnull(max(Exercise_title_code),0) from exercise_title),${ExerciseSet},${ExerciseReps},${ExerciseLb})
+		insert into
+		exercise_contents(Exercise_title_code,Exercise_set,Exercise_reps,Exercise_lb)
+		values((select ifnull(max(Exercise_title_code),0) from
+		exercise_title),${ExerciseSet},${ExerciseReps},${ExerciseLb})
 	</insert>
 	<!-- 운동일지 사용자에 맞는 제목 출력 -->
 	<select id="exerciseJournal" resultType="ExerciseJournal">
-		select Exercise_code,exercise_date as start,title from exercise_item where id = #{id}
+		select
+		Exercise_code,exercise_date as start,title from exercise_item where id
+		= #{id}
 	</select>
-<!-- <resultMap type="ExerciseJournal" id="EJMap"> -->
-<!-- 		<id property="ExerciseCode" column="Exercise_code"></id> -->
-<!-- 		<result property="ExerciseName" column="Exercise_name"/> -->
-<!-- 		<collection property="details" ofType="ExerciseContents" javaType="ArrayList"> -->
-<!-- 			<result property="ExerciseSet" column="Exercise_set"/> -->
-<!-- 			<result property="ExerciseReps" column="Exercise_reps"/> -->
-<!-- 			<result property="ExerciseLb" column="Exercise_lb"/> -->
-<!-- 		</collection> -->
-<!-- 	</resultMap> -->
+	<!-- <resultMap type="ExerciseJournal" id="EJMap"> -->
+	<!-- <id property="ExerciseCode" column="Exercise_code"></id> -->
+	<!-- <result property="ExerciseName" column="Exercise_name"/> -->
+	<!-- <collection property="details" ofType="ExerciseContents" javaType="ArrayList"> -->
+	<!-- <result property="ExerciseSet" column="Exercise_set"/> -->
+	<!-- <result property="ExerciseReps" column="Exercise_reps"/> -->
+	<!-- <result property="ExerciseLb" column="Exercise_lb"/> -->
+	<!-- </collection> -->
+	<!-- </resultMap> -->
 
 
-	
+
 	<resultMap type="ExerciseContents" id="ExerciseContents">
-			<result property="ExerciseSet" column="Exercise_set"/>
-			<result property="ExerciseReps" column="Exercise_reps"/>
-			<result property="ExerciseLb" column="Exercise_lb"/>
+		<result property="ExerciseSet" column="Exercise_set" />
+		<result property="ExerciseReps" column="Exercise_reps" />
+		<result property="ExerciseLb" column="Exercise_lb" />
 	</resultMap>
-	
+
 	<resultMap type="ExerciseJournal" id="EJMap">
 		<id property="ExerciseCode" column="Exercise_code"></id>
-		<result property="ExerciseName" column="Exercise_name"/>
-		<collection property="details" resultMap="ExerciseContents"/>
+		<result property="ExerciseName" column="Exercise_name" />
+		<collection property="details" resultMap="ExerciseContents" />
 	</resultMap>
-	
+
 	<!-- 운동일지 클릭한 내용 출력 -->
-	<select id="exerciseJournalOne" parameterType="Integer" resultMap="EJMap">
-	select et.Exercise_name, ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb 
-	from exercise_title et 
-	join exercise_contents ec 
-	on et.Exercise_title_code = ec.Exercise_title_code 
-	where et.Exercise_code = #{exerciseCode};
+	<select id="exerciseJournalOne" parameterType="Integer"
+		resultMap="EJMap">
+		select et.exercise_code,et.Exercise_name,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et
+		join exercise_contents ec
+		on et.Exercise_title_code =
+		ec.Exercise_title_code
+		where et.Exercise_code = #{exerciseCode};
 	</select>
+
+	<resultMap type="ExerciseContents" id="ExerciseContentsU">
+		<result property="ExerciseContentsCode"
+			column="Exercise_contents_code" />
+		<result property="ExerciseSet" column="Exercise_set" />
+		<result property="ExerciseReps" column="Exercise_reps" />
+		<result property="ExerciseLb" column="Exercise_lb" />
+	</resultMap>
+
+	<resultMap type="ExerciseJournal" id="EJUMap">
+		<id property="ExerciseCode" column="Exercise_code"></id>
+		<result property="ExerciseName" column="Exercise_name" />
+		<collection property="details"
+			resultMap="ExerciseContentsU" />
+	</resultMap>
+	<select id="exerciseJournalUpdate" resultMap="EJUMap">
+		select et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et
+		join exercise_contents ec
+		on et.Exercise_title_code = ec.Exercise_title_code
+		where et.Exercise_code = #{exerciseCode}
+	</select>
+	<!-- 수정처리 -->
+	<update id="exerciseJournalUpdateSubmit">
+		update exercise_contents
+		set Exercise_reps = #{ExerciseReps},
+		Exercise_lb = #{ExerciseLb}
+		where Exercise_contents_code = #{ExerciseContentsCode}
+	</update>
+	
+	<!-- 운동일지 삭제처리 -->
+	<delete id="exerciseJournalDel">
+		delete from exercise_item where Exercise_code = #{ExerciseCode}
+	</delete>
 </mapper>

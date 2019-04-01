@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.UserDao;
+import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
@@ -98,15 +99,36 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	//운동일지 리스트
 	@Override
 	public List<ExerciseJournal> ExerciseJournalList(String id) {
 		
 		return dao.ExerciseJournalList(id);
 	}
 
+	//운동일지 상세보기
 	@Override
 	public List<ExerciseJournal> ExerciseJournalOne(int exerciseCode) {
 		return dao.ExerciseJournalOne(exerciseCode);
+	}
+
+	//운동일지 수정화면
+	@Override
+	public List<ExerciseJournal> ExerciseJournalUpdate(int exerciseCode) {
+		// TODO Auto-generated method stub
+		return dao.ExerciseJournalUpdate(exerciseCode);
+	}
+
+	//운동일지 수정처리
+	@Override
+	public void ExerciseJournalUpdate(ExerciseContents exerciseContents) {
+		dao.ExerciseJournalUpdate(exerciseContents);
+		
+	}
+	//운동일지 삭제처리
+	@Override
+	public void ExerciseJournalDel(int exerciseCode) {
+		dao.ExerciseJournalDel(exerciseCode);
 	}
 
 }

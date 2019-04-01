@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.TestList;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.service.UserService;
 
@@ -53,6 +55,34 @@ public class UserController {
 		
 		map.put("EJ",EJ);
 		return map;
+	}
+	
+	@RequestMapping(value="/ExerciseJournalUpdate", method = RequestMethod.GET)
+	public String ExerciseJournalUpdate(int exerciseCode, Model model) {
+		List<ExerciseJournal> oneEJ = service.ExerciseJournalUpdate(exerciseCode);
+		model.addAttribute("oneEJ",oneEJ);		
+		return path + "ExerciseJournalUpdate";
+	}
+	//운동일지 수정처리
+	@RequestMapping(value="/ExerciseJournalUpdate", method = RequestMethod.POST)
+	public String ExerciseJournalUpdate(TestList test) {
+		//@RequestParam(value="exerciseContentsCode", required=true) List<Integer> exerciseContentsCode
+	
+		List<ExerciseContents> list = test.getItemList();
+		
+		for(int i =0; i<list.size(); i++) {
+			service.ExerciseJournalUpdate(list.get(i));
+		}		
+		
+		
+		return "redirect:ExerciseJournal";
+	}
+	
+	@RequestMapping(value="/ExerciseJournalDel", method = RequestMethod.GET)
+	public String ExerciseJournalDel(int exerciseCode) {
+		service.ExerciseJournalDel(exerciseCode);
+		
+		return "redirect:ExerciseJournal";
 	}
 	//운동일지 제목 클릭시 상세내용 가져오기 ORM
 //	@RequestMapping(value="/ExerciseJournalOne", method = RequestMethod.POST)

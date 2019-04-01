@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
@@ -95,6 +96,25 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<ExerciseJournal> ExerciseJournalOne(int exerciseCode) {
 		return sql.selectList("user.exerciseJournalOne", exerciseCode);
+	}
+
+	@Override
+	public List<ExerciseJournal> ExerciseJournalUpdate(int exerciseCode) {
+		// TODO Auto-generated method stub
+		return sql.selectList("user.exerciseJournalUpdate", exerciseCode);
+	}
+
+	//운동일지 수정 처리
+	@Override
+	public void ExerciseJournalUpdate(ExerciseContents exerciseContents) {
+		sql.update("user.exerciseJournalUpdateSubmit",exerciseContents);
+		
+	}
+	//운동일지 삭제처리
+	@Override
+	public void ExerciseJournalDel(int exerciseCode) {
+		sql.delete("user.exerciseJournalDel", exerciseCode);
+		
 	}
 
 }

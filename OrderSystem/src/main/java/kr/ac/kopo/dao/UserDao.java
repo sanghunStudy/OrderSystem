@@ -3,6 +3,7 @@ package kr.ac.kopo.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
@@ -32,6 +33,12 @@ public interface UserDao {
 	List<ExerciseJournal> ExerciseJournalList(String id);
 
 	List<ExerciseJournal> ExerciseJournalOne(int exerciseCode);
+
+	List<ExerciseJournal> ExerciseJournalUpdate(int exerciseCode);
+
+	void ExerciseJournalUpdate(ExerciseContents exerciseContents);
+
+	void ExerciseJournalDel(int exerciseCode);
 
 
 }

@@ -3,17 +3,31 @@ package kr.ac.kopo.model;
 public class ExerciseContents {
 
 	
+	private int ExerciseContentsCode;
 	private int ExerciseTitleCode;
 	private Integer ExerciseSet;
 	private Integer ExerciseReps;
 	private Integer ExerciseLb;
 	
+	
+	
+	
+
+	public int getExerciseContentsCode() {
+		return ExerciseContentsCode;
+	}
+
+	public void setExerciseContentsCode(int exerciseContentsCode) {
+		ExerciseContentsCode = exerciseContentsCode;
+	}
+
 	public ExerciseContents() {
 		super();
 	}
 	
-	public ExerciseContents(int ExerciseTitleCode ,int ExerciseSet, int ExerciseReps, int ExerciseLb ) {
+	public ExerciseContents(int ExerciseTitleCode ,int ExerciseSet, int ExerciseReps, int ExerciseLb, int ExerciseContentsCode ) {
 		super();
+		this.ExerciseContentsCode = ExerciseContentsCode;
 		this.ExerciseTitleCode = ExerciseTitleCode;
 		this.ExerciseSet = ExerciseSet;
 		this.ExerciseReps = ExerciseReps;

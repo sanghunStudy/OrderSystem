@@ -13,6 +13,10 @@
 	text-align:center;
 	border:1px solid black;
 }
+#twot{
+	text-align:center;
+	border:1px solid black;
+}
 </style>
 </head>
 <body>
@@ -103,6 +107,67 @@
 		</tbody>
 	</table>
 	</div>
+	<div id="bpp">
+		<table id="twot">
+			<thead>
+				<tr>
+					<th>
+					<select>
+						<option value="SQ">스쿼트</option>
+						<option value="BP">벤치프레스</option>
+						<option value="DL">데드리프트</option>
+						<option value="OP">오버헤드프레스</option>
+						<option value="FS">프론트스쿼트</option>
+						<option value="PC">파워클린</option>
+					</select>
+					</th>
+					<th>중량</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1RM</td>
+					<td><input v-model="z" type="number" id="hanarm"></td>
+				</tr>
+				<tr>
+					<td>55%</td>
+					<td>{{ one }}</td>
+				</tr>
+				<tr>
+					<td>60%</td>
+					<td>{{ two }}</td>
+				</tr>
+				<tr>
+					<td>65%</td>
+					<td>{{ three }}</td>
+				</tr>
+				<tr>
+					<td>70%</td>
+					<td>{{ four }}</td>
+				</tr>
+				<tr>
+					<td>75%</td>
+					<td>{{ five }}</td>
+				</tr>
+				<tr>
+					<td>80%</td>
+					<td>{{ six }}</td>
+				</tr>
+				<tr>
+					<td>85%</td>
+					<td>{{ seven }}</td>
+				</tr>
+				<tr>
+					<td>90%</td>
+					<td>{{ eight }}</td>
+				</tr>
+				<tr>
+					<td>95%</td>
+					<td>{{ nine }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<script>
     
         var app = new Vue({
@@ -146,17 +211,17 @@
             	var percent = [0.5,0.6,0.7,0.8,0.9,0.95,1.0,1.02];
             	
             	for (var u = 0; u <= percent.length; u++){
-            		var selectone = this.sum * percent[u];
+            		var jun = this.sum * percent[u];
                 	var min = 999.9;
                 	var result = 0;
             		
-            		for(var i = 0; i < selectone; i++){
+            		for(var i = 0; i < jun; i++){
             			mp[i] = i * 2.5;
             		}  
             		for(var i = 1; i < mp.length; i++){
            			
-            			if(Math.abs(selectone-mp[i]) < min){
-            				min = selectone-mp[i];
+            			if(Math.abs(jun-mp[i]) < min){
+            				min = jun-mp[i];
             				result = mp[i];
             			}
             		}
@@ -176,6 +241,59 @@
             }
 		}
         });
+    </script>
+    <script>
+    	var bpp = new Vue({
+    		el: "#bpp",
+    		data: {
+    			z:0,
+    			one:0,
+    			two:0,
+    			three:0,
+    			four:0,
+    			five:0,
+    			six:0,
+    			seven:0,
+    			eight:0,
+    			nine:0
+    		},
+    		watch: {
+    			z: function(v) {
+    				var mp = [];
+            	
+            		var percent = [0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95];
+            	
+            		for (var u = 0; u <= percent.length; u++){
+            			var jun = Number(v) * percent[u];
+                		var min = 999.9;
+                		var result = 0;
+            		
+            			for(var i = 0; i < jun; i++){
+            				mp[i] = i * 2.5;
+            			}  
+            			for(var i = 1; i < mp.length; i++){
+           			
+            				if(Math.abs(jun-mp[i]) < min){
+            					min = jun-mp[i];
+            					result = mp[i];
+            				}
+            			}
+            			switch(u){
+            			case 0: this.one = result; break;
+            			case 1: this.two = result; break;
+            			case 2: this.three = result; break;
+            			case 3: this.four = result; break;
+            			case 4: this.five = result; break;
+            			case 5: this.six = result; break;
+            			case 6: this.seven = result; break;
+            			case 7: this.eight = result; break;
+            			case 8: this.nine = result; break;
+            			default:break;
+            			}
+            		}
+    			}
+    		}
+    	});
     </script>
 </body>
 </html>

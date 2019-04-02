@@ -17,7 +17,6 @@
 		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoard" alias="ReviewBoard"/>
 		<typeAlias type="kr.ac.kopo.model.Bucket" alias="Bucket"/>
-		<typeAlias type="kr.ac.kopo.model.User" alias="User"/>
 		<typeAlias type="kr.ac.kopo.model.UserVO" alias="UserVO"/>
 		<typeAlias type="kr.ac.kopo.model.ExerciseJournal" alias="ExerciseJournal"/>
 		<typeAlias type="kr.ac.kopo.model.ExerciseContents" alias="ExerciseContents"/>

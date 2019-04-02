@@ -1,26 +1,24 @@
 package kr.ac.kopo.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
-import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
 
 public interface UserDao {
 
-	List<User> list();
+	List<UserVO> list();
 
-	void add(User item);
+	void add(UserVO item);
 
-	User item(int id);
+	UserVO item(int id);
 
-	void update(User item);
+	void update(UserVO item);
 
 	void delete(int id);
 
-	boolean login(User user);
+	boolean login(UserVO user);
 
 	UserVO selectUser(String username);
 

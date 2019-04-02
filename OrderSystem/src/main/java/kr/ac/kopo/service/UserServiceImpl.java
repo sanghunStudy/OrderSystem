@@ -1,7 +1,6 @@
 package kr.ac.kopo.service;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.dao.UserDao;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
-import kr.ac.kopo.model.User;
 import kr.ac.kopo.model.UserVO;
 
 @Service
@@ -22,22 +20,22 @@ public class UserServiceImpl implements UserService {
 	UserDao dao;
 
 	@Override
-	public List<User> list() {
+	public List<UserVO> list() {
 		return dao.list();
 	}
 
 	@Override
-	public void add(User item) {
+	public void add(UserVO item) {
 		dao.add(item);
 	}
 
 	@Override
-	public User item(int id) {
+	public UserVO item(int id) {
 		return dao.item(id);
 	}
 
 	@Override
-	public void update(User item) {
+	public void update(UserVO item) {
 		dao.update(item);
 	}
 
@@ -47,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(User user) {
+	public boolean login(UserVO user) {
 		return dao.login(user);
 	}
 

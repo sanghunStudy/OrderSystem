@@ -10,7 +10,7 @@
 	integrity="sha256-TXsBwvYEO87oOjPQ9ifcb7wn3IrrW91dhj6EMEtRLvM="
 	crossorigin="anonymous"></script>
 
-        <script src="http://cdn.sockjs.org/sockjs-0.3.4.js"></script>
+<script src="http://cdn.sockjs.org/sockjs-0.3.4.js"></script>
 
 <!-- <script	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> -->
 </head>
@@ -26,7 +26,7 @@
 	<div id="data"></div>
 
 
-<!-- 	<script>
+	<!-- 	<script>
 		$('document')
 				.ready(
 						function() {
@@ -143,12 +143,12 @@
 		var uriGet2 = uriGet.substring(6);
 		// 웹소켓을 지정한 url로 연결한다.
 
-		console.log("<c:url value="/echo"/>");
+		console.log("<c:url value="/webRtc"/>");
 
 		console.log("ws://" + uriGet2 + "/kopo/opo/webRtc");
-				let sock = new SockJS("<c:url value="/webRtc"/>");
+		let sock = new SockJS("<c:url value="/webRtc"/>");
 
-// 		let sock = new WebSocket("ws://" + uriGet2 + "/kopo/opo/webRtc");
+		// 		let sock = new WebSocket("ws://" + uriGet2 + "/kopo/opo/webRtc");
 		sock.onmessage = onMessage;
 
 		sock.onclose = onClose;
@@ -178,7 +178,7 @@
 			$("#data").append("연결 끊김");
 
 		}
-	</script> 
+	</script>
 
 
 	<script>
@@ -203,13 +203,13 @@
 				var video = document.querySelector('video');
 
 				//inserting our stream to the video tag     
-// 				video.src = window.URL.createObjectURL(stream);
-				video.srcObject=stream;
+				// 				video.src = window.URL.createObjectURL(stream);
+				video.srcObject = stream;
 				video.play();
-				
+
 			}, function(err) {
 			});
-			
+
 		} else {
 			alert("WebRTC is not supported");
 		}

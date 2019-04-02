@@ -7,30 +7,28 @@
 		= #{username}
 	</select>
 
-	<select id="login" resultType="User">
-		SELECT * FROM member where
-		id=#{id} AND pw=#{pw}
+	<select id="login" resultType="UserVO">
+		SELECT * FROM user where
+		username=#{username} AND password=#{password}
 	</select>
 
-	<select id="list" resultType="User">
-		select id, pw, nicname, savings
-		from member
+	<select id="list" resultType="UserVO">
+		select username from user
 	</select>
 
-	<select id="item" resultType="User">
-		select * from member where id=#{id}
+	<select id="item" resultType="UserVO">
+		select * from user where username=#{username}
 	</select>
 
-	<insert id="add" parameterType="User">
-		insert into member(id, pw,
-		nicname)
-		values(#{id}, #{pw}, #{nicname})
+	<insert id="add" parameterType="UserVO">
+		insert into user(username, password)
+		values(#{username}, #{password})
 	</insert>
 
-	<update id="update">
-		update member set id=#{id}, pw=#{pw},
-		nicname=#{nicname}
-	</update>
+<!-- 	<update id="update"> -->
+<!-- 		update user set id=#{id}, pw=#{pw}, -->
+<!-- 		nicname=#{nicname} -->
+<!-- 	</update> -->
 
 	<delete id="delete">
 		delete from member where id=#{id}

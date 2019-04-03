@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,8 +89,9 @@
 </head>
 <body>
 	<h1>후기 등록</h1>
-	<form id="form1" name="form1" action="add" method="post"
+	<form id="form1" name="form1" action="add?${_csrf.parameterName}=${_csrf.token}" method="post"
 		enctype="multipart/form-data">
+		<sec:csrfInput />
 		<input type="hidden" name="reviewId"
 			value="${item.reviewId == null ?0 : item.reviewId}">
 		<table>

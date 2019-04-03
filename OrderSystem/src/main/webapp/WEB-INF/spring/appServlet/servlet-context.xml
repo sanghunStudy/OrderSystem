@@ -36,7 +36,7 @@
 	<beans:bean id="socketHandler" class="kr.ac.kopo.util.SocketHandler"/>
 		<websocket:handlers>
 			<websocket:mapping handler="socketHandler" path="/webRtc"/>
-<!-- 			<websocket:sockjs/> -->
+			<websocket:sockjs/>
 		</websocket:handlers>
 
 </beans:beans>

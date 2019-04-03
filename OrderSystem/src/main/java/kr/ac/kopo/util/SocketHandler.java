@@ -61,23 +61,23 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 // thread로 현새기각을 클라이언트에게 주기적으로 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Thread thread = new Thread(){
-            int i=0;
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        String json = String.format("{\"type\":\"time\", \"time\":\"%s\"}", System.currentTimeMillis());
-                        sendMessage(json);
-                        Thread.sleep(300);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                        break;
-                    }
-                }
-            }
-        };
- 
-        thread.start();
+//        Thread thread = new Thread(){
+//            int i=0;
+//            @Override
+//            public void run() {
+//                while (true){
+//                    try {
+//                        String json = String.format("{\"type\":\"time\", \"time\":\"%s\"}", System.currentTimeMillis());
+//                        sendMessage(json);
+//                        Thread.sleep(300);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                        break;
+//                    }
+//                }
+//            }
+//        };
+// 
+//        thread.start();
     }
 }

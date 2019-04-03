@@ -117,7 +117,7 @@
 
 	<script>
 		$(document).ready(function() {
-
+			console.log('실행');
 			$("#sendBtn").click(function() {
 
 				sendMessage();

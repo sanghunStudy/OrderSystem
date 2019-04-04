@@ -18,7 +18,7 @@
 		<li><a href="notice/list">공지사항</a></li>
 		<li><a href="gps/getLocation">위치정보 테스트</a></li>
 		<li><a href="calorie/calculator">칼로리계산기</a></li>
-		<li><a href="opo/webRtc">온라인pt 테스트</a></li>
+		<li><a href="opo/webRtc">OnlinePT 테스트</a></li>
 		<li><a href="strength/training">1RM계산기</a></li>
 		<!-- 		spring-security로 현재 인증한 사용자인지 판단하여 로그인 로그아웃 버튼 출력	 -->
 		<sec:authorize access="isAnonymous()">

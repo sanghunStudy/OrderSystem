@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>화상채팅 테스트</title>
+<title>OnlinePT</title>
 <script src="https://code.jquery.com/jquery-1.9.0.js"
 	integrity="sha256-TXsBwvYEO87oOjPQ9ifcb7wn3IrrW91dhj6EMEtRLvM="
 	crossorigin="anonymous"></script>

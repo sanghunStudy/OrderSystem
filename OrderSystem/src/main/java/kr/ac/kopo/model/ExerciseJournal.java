@@ -10,8 +10,6 @@ public class ExerciseJournal {
 	private String start;
 	private String id;
 	private String title;
-
-	
 	private String ExerciseName;
 	
 	List<ExerciseContents> details;

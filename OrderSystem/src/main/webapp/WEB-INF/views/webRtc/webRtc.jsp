@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +19,17 @@
 <body>
 
 
+<input type="hidden" id="userName" value="<sec:authentication property="principal.username" />"/>
 	<script>
-	 $(document).ready(function(){
-         var socket = io("http://localhost:9393");
-       //node.js에서 설정해놓은 경로로 이동함. port9393
-         var url = "http://172.16.143.39:9393";
-       //해당 경로 실행
-         $(location).attr("href",url);
-     });
+		$(document).ready(function() {
+			var userName = $("#userName").val();
+			var socket = io("http://localhost:9393");
+			socket.emit("username",userName);
+			//node.js에서 설정해놓은 경로로 이동함. port9393
+			var url = "http://172.16.143.39:9393";
+			//해당 경로 실행
+			$(location).attr("href", url);
+		});
 	</script>
 
 	<!-- <script>

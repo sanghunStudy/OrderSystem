@@ -82,6 +82,7 @@
 			</tr>
 		</table>
 		<span>{{bodyFat}}</span>
+		<span>{{fat}}</span>
 		<table border=1>
 			<tr>
 				<td colspan="6">ACSM이 권장하는 운동선수와, 신체 황동이 왕성한 성인을 위한 에너지 비율</td>

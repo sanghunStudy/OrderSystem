@@ -1,0 +1,168 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
+
+
+
+html,body{
+    margin:0;
+    padding:0;
+	font-family : 'Nanum Gothic';
+}
+
+
+.hide {
+    display:none;
+}
+
+a{
+    cursor: pointer;
+    text-decoration:none;
+}
+a:visited{
+	color:black;
+}
+/*네비바*/
+header{
+    font-weight: 760;
+    padding:0 30px;
+    background-color:white;
+    height:70px;
+    
+}
+
+
+
+/*로고*/
+header h1{
+    position: relative;
+    margin-right:auto;
+    top:-10px;
+}
+
+/*상단 전체 박스*/
+header #lnb {
+    display: flex;
+    margin: 0 auto;
+    top: 0;
+    width: 900px;
+}
+
+/*로그인*/
+header #lnb .login{
+    margin-left:auto;
+    list-style: none;
+    margin-top: 24px;
+
+}
+
+header #lnb .login li{
+/*    flex: 1;*/
+    padding:9 0 0 18px;
+   display:inline-block;
+}
+
+header #lnb nav {
+    text-align: center;
+    font-size:0;
+}
+
+header #lnb nav > ul{
+    display:inline-block; 
+    height:69px;
+    overflow:hidden;
+}
+header #lnb nav > ul:hover {
+    overflow:visible;
+}
+header #lnb nav > ul > li{
+    display:inline-block;
+    position:relative;
+}
+
+header #lnb nav > ul > li > a{
+    
+    position:relative;
+    display:block;
+    width:120px;
+    height:69px;
+    font-size:16px;
+    color:black;
+    line-height: 69px;
+}
+header #lnb nav > ul > li > a:after {
+    content:"";
+    width:0%;
+    position:absolute;
+    left:50%;
+    bottom:0;
+    height:2px;
+    background:black;
+    transition: all 0.5s;
+    
+}
+header #lnb nav > ul > li > a:hover:after {
+    left:0;
+    width:100%;
+}
+
+header #lnb nav > ul ul {
+    background:rgba(33,30,47,0.1);
+    padding: 22px 0 0;
+    position:absolute;
+    width:100%;
+    text-align:center;
+    list-style:none;
+    opacity:0;
+    transition: all 0.5s;
+    z-index: 9999;
+}
+
+header #lnb nav > ul:hover ul {
+    opacity:1;
+}
+
+
+header #lnb nav > ul ul li {
+    line-height:39px;
+}
+header #lnb nav > ul ul a {
+    position:relative;
+    font-size:16px;
+    color:white;
+}
+
+header #lnb nav > ul ul a:after {
+    content:"";
+    width:0%;
+    position:absolute;
+    left:50%;
+    bottom:-10;
+    height:2px;
+    background:black;
+    transition: all 0.5s;
+}
+
+header #lnb nav > ul ul a:hover:after {
+    left:0;
+    width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

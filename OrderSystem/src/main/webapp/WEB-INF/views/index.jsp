@@ -8,9 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>메인페이지 입니다.</title>
+<style>
+html,body,head{
+	margin:0;
+	padding:0;
+}
+</style>
 </head>
 <body>
-	<h1>메인 페이지 입니다.</h1>
+<!-- 네비바 -->
+<jsp:include page="gnb/head.jsp" flush="true" />
+
+<%-- 	<h1>메인 페이지 입니다.</h1>
 	<div>${sessionScope.user}${sessionScope.admin}</div>
 	<ul>
 		<li><a href="menu/list">메뉴</a></li>
@@ -40,7 +49,7 @@
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}">
 			</form>
-		</sec:authorize>
+		</sec:authorize> --%>
 
 
 		<%-- 세션방식 		<c:choose> --%>

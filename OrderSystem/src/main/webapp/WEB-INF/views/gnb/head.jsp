@@ -7,13 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="resources/css/gnb/head.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/gnb/head.css">
 </head>
 <body>
 	<header>
 		<div id="lnb">
 			<h1>
-				<a href="#"><img src="resources/images/gnb/logo.png"></a>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/gnb/logo.png"></a>
 			</h1>
 			<nav>
 				<ul>

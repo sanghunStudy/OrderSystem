@@ -4,6 +4,7 @@
     width: 992px;
     margin: 0 auto;
     margin-top:177px;
+    margin-bottom:115px;
 }
 .subtitle {
     font-size:25pt;
@@ -14,8 +15,8 @@
     float:right;
 }
 .middle_zone {
-	height:40px;
-    margin-top:60px;
+	height:42px;
+    margin-top:100px;
 }
 .totalposts {
     color:#333;
@@ -29,7 +30,7 @@
     margin-right:4px;
 }
 .search_area {
-    width:450px;
+    width:400px;
     float:right;
 }
 .search_keyword {
@@ -71,6 +72,7 @@
 }
 .search_type {
 	float:left;
+	margin-right:4px;
 }
 input[class="cb1"] + label,input[class="cb2"] + label {
 	display: inline-block;
@@ -78,14 +80,41 @@ input[class="cb1"] + label,input[class="cb2"] + label {
 	width:50px;
 	height:32px;
 	text-align:center;
+	display:table-cell;
 	vertical-align:middle;
-	border: 2px solid #bcbcbc;
 	cursor: pointer;
 }
 input[class="cb1"]:checked + label,input[class="cb2"]:checked + label {
 	color:#fff;
-	background-color: #666666;
+	background-color: #777;
 }
 input[class="cb1"],input[class="cb2"] {
 	display: none;
+}
+.paging_btns {
+	margin:35px 0;
+	text-align:center;
+}
+.btn_ui {
+	width:300px;
+	margin: 0 auto;
+}
+.start_btn,.prev_btn,.next_btn,.endpage_btn {
+	width:30px;
+	height:30px;
+	border:1px solid #ccc;
+	color:#ccc;
+}
+.page_num {
+	float:left;
+}
+.write {
+	width:60px;
+    height:35px;
+    float:right;
+    background:#777;
+    text-align:center;
+}
+.write a {
+    color:#fff;
 }

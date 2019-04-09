@@ -138,7 +138,7 @@
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td>${item.menuId}</td>
-						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a><a>[${item.cnt}]</a></td>
+						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">&emsp;${item.menuName}</a><a>[${item.cnt}]</a></td>
 						<td>작성자ID</td>
 						<td id="menuDate${item.menuId}"><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></td>
 <%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
@@ -152,11 +152,12 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<div>
+	<div class="paging_btns">
+	<div class="btn_ui">
 		<c:if test="${searchVO.totalPage>1}">
 			<c:if test="${searchVO.page>1}">
-				<a href="javascript:fn_formSubmit(1);">처음</a>
-				<a href="javascript:fn_formSubmit(${searchVO.page-1});">이전</a>
+				<div class="page_num"><a href="javascript:fn_formSubmit(1);"><div class="start_btn"><<</div></a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page-1});"><div class="prev_btn"><</div></a></div>
 			</c:if>
 <!-- 			<div class="paging"> -->
 				<c:forEach var="i" begin="${searchVO.pageStart}" end="${searchVO.pageEnd}" step="1">
@@ -168,20 +169,20 @@
 							<c:out value="${i}"/>
 						</c:when>
 						<c:otherwise>
-							<a href="javascript:fn_formSubmit(${i});"><c:out value="${i}" /></a>
+							<a href="javascript:fn_formSubmit(${i});"><div class="page_num"><c:out value="${i}" /></div></a>
 						</c:otherwise>
 						</c:choose>
 				</c:forEach>
 <!-- 			</div> -->
 			<c:if test="${searchVO.totalPage>searchVO.page}">
-				<a href="javascript:fn_formSubmit(${searchVO.page+1});">다음</a>
-				<a href="javascript:fn_formSubmit(${searchVO.totalPage});">끝</a>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page+1});"><div class="next_btn">></div></a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.totalPage});"><div class="endpage_btn">>></div></a></div>
 			</c:if>
 		</c:if>
+		</div>
 	</div>
 	
-	<a href="add">메뉴추가</a>
-	<a href="../">메인으로</a>
+	<div class="write"><a href="add">글쓰기</a></div>
 	
 	</div>
 </body>

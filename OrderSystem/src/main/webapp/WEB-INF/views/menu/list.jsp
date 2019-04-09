@@ -13,7 +13,9 @@
 <title>전체메뉴</title>
 </head>
 <header>
-<jsp:include page="../gnb/header.jsp" flush="true" />
+<%-- <jsp:include page="../gnb/header.jsp" flush="true" /> --%>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+<link href="<c:url value="/resources/css/list-style.css" />" rel="stylesheet">
 <script>
 	function fn_formSubmit(page) {
 		var searchTypeCheck = false;
@@ -45,13 +47,79 @@
 		}
 	}
 </script>
+<script>
+	
+	$(function(){
+		$("#searchType1").click(function(){
+			if($("#searchType1").prop("checked")){
+				$("input[type=checkbox]").prop("checked",true);
+			}else{
+				$("input[type=checkbox]").prop("checked",false);
+			}
+		});	
+		$("#searchType2").click(function(){
+			if($("#searchType2").prop("checked")){
+				$("input[type=checkbox]").prop("checked",true);
+			}else{
+				$("input[type=checkbox]").prop("checked",false);
+			}
+		});	
+	});
+	function chkDel(){
+		$("#chkDel").submit();
+
+	}
+	
+</script>
 </header>
 <body>
-	<h1>전체메뉴입니다</h1>
-	<table>
+	<div class="container">
+	<div><a class="subtitle">커뮤니티</a><span class="route">홈 > 커뮤니티</span></div>
+	<script>
+		function changeSelect() {
+			document.getElementById("selectForm").submit();
+		}
+	</script>
+	<div class="middle_zone">
+	<form id="selectForm" name="selectForm">
+		<select name="displayRowCount" onchange="changeSelect()" class="amount_select">
+			<option value="10"
+				${searchVO.displayRowCount == 10?'selected="selected"':''}>
+				10개</option>
+			<option value="20"
+				${searchVO.displayRowCount == 20?'selected="selected"':''}>
+				20개</option>
+			<option value="30"
+				${searchVO.displayRowCount == 30?'selected="selected"':''}>
+				30개</option>
+		</select>
+	</form>
+	<form id="form1" name="form1" method="post">
+		
+		<input type="hidden" name="page" id="page" value="" />
+		<sec:csrfInput />
+		<div class="search_area">
+			<div class="search_type">
+			<input type="checkbox" name="searchType" value="menu_name" id="searchType1" class="cb1"
+			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
+			<label class="chkselect" for="searchType1">제목</label>
+			<input type="checkbox" name="searchType" value="menu_content" id="searchType2" class="cb2"
+			<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if>/>
+			<label class="chkselect" for="searchType2">컨텐츠</label>
+			</div>
+			<input type="text" name="searchKeyword" class="search_keyword" 
+			maxlength="50" 
+			value='<c:out value="${searchVO.searchKeyword}"/>'
+			onkeydown="if(event.keyCode == 13) {fn_formSubmit();}">
+			<input type="button" name="btn_search" value="검색" class="search_btn" onclick="fn_formSubmit();">
+		</div>
+	</form>
+	</div>
+	<table class="posts">
 		<tr>
 			<th>글번호</th>
 			<th>글제목</th>
+			<th>작성자</th>
 			<th>작성일</th>
 		</tr>
 		<c:choose>
@@ -64,9 +132,6 @@
 					</tr>
 				</c:forEach>
 			</c:when>
-			<c:otherwise>
-				
-			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${list.size() > 0}">
@@ -74,14 +139,15 @@
 					<tr>
 						<td>${item.menuId}</td>
 						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">${item.menuName}</a><a>[${item.cnt}]</a></td>
+						<td>작성자ID</td>
 						<td id="menuDate${item.menuId}"><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></td>
-						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td>
+<%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
 					</tr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td>등록된 메뉴가 없습니다.</td>
+					<td colspan="4">등록된 메뉴가 없습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
@@ -113,43 +179,10 @@
 			</c:if>
 		</c:if>
 	</div>
-	<form id="form1" name="form1" method="post">
-		
-		<input type="hidden" name="page" id="page" value="" />
-		<sec:csrfInput />
-		<div>
-			<input type="checkbox" name="searchType" value="menu_name"
-			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
-			<label class="chkselect" for="searchType1">메뉴이름</label>
-			<input type="checkbox" name="searchType" value="menu_content"
-			<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if>/>
-			<label class="chkselect" for="searchType2">메뉴사진</label>
-			<input type="text" name="searchKeyword" 
-			style="width:150px;" maxlength="50" 
-			value='<c:out value="${searchVO.searchKeyword}"/>'
-			onkeydown="if(event.keyCode == 13) {fn_formSubmit();}">
-			<input type="button" name="btn_search" value="검색" class="btn_sch" onclick="fn_formSubmit();">
-		</div>
-	</form>
+	
 	<a href="add">메뉴추가</a>
 	<a href="../">메인으로</a>
-	<script>
-		function changeSelect() {
-			document.getElementById("selectForm").submit();
-		}
-	</script>
-	<form id="selectForm" name="selectForm">
-		<select name="displayRowCount" onchange="changeSelect()">
-			<option value="10"
-				${searchVO.displayRowCount == 10?'selected="selected"':''}>
-				10개</option>
-			<option value="20"
-				${searchVO.displayRowCount == 20?'selected="selected"':''}>
-				20개</option>
-			<option value="30"
-				${searchVO.displayRowCount == 30?'selected="selected"':''}>
-				30개</option>
-		</select>
-	</form>
+	
+	</div>
 </body>
 </html>

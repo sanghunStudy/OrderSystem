@@ -1,0 +1,91 @@
+* { margin: 0; padding: 0;
+    font-family:'NanumGothic';}
+.container {
+    width: 992px;
+    margin: 0 auto;
+    margin-top:177px;
+}
+.subtitle {
+    font-size:25pt;
+}
+.route {
+    font-size:13pt;
+    color:#666;
+    float:right;
+}
+.middle_zone {
+	height:40px;
+    margin-top:60px;
+}
+.totalposts {
+    color:#333;
+    float:left;
+}
+.amount_select {
+    width:86px;
+    height:35px;
+    border:1px solid #000;
+    float:left;
+    margin-right:4px;
+}
+.search_area {
+    width:450px;
+    float:right;
+}
+.search_keyword {
+    width:231px;
+    height:33px;
+    border:1px solid #000;
+    float:left;
+    margin-right:4px;
+}
+.search_btn {
+    width:45px;
+    height:35px;
+    float:left;
+    background:#777;
+    color:#fff;
+    text-align:center;
+}
+.posts {
+    width:100%;
+    border-top:1px solid black;
+    border-collapse:collapse;
+}
+.posts th {
+    height:44px;
+    border-bottom:2px solid black;
+}
+.posts td {
+	height:56px;
+    border-bottom:1px solid #d6d6d6;
+}
+.posts tr td:nth-child(1),.posts tr td:nth-child(3),.posts tr td:nth-child(4) {
+    text-align:center;
+}
+.posts tr td:nth-child(1),.posts tr td:nth-child(3) {
+	width:10%;
+}
+.posts tr td:nth-child(4) {
+	width:14%;
+}
+.search_type {
+	float:left;
+}
+input[class="cb1"] + label,input[class="cb2"] + label {
+	display: inline-block;
+	color:#000;
+	width:50px;
+	height:32px;
+	text-align:center;
+	vertical-align:middle;
+	border: 2px solid #bcbcbc;
+	cursor: pointer;
+}
+input[class="cb1"]:checked + label,input[class="cb2"]:checked + label {
+	color:#fff;
+	background-color: #666666;
+}
+input[class="cb1"],input[class="cb2"] {
+	display: none;
+}

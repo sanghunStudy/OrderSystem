@@ -13,7 +13,7 @@
 	<header>
 		<div id="lnb">
 			<h1>
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/gnb/logo.png"></a>
+				<a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/images/gnb/logo.png"></a>
 			</h1>
 			<nav>
 				<ul>
@@ -48,7 +48,7 @@
 			<ul class="login">
 				<sec:authorize access="isAnonymous()">
 					<li><a href="${pageContext.request.contextPath}/member/add"> 회원가입 </a></li>
-					<li><a href="<c:url value="${pageContext.request.contextPath}/login"/>"> 로그인 </a>
+					<li><a href="<c:url value="/login"/>"> 로그인 </a>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<!-- 인증된 사용자면 principal에 있는 username을 찾아서 화면에 보여준다. -->

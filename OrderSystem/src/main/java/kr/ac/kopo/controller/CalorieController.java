@@ -15,4 +15,10 @@ public class CalorieController {
 		return path + "calculator";
 	}
 	
+	@RequestMapping("nutrition")
+	public String nutrition() {
+		
+		return path + "nutrition";
+	}
+	
 }

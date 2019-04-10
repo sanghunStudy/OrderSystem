@@ -166,7 +166,7 @@
 					</c:url>
 						<c:choose>
 						<c:when test="${i eq searchVO.page}">
-							<c:out value="${i}"/>
+							<div class="page_num"><div class="nowpage"><c:out value="${i}"/></div></div>
 						</c:when>
 						<c:otherwise>
 							<a href="javascript:fn_formSubmit(${i});"><div class="page_num"><c:out value="${i}" /></div></a>

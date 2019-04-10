@@ -103,10 +103,16 @@ input[class="cb1"],input[class="cb2"] {
 	width:30px;
 	height:30px;
 	border:1px solid #ccc;
-	color:#ccc;
+	color:#98999a;
 }
 .page_num {
 	float:left;
+	color:#98999a;
+	width:30px;
+	font-weight:800;
+}
+.nowpage {
+	color:#597fc5;
 }
 .write {
 	width:60px;

@@ -24,8 +24,7 @@
 	</script>
 	<ul>
 
-		<li><a href="update">회원정보수정</a></li>
-		<li><a href="list">내가 쓴 게시글</a></li>
+		<li><a href="${pageContext.request.contextPath}/opo/webRtc">OnlinePT 테스트</a></li>
 		<li><a href="ExerciseJournal">나의 운동일지</a></li>
 	</ul>
 

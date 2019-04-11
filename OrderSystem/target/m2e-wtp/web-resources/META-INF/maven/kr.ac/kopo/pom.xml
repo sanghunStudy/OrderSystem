@@ -266,6 +266,19 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
+
+		<!-- 파일업로드 관련 : 이미지 썸네일 생성 라이브러리 -->
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.8</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

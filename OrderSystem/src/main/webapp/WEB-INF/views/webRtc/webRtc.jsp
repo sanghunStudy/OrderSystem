@@ -26,7 +26,7 @@
 			var socket = io("http://localhost:9393");
 			socket.emit("username",userName);
 			//node.js에서 설정해놓은 경로로 이동함. port9393
-			var url = "http://172.16.143.39:9393";
+			var url = "http://172.16.143.39:9393?itemName="+userName;
 			//해당 경로 실행
 			$(location).attr("href", url);
 		});

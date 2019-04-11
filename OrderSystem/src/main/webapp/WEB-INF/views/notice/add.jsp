@@ -56,16 +56,21 @@
 			contentType : false,
 			enctype : 'multipart/form-data',
 			processData : false,
+			 beforeSend : function(xhr)
+             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+             },
 			success : function(img_name) {
 				$(el).summernote('editor.insertImage',
 						'${pageContext.request.contextPath}' + img_name);
 			}
 		});
 	}
+	
 </script>
 
 <!-- 첨부파일 -->
-<link rel="stylesheet" type="text/css"
+<%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/js/guupload/css/guupload.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/guupload/guUploadManager.js"></script>
@@ -82,21 +87,14 @@
 		guManager = new guUploadManager(option);
 	}
 
-	function formSubmit() {
-		guManager.uploadFiles();
-	}
-</script>
+	
+</script> --%>
 </head>
 <body>
 	<h1>summernote</h1>
-	<!-- 	<form name="writeForm" action="./summernote_insert.jsp" method="post">
-		<textarea >Hello Summernote</textarea>
-    </form> -->
 
 	<form id="form1" name="form1" action="add?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		<sec:csrfInput />
-		
-<%-- 		<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>"> --%>
 		<input type="hidden" name="noticeId"
 			value="${item.noticeId == null ?0 : item.noticeId}">
 		<table>
@@ -110,72 +108,17 @@
 				<td><label>내용</label></td>
 				<td><textarea id="summernote" name="noticeContents">${item.noticeContents}</textarea></td>
 			</tr>
-
-			<tr>
+		<!-- 	<tr>
 				<td><label>첨부파일</label></td>
 				<td><div id="guupload" class="guupload"
 						style="width: 500px; height: 120px;"></div></td>
-			</tr>
+			</tr> -->
 		</table>
-		<input type="submit" value="등록" onclick='formSubmit()' />
+		<input type="submit" value="작성완료" />
+		<div>
+		<jsp:include page="../upload/fileUpload.jsp" flush="true" />
+		</div>
+		
 	</form>
-
-</body>
-<%-- 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/guupload/css/guupload.css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/guupload/guUploadManager.js"></script>
-<script type="text/javascript">
-var guManager=null;
-
-window.onload = function() {
-	var option = {
-			listtype: "thumbnail",
-			fileid: "guupload",
-			uploadURL: "upload",
-			form: document.form1
-	}
-	guManager = new guUploadManager(option);
-}	
-
-function formSubmit(){
-	guManager.uploadFiles();
-}
-</script>
-</head>
-<body>
-
- 	<form id="form1" name="form1" action="add" method="post" enctype="multipart/form-data">
- 	<input type="hidden" name="noticeId" value="${item.noticeId == null ?0 : item.noticeId}">
- 	<table>
-	<tr>
-	<td><label>제목</label></td>
-	<td><input type="text" name="noticeTitle" value="${item.noticeTitle}"></td>
-	</tr>
-	
-	<tr>
-	<td><label>내용</label></td>
-	<td><textarea rows="5" cols="50" name="noticeContents">${item.noticeContents}</textarea></td>
-	</tr>
-	
-	<tr>
-	<td><label>첨부파일</label></td>
-	<td><div id="guupload" class="guupload" style="width: 500px; height: 120px;"></div></td>
-	<c:choose>
-		<c:when test="${file.size() > 0}">
-			<c:forEach items="${file}" var="item">
-				<td>${item.fileno}</td>
-				<td>${item.realname}</td>
-				<td>${item.filename}</td>
-				<td>${item.filesize}</td>
-			</c:forEach>
-		</c:when>
-	</c:choose>
-	<td></td>
-	</tr>
-	</table>
-	<input type="button" value="등록" onclick='formSubmit()'  />	
-	</form>	
-	
-</body>
- --%>
+	<!-- <input type="submit" value="등록" onclick='formSubmit()' /> -->
 </html>

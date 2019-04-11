@@ -28,9 +28,9 @@ public class authController {
 
 	public ModelAndView login(
 
-		@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "error", required = false) String error,
 
-		@RequestParam(value = "logout", required = false) String logout) {
+			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
 
@@ -50,7 +50,6 @@ public class authController {
 
 		return model;
 
-	}	
+	}
 
 }
-

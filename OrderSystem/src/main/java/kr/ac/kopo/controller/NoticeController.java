@@ -1,7 +1,9 @@
 package kr.ac.kopo.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -13,12 +15,15 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,20 +40,34 @@ import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.NoticeServcie;
 import kr.ac.kopo.service.ReviewBoardService;
 import kr.ac.kopo.util.FileVO;
+import kr.ac.kopo.util.MediaUtils;
 import kr.ac.kopo.util.SearchVO;
+import kr.ac.kopo.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
 
 	final String path = "notice/";
+	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
+	private String uploadPath = "c:\\upload\\";
+	
+	List<String> reallist = new ArrayList<String>();
+	List<String> filelist = new ArrayList<String>();
+	List<String> sizelist = new ArrayList<String>();
+	
+	
 	@Autowired
 	NoticeServcie service;
 	@Autowired
 	ReviewBoardService Rservice;
-
 	
+	@RequestMapping("/test")
+	String fileTest() {
+		return "upload/fileUpload";
+	}
+
 	@RequestMapping("/list")
 	String list(Model model, SearchVO searchVO) {
 
@@ -121,33 +140,157 @@ public class NoticeController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	String add(HttpServletRequest request, Notice notice, Principal principal) {
 
-		String realname = request.getParameter("filename");
-		String filesize = request.getParameter("realname");
-		String filename = request.getParameter("filesize");
-		String[] reallist = realname.split(",");
-		String[] filelist = filename.split(",");
-		String[] sizelist = filesize.split(",");
+		
 
 		notice.setId(principal.getName());
 
+		
+	
+		
 		if (notice.getNoticeId() > 0) {
 			service.update(notice);
 		} else {
 			service.add(notice);
-			System.out.println(filesize.length() + "파일사이즈 랭스스스");
+//			System.out.println(filelist.length + "파일사이즈 랭스스스");
 			// 첨부파일이 있을 경우에만 실행
-			if (filesize.length() > 0) {
-				for (int i = 0; i < filelist.length; i++) {
-					service.fileUp(filelist[i], reallist[i], sizelist[i]);
+			if (filelist.size() > 0) {
+				for (int i = 0; i < filelist.size(); i++) {
+					service.fileUp(filelist.get(i), reallist.get(i), sizelist.get(i));
+					
 				}
+				
+				reallist.clear();
+				filelist.clear();
+				sizelist.clear();
+				
 			}
 
 		}
-
+		
+		
+		
+		
+		
+		
+		
 		return "redirect:list";
 	}
 
-	//상세보기 화면
+	// Ajax 파일 업로드 produces는 한국어를 정상적으로 전송하기 위한 속성
+	@ResponseBody
+	@RequestMapping(value = "/sample/upload/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> uploadAjaxPOST(MultipartFile file) throws Exception {
+
+		logger.info("originalName:" + file.getOriginalFilename());
+		logger.info("size:" + file.getSize());
+		logger.info("contentType:" + file.getContentType());
+	
+		
+		// String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
+
+		// HttpStatus.CREATED : 리소스가 정상적으로 생성되었다는 상태코드.
+		// return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+		return new ResponseEntity<String>(
+				UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),
+				HttpStatus.CREATED);
+	}
+
+	// 화면에 저장된 파일을 보여주는 컨트롤러 /년/월/일/파일명 형태로 입력 받는다.
+	// displayFile?fileName=/년/월/일/파일명
+	@ResponseBody
+	@RequestMapping(value = "/sample/upload/displayFile", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> displayFile(String fileName,UploadFileUtils up) throws Exception {
+		
+//			위에서 선언한 동적 배열에 값을 넣어준다.
+			reallist.add(up.getRealname());
+			filelist.add(up.getFilename());
+			sizelist.add(up.getFilesize());
+	
+		System.out.println(reallist.size()+"<<<<<<<<<<reallist.size();");
+		for(int i=0; i<reallist.size(); i++) {
+		System.out.println(reallist.get(i)+"<<<<<<<<<<<<<<<<<<<<<진짜 이름");
+		}
+		InputStream in = null;
+		ResponseEntity<byte[]> entity = null;
+
+		logger.info("File name: " + fileName);
+
+		try {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+			MediaType mType = MediaUtils.getMediaType(formatName);
+
+			HttpHeaders headers = new HttpHeaders();
+
+			in = new FileInputStream(uploadPath + fileName);
+
+			if (mType != null) {
+				headers.setContentType(mType);
+			} else {
+				fileName = fileName.substring(fileName.indexOf("_") + 1);
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+				headers.add("Content-Disposition",
+						"attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+			} // else
+
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close();
+		}
+
+		return entity;
+	}// displayFile
+
+	// 업로드된 파일 삭제 처리
+	@ResponseBody
+	@RequestMapping(value = "/sample/upload/deleteFile", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteFile(String fileName,UploadFileUtils up) throws Exception {
+
+
+		logger.info("delete file:" + fileName);
+
+		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+
+		MediaType mType = MediaUtils.getMediaType(formatName);
+
+		if (mType != null) {
+			String front = fileName.substring(0, 12);
+			String end = fileName.substring(14);
+			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+		} // if
+
+		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+		
+		//배열에서 값 삭제처리
+		String fakeFileName = fileName.substring(12);
+
+		System.out.println(fileName+"<<<<<<<<<<<<<<<<<fileName");
+		for(int i=0; i<filelist.size(); i++) {
+
+			System.out.println(filelist.get(i)+"<<<<<<<<<<<<<<<<<get(i)");
+			System.out.println(fakeFileName+"<<<<<<<<<<<<<<<<<fakeFileName");
+			
+			if(filelist.get(i).equals(fakeFileName)) {
+				System.out.println(filelist.indexOf(filelist.get(i)) + "<<<<<<<<<<<<<<삭제할 놈이 있는 위치");
+				//선택한 번째를 삭제한다.
+				reallist.remove(filelist.indexOf(filelist.get(i)));
+				sizelist.remove(filelist.indexOf(filelist.get(i)));
+				filelist.remove(filelist.indexOf(filelist.get(i)));
+				break;
+				
+			}
+		}
+	
+		
+		return new ResponseEntity<String>("deleted", HttpStatus.OK) ;
+
+	}
+
+	// 상세보기 화면
 	@RequestMapping("/view")
 	String view(Model model, int nid) {
 		// 조회수
@@ -155,22 +298,21 @@ public class NoticeController {
 
 		Notice item = service.view(nid);
 		List<FileVO> file = service.fileSelect(nid);
-
+	
 		model.addAttribute("item", item);
 		model.addAttribute("file", file);
 
 		// 현재 로그인한 사용자 정보 가져오기
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		
-		//현재 로그인중인 회원의 아이디 가져오기
-		//회원가입시 anonymousUser이 아이디로 가입은 막자.
+		// 현재 로그인중인 회원의 아이디 가져오기
+		// 회원가입시 anonymousUser이 아이디로 가입은 막자.
 		System.out.println(authentication.getName());
 		if (authentication.getName() == null || authentication.getName() == "anonymousUser")
 			model.addAttribute("securityId", "null");
 		else
 			model.addAttribute("securityId", authentication.getName());
-
+		
 		return path + "view";
 	}
 
@@ -179,8 +321,7 @@ public class NoticeController {
 		service.delete(nid);
 		return "redirect:list";
 	}
-	
-	
+
 	// 댓글 crud
 
 	@RequestMapping("/commentUpdate")

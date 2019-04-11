@@ -39,7 +39,6 @@
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>
 							<li><a href="#">하위메뉴</a></li>
-							<li><a href="${pageContext.request.contextPath}/opo/webRtc">OnlinePT 테스트</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -400,6 +400,7 @@ body {
 #calendar {
 	max-width: 900px;
 	margin: 0 auto;
+	margin-top:200px;
 }
 
 /* The Modal (background) */
@@ -479,6 +480,7 @@ body {
 </style>
 </head>
 <body>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 	<div id='calendar'></div>
 
 	<!-- The Modal -->

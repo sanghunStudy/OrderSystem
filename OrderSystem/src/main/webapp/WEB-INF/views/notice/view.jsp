@@ -45,9 +45,19 @@
 
 	<label>내용</label>
 	<div>${item.noticeContents}</div>
-
+	<c:choose>
+	<c:when test="${file.size() > 0 }">
+	<ul>
+	<c:forEach var="img" items="${file}">
+		
+			<li><label>파일명 : <a href="${pageContext.request.contextPath}/upload${img.filename}">${img.realname}</a></label><label>파일 크기 ${img.filesize}</label></li>
+		
+	</c:forEach>
+	</ul>
+	</c:when>
+	</c:choose>
 	<jsp:include page="comment.jsp" flush="true" />
-
+	
 <!--  스프링 시큐리티로 작성자와 현재 로그인중인 회원의 정보를 비교해서 일치하면 수정,삭제 가능하게 해야하는데 아직 모르겠음 수정필요함!!! -->
 <%-- 	<sec:authorize access="isAuthenticated()"> --%>
 <%-- 		<a href="add?nid=${item.noticeId}">수정</a> --%>

@@ -366,7 +366,7 @@ function calendarLoad (eventData) {
 					}
 						);
 		});
-				
+			
 		var JsonData = JSON.stringify(tableArray);
 		console.log(JsonData);
 		
@@ -383,7 +383,7 @@ function calendarLoad (eventData) {
 			url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
 			success:function(res){
 // 				console.log(res);
-				location.reload();
+// 				location.reload();
 			}
 		});
 	});

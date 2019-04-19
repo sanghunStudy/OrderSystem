@@ -33,7 +33,14 @@ public class UserController {
 
 		return path + "ExerciseJournal";
 	}
-
+	
+	//운동일지 새로운 버전
+	@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
+	public String MyExerciseJournal() {
+		
+		return path + "MyExerciseJournal";
+	}
+	
 	// 달력에서 날짜 클릭시 운동일지 작성하는 메서드
 	@RequestMapping(value = "/ExerciseJournalSubmit", method = RequestMethod.POST)
 	@ResponseBody

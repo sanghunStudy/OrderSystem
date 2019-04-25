@@ -7,7 +7,7 @@ var count = 0;
 
 
 $(window).load(function(){
-    console.log("로딩완료");
+//    console.log("로딩완료");
     go();
 });
 
@@ -25,7 +25,7 @@ function go(){
     var sb = $(".section0").height();
 
     if(m > 1 && scrollEvent == false && count >= 1){
-        console.log(count+"<<<<<count");
+//        console.log(count+"<<<<<count");
         scrollEvent = true;
         count--;
         $("html,body").stop().animate({scrollTop:sb*count},
@@ -34,7 +34,7 @@ function go(){
         })
 
     }else if(m<1 && scrollEvent == false && count <3){
-        console.log(count+"<<<<<<else if count");
+//        console.log(count+"<<<<<<else if count");
         scrollEvent = true;
         count++;
         $("html,body").stop().animate({scrollTop:sb*count},

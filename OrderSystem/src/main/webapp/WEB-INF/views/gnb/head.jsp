@@ -36,9 +36,7 @@
 						<li><a href="#">MENU</a></li>
 						<li><a href="#">PERSONAL TRAINER</a></li>
 					</ul>
-
 				</nav>
-
 			</div>
 		</div>
 	</header>

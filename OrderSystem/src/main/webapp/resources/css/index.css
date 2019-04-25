@@ -23,8 +23,7 @@ body {
 
 /*메인 첫번째 영역 사진*/
 .section0 {
-	background: orange url("/kopo/resources/images/main/main1.png")
-		no-repeat;
+	background: white url("/kopo/resources/images/main/main1.png") no-repeat;
 	background-size: cover;
 }
 /*메인 두번째 영역*/

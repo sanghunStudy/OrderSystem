@@ -1,37 +1,22 @@
-@charset "utf-8";
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
-
-
-
+@charset "UTF-8";
 html,body{
     margin:0;
     padding:0;
 	font-family : 'Nanum Gothic';
 }
 
-
-.hide {
-    display:none;
-}
-
-a{
-    cursor: pointer;
-    text-decoration:none;
-}
-a:link{
-	color:black;
-}
-
-a:visited{
-	color:black;
-}
 /*네비바*/
 header{
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,0);
+    background: #000000;
+    width:100%;
     font-weight: 760;
     padding:0 30px;
-    background-color:white;
     height:70px;
-    
+    z-index:9999;
 }
 
 
@@ -41,6 +26,16 @@ header h1{
     position: relative;
     margin-right:auto;
     top:-10px;
+    line-height:30px;
+}
+
+header h1 :hover{
+    color:red;
+}
+
+header h1 a{
+    color: white;
+    text-decoration-line: none;
 }
 
 /*상단 전체 박스*/
@@ -48,22 +43,27 @@ header #lnb {
     display: flex;
     margin: 0 auto;
     top: 0;
-    width: 900px;
+    width: 1200px;
 }
 
 /*로그인*/
-header #lnb .login{
-    margin-left:auto;
+header .login{
+    float: right;
     list-style: none;
-    margin-top: 24px;
-
 }
 
-header #lnb .login li{
+header .login li{
 /*    flex: 1;*/
     padding:9 0 0 18px;
    display:inline-block;
 }
+/*네비바 로그인쪽 a태그*/
+header .login li a{
+    line-height:30px;
+     margin:0 10px 0 10px;
+    color: white;
+    text-decoration-line: none;
+    }
 
 header #lnb nav {
     text-align: center;
@@ -72,26 +72,27 @@ header #lnb nav {
 
 header #lnb nav > ul{
     display:inline-block; 
-    height:69px;
     overflow:hidden;
 }
+
 header #lnb nav > ul:hover {
     overflow:visible;
 }
+
 header #lnb nav > ul > li{
     display:inline-block;
     position:relative;
 }
-
+/*네비바 메뉴 a태그*/
 header #lnb nav > ul > li > a{
-    
     position:relative;
     display:block;
-    width:120px;
-    height:69px;
+    margin:0 0 0 50px;
+    height:40px;
     font-size:16px;
-    color:black;
-    line-height: 69px;
+    line-height: 40px;
+    text-decoration-line: none;
+    color: white;
 }
 header #lnb nav > ul > li > a:after {
     content:"";
@@ -100,7 +101,6 @@ header #lnb nav > ul > li > a:after {
     left:50%;
     bottom:0;
     height:2px;
-    background:black;
     transition: all 0.5s;
     
 }

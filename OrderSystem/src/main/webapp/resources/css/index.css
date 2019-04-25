@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+/*각각의 영역을 풀스크린에 맞게 설정*/
+.section0, .section1, .section2, .section3, .section3_item {
+	width: 100%;
+	height: 100vh;
+}
+
+#section1_title {
+	color: white;
+	font-weight: 760;
+	font-size: 30px;
+}
+
+/*메인 첫번째 영역 사진*/
+.section0 {
+	background: orange url("/kopo/resources/images/main/main1.png")
+		no-repeat;
+	background-size: cover;
+}
+/*메인 두번째 영역*/
+.section1 {
+	position: relative;
+	background: black;
+	background-size: cover;
+}
+/*메인 세번째 영역 사진*/
+.section2 {
+	background: white url("/kopo/resources/images/main/main2.png") no-repeat;
+	background-size: cover;
+}
+/*메인 마지막 영역*/
+.section3 {
+	background-color: black;
+	position: relative;
+}
+
+/*캐러셀 text*/
+.section1_item {
+	right: 10%;
+	/* display:none; */
+	width: 500px;
+	height: 200px;
+	position: absolute;
+	top: 30%;
+	background-color: black;
+	font-weight: bold;
+	color: white;
+	text-align: left;
+	line-height: 40px;
+}
+
+.section1_item span {
+	color: rgb(247, 90, 49);
+}
+
+.section3_item {
+	/* display:none; */
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 40%;
+	height: auto;
+}
+
+.section3_item p {
+	font-weight: 760;
+	line-height: 80px;
+}
+
+.section3_item span {
+	color: rgb(247, 90, 49);
+}
+
+.section3_item div {
+	margin: 0 auto;
+	width: 200px;
+	height: 80px;
+	background-color: rgb(247, 90, 49);
+	cursor: pointer;
+}
+
+.section3_item div:hover {
+	background-color: red;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-name: bounce;
+	animation-name: bounce;
+}
+
+.section3_title {
+	font-size: 70px;
+}
+
+.section3_sub_title {
+	font-size: 20px;
+}
+
+/* 버튼 바운스 효과 */
+@-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
+    40% {-webkit-transform: translateY(-20px) }
+    60% {-webkit-transform: translateY(-10px);}
+} 
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+} 
+
+
+/* 컨텐츠 fadeInup 효과 */
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+.animated {
+	animation-duration: 3s;
+	animation-fill-mode: both;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+	opacity: 0
+}
+
+.fadeInUp {
+	opacity: 0;
+	animation-name: fadeInUp;
+	-webkit-animation-name: fadeInUp;
+}
+/*fadeInup 끝*/
+
+
+
+/* 캐러셀 설정 */
+#carousel_section {
+	width: 100%;
+	background-color: black;
+}
+
+#carousel_section>ul {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+#carousel_section>ul>li {
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#carousel_section>ul>li>img {
+	list-style: none;
+	width: 900px;
+	height: 680px;
+	object-fit: cover;
+	position: absolute;
+	left: 5%;
+	top: 10%;
+}
+

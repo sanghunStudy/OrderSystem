@@ -319,7 +319,7 @@
 	});
 </script>
 </head>
-<jsp:include page="../gnb/head.jsp" flush="true" />
+<%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
 <body>
 	<div>
 		<h1>MyExerciseJournal</h1>

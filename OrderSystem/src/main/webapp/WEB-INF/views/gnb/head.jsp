@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/gnb/head.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>	
+<script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
 </head>
 <body>
 	<header>
@@ -27,7 +29,10 @@
 			</ul>
 			<div id="lnb">
 				<h1>
-					<a href="${pageContext.request.contextPath}/">TRAINING BOT</a>
+					<a id="tbqjf" class="animate one" href="${pageContext.request.contextPath}/">
+			    	  <span>T</span><span>r</span><span>a</span><span>i</span><span>n</span><span>e</span><span>r</span><span>B</span><span>o</span><span>t</span>
+					</a>				
+					<%-- <a href="${pageContext.request.contextPath}/">TRAINING BOT</a> --%>
 				</h1>
 				<nav>
 					<ul>

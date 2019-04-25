@@ -66,8 +66,9 @@ var caInterval;
 var imgW; // 사진 한장의 너비    
 $(document).ready(function(){
  
+var he = "100%";
     //사진 크기 및 넘어가는 시간
-    carouselInit(969, 3000);
+    carouselInit(he, 3000);
 });
  
 $(window).resize(function(){

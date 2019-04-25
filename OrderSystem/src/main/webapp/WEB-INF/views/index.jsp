@@ -12,6 +12,7 @@
 	href="${pageContext.request.contextPath}/resources/css/index.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+
 </head>
 <!-- 네비바 -->
 <jsp:include page="gnb/head.jsp" flush="true" />

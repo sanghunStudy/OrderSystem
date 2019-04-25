@@ -1,208 +1,225 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
-html,body{
-    margin:0;
-    padding:0;
+
+@import
+	url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i')
+	;
+
+html, body {
+	margin: 0;
+	padding: 0;
 	/* font-family : 'Nanum Gothic'; */
-	font-family:Lato;
+	font-family: Lato;
 }
-*{
-	margin:0;
-	padding:0;
+
+* {
+	margin: 0;
+	padding: 0;
 }
 /*네비바*/
-header{
-    position: fixed;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%,0);
-    background: #000000;
-    width:100%;
-    font-weight: 760;
-    padding:0 30px;
-    height:70px;
-    z-index:9999;
+header {
+	position: fixed;
+	top: 0%;
+	left: 50%;
+	transform: translate(-50%, 0);
+	background: #000000;
+	width: 100%;
+	font-weight: 760;
+	padding: 0 30px;
+	height: 70px;
+	z-index: 9999;
 }
-
-
 
 /*로고*/
-header h1{
-    position: relative;
-    margin-right:auto;
-    top:-10px;
-    line-height:30px;
+header h1 {
+	position: relative;
+	margin-right: auto;
+	top: -10px;
+	line-height: 30px;
 }
 
-header h1 a{
-    color: white;
-    text-decoration-line: none;
+header h1 a {
+	color: white;
+	text-decoration-line: none;
 }
 
 /*상단 전체 박스*/
 header #lnb {
-    display: flex;
-    margin: 0 auto;
-    top: 0;
-    width: 1200px;
+	display: flex;
+	margin: 0 auto;
+	top: 0;
+	width: 1200px;
 }
 
 /*로그인*/
-header .login{
-    float: right;
-    list-style: none;
+header .login {
+	float: right;
+	list-style: none;
 }
 
-header .login li{
-/*    flex: 1;*/
-    padding:9 0 0 18px;
-   display:inline-block;
+header .login li {
+	/*    flex: 1;*/
+	padding: 9 0 0 18px;
+	display: inline-block;
 }
 /*네비바 로그인쪽 a태그*/
-header .login li a{
-    line-height:30px;
-     margin:0 10px 0 10px;
-    color: white;
-    text-decoration-line: none;
-    }
+header .login li a {
+	line-height: 30px;
+	margin: 0 10px 0 10px;
+	color: white;
+	text-decoration-line: none;
+}
 
 header #lnb nav {
-    text-align: center;
-    font-size:0;
+	text-align: center;
+	font-size: 0;
 }
 
-header #lnb nav > ul{
-    display:inline-block; 
-    overflow:hidden;
+header #lnb nav>ul {
+	display: inline-block;
+	overflow: hidden;
 }
 
-header #lnb nav > ul:hover {
-    overflow:visible;
+header #lnb nav>ul:hover {
+	overflow: visible;
 }
 
-header #lnb nav > ul > li{
-    display:inline-block;
-    position:relative;
+header #lnb nav>ul>li {
+	display: inline-block;
+	position: relative;
 }
 /*네비바 메뉴 a태그*/
-header #lnb nav > ul > li > a{
-    position:relative;
-    display:block;
-    margin:0 0 0 50px;
-    height:40px;
-    font-size:16px;
-    line-height: 40px;
-    text-decoration-line: none;
-    color: white;
-}
-header #lnb nav > ul > li > a:after {
-    content:"";
-    width:0%;
-    position:absolute;
-    left:50%;
-    bottom:0;
-    height:2px;
-    transition: all 0.5s;
-    
-}
-header #lnb nav > ul > li > a:hover:after {
-    left:0;
-    width:100%;
+header #lnb nav>ul>li>a {
+	position: relative;
+	display: block;
+	margin: 0 0 0 50px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+	text-decoration-line: none;
+	color: white;
 }
 
-header #lnb nav > ul ul {
-    background:rgba(33,30,47,0.1);
-    padding: 22px 0 0;
-    position:absolute;
-    width:100%;
-    text-align:center;
-    list-style:none;
-    opacity:0;
-    transition: all 0.5s;
-    z-index: 9999;
+header #lnb nav>ul>li>a:after {
+	content: "";
+	width: 0%;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	height: 2px;
+	transition: all 0.5s;
+}
+
+header #lnb nav>ul>li>a:hover:after {
+	left: 0;
+	width: 100%;
+}
+
+header #lnb nav>ul ul {
+	background: rgba(33, 30, 47, 0.1);
+	padding: 22px 0 0;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	list-style: none;
+	opacity: 0;
+	transition: all 0.5s;
+	z-index: 9999;
 }
 
 /*로고 */
-
 .animate {
-  font-family: 'Lato', sans-serif;
-	color: #999999;
-	word-wrap:break-word;
+	font-family: 'Lato', sans-serif;
+	color: #fffff !important;
 	font-size: 35px;
 	margin: 100px 0 0;
-  font-weight: 900;
+	font-weight: 900;
 	text-transform: uppercase;
-
+	word-wrap: break-word;
 }
 
 .animate span {
 	display: inline-block;
 }
 
-
 .animate span:nth-of-type(2) {
 	animation-delay: .05s;
 }
+
 .animate span:nth-of-type(3) {
 	animation-delay: .1s;
 }
+
 .animate span:nth-of-type(4) {
 	animation-delay: .15s;
 }
+
 .animate span:nth-of-type(5) {
 	animation-delay: .2s;
 }
+
 .animate span:nth-of-type(6) {
 	animation-delay: .25s;
 }
+
 .animate span:nth-of-type(7) {
 	animation-delay: .3s;
 }
+
 .animate span:nth-of-type(8) {
 	animation-delay: .35s;
 }
+
 .animate span:nth-of-type(9) {
 	animation-delay: .4s;
 }
+
 .animate span:nth-of-type(10) {
 	animation-delay: .45s;
 }
+
 .animate span:nth-of-type(11) {
 	animation-delay: .5s;
 }
+
 .animate span:nth-of-type(12) {
 	animation-delay: .55s;
 }
+
 .animate span:nth-of-type(13) {
 	animation-delay: .6s;
 }
+
 .animate span:nth-of-type(14) {
 	animation-delay: .65s;
 }
+
 .animate span:nth-of-type(15) {
 	animation-delay: .7s;
 }
+
 .animate span:nth-of-type(16) {
 	animation-delay: .75s;
 }
+
 .animate span:nth-of-type(17) {
 	animation-delay: .8s;
 }
+
 .animate span:nth-of-type(18) {
 	animation-delay: .85s;
 }
+
 .animate span:nth-of-type(19) {
 	animation-delay: .9s;
 }
+
 .animate span:nth-of-type(20) {
 	animation-delay: .95s;
 }
 
-
 /* Animation One */
-
 .one span {
-	color: #FFF;
+	color: #fffff;
 	opacity: 0;
 	transform: translate(-150px, -50px) rotate(-180deg) scale(3);
 	animation: revolveScale .4s forwards;
@@ -218,56 +235,130 @@ header #lnb nav > ul ul {
 		opacity: 1;
 	}
 }
+header #lnb nav>ul:hover ul {
+	opacity: 1;
+}
 
+header #lnb nav>ul ul li {
+	line-height: 39px;
+}
 
+header #lnb nav>ul ul a {
+	position: relative;
+	font-size: 16px;
+	color: white;
+}
 
+header #lnb nav>ul ul a:after {
+	content: "";
+	width: 0%;
+	position: absolute;
+	left: 50%;
+	bottom: -10;
+	height: 2px;
+	background: black;
+	transition: all 0.5s;
+}
 
-header #lnb nav > ul:hover ul {
-    opacity:1;
+header #lnb nav>ul ul a:hover:after {
+	left: 0;
+	width: 100%;
+}
+
+#mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+/* 팝업으로 뜨는 윈도우 css  */
+.window {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 150px;
+	margin-left: -12%;
+	width: 390px;
+	height: 330px;
+	background-color: white;
+	color: black;
+	font-family: 'Adobe Gothic Std';
+	z-index: 10000;
+	border-radius: 8px;
+}
+
+/* 로그인 */
+#login_title {
+	font-size: 25px;
+	top: 20px;
+	left: 20px;
+}
+
+.close {
+	top: 20px;
+	right: 20px;
+}
+
+.login_input {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.login_box ul input {
+	font-family: Ubuntu-Regula; 
+	margin-left:80px;
+	width: 300px;
+	font-size: 20px;
+	border: none;
+	border-radius: 5px;
+	color: black;
+}
+
+*:focus {
+	outline: none;
+}
+
+.login_box ul li {
+	margin-bottom: 35px;
+}
+
+.login_box ul li i{
+	margin-left:20px;
 }
 
 
-header #lnb nav > ul ul li {
-    line-height:39px;
-}
-header #lnb nav > ul ul a {
-    position:relative;
-    font-size:16px;
-    color:white;
-}
-
-header #lnb nav > ul ul a:after {
-    content:"";
-    width:0%;
-    position:absolute;
-    left:50%;
-    bottom:-10;
-    height:2px;
-    background:black;
-    transition: all 0.5s;
+.login_btn {
+	width: 160px;
+	height: 42px;
+	color: white;
+	font-size: 25px;
+	border-radius: 25px;
+	border:0px;
+	background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
 }
 
-header #lnb nav > ul ul a:hover:after {
-    left:0;
-    width:100%;
+.login_btn:hover {
+/* 	background: #555555; */
+	background: -webkit-linear-gradient(left, #969696, #969696, #969696);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.login_box ul {
+	list-style: none;
+}
+/* 유저 아이콘 */
+.far {
+	font-size: 16pt;
+	color: grey;
+	position: absolute;
+	left: 15px;
+	top: 53px;
+}
+/* 자물쇠 아이콘 */
+.material-icons {
+	font-size: 26px;
+	color: grey;
+	position: absolute;
+	left: 12px;
+}

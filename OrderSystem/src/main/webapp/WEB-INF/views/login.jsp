@@ -16,11 +16,11 @@ window.onload = function(){
 	<form method="post" action="login">
 		<div>
 			<label>아이디:</label>
-			<input id="name" name="id" type="text">			
+			<input id="name" name="username" type="text">			
 		</div>
 		<div>
 			<label>패스워드:</label>
-			<input name="pw" type="password">			
+			<input name="password" type="password">			
 		</div>
 		<div>
 			<input type="submit" value="로그인">

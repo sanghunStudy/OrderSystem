@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.UserService;
 
 
@@ -22,27 +24,27 @@ public class RootController {
 		return "index";
 	}
 
-	/*@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	String login() {
 		return "login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	String login(User user, HttpSession session) {
+	String login(UserVO user, HttpSession session) {
 		
 		
 		if(service.login(user)) {
-			session.setAttribute("user", user.getId());
+			session.setAttribute("user", user.getUsername());
 		}else {
 			System.out.println("로그인 실패");
 		}
 		
 		return "redirect:.";
-	}*/
+	}
 	
 	@RequestMapping("/logout")
 	String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "redirect:";
+		return "redirect:.";
 	}
 }

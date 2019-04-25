@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +12,16 @@
 	<header>
 		<div style="width: 1200px; margin: 0 auto;">
 			<ul class="login">
-				<li><a href="<c:url value="/login"/>">LOGIN</a></li>
+				<c:choose>
+					<c:when
+						test="${sessionScope.user eq null and sessionScope.admin eq null}">
+						<li><a href="<c:url value="/login"/>">LOGIN</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="member/MyPage">마이페이지</a></li>
+						<li><a href="logout">로그아웃</a></li>
+					</c:otherwise>
+				</c:choose>
 				<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>
 				<li><a href="${pageContext.request.contextPath}/notice/list">FAQ</a></li>
 			</ul>

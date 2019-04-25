@@ -302,16 +302,12 @@ ul#createli li.current {
 			type:'post',
 			async:false,
 			contentType:'application/json;charset=UTF-8',
-			beforeSend : function(xhr)
-            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-            },
 			data:JSON.stringify(tableArray),
 			dataType:'json',
 			url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
 			success:function(res){
 // 				console.log(res);
-// 				location.reload();
+ 				location.href = "MyPage";
 			}
 		});
 	});

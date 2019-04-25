@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,10 +63,10 @@
 <%-- 	</sec:authorize> --%>
 <%-- 	기존에 쓰던 세션방식 --%>
 
-<c:if test="${item.id == securityId}">
+<c:if test="${sessionScope.user == item.id}">
  	<a href="add?nid=${item.noticeId}">수정</a>
  		<a href="delete?nid=${item.noticeId}">삭제</a>
-	</c:if> 
+ </c:if>
 	<a href="list">목록</a>
 </body>
 </html>

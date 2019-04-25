@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +12,6 @@
 <script>
 
 	window.onload = function() {
-
-		var addbtn = document.getElementById('addBtn');
-
-		addbtn.onclick = function addBtn() {
-			alert('로그인 후 이용 가능합니다.');
-		}
 
 	}
 
@@ -125,7 +117,7 @@
 	<form id="form1" name="form1" method="post">
 		<%-- 		<jsp:include page="../gnb/paging.jsp" flush="true" /> --%>
 		<input type="hidden" name="page" id="page" value="" />
-		<sec:csrfInput />
+		
 		<div>
 			<input type="checkbox" name="searchType" value="notice_title"
 				<c:if test="${fn:indexOf(SearchVO.searchType, 'notice_title')!=-1}">checked="checked"</c:if> />
@@ -141,13 +133,9 @@
 
 		</div>
 	</form>
-
-	<sec:authorize access="isAnonymous()">
-		<a id="addBtn">글쓰기</a>
-	</sec:authorize>
-	<sec:authorize access="isAuthenticated()">
+<c:if test="${sessionScope.user != null}">
 		<a href="add?nid=0">글쓰기</a>
-	</sec:authorize>
+</c:if>
 
 	<script>
 		function changeSelect() {
@@ -158,7 +146,6 @@
 	</script>
 	<a href="../">메인으로</a>
 	<form id="selectForm" name="selectForm">
-		<sec:csrfInput />
 		<select name="displayRowCount" onchange="changeSelect()">
 			<option value="10"
 				${SearchVO.displayRowCount == 10?'selected="selected"':''}>

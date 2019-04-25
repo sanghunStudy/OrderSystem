@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +9,17 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/moment_min.js"></script>
 <script>
 
-// var token = $("meta[name='_csrf']").attr("content");
-// var header = $("meta[name='_csrf_header']").attr("content");
-
-	var securityId = "${securityId}";
-
+	var securityId = "${sessionScope.user}";
+	
 	$(function(){
 		getCommentList();
 	
-		document.getElementById("comentBtn").onclick = function(){
-			if(securityId == "null" || securityId == 'anonymousUser')
-				alert('로그인 후 이용 가능합니다.');
-			else
-				fn_comment('${item.noticeId}')
-		}
+// 		document.getElementById("comentBtn").onclick = function(){
+// 			if(securityId == "null" || securityId == 'anonymousUser')
+// 				alert('로그인 후 이용 가능합니다.');
+// 			else
+// 				fn_comment('${item.noticeId}')
+// 		}
 		
 	});
 
@@ -33,10 +30,6 @@
 			type:'post',
 			url:'${pageContext.request.contextPath}/notice/commentAdd',
 			data:$('#commentForm').serialize(),
-			 beforeSend : function(xhr)
-             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-             },
 			success:function(data){
 				if(data == 'success'){
 					getCommentList();
@@ -107,10 +100,6 @@
 	        url : '${pageContext.request.contextPath}/notice/commentUpdate',
 	        type : 'post',
 	        data : {'ncomentContent' : updateContent, 'ncomentId' : code},
-	        beforeSend : function(xhr)
-            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-	        	   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-            },
 	        success : function(data){
 	        	if(data == 'success'){
 					getCommentList();
@@ -137,10 +126,6 @@
 			type:'post',
 			url:'${pageContext.request.contextPath}/notice/commentDel',
 			data:{'ncomentId':code},
-			 beforeSend : function(xhr)
-             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-				   xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-             },
 			success:function(data){
 				if(data == 'success'){
 					getCommentList();
@@ -155,7 +140,6 @@
 
 <div>
 	<form id="commentForm" name="commentForm" action="post">
-	<sec:csrfInput />
 		<div>
 			<div>
 				<span><strong>댓글</strong></span><span id="cCnt"></span>
@@ -164,16 +148,16 @@
 				<table>
 					<tr>
 						<td>
-<%-- 							<input type="hidden" name="id" value="<sec:authentication property="principal.username"/>"> --%>
-						</td>
+ 							<input type="hidden" name="username" value="${sessionScope.user}">
 						<td>
 							<textarea rows="3" cols="30" id="comment" name="ncomentContent" placeholder="댓글을 입력하세요"></textarea>
-						<div>
-							<a href="#" id="comentBtn" onclick="fn_comment('${item.noticeId}')">등록</a>
-						</div>
+						<c:if test="${sessionScope.user != null}">
+							<div>
+								<a href="#" id="comentBtn" onclick="fn_comment('${item.noticeId}')">등록</a>
+							</div>
+						</c:if>
 						</td>
 					</tr>
-					
 				</table>
 			</div>
 		</div>
@@ -183,7 +167,6 @@
 
 <div class="container">
     <form id="commentListForm" name="commentListForm" method="post">
-   <sec:csrfInput />
         <div id="commentList">
         </div>
     </form>

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -44,9 +46,9 @@ public class UserController {
 	// 달력에서 날짜 클릭시 운동일지 작성하는 메서드
 	@RequestMapping(value = "/ExerciseJournalSubmit", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String, Object>> saveCode(@RequestBody List<Map<String, Object>> param, Principal principal) {
-
-		service.saveCode(param, principal);
+	public List<Map<String, Object>> saveCode(@RequestBody List<Map<String, Object>> param, HttpSession session) {
+		String id = (String) session.getAttribute("user");
+		service.saveCode(param, id);
 
 		return param;
 	}

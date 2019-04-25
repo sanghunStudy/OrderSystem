@@ -24,7 +24,7 @@ public interface UserService {
 
 	UserVO selectUser(String username);
 
-	void saveCode(List<Map<String, Object>> param,Principal principal);
+	void saveCode(List<Map<String, Object>> param,String id);
 
 	List<ExerciseJournal> ExerciseJournalList(String id);
 

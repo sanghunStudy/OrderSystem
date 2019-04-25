@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +14,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -138,11 +138,11 @@ public class NoticeController {
 
 	// jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	String add(HttpServletRequest request, Notice notice, Principal principal) {
+	String add(HttpServletRequest request, Notice notice,HttpSession session) {
 
-		
+		String id = (String)session.getAttribute("user");
 
-		notice.setId(principal.getName());
+		notice.setId(id);
 
 		
 	
@@ -303,15 +303,15 @@ public class NoticeController {
 		model.addAttribute("file", file);
 
 		// 현재 로그인한 사용자 정보 가져오기
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		// 현재 로그인중인 회원의 아이디 가져오기
 		// 회원가입시 anonymousUser이 아이디로 가입은 막자.
-		System.out.println(authentication.getName());
-		if (authentication.getName() == null || authentication.getName() == "anonymousUser")
-			model.addAttribute("securityId", "null");
-		else
-			model.addAttribute("securityId", authentication.getName());
+//		System.out.println(authentication.getName());
+//		if (authentication.getName() == null || authentication.getName() == "anonymousUser")
+//			model.addAttribute("securityId", "null");
+//		else
+//			model.addAttribute("securityId", authentication.getName());
 		
 		return path + "view";
 	}
@@ -340,11 +340,11 @@ public class NoticeController {
 
 	@RequestMapping("/commentAdd")
 	@ResponseBody
-	String commentAdd(NoticeComment NComment, Principal principal) {
+	String commentAdd(NoticeComment NComment,HttpSession session) {
+		String id = (String)session.getAttribute("user");
+		System.out.println();
 
-		System.out.println(principal.getName());
-
-		NComment.setId(principal.getName());
+		NComment.setId(id);
 
 		service.commentAdd(NComment);
 		return "success";

@@ -8,7 +8,7 @@
 		<param-value>
     /WEB-INF/spring/root-context.xml
     
-    /WEB-INF/spring/security-context.xml <!-- SpringSecurity 사용 -->
+<!--     /WEB-INF/spring/security-context.xml SpringSecurity 사용 -->
     </param-value>
 	</context-param>
 	<listener>
@@ -44,23 +44,6 @@
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-<!-- SrpingSecurity 사용을 위한 필터 추가 xml방식 -->
-	<filter>
-
-		<filter-name>springSecurityFilterChain</filter-name>
-
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-
-	</filter>
-
-	<filter-mapping>
-
-		<filter-name>springSecurityFilterChain</filter-name>
-
-		<url-pattern>/*</url-pattern>
-
 	</filter-mapping>
 
 </web-app>

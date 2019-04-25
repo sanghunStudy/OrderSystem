@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +58,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void saveCode(List<Map<String, Object>> param, Principal principal) {
+	public void saveCode(List<Map<String, Object>> param, String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		String ExerciseDate = "";
@@ -67,7 +69,7 @@ public class UserServiceImpl implements UserService {
 			if (param.get(i).get("title") != null)
 				title = (String) param.get(i).get("title");
 		}
-		map.put("id", principal.getName());
+		map.put("id", id);
 		map.put("ExerciseDate", ExerciseDate);
 		map.put("title", title);
 

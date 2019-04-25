@@ -56,10 +56,6 @@
 			contentType : false,
 			enctype : 'multipart/form-data',
 			processData : false,
-			 beforeSend : function(xhr)
-             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-             },
 			success : function(img_name) {
 				$(el).summernote('editor.insertImage',
 						'${pageContext.request.contextPath}' + img_name);
@@ -94,7 +90,6 @@
 	<h1>summernote</h1>
 
 	<form id="form1" name="form1" action="add?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-		<sec:csrfInput />
 		<input type="hidden" name="noticeId"
 			value="${item.noticeId == null ?0 : item.noticeId}">
 		<table>

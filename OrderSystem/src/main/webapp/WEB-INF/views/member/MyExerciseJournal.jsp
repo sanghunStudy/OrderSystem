@@ -13,13 +13,13 @@
 <title>운동일지</title>
 
 <style>
-ul.tabs {
+.tabs {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 }
 
-ul.tabs li {
+.tabs li {
 	background: none;
 	color: #222;
 	display: inline-block;
@@ -27,7 +27,7 @@ ul.tabs li {
 	cursor: pointer;
 }
 
-ul.tabs li.current {
+.tabs li.current {
 	background: #ededed;
 	color: #222;
 }
@@ -43,13 +43,13 @@ ul.tabs li.current {
 }
 
 /* 새로 생기는 탭태그 */
-ul#createli {
+#createli {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 }
 
-ul#createli li {
+#createli li {
 	background: none;
 	color: #222;
 	display: inline-block;
@@ -57,7 +57,7 @@ ul#createli li {
 	cursor: pointer;
 }
 
-ul#createli li.current {
+#createli li.current {
 	background: #ededed;
 	color: #222;
 }
@@ -319,6 +319,7 @@ ul#createli li.current {
 	});
 </script>
 </head>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
 	<div>
 		<h1>MyExerciseJournal</h1>

@@ -477,6 +477,7 @@ body {
 }
 </style>
 </head>
+
 <body>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 	<div id='calendar'></div>

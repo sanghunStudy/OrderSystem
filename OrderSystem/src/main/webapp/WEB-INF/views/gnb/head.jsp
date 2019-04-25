@@ -18,8 +18,8 @@
 						<li><a href="<c:url value="/login"/>">LOGIN</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="member/MyPage">마이페이지</a></li>
-						<li><a href="logout">로그아웃</a></li>
+						<li><a href="member/MyPage">MY PAGE</a></li>
+						<li><a href="logout">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>

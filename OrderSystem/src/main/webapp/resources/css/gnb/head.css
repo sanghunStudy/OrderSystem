@@ -4,7 +4,10 @@ html,body{
     padding:0;
 	font-family : 'Nanum Gothic';
 }
-
+*{
+	margin:0;
+	padding:0;
+}
 /*네비바*/
 header{
     position: fixed;

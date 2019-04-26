@@ -35,6 +35,7 @@ header h1 {
 	margin-right: auto;
 	top: -10px;
 	line-height: 30px;
+	font-family: "Masque";
 }
 
 header h1 a {
@@ -278,15 +279,16 @@ header #lnb nav>ul ul a:hover:after {
 	display: none;
 	position: absolute;
 	left: 50%;
-	top: 150px;
-	margin-left: -12%;
+	top:  50%;
+	transform:translate(-50%,70%);
+/* 	margin-left: -12%; */
 	width: 390px;
 	height: 330px;
 	background-color: white;
 	color: black;
 	font-family: 'Adobe Gothic Std';
 	z-index: 10000;
-	border-radius: 8px;
+	border-radius: 15px;
 }
 
 /* 로그인 */

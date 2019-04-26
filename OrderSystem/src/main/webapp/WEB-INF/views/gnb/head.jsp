@@ -21,13 +21,13 @@
 						test="${sessionScope.user eq null and sessionScope.admin eq null}">
 						<%-- 						<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
 						<li><a href="#" class="openMask">LOGIN</a></li>
+						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="member/MyPage">MY PAGE</a></li>
 						<li><a href="logout">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>
 				<li><a href="${pageContext.request.contextPath}/notice/list">FAQ</a></li>
 			</ul>
 			<div id="lnb">

@@ -73,7 +73,7 @@
 <body>
 	<form action="update?${_csrf.parameterName}=${_csrf.token}"
 		method="post" enctype="multipart/form-data">
-		<sec:csrfInput />
+		
 		<div>
 			<input name="menuId" type="hidden" value="${item.menuId}" />
 		</div>

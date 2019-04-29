@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +97,6 @@
 	<form id="form1" name="form1" method="post">
 		
 		<input type="hidden" name="page" id="page" value="" />
-		<sec:csrfInput />
 		<div class="search_area">
 			<div class="search_type">
 			<input type="checkbox" name="searchType" value="menu_name" id="searchType1" class="cb1"
@@ -128,6 +127,7 @@
 					<tr>
 						<td style="color:#ff0000;">공지</td>
 						<td><a href="${pageContext.request.contextPath}/notice/view?nid=${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
+						<td>관리자</td>
 						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
 					</tr>
 				</c:forEach>
@@ -183,7 +183,7 @@
 	</div>
 	
 	<div class="write"><a href="add">글쓰기</a></div>
-	
+	<jsp:include page="../gnb/calculator.jsp" flush="true" />
 	</div>
 </body>
 </html>

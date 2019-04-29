@@ -110,5 +110,11 @@ public class UserDaoImpl implements UserDao {
 		sql.delete("user.exerciseJournalDel", exerciseCode);
 		
 	}
+	//회원 기초정보 입력
+	@Override
+	public void basicInformation(kr.ac.kopo.model.basicInformation bI) {
+		sql.insert("user.basicInformation", bI);
+		
+	}
 
 }

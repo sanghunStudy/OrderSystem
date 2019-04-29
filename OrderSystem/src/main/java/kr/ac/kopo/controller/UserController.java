@@ -20,6 +20,7 @@ import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TestList;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
 
 @Controller
@@ -29,7 +30,22 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-
+	
+//	회원 기초정보 입력 화면
+	@RequestMapping(value="/basicInformation",method=RequestMethod.GET)
+	String basicInformation(String manager) {
+		
+		return path+ "basicInformation";
+	}
+// 회원 기초정보 입력 처리
+	@RequestMapping(value="/basicInformation",method=RequestMethod.POST)
+	String basicInformation(basicInformation bI,HttpSession session) {
+		String id = (String)session.getAttribute("user");
+		bI.setUsername(id);
+		service.basicInformation(bI);
+		return "redirect:MyPage";
+	}
+	
 	@RequestMapping(value = "/ExerciseJournal", method = RequestMethod.GET)
 	public String ExerciseJournal() {
 

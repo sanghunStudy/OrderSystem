@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.model.basicInformation;
 
 public interface UserService {
 
@@ -35,4 +36,6 @@ public interface UserService {
 	void ExerciseJournalUpdate(ExerciseContents exerciseContents);
 
 	void ExerciseJournalDel(int exerciseCode);
+
+	void basicInformation(basicInformation bI);
 }

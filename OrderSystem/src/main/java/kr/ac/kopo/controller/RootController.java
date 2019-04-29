@@ -34,11 +34,11 @@ public class RootController {
 		UserVO userAuthority = service.login(user);
 		System.out.println(userAuthority.getAuthority());
 		if(userAuthority.getAuthority().equals("user")) {
-			session.setAttribute("user", userAuthority.getAuthority());
+			session.setAttribute("user", userAuthority.getUsername());
 		}else if(userAuthority.getAuthority().equals("trainer")) {
-			session.setAttribute("trainer", userAuthority.getAuthority());
+			session.setAttribute("trainer", userAuthority.getUsername());
 		}else if(userAuthority.getAuthority().equals("admin")) {
-			session.setAttribute("admin", userAuthority.getAuthority());
+			session.setAttribute("admin", userAuthority.getUsername());
 		}else {
 			System.out.println("로그인 실패");
 		}

@@ -131,4 +131,11 @@ public class UserServiceImpl implements UserService {
 		dao.ExerciseJournalDel(exerciseCode);
 	}
 
+	//회원 기초정보 입력
+	@Override
+	public void basicInformation(kr.ac.kopo.model.basicInformation bI) {
+		dao.basicInformation(bI);
+		
+	}
+
 }

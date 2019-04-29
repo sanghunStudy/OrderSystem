@@ -139,4 +139,9 @@
 		delete from exercise_item where Exercise_code =
 		#{ExerciseCode}
 	</delete>
+	
+	<insert id="basicInformation" parameterType="basicInformation">
+		insert into user_basic_information(username,age,sex,height,weight,drinking,frequency,purpose,job,dictum)
+		value(#{username},#{age},#{sex},#{height},#{weight},#{drinking},#{frequency},#{purpose},#{job},#{dictum})
+	</insert>
 </mapper>

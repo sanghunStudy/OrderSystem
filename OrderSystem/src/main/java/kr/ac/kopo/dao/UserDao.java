@@ -5,6 +5,7 @@ import java.util.List;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.model.basicInformation;
 
 public interface UserDao {
 
@@ -37,6 +38,8 @@ public interface UserDao {
 	void ExerciseJournalUpdate(ExerciseContents exerciseContents);
 
 	void ExerciseJournalDel(int exerciseCode);
+
+	void basicInformation(basicInformation bI);
 
 
 }

@@ -14,10 +14,10 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session= request.getSession();
 		
-		if(session.getAttribute("user") == null && session.getAttribute("admin") == null){
-			response.sendRedirect("/login");//ë¡œê·¸?¸?˜?´ì§?ë¡? ë³´ë‚´ì¤?
+		if(session.getAttribute("user") == null && session.getAttribute("admin") == null && session.getAttribute("trainer") == null){
+			response.sendRedirect("/login");//ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?ï¿½? ë³´ë‚´ï¿½?
 			
-			return false;//ì»¨íŠ¸ë¡¤ëŸ¬ ? ‘ê·? ì°¨ë‹¨.
+			return false;//ì»¨íŠ¸ë¡¤ëŸ¬ ?ï¿½ï¿½ï¿½? ì°¨ë‹¨.
 		}
 		
 		return true;

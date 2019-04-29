@@ -61,7 +61,7 @@
                                     </ul>
                                 </li>
                                 <li>              
-                                    <input type="button" id="SignUp" value="JOIN">        
+                                    <input type="submit" id="SignUp" value="JOIN">        
                                 </li>
                             </ul>
                         </form>

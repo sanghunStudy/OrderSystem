@@ -44,13 +44,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean login(UserVO user) {
-		if(sql.selectOne("user.login", user)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
+	public UserVO login(UserVO user) {
+		
+		return sql.selectOne("user.login", user);
 	}
 
 	@Override

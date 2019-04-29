@@ -31,9 +31,14 @@ public class RootController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	String login(UserVO user, HttpSession session) {
 		
-		
-		if(service.login(user)) {
-			session.setAttribute("user", user.getUsername());
+		UserVO userAuthority = service.login(user);
+		System.out.println(userAuthority.getAuthority());
+		if(userAuthority.getAuthority().equals("user")) {
+			session.setAttribute("user", userAuthority.getAuthority());
+		}else if(userAuthority.getAuthority().equals("trainer")) {
+			session.setAttribute("trainer", userAuthority.getAuthority());
+		}else if(userAuthority.getAuthority().equals("admin")) {
+			session.setAttribute("admin", userAuthority.getAuthority());
 		}else {
 			System.out.println("로그인 실패");
 		}

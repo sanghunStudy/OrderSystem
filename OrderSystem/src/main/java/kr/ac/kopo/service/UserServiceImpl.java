@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(UserVO user) {
+	public UserVO login(UserVO user) {
 		return dao.login(user);
 	}
 

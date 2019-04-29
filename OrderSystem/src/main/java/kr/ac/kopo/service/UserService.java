@@ -20,7 +20,7 @@ public interface UserService {
 
 	void delete(int id);
 
-	boolean login(UserVO user);
+	UserVO login(UserVO user);
 
 	UserVO selectUser(String username);
 

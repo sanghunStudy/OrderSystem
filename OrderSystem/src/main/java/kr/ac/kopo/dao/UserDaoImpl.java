@@ -117,4 +117,16 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	//아이디 중복체크
+	@Override
+	public int idChk(String username) {
+		return sql.selectOne("user.idChk", username);
+	}
+	
+	//로그인 체크
+	@Override
+	public int LoginChk(UserVO user) {
+		return sql.selectOne("user.LoginChk", user);
+	}
+
 }

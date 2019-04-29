@@ -139,9 +139,17 @@
 		delete from exercise_item where Exercise_code =
 		#{ExerciseCode}
 	</delete>
-	
+<!-- 	기초정보 있나 확인 -->
 	<insert id="basicInformation" parameterType="basicInformation">
 		insert into user_basic_information(username,age,sex,height,weight,drinking,frequency,purpose,job,dictum)
 		value(#{username},#{age},#{sex},#{height},#{weight},#{drinking},#{frequency},#{purpose},#{job},#{dictum})
 	</insert>
+<!-- 	아이디 중복확인 -->
+	<select id="idChk" resultType="Integer">
+		select count(*) from user where username=#{username}
+	</select>
+<!-- 	로그인시 아이디 비번확인 -->
+	<select id="LoginChk" resultType="Integer">
+		select count(*) from user where username=#{username} and password=#{password}
+	</select>
 </mapper>

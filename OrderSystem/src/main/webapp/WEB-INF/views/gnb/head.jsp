@@ -48,6 +48,38 @@
 				</nav>
 			</div>
 		</div>
+		<script>
+			$(document).ready(function(){
+				var obj = document.loginFrom;
+				
+				$("#login_btn").click(function(){
+					
+						if(obj.username.value.length == 0 || obj.password.value.length == 0){
+							$(".window").css("height","380px");
+							document.getElementById("LoginChk").innerHTML = ("<span style='color:red;'>아이디와 비밀번호를 입력해주세요</span>");
+// 							obj.username.focus();
+						}else{
+							$.ajax({
+								type:"POST",
+								url:"${pageContext.request.contextPath}/LoginChk",
+								data:{
+									"username":obj.username.value,
+									"password":obj.password.value
+								},
+								success:function(data){
+									if(data == 0){
+										$(".window").css("height","380px");
+										document.getElementById("LoginChk").innerHTML = ("<span style='color:green;'>아이디 또는 비밀번호를 다시 확인하세요.</span>");
+										obj.password.focus();
+									}else{
+										obj.submit();
+									}
+								}
+							});
+						}
+				});
+			});
+		</script>
 		<!-- 		로그인 레이어 팝업 -->
 		<div id="wrap">
 			<div id="container">
@@ -57,13 +89,14 @@
 <!-- 							<h1 id="login_title">TRAINING BOT</h1> -->
 <!-- 							<a href="#" class="close">X</a> -->
 							<div class="login_input">
-								<form method="post" action="login">
+								<form method="post" name="loginFrom" action="login">
 								<ul>
-									<li><i class="far fa-user"></i><input type="text" name="username" placeholder="User name" class="inputId"></li>
+									<li><i class="far fa-user"></i><input type="text" id="loginUsername" name="username" placeholder="User name" class="inputId"></li>
 									<li><hr></li>
-									<li class="pw"><i class="material-icons">lock_open</i><input type="password" name="password" placeholder="Password" class="inputPw"></li>
+									<li class="pw"><i class="material-icons">lock_open</i><input type="password" id="loginPassword" name="password" placeholder="Password" class="inputPw"></li>
 									<li><hr></li>
-									<li><button type="submit" class="login_btn" value="LogIn">LogIn</button></li>
+									<li id="LoginChk"></li>
+									<li><button type="button" class="login_btn" id="login_btn" value="LogIn">LogIn</button></li>
 								</ul>
 								</form>
 							</div>

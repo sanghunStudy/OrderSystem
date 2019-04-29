@@ -41,5 +41,9 @@ public interface UserDao {
 
 	void basicInformation(basicInformation bI);
 
+	int idChk(String username);
+
+	int LoginChk(UserVO user);
+
 
 }

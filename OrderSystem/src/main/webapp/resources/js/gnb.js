@@ -81,6 +81,8 @@ $(function(){
 function wrapWindowByMask(){
 	 $(".inputId").val("");
 	 $(".inputPw").val("");
+	 $("#LoginChk").text("");
+	 $(".window").css("height","330px");
     //화면의 높이와 너비를 구한다.
     var maskHeight = $(document).height();  
     var maskWidth = "100%";

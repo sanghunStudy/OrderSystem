@@ -138,4 +138,18 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	//아이디 중복체크
+	@Override
+	public int idChk(String username) {
+		
+		return dao.idChk(username);
+		
+	}
+	//로그인 체크
+	@Override
+	public int LoginChk(UserVO user) {
+		// TODO Auto-generated method stub
+		return dao.LoginChk(user);
+	}
+
 }

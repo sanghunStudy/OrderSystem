@@ -38,4 +38,8 @@ public interface UserService {
 	void ExerciseJournalDel(int exerciseCode);
 
 	void basicInformation(basicInformation bI);
+
+	int idChk(String username);
+
+	int LoginChk(UserVO user);
 }

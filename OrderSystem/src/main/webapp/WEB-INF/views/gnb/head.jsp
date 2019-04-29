@@ -18,12 +18,13 @@
 			<ul class="login">
 				<c:choose>
 					<c:when
-						test="${sessionScope.user eq null and sessionScope.admin eq null}">
+						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}">
 						<%-- 						<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
 						<li><a href="#" class="openMask">LOGIN</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>
 					</c:when>
 					<c:otherwise>
+						<li><a>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li>
 						<li><a href="member/MyPage">MY PAGE</a></li>
 						<li><a href="logout">LOGOUT</a></li>
 					</c:otherwise>
@@ -42,7 +43,7 @@
 						<li><a href="#">TRAINING</a></li>
 						<li><a href="#">ROUTINE</a></li>
 						<li><a href="#">MENU</a></li>
-						<li><a href="#">PERSONAL TRAINER</a></li>
+						<li><a href="trainer/list">PERSONAL TRAINER</a></li>
 					</ul>
 				</nav>
 			</div>

@@ -4,6 +4,29 @@ public class UserVO {
 
 	private String username;
 	private String password;
+	private int point;
+	private String authority;
+	private int score;
+	
+	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	public String getUsername() {
 		return username;
 	}

@@ -20,6 +20,7 @@ import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TestList;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
 
 @Controller
@@ -29,21 +30,41 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-
+	
+	@RequestMapping("/analysis")
+	private String analysis() {
+		return path + "analysis";
+	}
+	
+//	�쉶�썝 湲곗큹�젙蹂� �엯�젰 �솕硫�
+	@RequestMapping(value="/basicInformation",method=RequestMethod.GET)
+	String basicInformation(String manager) {
+		
+		return path+ "basicInformation";
+	}
+// �쉶�썝 湲곗큹�젙蹂� �엯�젰 泥섎━
+	@RequestMapping(value="/basicInformation",method=RequestMethod.POST)
+	String basicInformation(basicInformation bI,HttpSession session) {
+		String id = (String)session.getAttribute("user");
+		bI.setUsername(id);
+		service.basicInformation(bI);
+		return "redirect:MyPage";
+	}
+	
 	@RequestMapping(value = "/ExerciseJournal", method = RequestMethod.GET)
 	public String ExerciseJournal() {
 
 		return path + "ExerciseJournal";
 	}
 	
-	//운동일지 새로운 버전
+	//�슫�룞�씪吏� �깉濡쒖슫 踰꾩쟾
 	@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
 	public String MyExerciseJournal() {
 		
 		return path + "MyExerciseJournal";
 	}
 	
-	// 달력에서 날짜 클릭시 운동일지 작성하는 메서드
+	// �떖�젰�뿉�꽌 �궇吏� �겢由��떆 �슫�룞�씪吏� �옉�꽦�븯�뒗 硫붿꽌�뱶
 	@RequestMapping(value = "/ExerciseJournalSubmit", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String, Object>> saveCode(@RequestBody List<Map<String, Object>> param, HttpSession session) {
@@ -53,13 +74,13 @@ public class UserController {
 		return param;
 	}
 
-	// 운동일지 페이지 호출시 자동 실행되며 list를 가져오는 ajax
+	// �슫�룞�씪吏� �럹�씠吏� �샇異쒖떆 �옄�룞 �떎�뻾�릺硫� list瑜� 媛��졇�삤�뒗 ajax
 	@RequestMapping(value = "/ExerciseJournalList", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> ExerciseJournalList(Principal principal) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-		// 현재 로그인중인 사용자의 아이디로 리스트를 가져온다.
+		// �쁽�옱 濡쒓렇�씤以묒씤 �궗�슜�옄�쓽 �븘�씠�뵒濡� 由ъ뒪�듃瑜� 媛��졇�삩�떎.
 		List<ExerciseJournal> EJ = service.ExerciseJournalList(principal.getName());
 
 		map.put("EJ", EJ);
@@ -73,7 +94,7 @@ public class UserController {
 		return path + "ExerciseJournalUpdate";
 	}
 
-	// 운동일지 수정처리
+	// �슫�룞�씪吏� �닔�젙泥섎━
 	@RequestMapping(value = "/ExerciseJournalUpdate", method = RequestMethod.POST)
 	public String ExerciseJournalUpdate(TestList test) {
 		// @RequestParam(value="exerciseContentsCode", required=true) List<Integer>
@@ -94,7 +115,7 @@ public class UserController {
 
 		return "redirect:ExerciseJournal";
 	}
-	// 운동일지 제목 클릭시 상세내용 가져오기 ORM
+	// �슫�룞�씪吏� �젣紐� �겢由��떆 �긽�꽭�궡�슜 媛��졇�삤湲� ORM
 //	@RequestMapping(value="/ExerciseJournalOne", method = RequestMethod.POST)
 //	@ResponseBody
 //	public HashMap<String, Object> ExerciseJournalOne(int exerciseCode){
@@ -105,7 +126,7 @@ public class UserController {
 //		return map;
 //	}
 
-	// 운동일지 제목 클릭시 상세내용 가져오기 화면전환 버전
+	// �슫�룞�씪吏� �젣紐� �겢由��떆 �긽�꽭�궡�슜 媛��졇�삤湲� �솕硫댁쟾�솚 踰꾩쟾
 	@RequestMapping(value = "/ExerciseJournalView", method = RequestMethod.GET)
 	public String ExerciseJournalOne(int exerciseCode, Model model) {
 

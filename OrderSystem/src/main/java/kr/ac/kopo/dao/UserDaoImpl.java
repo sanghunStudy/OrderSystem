@@ -44,13 +44,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public boolean login(UserVO user) {
-		if(sql.selectOne("user.login", user)==null) {
-			return false;
-		}
-		else {
-			return true;
-		}
+	public UserVO login(UserVO user) {
+		
+		return sql.selectOne("user.login", user);
 	}
 
 	@Override
@@ -112,6 +108,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void ExerciseJournalDel(int exerciseCode) {
 		sql.delete("user.exerciseJournalDel", exerciseCode);
+		
+	}
+	//회원 기초정보 입력
+	@Override
+	public void basicInformation(kr.ac.kopo.model.basicInformation bI) {
+		sql.insert("user.basicInformation", bI);
 		
 	}
 

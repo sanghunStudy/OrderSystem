@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(UserVO user) {
+	public UserVO login(UserVO user) {
 		return dao.login(user);
 	}
 
@@ -129,6 +129,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void ExerciseJournalDel(int exerciseCode) {
 		dao.ExerciseJournalDel(exerciseCode);
+	}
+
+	//회원 기초정보 입력
+	@Override
+	public void basicInformation(kr.ac.kopo.model.basicInformation bI) {
+		dao.basicInformation(bI);
+		
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserVO;
 
 @Repository
@@ -127,6 +128,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int LoginChk(UserVO user) {
 		return sql.selectOne("user.LoginChk", user);
+	}
+
+	@Override
+	public void promotion(TrainerProfile pro) {
+		sql.insert("user.promotion", pro);
 	}
 
 }

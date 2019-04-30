@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+
+	<!-- 트레이너 신청 -->
+	<insert id="promotion" parameterType="TrainerProfile">
+		insert into trainer_profile(username, photo, name, sex, career)
+		values(#{username},#{photo},#{name},#{sex},#{career})
+	</insert>
+	
 	<select id="select" resultType="UserVO">
 		select * from user where username
 		= #{username}

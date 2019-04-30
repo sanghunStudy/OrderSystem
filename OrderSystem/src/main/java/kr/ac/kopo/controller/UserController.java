@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TestList;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
@@ -139,6 +140,21 @@ public class UserController {
 	public String MyPage() {
 
 		return path + "MyPage";
+	}
+	
+	//트레이너 신청
+	@RequestMapping(value="/promotion", method=RequestMethod.GET)
+	public String promotion() {
+		
+		return path + "promotion";
+	}
+	@RequestMapping(value="/promotion", method=RequestMethod.POST)
+	public String promotion(TrainerProfile pro, HttpSession session) {
+		String username = (String)session.getAttribute("user");
+		pro.setUsername(username);
+		service.promotion(pro);
+	
+		return "redirect:MyPage";
 	}
 
 	@RequestMapping("/list")

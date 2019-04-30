@@ -89,7 +89,7 @@
 <!-- 							<h1 id="login_title">TRAINING BOT</h1> -->
 <!-- 							<a href="#" class="close">X</a> -->
 							<div class="login_input">
-								<form method="post" name="loginFrom" action="login">
+								<form method="post" name="loginFrom" action="${pageContext.request.contextPath}/login">
 								<ul>
 									<li><i class="far fa-user"></i><input type="text" id="loginUsername" name="username" placeholder="User name" class="inputId"></li>
 									<li><hr></li>

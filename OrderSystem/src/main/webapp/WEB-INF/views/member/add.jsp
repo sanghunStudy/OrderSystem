@@ -125,7 +125,7 @@ var obj;
                         <span class="graybox"></span>
                         <ul>
                             <li>Member</li>
-                            <li>Trainer</li>
+<!--                             <li>Trainer</li> -->
                         </ul>
                     </div>
                     <div class="joinbox">

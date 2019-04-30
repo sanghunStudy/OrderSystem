@@ -43,7 +43,7 @@
 						<li><a href="#">TRAINING</a></li>
 						<li><a href="#">ROUTINE</a></li>
 						<li><a href="#">MENU</a></li>
-						<li><a href="trainer/list">PERSONAL TRAINER</a></li>
+						<li><a href="${pageContext.request.contextPath}/trainer/list">PERSONAL TRAINER</a></li>
 					</ul>
 				</nav>
 			</div>

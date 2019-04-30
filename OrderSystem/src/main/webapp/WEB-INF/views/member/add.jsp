@@ -9,23 +9,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>회원가입</title>
 <script>
-var obj;
 
+var obj;
 	$(document).ready(function(){
-		
-		Chk();
-	});
-	
-	
-	//유효성검사
-	function Chk(){
-		obj = document.fr;
-		
-		obj.username.focus();
-		$("#username").blur(function(){
+		//유효성검사				
+		$("#SignUp").click(function(){
+			obj = document.fr;
+			
 			if(obj.username.value.length == 0){
 				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>아이디를 입력해주세요</span>");
-				obj.username.focus();
 			}else{
 				$.ajax({
 					type:"POST",
@@ -36,49 +28,86 @@ var obj;
 					success:function(data){
 						if(data == 0){
 							document.getElementById("idchk").innerHTML = ("<span style='color:green;'>사용 가능한 아이디 입니다.</span>");
-							obj.password.focus();
-						}else{
-							obj.username.focus();
+
+							
+								if(obj.password.value.length == 0){
+									document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>비밀번호를 입력해주세요</span>");
+								}else{
+									document.getElementById("pwchk").innerHTML = ("");
+								}
+							
+								if(obj.repassword.value.length > 0){
+									if(obj.password.value.length > 0 && repassword.value.length > 0){
+										if(obj.password.value == obj.repassword.value){
+											document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
+											obj.submit();
+										}else{
+											document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
+										}
+									}
+									
+								}else{
+									obj.repassword.value = "";
+									document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 다시 입력해주세요</span>");
+								}
+							}else{
 							document.getElementById("idchk").innerHTML = ("<span style='color:red;'>이미 사용중인 아이디 입니다.</span>");
 						}
 					}
 				});
 			}	
 		});
-		
 
-		$("#password").blur(function(){
-			if(obj.password.value.length == 0){
-				document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>비밀번호를 입력해주세요</span>");
-// 				obj.password.focus();			
-			}else{
-				document.getElementById("pwchk").innerHTML = ("");
-				obj.repassword.focus();
-			}
-		});
+	});
+	
+	
 		
-		$("#repassword").blur(function(){
-			if(obj.repassword.value.length == 0){
-				document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 다시 입력해주세요</span>");
-// 				obj.repassword.focus();			
-			}else if(obj.password.value == obj.repassword.value){
-				console.log(obj.repassword.value);
-				document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
-				$("#SignUp").click(function(){
-					if(obj.password.value.length > 0 && repassword.value.length > 0){
-						if(obj.password.value == obj.repassword.value){
-							obj.submit();
+	
+		//아이디 공백 검사 및 중복체크
+		function userNameChk(){
+			obj = document.fr;
+			if(obj.username.value.length > 0){
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/idChk",
+					data:{
+						"username":obj.username.value
+					},
+					success:function(data){
+						if(data == 0){
+							document.getElementById("idchk").innerHTML = ("<span style='color:green;'>사용 가능한 아이디 입니다.</span>");
+						}else{
+							document.getElementById("idchk").innerHTML = ("<span style='color:red;'>이미 사용중인 아이디 입니다.</span>");
 						}
 					}
-				});
+				});	
 			}else{
-				obj.repassword.focus();
-				obj.repassword.value = "";
-				document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
+				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>아이디를 입력해주세요</span>");
 			}
-			
-		});
-	}
+		}
+		
+		//비밀번호 공백 검사
+		function userPasswordChk(){
+			if(obj.password.value.length > 0){
+				document.getElementById("pwchk").innerHTML = ("");
+			}else{
+				document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>비밀번호를 입력해주세요</span>");			
+			}
+		}
+		
+		//비밀번호 확인 검사
+		function userRePasswordChk(){
+			if(repassword.value.length > 0){
+				if(obj.password.value == obj.repassword.value){
+					document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
+				}else{
+					document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
+				}
+			}else{
+				document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 재 입력 해주세요</span>");
+			}
+		}
+		
 </script>
 </head>
 <jsp:include page="../gnb/head.jsp" flush="true" />
@@ -106,21 +135,21 @@ var obj;
                                 <li>
                                     <ul>
                                         <li><label>User ID</label></li>
-                                        <li><input type="text" id="username" name="username"></li>
+                                        <li><input type="text" id="username" name="username" onblur="userNameChk()"></li>
                                         <li><span id="idchk"></span></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
                                         <li><label>Password</label></li>
-                                        <li><input type="password" id="password" name="password"></li>
+                                        <li><input type="password" id="password" name="password" onblur="userPasswordChk()"></li>
                                         <li><span id="pwchk"></span></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <ul>
                                         <li><label>Confirm Password</label></li>
-                                        <li><input type="password" id="repassword" name="repassword"></li>
+                                        <li><input type="password" id="repassword" name="repassword" onblur="userRePasswordChk()"></li>
                                         <li><span id="rePwchk"></span></li>
                                     </ul>
                                 </li>

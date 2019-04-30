@@ -268,6 +268,7 @@
 	$(document).on("click","#eJSubmit",function(){
 		var ClickDateStr = $("#date1").val();
 		var DayTitle = $("#inputTitle").val();
+		var userWeight = $("#userWeight").val();
 // 		console.log("작성완료");
 		
 		//배열선언
@@ -278,7 +279,11 @@
 		},
 		{
 			"title":DayTitle
-		});
+		},
+		{
+			"userWeight":userWeight
+		}
+		);
 		
 		//ul태그중 클래스명이 input_item을 포함하는 것들의 input태그의 값 가져와서 배열에 넣는다.
 		$("ul[class*='input_item']").find("input").each(function(){
@@ -324,13 +329,17 @@
 	<div>
 		<h1>MyExerciseJournal</h1>
 		<input type="text" name="date" id="date1" size="12" />
-		<div>
-			<span class="icon"><i class="fas fa-grin"></i></span>
-			<span class="icon"><i class="far fa-frown"></i></span>
-			<span class="icon"><i class="far fa-tired"></i></span>
-		</div>
+<!-- 		<div> -->
+<!-- 			<span class="icon"><i class="fas fa-grin"></i></span> -->
+<!-- 			<span class="icon"><i class="far fa-frown"></i></span> -->
+<!-- 			<span class="icon"><i class="far fa-tired"></i></span> -->
+<!-- 		</div> -->
 		
+		<label>제 목</label>
 		<input type="text" id="inputTitle"/>
+		
+		<label>체 중</label>
+		<input type="number" id="userWeight" min="0"/>
 		<div>
 
 			<div id="input-form">

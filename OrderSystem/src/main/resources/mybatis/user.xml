@@ -45,8 +45,8 @@
 	</delete>
 	<!-- 운동일지 제목 입력 -->
 	<insert id="saveCode">
-		insert into exercise_item (id,Exercise_date,title)
-		values(#{id},#{ExerciseDate},#{title})
+		insert into exercise_item (id,Exercise_date,title,userWeight)
+		values(#{id},#{ExerciseDate},#{title},#{userWeight})
 	</insert>
 	<!-- 운동일지 운동 종목 입력 -->
 	<insert id="saveTitle">

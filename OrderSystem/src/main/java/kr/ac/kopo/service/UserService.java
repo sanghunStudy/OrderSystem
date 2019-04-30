@@ -1,6 +1,5 @@
 package kr.ac.kopo.service;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 

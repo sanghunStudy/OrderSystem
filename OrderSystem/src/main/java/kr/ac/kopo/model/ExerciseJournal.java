@@ -10,10 +10,21 @@ public class ExerciseJournal {
 	private String start;
 	private String id;
 	private String title;
+	private int userWeight;
 	private String ExerciseName;
 	
 	List<ExerciseContents> details;
 	
+	public int getUserWeight() {
+		return userWeight;
+	}
+
+
+	public void setUserWeight(int userWeight) {
+		this.userWeight = userWeight;
+	}
+
+
 	public List<ExerciseContents> getDetails() {
 		return details;
 	}

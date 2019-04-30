@@ -1,11 +1,8 @@
 package kr.ac.kopo.service;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,16 +61,20 @@ public class UserServiceImpl implements UserService {
 
 		String ExerciseDate = "";
 		String title = "";
+		int userWeight = 0;
+		
 		for (int i = 0; i < param.size(); i++) {
 			if (param.get(i).get("ExerciseDate") != null)
 				ExerciseDate = (String) param.get(i).get("ExerciseDate");
 			if (param.get(i).get("title") != null)
 				title = (String) param.get(i).get("title");
+			if(param.get(i).get("userWeight") != null)
+				userWeight = Integer.parseInt((String) param.get(i).get("userWeight"));
 		}
 		map.put("id", id);
 		map.put("ExerciseDate", ExerciseDate);
 		map.put("title", title);
-
+		map.put("userWeight", userWeight);
 		dao.saveCode(map);
 
 		int Set = 0;

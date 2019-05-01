@@ -79,11 +79,21 @@ new Chart(document.getElementById("doughnut-chart"), {
 				<td>ป๓ลย</td>
 			</tr>
 			
-			<c:forEach var="item" items="${list}">
+				<c:forEach var="item" items="${list}">
 				<tr>
-					<td></td>
-				</tr>	
-			</c:forEach>
+					<td>${item.exerciseName}</td>
+				
+					<c:forEach var="details" items="${item.details}" begin="0">
+						
+							<td>${details.exerciseSet}</td>
+							<td>${details.exerciseReps}</td>
+							<td>${details.exerciseLb}</td>
+							
+					</c:forEach>
+					</tr>
+				</c:forEach>
+
+		
 		</table>
 	</div>
 </div>

@@ -3,7 +3,7 @@ $(function() {
 	var modal = document.getElementById('calcModal');
 
 	// Get the button that opens the modal
-	var btn = document.getElementById("openCalc");
+	var btn = document.getElementById("calBtn");
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];

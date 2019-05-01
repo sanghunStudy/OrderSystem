@@ -62,7 +62,7 @@ $(function() {
 		  data: {
 		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
 		    datasets: [{ 
-		        data: [60,66,68,72,74,76,80,88,94,102],
+		        data: [120,120,125,125,125,130,130,120,115,110],
 		        label: "벤치",
 		        borderColor: "#00f2c3",
 		        pointBackgroundColor:  "#00f2c3",
@@ -142,7 +142,7 @@ $(function() {
 		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
 		    datasets: [{ 
 		        data: [70,71,72,68,69,70,71,73,74,75.6],
-		        label: "데드 리프트",
+		        label: "체중 변화(in Kg)",
 		        borderColor: "hsla(210, 94%, 54%, 1)",
 		        pointBackgroundColor:  "#3e95cd",
 		        backgroundColor:grd,
@@ -154,7 +154,7 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '데드 리프트 중량 변화 (in Kg)'
+		      text: '체중 변화 그래프'
 		    }
 		  }
 		});

@@ -193,7 +193,7 @@ body {
 
 /*로고*/
 /*메인아이콘들*/
-body {
+nav .menu {
    padding: 0;
    margin: 0;
    background: #596778;

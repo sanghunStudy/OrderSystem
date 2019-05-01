@@ -3,60 +3,45 @@ package kr.ac.kopo.model;
 public class ExerciseContents {
 
 	
-	private int ExerciseContentsCode;
-	private int ExerciseTitleCode;
-	private Integer ExerciseSet;
-	private Integer ExerciseReps;
-	private Integer ExerciseLb;
-	
-	
-	
-	
-
+	private int exerciseContentsCode;
+	private int exerciseTitleCode;
+	private Integer exerciseSet;
+	private Integer exerciseReps;
+	private Integer exerciseLb;
 	public int getExerciseContentsCode() {
-		return ExerciseContentsCode;
+		return exerciseContentsCode;
 	}
-
 	public void setExerciseContentsCode(int exerciseContentsCode) {
-		ExerciseContentsCode = exerciseContentsCode;
+		this.exerciseContentsCode = exerciseContentsCode;
 	}
-
-	public ExerciseContents() {
-		super();
-	}
-	
-	public ExerciseContents(int ExerciseTitleCode ,int ExerciseSet, int ExerciseReps, int ExerciseLb, int ExerciseContentsCode ) {
-		super();
-		this.ExerciseContentsCode = ExerciseContentsCode;
-		this.ExerciseTitleCode = ExerciseTitleCode;
-		this.ExerciseSet = ExerciseSet;
-		this.ExerciseReps = ExerciseReps;
-		this.ExerciseLb = ExerciseLb;
-	}
-	
 	public int getExerciseTitleCode() {
-		return ExerciseTitleCode;
+		return exerciseTitleCode;
 	}
 	public void setExerciseTitleCode(int exerciseTitleCode) {
-		ExerciseTitleCode = exerciseTitleCode;
+		this.exerciseTitleCode = exerciseTitleCode;
 	}
 	public Integer getExerciseSet() {
-		return ExerciseSet;
+		return exerciseSet;
 	}
 	public void setExerciseSet(Integer exerciseSet) {
-		ExerciseSet = exerciseSet;
+		this.exerciseSet = exerciseSet;
 	}
 	public Integer getExerciseReps() {
-		return ExerciseReps;
+		return exerciseReps;
 	}
 	public void setExerciseReps(Integer exerciseReps) {
-		ExerciseReps = exerciseReps;
+		this.exerciseReps = exerciseReps;
 	}
 	public Integer getExerciseLb() {
-		return ExerciseLb;
+		return exerciseLb;
 	}
 	public void setExerciseLb(Integer exerciseLb) {
-		ExerciseLb = exerciseLb;
+		this.exerciseLb = exerciseLb;
 	}
+	
+	
+	
+	
+
 	
 }

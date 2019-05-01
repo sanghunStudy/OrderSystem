@@ -72,7 +72,7 @@ public class UserController {
 		return param;
 	}
 
-	// �슫�룞�씪吏� �럹�씠吏� �샇異쒖떆 �옄�룞 �떎�뻾�릺硫� list瑜� 媛��졇�삤�뒗 ajax
+	/*// �슫�룞�씪吏� �럹�씠吏� �샇異쒖떆 �옄�룞 �떎�뻾�릺硫� list瑜� 媛��졇�삤�뒗 ajax
 	@RequestMapping(value = "/ExerciseJournalList", method = RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> ExerciseJournalList(HttpSession session) {
@@ -83,7 +83,21 @@ public class UserController {
 
 		map.put("EJ", EJ);
 		return map;
-	}
+	}*/
+	
+	// �슫�룞�씪吏� �럹�씠吏� �샇異쒖떆 �옄�룞 �떎�뻾�릺硫� list瑜� 媛��졇�삤�뒗 ajax
+			@RequestMapping(value = "/ExerciseJournalList", method = RequestMethod.GET)
+			
+			public String ExerciseJournalList(Model model,HttpSession session) {
+				String id = (String)session.getAttribute("user");
+				HashMap<String, Object> map = new HashMap<String, Object>();
+
+				// �쁽�옱 濡쒓렇�씤以묒씤 �궗�슜�옄�쓽 �븘�씠�뵒濡� 由ъ뒪�듃瑜� 媛��졇�삩�떎.
+				List<ExerciseJournal> EJ = service.ExerciseJournalList(id);
+				/*map.put("EJ", EJ);*/
+				model.addAttribute("EJ", EJ);
+				return path + "MyExerciseJournalList";
+			}
 
 	@RequestMapping(value = "/ExerciseJournalUpdate", method = RequestMethod.GET)
 	public String ExerciseJournalUpdate(int exerciseCode, Model model) {

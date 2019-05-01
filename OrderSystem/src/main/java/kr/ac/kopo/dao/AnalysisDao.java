@@ -6,6 +6,6 @@ import kr.ac.kopo.model.ExerciseJournal;
 
 public interface AnalysisDao {
 
-	List<ExerciseJournal> list();
+	List<ExerciseJournal> list(String id);
 
 }

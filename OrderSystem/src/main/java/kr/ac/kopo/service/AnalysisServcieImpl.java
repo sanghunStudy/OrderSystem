@@ -14,8 +14,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 	AnalysisDao dao;
 	
 	@Override
-	public List<ExerciseJournal> list() {
-		return dao.list();
+	public List<ExerciseJournal> list(String id) {
+		return dao.list(id);
 	}
+
+
+
 
 }

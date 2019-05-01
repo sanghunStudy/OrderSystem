@@ -14,8 +14,8 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	SqlSession sql;
 	
 	@Override
-	public List<ExerciseJournal> list() {
-		return sql.selectList("statistics.exerList");
+	public List<ExerciseJournal> list(String id) {
+		return sql.selectList("statistics.exerList",id);
 	}
 
 }

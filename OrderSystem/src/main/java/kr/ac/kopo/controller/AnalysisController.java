@@ -25,12 +25,14 @@ public class AnalysisController {
 AnalysisService service; 
 	
 @RequestMapping(value="/analysis")
-	private String analysis(Model model, String id, HttpSession session) {
-	
-		List<ExerciseJournal> exercise = service.list();
+	private String analysis(Model model, String id, HttpSession session,ExerciseJournal exer) {
 		id = (String)session.getAttribute("user");
+		exer.setId(id);
+		List<ExerciseJournal> exercise = service.list(id);
+	
 		
 		model.addAttribute("list",exercise);
+		
 		
 		return "member/analysis";
 	}

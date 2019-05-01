@@ -78,7 +78,7 @@ new Chart(document.getElementById("doughnut-chart"), {
 				<td>세트수</td>
 				<td>상태</td>
 			</tr>
-			
+			<c:forEach var="item" items="${list}"></c:forEach>
 		</table>
 	</div>
 </div>

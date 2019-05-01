@@ -13,9 +13,17 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 
+<script>
+var modal = ".fas fa-calculator";
+$(modal).on('click',function() {
+	
+})
+
+</script>
 </head>
 <!-- 네비바 -->
 <jsp:include page="gnb/head.jsp" flush="true" />
+<jsp:include page="gnb/calculator.jsp" flush="true" />
 <body>
 	<div id="container">
 		<div class="section0"></div>

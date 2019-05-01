@@ -153,10 +153,20 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return dao.LoginChk(user);
 	}
-
+	//트레이너 신청
 	@Override
 	public void promotion(TrainerProfile pro) {
 		dao.promotion(pro);
+	}
+	//트레이너신청 리스트
+	@Override
+	public List<TrainerProfile> proList() {
+		return dao.proList();
+	}
+
+	@Override
+	public void grant(TrainerProfile pro) {
+		dao.grant(pro);
 	}
 
 }

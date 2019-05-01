@@ -129,10 +129,20 @@ public class UserDaoImpl implements UserDao {
 	public int LoginChk(UserVO user) {
 		return sql.selectOne("user.LoginChk", user);
 	}
-
+	//트레이너 신청
 	@Override
 	public void promotion(TrainerProfile pro) {
 		sql.insert("user.promotion", pro);
+	}
+	//트레이너 신청리스트
+	@Override
+	public List<TrainerProfile> proList() {
+		return sql.selectList("user.proList");
+	}
+
+	@Override
+	public void grant(TrainerProfile pro) {
+		sql.update("user.grant", pro);
 	}
 
 }

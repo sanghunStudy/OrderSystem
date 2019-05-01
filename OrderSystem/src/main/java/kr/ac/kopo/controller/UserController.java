@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -154,6 +155,28 @@ public class UserController {
 		service.promotion(pro);
 	
 		return "redirect:MyPage";
+	}
+	
+	//트레이너 신청 리스트
+	@RequestMapping(value="proList")
+	public String proList(Model model2) {
+		
+		List<TrainerProfile> proList = service.proList();
+		
+		model2.addAttribute("proList",proList);
+		
+		return path + "proList";
+	}
+	//트레이너 승인
+	@ResponseBody
+	@RequestMapping("/grant")
+	public JSONObject grant(TrainerProfile pro, HttpSession session) {
+		JSONObject json = new JSONObject();
+	
+		service.grant(pro);
+		json.put("success", true);
+		json.put("url",  "/user/grant");
+		return json;
 	}
 
 	@RequestMapping("/list")

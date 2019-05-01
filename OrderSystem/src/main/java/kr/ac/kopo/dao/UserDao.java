@@ -48,5 +48,9 @@ public interface UserDao {
 
 	void promotion(TrainerProfile pro);
 
+	List<TrainerProfile> proList();
+
+	void grant(TrainerProfile pro);
+
 
 }

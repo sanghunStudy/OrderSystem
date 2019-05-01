@@ -31,10 +31,7 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@RequestMapping("/analysis")
-	private String analysis() {
-		return path + "analysis";
-	}
+
 	
 //	�쉶�썝 湲곗큹�젙蹂� �엯�젰 �솕硫�
 	@RequestMapping(value="/basicInformation",method=RequestMethod.GET)

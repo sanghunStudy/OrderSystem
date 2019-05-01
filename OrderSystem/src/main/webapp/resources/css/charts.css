@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&subset=korean');
+
+*{margin:0; padding:0;}
+
+body {
+ background: #1e1e2f;
+font-family: 'Noto Sans KR', sans-serif;
+}
+
+.four-charts div{
+
+ display:inline-block;
+ background:#272a3d;
+ margin-bottom:30px;
+}
+
+#doughnutChart {
+
+
+}
+#radarChart {
+
+ width:400px;
+ height:300px;
+}
+.four-charts {
+ background: #1e1e2f;
+
+}
+.menu-box{
+width:100px;
+
+}
+.menu-bar {
+margin:0 auto;
+width: 50px;
+height:600px;
+border-radius:6px;
+background:#1d8cf8;
+position:fixed;
+ margin-left: 20px;
+}
+#wrapper{
+margin-left: 100px;
+
+}
+#another-chart div{
+display:inline-block;
+ background:#272a3d;
+ margin-bottom:30px;
+}
+#lineChart-weight{
+display:inline-block;
+}
+.exercise-list{
+	width:100%;
+}
+.exercise-list th,td{
+	color:#fff;
+}
+#exercise-list-box{
+	width:89.5vw;
+	height:300px;
+	background:#272a3d;
+	
+}

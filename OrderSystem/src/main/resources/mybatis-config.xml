@@ -31,5 +31,6 @@
 		<mapper resource="mybatis/reviewboard.xml"/>
 		<mapper resource="mybatis/user.xml"/>
 		<mapper resource="mybatis/trainer.xml"/>
+		<mapper resource="mybatis/statistics.xml"/>
 	</mappers>
 </configuration>

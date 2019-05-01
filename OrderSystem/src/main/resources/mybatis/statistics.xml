@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="statistics">
+
+	<resultMap type="ExerciseContents" id="ExerciseContents">
+		<result property="ExerciseContentsCode"
+			column="Exercise_contents_code" />
+		<result property="ExerciseSet" column="Exercise_set" />
+		<result property="ExerciseReps" column="Exercise_reps" />
+		<result property="ExerciseLb" column="Exercise_lb" />
+	</resultMap>
+
+	<resultMap type="ExerciseJournal" id="EJMap">
+		<id property="ExerciseCode" column="exercise_code"></id>
+		<result property="ExerciseName" column="Exercise_name" />
+		<collection property="details" resultMap="ExerciseContents" />
+	</resultMap>
+
+
+	<select id="exerList" parameterType="Integer"
+		resultMap="EJMap">
+		select
+		et.Exercise_name,ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et join exercise_item ei 
+		join exercise_contents ec
+		on et.Exercise_title_code =
+		ec.Exercise_title_code and et.Exercise_code = ei.exercise_code
+		where ei.id = #{id}
+	</select>
+</mapper>

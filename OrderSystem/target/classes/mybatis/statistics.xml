@@ -20,7 +20,7 @@
 
 	<select id="exerList" resultMap="EJMap">
 		select
-		et.exercise_code,et.Exercise_name,ec.Exercise_contents_code,
+		et.Exercise_name,ec.Exercise_contents_code,
 		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
 		from exercise_title et join exercise_item ei 
 		join exercise_contents ec

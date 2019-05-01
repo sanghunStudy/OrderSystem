@@ -51,7 +51,7 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '데드 리프트 중량 변화 (in Kg)'
+		      text: '스쿼트 중량 변화 (in Kg)'
 		    }
 		  }
 		});
@@ -74,7 +74,7 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '데드 리프트 중량 변화 (in Kg)'
+		      text: '벤치 프레스 중량 변화 (in Kg)'
 		    }
 		  }
 		});

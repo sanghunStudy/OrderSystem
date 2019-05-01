@@ -31,8 +31,8 @@ AnalysisService service;
 
 		
 		List<ExerciseJournal> exercise = service.list(id);
-		System.out.println("******" + service.list(id));
-
+		
+		
 		model.addAttribute("list",exercise);
 		
 		

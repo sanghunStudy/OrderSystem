@@ -15,7 +15,7 @@
 <body>
 
 	<header id="header_nav">
-		<div style="width: 1200px; margin: 0 auto;">
+		<div id="nav_box">
 			<ul class="login">
 				<c:choose>
 					<c:when

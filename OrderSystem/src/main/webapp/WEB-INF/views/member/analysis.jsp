@@ -74,23 +74,23 @@ new Chart(document.getElementById("doughnut-chart"), {
 		<table class="exercise-list">
 			<tr>
 				<td>이름</td>
-				<td>중량</td>
 				<td>세트수</td>
-				<td>상태</td>
+				<td>횟수</td>
+				<td>중량</td>
 			</tr>
 			
-				<c:forEach var="item" items="${list}">
-				<tr>
+				<c:forEach var="item" items="${list}" begin="0" varStatus="i">
+								
+					<c:forEach var="details" items="${item.details}" >
+			<tr>
 					<td>${item.exerciseName}</td>
-				
-					<c:forEach var="details" items="${item.details}" begin="0">
 						
 							<td>${details.exerciseSet}</td>
 							<td>${details.exerciseReps}</td>
 							<td>${details.exerciseLb}</td>
-							
+					</tr>				
 					</c:forEach>
-					</tr>
+			
 				</c:forEach>
 
 		

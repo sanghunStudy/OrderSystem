@@ -7,7 +7,14 @@ public class TrainerProfile {
 	private String name;
 	private String sex;
 	private String career;
+	private String addmission;
 	
+	public String getAddmission() {
+		return addmission;
+	}
+	public void setAddmission(String addmission) {
+		this.addmission = addmission;
+	}
 	public String getUsername() {
 		return username;
 	}

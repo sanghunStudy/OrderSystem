@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+
+</script>
 </head>
 <body>
 	<h1>트레이너 프로필 작성</h1>

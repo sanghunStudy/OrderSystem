@@ -44,4 +44,8 @@ public interface UserService {
 	int LoginChk(UserVO user);
 
 	void promotion(TrainerProfile pro);
+
+	List<TrainerProfile> proList();
+
+	void grant(TrainerProfile pro);
 }

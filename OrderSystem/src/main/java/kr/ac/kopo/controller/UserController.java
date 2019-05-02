@@ -59,7 +59,7 @@ public class UserController {
 	@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
 	public String MyExerciseJournal() {
 		
-		return path + "MyExerciseJournal";
+		return path + "MyExerciseJournal2";
 	}
 	
 	// �떖�젰�뿉�꽌 �궇吏� �겢由��떆 �슫�룞�씪吏� �옉�꽦�븯�뒗 硫붿꽌�뱶

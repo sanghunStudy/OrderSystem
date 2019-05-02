@@ -39,7 +39,7 @@ var obj;
 								if(obj.repassword.value.length > 0){
 									if(obj.password.value.length > 0 && repassword.value.length > 0){
 										if(obj.password.value == obj.repassword.value){
-											document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
+// 											document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
 											obj.submit();
 										}else{
 											document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
@@ -99,7 +99,7 @@ var obj;
 		function userRePasswordChk(){
 			if(repassword.value.length > 0){
 				if(obj.password.value == obj.repassword.value){
-					document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
+// 					document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
 				}else{
 					document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
 				}

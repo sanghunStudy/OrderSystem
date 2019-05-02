@@ -27,7 +27,7 @@
 					<c:otherwise>
 						<li><a>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li>
 						<li><a href="member/MyPage">MY PAGE</a></li>
-						<li><a href="logout">LOGOUT</a></li>
+						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
 				<li><a href="${pageContext.request.contextPath}/notice/list">FAQ</a></li>

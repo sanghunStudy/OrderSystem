@@ -15,7 +15,7 @@ $(window).load(function(){
 
 
 
-//캐러셀
+//스크롤 페이지
 function go(){
 
     $("html,body").on("mousewheel",function(c){

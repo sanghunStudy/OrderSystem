@@ -20,6 +20,7 @@
 </style>
 </head>
 <body>
+<div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
 	<div class="menu-icons"><a href="analysis"><i class="fas fa-chart-bar"></i></a></div>
@@ -105,6 +106,7 @@ new Chart(document.getElementById("doughnut-chart"), {
 		
 		</table>
 	</div>
+</div>
 </div>
 </body>
 </html>

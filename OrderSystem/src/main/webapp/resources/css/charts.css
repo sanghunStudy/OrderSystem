@@ -28,7 +28,7 @@ font-family: 'Noto Sans KR', sans-serif;
 
 }
 .menu-box{
-width:100px;
+width:90px;
 
 }
 .menu-bar {
@@ -42,7 +42,7 @@ position:fixed;
      top: 15%;
 }
 #wrapper{
-margin-left: 100px;
+margin-left: 90px;
 
 }
 #another-chart div{
@@ -77,4 +77,7 @@ display:inline-block;
 .menu-icons a{
 	color:#fff;
 	text-decoration:none;
+}
+#fullBox{
+	width:1024px;
 }

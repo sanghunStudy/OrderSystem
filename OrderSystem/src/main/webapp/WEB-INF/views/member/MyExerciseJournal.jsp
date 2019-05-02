@@ -356,17 +356,17 @@
 			</ul>
 			<div id="exercise_item">
 				<div id="tab-1" class="tab-content current">
-					<span class="itemsName">벤치프레스</span><span class="itemsName">인클라인 벤치 프레스</span>
+					<span class="itemsName">Bench Press</span><span class="itemsName">인클라인 벤치 프레스</span>
 				</div>
 
 
 				<div id="tab-2" class="tab-content">
-					<span class="itemsName">데드리프트</span> <span class="itemsName">바벨로우</span>
+					<span class="itemsName">Deal Lift</span> <span class="itemsName">바벨로우</span>
 				</div>
 
 
 				<div id="tab-3" class="tab-content">
-					<span class="itemsName">스쿼트</span> <span class="itemsName">런지</span>
+					<span class="itemsName">Squat</span> <span class="itemsName">런지</span>
 				</div>
 
 				<div id="tab-4" class="tab-content">

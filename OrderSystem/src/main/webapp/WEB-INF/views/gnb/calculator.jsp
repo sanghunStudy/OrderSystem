@@ -201,7 +201,7 @@
 				<div id="tab-2" class="tab-content">
 					<h1>칼로리계산기</h1>
 					<div id="exam">
-						<table border=1>
+						<table>
 							<tr>
 								<td>성별</td>
 								<td><select v-model="sex">
@@ -247,12 +247,12 @@
 								</select></td>
 							</tr>
 						</table>
-						<table border=1>
+						<table>
 							<tr>
 								<td>기초대사량</td>
 								<td>추정에너지요구량</td>
 							</tr>
-							<tr>
+							<tr id="calSum">
 								<td>{{Math.round(sum)}}</td>
 								<td>{{Math.round(goalCal)}}</td>
 							</tr>

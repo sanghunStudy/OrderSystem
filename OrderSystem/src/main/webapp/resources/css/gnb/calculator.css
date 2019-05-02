@@ -16,11 +16,25 @@
 
 /* Modal Content/Box */
 .modal-content {
-	background-color: #fefefe;
+	background-color: #0c0a0d;
 	margin: 15% auto;
 	padding: 20px;
-	border: 1px solid #888;
+	/*border: 1px solid #888; */
+	color: #d9d2da;
 	width: 560px;
+}
+.modal-content input {
+	background-color : #463f47;
+	color : #f9ca08;
+	border: none;
+}
+.modal-content select {
+	background-color : #463f47;
+	color : #f9ca08;
+	border: none;
+}
+.calSum {
+	color : #f9ca08;
 }
 /* The Close Button */
 .close {
@@ -39,6 +53,7 @@
 .calculator-tabs{
   width: 500px;
   margin: 0 auto;
+  font-family: 'Apple SD Gothic Neo',arial,sans-serif;
 }
 
 ul.tabs{
@@ -55,20 +70,21 @@ ul.tabs li{
 }
 
 ul.tabs li.current{
-  background: #ededed;
-  color: #222;
+  background: #878288;
+  color: #d6d1d8;
 }
 
 .tab-content{
   display: none;
-  background: #ededed;
+  background: #352e36;
   padding: 15px;
 }
 
 .tab-content.current{
   display: inherit;
+  font-family: 'Apple SD Gothic Neo',arial,sans-serif;
 }
 #onet{
 	text-align:center;
-	border:1px solid black;
+	border:1px solid #463f47;
 }

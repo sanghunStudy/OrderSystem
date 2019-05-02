@@ -100,14 +100,14 @@
 				<div id="tab-1" class="tab-content current">
 					<div id="app">
 						<label>사용중량</label> <input v-model="x" type="number" id="kg">
-						<label>반복횟수</label> <input v-model="y" type="number" id="reps"><br>
+						<label>반복횟수</label> <input v-model="y" type="number" id="reps">
 						<label>추산1RM : </label> <span id="onerm">{{ sum }}</span>
 
 						<table id="onet">
 							<thead>
 								<tr>
-									<th>Warm up set</th>
-									<th>%1RM</th>
+									<th>Warm up</th>
+									<th>1RM(%)</th>
 									<th>중량</th>
 									<th>reps</th>
 									<th>셋트당 휴식시간</th>

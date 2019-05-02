@@ -28,4 +28,38 @@
 		ec.Exercise_title_code and et.Exercise_code = ei.exercise_code
 		where ei.id = #{id}
 	</select>
+	
+	<select id="deadArray" resultMap="EJMap">
+			select
+		et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et join exercise_item ei 
+		join exercise_contents ec
+		on et.Exercise_title_code =
+		ec.Exercise_title_code and et.Exercise_code = ei.exercise_code
+		where ei.id = #{id} and et.Exercise_title_code=6
+		
+	</select>
+	
+	<select id="squatArray" resultMap="EJMap">
+				select
+		et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et join exercise_item ei 
+		join exercise_contents ec
+		on et.Exercise_title_code =
+		ec.Exercise_title_code and et.Exercise_code = ei.exercise_code
+		where ei.id = #{id} and et.Exercise_title_code=8
+	</select>
+	
+	<select id="benchArray" resultMap="EJMap">
+				select
+		et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		from exercise_title et join exercise_item ei 
+		join exercise_contents ec
+		on et.Exercise_title_code =
+		ec.Exercise_title_code and et.Exercise_code = ei.exercise_code
+		where ei.id = #{id} and et.Exercise_title_code=7
+	</select>
 </mapper>

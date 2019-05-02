@@ -18,6 +18,25 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.list(id);
 	}
 
+	@Override
+	public List<ExerciseJournal> deadArray(String id) {
+		return dao.deadArray(id);
+		
+		
+	}
+
+	@Override
+	public List<ExerciseJournal> squatArray(String id) {
+		// TODO Auto-generated method stub
+		return dao.squatArray(id);
+	}
+
+	@Override
+	public List<ExerciseJournal> benchArray(String id) {
+		// TODO Auto-generated method stub
+		return dao.benchArray(id);
+	}
+
 
 
 

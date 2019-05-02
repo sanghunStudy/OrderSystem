@@ -2,46 +2,50 @@ package kr.ac.kopo.model;
 
 public class ExerciseContents {
 
-	
-	private int exerciseContentsCode;
-	private int exerciseTitleCode;
-	private Integer exerciseSet;
-	private Integer exerciseReps;
-	private Integer exerciseLb;
-	public int getExerciseContentsCode() {
-		return exerciseContentsCode;
-	}
-	public void setExerciseContentsCode(int exerciseContentsCode) {
-		this.exerciseContentsCode = exerciseContentsCode;
-	}
-	public int getExerciseTitleCode() {
-		return exerciseTitleCode;
-	}
-	public void setExerciseTitleCode(int exerciseTitleCode) {
-		this.exerciseTitleCode = exerciseTitleCode;
-	}
-	public Integer getExerciseSet() {
-		return exerciseSet;
-	}
-	public void setExerciseSet(Integer exerciseSet) {
-		this.exerciseSet = exerciseSet;
-	}
-	public Integer getExerciseReps() {
-		return exerciseReps;
-	}
-	public void setExerciseReps(Integer exerciseReps) {
-		this.exerciseReps = exerciseReps;
-	}
-	public Integer getExerciseLb() {
-		return exerciseLb;
-	}
-	public void setExerciseLb(Integer exerciseLb) {
-		this.exerciseLb = exerciseLb;
-	}
-	
-	
-	
-	
+	private int ExerciseContentsCode;
+	private int ExerciseTitleCode;
+	private Integer ExerciseSet;
+	private Integer ExerciseReps;
+	private Integer ExerciseLb;
 
-	
+	public int getExerciseContentsCode() {
+		return ExerciseContentsCode;
+	}
+
+	public void setExerciseContentsCode(int exerciseContentsCode) {
+		ExerciseContentsCode = exerciseContentsCode;
+	}
+
+	public int getExerciseTitleCode() {
+		return ExerciseTitleCode;
+	}
+
+	public void setExerciseTitleCode(int exerciseTitleCode) {
+		ExerciseTitleCode = exerciseTitleCode;
+	}
+
+	public Integer getExerciseSet() {
+		return ExerciseSet;
+	}
+
+	public void setExerciseSet(Integer exerciseSet) {
+		ExerciseSet = exerciseSet;
+	}
+
+	public Integer getExerciseReps() {
+		return ExerciseReps;
+	}
+
+	public void setExerciseReps(Integer exerciseReps) {
+		ExerciseReps = exerciseReps;
+	}
+
+	public Integer getExerciseLb() {
+		return ExerciseLb;
+	}
+
+	public void setExerciseLb(Integer exerciseLb) {
+		ExerciseLb = exerciseLb;
+	}
+
 }

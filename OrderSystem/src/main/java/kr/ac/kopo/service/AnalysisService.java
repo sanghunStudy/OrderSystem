@@ -8,6 +8,14 @@ public interface AnalysisService {
 
 	List<ExerciseJournal> list(String id);
 
+	List<ExerciseJournal> deadArray(String id);
+
+	List<ExerciseJournal> squatArray(String id);
+
+	List<ExerciseJournal> benchArray(String id);
+
+
+
 	
 
 

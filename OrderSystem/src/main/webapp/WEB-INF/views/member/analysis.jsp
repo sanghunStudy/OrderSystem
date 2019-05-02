@@ -6,6 +6,9 @@
 <head>
 <meta charset="EUC-KR">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
+<%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head> --%>
+<%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/demo-files/demo.css"> --%>
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/charts.js"></script> 
 
@@ -18,7 +21,13 @@
 </head>
 <body>
 <div class="menu-box">
-<div class="menu-bar"></div>
+<div class="menu-bar">
+	<div class="menu-icons"><a href="analysis"><i class="fas fa-chart-bar"></i></a></div>
+	<div class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a></div>
+	<div class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a></div>
+	<div class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i></a></div>
+	<div class="menu-icons"><a href="${pageContext.request.contextPath}/opo/webRtc"><i class="fas fa-comment-dots"></i></a></div>
+</div>
 </div>
 <div id="wrapper">
 <div class="four-charts">

@@ -5,13 +5,13 @@ import java.util.List;
 public class ExerciseJournal {
 
 	// 타이틀 번호
-	private int exerciseCode;
+	private int ExerciseCode;
 	// 입력한 날짜 달력에 뿌려주기 위해 start로 이름 지정 Exercise_date
 	private String start;
 	private String id;
 	private String title;
 	private int userWeight;
-	private String exerciseName;
+	private String ExerciseName;
 	
 	List<ExerciseContents> details;	
 	
@@ -36,23 +36,24 @@ public class ExerciseJournal {
 	
 	
 
-	public String getExerciseName() {
-		return exerciseName;
-	}
-
-
-	public void setExerciseName(String exerciseName) {
-		this.exerciseName = exerciseName;
-	}
-
 
 	public int getExerciseCode() {
-		return exerciseCode;
+		return ExerciseCode;
 	}
 
 
 	public void setExerciseCode(int exerciseCode) {
-		this.exerciseCode = exerciseCode;
+		ExerciseCode = exerciseCode;
+	}
+
+
+	public String getExerciseName() {
+		return ExerciseName;
+	}
+
+
+	public void setExerciseName(String exerciseName) {
+		ExerciseName = exerciseName;
 	}
 
 

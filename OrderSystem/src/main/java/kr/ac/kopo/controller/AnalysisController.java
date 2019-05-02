@@ -31,12 +31,19 @@ AnalysisService service;
 
 		
 		List<ExerciseJournal> exercise = service.list(id);
+		List<ExerciseJournal> dead = service.deadArray(id); 
+		List<ExerciseJournal> squat = service.squatArray(id); 
+		List<ExerciseJournal> bench = service.benchArray(id); 
 		
 		
 		model.addAttribute("list",exercise);
+		model.addAttribute("dead",dead);
+		model.addAttribute("squat",squat);
+		model.addAttribute("bench",bench);
 		
 		
 		return "member/analysis";
 	}
 
+	
 }

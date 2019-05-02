@@ -39,6 +39,7 @@ border-radius:6px;
 background:#1d8cf8;
 position:fixed;
  margin-left: 20px;
+     top: 15%;
 }
 #wrapper{
 margin-left: 100px;
@@ -60,7 +61,20 @@ display:inline-block;
 }
 #exercise-list-box{
 	width:89.5vw;
-	height:300px;
+	height:auto;
 	background:#272a3d;
 	
+}
+
+.menu-icons {
+	font-size:32px;
+	color:#fff;
+	margin-top:10px;
+	text-align:center;
+	line-height:1.7;
+	cursor:pointer;
+}
+.menu-icons a{
+	color:#fff;
+	text-decoration:none;
 }

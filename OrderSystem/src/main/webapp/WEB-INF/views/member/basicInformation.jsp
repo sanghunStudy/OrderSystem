@@ -7,7 +7,10 @@
 <title>회원 기초정보 조사</title>
 <style>
 /* Full Source: https://github.com/tamino-martinius/ui-snippets-radiobuttons/blob/master/src/index.css */
-
+*{margin : 0; padding:0px;}
+body {
+background:#201d2e !IMPORTANT;
+}
 :root {
   --theme-light--color-bg: #f9fafa;
   --theme-light--color-font: #42494f;
@@ -97,7 +100,6 @@
   --input-color--line: var(--theme-light--color-line-danger)
 }
 .input {
-  display: inline;
   font-size: 11px;
   font-size: var(--input-size--default);
   -webkit-font-smoothing: antialiased;
@@ -105,7 +107,8 @@
   color: #42494f;
   color: var(--input-color--font);
   --input-size: 11px;
-  --input-size: var(--input-size--default)
+  --input-size: var(--input-size--default);
+      padding: 8px 0 8px 0;
 }
 
 .input.input--large {
@@ -289,6 +292,11 @@
   opacity: .5
 }
 
+/*sh*/
+/* .center input{ */
+/* 	border:none; */
+/* 	border-bottom: 1px solid black; */
+/* } */
 body,
 html {
   padding: 0;
@@ -296,40 +304,63 @@ html {
 }
 
 article {
-  font-family: Gotham Rounded SSm A, Gotham Rounded SSm B, Gotham Rounded A, Gotham Rounded B, proxima-nova-soft, Verdana, Geneva, sans-serif;
-  color: #42494f;
-  color: var(--input-color--font);
-  background: #f9fafa;
-  background: var(--input-color--bg);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 50%;
-  float: left;
-  text-align: center;
-  height: 100vh
+     font-family: Gotham Rounded SSm A, Gotham Rounded SSm B, Gotham Rounded A, Gotham Rounded B, proxima-nova-soft, Verdana, Geneva, sans-serif;
+    /* color: #42494f; */
+    /* color: var(--input-color--font); */
+    /* background: #f9fafa; */
+    /* background: var(--input-color--bg); */
+    /* display: -webkit-box; */
+    /* display: flex; */
+    /* -webkit-box-align: center; */
+    /* -ms-flex-align: center; */
+    /* align-items: center; */
+    /* -webkit-box-pack: center; */
+    /* -ms-flex-pack: center; */
+    /* justify-content: center; */
+    /* width: 50%; */
+    /* float: left; */
+    text-align: left;
+
 }
 
-article p {
-  margin-top: 32px;
-  margin-top: 2rem
-}
 
 article span {
   display: inline-block;
-  width: 75px
+  width: 100px
 }
 
-article .row {
-  margin: 15px 0
-}
 
+#bIContainer{
+	background:#201d2e;
+	color:white;
+	width:1024px;
+	margin: 0 auto;
+	padding : 70px 0 0 17px;
+}
+.row {
+	padding: 0px 0 15px 0
+}
+.row p {
+	margin-bottom : 10px;
+}
+#row_p {
+	font-size: 22pt;
+	font-weight: 760;
+}
+#row_Explanation {
+	font-size :12pt;
+}
+.center input{ 
+ 	border:none; 
+ 	border: 1px solid white;
+ 	background: none;
+ } 
+ .input_value {
+ 	margin-top:15px;
+ }
+.center span {
+	color : white;
+}
 </style>
 
 <script>
@@ -356,19 +387,21 @@ for (let preloadIndex = $preloadElements.length - 1; preloadIndex >= 0; preloadI
 
 </script>
 </head>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
 
-
+<div id="bIContainer">
 	<form action="basicInformation" method="post">
 		<article class="theme-light preload">
 			<div class="center">
 				<div class="row">
-					<p>기초 정보 조사</p>
+					<P id="row_p">기초 정보 조사</P>
+					<P id="row_Explanation">본 설문서는 TRAINER BOT에서 여러가지 피브백, 원활한 회원관리 운영에 대한 중요한<br /> 자료이오니 성심껏 작성해 주시기 바랍니다. </P>
 				</div>
 				<div class="row">
 					<p>나 이</p>
 					<div>	
-						<input type="number" name="age" min="0">
+						<input type="number" name="age" min="0" class="input_value">
 					</div>
 				</div>
 				<div class="row">
@@ -390,11 +423,11 @@ for (let preloadIndex = $preloadElements.length - 1; preloadIndex >= 0; preloadI
 				</div>
 				<div class="row">
 					<p>키</p>
-					<input type="number" name="height" min="0">
+					<input type="number" name="height" min="0"  class="input_value">
 				</div>
 				<div class="row">
 					<p>몸무게</p>
-					<input type="number" name="weight" min="0">
+					<input type="number" name="weight" min="0"  class="input_value">
 				</div>
 				<div class="row">
 					<p>일주일에 술을 얼마나 드시나요?</p>
@@ -514,5 +547,6 @@ for (let preloadIndex = $preloadElements.length - 1; preloadIndex >= 0; preloadI
 		</article>
 		<button>작성완료</button>					
 	</form>
+</div>
 </body>
 </html>

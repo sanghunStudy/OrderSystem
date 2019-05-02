@@ -354,6 +354,7 @@ article span {
  	border:none; 
  	border: 1px solid white;
  	background: none;
+ 	color:white;
  } 
  .input_value {
  	margin-top:15px;

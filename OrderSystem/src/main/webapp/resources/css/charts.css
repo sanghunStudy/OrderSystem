@@ -79,5 +79,6 @@ display:inline-block;
 	text-decoration:none;
 }
 #fullBox{
-	width:1024px;
+	    /* width: 1000px; */
+    margin: 0 auto;
 }

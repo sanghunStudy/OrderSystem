@@ -18,8 +18,21 @@
 <style>
 
 </style>
+<script>
+var list = [];
+var inputWeight = [];
+var inputDate = [];
+</script>
 </head>
 <body>
+<c:forEach var="weights" items="${weight}">
+	<script>
+		
+	inputDate.push('${weights.start}');
+	inputWeight.push('${weights.userWeight}');
+				
+	</script>
+</c:forEach>
 <div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
@@ -89,9 +102,20 @@ new Chart(document.getElementById("doughnut-chart"), {
 				<td>Áß·®</td>
 			</tr>
 			
-				<c:forEach var="item" items="${list}" begin="0" varStatus="i">
+				<c:forEach var="item" items="${list}" begin="0">
 								
 					<c:forEach var="details" items="${item.details}" >
+					<script>	
+					var item = 
+						{date:'${item.start}',
+						 name:'${item.exerciseName}',	
+						 set:'${details.exerciseSet}',
+						 reps:'${details.exerciseReps}',
+						 lb:'${details.exerciseLb}'
+							}				
+					list.push(item);
+			
+					</script>
 			<tr>
 					<td>${item.exerciseName}</td>
 						
@@ -102,7 +126,9 @@ new Chart(document.getElementById("doughnut-chart"), {
 					</c:forEach>
 			
 				</c:forEach>
-
+		<script>
+		
+		</script>
 		
 		</table>
 	</div>

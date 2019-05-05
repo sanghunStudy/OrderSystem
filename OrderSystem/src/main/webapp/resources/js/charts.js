@@ -139,9 +139,9 @@ $(function() {
 	new Chart(document.getElementById("line-chart-weight"), {
 		  type: 'line',
 		  data: {
-		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
+		    labels: /*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/inputDate,
 		    datasets: [{ 
-		        data: [70,71,72,68,69,70,71,73,74,75.6],
+		        data: /*[70,71,72,68,69,70,71,73,74,75.6]*/inputWeight,
 		        label: "체중 변화(in Kg)",
 		        borderColor: "hsla(210, 94%, 54%, 1)",
 		        pointBackgroundColor:  "#3e95cd",

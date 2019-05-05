@@ -19,21 +19,9 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	}
 
 	@Override
-	public List<ExerciseJournal> deadArray(String id) {
-		// TODO Auto-generated method stub
-		return sql.selectList("statistics.deadArray", id);
+	public List<ExerciseJournal> getWeight(String id) {
+		return sql.selectList("statistics.getWeight",id);
 	}
 
-	@Override
-	public List<ExerciseJournal> squatArray(String id) {
-		// TODO Auto-generated method stub
-		return sql.selectList("statistics.squatArray", id);
-	}
-
-	@Override
-	public List<ExerciseJournal> benchArray(String id) {
-		// TODO Auto-generated method stub
-		return sql.selectList("statistics.benchArray", id);
-	}
 
 }

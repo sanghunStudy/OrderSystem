@@ -283,11 +283,11 @@ a {
 }
 
 .menu {
-    margin: auto;
+  margin: auto;
     position: fixed;
-    top: 63%;
+    top: 60vh;
     bottom: 0;
-    left: 75%;
+    left: 72vw;
     right: 0;
     width: 80px;
     height: 80px;

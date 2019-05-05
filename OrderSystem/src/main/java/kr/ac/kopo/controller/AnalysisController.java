@@ -24,26 +24,25 @@ public class AnalysisController {
 @Autowired
 AnalysisService service; 
 	
-@RequestMapping(value="/analysis")
-	private String analysis(Model model,HttpSession session) {
+@RequestMapping(value="/statistics")
+	private String statistics(Model model,HttpSession session) {
 		
 		String id = (String)session.getAttribute("user");
 
 		
 		List<ExerciseJournal> exercise = service.list(id);
-		List<ExerciseJournal> dead = service.deadArray(id); 
-		List<ExerciseJournal> squat = service.squatArray(id); 
-		List<ExerciseJournal> bench = service.benchArray(id); 
+		List<ExerciseJournal> weight = service.getWeight(id);
 		
 		
 		model.addAttribute("list",exercise);
-		model.addAttribute("dead",dead);
-		model.addAttribute("squat",squat);
-		model.addAttribute("bench",bench);
+		model.addAttribute("weight",weight);
+
 		
 		
-		return "member/analysis";
+		return "member/statistics";
 	}
+
+
 
 	
 }

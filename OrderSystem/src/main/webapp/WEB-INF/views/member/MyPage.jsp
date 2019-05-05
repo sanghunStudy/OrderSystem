@@ -14,7 +14,7 @@
 		<li><a href="MyExerciseJournal">운동일지</a></li>
 		<li><a href="basicInformation">회원 기초정보 입력</a></li>
 		<li><a href="mentiManagement">멘티 관리</a></li>
-		<li><a href="analysis">history & Analysis </a></li>
+		<li><a href="statistics">나의 운동 통계 </a></li>
 		<li><a href="promotion">트레이너 신청</a></li>
 		<li><a href="proList">트레이너 신청목록</a></li>
 	</ul>

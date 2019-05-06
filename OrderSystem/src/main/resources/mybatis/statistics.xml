@@ -37,4 +37,18 @@
 		WHERE ei.id = #{id}
 		GROUP BY ei.Exercise_date
 	</select>
+	
+	<select id="getAvgLb" resultType="ExerciseJournal">
+		SELECT mytable.Exercise_date start,mytable.Exercise_name,ROUND(AVG(mytable.Exercise_lb),1) avgLb
+		FROM (SELECT
+		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		FROM exercise_title et JOIN exercise_item ei 
+		JOIN exercise_contents ec
+		ON et.Exercise_title_code =
+		ec.Exercise_title_code AND et.Exercise_code = ei.exercise_code
+		WHERE ei.id = #{id}) mytable
+		group by mytable.Exercise_date,mytable.Exercise_name
+	
+	</select>
 </mapper>

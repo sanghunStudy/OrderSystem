@@ -32,10 +32,12 @@ AnalysisService service;
 		
 		List<ExerciseJournal> exercise = service.list(id);
 		List<ExerciseJournal> weight = service.getWeight(id);
-		
+		List<ExerciseJournal> avgLb = service.getavgLb(id);
 		
 		model.addAttribute("list",exercise);
 		model.addAttribute("weight",weight);
+		model.addAttribute("avgLb",avgLb);
+
 
 		
 		

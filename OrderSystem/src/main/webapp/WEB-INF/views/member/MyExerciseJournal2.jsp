@@ -420,7 +420,8 @@
 
 
 				<div class="exTitles">
-					<p class="itemsName">스쿼트</p> 
+					<p>스쿼트</p>
+					<p><span>3set</span><span>1reps</span><span>바벨</span><span class="itemsName" title="스쿼트">담기</span></p> 
 				</div>
 				<div class="exTitles">					
 					<p class="itemsName">런지</p>

@@ -12,8 +12,20 @@ public class ExerciseJournal {
 	private String title;
 	private int userWeight;
 	private String ExerciseName;
+	private int avgLb;
 	
+
 	List<ExerciseContents> details;	
+	
+	public int getAvgLb() {
+		return avgLb;
+	}
+
+
+	public void setAvgLb(int avgLb) {
+		this.avgLb = avgLb;
+	}
+
 	
 	public int getUserWeight() {
 		return userWeight;

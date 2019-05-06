@@ -10,6 +10,8 @@ public interface AnalysisService {
 
 	List<ExerciseJournal> getWeight(String id);
 
+	List<ExerciseJournal> getavgLb(String id);
+
 
 
 

@@ -23,5 +23,10 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectList("statistics.getWeight",id);
 	}
 
+	@Override
+	public List<ExerciseJournal> getAvgLb(String id) {
+		return sql.selectList("statistics.getAvgLb", id);
+	}
+
 
 }

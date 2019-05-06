@@ -19,9 +19,18 @@
 
 </style>
 <script>
-var list = [];
-var inputWeight = [];
-var inputDate = [];
+
+var deadAvg=[],
+	deadDate=[],
+	squatAvg=[],
+	squatDate=[],
+	benchAvg=[],
+	benchDate=[],
+	inputWeight=[],
+	inputDate=[],
+	list=[]; 
+
+
 </script>
 </head>
 <body>
@@ -30,8 +39,41 @@ var inputDate = [];
 		
 	inputDate.push('${weights.start}');
 	inputWeight.push('${weights.userWeight}');
-				
+	
 	</script>
+</c:forEach>
+<c:forEach var="avg" items="${avgLb}"> 
+	<c:choose> 
+ 		<c:when test="${avg.exerciseName eq '데드리프트'}" > 
+		<script> 
+ 			deadDate.push('${avg.start}');
+			deadAvg.push('${avg.avgLb}');
+			
+		</script> 
+		</c:when>
+		<c:when test="${avg.exerciseName eq '스쿼트'}">
+ 		<script> 
+				squatDate.push('${avg.start}');
+ 				squatAvg.push('${avg.avgLb}');
+ 			
+		</script>			
+		</c:when>
+		<c:when test="${avg.exerciseName eq '플랫벤치프레스'}">
+		<script> 
+ 					benchDate.push('${avg.start}');
+ 					benchAvg.push('${avg.avgLb}');
+ 				
+ 		</script> 
+		</c:when>
+		<c:otherwise>
+		<script>
+		
+		</script>
+		</c:otherwise>
+		</c:choose>
+		<script> 
+ 		
+		</script>
 </c:forEach>
 <div id="fullBox">
 <div class="menu-box">

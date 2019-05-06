@@ -23,6 +23,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getWeight(id);
 	}
 
+	@Override
+	public List<ExerciseJournal> getavgLb(String id) {
+		return dao.getAvgLb(id);
+	}
+
 
 
 

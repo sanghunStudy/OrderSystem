@@ -177,7 +177,8 @@
 							minDate :0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 // 							minDate : "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 							,
-							maxDate : "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
+							maxDate: 0
+// 							maxDate : "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
 						});
 
 		//초기값을 오늘 날짜로 설정
@@ -392,7 +393,7 @@
 <body>
 	<div id="allDiv">
 		<h1>MyExerciseJournal</h1>
-		<input type="text" name="date" id="date1" size="12" />
+		<input type="text" name="date" id="date1" size="12" disabled="disabled"/>
 <!-- 		<div> -->
 <!-- 			<span class="icon"><i class="fas fa-grin"></i></span> -->
 <!-- 			<span class="icon"><i class="far fa-frown"></i></span> -->

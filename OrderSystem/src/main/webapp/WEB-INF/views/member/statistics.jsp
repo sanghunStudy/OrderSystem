@@ -49,6 +49,10 @@ var deadAvg=[],
  			deadDate.push('${avg.start}');
 			deadAvg.push('${avg.avgLb}');
 			
+			for(var i=0 ; i<30-deadAvg.length() ; i++) {
+				deadAvg.push(' ');
+				deadDate.push(' ');
+			}
 		</script> 
 		</c:when>
 		<c:when test="${avg.exerciseName eq '½ºÄõÆ®'}">
@@ -78,7 +82,7 @@ var deadAvg=[],
 <div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
-	<div class="menu-icons"><a href="analysis"><i class="fas fa-chart-bar"></i></a></div>
+	<div class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i></a></div>
 	<div class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a></div>
 	<div class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a></div>
 	<div class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i></a></div>
@@ -144,7 +148,7 @@ new Chart(document.getElementById("doughnut-chart"), {
 				<td>Áß·®</td>
 			</tr>
 			
-				<c:forEach var="item" items="${list}" begin="0">
+				<c:forEach var="item" items="${todayList}" begin="0">
 								
 					<c:forEach var="details" items="${item.details}" >
 					<script>	

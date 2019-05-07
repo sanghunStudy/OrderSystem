@@ -15,7 +15,7 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	
 	@Override
 	public List<ExerciseJournal> list(String id) {
-		return sql.selectList("statistics.exerList",id);
+		return sql.selectList("statistics.monthExerList",id);
 	}
 
 	@Override
@@ -26,6 +26,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<ExerciseJournal> getAvgLb(String id) {
 		return sql.selectList("statistics.getAvgLb", id);
+	}
+
+	@Override
+	public List<ExerciseJournal> todayList(String id) {
+		return sql.selectList("statistics.todayList",id);
 	}
 
 

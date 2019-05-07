@@ -29,12 +29,13 @@ AnalysisService service;
 		
 		String id = (String)session.getAttribute("user");
 
-		
-		List<ExerciseJournal> exercise = service.list(id);
+		List<ExerciseJournal> todayExercise = service.todayList(id);
+		List<ExerciseJournal> monthExercise = service.list(id);
 		List<ExerciseJournal> weight = service.getWeight(id);
 		List<ExerciseJournal> avgLb = service.getavgLb(id);
 		
-		model.addAttribute("list",exercise);
+		model.addAttribute("list",monthExercise);
+		model.addAttribute("todayList",todayExercise);
 		model.addAttribute("weight",weight);
 		model.addAttribute("avgLb",avgLb);
 

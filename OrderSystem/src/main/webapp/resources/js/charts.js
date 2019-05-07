@@ -27,7 +27,8 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '데드 리프트 중량 변화 (in Kg)'
+		      text: '데드 리프트 중량 변화 (in Kg)',
+		      fontColor:'#fff'
 		    }
 		  }
 		});
@@ -51,7 +52,8 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '스쿼트 중량 변화 (in Kg)'
+		      text: '스쿼트 중량 변화 (in Kg)',
+		      fontColor:'#fff'	  
 		    }
 		  }
 		});
@@ -74,7 +76,8 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '벤치 프레스 중량 변화 (in Kg)'
+		      text: '벤치 프레스 중량 변화 (in Kg)',
+		      fontColor:'#fff'
 		    }
 		  }
 		});
@@ -131,7 +134,8 @@ $(function() {
 	    	maintainAspectRatio: false,
 	      title: {
 	        display: true,
-	        text: '5대 운동 비율 '
+	        text: '5대 운동 비율 ',
+	        fontColor:'#fff'
 	      }
 	    }
 	});
@@ -154,7 +158,8 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '체중 변화 그래프'
+		      text: '체중 변화 그래프',
+		      fontColor:'#fff'
 		    }
 		  }
 		});

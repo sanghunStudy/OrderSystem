@@ -13,6 +13,8 @@ public interface AnalysisDao {
 
 	List<ExerciseJournal> getAvgLb(String id);
 
+	List<ExerciseJournal> todayList(String id);
+
 
 
 }

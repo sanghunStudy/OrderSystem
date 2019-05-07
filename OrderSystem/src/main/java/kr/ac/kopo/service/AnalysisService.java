@@ -12,6 +12,8 @@ public interface AnalysisService {
 
 	List<ExerciseJournal> getavgLb(String id);
 
+	List<ExerciseJournal> todayList(String id);
+
 
 
 

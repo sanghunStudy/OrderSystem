@@ -28,6 +28,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getAvgLb(id);
 	}
 
+	@Override
+	public List<ExerciseJournal> todayList(String id) {
+		return dao.todayList(id);
+	}
+
 
 
 

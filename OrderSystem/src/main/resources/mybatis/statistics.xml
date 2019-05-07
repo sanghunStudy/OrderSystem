@@ -19,7 +19,7 @@
 	</resultMap>
 
 
-	<select id="exerList" resultMap="EJMap">
+	<select id="todayList" resultMap="EJMap">
 		SELECT
 		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
 		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
@@ -27,7 +27,18 @@
 		JOIN exercise_contents ec
 		ON et.Exercise_title_code =
 		ec.Exercise_title_code AND et.Exercise_code = ei.exercise_code
-		WHERE ei.id = #{id}
+		WHERE ei.id = 'user' AND ei.Exercise_date = curdate()
+	</select>
+	
+	<select id="monthExerList" resultMap="EJMap">
+		SELECT
+		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
+		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+		FROM exercise_title et JOIN exercise_item ei 
+		JOIN exercise_contents ec
+		ON et.Exercise_title_code =
+		ec.Exercise_title_code AND et.Exercise_code = ei.exercise_code
+		WHERE ei.id = #{id} AND ei.Exercise_date between DATE_SUB(curdate(), INTERVAL 30 DAY) AND curdate()
 	</select>
 	
 	<select id="getWeight" resultType="ExerciseJournal">

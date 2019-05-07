@@ -283,15 +283,15 @@
 							</tr>
 							<tr>
 								<td>나이</td>
-								<td><input type="text" v-model="age"></td>
+								<td><input type="number" v-model="age"></td>
 							</tr>
 							<tr>
 								<td>키</td>
-								<td><input type="text" v-model="height"></td>
+								<td><input type="number" v-model="height"></td>
 							</tr>
 							<tr>
 								<td>체중</td>
-								<td><input type="text" v-model="weight"></td>
+								<td><input type="number" v-model="weight"></td>
 							</tr>
 							<tr>
 								<td>훈련량</td>
@@ -324,10 +324,11 @@
 								<td>추정에너지요구량</td>
 							</tr>
 							<tr>
-								<td>{{Math.round(sum)}}</td>
-								<td>{{Math.round(goalCal)}}</td>
+								<td id="Bmetabolism">{{Math.round(sum)}}</td>
+								<td id="Erequirement">{{Math.round(goalCal)}}</td>
 							</tr>
 						</table>
+						<i class="fas fa-save"></i>
 					</div>
 					<script>
 						var vmSum = new Vue({

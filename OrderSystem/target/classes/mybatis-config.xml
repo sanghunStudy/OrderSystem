@@ -22,6 +22,7 @@
 		<typeAlias type="kr.ac.kopo.model.ExerciseJournal" alias="ExerciseJournal"/>
 		<typeAlias type="kr.ac.kopo.model.ExerciseContents" alias="ExerciseContents"/>
 		<typeAlias type="kr.ac.kopo.model.basicInformation" alias="basicInformation"/>
+		<typeAlias type="kr.ac.kopo.model.BEsave" alias="besave"/>
 	</typeAliases>
 
  	<mappers>
@@ -32,5 +33,6 @@
 		<mapper resource="mybatis/user.xml"/>
 		<mapper resource="mybatis/trainer.xml"/>
 		<mapper resource="mybatis/statistics.xml"/>
+		<mapper resource="mybatis/bedata.xml"/>
 	</mappers>
 </configuration>

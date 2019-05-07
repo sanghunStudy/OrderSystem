@@ -22,6 +22,7 @@
 	/*border: 1px solid #888; */
 	color: #d9d2da;
 	width: 560px;
+	height: 330px;
 }
 .modal-content input {
 	background-color : #463f47;
@@ -78,11 +79,20 @@ ul.tabs li.current{
   display: none;
   background: #272a3d;
   padding: 15px;
+  position: absolute;
+      width: 470px;
 }
-
+table {
+	width:420px;
+}
+table select,input {
+	width:170px;
+	margin: 0 0 0 10px;
+}
 .tab-content.current{
   display: inherit;
   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
+  width:430px;
 }
 #onet{
 	text-align:center;
@@ -104,4 +114,12 @@ ul.tabs li.current{
 #app label{
 	font-size:9pt;
 	margin-right:10px;
+}
+.fa-save {
+	font-size: 48px;
+    position: absolute;
+    right: -65px;
+    bottom: 0px;
+    cursor:pointer;
+	
 }

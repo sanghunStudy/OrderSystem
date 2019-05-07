@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/gnb/calculator.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <script	src="${pageContext.request.contextPath}/resources/js/calculator.js"></script>
 <script src="https://unpkg.com/vue"></script>
 </head>
@@ -99,6 +100,7 @@
 								</tr>
 							</tbody>
 						</table>
+						
 					</div>
 					<script>
 						var app = new Vue({
@@ -257,6 +259,7 @@
 								<td>{{Math.round(goalCal)}}</td>
 							</tr>
 						</table>
+						<i class="fas fa-save"></i>
 					</div>
 					<script>
 						var vmSum = new Vue({

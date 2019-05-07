@@ -39,5 +39,22 @@ $(document).ready(function() {
 		$("#" + tab_id).addClass('current');
 	})
 
+	$('.fa-save').click(function() {
+		var Bmetabolism = $('#Bmetabolism').text();
+		var Erequirement = $('#Erequirement').text();
+        $.ajax({
+            url:'besave',
+            type:'POST',
+            data:{'Bmetabolism':Bmetabolism,
+            	'Erequirement': Erequirement
+            },
+            success:function(data){
+            	if(data == 1)
+                alert("저장되었습니다.");
+            	else
+            	alert("저장이 실패했습니다.");	
+            }
+        });
+	});
 })
 

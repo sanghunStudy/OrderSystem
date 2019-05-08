@@ -14,7 +14,8 @@ public class BEServiceImpl implements BEservice {
 
 	@Override
 	public int add(BEsave besave) {
-		return dao.add(besave);
+		dao.add(besave);
+		return 1;
 	}
 	
 	

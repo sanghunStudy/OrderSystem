@@ -43,7 +43,7 @@ $(document).ready(function() {
 		var Bmetabolism = $('#Bmetabolism').text();
 		var Erequirement = $('#Erequirement').text();
         $.ajax({
-            url:'besave',
+            url:'besave/besave',
             type:'POST',
             data:{'Bmetabolism':Bmetabolism,
             	'Erequirement': Erequirement
@@ -52,7 +52,7 @@ $(document).ready(function() {
             	if(data == 1)
                 alert("저장되었습니다.");
             	else
-            	alert("저장이 실패했습니다.");	
+            	alert("저장이 실패했습니다.");
             }
         });
 	});

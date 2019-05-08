@@ -14,7 +14,6 @@ public class BEDaoImpl implements BEDao {
 
 	@Override
 	public int add(BEsave besave) {
-
 		sql.insert("bedata.add", besave);
 		return 1;
 

@@ -12,23 +12,18 @@ import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.service.BEservice;
 
 @Controller
-@RequestMapping("/BE")
+@RequestMapping("/besave")
 public class BEController {
-	final String path = "BE/";
 	
 	@Autowired
 	BEservice service;
 	
-	@RequestMapping("/add")
-	String BEData() {
-		return path + "add";
-	}
-	
 	@RequestMapping(value="/besave", method=RequestMethod.POST)
 	@ResponseBody
 	int BEDataAdd(BEsave besave, HttpSession session) {
-		
-		return service.add(besave);
+		System.out.println("요청성공");
+		service.add(besave);
+		return 1;
 	}
 	
 }

@@ -62,4 +62,12 @@
 		group by mytable.Exercise_date,mytable.Exercise_name
 	
 	</select>
+	
+	<select id="getMetabolism" resultType="besave">
+		
+	SELECT be_id,username,be_date,b_metabolism,e_requirement
+	FROM bedata
+	WHERE username=#{username}
+	
+	</select>
 </mapper>

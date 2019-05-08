@@ -21,7 +21,8 @@ public class BEController {
 	@RequestMapping(value="/besave", method=RequestMethod.POST)
 	@ResponseBody
 	int BEDataAdd(BEsave besave, HttpSession session) {
-		System.out.println("요청성공");
+		String username = (String)session.getAttribute("user");
+		besave.setUsername(username);
 		service.add(besave);
 		return 1;
 	}

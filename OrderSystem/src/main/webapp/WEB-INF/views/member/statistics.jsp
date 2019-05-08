@@ -28,7 +28,7 @@ var deadAvg=[],
 	benchDate=[],
 	inputWeight=[],
 	inputDate=[],
-	list=[]; 
+	list=[];
 
 
 </script>
@@ -49,10 +49,7 @@ var deadAvg=[],
  			deadDate.push('${avg.start}');
 			deadAvg.push('${avg.avgLb}');
 			
-			for(var i=0 ; i<30-deadAvg.length() ; i++) {
-				deadAvg.push(' ');
-				deadDate.push(' ');
-			}
+
 		</script> 
 		</c:when>
 		<c:when test="${avg.exerciseName eq '스쿼트'}">
@@ -105,28 +102,7 @@ var deadAvg=[],
 	</div>
 	<div id = "doughnutChart" style="position: relative; height:25vh; width:22vw">
 	<canvas id="doughnut-chart"></canvas>
-<script>
-new Chart(document.getElementById("doughnut-chart"), {
-    type: 'doughnut',
-    data: {
-      labels: ["탄수화물","단백질","지방"],
-      datasets: [
-        {
-          label: "탄단지 비율",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-          data: [1180,720,320]
-        }
-      ]
-    },
-    options: {
-    	maintainAspectRatio: false,
-      title: {
-        display: true,
-        text: '3대 영양소 권장섭취량 (in kcal)'
-      }
-    }
-});
-</script>
+
 	</div>
 </div>
 	<div id = "another-chart">

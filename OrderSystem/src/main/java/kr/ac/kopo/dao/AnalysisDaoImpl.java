@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 @Repository
 public class AnalysisDaoImpl implements AnalysisDao {
@@ -31,6 +32,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<ExerciseJournal> todayList(String id) {
 		return sql.selectList("statistics.todayList",id);
+	}
+
+	@Override
+	public List<BEsave> getMetabolism(String id) {
+		return sql.selectList("statistics.getMetabolism", id);
 	}
 
 

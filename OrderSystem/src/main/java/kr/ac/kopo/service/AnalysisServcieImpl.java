@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.AnalysisDao;
+import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 @Service
 public class AnalysisServcieImpl implements AnalysisService {
@@ -31,6 +32,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 	@Override
 	public List<ExerciseJournal> todayList(String id) {
 		return dao.todayList(id);
+	}
+
+	@Override
+	public List<BEsave> getMetabolism(String id) {
+		return dao.getMetabolism(id);
 	}
 
 

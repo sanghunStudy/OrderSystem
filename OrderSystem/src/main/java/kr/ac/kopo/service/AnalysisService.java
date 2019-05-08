@@ -2,6 +2,7 @@ package kr.ac.kopo.service;
 
 import java.util.List;
 
+import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 
 public interface AnalysisService {
@@ -13,6 +14,8 @@ public interface AnalysisService {
 	List<ExerciseJournal> getavgLb(String id);
 
 	List<ExerciseJournal> todayList(String id);
+
+	List<BEsave> getMetabolism(String id);
 
 
 

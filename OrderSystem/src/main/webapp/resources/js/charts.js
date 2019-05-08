@@ -2,7 +2,7 @@
 
 
 $(function() {
-	
+
 	var ctx = document.getElementById('line-chart-daed').getContext("2d");
 
 	var grd = ctx.createLinearGradient(0, 0, 0, 120.5);
@@ -28,7 +28,9 @@ $(function() {
 		    title: {
 		      display: true,
 		      text: '데드 리프트 중량 변화 (in Kg)',
-		      fontColor:'#fff'
+		      fontColor:'#fff',
+		      fontSize:16
+		     
 		    }
 		  }
 		});
@@ -53,7 +55,8 @@ $(function() {
 		    title: {
 		      display: true,
 		      text: '스쿼트 중량 변화 (in Kg)',
-		      fontColor:'#fff'	  
+		      fontColor:'#fff',
+		      fontSize:16
 		    }
 		  }
 		});
@@ -77,33 +80,103 @@ $(function() {
 		    title: {
 		      display: true,
 		      text: '벤치 프레스 중량 변화 (in Kg)',
-		      fontColor:'#fff'
+		      fontColor:'#fff',
+		      fontSize:16
 		    }
 		  }
 		});
 	
 	
 	
-//	new Chart(document.getElementById("doughnut-chart"), {
-//	    type: 'doughnut',
-//	    data: {
-//	      labels: ["탄수화물","단백질","지방"],
-//	      datasets: [
-//	        {
-//	          label: "Population (millions)",
-//	          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-//	          data: [1180,720,320]
-//	        }
-//	      ]
-//	    },
-//	    options: {
-//	      title: {
-//	        display: true,
-//	        text: '3대 영양소 권장섭취량 (in kcal)'
-//	      }
-//	    }
-//	});
-//	
+
+	Chart.pluginService.register({
+		beforeDraw: function (chart) {
+			if (chart.config.options.elements.center) {
+        //Get ctx from string
+        var ctx = chart.chart.ctx;
+        
+				//Get options from the center object in options
+        var centerConfig = chart.config.options.elements.center;
+      	var fontStyle = centerConfig.fontStyle || 'Arial';
+				var txt = centerConfig.text;
+        var color = centerConfig.color || '#000';
+        var sidePadding = centerConfig.sidePadding || 20;
+        var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
+        //Start with a base font of 30px
+        ctx.font = "30px " + fontStyle;
+        
+				//Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+        var stringWidth = ctx.measureText(txt).width;
+        var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+        // Find out how much the font can grow in width.
+        var widthRatio = elementWidth / stringWidth;
+        var newFontSize = Math.floor(30 * widthRatio);
+        var elementHeight = (chart.innerRadius * 2);
+
+        // Pick a new font size so it will not be larger than the height of label.
+        var fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+				//Set font settings to draw it correctly.
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+        var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+        ctx.font = fontSizeToUse+"px " + fontStyle;
+        ctx.fillStyle = color;
+        
+        //Draw text in center
+        ctx.fillText(txt, centerX, centerY);
+			}
+		}
+	});
+
+
+		var config = {
+			type: 'doughnut',
+			data: {
+				labels: [
+				  "탄수화물",
+				  "단백질",
+				  "지방"
+				],
+				datasets: [{
+					data: [300, 50, 100],
+					backgroundColor: [
+					  "#FF6384",
+					  "#36A2EB",
+					  "#FFCE56"
+					],
+					hoverBackgroundColor: [
+					  "#FF6384",
+					  "#36A2EB",
+					  "#FFCE56"
+					]
+				}]
+			},
+		options: {
+			maintainAspectRatio: false,
+			title: {
+		         display: true,
+		         text: '3대 영양소 권장섭취량 (in kcal)',
+		         fontColor:'#FFFFFF',
+		         fontSize:16
+		        	
+		       },
+			elements: {
+				center: {
+					text: '2124kcal',
+          color: '#FFFFFF', // Default is #000000
+          fontStyle: 'Arial', // Default is Arial
+          sidePadding: 20 // Defualt is 20 (as a percentage)
+				}
+			}
+		}
+	};
+
+
+		var doghnutCTX = document.getElementById("doughnut-chart").getContext("2d");
+		 new Chart(doghnutCTX, config);
 	
 	new Chart(document.getElementById("radar-chart"), {
 	    type: 'radar',
@@ -135,7 +208,8 @@ $(function() {
 	      title: {
 	        display: true,
 	        text: '5대 운동 비율 ',
-	        fontColor:'#fff'
+	        fontColor:'#fff',
+	        fontSize:16
 	      }
 	    }
 	});
@@ -159,7 +233,8 @@ $(function() {
 		    title: {
 		      display: true,
 		      text: '체중 변화 그래프',
-		      fontColor:'#fff'
+		      fontColor:'#fff',
+		      fontSize:16
 		    }
 		  }
 		});

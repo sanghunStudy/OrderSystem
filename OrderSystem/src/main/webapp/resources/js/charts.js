@@ -29,7 +29,8 @@ $(function() {
 		      display: true,
 		      text: '데드 리프트 중량 변화 (in Kg)',
 		      fontColor:'#fff',
-		      fontSize:16
+		      fontSize:16,
+		      fontStyle: 'Noto Sans KR'
 		     
 		    }
 		  }
@@ -56,7 +57,8 @@ $(function() {
 		      display: true,
 		      text: '스쿼트 중량 변화 (in Kg)',
 		      fontColor:'#fff',
-		      fontSize:16
+		      fontSize:16,
+		      fontStyle: 'Noto Sans KR'
 		    }
 		  }
 		});
@@ -81,7 +83,8 @@ $(function() {
 		      display: true,
 		      text: '벤치 프레스 중량 변화 (in Kg)',
 		      fontColor:'#fff',
-		      fontSize:16
+		      fontSize:16,
+		      fontStyle: 'Noto Sans KR'
 		    }
 		  }
 		});
@@ -160,15 +163,16 @@ $(function() {
 		         display: true,
 		         text: '3대 영양소 권장섭취량 (in kcal)',
 		         fontColor:'#FFFFFF',
-		         fontSize:16
+		         fontSize:16,
+		         fontStyle: 'Noto Sans KR'
 		        	
 		       },
 			elements: {
 				center: {
-					text: '2124kcal',
+					text: metabolism.e + 'kcal',
           color: '#FFFFFF', // Default is #000000
-          fontStyle: 'Arial', // Default is Arial
-          sidePadding: 20 // Defualt is 20 (as a percentage)
+          fontStyle: 'Noto Sans KR', // Default is Arial
+          sidePadding: 15 // Defualt is 20 (as a percentage)
 				}
 			}
 		}
@@ -209,7 +213,8 @@ $(function() {
 	        display: true,
 	        text: '5대 운동 비율 ',
 	        fontColor:'#fff',
-	        fontSize:16
+	        fontSize:16,
+	        fontStyle: 'Noto Sans KR'
 	      }
 	    }
 	});
@@ -234,7 +239,8 @@ $(function() {
 		      display: true,
 		      text: '체중 변화 그래프',
 		      fontColor:'#fff',
-		      fontSize:16
+		      fontSize:16,
+		      fontStyle: 'Noto Sans KR'
 		    }
 		  }
 		});

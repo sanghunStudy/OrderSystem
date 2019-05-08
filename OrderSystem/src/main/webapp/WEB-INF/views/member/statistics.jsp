@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
 <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head> --%>
 <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/demo-files/demo.css"> --%>
@@ -14,7 +14,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-<title>Insert title here</title>
+<title>나의 운동 차트</title>
 <style>
 
 </style>
@@ -29,11 +29,20 @@ var deadAvg=[],
 	inputWeight=[],
 	inputDate=[],
 	list=[];
-
+    metabolism={b:'',e:''};
 
 </script>
 </head>
 <body>
+<c:forEach var="energy" items="${metabolism}">
+	<script>
+	metabolism={
+		b:'${energy.bmetabolism}',
+		e:'${energy.erequirement}'		
+	}
+	
+	</script>
+</c:forEach>
 <c:forEach var="weights" items="${weight}">
 	<script>
 		
@@ -147,12 +156,16 @@ var deadAvg=[],
 					</tr>				
 					</c:forEach>
 			
-				</c:forEach>
-		<script>
-		
-		</script>
-		
+				</c:forEach>		
 		</table>
+	</div>
+	<div class="toWrapper">
+		<div class="toDo">
+			무엇을 해야합니까
+		</div>
+		<div class="toEat">
+			무엇을 머거야하죠?
+		</div>
 	</div>
 </div>
 </div>

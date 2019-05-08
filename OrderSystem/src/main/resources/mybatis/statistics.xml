@@ -68,6 +68,7 @@
 	SELECT be_id,username,be_date,b_metabolism,e_requirement
 	FROM bedata
 	WHERE username=#{username}
+	ORDER BY be_date desc limit 1
 	
 	</select>
 </mapper>

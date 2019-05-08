@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&subset=korean');
-
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
 *{margin:0; padding:0;}
 
-body {
+body{
  background: #1e1e2f;
-font-family: 'Noto Sans KR', sans-serif;
+
 }
 
 .four-charts div{
@@ -55,9 +55,12 @@ display:inline-block;
 }
 .exercise-list{
 	width:100%;
+	font-size:12pt;
 }
 .exercise-list th,td{
 	color:#fff;
+	font-family : 'Nanum Gothic';
+	font-size:13px;
 }
 #exercise-list-box{
 	width:89.5vw;
@@ -81,4 +84,18 @@ display:inline-block;
 #fullBox{
 	    /* width: 1000px; */
     margin: 0 auto;
+}
+.toWrapper{
+	height:440px;
+	margin-top:100px;
+}
+.toDo{
+	 display:inline-block;
+ background:#272a3d;
+ height:300px;
+}
+.toEat{
+	 display:inline-block;
+ background:#272a3d;
+ height:300px;
 }

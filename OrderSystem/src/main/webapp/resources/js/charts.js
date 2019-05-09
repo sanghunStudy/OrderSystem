@@ -197,7 +197,7 @@ $(function() {
 	          pointBorderColor: "#fff",
 	          data: [57.48,54.16,7.61,8.06,4.45]
 	        },{
-	            label: "이상적인 5대 운동 비율",
+	            label: "동체급 평균중량",
 	            fill: true,
 	            backgroundColor: "rgba(255,241,86,0.2)",
 	            borderColor: "rgba(255,241,86,1)",

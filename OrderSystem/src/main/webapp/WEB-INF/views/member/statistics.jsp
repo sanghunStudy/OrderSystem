@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
 <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head> --%>
 <%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/demo-files/demo.css"> --%>
@@ -161,10 +162,12 @@ var deadAvg=[],
 	</div>
 	<div class="toWrapper">
 		<div class="toDo">
-			무엇을 해야합니까
+			<div><div class="title"><span>To do list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
+			<div class=""></div>
 		</div>
 		<div class="toEat">
-			무엇을 머거야하죠?
+			<div><div class="title"><span>To eat list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
+			<div class=""></div>
 		</div>
 	</div>
 </div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>운동루틴</title>
 
 <script>
 
@@ -133,7 +133,7 @@
 
 		</div>
 	</form>
-<c:if test="${sessionScope.user != null}">
+<c:if test="${sessionScope.admin != null}">
 		<a href="add?nid=0">글쓰기</a>
 </c:if>
 

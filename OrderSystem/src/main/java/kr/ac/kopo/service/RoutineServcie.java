@@ -1,27 +1,27 @@
-package kr.ac.kopo.dao;
+package kr.ac.kopo.service;
 
 import java.util.List;
 
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
-public interface NoticeDao {
+public interface RoutineServcie {
 
-	List<Notice> list(SearchVO searchVO);
+	List<Routine> list(SearchVO NsearchVO);
 
-	void add(Notice notice);
+	void add(Routine notice);
 
-	Notice view(int nid);
+	Routine view(int nid);
 
 	void delete(int nid);
 
-	void update(Notice notice);
+	void update(Routine notice);
 
 	void views(int nid);
 
-	int totalCount(SearchVO searchVO);
+	int totalCount(SearchVO saerchVO);
 
 	void fileUp(String filenames, String realnames, String filesizes);
 
@@ -31,10 +31,10 @@ public interface NoticeDao {
 
 	List<NoticeComment> commentList(NoticeComment nComment);
 
-	void commentDel(NoticeComment nComment);
+	void conmentDel(NoticeComment nComment);
 
 	void commentUpdate(NoticeComment nComment);
-
-	List<Notice> staticList();
+	//검색 페이징 안되는 다른 게시판에 불러오는 용도의 공지사항 리스트
+	List<Routine> staticList();
 
 }

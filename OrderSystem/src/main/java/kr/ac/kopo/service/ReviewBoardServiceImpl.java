@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.ReviewBoardDao;
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.util.FileVO;

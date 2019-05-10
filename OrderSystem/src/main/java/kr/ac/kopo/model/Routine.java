@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Notice {
+public class Routine {
 	
 	private int noticeId;
 	private String noticeTitle;

@@ -13,7 +13,7 @@
 		<typeAlias type="kr.ac.kopo.util.FileVO" alias="FileVO"/>
 		<typeAlias type="kr.ac.kopo.util.SearchVO" alias="SearchVO"/>
 		<typeAlias type="kr.ac.kopo.util.PageVO" alias="PageVo"/>
-		<typeAlias type="kr.ac.kopo.model.Notice" alias="Notice"/>
+		<typeAlias type="kr.ac.kopo.model.Routine" alias="Routine"/>
 		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoard" alias="ReviewBoard"/>
 		<typeAlias type="kr.ac.kopo.model.Bucket" alias="Bucket"/>
@@ -26,7 +26,7 @@
 	</typeAliases>
 
  	<mappers>
- 		<mapper resource="mybatis/notice.xml" />
+ 		<mapper resource="mybatis/routine.xml" />
 		<mapper resource="mybatis/cart.xml"/>
 		<mapper resource="mybatis/menu.xml"/>
 		<mapper resource="mybatis/reviewboard.xml"/>

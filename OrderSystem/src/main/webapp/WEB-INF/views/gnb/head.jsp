@@ -30,7 +30,7 @@
 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="${pageContext.request.contextPath}/notice/list">FAQ</a></li>
+				<li><a href="#">FAQ</a></li>
 			</ul>
 			<div id="lnb">
 				<h1>
@@ -42,7 +42,7 @@
 				<nav>
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a></li>
-						<li><a href="#">ROUTINE</a></li>
+						<li><a href="${pageContext.request.contextPath}/Routine/list">ROUTINE</a></li>
 						<li><a href="#">MENU</a></li>
 						<li><a href="${pageContext.request.contextPath}/trainer/list">PERSONAL TRAINER</a></li>
 					</ul>

@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ac.kopo.dao.NoticeDao;
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.dao.RoutineDao;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Service
-public class NoticeServcieImpl implements NoticeServcie {
+public class RoutineServcieImpl implements RoutineServcie {
 
 	@Autowired
-	NoticeDao dao;
+	RoutineDao dao;
 	
 	
 	@Override
-	public List<Notice> list(SearchVO NsearchVO) {
+	public List<Routine> list(SearchVO NsearchVO) {
 		
 		return dao.list(NsearchVO);
 	}
 
 
 	@Override
-	public void add(Notice notice) {
+	public void add(Routine notice) {
 		dao.add(notice);
 	}
 
 
 	@Override
-	public Notice view(int nid) {
+	public Routine view(int nid) {
 		return dao.view(nid);
 	}
 
@@ -44,7 +44,7 @@ public class NoticeServcieImpl implements NoticeServcie {
 
 
 	@Override
-	public void update(Notice notice) {
+	public void update(Routine notice) {
 		// TODO Auto-generated method stub
 		dao.update(notice);
 	}
@@ -106,7 +106,7 @@ public class NoticeServcieImpl implements NoticeServcie {
 
 
 	@Override
-	public List<Notice> staticList() {
+	public List<Routine> staticList() {
 		// TODO Auto-generated method stub
 		return dao.staticList();
 	}

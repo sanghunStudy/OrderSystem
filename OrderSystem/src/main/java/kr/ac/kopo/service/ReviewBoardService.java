@@ -2,7 +2,7 @@ package kr.ac.kopo.service;
 
 import java.util.List;
 
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.ReviewBoard;
 import kr.ac.kopo.model.ReviewBoardComment;
 import kr.ac.kopo.util.FileVO;

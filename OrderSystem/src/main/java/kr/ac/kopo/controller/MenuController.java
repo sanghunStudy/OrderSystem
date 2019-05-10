@@ -32,10 +32,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.Menu;
 import kr.ac.kopo.model.MenuComment;
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.MenuService;
-import kr.ac.kopo.service.NoticeServcie;
+import kr.ac.kopo.service.RoutineServcie;
 import kr.ac.kopo.util.MediaUtils;
 import kr.ac.kopo.util.SearchVO;
 
@@ -48,14 +48,14 @@ public class MenuController {
 	@Autowired
 	MenuService service;
 	@Autowired
-	NoticeServcie Nservice;
+	RoutineServcie Nservice;
 	
 	@RequestMapping("/list")
 	String list(SearchVO searchVO,Model model) {
 		searchVO.pageCalculate(service.total(searchVO));
 		
 		List<Menu> list = service.list(searchVO);
-		List<Notice> Nlist = Nservice.staticList();
+		List<Routine> Nlist = Nservice.staticList();
 		
 		model.addAttribute("Nlist", Nlist);
 		model.addAttribute("list", list);

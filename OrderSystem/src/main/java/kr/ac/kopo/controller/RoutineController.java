@@ -35,9 +35,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ac.kopo.model.Notice;
+import kr.ac.kopo.model.Routine;
 import kr.ac.kopo.model.NoticeComment;
-import kr.ac.kopo.service.NoticeServcie;
+import kr.ac.kopo.service.RoutineServcie;
 import kr.ac.kopo.service.ReviewBoardService;
 import kr.ac.kopo.util.FileVO;
 import kr.ac.kopo.util.MediaUtils;
@@ -45,11 +45,11 @@ import kr.ac.kopo.util.SearchVO;
 import kr.ac.kopo.util.UploadFileUtils;
 
 @Controller
-@RequestMapping("/notice")
-public class NoticeController {
+@RequestMapping("/Routine")
+public class RoutineController {
 
 	final String path = "notice/";
-	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RoutineController.class);
 
 	private String uploadPath = "c:\\upload\\";
 	
@@ -59,7 +59,7 @@ public class NoticeController {
 	
 	
 	@Autowired
-	NoticeServcie service;
+	RoutineServcie service;
 	@Autowired
 	ReviewBoardService Rservice;
 	
@@ -73,7 +73,7 @@ public class NoticeController {
 
 		searchVO.pageCalculate(service.totalCount(searchVO));
 
-		List<Notice> list = service.list(searchVO);
+		List<Routine> list = service.list(searchVO);
 
 		model.addAttribute("list", list);
 		model.addAttribute("SearchVO", searchVO);
@@ -115,7 +115,7 @@ public class NoticeController {
 
 		if (nid != 0) {
 			List<FileVO> file = service.fileSelect(nid);
-			Notice item = service.view(nid);
+			Routine item = service.view(nid);
 			model.addAttribute("item", item);
 			model.addAttribute("file", file);
 
@@ -138,7 +138,7 @@ public class NoticeController {
 
 	// jsp에서 글작성시 noticeId의 값을 0으로 넘겨주고 아래에서 비교 0보다 클경우에는 글 수정 나머지는 글 작성이다.
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	String add(HttpServletRequest request, Notice notice,HttpSession session) {
+	String add(HttpServletRequest request, Routine notice,HttpSession session) {
 
 		String id = (String)session.getAttribute("user");
 
@@ -296,7 +296,7 @@ public class NoticeController {
 		// 조회수
 		service.views(nid);
 
-		Notice item = service.view(nid);
+		Routine item = service.view(nid);
 		List<FileVO> file = service.fileSelect(nid);
 	
 		model.addAttribute("item", item);

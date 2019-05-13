@@ -15,6 +15,8 @@
 					<li>${erun.exerciseCode}</li>
 					<li>${erun.start}</li>
 					<li>${erun.title}</li>
+					<li>${erun.exerciseName}</li>
+					<li>${erun.details(exerciseLb)}</li>
 				</ul>
 			</c:forEach>
 		</c:when>

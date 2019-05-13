@@ -72,9 +72,12 @@
 	</insert>
 	<!-- 운동일지 사용자에 맞는 제목 출력 -->
 	<select id="exerciseJournal" resultType="ExerciseJournal">
-		select
-		Exercise_code,exercise_date as start,title from exercise_item where id
-		= #{id}
+		select distinct
+		ei.Exercise_code,ei.exercise_date as start,ei.title, ei.userWeight, et.Exercise_name,
+		ec.Exercise_set, ec.Exercise_reps, ec.Exercise_lb
+		from exercise_item ei, exercise_title et, exercise_contents ec
+		where ei.Exercise_code=et.Exercise_code and et.Exercise_title_code=ec.Exercise_title_code
+		 and id = #{id}
 	</select>
 	<!-- <resultMap type="ExerciseJournal" id="EJMap"> -->
 	<!-- <id property="ExerciseCode" column="Exercise_code"></id> -->

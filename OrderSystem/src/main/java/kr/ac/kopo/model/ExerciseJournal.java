@@ -13,9 +13,47 @@ public class ExerciseJournal {
 	private int userWeight;
 	private String ExerciseName;
 	private int avgLb;
+	private int sumReps;
+	private int doneSet;
+	private int oneRm;
 	
 
+
 	List<ExerciseContents> details;	
+	
+
+	
+
+
+
+	public int getOneRm() {
+		return oneRm;
+	}
+
+
+	public void setOneRm(int oneRm) {
+		this.oneRm = oneRm;
+	}
+
+
+	public int getSumReps() {
+		return sumReps;
+	}
+
+
+	public void setSumReps(int sumReps) {
+		this.sumReps = sumReps;
+	}
+
+
+	public int getDoneSet() {
+		return doneSet;
+	}
+
+
+	public void setDoneSet(int doneSet) {
+		this.doneSet = doneSet;
+	}
 	
 	public int getAvgLb() {
 		return avgLb;

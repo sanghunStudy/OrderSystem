@@ -59,7 +59,7 @@ display:inline-block;
 	font-size:12pt;
 }
 .exercise-list th,td{
-	color:#fff;
+	color:rgb(154,154,154);
 	font-family : 'Nanum Gothic';
 	font-size:13px;
 }
@@ -69,7 +69,11 @@ display:inline-block;
 	background:#272a3d;
 	
 }
-
+#exercise-list-box h5{
+	color:#fff;
+	margin-bottom:15px;
+	text-align:center;
+}
 .menu-icons {
 	font-size:32px;
 	color:#fff;

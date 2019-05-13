@@ -1,4 +1,19 @@
 
+function rateCal(rateList) {
+	var rate;
+	for(var i in rateList) {
+		
+	}
+	if(parseInt(rateList[0]) >= parseInt(rateList[1]))
+		rate =	Math.round(rateList[0] / rateList[1] * 100);
+	else if(parseInt(rateList[0]) < parseInt(rateList[1])) {
+		rate =	100 -Math.round((rateList[0] / rateList[1] * 100));
+		rate = -rate
+	}
+	return rate;
+
+	
+}
 
 
 $(function() {
@@ -14,7 +29,7 @@ $(function() {
 		  data: {
 		    labels: deadDate/*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/,
 		    datasets: [{ 
-		        data: deadAvg/*[60,66,68,72,74,76,80,88,94,102]*/,
+		        data:dead/*[60,66,68,72,74,76,80,88,94,102]*/,
 		        label: "데드 리프트",
 		        borderColor: "hsla(210, 94%, 54%, 1)",
 		        pointBackgroundColor:  "#3e95cd",
@@ -43,7 +58,7 @@ $(function() {
 		  data: {
 		    labels: squatDate/*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/,
 		    datasets: [{ 
-		        data: squatAvg/*[72,73,73,75,78,70,85,85,94,97]*/,
+		        data: squat/*[72,73,73,75,78,70,85,85,94,97]*/,
 		        label: "스쿼트",
 		        borderColor: "#e14eca",
 		        pointBackgroundColor:  "#e14eca",
@@ -69,7 +84,7 @@ $(function() {
 		  data: {
 		    labels: benchDate/*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/,
 		    datasets: [{ 
-		        data: benchAvg/*[120,120,125,125,125,130,130,120,115,110]*/,
+		        data: bench/*[120,120,125,125,125,130,130,120,115,110]*/,
 		        label: "벤치",
 		        borderColor: "#00f2c3",
 		        pointBackgroundColor:  "#00f2c3",

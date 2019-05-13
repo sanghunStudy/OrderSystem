@@ -27,7 +27,7 @@
 		JOIN exercise_contents ec
 		ON et.Exercise_title_code =
 		ec.Exercise_title_code AND et.Exercise_code = ei.exercise_code
-		WHERE ei.id = 'user' AND ei.Exercise_date = curdate()
+		WHERE ei.id = #{id} AND ei.Exercise_date = curdate()
 	</select>
 	
 	<select id="monthExerList" resultMap="EJMap">
@@ -50,16 +50,23 @@
 	</select>
 	
 	<select id="getAvgLb" resultType="ExerciseJournal">
-		SELECT mytable.Exercise_date start,mytable.Exercise_name,ROUND(AVG(mytable.Exercise_lb),1) avgLb
-		FROM (SELECT
-		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
-		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
-		FROM exercise_title et JOIN exercise_item ei 
-		JOIN exercise_contents ec
-		ON et.Exercise_title_code =
-		ec.Exercise_title_code AND et.Exercise_code = ei.exercise_code
-		WHERE ei.id = #{id}) mytable
-		group by mytable.Exercise_date,mytable.Exercise_name
+		SELECT 
+		 mytable.Exercise_date start
+			,mytable.Exercise_name
+			,ROUND(AVG(mytable.Exercise_lb),0) avgLb,SUM(mytable.Exercise_reps) sumReps,count(mytable.Exercise_set) doneSet,
+			ROUND((MAX(mytable.Exercise_lb) * (1+MAX(mytable.reps)/30)),0) oneRm
+		FROM (SELECT 
+				ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
+				ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb,
+				(SELECT ab.Exercise_reps FROM exercise_contents ab WHERE ab.exercise_lb = ec.Exercise_lb AND ab.exercise_contents_code = ec.Exercise_contents_code) reps
+			FROM exercise_title et JOIN exercise_item ei 
+				JOIN exercise_contents ec
+					ON et.Exercise_title_code = ec.Exercise_title_code 
+					AND et.Exercise_code = ei.exercise_code
+			WHERE ei.id = #{id}) mytable
+		GROUP BY mytable.Exercise_date,mytable.Exercise_name 
+		ORDER BY mytable.Exercise_date DESC
+
 	
 	</select>
 	

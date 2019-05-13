@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,17 +22,18 @@
 </style>
 <script>
 
-var deadAvg=[],
-	deadDate=[],
-	squatAvg=[],
+var squat = [],
 	squatDate=[],
-	benchAvg=[],
+	dead = [],
+	deadDate=[],
 	benchDate=[],
+	bench = [],
 	inputWeight=[],
 	inputDate=[],
-	list=[];
-    metabolism={b:'',e:''};
-
+	list=[],
+    metabolism={b:'',e:''},
+	data={};
+var copyArray = [];
 </script>
 </head>
 <body>
@@ -55,37 +57,43 @@ var deadAvg=[],
 <c:forEach var="avg" items="${avgLb}"> 
 	<c:choose> 
  		<c:when test="${avg.exerciseName eq '데드리프트'}" > 
-		<script> 
- 			deadDate.push('${avg.start}');
-			deadAvg.push('${avg.avgLb}');
-			
-
+		<script>
+		
+		dead.push('${avg.avgLb}');
+		deadDate.push('${avg.start}');
 		</script> 
 		</c:when>
 		<c:when test="${avg.exerciseName eq '스쿼트'}">
  		<script> 
-				squatDate.push('${avg.start}');
- 				squatAvg.push('${avg.avgLb}');
- 			
+	
+		squat.push('${avg.avgLb}');
+		squatDate.push('${avg.start}');
+		
 		</script>			
 		</c:when>
 		<c:when test="${avg.exerciseName eq '플랫벤치프레스'}">
 		<script> 
- 					benchDate.push('${avg.start}');
- 					benchAvg.push('${avg.avgLb}');
- 				
+	
+		bench.push('${avg.avgLb}');
+		benchDate.push('${avg.start}');
+		
  		</script> 
 		</c:when>
 		<c:otherwise>
-		<script>
-		
-		</script>
+
 		</c:otherwise>
 		</c:choose>
-		<script> 
- 		
-		</script>
+
 </c:forEach>
+<script>
+
+var deadLbRate = rateCal(dead);
+var squatLbRate = rateCal(squat);
+var benchLbRate = rateCal(bench);
+
+
+	
+</script>
 <div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
@@ -126,38 +134,50 @@ var deadAvg=[],
 	</div>
 	
 	<div id = "exercise-list-box">
+		<h5>최근 운동일지</h5>
 		<table class="exercise-list">
 			<tr>
-				<td>이름</td>
-				<td>세트수</td>
-				<td>횟수</td>
-				<td>중량</td>
+			    <td>운동명</td>
+			    <td>평균 중량</td>
+				<td>반복회수</td>
+				<td>세트 합계</td>
+				<td>1RM</td>
 			</tr>
 			
-				<c:forEach var="item" items="${todayList}" begin="0">
+				<c:forEach var="item" items="${avgLb}" begin="0" varStatus="status">
+					
+				
+					<script>
+						data = {
+							date:'${item.start}',
+							name:'${item.exerciseName}',
+							lb:'${item.avgLb}',
+							reps:'${item.sumReps}',
+							set:'${item.doneSet}',
+							oneRm:'${itme.oneRm}'
+						};
+						copyArray.push(data);
+						for(var i in copyArray) {
+							if(copyArray[i].name = '${item.exerciseName}')
+							
+						}
+					</script>		
+					
 								
-					<c:forEach var="details" items="${item.details}" >
-					<script>	
-					var item = 
-						{date:'${item.start}',
-						 name:'${item.exerciseName}',	
-						 set:'${details.exerciseSet}',
-						 reps:'${details.exerciseReps}',
-						 lb:'${details.exerciseLb}'
-							}				
-					list.push(item);
-			
-					</script>
-			<tr>
+			<c:if test="${item.start == avgLb[0].start}">
+			<tr class="percentRow">
 					<td>${item.exerciseName}</td>
-						
-							<td>${details.exerciseSet}</td>
-							<td>${details.exerciseReps}</td>
-							<td>${details.exerciseLb}</td>
-					</tr>				
-					</c:forEach>
-			
-				</c:forEach>		
+					<td class="avgLb">${item.avgLb}</td>
+					<td class="sumReps">${item.sumReps}</td>
+					<td class="doneSet">${item.doneSet}</td>
+					<td class="oneRm">${item.oneRm}</td>
+					
+			</tr>				
+			</c:if>	
+				</c:forEach>	
+				<script>
+
+				</script>	
 		</table>
 	</div>
 	<div class="toWrapper">

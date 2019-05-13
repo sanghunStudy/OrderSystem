@@ -49,7 +49,7 @@
 	<c:forEach var="img" items="${file}">
 		
 			<li><label>파일명 : <a href="${pageContext.request.contextPath}/upload${img.filename}">${img.realname}</a></label><label>파일 크기 ${img.filesize}</label></li>
-		
+			<li><img src="${pageContext.request.contextPath}/upload${img.filename}"></li>
 	</c:forEach>
 	</ul>
 	</c:when>
@@ -63,7 +63,7 @@
 <%-- 	</sec:authorize> --%>
 <%-- 	기존에 쓰던 세션방식 --%>
 
-<c:if test="${sessionScope.user == item.id}">
+<c:if test="${sessionScope.admin == item.id}">
  	<a href="add?nid=${item.noticeId}">수정</a>
  		<a href="delete?nid=${item.noticeId}">삭제</a>
  </c:if>

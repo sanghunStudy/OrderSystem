@@ -140,7 +140,7 @@ public class RoutineController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	String add(HttpServletRequest request, Routine notice,HttpSession session) {
 
-		String id = (String)session.getAttribute("user");
+		String id = (String)session.getAttribute("admin");
 
 		notice.setId(id);
 
@@ -149,6 +149,22 @@ public class RoutineController {
 		
 		if (notice.getNoticeId() > 0) {
 			service.update(notice);
+			
+			if (filelist.size() > 0) {
+				for (int i = 0; i < filelist.size(); i++) {
+					//update시 파일 처리
+					service.fileUp(filelist.get(i), reallist.get(i), sizelist.get(i));
+//					service.fileUp(filelist.get(i), reallist.get(i), sizelist.get(i));
+					
+				}
+				
+				reallist.clear();
+				filelist.clear();
+				sizelist.clear();
+				
+			}
+			
+			
 		} else {
 			service.add(notice);
 //			System.out.println(filelist.length + "파일사이즈 랭스스스");
@@ -261,20 +277,20 @@ public class RoutineController {
 			String front = fileName.substring(0, 12);
 			String end = fileName.substring(14);
 			new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+			
 		} // if
 
 		new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 		
 		//배열에서 값 삭제처리
-		String fakeFileName = fileName.substring(12);
+		String fakeFileName = fileName.substring(13);// 13번째 부터 끝까지 짜르기
 
 		System.out.println(fileName+"<<<<<<<<<<<<<<<<<fileName");
 		for(int i=0; i<filelist.size(); i++) {
 
-			System.out.println(filelist.get(i)+"<<<<<<<<<<<<<<<<<get(i)");
+			System.out.println(filelist.get(i).substring(12)+"<<<<<<<<<<<<<<<<<get(i)");
 			System.out.println(fakeFileName+"<<<<<<<<<<<<<<<<<fakeFileName");
-			
-			if(filelist.get(i).equals(fakeFileName)) {
+			if(filelist.get(i).substring(12).equals(fakeFileName)) {
 				System.out.println(filelist.indexOf(filelist.get(i)) + "<<<<<<<<<<<<<<삭제할 놈이 있는 위치");
 				//선택한 번째를 삭제한다.
 				reallist.remove(filelist.indexOf(filelist.get(i)));

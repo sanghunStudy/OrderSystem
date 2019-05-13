@@ -331,55 +331,62 @@
 	});
 	//작성완료버튼 클릭시 운동일자, 일지제목, 운동명, 운동정보(세트수,중량,반복회수)를 서버로 보내야함.
 	$(document).on("click","#eJSubmit",function(){
-		var ClickDateStr = $("#date1").val();
-		var DayTitle = $("#inputTitle").val();
-		var userWeight = $("#userWeight").val();
-// 		console.log("작성완료");
-		
-		//배열선언
-		var tableArray = new Array();
-		//배열에 날짜,제목 넣는다
-		tableArray.push({
-			"ExerciseDate":ClickDateStr
-		},
-		{
-			"title":DayTitle
-		},
-		{
-			"userWeight":userWeight
-		}
-		);
-		
-		//ul태그중 클래스명이 input_item을 포함하는 것들의 input태그의 값 가져와서 배열에 넣는다.
-		$("ul[class*='input_item']").find("input").each(function(){
-			var tableVal = $(this).prop("value");
-			var tableName = $(this).prop("name");
+		var sChk = "${sessionScope.user}";
+		if(sChk){
+			var ClickDateStr = $("#date1").val();
+			var DayTitle = $("#inputTitle").val();
+			var userWeight = $("#userWeight").val();
+//	 		console.log("작성완료");
 			
-			tableArray.push(
-					{
-					[tableName]:tableVal
-				}
+			//배열선언
+			var tableArray = new Array();
+			//배열에 날짜,제목 넣는다
+			tableArray.push({
+				"ExerciseDate":ClickDateStr
+			},
+			{
+				"title":DayTitle
+			},
+			{
+				"userWeight":userWeight
+			}
 			);
 			
-		});
+			//ul태그중 클래스명이 input_item을 포함하는 것들의 input태그의 값 가져와서 배열에 넣는다.
+			$("ul[class*='input_item']").find("input").each(function(){
+				var tableVal = $(this).prop("value");
+				var tableName = $(this).prop("name");
+				
+				tableArray.push(
+						{
+						[tableName]:tableVal
+					}
+				);
+				
+			});
+			
+			//json형식으로 바꿔준다.
+			var JsonData = JSON.stringify(tableArray);
+//	 		console.log(JsonData);
+			
+			//ajax을 통해서 서버에 전달
+			$.ajax({
+				type:'post',
+				async:false,
+				contentType:'application/json;charset=UTF-8',
+				data:JSON.stringify(tableArray),
+				dataType:'json',
+				url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
+				success:function(res){
+//	 				console.log(res);
+	 				location.href = "MyPage";
+				}
+			});
+		}else{
+			alert('로그인 후 이용 가능합니다.');
+		}
 		
-		//json형식으로 바꿔준다.
-		var JsonData = JSON.stringify(tableArray);
-// 		console.log(JsonData);
-		
-		//ajax을 통해서 서버에 전달
-		$.ajax({
-			type:'post',
-			async:false,
-			contentType:'application/json;charset=UTF-8',
-			data:JSON.stringify(tableArray),
-			dataType:'json',
-			url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
-			success:function(res){
-// 				console.log(res);
- 				location.href = "MyPage";
-			}
-		});
+
 	});
 	
 	$(document).on("click",".icon",function(){

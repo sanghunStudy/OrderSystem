@@ -63,6 +63,7 @@ public class UploadFileUtils {
 		//첨부파일의 내용을 변수에 담아줌(컨트롤러에서 호출하여 db에 넣을꺼임)
 		realname = originalName;
 		filename = savedPath+savedName;
+		
 		filesize = Integer.toString(fileData.length);
 		
 		System.out.println(filesize + "<<<<<<<<<<<<<<<<<<<<filesize UploadFileUtils Class");
@@ -70,16 +71,24 @@ public class UploadFileUtils {
 		File target = new File(uploadPath + savedPath, savedName);
 
 		// 파일을 저장
-		FileCopyUtils.copy(fileData, target);
+//		FileCopyUtils.copy(fileData, target);
 
 		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
-
+		
+		System.out.println(formatName+"<<<<<<<<<<<<formatName");
+		if(formatName.equals("jpg")||formatName.equals("png")||formatName.equals("gif")) {
+			// 파일을 저장
+			FileCopyUtils.copy(fileData, target);
+			
+		}
 		String uploadedFileName = null;
 
 		// 파일의 확장자에 따라 썸네일(이미지일경우) 또는 아이콘을 생성함.
 		if (MediaUtils.getMediaType(formatName) != null) {
 			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
-		} else {
+
+		} 
+		else {
 			uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
 		}
 

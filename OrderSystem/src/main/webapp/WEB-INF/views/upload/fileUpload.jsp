@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,41 +29,37 @@
 							var formData = new FormData(); // HTML5
 							formData.append("file", file);
 
-							$
-									.ajax({
-										url : '${pageContext.request.contextPath}/notice//sample/upload/uploadAjax',
+							$.ajax({
+										url : '${pageContext.request.contextPath}/Routine//sample/upload/uploadAjax',
 										data : formData,
 										dataType : 'text',
 										processData : false,
 										contentType : false,
-										 beforeSend : function(xhr)
-							             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-							                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-							             },
 										type : 'POST',
 										success : function(data) {
-											//alert(data);
+											
 											//서버로 파일을 전송한 다음에 그 파일을 다시 받아온다.?
 
 											//이미지 인경우 썸네일을 보여준다.
 											if (checkImageType(data)) {
 												str = "<div>"										
-														+ "<img src='${pageContext.request.contextPath}/notice/sample/upload/displayFile?fileName="
+														+ "<img src='${pageContext.request.contextPath}/Routine/sample/upload/displayFile?fileName="
 														+ data
 														+ "'/>"
 														+ "<small data-src='" + data + "'>X</small></div>";
+												$(".uploadedList").append(str);	
 											} else {
 												alert("이미지 파일이 아닙니다.");
-												str = "<div>"
-														+ "<img src='${pageContext.request.contextPath}/notice/sample/upload/displayFile?fileName="
-														+ "'/>"
-														+ "<p>" 
-														+ getOriginalName(data)
-														+ "</p>"
-														+ "<small data-src='" + data + "'>X</small></div>";
+// 												str = "<div>"
+// 														+ "<img src='${pageContext.request.contextPath}/Routine/sample/upload/displayFile?fileName="
+// 														+ "'/>"
+// 														+ "<p>" 
+// 														+ getOriginalName(data)
+// 														+ "</p>"
+// 														+ "<small data-src='" + data + "'>X</small></div>";
 											}//else
 
-											$(".uploadedList").append(str);
+											
 										},
 									});// ajax
 
@@ -109,15 +104,11 @@
 // 			alert($(this).attr("data-src"));
 			
 			$.ajax({
-				url : "${pageContext.request.contextPath}/notice/sample/upload/deleteFile",
+				url : "${pageContext.request.contextPath}/Routine/sample/upload/deleteFile",
 				type : "post",
 				data : {
 					fileName : $(this).attr("data-src")
 				},
-				 beforeSend : function(xhr)
-	             {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-	                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	             },
 				dataType : "text",
 				success : function(result) {
 					if (result == 'deleted') {
@@ -164,10 +155,9 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<!-- <form id="form1" action="/sample/upload/uploadForm" method="post" enctype="multipart/form-data"> -->
-					<form id="form" action="/sample/upload/uploadForm?${_csrf.parameterName}=${_csrf.token}" method="post"
-						enctype="multipart/form-data">
-						<sec:csrfInput />
+					<form id="form1" action="/sample/upload/uploadForm" method="post" enctype="multipart/form-data">
+<%-- 					<form id="form" action="/sample/upload/uploadForm?${_csrf.parameterName}=${_csrf.token}" method="post" --%>
+<!-- 						enctype="multipart/form-data"> -->
 						<div class="box-body">
 							<div class="form-group">
 								<div class="fileDrop"></div>

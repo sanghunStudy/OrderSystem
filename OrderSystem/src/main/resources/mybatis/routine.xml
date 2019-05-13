@@ -27,6 +27,7 @@
 	</select>
 
 
+<!-- 	파일 업로드 수정 처리 만들어야됨 -->
 	<insert id="fileUp" parameterType="HashMap">
 		insert into tbl_boardfile (notice_id,filename,realname,filesize)
 		values((SELECT IFNULL(MAX(notice_id),0) FROM notice),#{filename},#{realname},#{filesize})

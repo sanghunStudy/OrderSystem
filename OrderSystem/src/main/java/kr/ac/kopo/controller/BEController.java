@@ -22,9 +22,14 @@ public class BEController {
 	@ResponseBody
 	int BEDataAdd(BEsave besave, HttpSession session) {
 		String username = (String)session.getAttribute("user");
-		besave.setUsername(username);
-		service.add(besave);
-		return 1;
+		if(username!=null) {
+			besave.setUsername(username);
+			service.add(besave);
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 	
 }

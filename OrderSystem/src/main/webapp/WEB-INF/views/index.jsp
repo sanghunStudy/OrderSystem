@@ -99,9 +99,9 @@
 
 				<div id="tab-1" class="tab-content current">
 					<div id="app">
-						<label>사용중량</label> <input v-model="x" type="number" id="kg">
-						<label>반복횟수</label> <input v-model="y" type="number" id="reps">
-						<label>추산1RM : </label> <span id="onerm">{{ sum }}</span>
+						<label>사용중량</label><input v-model="x" type="number" id="kg">
+						<label>반복횟수</label><input v-model="y" type="number" id="reps">
+						<a>&emsp;&emsp;추산1RM : <span id="onerm">{{ sum }}</span></a>
 
 						<table id="onet">
 							<thead>
@@ -121,7 +121,7 @@
 									<td>{{ one }}</td>
 									<td>8</td>
 									<td>~2분</td>
-									<td rowspan="2">근지구력증가</td>
+									<td>근지구력증가</td>
 								</tr>
 								<tr>
 									<td>2</td>
@@ -129,6 +129,7 @@
 									<td>{{ two }}</td>
 									<td>5</td>
 									<td>~2분</td>
+									<td>근지구력증가</td>
 								</tr>
 								<tr>
 									<td>3</td>
@@ -152,7 +153,7 @@
 									<td>{{ five }}</td>
 									<td>1</td>
 									<td>~5분</td>
-									<td rowspan="3">힘증가</td>
+									<td>힘증가</td>
 								</tr>
 								<tr>
 									<td>6</td>
@@ -160,6 +161,7 @@
 									<td>{{ six }}</td>
 									<td>1</td>
 									<td>5-15분</td>
+									<td>힘증가</td>
 								</tr>
 								<tr>
 									<td>7</td>
@@ -167,6 +169,7 @@
 									<td>{{ seven }}</td>
 									<td>1</td>
 									<td>5-15분</td>
+									<td>힘증가</td>
 								</tr>
 							</tbody>
 						</table>

@@ -94,6 +94,9 @@ table select,input {
   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
   width:430px;
 }
+#tab-1{
+	width:460px;
+}
 #onet{
 	text-align:center;
 	font-size:10pt;
@@ -104,10 +107,15 @@ table select,input {
 #onet td{
 	margin:5px;
 }
+#onet td:nth-child(3), #onerm{
+	color:#e6bc0d;
+}
 #kg, #reps {
 	background:#272a3d;
-	color:#d6d1d8;
-	width:100px;
+	color:#e6bc0d;
+	width:120px;
+	height:20px;
+	padding-left:5px;
 	border:1px solid #d6d1d8;
 	margin-right:10px;
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- Trigger/Open The Modal -->
-	<button id="openCalc">Open Calc</button>
+	<button id="calBtn">Open Calc</button>
 
 	<!-- The Modal -->
 	<div id="calcModal" class="modal">

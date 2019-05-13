@@ -17,6 +17,7 @@
 		<li><a href="statistics">나의 운동 통계 </a></li>
 		<li><a href="promotion">트레이너 신청</a></li>
 		<li><a href="proList">트레이너 신청목록</a></li>
+		<li><a href="ExerciseJournalList">운동일지상세목록</a></li>
 	</ul>
 
 </body>

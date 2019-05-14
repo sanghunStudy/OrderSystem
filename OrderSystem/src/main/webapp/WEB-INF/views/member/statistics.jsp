@@ -20,21 +20,7 @@
 <style>
 
 </style>
-<script>
 
-var squat = [],
-	squatDate=[],
-	dead = [],
-	deadDate=[],
-	benchDate=[],
-	bench = [],
-	inputWeight=[],
-	inputDate=[],
-	list=[],
-    metabolism={b:'',e:''},
-	data={};
-var copyArray = [];
-</script>
 </head>
 <body>
 <c:forEach var="energy" items="${metabolism}">
@@ -85,15 +71,7 @@ var copyArray = [];
 		</c:choose>
 
 </c:forEach>
-<script>
 
-var deadLbRate = rateCal(dead);
-var squatLbRate = rateCal(squat);
-var benchLbRate = rateCal(bench);
-
-
-	
-</script>
 <div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
@@ -135,6 +113,7 @@ var benchLbRate = rateCal(bench);
 	
 	<div id = "exercise-list-box">
 		<h5>최근 운동일지</h5>
+		<div class="detail"><span>more</span><i class="fas fa-plus"></i></div>
 		<table class="exercise-list">
 			<tr>
 			    <td>운동명</td>
@@ -154,13 +133,10 @@ var benchLbRate = rateCal(bench);
 							lb:'${item.avgLb}',
 							reps:'${item.sumReps}',
 							set:'${item.doneSet}',
-							oneRm:'${itme.oneRm}'
+							oneRm:'${item.oneRm}'
 						};
 						copyArray.push(data);
-						for(var i in copyArray) {
-							if(copyArray[i].name = '${item.exerciseName}')
-							
-						}
+	
 					</script>		
 					
 								
@@ -175,10 +151,28 @@ var benchLbRate = rateCal(bench);
 			</tr>				
 			</c:if>	
 				</c:forEach>	
-				<script>
 
-				</script>	
 		</table>
+		<script>
+// 		var lbs = document.getElementsByClassName('avgLb');
+// 		var repeatCounts =  document.getElementsByClassName('sumReps');
+// 		var totSets = document.getElementsByClassName('doneSet');
+// 		var RMs = document.getElementsByClassName('oneRm');
+	
+		console.log(copyArray);
+	
+		function test() {
+			 exList = copyArray.filter(function(item) {
+				var i =0;
+				++i;
+				return item.name === copyArray[i].name;
+				
+			});
+			console.log(exList);
+		}
+	
+		
+		</script>
 	</div>
 	<div class="toWrapper">
 		<div class="toDo">
@@ -192,5 +186,25 @@ var benchLbRate = rateCal(bench);
 	</div>
 </div>
 </div>
+<script>
+// for(var j=0; j<copyArray.length;j++) {
+// 	for(var k=0; k<copyArray; k++) {
+// 		if(copyArray[j].name = copyArray[k].name) {
+// 			row = {
+// 					date:copyArray[k].date,
+// 					name:copyArray[k].name,
+// 					lb:copyArray[k].lb,
+// 					reps:copyArray[k].reps,
+// 					set:copyArray[k].set,
+// 					oneRm:copyArray[k].oneRm
+// 			}
+// 			change.push(row);
+// 			console.log(change);
+		
+// 		}
+// 	}
+// }
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/statistics.js"></script>
 </body>
 </html>

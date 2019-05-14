@@ -73,6 +73,7 @@ display:inline-block;
 	color:#fff;
 	margin-bottom:15px;
 	text-align:center;
+	display:inline-block;
 }
 .menu-icons {
 	font-size:32px;
@@ -111,4 +112,11 @@ display:inline-block;
 }
 .edit_list, .title {
 	display:inline-block;
+}
+.detail {
+	float:right;
+	color:#fff;
+	cursor:pointer;
+	font-size:10px;
+	margin-right:14px;
 }

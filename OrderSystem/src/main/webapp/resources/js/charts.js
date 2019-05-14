@@ -1,13 +1,32 @@
+var squat = [],
+	squatDate=[],
+	dead = [],
+	deadDate=[],
+	benchDate=[],
+	bench = [],
+	inputWeight=[],
+	inputDate=[],
+	list=[],
+    metabolism={b:'',e:''},
+	data={},
+	copyArray = [], 
+	row={},
+	change=[],
+    exList;
 
-function rateCal(rateList) {
+
+
+
+
+
+
+function rateCal(comparison,curVal) {
 	var rate;
-	for(var i in rateList) {
-		
-	}
-	if(parseInt(rateList[0]) >= parseInt(rateList[1]))
-		rate =	Math.round(rateList[0] / rateList[1] * 100);
-	else if(parseInt(rateList[0]) < parseInt(rateList[1])) {
-		rate =	100 -Math.round((rateList[0] / rateList[1] * 100));
+	
+	if(parseInt(curVal) >= parseInt(comparison))
+		rate =	Math.round(curVal / comparison * 100);
+	else if(parseInt(curVal) < parseInt(comparison)) {
+		rate =	100 -Math.round((curVal / comparison * 100));
 		rate = -rate
 	}
 	return rate;
@@ -17,6 +36,11 @@ function rateCal(rateList) {
 
 
 $(function() {
+	
+
+
+	
+
 
 	var ctx = document.getElementById('line-chart-daed').getContext("2d");
 
@@ -33,7 +57,7 @@ $(function() {
 		        label: "데드 리프트",
 		        borderColor: "hsla(210, 94%, 54%, 1)",
 		        pointBackgroundColor:  "#3e95cd",
-		        backgroundColor:grd,
+		   
 		        fill: false
 		      }
 		    ]
@@ -159,7 +183,7 @@ $(function() {
 				  "지방"
 				],
 				datasets: [{
-					data: [300, 50, 100],
+					data: [parseInt(metabolism.e*0.6), parseInt(metabolism.e*0.2), parseInt(metabolism.e*0.2)],
 					backgroundColor: [
 					  "#FF6384",
 					  "#36A2EB",
@@ -240,10 +264,10 @@ $(function() {
 		    labels: /*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/inputDate,
 		    datasets: [{ 
 		        data: /*[70,71,72,68,69,70,71,73,74,75.6]*/inputWeight,
-		        label: "체중 변화(in Kg)",
-		        borderColor: "hsla(210, 94%, 54%, 1)",
-		        pointBackgroundColor:  "#3e95cd",
-		        backgroundColor:grd,
+		        label: "체중(in Kg)",
+		        borderColor: "hsla(258, 66%, 64%, 1)",
+		        pointBackgroundColor:  "#8965e0",
+		    
 		        fill: false
 		      }
 		    ]

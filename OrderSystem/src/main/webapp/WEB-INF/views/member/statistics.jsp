@@ -142,7 +142,7 @@
 								
 			<c:if test="${item.start == avgLb[0].start}">
 			<tr class="percentRow">
-					<td>${item.exerciseName}</td>
+					<td class="exTitle">${item.exerciseName}</td>
 					<td class="avgLb">${item.avgLb}</td>
 					<td class="sumReps">${item.sumReps}</td>
 					<td class="doneSet">${item.doneSet}</td>
@@ -161,17 +161,31 @@
 	
 		console.log(copyArray);
 	
-		function test() {
-			 exList = copyArray.filter(function(item) {
-				var i =0;
-				++i;
-				return item.name === copyArray[i].name;
-				
+
+			var index = -1;
+			var val = document.body.getElementsByClassName('exTitle');
+			for(var q=0;q<val.length;q++){
+			var filteredObj = copyArray.filter(function(item, i){
+			
+			    
+			    return item.name === val[q].innerText;
+			  
 			});
-			console.log(exList);
-		}
-	
+			for(var i=0; i<4;i++) {
+				
+			var lbPercent = rateCal(filteredObj[1].lb,filteredObj[0].lb)+'%';
+			    repsPercent = rateCal(filteredObj[1].reps,filteredObj[0].reps)+'%';
+			    setPercent = rateCal(filteredObj[1].set,filteredObj[0].set)+'%';
+			    oneRmPercent = rateCal(filteredObj[1].oneRm,filteredObj[0].oneRm)+'%';
+			var rate = documnet.body.createElemnet('span');
+			rate.className = 'rate';
+			rate.innerHTML = percent;
+			console.log()
+			
+			}
+			console.log(filteredObj);
 		
+			}
 		</script>
 	</div>
 	<div class="toWrapper">

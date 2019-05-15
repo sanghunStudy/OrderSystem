@@ -37,4 +37,6 @@ public interface RoutineDao {
 
 	List<Routine> staticList();
 
+	void filedelete(String fileName);
+
 }

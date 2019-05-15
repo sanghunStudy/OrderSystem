@@ -26,8 +26,10 @@
 // 			socket.emit("username",userName);
 			//node.js에서 설정해놓은 경로로 이동함. port9393
 // 			var url = "http://172.16.143.39:9393?itemName="+userName;
-			//노드 서버 호스팅해서 그 주소로 설정해야될듯?? 지금은 ngrok 주소라 컴퓨터 끄면 변경됨
-			var url = "https://fff3fe31.ngrok.io";
+// 			var url = "http://172.16.143.39:9393";
+
+			//heroku 호스팅 주소
+			var url = "https://online-personal-training.herokuapp.com/";
 			//해당 경로 실행
 			$(location).attr("href", url);
 		});

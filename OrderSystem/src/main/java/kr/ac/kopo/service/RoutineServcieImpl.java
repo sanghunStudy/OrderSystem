@@ -111,4 +111,11 @@ public class RoutineServcieImpl implements RoutineServcie {
 		return dao.staticList();
 	}
 
+
+	@Override
+	public void filedelete(String fileName) {
+		// TODO Auto-generated method stub
+		dao.filedelete(fileName);
+	}
+
 }

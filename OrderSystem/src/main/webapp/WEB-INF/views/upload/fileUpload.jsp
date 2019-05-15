@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,7 +168,15 @@
 
 						<div class="box-footer">
 							<!-- <button type="submit" class="btn btn-warning">제출</button> -->
-							<div class="uploadedList"></div>
+							<div class="uploadedList">
+							<c:forEach var="img" items="${file}">
+									<div>
+										<img src="${pageContext.request.contextPath}/upload${img.filename}">
+										<small data-src="${img.filename}">X</small>
+										<input type="hidden" name="imgAdr" value="${img.filename}">
+									</div>
+							</c:forEach>
+							</div>
 						</div>
 					</form>
 				</div>

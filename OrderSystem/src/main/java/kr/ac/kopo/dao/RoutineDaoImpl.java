@@ -106,4 +106,10 @@ public class RoutineDaoImpl implements RoutineDao {
 		return sql.selectList("routine.staticList");
 	}
 
+	@Override
+	public void filedelete(String fileName) {
+		// TODO Auto-generated method stub
+		sql.delete("routine.filedelete",fileName);
+	}
+
 }

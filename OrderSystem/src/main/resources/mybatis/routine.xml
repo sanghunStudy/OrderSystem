@@ -16,6 +16,10 @@
 		</if>
 	</sql>
 
+<!-- 파일 삭제 -->
+	<delete id="filedelete">
+		delete from tbl_boardfile where filename=#{filename}
+	</delete>
 	<select id="staticList" resultType="Routine">
 		select notice.notice_id,notice.notice_title,notice.notice_date,notice.notice_views,notice.id from notice
 	</select>

@@ -46,11 +46,16 @@
 	<c:choose>
 	<c:when test="${file.size() > 0 }">
 	<ul>
+	<form action="fileDel" method="post" id="imgAdrFrm">
+	<input type="hidden" name="nid" value="${item.noticeId}">
 	<c:forEach var="img" items="${file}">
 		
 			<li><label>파일명 : <a href="${pageContext.request.contextPath}/upload${img.filename}">${img.realname}</a></label><label>파일 크기 ${img.filesize}</label></li>
 			<li><img src="${pageContext.request.contextPath}/upload${img.filename}"></li>
+			
+				<input type="hidden" name="imgAdr" value="${img.filename}">
 	</c:forEach>
+	</form>
 	</ul>
 	</c:when>
 	</c:choose>
@@ -65,7 +70,14 @@
 
 <c:if test="${sessionScope.admin == item.id}">
  	<a href="add?nid=${item.noticeId}">수정</a>
- 		<a href="delete?nid=${item.noticeId}">삭제</a>
+ 	<script>
+ 		window.onload = function(){
+ 			document.getElementById("test").onclick = function(){
+ 				document.getElementById("imgAdrFrm").submit();
+ 			}
+ 		}
+ 	</script>
+ 		<button type="button" id="test">삭제</button>
  </c:if>
 	<a href="list">목록</a>
 </body>

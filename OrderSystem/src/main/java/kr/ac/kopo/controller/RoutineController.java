@@ -284,23 +284,25 @@ public class RoutineController {
 		
 		//배열에서 값 삭제처리
 		String fakeFileName = fileName.substring(13);// 13번째 부터 끝까지 짜르기
-
-		System.out.println(fileName+"<<<<<<<<<<<<<<<<<fileName");
-		for(int i=0; i<filelist.size(); i++) {
-
-			System.out.println(filelist.get(i).substring(12)+"<<<<<<<<<<<<<<<<<get(i)");
-			System.out.println(fakeFileName+"<<<<<<<<<<<<<<<<<fakeFileName");
-			if(filelist.get(i).substring(12).equals(fakeFileName)) {
-				System.out.println(filelist.indexOf(filelist.get(i)) + "<<<<<<<<<<<<<<삭제할 놈이 있는 위치");
-				//선택한 번째를 삭제한다.
-				reallist.remove(filelist.indexOf(filelist.get(i)));
-				sizelist.remove(filelist.indexOf(filelist.get(i)));
-				filelist.remove(filelist.indexOf(filelist.get(i)));
-				break;
-				
+		if(0 == filelist.size()) {
+			service.filedelete(fileName);
+		}else {
+			System.out.println(fileName+"<<<<<<<<<<<<<<<<<fileName");
+			for(int i=0; i<filelist.size(); i++) {
+	
+				System.out.println(filelist.get(i).substring(12)+"<<<<<<<<<<<<<<<<<get(i)");
+				System.out.println(fakeFileName+"<<<<<<<<<<<<<<<<<fakeFileName");
+				if(filelist.get(i).substring(12).equals(fakeFileName)) {
+					System.out.println(filelist.indexOf(filelist.get(i)) + "<<<<<<<<<<<<<<삭제할 놈이 있는 위치");
+					//선택한 번째를 삭제한다.
+					reallist.remove(filelist.indexOf(filelist.get(i)));
+					sizelist.remove(filelist.indexOf(filelist.get(i)));
+					filelist.remove(filelist.indexOf(filelist.get(i)));
+					break;
+					
+				}
 			}
 		}
-	
 		
 		return new ResponseEntity<String>("deleted", HttpStatus.OK) ;
 
@@ -337,7 +339,17 @@ public class RoutineController {
 		service.delete(nid);
 		return "redirect:list";
 	}
-
+	
+	//게시글 삭제시 실제 경로 이미지 파일도 삭제
+	@RequestMapping("/fileDel")
+	String fileDel(String[] imgAdr,int nid) {
+		for(int i=0; i < imgAdr.length; i++) {
+			System.out.println(imgAdr[i]);
+			new File(uploadPath + imgAdr[i].replace('/', File.separatorChar)).delete();
+		}
+		service.delete(nid);
+		return "redirect:list";
+	}
 	// 댓글 crud
 
 	@RequestMapping("/commentUpdate")

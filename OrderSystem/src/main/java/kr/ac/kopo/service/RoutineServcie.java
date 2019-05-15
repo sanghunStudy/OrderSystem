@@ -37,4 +37,6 @@ public interface RoutineServcie {
 	//검색 페이징 안되는 다른 게시판에 불러오는 용도의 공지사항 리스트
 	List<Routine> staticList();
 
+	void filedelete(String fileName);
+
 }

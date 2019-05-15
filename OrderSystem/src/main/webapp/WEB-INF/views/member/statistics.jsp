@@ -154,10 +154,7 @@
 
 		</table>
 		<script>
-// 		var lbs = document.getElementsByClassName('avgLb');
-// 		var repeatCounts =  document.getElementsByClassName('sumReps');
-// 		var totSets = document.getElementsByClassName('doneSet');
-// 		var RMs = document.getElementsByClassName('oneRm');
+
 	
 		console.log(copyArray);
 	
@@ -171,19 +168,32 @@
 			    return item.name === val[q].innerText;
 			  
 			});
-			for(var i=0; i<4;i++) {
+		
+// 				var value = rateCal(comparison,curVal)
+				console.log(filteredObj);
+				var keys = Object.keys(filteredObj[0]);
+
+				for(var j=2;j<keys.length;j++) {
+					var value = rateCal(filteredObj[1][keys[j]],filteredObj[0][keys[j]]);
+					
+					var percent = document.createElement("span");
+					percent.className ="percent";
+					percent.innerHTML = value + "%";
+					
+					var percentRow = document.body.getElementsByClassName('percentRow');
+					
+					
 				
-			var lbPercent = rateCal(filteredObj[1].lb,filteredObj[0].lb)+'%';
-			    repsPercent = rateCal(filteredObj[1].reps,filteredObj[0].reps)+'%';
-			    setPercent = rateCal(filteredObj[1].set,filteredObj[0].set)+'%';
-			    oneRmPercent = rateCal(filteredObj[1].oneRm,filteredObj[0].oneRm)+'%';
-			var rate = documnet.body.createElemnet('span');
-			rate.className = 'rate';
-			rate.innerHTML = percent;
-			console.log()
+						
+							console.log(percentRow[q].getElementsByTagName('td')[j-1].appendChild(percent));
+						
+					
+				}
 			
-			}
-			console.log(filteredObj);
+			
+	
+			
+		
 		
 			}
 		</script>

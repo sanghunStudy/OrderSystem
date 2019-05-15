@@ -120,3 +120,7 @@ display:inline-block;
 	font-size:10px;
 	margin-right:14px;
 }
+.percent {
+	color:red;
+	font-size:10px;
+}

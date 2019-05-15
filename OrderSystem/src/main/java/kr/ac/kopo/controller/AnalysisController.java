@@ -35,12 +35,14 @@ AnalysisService service;
 		List<ExerciseJournal> weight = service.getWeight(id);
 		List<ExerciseJournal> avgLb = service.getavgLb(id);
 		List<BEsave> metabolism = service.getMetabolism(id);
+		List<ExerciseJournal> overallAvg = service.getOverallAvg(id);
 		
 		model.addAttribute("list",monthExercise);
 		model.addAttribute("todayList",todayExercise);
 		model.addAttribute("weight",weight);
 		model.addAttribute("avgLb",avgLb);
 		model.addAttribute("metabolism",metabolism);
+		model.addAttribute("overallAvg",overallAvg);
 
 
 		

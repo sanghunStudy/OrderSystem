@@ -10,7 +10,7 @@ public class ExerciseJournal {
 	private String start;
 	private String id;
 	private String title;
-	private int userWeight;
+	private float userWeight;
 	private String ExerciseName;
 	private int avgLb;
 	private int sumReps;
@@ -65,12 +65,13 @@ public class ExerciseJournal {
 	}
 
 	
-	public int getUserWeight() {
+
+	public float getUserWeight() {
 		return userWeight;
 	}
 
 
-	public void setUserWeight(int userWeight) {
+	public void setUserWeight(float userWeight) {
 		this.userWeight = userWeight;
 	}
 

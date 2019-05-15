@@ -39,6 +39,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getMetabolism(id);
 	}
 
+	@Override
+	public List<ExerciseJournal> getOverallAvg(String id) {
+		return dao.getOverallAvg(id);
+	}
+
 
 
 

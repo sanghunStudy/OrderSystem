@@ -23,7 +23,8 @@
 
 </head>
 <body>
-<c:forEach var="energy" items="${metabolism}">
+<!-- 그래프에 값을 넘기기 위해 쿼리반환값들을 자바스크립트 배열혹은 json object로 복사,변환해줌 -->
+<c:forEach var="energy" items="${metabolism}" >
 	<script>
 	metabolism={
 		b:'${energy.bmetabolism}',
@@ -34,7 +35,7 @@
 </c:forEach>
 <c:forEach var="weights" items="${weight}">
 	<script>
-		
+	
 	inputDate.push('${weights.start}');
 	inputWeight.push('${weights.userWeight}');
 	
@@ -47,6 +48,9 @@
 		
 		dead.push('${avg.avgLb}');
 		deadDate.push('${avg.start}');
+		dead.reverse();
+		deadDate.reverse();
+	
 		</script> 
 		</c:when>
 		<c:when test="${avg.exerciseName eq '스쿼트'}">
@@ -54,7 +58,8 @@
 	
 		squat.push('${avg.avgLb}');
 		squatDate.push('${avg.start}');
-		
+		squat.reverse();
+		squatDate.reverse();
 		</script>			
 		</c:when>
 		<c:when test="${avg.exerciseName eq '플랫벤치프레스'}">
@@ -62,6 +67,8 @@
 	
 		bench.push('${avg.avgLb}');
 		benchDate.push('${avg.start}');
+		bench.reverse();
+		benchDate.reverse();
 		
  		</script> 
 		</c:when>
@@ -71,7 +78,16 @@
 		</c:choose>
 
 </c:forEach>
-
+<c:forEach var="item" items="${overallAvg}">
+	<c:if test="${item.exerciseName eq '플랫벤치프레스' or item.exerciseName eq '데드리프트' or item.exerciseName eq '스쿼트' or item.exerciseName eq '풀업' or item.exerciseName eq '밀리터리프레스'}">
+		<script>
+	
+		overallAvg.push('${item.avgLb}');
+		console.log(overallAvg);
+		
+		</script>
+	</c:if>
+</c:forEach>
 <div id="fullBox">
 <div class="menu-box">
 <div class="menu-bar">
@@ -127,6 +143,7 @@
 					
 				
 					<script>
+					/* 쿼리 조회값 자바스크립트 배열로 복사*/ 
 						data = {
 							date:'${item.start}',
 							name:'${item.exerciseName}',
@@ -141,67 +158,76 @@
 					
 								
 			<c:if test="${item.start == avgLb[0].start}">
-			<tr class="percentRow">
+				<c:if test="${item.exerciseName eq '플랫벤치프레스' or item.exerciseName eq '데드리프트' or item.exerciseName eq '스쿼트' or item.exerciseName eq '풀업' or item.exerciseName eq '밀리터리프레스'}">
+					<script>
+						myAvg.push('${item.avgLb}');
+						console.log(myAvg);
+					</script>
+				</c:if>
+				<tr class="percentRow">
 					<td class="exTitle">${item.exerciseName}</td>
 					<td class="avgLb">${item.avgLb}</td>
 					<td class="sumReps">${item.sumReps}</td>
 					<td class="doneSet">${item.doneSet}</td>
 					<td class="oneRm">${item.oneRm}</td>
 					
-			</tr>				
+				</tr>				
 			</c:if>	
 				</c:forEach>	
 
 		</table>
 		<script>
 
-	
-		console.log(copyArray);
-	
-
 			var index = -1;
 			var val = document.body.getElementsByClassName('exTitle');
+			/*복사한 배열을 운동별로 분리 */
 			for(var q=0;q<val.length;q++){
 			var filteredObj = copyArray.filter(function(item, i){
-			
-			    
+						    
 			    return item.name === val[q].innerText;
 			  
 			});
 		
 // 				var value = rateCal(comparison,curVal)
-				console.log(filteredObj);
+		/*운동별로 분리한 배열의 key값별로  첫번째값과 두번째값을 가져옴*/
 				var keys = Object.keys(filteredObj[0]);
 
 				for(var j=2;j<keys.length;j++) {
+					/*가져온 값들을 비율을 계산하는 함수 rateCal에 넘겨 비율값을 value 객체가 가리키게함 */
 					var value = rateCal(filteredObj[1][keys[j]],filteredObj[0][keys[j]]);
 					
 					var percent = document.createElement("span");
 					percent.className ="percent";
-					percent.innerHTML = value + "%";
 					
+					/*value를 적합한 td에 appendChild해줌. value가 양수값이면 ↑아이콘과 적색 음수값이면 ↓아이콘과 청색으로 표시*/
 					var percentRow = document.body.getElementsByClassName('percentRow');
-					
-					
-				
 						
-							console.log(percentRow[q].getElementsByTagName('td')[j-1].appendChild(percent));
-						
+							percentRow[q].getElementsByTagName('td')[j-1].appendChild(percent);
+							if(value >= 0) {
+								percent.innerHTML = value + "%"+ '<i class="fas fa-long-arrow-alt-up"></i>';
+								percent.classList.add('increase');
+							}
+							else if(value < 0) {
+								percent.innerHTML = value + "%"+ '<i class="fas fa-long-arrow-alt-down"></i>';
+								percent.classList.add('decrease');
+							}
 					
 				}
-			
-			
-	
-			
-		
-		
+					
+				
 			}
 		</script>
 	</div>
 	<div class="toWrapper">
 		<div class="toDo">
 			<div><div class="title"><span>To do list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
-			<div class=""></div>
+			<div class="">
+			<table class>
+				<tbody>
+					<tr></tr>
+				</tbody>
+			</table>
+			</div>
 		</div>
 		<div class="toEat">
 			<div><div class="title"><span>To eat list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
@@ -210,25 +236,6 @@
 	</div>
 </div>
 </div>
-<script>
-// for(var j=0; j<copyArray.length;j++) {
-// 	for(var k=0; k<copyArray; k++) {
-// 		if(copyArray[j].name = copyArray[k].name) {
-// 			row = {
-// 					date:copyArray[k].date,
-// 					name:copyArray[k].name,
-// 					lb:copyArray[k].lb,
-// 					reps:copyArray[k].reps,
-// 					set:copyArray[k].set,
-// 					oneRm:copyArray[k].oneRm
-// 			}
-// 			change.push(row);
-// 			console.log(change);
-		
-// 		}
-// 	}
-// }
-</script>
-<script src="${pageContext.request.contextPath}/resources/js/statistics.js"></script>
+
 </body>
 </html>

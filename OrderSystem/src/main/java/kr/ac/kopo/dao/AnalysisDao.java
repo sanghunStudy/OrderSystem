@@ -18,6 +18,8 @@ public interface AnalysisDao {
 
 	List<BEsave> getMetabolism(String id);
 
+	List<ExerciseJournal> getOverallAvg(String id);
+
 
 
 }

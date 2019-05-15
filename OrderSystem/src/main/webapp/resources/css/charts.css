@@ -121,6 +121,8 @@ display:inline-block;
 	margin-right:14px;
 }
 .percent {
-	color:red;
+	
 	font-size:10px;
 }
+.increase {color:#FF6384;}
+.decrease {color:hsla(210, 94%, 54%, 1);}

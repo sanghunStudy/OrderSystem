@@ -40,4 +40,9 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	}
 
 
+	@Override
+	public List<ExerciseJournal> getOverallAvg(String id) {
+		return sql.selectList("statistics.getOverallAvg", id);
+	}
+
 }

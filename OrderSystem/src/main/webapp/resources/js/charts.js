@@ -6,14 +6,11 @@ var squat = [],
 	bench = [],
 	inputWeight=[],
 	inputDate=[],
-	list=[],
     metabolism={b:'',e:''},
 	data={},
-	copyArray = [], 
-	row={},
-	change=[],
-    exList;
-
+	copyArray = [];
+	overallAvg = [];
+	myAvg =[];
 
 
 
@@ -54,7 +51,7 @@ $(function() {
 		    labels: deadDate/*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/,
 		    datasets: [{ 
 		        data:dead/*[60,66,68,72,74,76,80,88,94,102]*/,
-		        label: "데드 리프트",
+		        label: "데드리프트",
 		        borderColor: "hsla(210, 94%, 54%, 1)",
 		        pointBackgroundColor:  "#3e95cd",
 		   
@@ -66,7 +63,7 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: '데드 리프트 중량 변화 (in Kg)',
+		      text: '데드리프트 중량 변화 (in Kg)',
 		      fontColor:'#fff',
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
@@ -207,7 +204,7 @@ $(function() {
 		        	
 		       },
 			elements: {
-				center: {
+				center: {	
 					text: metabolism.e + 'kcal',
           color: '#FFFFFF', // Default is #000000
           fontStyle: 'Noto Sans KR', // Default is Arial
@@ -224,25 +221,27 @@ $(function() {
 	new Chart(document.getElementById("radar-chart"), {
 	    type: 'radar',
 	    data: {
-	      labels: ["데드리프트", "벤치프레스", "스쿼트", "턱걸이", "밀리터리프레스"],
+	      labels: ["데드리프트", "스쿼트", "벤치프레스", "풀업", "밀리터리프레스"],
 	      datasets: [
 	       {
+	    	  data: myAvg/*[57.48,54.16,7.61,8.06,4.45,19.12]*/,
 	          label: "나의 중량",
 	          fill: true,
 	          backgroundColor: "rgba(255,99,132,0.2)",
 	          borderColor: "rgba(255,99,132,1)",
 	          pointBorderColor: "#fff",
 	          pointBackgroundColor: "rgba(255,99,132,1)",
-	          pointBorderColor: "#fff",
-	          data: [57.48,54.16,7.61,8.06,4.45]
+	          pointBorderColor: "#fff"
+	          
 	        },{
+	        	data: overallAvg/*[40.77,50.61,21.69,15.62,31.82]*/,
 	            label: "동체급 평균중량",
 	            fill: true,
 	            backgroundColor: "rgba(255,241,86,0.2)",
 	            borderColor: "rgba(255,241,86,1)",
 	            pointBorderColor: "#fff",
-	            pointBackgroundColor: "rgba(255,241,86,1)",
-	            data: [40.77,50.61,21.69,15.62,31.82]
+	            pointBackgroundColor: "rgba(255,241,86,1)"
+	            
 	          }
 	      ]
 	    },

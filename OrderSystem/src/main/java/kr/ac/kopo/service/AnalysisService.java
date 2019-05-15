@@ -17,6 +17,8 @@ public interface AnalysisService {
 
 	List<BEsave> getMetabolism(String id);
 
+	List<ExerciseJournal> getOverallAvg(String id);
+
 
 
 

@@ -21,7 +21,7 @@ function rateCal(comparison,curVal) {
 	var rate;
 	
 	if(parseInt(curVal) >= parseInt(comparison))
-		rate =	Math.round(curVal / comparison * 100);
+		rate =	Math.round((curVal / comparison * 100)-100);
 	else if(parseInt(curVal) < parseInt(comparison)) {
 		rate =	100 -Math.round((curVal / comparison * 100));
 		rate = -rate
@@ -121,6 +121,8 @@ $(function() {
 		      fontColor:'#fff',
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
+		     
+		    	  
 		    }
 		  }
 		});
@@ -131,32 +133,32 @@ $(function() {
 	Chart.pluginService.register({
 		beforeDraw: function (chart) {
 			if (chart.config.options.elements.center) {
-        //Get ctx from string
+        // ctx 변수선언
         var ctx = chart.chart.ctx;
         
-				//Get options from the center object in options
+				// options의 center오브젝트로부터 옵션값 추출
         var centerConfig = chart.config.options.elements.center;
       	var fontStyle = centerConfig.fontStyle || 'Arial';
 				var txt = centerConfig.text;
         var color = centerConfig.color || '#000';
         var sidePadding = centerConfig.sidePadding || 20;
         var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
-        //Start with a base font of 30px
+        // default 폰트 크기와 서체 설정
         ctx.font = "30px " + fontStyle;
         
-				//Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+				//문자열의 넓이값을 구하고 요소넓이 -10만큼의 양쪽 사이드 padding값 부여
         var stringWidth = ctx.measureText(txt).width;
         var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
 
-        // Find out how much the font can grow in width.
+        // width값에서 폰트크기가 최대 얼마나 커질수 있는지 계산
         var widthRatio = elementWidth / stringWidth;
         var newFontSize = Math.floor(30 * widthRatio);
         var elementHeight = (chart.innerRadius * 2);
 
-        // Pick a new font size so it will not be larger than the height of label.
+        // 라벨의 높이보다 높지않은 새로운 폰트사이즈값을 선택
         var fontSizeToUse = Math.min(newFontSize, elementHeight);
 
-				//Set font settings to draw it correctly.
+		// 정확하게 그리기위해 폰트 값 세팅
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
@@ -164,7 +166,7 @@ $(function() {
         ctx.font = fontSizeToUse+"px " + fontStyle;
         ctx.fillStyle = color;
         
-        //Draw text in center
+        // center값 ctx에 추가
         ctx.fillText(txt, centerX, centerY);
 			}
 		}
@@ -206,9 +208,9 @@ $(function() {
 			elements: {
 				center: {	
 					text: metabolism.e + 'kcal',
-          color: '#FFFFFF', // Default is #000000
-          fontStyle: 'Noto Sans KR', // Default is Arial
-          sidePadding: 15 // Defualt is 20 (as a percentage)
+          color: '#FFFFFF', // 기본값 #000000
+          fontStyle: 'Noto Sans KR', // 기본값 Arial
+          sidePadding: 15 // 기본값 20 (%단위)
 				}
 			}
 		}
@@ -224,23 +226,26 @@ $(function() {
 	      labels: ["데드리프트", "스쿼트", "벤치프레스", "풀업", "밀리터리프레스"],
 	      datasets: [
 	       {
-	    	  data: myAvg/*[57.48,54.16,7.61,8.06,4.45,19.12]*/,
+	    	  
 	          label: "나의 중량",
 	          fill: true,
 	          backgroundColor: "rgba(255,99,132,0.2)",
 	          borderColor: "rgba(255,99,132,1)",
 	          pointBorderColor: "#fff",
 	          pointBackgroundColor: "rgba(255,99,132,1)",
-	          pointBorderColor: "#fff"
+	          pointBorderColor: "#fff",
+	          data: myAvg/*[12,10,10]*/
 	          
 	        },{
-	        	data: overallAvg/*[40.77,50.61,21.69,15.62,31.82]*/,
+	        	
 	            label: "동체급 평균중량",
 	            fill: true,
 	            backgroundColor: "rgba(255,241,86,0.2)",
 	            borderColor: "rgba(255,241,86,1)",
 	            pointBorderColor: "#fff",
-	            pointBackgroundColor: "rgba(255,241,86,1)"
+	            pointBackgroundColor: "rgba(255,241,86,1)",
+	            data: overallAvg/*[12,10,10]*/
+	          
 	            
 	          }
 	      ]
@@ -253,7 +258,18 @@ $(function() {
 	        fontColor:'#fff',
 	        fontSize:16,
 	        fontStyle: 'Noto Sans KR'
-	      }
+	      },
+	    tooltips: {
+	    	enabled:true,
+	    	mode:'single',
+	    	callbacks: {
+	    		label: function(tooltipItems, data) { 
+	    			
+	    	          return  data.datasets[tooltipItems.datasetIndex].label + ': '+ tooltipItems.yLabel;
+	            }
+	 
+	    	}
+	     }
 	    }
 	});
 	
@@ -279,7 +295,15 @@ $(function() {
 		      fontColor:'#fff',
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
-		    }
+		    },
+		    hover: {
+			      mode:'nearest',
+			      intersect:true
+		    },
+			 tooltips: {
+			          mode: 'index',
+			          intersect: false,
+			}
 		  }
 		});
 });

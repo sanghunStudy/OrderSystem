@@ -81,7 +81,7 @@
 	
 	<select id="getOverallAvg" resultType="ExerciseJournal">
 
-		SELECT 
+	SELECT 
 		 mytable.Exercise_name
 			,ROUND(AVG(mytable.Exercise_lb),1) avgLb,
 			ROUND((MAX(mytable.Exercise_lb) * (1+MAX(mytable.reps)/30)),0) oneRm
@@ -94,14 +94,14 @@
 					ON et.Exercise_title_code = ec.Exercise_title_code 
 					AND et.Exercise_code = ei.exercise_code
 					WHERE ei.userWeight BETWEEN 
-												(SELECT TRUNCATE(ei.userWeight,-1) FROM exercise_item ei,
+												(SELECT TRUNCATE(ei.userWeight,-1) minEval FROM exercise_item ei,
 													(SELECT MAX(Exercise_date) as recentWeight FROM exercise_item  GROUP BY id) recentWeightT 
- 												WHERE ei.id=#{id} AND ei.Exercise_date = recentWeightT.recentWeight) 
+ 												WHERE ei.id=#{id} AND ei.Exercise_date = recentWeightT.recentWeight ORDER BY minEval limit 1) 
 													 AND 
- 												(SELECT TRUNCATE(ei.userWeight,-1)+9 FROM exercise_item ei,
+ 												(SELECT TRUNCATE(ei.userWeight,-1)+9 maxEval FROM exercise_item ei,
 														(SELECT MAX(Exercise_date) as recentWeight FROM exercise_item  GROUP BY id) recentWeightT 
- 												WHERE ei.id=#{id} AND ei.Exercise_date = recentWeightT.recentWeight)
-					GROUP BY ei.Exercise_date,et.Exercise_name
+ 												WHERE ei.id=#{id} AND ei.Exercise_date = recentWeightT.recentWeight ORDER BY maxEval limit 1)
+					GROUP BY ei.Exercise_date,et.Exercise_name,ei.id
 		) mytable,(SELECT MAX(Exercise_date) as recently FROM exercise_item GROUP BY exercise_item.id) recentTable
 		WHERE mytable.Exercise_date = recentTable.recently
 		GROUP BY mytable.Exercise_name

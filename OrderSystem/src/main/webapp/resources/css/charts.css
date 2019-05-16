@@ -63,6 +63,11 @@ display:inline-block;
 	font-family : 'Nanum Gothic';
 	font-size:13px;
 }
+.exercise-list td{
+	border-color: hsla(0,0%,100%,.1);
+    padding: 12px 7px;
+    vertical-align: middle;
+}
 #exercise-list-box{
 	width:89.5vw;
 	height:auto;
@@ -117,7 +122,7 @@ display:inline-block;
 	float:right;
 	color:#fff;
 	cursor:pointer;
-	font-size:10px;
+	font-size:24px;
 	margin-right:14px;
 }
 .percent {
@@ -126,3 +131,5 @@ display:inline-block;
 }
 .increase {color:#FF6384;}
 .decrease {color:hsla(210, 94%, 54%, 1);}
+.fixedRate {color:#6c757d;}
+

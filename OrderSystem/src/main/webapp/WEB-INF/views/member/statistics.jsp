@@ -8,9 +8,10 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
-<%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head> --%>
-<%--  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/demo-files/demo.css"> --%>
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head>
+
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/statistics.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/charts.js"></script> 
 
@@ -83,7 +84,7 @@
 		<script>
 	
 		overallAvg.push('${item.avgLb}');
-		console.log(overallAvg);
+	
 		
 		</script>
 	</c:if>
@@ -129,18 +130,18 @@
 	
 	<div id = "exercise-list-box">
 		<h5>최근 운동일지</h5>
-		<div class="detail"><span>more</span><i class="fas fa-plus"></i></div>
-		<table class="exercise-list">
+		<div class="detail"><span class="icon-more"></span></div>
+		<table class="exercise-list table">
 			<tr>
 			    <td>운동명</td>
-			    <td>평균 중량</td>
-				<td>반복회수</td>
-				<td>세트 합계</td>
-				<td>1RM</td>
+			    <td>평균 중량<span style="font-size:8px;">(증가율)</span></td>
+				<td>반복회수<span style="font-size:8px;">(증가율)</span></td>
+				<td>세트 합계<span style="font-size:8px;">(증가율)</span></td>
+				<td>1RM<span style="font-size:8px;">(증가율)</span></td>
 			</tr>
 			
 				<c:forEach var="item" items="${avgLb}" begin="0" varStatus="status">
-					
+				
 				
 					<script>
 					/* 쿼리 조회값 자바스크립트 배열로 복사*/ 
@@ -161,7 +162,7 @@
 				<c:if test="${item.exerciseName eq '플랫벤치프레스' or item.exerciseName eq '데드리프트' or item.exerciseName eq '스쿼트' or item.exerciseName eq '풀업' or item.exerciseName eq '밀리터리프레스'}">
 					<script>
 						myAvg.push('${item.avgLb}');
-						console.log(myAvg);
+						
 					</script>
 				</c:if>
 				<tr class="percentRow">
@@ -191,25 +192,40 @@
 // 				var value = rateCal(comparison,curVal)
 		/*운동별로 분리한 배열의 key값별로  첫번째값과 두번째값을 가져옴*/
 				var keys = Object.keys(filteredObj[0]);
-
+				var value;
+					
 				for(var j=2;j<keys.length;j++) {
-					/*가져온 값들을 비율을 계산하는 함수 rateCal에 넘겨 비율값을 value 객체가 가리키게함 */
-					var value = rateCal(filteredObj[1][keys[j]],filteredObj[0][keys[j]]);
+					
+					
+					
+					/*가져온 운동리스트에서 이전 데이터가 존재하지 않을경우*/
+					if(filteredObj.length <= 1)
+						value = 'noData';
+					
+					else  /*가져온 값들을 비율을 계산하는 함수 rateCal에 넘겨 비율값을 value 객체가 가리키게함 */
+						value = rateCal(filteredObj[1][keys[j]],filteredObj[0][keys[j]]); 
+					
+				
 					
 					var percent = document.createElement("span");
 					percent.className ="percent";
 					
-					/*value를 적합한 td에 appendChild해줌. value가 양수값이면 ↑아이콘과 적색 음수값이면 ↓아이콘과 청색으로 표시*/
+					/*value를 적합한 td에 appendChild해줌. value값에 따른 상태표시*/
 					var percentRow = document.body.getElementsByClassName('percentRow');
 						
 							percentRow[q].getElementsByTagName('td')[j-1].appendChild(percent);
-							if(value >= 0) {
+							if(value > 0) {
 								percent.innerHTML = value + "%"+ '<i class="fas fa-long-arrow-alt-up"></i>';
 								percent.classList.add('increase');
 							}
 							else if(value < 0) {
-								percent.innerHTML = value + "%"+ '<i class="fas fa-long-arrow-alt-down"></i>';
+								percent.innerHTML = value + "%" + '(' + '<i class="fas fa-long-arrow-alt-down"></i>' + ')';
 								percent.classList.add('decrease');
+							}
+							else if(value == 'noData' || value == 0) {
+								
+								percent.innerHTML =  '(' + '<i class="fas fa-minus"></i>' + ')';
+								percent.classList.add('fixedRate');
 							}
 					
 				}
@@ -220,18 +236,33 @@
 	</div>
 	<div class="toWrapper">
 		<div class="toDo">
-			<div><div class="title"><span>To do list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
-			<div class="">
-			<table class>
+			<div><div class="title"><span>To do list</span></div><div class="edit_list"></div></div>
+			<div class="to_do_table">
+			<table class="to_do table">
 				<tbody>
-					<tr></tr>
+					<tr>
+						<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></label></div></td>
+						<td><div class="item_box"><div class="to_item">데드리프트</div><p>데드리프트 60kg 중량으로 10회씩 3세트</p></div></td>
+						<td><i class="fas fa-edit"></i></td>
+					</tr>
 				</tbody>
 			</table>
 			</div>
 		</div>
 		<div class="toEat">
-			<div><div class="title"><span>To eat list</span></div><div class="edit_list"><i class="fas fa-edit"></i></div></div>
-			<div class=""></div>
+			<div><div class="title"><span>To eat list</span></div><div class="edit_list"></div></div>
+				<div class="to_do_table">
+			<table class="to_eat table">
+				<tbody>
+					<tr>
+						<td><div class="checkboxes"><input id="b" type="checkbox" tabindex="2"/><label class="green-background" for="b"></label></div></td>
+						<td><div class="item_box"><div class="to_item">데드리프트</div><p>데드리프트 60kg 중량으로 10회씩 3세트</p></div></td>
+						<td><i class="fas fa-edit"></i></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			</div>
 		</div>
 	</div>
 </div>

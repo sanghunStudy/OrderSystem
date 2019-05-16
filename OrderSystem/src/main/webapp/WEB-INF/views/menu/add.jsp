@@ -73,10 +73,10 @@
 		enctype="multipart/form-data">
 		<!-- <sec:csrfInput /> -->
 		<div>
-			<label>메뉴이름: </label> <input type="text" name="menuName">
+			<label>질문제목: </label> <input type="text" name="menuName">
 		</div>
 		<div>
-			<label>컨텐츠: </label>
+			<label>질문내용: </label>
 			<textarea name="menuContent" id="summernote" value=""></textarea>
 		</div>
 

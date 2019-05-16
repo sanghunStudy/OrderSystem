@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <script>
 </script>
-<title>전체메뉴</title>
+<title>질문게시판</title>
 </head>
 <header>
 <%-- <jsp:include page="../gnb/header.jsp" flush="true" /> --%>
@@ -71,10 +71,15 @@
 	}
 	
 </script>
+<script>
+	$(function() {
+		
+	});
+</script>
 </header>
 <body>
 	<div class="container">
-	<div><a class="subtitle">커뮤니티</a><span class="route">홈 > 커뮤니티</span></div>
+	<div><a class="subtitle">질문</a><span class="route">홈 > 질문</span></div>
 	<script>
 		function changeSelect() {
 			document.getElementById("selectForm").submit();
@@ -122,24 +127,12 @@
 			<th>작성일</th>
 		</tr>
 		<c:choose>
-			<c:when test="${Nlist.size() > 0}">
-				<c:forEach var="Nitem" items="${Nlist}" begin="0" end="5" step="1">
-					<tr>
-						<td style="color:#ff0000;">공지</td>
-						<td><a href="${pageContext.request.contextPath}/notice/view?nid=${Nitem.noticeId}">${Nitem.noticeTitle}</a></td>
-						<td>관리자</td>
-						<td><fmt:formatDate value="${Nitem.noticeDate}" pattern="yyyy-MM-dd"/></td>
-					</tr>
-				</c:forEach>
-			</c:when>
-		</c:choose>
-		<c:choose>
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td>${item.menuId}</td>
 						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">&emsp;${item.menuName}</a><a>[${item.cnt}]</a></td>
-						<td>작성자ID</td>
+						<td>${item.id}</td>
 						<td id="menuDate${item.menuId}"><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></td>
 <%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
 					</tr>
@@ -147,7 +140,7 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="4">등록된 메뉴가 없습니다.</td>
+					<td colspan="4">등록된 질문이 없습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
@@ -181,9 +174,9 @@
 		</c:if>
 		</div>
 	</div>
-	
-	<div class="write"><a href="add">글쓰기</a></div>
-	<jsp:include page="../gnb/calculator.jsp" flush="true" />
+	<c:if test="${login!=null}">
+	<div class="write"><a href="add">질문쓰기</a>${login}</div>
+	</c:if>
 	</div>
 </body>
 </html>

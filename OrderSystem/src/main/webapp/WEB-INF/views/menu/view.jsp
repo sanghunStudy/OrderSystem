@@ -10,7 +10,6 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-
 </head>
 <body>
 	<div>
@@ -18,10 +17,10 @@
 			<a>번호 : <span>${item.menuId}</span></a>
 		</div>
 		<div>
-			<a>메뉴이름 : <span>${item.menuName}</span></a>
+			<a>질문제목 : <span>${item.menuName}</span></a>
 		</div>
 		<div>
-			<a>컨텐츠 : <span>${item.menuContent}</span></a>
+			<a>질문내용 : <span>${item.menuContent}</span></a>
 		</div>
 		<div>
 			<a>작성일 : <span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></a>

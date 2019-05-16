@@ -14,24 +14,32 @@
 <script src="http://localhost:9393/socket.io/socket.io.js"></script>
 <script src="http://cdn.sockjs.org/sockjs-0.3.4.js"></script>
 
-<!-- <script	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> -->
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 </head>
 <body>
 
-<input type="hidden" id="userName" value="<sec:authentication property="principal.username" />"/>
+<input type="hidden" id="userName" value="${user}${trainer}${admin}"/>
 	<script>
 		$(document).ready(function() {
 			var userName = $("#userName").val();
-// 			var socket = io("http://localhost:9393");
-// 			socket.emit("username",userName);
-			//node.js에서 설정해놓은 경로로 이동함. port9393
-// 			var url = "http://172.16.143.39:9393?itemName="+userName;
-// 			var url = "http://172.16.143.39:9393";
-
+// 			var socket = io.connect("http://localhost:9595");
+			var socket = io.connect("https://online-personal-training.herokuapp.com/");
 			//heroku 호스팅 주소
 			var url = "https://online-personal-training.herokuapp.com/";
+			//학교 내 컴퓨터 ip주소
+			//var url = "http://localhost:9595";
+				socket.emit("userName",userName);
+				socket.on("eChk",function(data){
+					if(data == "success"){
+						$(location).attr("href", url);
+					}
+				});
+
+			//node.js에서 설정해놓은 경로로 이동함. port9393
+// 			var url = "http://172.16.143.39:9393";
+			
 			//해당 경로 실행
-			$(location).attr("href", url);
+// 			$(location).attr("href", url);
 		});
 	</script>
 

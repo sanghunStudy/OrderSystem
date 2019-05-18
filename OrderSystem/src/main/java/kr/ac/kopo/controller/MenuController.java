@@ -150,14 +150,18 @@ public class MenuController {
 		
 		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
-	
-	@RequestMapping("/commentAdd")
+	//댓글ajax그대로인데 jsp에서 못보내던거 수정
+	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody
 	String commnetAdd(MenuComment MComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
-		MComment.setId(username);
-		service.commentAdd(MComment);
-		return "success";
+		if(username != null) {
+			MComment.setId(username);
+			service.commentAdd(MComment);
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 	
 	@RequestMapping("/commentDel")

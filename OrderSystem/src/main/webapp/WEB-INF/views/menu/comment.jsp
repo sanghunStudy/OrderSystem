@@ -40,8 +40,7 @@
 	}
 
 	function getCommentList() {
-		$
-				.ajax({
+		$.ajax({
 					type : 'GET',
 					url : '${pageContext.request.contextPath}/menu/commentList',
 					dataType : "json",

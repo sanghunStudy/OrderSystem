@@ -51,7 +51,7 @@ public class MenuController {
 	@RequestMapping("/list")
 	String list(SearchVO searchVO,Model model, HttpSession session) {
 		searchVO.pageCalculate(service.total(searchVO));
-		String login;
+		/*String login;
 		
 		if(session.getAttribute("user").equals("user")) { 
 			login = (String)session.getAttribute("user");
@@ -64,7 +64,7 @@ public class MenuController {
 		else if(session.getAttribute("trainer").equals("trainer")) { 
 			login = (String)session.getAttribute("trainer");
 			model.addAttribute("login",login);
-			}
+			}*/
 		
 		
 		List<Menu> list = service.list(searchVO);
@@ -114,16 +114,20 @@ public class MenuController {
 	}
 	
 	@RequestMapping("/view")
-	String view(Model model, int menuId) {
+	String view(Model model, int menuId, HttpSession session) {
 		service.views(menuId);
 		Menu item = service.item(menuId);
+		List<MenuComment> MComment = service.commentList(menuId);
+		String login = (String)session.getAttribute("user");
 		
 		model.addAttribute("item", item);
+		model.addAttribute("MCommentList",MComment);
+		model.addAttribute("login", login);
 		
 		return path + "view";
 	}
 	
-	@RequestMapping("/commentList")
+	/*@RequestMapping("/commentList")
 	@ResponseBody
 	ResponseEntity commentList(MenuComment MComment,HttpServletRequest request) {
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -149,7 +153,7 @@ public class MenuController {
         JSONArray json = new JSONArray(hmlist);  	
 		
 		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
-	}
+	}*/
 	//댓글ajax그대로인데 jsp에서 못보내던거 수정
 	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,6 @@ $(document).ready(function(){
 	$('#commentAdd').click(function(){
 		var commentCheck = document.getElementById("comment").value;
 		var menuId = ${item.menuId};
-		alert(menuId);
-		alert(commentCheck);
 
 		if (commentCheck == "" || commentCheck == null) {
 			alert("댓글내용을 입력해 주세요");
@@ -39,6 +38,7 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
 });
 </script>
 <style>
@@ -52,6 +52,9 @@ $(document).ready(function(){
 		</div>
 		<div>
 			<a>질문제목 : <span>${item.menuName}</span></a>
+		</div>
+		<div>
+			<a>작성자 : <span>${item.id}</span></a>
 		</div>
 		<div>
 			<a>질문내용 : <span>${item.menuContent}</span></a>
@@ -71,12 +74,33 @@ $(document).ready(function(){
 		</div>
 	</div>
 	</form>
+	<div>
+		<c:choose>
+			<c:when test="${MCommentList.size() > 0}">
+				<div id="commentList">
+					<c:forEach var="MCL" items="${MCommentList}">
+						<div>
+							<ul>
+								<li>${MCL.id}</li>
+								<li>${MCL.mcommentContent}</li>
+								<li>${MCL.mcommentDate}</li>
+								<c:if test="${login==item.id}">
+									<li><a>채택</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</c:forEach>
+				</div>
+			</c:when>
+		</c:choose>
+	</div>
 	<%-- <jsp:include page="comment.jsp" flush="true" /> --%>
-	
+	<c:if test="${login==item.id}">
 	<span>
 		<a href="update?menuId=${item.menuId}">변경</a>
 		<a href="delete?menuId=${item.menuId}">삭제</a>
 	</span>
+	</c:if>
 	<a href="list">목록으로</a>
 </body>
 </html>

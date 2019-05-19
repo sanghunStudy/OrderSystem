@@ -47,8 +47,8 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public List<MenuComment> commentList(MenuComment mComment) {
-		return sql.selectList("menu.commentList", mComment);
+	public List<MenuComment> commentList(int menuId) {
+		return sql.selectList("menu.commentList", menuId);
 	}
 
 	@Override

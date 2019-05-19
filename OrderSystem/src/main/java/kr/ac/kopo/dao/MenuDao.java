@@ -20,7 +20,7 @@ public interface MenuDao {
 
 	int total(SearchVO searchVO);
 
-	List<MenuComment> commentList(MenuComment mComment);
+	List<MenuComment> commentList(int menuId);
 
 	void commentAdd(MenuComment mComment);
 

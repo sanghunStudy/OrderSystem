@@ -47,8 +47,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuComment> commentList(MenuComment mComment) {
-		return dao.commentList(mComment);
+	public List<MenuComment> commentList(int menuId) {
+		return dao.commentList(menuId);
 	}
 
 	@Override

@@ -8,14 +8,20 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head>
-
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/statistics.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/statistics.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/charts.js"></script> 
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="${pageContext.request.contextPath}/resources/js/charts.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/statistics.js"></script> 
+
+
 
 <title>나의 운동 차트</title>
 <style>
@@ -49,8 +55,7 @@
 		
 		dead.push('${avg.avgLb}');
 		deadDate.push('${avg.start}');
-		dead.reverse();
-		deadDate.reverse();
+	
 	
 		</script> 
 		</c:when>
@@ -59,8 +64,7 @@
 	
 		squat.push('${avg.avgLb}');
 		squatDate.push('${avg.start}');
-		squat.reverse();
-		squatDate.reverse();
+
 		</script>			
 		</c:when>
 		<c:when test="${avg.exerciseName eq '플랫벤치프레스'}">
@@ -68,8 +72,7 @@
 	
 		bench.push('${avg.avgLb}');
 		benchDate.push('${avg.start}');
-		bench.reverse();
-		benchDate.reverse();
+
 		
  		</script> 
 		</c:when>
@@ -79,6 +82,14 @@
 		</c:choose>
 
 </c:forEach>
+<script>
+dead.reverse();
+deadDate.reverse();
+squat.reverse();
+squatDate.reverse();
+bench.reverse();
+benchDate.reverse();
+</script>
 <c:forEach var="item" items="${overallAvg}">
 	<c:if test="${item.exerciseName eq '플랫벤치프레스' or item.exerciseName eq '데드리프트' or item.exerciseName eq '스쿼트' or item.exerciseName eq '풀업' or item.exerciseName eq '밀리터리프레스'}">
 		<script>
@@ -91,13 +102,18 @@
 </c:forEach>
 <div id="fullBox">
 <div class="menu-box">
-<div class="menu-bar">
-	<div class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i></a></div>
-	<div class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a></div>
-	<div class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a></div>
-	<div class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i></a></div>
-	<div class="menu-icons"><a href="${pageContext.request.contextPath}/opo/webRtc"><i class="fas fa-comment-dots"></i></a></div>
-</div>
+	<div class="logo">
+		<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="logo">
+		<p>TRAINERBOT</p>
+	</div>
+	<ul class="menu-bar">
+
+		<li class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i><p>운동일지 통계</p></a></li>
+		<li class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a><p>운동일지 작성</p></li>
+		<li class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a><p>설문조사</p></li>
+		<li class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i></a><p>멘티 관리</p></li>
+		<li class="menu-icons"><a href="${pageContext.request.contextPath}/opo/webRtc"><i class="fas fa-comment-dots"></i><p>화상채팅</p></a></li>
+	</ul>
 </div>
 <div id="wrapper">
 <div class="four-charts">
@@ -129,7 +145,7 @@
 	</div>
 	
 	<div id = "exercise-list-box">
-		<h5>최근 운동일지</h5>
+		<div class="title"><span>최근 운동 일지</span></div>	
 		<div class="detail"><span class="icon-more"></span></div>
 		<table class="exercise-list table">
 			<tr>
@@ -215,11 +231,11 @@
 						
 							percentRow[q].getElementsByTagName('td')[j-1].appendChild(percent);
 							if(value > 0) {
-								percent.innerHTML = value + "%"+ '<i class="fas fa-long-arrow-alt-up"></i>';
+								percent.innerHTML ='(' + value + "%" +  '<i class="fas fa-long-arrow-alt-up"></i>' + ')';
 								percent.classList.add('increase');
 							}
 							else if(value < 0) {
-								percent.innerHTML = value + "%" + '(' + '<i class="fas fa-long-arrow-alt-down"></i>' + ')';
+								percent.innerHTML = '(' + value + "%" +  '<i class="fas fa-long-arrow-alt-down"></i>' + ')';
 								percent.classList.add('decrease');
 							}
 							else if(value == 'noData' || value == 0) {
@@ -234,15 +250,30 @@
 			}
 		</script>
 	</div>
-	<div class="toWrapper">
+	<div id="toWrapper">
 		<div class="toDo">
-			<div><div class="title"><span>To do list</span></div><div class="edit_list"></div></div>
+			<div class="title"><span>To Do List</span></div>
+			<div id="top_line">
+				
+				<div class="to_do_date"><i class="fas fa-angle-left" id="do_prev"></i><span class="moment">2019.05.18 SAT</span><i class="fas fa-angle-right" id="do_next"></i></div>
+			</div>
 			<div class="to_do_table">
 			<table class="to_do table">
 				<tbody>
 					<tr>
 						<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></label></div></td>
-						<td><div class="item_box"><div class="to_item">데드리프트</div><p>데드리프트 60kg 중량으로 10회씩 3세트</p></div></td>
+						<td><div class="item_box"><div class="to_item">데드리프트</div><p>데드리프트 60kg 중량으로 10회씩 3세트</p></div></td>					
+						<td class="parts">등 </td>
+						<td>						
+							<div class="progress-container">
+								<span id="value" class="progress-value" style="background-color:#272a3d ">1%</span>
+						
+								<div class="progress-bar">					
+   									 <div id="bar" class="progress-value multi" data-code="dbVal" style="width: 1%;">
+   								 	 </div>
+								</div>
+							</div>
+						</td>
 						<td><i class="fas fa-edit"></i></td>
 					</tr>
 				</tbody>
@@ -250,16 +281,31 @@
 			</div>
 		</div>
 		<div class="toEat">
-			<div><div class="title"><span>To eat list</span></div><div class="edit_list"></div></div>
+			<div class="title"><span>To Eat List</span></div>	
+			<div id="top_line">
+
+				<div class="to_do_date"><i class="fas fa-angle-left" id="eat_prev"></i><span class="moment" >2019.05.18 SAT</span><i class="fas fa-angle-right" id="eat_next"></i></div>
+			</div>
 				<div class="to_do_table">
 			<table class="to_eat table">
 				<tbody>
 					<tr>
 						<td><div class="checkboxes"><input id="b" type="checkbox" tabindex="2"/><label class="green-background" for="b"></label></div></td>
-						<td><div class="item_box"><div class="to_item">데드리프트</div><p>데드리프트 60kg 중량으로 10회씩 3세트</p></div></td>
+						<td><div class="item_box"><div class="to_item">바나나100g</div><p>바나나 보통크기 3개</p></div></td>
+						<td class="nutrient">탄수화물,단백질</td>
+						<td class="kcal">250Kcal</td>
+						<td>
+							<div class="progress-container">
+								<span id="value" class="progress-value" style="background-color:#272a3d ">1%</span>
+								
+								<div class="progress-bar">					
+   									 <div id="bar" class="progress-value multi"  data-code="dbVal" style="width: 1%;">
+   								 	 </div>
+								</div>
+							</div>
+						</td>
 						<td><i class="fas fa-edit"></i></td>
-					</tr>
-					
+					</tr>					
 				</tbody>
 			</table>
 			</div>

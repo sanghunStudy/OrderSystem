@@ -12,10 +12,10 @@ public class ExerciseJournal {
 	private String title;
 	private float userWeight;
 	private String ExerciseName;
-	private int avgLb;
+	private float avgLb;
 	private int sumReps;
 	private int doneSet;
-	private int oneRm;
+	private float oneRm;
 	
 
 
@@ -26,14 +26,21 @@ public class ExerciseJournal {
 
 
 
-	public int getOneRm() {
-		return oneRm;
+	
+
+	
+
+	public float getAvgLb() {
+		return avgLb;
 	}
 
 
-	public void setOneRm(int oneRm) {
-		this.oneRm = oneRm;
+	public void setAvgLb(float avgLb) {
+		this.avgLb = avgLb;
 	}
+
+
+
 
 
 	public int getSumReps() {
@@ -54,17 +61,17 @@ public class ExerciseJournal {
 	public void setDoneSet(int doneSet) {
 		this.doneSet = doneSet;
 	}
-	
-	public int getAvgLb() {
-		return avgLb;
+
+
+	public float getOneRm() {
+		return oneRm;
 	}
 
 
-	public void setAvgLb(int avgLb) {
-		this.avgLb = avgLb;
+	public void setOneRm(float oneRm) {
+		this.oneRm = oneRm;
 	}
 
-	
 
 	public float getUserWeight() {
 		return userWeight;

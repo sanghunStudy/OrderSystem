@@ -8,15 +8,14 @@ var squat = [],
 	inputDate=[],
     metabolism={b:'',e:''},
 	data={},
-	copyArray = [];
-	overallAvg = [];
+	copyArray = [],
+	overallAvg = [],
 	myAvg =[];
 
 
 
 
-
-
+//이전 운동값과 비교한 %값 계산기
 function rateCal(comparison,curVal) {
 	var rate;
 	
@@ -30,32 +29,62 @@ function rateCal(comparison,curVal) {
 
 	
 }
+//그라디언트 생성기
+function gradientGenerator(color,ctx) {
+		if(ctx.canvas.id == 'line-chart-weight')
+			var gradient = ctx.createLinearGradient(0, 0, 50, 275);
+		else 	
+			var gradient = ctx.createLinearGradient(0, 0, 25, 165);
+		
+	 var half = color.replace(color.substring(color.lastIndexOf(',')),',0.5)');
+	 var quarter = color.replace(color.substring(color.lastIndexOf(',')),',0.25)');
+	 var one_eights = color.replace(color.substring(color.lastIndexOf(',')),',0.125)');
+	 var zero = color.replace(color.substring(color.lastIndexOf(',')),',0)');
+	 
+	 gradient.addColorStop(0, half);
+	 gradient.addColorStop(0.3, quarter);
+	 gradient.addColorStop(0.75, one_eights);
+	 gradient.addColorStop(1, zero);
+
+	 
+	 return gradient;
+	 
+}
 
 
 $(function() {
 	
 
 
+	var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
+	var ctxSquat = document.getElementById('line-chart-squat').getContext("2d");
+	var ctxBench = document.getElementById('line-chart-bench').getContext("2d");
+	var ctxWeight = document.getElementById('line-chart-weight').getContext("2d");
+	
+	/* scss 느낌의 색상변수*/
+	var skyblue = 'rgba(27,138,248,1)';
+	var brightPink = 'rgba(225,78,202,1)';
+	var emerald = 'rgba(0,242,195,1)';
+	var purple = 'rgba(139,103,224,1)';	
+	var skyblueGrd = gradientGenerator(skyblue,ctxDead);
+	var brightPinkGrd = gradientGenerator(brightPink,ctxSquat);
+	var emeraldGrd = gradientGenerator(emerald,ctxBench);
+	var purpleGrd = gradientGenerator(purple,ctxWeight);
+	
 	
 
 
-	var ctx = document.getElementById('line-chart-daed').getContext("2d");
-
-	var grd = ctx.createLinearGradient(0, 0, 0, 120.5);
-	grd.addColorStop(0, "hsla(210, 94%, 54%, 1)");
-	grd.addColorStop(1, "hsla(210, 94%, 54%, 0)");
-
-	new Chart(document.getElementById("line-chart-daed"), {
+	var deadChart = new Chart(document.getElementById("line-chart-daed"), {
 		  type: 'line',
 		  data: {
 		    labels: deadDate/*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"]*/,
 		    datasets: [{ 
 		        data:dead/*[60,66,68,72,74,76,80,88,94,102]*/,
 		        label: "데드리프트",
-		        borderColor: "hsla(210, 94%, 54%, 1)",
+		        borderColor: skyblue,
 		        pointBackgroundColor:  "#3e95cd",
-		   
-		        fill: false
+		        backgroundColor:skyblueGrd,
+		        fill: true
 		      }
 		    ]
 		  },
@@ -81,9 +110,10 @@ $(function() {
 		    datasets: [{ 
 		        data: squat/*[72,73,73,75,78,70,85,85,94,97]*/,
 		        label: "스쿼트",
-		        borderColor: "#e14eca",
+		        borderColor: brightPink,
 		        pointBackgroundColor:  "#e14eca",
-		        fill: false
+		        backgroundColor:brightPinkGrd,
+		        fill: true
 		      }
 		    ]
 		  },
@@ -107,9 +137,10 @@ $(function() {
 		    datasets: [{ 
 		        data: bench/*[120,120,125,125,125,130,130,120,115,110]*/,
 		        label: "벤치",
-		        borderColor: "#00f2c3",
+		        borderColor: emerald,
 		        pointBackgroundColor:  "#00f2c3",
-		        fill: false
+		        backgroundColor:emeraldGrd,
+		        fill: true
 		      }
 		    ]
 		  },
@@ -139,7 +170,7 @@ $(function() {
 				// options의 center오브젝트로부터 옵션값 추출
         var centerConfig = chart.config.options.elements.center;
       	var fontStyle = centerConfig.fontStyle || 'Arial';
-				var txt = centerConfig.text;
+		var txt = centerConfig.text;
         var color = centerConfig.color || '#000';
         var sidePadding = centerConfig.sidePadding || 20;
         var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
@@ -261,10 +292,11 @@ $(function() {
 	      },
 	    tooltips: {
 	    	enabled:true,
-	    	mode:'single',
+	    	mode:'index',
 	    	callbacks: {
+
 	    		label: function(tooltipItems, data) { 
-	    			
+
 	    	          return  data.datasets[tooltipItems.datasetIndex].label + ': '+ tooltipItems.yLabel;
 	            }
 	 
@@ -280,10 +312,10 @@ $(function() {
 		    datasets: [{ 
 		        data: /*[70,71,72,68,69,70,71,73,74,75.6]*/inputWeight,
 		        label: "체중(in Kg)",
-		        borderColor: "hsla(258, 66%, 64%, 1)",
+		        borderColor: purple/*"hsla(258, 66%, 64%, 1)"*/,
 		        pointBackgroundColor:  "#8965e0",
-		    
-		        fill: false
+		        backgroundColor:purpleGrd,
+		        fill: true
 		      }
 		    ]
 		  },
@@ -306,4 +338,34 @@ $(function() {
 			}
 		  }
 		});
+	
+	
+		$('.multi').each(function() {
+			var elem = $(this);
+			var width = 1;
+			var id = setInterval(frame, 50);
+			var end = $(this).attr('data-code');
+			var kcal = elem.parent().prev().prev();
+			console.log(end);
+
+			function frame() {
+				if (width >= 35) {
+					clearInterval(id);
+				} else {
+					width++;
+					elem.css('width',width + '%');
+					elem.parent().prev().html(width + '%');
+				}
+			}
+		});
+			
+		
+
+				
+		
+	
+
 });
+
+
+

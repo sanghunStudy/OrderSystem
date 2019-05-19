@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&subset=korean');
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
-*{margin:0; padding:0;}
+
 
 
 /*********************
@@ -101,6 +101,9 @@ input[type="checkbox"]:checked + label:after {
 table {
 	border-collapse:collapse;
 }
+.to_eat,.to_do {
+	width:100%;
+}
 .table td{
 	border-top: .0625rem solid #e3e3e3;
 	color:hsla(0,0%,100%,.7);
@@ -114,6 +117,66 @@ table {
     padding: 12px 7px;
     vertical-align: middle;
 }
-.fa-edit {font-size:24px;}
+.edit_list, .title {
+	display:inline-block;
+}
+.title{
+	padding:14px 0 10px 14px;
+	color:#fff;
+	font-family: 'Noto Sans KR', 'Noto Sans',sans-serif;
+}
+.logo{
+	margin-top:10px;
+}
+.to_do_date {text-align:center; font-size:24px; color:#6c757d; font-weight:600; display: flex;
+    align-items: center;width: 250px; justify-content:space-between;}
+.fa-edit {font-size:24px; cursor:pointer;}
 .to_item {color: hsla(0,0%,100%,.8);font-weight:600;padding-top: 7px;margin-bottom: 0; font-size:14px;}
 .item_box p{color:#6c757d;}
+#top_line {display:flex; justify-content:center;}
+/* 마일스톤 progressbar */
+
+.progress-bar {
+    background-color: #1b1d2b;
+    border-radius: 1.25em;
+    width: 200px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.progress-value {
+    background-color: #344675;
+ 	margin-left:3px;
+    transition: 0.3s all linear;
+    border-radius: 1.25em;
+    height: 11px;
+    display: inline-block;
+    
+/*     animation: progress 3s ease-in-out forwards; */
+/*     -webkit-animation: progress 3s ease-in-out forwards; */
+}
+
+.progress-container {
+	
+}
+
+/* animation */
+/*애니메이션 width값 변수로 처리해줘야함(scss사용?)*/
+ @keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 35%;
+  }
+}
+
+ @-webkit-keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 55%;
+  }
+}
+ 

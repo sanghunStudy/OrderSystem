@@ -107,7 +107,6 @@ benchDate.reverse();
 		<p>TRAINERBOT</p>
 	</div>
 	<ul class="menu-bar">
-
 		<li class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i><p>운동일지 통계</p></a></li>
 		<li class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a><p>운동일지 작성</p></li>
 		<li class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a><p>설문조사</p></li>
@@ -146,7 +145,8 @@ benchDate.reverse();
 	
 	<div id = "exercise-list-box">
 		<div class="title"><span>최근 운동 일지</span></div>	
-		<div class="detail"><span class="icon-more"></span></div>
+		<div class="detail"><i class="far fa-plus-square"></i></div>
+
 		<table class="exercise-list table">
 			<tr>
 			    <td>운동명</td>
@@ -255,7 +255,7 @@ benchDate.reverse();
 			<div class="title"><span>To Do List</span></div>
 			<div id="top_line">
 				
-				<div class="to_do_date"><i class="fas fa-angle-left" id="do_prev"></i><span class="moment">2019.05.18 SAT</span><i class="fas fa-angle-right" id="do_next"></i></div>
+				<div class="to_do_date"><i class="fas fa-angle-left" id="do_prev"></i><span class="moment"></span><i class="fas fa-angle-right" id="do_next"></i></div>
 			</div>
 			<div class="to_do_table">
 			<table class="to_do table">
@@ -284,7 +284,7 @@ benchDate.reverse();
 			<div class="title"><span>To Eat List</span></div>	
 			<div id="top_line">
 
-				<div class="to_do_date"><i class="fas fa-angle-left" id="eat_prev"></i><span class="moment" >2019.05.18 SAT</span><i class="fas fa-angle-right" id="eat_next"></i></div>
+				<div class="to_do_date"><i class="fas fa-angle-left" id="eat_prev"></i><span class="moment" ></span><i class="fas fa-angle-right" id="eat_next"></i></div>
 			</div>
 				<div class="to_do_table">
 			<table class="to_eat table">

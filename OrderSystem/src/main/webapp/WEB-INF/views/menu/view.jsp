@@ -87,7 +87,7 @@ $(document).ready(function(){
 								<li>${MCL.id}</li>
 								<li>${MCL.mcommentContent}</li>
 								<li>${MCL.mcommentDate}</li>
-								<c:if test="${login==item.id}">
+								<c:if test="${login==item.id&&MCL.selectionCheck==false}">
 									<li><a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a></li>
 								</c:if>
 								<c:if test="${login==MCL.id}">

@@ -113,7 +113,7 @@ margin-left: 90px;
 .latest-log{
 	display:flex;
 	margin-right:15px;
-	width:27vw;
+	width:29vw;
 }
 .menti-weight {
 	display:flex;
@@ -130,9 +130,10 @@ margin-left: 90px;
 	font-size:12pt;
 }
 .performance th,td{
-	color:rgb(154,154,154);
+/* 	color:rgb(154,154,154); */
 	font-family : 'Nanum Gothic';
 	font-size:13px;
+
 }
 .performance td{
 	border-color: hsla(0,0%,100%,.1);

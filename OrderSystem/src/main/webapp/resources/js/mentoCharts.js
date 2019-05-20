@@ -52,9 +52,11 @@ $(function() {
 		  data: {
 		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
 		    datasets: [{ 
-		        data:[60,66,68,72,74,76,80,88,94,102],
+		        data:[23,20,35,34,27,19,14,15,16,20],
+		        lineTension:0,
 		        label: "RANKING CHANGE",
 		        borderColor: skyblue,
+	
 //		        pointBackgroundColor:  "#3e95cd",
 //		        backgroundColor:"#3e95cd",
 		        fill: false
@@ -132,8 +134,24 @@ $(function() {
 			}
 		});
 			
+		var foodModal = document.getElementById('food-modal');
 		
+		$('.planModal').click(function() {
+			
+			foodModal.style.display = "block";
+		});
+		
+		var notModal = $('div').not('div.food-modal');
 
+		// 모달창 닫기
+		$(document).on('mousedown', notModal,
+				function(e) {
+				
+					if (foodModal) {
+						if (!$(e.target).parents().hasClass('food-modal'))
+							foodModal.style.display = 'none';
+					}
+				});
 				
 		
 	

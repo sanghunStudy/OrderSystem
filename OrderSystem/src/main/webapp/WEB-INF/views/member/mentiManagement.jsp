@@ -35,25 +35,26 @@
 		</div>
 		<div id="wrapper">
 			<div class="rank">
-			<div id="ranker" style="position: relative; height:25vh; width:44.5vw">
+			<div id="ranker" style="position: relative; height:30vh; width:35vw">
 				<div class="title"><img src="${pageContext.request.contextPath}/resources/images/mypage/crown.png" class="crown"><span>RANKING</span></div>
 				<ul>
 					<li></li>
 				</ul>
 			</div>
-			<div id="lineChart Ranking" style="position: relative; height:25vh; width:44.5vw">
+			<div id="lineChart Ranking" style="position: relative; height:30vh; width:54vw">
 				<canvas id="line-chart-ranking"></canvas>
 			</div>
 		</div>
 		<div class="menti-apply">
-			<table>
+			<div class="title"><span>멘티 신청</span></div>
+			<table class="apply-list">
 				<thead>
-					<td></td>
-					<td>Name</td>
-					<td>Date</td>
-					<td>Physical Information</td>
-					<td>Goal</td>
-					<td></td>
+					<th></td>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Physical Information</th>
+					<th>Goal</th>
+					<th></th>
 				</thead>
 				<tbody>
 					<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></td>
@@ -61,23 +62,31 @@
 					<td>2019-05-15</td>
 					<td>키 175cm 몸무게 70kg</td>
 					<td>홀쭉 날씬 s라인</td>
-					<td></td>
-					<td></td>
+					<td><div class="agree btn">Agree</div></td>
+					<td><div class="disagree btn">Disagree</div></td>
 				</tbody>
 			</table>
 		</div>
 		<div class="third-line">
 			<div class="latest-log">
-				<h3>Latest Log</h3>
+				<div class="title"><span>Latest Log</span></div>
 			</div>
-			<div class="menti-weight" style="position: relative; height:25vh; width:62vw">
+			<div class="menti-weight" style="position: relative; height:38vh; width:60vw">
 				<canvas id="line-chart-mentiWegiht"></canvas>
 			</div>
 
 		</div>
 	<div class="mentiperformance">
-			<h3>Menti Performance</h3>
+			<div class="title"><span>Menti Performance</span></div>
 			<table class="performance">
+				<thead>
+					<tr class="th">
+						<td>Name</td>
+						<td>Performance Rate</td>
+						<td colspan="2">Plan Management</td>
+						<td>Date</td>
+					</tr>
+				</thead>
 				<tbody>
 					<tr>
 						<td>오창영님</td>
@@ -91,12 +100,19 @@
 								</div>
 							</div>
 						</td>
-						<td><div class="planModal">Plan Management</div></td>
+						<td><div class="planModal">운동관리</div></td>
+						<td><div class="planModal">식단관리</div></td>
 						<td>2019.05.07</td>
 					</tr>
 				</tbody>
 			</table>
 	</div>
+	</div>
+	<!-- 운동관리,식단관리 모달 -->
+	<div class="food-modal" id="food-modal">
+		<div class="food-management">
+			<p>식단관리 모달<p>
+		</div>
 	</div>
 </body>
 </html>

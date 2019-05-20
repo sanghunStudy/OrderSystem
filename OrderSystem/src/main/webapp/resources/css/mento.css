@@ -134,12 +134,13 @@ table {
 .to_item {color: hsla(0,0%,100%,.8);font-weight:600;padding-top: 7px;margin-bottom: 0; font-size:14px;}
 .item_box p{color:#6c757d;}
 #top_line {display:flex; justify-content:center;}
+.th td{font-weight:600;}
 /* 마일스톤 progressbar */
 
 .progress-bar {
     background-color: #1b1d2b;
     border-radius: 1.25em;
-    width: 200px;
+    width: 400px;
     height: 17px;
     display: inline-block;
     vertical-align: middle;
@@ -179,4 +180,64 @@ table {
     width: 55%;
   }
 }
- 
+.apply-list {
+	text-align:center;
+}
+/*agree,disagree 버튼 css*/
+.apply-list tr {
+	width:90vw;
+	overflow:nowrap;
+}
+.apply-list .btn{
+	text-align: center;
+    text-transform: uppercase;
+    flex: 1 1 auto;
+	margin: 10px;
+	position:relative;	
+	overflow:hidden;
+	transition:0.3s;
+  	
+}
+.apply-list .btn:hover{
+	cursor:pointer;
+}
+.agree {
+	border:2px solid #82acd8;
+
+}
+
+.agree:hover {
+  color: #f7f7f7;
+  background:#82acd8;
+}
+.disagree{
+	border:2px solid #d4835e;
+}
+.disagree:hover{
+  color: #f7f7f7;
+  background:#d4835e;
+}
+.planModal {
+	cursor:pointer;
+}
+.food-modal {
+	display:none;
+	position:fixed;
+	z-index:4;
+	padding-top:100px;
+	left:20%;
+	top:20%;
+	width:50%;
+	height:50%;
+	overflow:auto;
+	background:#fefefe;
+	color:#1b1b1b;
+	
+}
+.food-management {
+	bakcground:#fefefe;
+	margin:auto;
+	padding:20px;
+	border:1px solid #888;
+	width:80%;
+}

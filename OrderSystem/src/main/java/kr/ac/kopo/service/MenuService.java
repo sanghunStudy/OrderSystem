@@ -30,4 +30,8 @@ public interface MenuService {
 
 	void views(int menuId);
 
+	void selection(int mcommentId);
+
+	void pointUp(String id);
+
 }

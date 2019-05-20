@@ -71,4 +71,14 @@ public class MenuServiceImpl implements MenuService {
 		dao.views(menuId);
 	}
 
+	@Override
+	public void selection(int mcommentId) {
+		dao.selection(mcommentId);
+	}
+
+	@Override
+	public void pointUp(String id) {
+		dao.pointUp(id);
+	}
+
 }

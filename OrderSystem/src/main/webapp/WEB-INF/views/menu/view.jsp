@@ -80,12 +80,18 @@ $(document).ready(function(){
 				<div id="commentList">
 					<c:forEach var="MCL" items="${MCommentList}">
 						<div>
+						<c:if test="${MCL.selectionCheck==true}">
+							<h3>채택된 글</h3>
+						</c:if>
 							<ul>
 								<li>${MCL.id}</li>
 								<li>${MCL.mcommentContent}</li>
 								<li>${MCL.mcommentDate}</li>
 								<c:if test="${login==item.id}">
-									<li><a>채택</a></li>
+									<li><a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a></li>
+								</c:if>
+								<c:if test="${login==MCL.id}">
+									<li><a href="">삭제</a></li>
 								</c:if>
 							</ul>
 						</div>

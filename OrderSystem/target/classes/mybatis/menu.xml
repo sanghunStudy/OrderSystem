@@ -67,4 +67,16 @@
 		where menu_id=#{menuId}
 	</update>
 	
+	<update id="selection">
+		update menu_comment
+		set selection_check = 1
+		where mcomment_id = #{mcommentId}
+	</update>
+	
+	<update id="pointUp" parameterType="UserVO">
+		update user
+		set point = point + 10
+		where username = #{id}
+	</update>
+	
 </mapper>

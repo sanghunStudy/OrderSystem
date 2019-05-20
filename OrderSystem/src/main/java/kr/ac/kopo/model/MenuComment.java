@@ -6,6 +6,7 @@ public class MenuComment {
 	private String mcommentContent;
 	private String mcommentDate;
 	private int menuId;
+	boolean selectionCheck;
 	
 	public int getMcommentId() {
 		return mcommentId;
@@ -37,4 +38,11 @@ public class MenuComment {
 	public void setMenuId(int menuId) {
 		this.menuId = menuId;
 	}
+	public boolean isSelectionCheck() {
+		return selectionCheck;
+	}
+	public void setSelectionCheck(boolean selectionCheck) {
+		this.selectionCheck = selectionCheck;
+	}
+	
 }

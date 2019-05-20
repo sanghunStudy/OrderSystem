@@ -78,11 +78,11 @@
 			<input name="menuId" type="hidden" value="${item.menuId}" />
 		</div>
 		<div>
-			<label>메뉴이름: </label> <input name="menuName" type="text"
+			<label>질문제목: </label> <input name="menuName" type="text"
 				value="${item.menuName}">
 		</div>
 		<div>
-			<label>컨텐츠: </label>
+			<label>질문내용: </label>
 			<textarea name="menuContent" id="summernote">${item.menuContent}</textarea>
 		</div>
 		<div>

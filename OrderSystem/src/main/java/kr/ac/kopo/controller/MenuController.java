@@ -51,6 +51,7 @@ public class MenuController {
 	@RequestMapping("/list")
 	String list(SearchVO searchVO,Model model, HttpSession session) {
 		searchVO.pageCalculate(service.total(searchVO));
+		String login = (String)session.getAttribute("user");
 		/*String login;
 		
 		if(session.getAttribute("user").equals("user")) { 
@@ -71,7 +72,7 @@ public class MenuController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("searchVO", searchVO);
-		
+		model.addAttribute("login",login);
 		
 		return path + "list";
 	}
@@ -206,5 +207,13 @@ public class MenuController {
 		file.transferTo(f);
 		out.println("/upload/"+str_filename);
 		out.close();
+	}
+	//채택
+	@RequestMapping(value="/selection")
+	String selection(int mcommentId,int menuId,String id) {
+		service.selection(mcommentId);
+		service.pointUp(id);
+		
+		return "redirect:view?menuId=" + menuId;
 	}
 }

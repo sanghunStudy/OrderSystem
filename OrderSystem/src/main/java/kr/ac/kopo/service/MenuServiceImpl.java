@@ -81,4 +81,9 @@ public class MenuServiceImpl implements MenuService {
 		dao.pointUp(id);
 	}
 
+	@Override
+	public int onlyOnceSelection(int menuId) {
+		return dao.onlyOnceSelection(menuId);
+	}
+
 }

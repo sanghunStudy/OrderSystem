@@ -79,4 +79,10 @@
 		where username = #{id}
 	</update>
 	
+	<select id="onlyOnceSelection" resultType="Integer">
+		select distinct COUNT(mc.selection_check)
+		from menu_comment mc JOIN menu m ON mc.menu_id = m.menu_id
+		where mc.menu_id = #{menuId} and mc.selection_check=1
+	</select>
+	
 </mapper>

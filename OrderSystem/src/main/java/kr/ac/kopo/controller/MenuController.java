@@ -211,9 +211,17 @@ public class MenuController {
 	//채택
 	@RequestMapping(value="/selection")
 	String selection(int mcommentId,int menuId,String id) {
-		service.selection(mcommentId);
-		service.pointUp(id);
+		int onlyOnceSelection = service.onlyOnceSelection(menuId);
 		
-		return "redirect:view?menuId=" + menuId;
+		if(onlyOnceSelection==0) {
+			service.selection(mcommentId);
+			service.pointUp(id);
+		
+			return "redirect:view?menuId=" + menuId;
+		} else {
+//			ModelAndView mav = new ModelAndView("/selection");
+//			mav.addObject("message", "더 이상 채택할 수 없습니다.");
+			return "redirect:view?menuId=" + menuId;
+		}
 	}
 }

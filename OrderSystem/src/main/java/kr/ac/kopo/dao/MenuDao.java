@@ -34,4 +34,6 @@ public interface MenuDao {
 
 	void pointUp(String id);
 
+	int onlyOnceSelection(int menuId);
+
 }

@@ -34,4 +34,6 @@ public interface MenuService {
 
 	void pointUp(String id);
 
+	int onlyOnceSelection(int menuId);
+
 }

@@ -81,4 +81,9 @@ public class MenuDaoImpl implements MenuDao {
 		sql.update("menu.pointUp",id);
 	}
 
+	@Override
+	public int onlyOnceSelection(int menuId) {
+		return sql.selectOne("menu.onlyOnceSelection",menuId);
+	}
+
 }

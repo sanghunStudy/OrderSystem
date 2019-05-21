@@ -36,7 +36,8 @@ import kr.ac.kopo.service.UserService;
 @RequestMapping("/member")
 public class UserController {
 	final String path = "member/";
-	private String uploadPath;
+	
+	private String uploadPath = "c:\\upload\\";
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	

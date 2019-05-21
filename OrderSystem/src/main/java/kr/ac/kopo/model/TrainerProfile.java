@@ -11,7 +11,14 @@ public class TrainerProfile {
 	private Date applyDate;
 	private Date proDate;
 	private String file;
+	private String trnThum;
 	
+	public String getTrnThum() {
+		return trnThum;
+	}
+	public void setTrnThum(String trnThum) {
+		this.trnThum = trnThum;
+	}
 	public int getApplyNum() {
 		return applyNum;
 	}

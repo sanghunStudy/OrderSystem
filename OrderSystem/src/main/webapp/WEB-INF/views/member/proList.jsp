@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,24 +9,24 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
 <script>
-function grantDo(code) {
-	$.ajax({
-		type : 'post',
-		url : '${pageContext.request.contextPath}/member/grant',
-		data : {
-			"username" : code
-		},
-		success : function(data) {
-			if (data == 'success') {
-				alert("11");
+	function grantDo(code) {
+		$.ajax({
+			type : 'post',
+			url : '${pageContext.request.contextPath}/member/grant',
+			data : {
+				"username" : code
+			},
+			success : function(data) {
+				if (data == 'success') {
+					alert("11");
+				}
 			}
-		}
-	});
-};
+		});
+	};
 </script>
 <body>
-<h1>트레이너 신청 목록</h1>
-	<table>
+	<h1>트레이너 신청 목록</h1>
+	<table border="1">
 		<tr>
 			<th>username</th>
 			<th>name</th>
@@ -42,9 +42,10 @@ function grantDo(code) {
 						<td>${item.username}</td>
 						<td>${item.name}</td>
 						<td>${item.sex}</td>
-						<td>${item.profile}</td>
+						<td>${item.file}</td>
 						<td>${item.career}</td>
-						<td><input name=username type="button" value="수락" onclick="grantDo('${item.username}');" /></td>
+						<td><input name=username type="button" value="수락"
+							onclick="grantDo('${item.username}');" /></td>
 					</tr>
 				</c:forEach>
 			</c:when>

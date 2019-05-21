@@ -10,10 +10,6 @@
 <title>Insert title here</title>
 <script th:inline="javascript">
 /*<![CDATA[*/
-$(function () {
-
-
-});
 
 /*]]>*/
 </script>
@@ -29,6 +25,17 @@ $(function () {
 			성별 : <input type="text" name="sex">	<br>
 			경력 : <input type="text" name="career"> <br>
 			사진 : <input type="file" name="profile">
+			<script>
+			$("#gdsImg").change(function() {
+			if (this.files && this.files[0]) {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+			$(".select_img img").attr("src",data.target.result).width(500);
+			}
+			reader.readAsDataURL(this.files[0]);
+			}
+			});
+			</script>
 		</fieldset>
 		<input type="submit" value="신청" />
 	</form>

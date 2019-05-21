@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -409,55 +410,19 @@
 		
 		
 		<div id="infoContainer">
-				<div class="exTitles">
-					<p>벤치프레스</p>
-					<span>3set</span><span>1reps</span><span>바벨</span><span class="itemsName" title="플랫벤치프레스">담기</span>
-				</div>
-				<div class="exTitles">
-					<p>인클라인 벤치 프레스</p>
-					<p><span>3set</span><span>1reps</span><span>바벨</span><span class="itemsName" title="인클라인 벤치프레스">담기</span></p>
-				</div>
-
-
-				<div class="exTitles">
-					<p>데드리프트</p>
-					<p><span>3set</span><span>1reps</span><span>바벨</span><span class="itemsName" title="데드리프트">담기</span></p> 
-				</div>
-				<div class="exTitles">	
-					<p class="itemsName">바벨로우</p>
-				</div>
-
-
-				<div class="exTitles">
-					<p>스쿼트</p>
-					<p><span>3set</span><span>1reps</span><span>바벨</span><span class="itemsName" title="스쿼트">담기</span></p> 
-				</div>
-				<div class="exTitles">					
-					<p class="itemsName">런지</p>
-				</div>
-
-				<div class="exTitles">
-					<p class="itemsName">밀리터리 프레스</p>
-				</div>
-				<div class="exTitles"> 
-					<p class="itemsName">숄더프레스</p>
-				</div>
-
-
-				<div class="exTitles">
-					<p class="itemsName">덤벨컬</p> 
-				</div>
-				<div class="exTitles">	
-					<p class="itemsName">해머컬</p>
-				</div>
-
-
-				<div class="exTitles">
-					<p class="itemsName">크런치</p> 
-				</div>
-				<div class="exTitles">	
-					<p class="itemsName">레그레이즈</p>
-				</div>
+			<c:choose>
+				<c:when test="${eTlist.size() > 0 }">
+					<c:forEach var="eTlist" items="${eTlist}">
+					<div class="exTitles">
+						<p>${eTlist.teName}</p>
+						<span>${eTlist.teSet}</span><span>${eTlist.teReps}</span><span>${eTlist.teTool}</span><span class="itemsName" title="${eTlist.teName}">담기</span>
+					</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<p>등록된 운동이 없습니다.</p>
+				</c:otherwise>
+			</c:choose>
 			</div>
 
 

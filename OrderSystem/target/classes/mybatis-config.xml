@@ -23,6 +23,7 @@
 		<typeAlias type="kr.ac.kopo.model.ExerciseContents" alias="ExerciseContents"/>
 		<typeAlias type="kr.ac.kopo.model.basicInformation" alias="basicInformation"/>
 		<typeAlias type="kr.ac.kopo.model.BEsave" alias="besave"/>
+		<typeAlias type="kr.ac.kopo.model.TypeOfExercise" alias="TypeOfExercise"/>
 	</typeAliases>
 
  	<mappers>

@@ -175,5 +175,26 @@ public class UserServiceImpl implements UserService {
 	public List<TypeOfExercise> typeOfExercise() {
 		return dao.typeOfExercise();
 	}
+	//운동 종류 입력
+	@Override
+	public void typeOfExerciseAdd(TypeOfExercise to) {
+		dao.typeOfExerciseAdd(to);
+	}
+	//운동 종류 하나만 가져오기
+	@Override
+	public TypeOfExercise typeOfExerciseOne(int teNum) {
+		return dao.typeOfExerciseOne(teNum);
+	}
+	//운동 종류 수정
+	@Override
+	public void typeOfExerciseUpdate(TypeOfExercise to) {
+		dao.typeOfExerciseUpdate(to);
+		
+	}
+//	운동 종류 삭제
+	@Override
+	public void typeOfExerciseDel(int teNum) {
+		dao.typeOfExerciseDel(teNum);
+	}
 
 }

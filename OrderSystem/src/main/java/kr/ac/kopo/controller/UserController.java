@@ -68,13 +68,44 @@ public class UserController {
 	}
 	
 	//�슫�룞�씪吏� �깉濡쒖슫 踰꾩쟾
-	@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
-	public String MyExerciseJournal(Model model) {
-		List<TypeOfExercise> eTlist = service.typeOfExercise();
-		model.addAttribute("eTlist",eTlist);
+		@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
+		public String MyExerciseJournal(Model model,HttpSession session) {
+			List<TypeOfExercise> eTlist = service.typeOfExercise();
+			model.addAttribute("eTlist",eTlist);
+			//로그인한 사람이 user이면 운동일지 입력 페이지로
+			if(session.getAttribute("user") != null) {
+				return path + "MyExerciseJournal2";
+			}
+			//아니면 운동 종류 입력 페이지로
+			return path + "typeOfExerciseList";
+		}
+		//관리자가 운동 등록
+		@RequestMapping(value="typeOfExerciseAdd", method = RequestMethod.GET)
+		public String typeOfExerciseAdd(int teNum, Model model) {
+			if(teNum != 0) {
+				TypeOfExercise to = service.typeOfExerciseOne(teNum);
+				model.addAttribute("to",to);
+			}
+			return path + "typeOfExerciseAdd";
+		}
 		
-		return path + "MyExerciseJournal2";
-	}
+		//관리자가 운동 삭제
+		@RequestMapping(value="typeOfExerciseDel", method = RequestMethod.GET)
+		public String typeOfExerciseDel(int teNum) {
+			service.typeOfExerciseDel(teNum);
+			return "redirect:MyExerciseJournal";
+		}
+		//관리자로 운동일지 들어가서 운동종류 입력
+		@RequestMapping(value="typeOfExerciseAdd", method = RequestMethod.POST)
+		public String typeOfExerciseAdd(TypeOfExercise to) {
+			if(to.getTeNum() > 0) {
+				service.typeOfExerciseUpdate(to);
+			}else {
+				service.typeOfExerciseAdd(to);
+			}
+			
+			return "redirect:MyExerciseJournal";
+		}
 	
 	// �떖�젰�뿉�꽌 �궇吏� �겢由��떆 �슫�룞�씪吏� �옉�꽦�븯�뒗 硫붿꽌�뱶
 	@RequestMapping(value = "/ExerciseJournalSubmit", method = RequestMethod.POST)

@@ -51,4 +51,13 @@ public interface UserService {
 	void grant(TrainerProfile pro);
 
 	List<TypeOfExercise> typeOfExercise();
+
+	void typeOfExerciseAdd(TypeOfExercise to);
+
+	TypeOfExercise typeOfExerciseOne(int teNum);
+
+	void typeOfExerciseUpdate(TypeOfExercise to);
+
+	void typeOfExerciseDel(int teNum);
+	
 }

@@ -152,5 +152,26 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return sql.selectList("user.typeOfExercise");
 	}
+	//운동 종류 입력
+	@Override
+	public void typeOfExerciseAdd(TypeOfExercise to) {
+		sql.insert("user.typeOfExerciseAdd", to);
+	}
+	//운동 종류 하나만 가져오기
+	@Override
+	public TypeOfExercise typeOfExerciseOne(int teNum) {
+		return sql.selectOne("user.typeOfExerciseOne", teNum);
+	}
+	//운동 종류 수정
+	@Override
+	public void typeOfExerciseUpdate(TypeOfExercise to) {
+		sql.update("user.typeOfExerciseUpdate", to);
+		
+	}
+	//운동 종류 삭제
+	@Override
+	public void typeOfExerciseDel(int teNum) {
+		sql.delete("user.typeOfExerciseDel", teNum);
+	}
 
 }

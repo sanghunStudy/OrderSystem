@@ -17,7 +17,7 @@
 			이름 : <input type="text" name="name"> <br>
 			성별 : <input type="text" name="sex">	<br>
 			경력 : <input type="text" name="career"> <br>
-			사진 : <input type="text" name="photo">
+			사진 : <input type="text" name="profile">
 		</fieldset>
 		<input type="submit" value="신청" />
 	</form>

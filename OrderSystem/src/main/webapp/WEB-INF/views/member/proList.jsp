@@ -31,7 +31,7 @@ function grantDo(code) {
 			<th>username</th>
 			<th>name</th>
 			<th>sex</th>
-			<th>photo</th>
+			<th>profile</th>
 			<th>career</th>
 			<th></th>
 		</tr>
@@ -42,7 +42,7 @@ function grantDo(code) {
 						<td>${item.username}</td>
 						<td>${item.name}</td>
 						<td>${item.sex}</td>
-						<td>${item.photo}</td>
+						<td>${item.profile}</td>
 						<td>${item.career}</td>
 						<td><input name=username type="button" value="수락" onclick="grantDo('${item.username}');" /></td>
 					</tr>

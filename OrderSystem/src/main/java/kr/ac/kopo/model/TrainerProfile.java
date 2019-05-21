@@ -1,31 +1,28 @@
 package kr.ac.kopo.model;
 
+import java.util.Date;
+
 public class TrainerProfile {
-	
+	private int applyNum;
 	private String username;
-	private String photo;
 	private String name;
 	private String sex;
 	private String career;
-	private String addmission;
+	private Date applyDate;
+	private Date proDate;
+	private String profile;
 	
-	public String getAddmission() {
-		return addmission;
+	public int getApplyNum() {
+		return applyNum;
 	}
-	public void setAddmission(String addmission) {
-		this.addmission = addmission;
+	public void setApplyNum(int applyNum) {
+		this.applyNum = applyNum;
 	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 	public String getName() {
 		return name;
@@ -45,6 +42,24 @@ public class TrainerProfile {
 	public void setCareer(String career) {
 		this.career = career;
 	}
+	public Date getApplyDate() {
+		return applyDate;
+	}
+	public void setApplyDate(Date applyDate) {
+		this.applyDate = applyDate;
+	}
+	public Date getProDate() {
+		return proDate;
+	}
+	public void setProDate(Date proDate) {
+		this.proDate = proDate;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
-	
+		
 }

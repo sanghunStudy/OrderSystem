@@ -4,8 +4,8 @@
 <mapper namespace="user">
 	<!-- 트레이너 신청 -->
 	<insert id="promotion" parameterType="TrainerProfile">
-		insert into trainer_profile(username, photo, name, sex, career)
-		values(#{username},#{photo},#{name},#{sex},#{career})
+		insert into trainer_profile (apply_num, username, name, sex, career, apply_date, profile)
+		values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex},#{career}, NOW(), #{profile})
 	</insert>
 	<!-- 트레이너신청 리스트 -->
 	<select id="proList" resultType="TrainerProfile">

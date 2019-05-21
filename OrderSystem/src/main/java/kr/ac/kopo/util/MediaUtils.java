@@ -7,6 +7,8 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.springframework.http.MediaType;
 
 public class MediaUtils {
+	
+	//업로드한 파일중 이미지 파일만 거르는 클래스
 	private static Map<String, MediaType> mediaMap;
 	
 	static {

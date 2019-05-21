@@ -1,20 +1,27 @@
 package kr.ac.kopo.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
@@ -28,7 +35,10 @@ import kr.ac.kopo.service.UserService;
 @RequestMapping("/member")
 public class UserController {
 	final String path = "member/";
-
+	private String uploadPath;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	UserService service;
 	
@@ -159,8 +169,20 @@ public class UserController {
 		
 		return path + "promotion";
 	}
+	
 	@RequestMapping(value="/promotion", method=RequestMethod.POST)
-	public String promotion(TrainerProfile pro, HttpSession session) {
+	public String promotion(TrainerProfile pro, HttpSession session, Model model,MultipartFile file) throws IOException {
+		logger.info("promotionPost");
+		
+		if(file != null) {
+			logger.info("originalName:" + file.getOriginalFilename());
+			logger.info("size:" + file.getSize());
+			logger.info("ContentType:" + file.getContentType());
+		}
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
+		
+		model.addAttribute("savedName", savedName);
+		
 		String username = (String)session.getAttribute("user");
 		pro.setUsername(username);
 		service.promotion(pro);
@@ -168,6 +190,19 @@ public class UserController {
 		return "redirect:MyPage";
 	}
 	
+	//업로드된 파일을 저장하는 함수
+	public String uploadFile(String originalName, byte[] fileDate) throws IOException {
+			
+		UUID uid = UUID.randomUUID();
+			
+		String savedName = uid.toString() + "_" + originalName;
+		File target = new File(uploadPath, savedName);
+			
+		//org.springframework.util 패키지의 FileCopyUtils는 파일 데이터를 파일로 처리하거나, 복사하는 등의 기능이 있다.
+		FileCopyUtils.copy(fileDate, target);
+			
+		return savedName;	
+	}
 	//트레이너 신청 리스트
 	@RequestMapping(value="proList")
 	public String proList(Model model2) {

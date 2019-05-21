@@ -18,9 +18,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="${pageContext.request.contextPath}/resources/js/charts.js"></script> 
-<script src="${pageContext.request.contextPath}/resources/js/statistics.js"></script> 
-
+<script src="${pageContext.request.contextPath}/resources/js/statistics&menti/charts.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/statistics&menti/statistics.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
 
 
 <title>나의 운동 차트</title>

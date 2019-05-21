@@ -4,7 +4,7 @@
 $(function() {
 	
 	var doToday = moment().add(0, 'day'), doYesterday, eatToday = moment().add(0,
-	'day'), eatYesterday;
+	'day'), eatYesterday,exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
 	
 	/* moment.js를 이용해 날짜 변경이벤트 처리 */
 	$('.moment').html(moment().format('L dddd'));
@@ -35,6 +35,30 @@ $(function() {
 			eatToday = eatTomorrow;
 
 			$('#eat_next').prev().html(eatToday.format('L dddd'));
+		},
+		"exer_prev": function() {
+			exerYesterday = moment(exerToday).add(-1, 'day');
+			exerToday = exerYesterday;
+
+			$('#exer_prev').next().html(exerToday.format('L dddd'));
+		},
+		"exer_next": function() {
+			exerTomorrow = moment(exerToday).add(1, 'day');
+			exerToday = exerTomorrow;
+
+			$('#exer_next').prev().html(exerToday.format('L dddd'));
+		},
+		"food_prev": function() {
+			foodYesterday = moment(foodToday).add(-1, 'day');
+			foodToday = foodYesterday;
+
+			$('#food_prev').next().html(foodToday.format('L dddd'));
+		},
+		"food_next": function() {
+			foodTomorrow = moment(foodToday).add(1, 'day');
+			foodToday = foodTomorrow;
+
+			$('#food_next').prev().html(foodToday.format('L dddd'));
 		}
 	}
 

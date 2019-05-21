@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/icomoon/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/statistics.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mento.css">
@@ -14,7 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="${pageContext.request.contextPath}/resources/js/mentoCharts.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/statistics&menti/mentoCharts.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
 
 <title>TRAINERBOT 멘티 관리</title>
 </head>
@@ -100,8 +102,8 @@
 								</div>
 							</div>
 						</td>
-						<td><div class="planModal">운동관리</div></td>
-						<td><div class="planModal">식단관리</div></td>
+						<td><div class="planModal" id="exer-modal-btn">운동관리</div></td>
+						<td><div class="planModal" id="food-modal-btn">식단관리</div></td>
 						<td>2019.05.07</td>
 					</tr>
 				</tbody>
@@ -109,9 +111,66 @@
 	</div>
 	</div>
 	<!-- 운동관리,식단관리 모달 -->
-	<div class="food-modal" id="food-modal">
-		<div class="food-management">
-			<p>식단관리 모달<p>
+	<div id="modals">
+		<div class="food-modal" id="food-modal">
+			<div class="food-management">
+				<div class="container">
+					<h2>식단관리</h2>
+					<div class="date-area"><i class="fas fa-angle-left" id="food_prev"></i><span class="schedule-date"></span><i class="fas fa-angle-right" id="food_next"></i></div>
+ 					 
+  					<form>  
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>음식이름</label>
+    					</div>
+      
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>세부내용</label>
+    					</div>
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>칼로리(Kcal)</label>
+    					</div>  					
+  					</form>
+				</div>			
+			</div>
+		</div>
+		<div class="exer-modal" id="exer-modal">
+			<div class="exer-management">
+				<div class="container">
+					<div class="date-area"><i class="fas fa-angle-left" id="exer_prev"></i><span class="schedule-date"></span><i class="fas fa-angle-right" id="exer_next"></i></div>
+					<p>운동관리 모달<p>
+					<form>  
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>운동이름</label>
+    					</div>
+      
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>세부내용</label>
+    					</div>
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>운동부위</label>
+    					</div>  					
+    					<span class="icon-right-arrow" ></span><span class="icon-left-arrow"></span>
+  					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

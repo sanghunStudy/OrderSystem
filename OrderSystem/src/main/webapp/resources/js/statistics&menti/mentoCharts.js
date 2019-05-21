@@ -1,7 +1,4 @@
 
-
-
-
 //그라디언트 생성기
 function gradientGenerator(color,ctx) {
 		if(ctx.canvas.id == 'line-chart-weight')
@@ -27,7 +24,9 @@ function gradientGenerator(color,ctx) {
 
 $(function() {
 	
-
+	var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
+		foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
+	
 
 //	var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
 //	var ctxSquat = document.getElementById('line-chart-squat').getContext("2d");
@@ -133,30 +132,99 @@ $(function() {
 				}
 			}
 		});
-			
-		var foodModal = document.getElementById('food-modal');
 		
-		$('.planModal').click(function() {
+		/*운동관리,식단관리 모달창 이벤트*/
+		
+		var foodModal = document.getElementById('food-modal');
+		var exerModal = document.getElementById('exer-modal');
+				
+		var modalClickEvent = {
+				'food-modal-btn':function() {
+					foodModal.style.display = "block";
+				},
+				'exer-modal-btn':function() {
+					exerModal.style.display = "block";
+				}
+		}
 			
-			foodModal.style.display = "block";
+		
+		
+		$('.performance').click(function(e) {
+			var target = e.target || e.srcElement;
+
+			if(modalClickEvent.hasOwnProperty(target.id)) {
+				modalClickEvent[target.id].call();
+			}			
+			
 		});
 		
-		var notModal = $('div').not('div.food-modal');
+		var notModal = function () {			
+			if(foodModal.style.display == 'block')
+				return $('div').not('div.food-management');
+			else if(exerModal.style.display == 'block')
+				return $('div').not('div.exer-management');
+		}
+	
 
 		// 모달창 닫기
 		$(document).on('mousedown', notModal,
 				function(e) {
-				
-					if (foodModal) {
-						if (!$(e.target).parents().hasClass('food-modal'))
+					if (foodModal.style.display =='block') {
+						if (!$(e.target).parents().hasClass('food-modal') && !$(e.target).hasClass('food-modal'))
 							foodModal.style.display = 'none';
 					}
+					else if (exerModal.style.display =='block') {
+						if (!$(e.target).parents().hasClass('exer-modal') && !$(e.target).hasClass('exer-modal'))
+							exerModal.style.display = 'none';
+					}
+
+
 				});
 				
 		
-	
+		/*모달 contents*/
+		$('.schedule-date').html(moment().format('L dddd'));
+		
+		/* 프락시 패턴를 이용한 이벤트 관리 */
+		var dateClickEvent = {
+		
+			"exer_prev": function() {
+				exerYesterday = moment(exerToday).add(-1, 'day');
+				exerToday = exerYesterday;
+
+				$('#exer_prev').next().html(exerToday.format('L dddd'));
+			},
+			"exer_next": function() {
+				exerTomorrow = moment(exerToday).add(1, 'day');
+				exerToday = exerTomorrow;
+
+				$('#exer_next').prev().html(exerToday.format('L dddd'));
+			},
+			"food_prev": function() {
+				foodYesterday = moment(foodToday).add(-1, 'day');
+				foodToday = foodYesterday;
+
+				$('#food_prev').next().html(foodToday.format('L dddd'));
+			},
+			"food_next": function() {
+				foodTomorrow = moment(foodToday).add(1, 'day');
+				foodToday = foodTomorrow;
+
+				$('#food_next').prev().html(foodToday.format('L dddd'));
+			}
+		}
+		
+		document.getElementById('modals').addEventListener('click',function(e) {
+			var target = e.target || e.srcElement;
+			
+			if(dateClickEvent.hasOwnProperty(target.id)) {
+				dateClickEvent[target.id].call();
+			}
+		})
+		
 
 });
+
 
 
 

@@ -33,7 +33,7 @@ $(function() {
 //	var ctxBench = document.getElementById('line-chart-bench').getContext("2d");
 //	var ctxWeight = document.getElementById('line-chart-weight').getContext("2d");
 	
-	/* scss 느낌의 색상변수*/
+	/* sass 느낌의 색상변수*/
 	var skyblue = 'rgba(27,138,248,1)';
 	var brightPink = 'rgba(225,78,202,1)';
 	var emerald = 'rgba(0,242,195,1)';

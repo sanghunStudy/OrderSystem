@@ -40,7 +40,7 @@
 			<div id="ranker" style="position: relative; height:30vh; width:35vw">
 				<div class="title"><img src="${pageContext.request.contextPath}/resources/images/mypage/crown.png" class="crown"><span>RANKING</span></div>
 				<ul>
-					<li></li>
+					<li>오창영 트레이너</li>
 				</ul>
 			</div>
 			<div id="lineChart Ranking" style="position: relative; height:30vh; width:54vw">
@@ -51,21 +51,26 @@
 			<div class="title"><span>멘티 신청</span></div>
 			<table class="apply-list">
 				<thead>
-					<th></td>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Physical Information</th>
-					<th>Goal</th>
-					<th></th>
+					<tr>
+						<th>체크박스</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Physical Information</th>
+						<th>Goal</th>
+						<th></th>
+						<th></th>
+					</tr>
 				</thead>
 				<tbody>
-					<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></td>
+				<tr>
+					<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></label></div></td>
 					<td>웰시코기</td>
 					<td>2019-05-15</td>
 					<td>키 175cm 몸무게 70kg</td>
 					<td>홀쭉 날씬 s라인</td>
 					<td><div class="agree btn">Agree</div></td>
 					<td><div class="disagree btn">Disagree</div></td>
+				</tr>
 				</tbody>
 			</table>
 		</div>
@@ -123,20 +128,20 @@
       						<input type="text" required>
       						<span class="highlight"></span>
       						<span class="bar"></span>
-      						<label>음식이름</label>
+      						<label class="only-modal">음식이름</label>
     					</div>
       
     					<div class="group">      
       						<input type="text" required>
       						<span class="highlight"></span>
       						<span class="bar"></span>
-      						<label>세부내용</label>
+      						<label class="only-modal">세부내용</label>
     					</div>
     					<div class="group">      
       						<input type="text" required>
       						<span class="highlight"></span>
       						<span class="bar"></span>
-      						<label>칼로리(Kcal)</label>
+      						<label class="only-modal">칼로리(Kcal)</label>
     					</div>  					
   					</form>
 				</div>			
@@ -145,8 +150,9 @@
 		<div class="exer-modal" id="exer-modal">
 			<div class="exer-management">
 				<div class="container">
+					
+					<h2>운동관리</h2>
 					<div class="date-area"><i class="fas fa-angle-left" id="exer_prev"></i><span class="schedule-date"></span><i class="fas fa-angle-right" id="exer_next"></i></div>
-					<p>운동관리 모달<p>
 					<form>  
     					<div class="group">      
       						<input type="text" required>

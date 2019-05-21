@@ -30,14 +30,14 @@ body {
 }
 
 
-label {
+.checkboxes. label {
   cursor: pointer;
   font-size: 1rem;
   line-height: 1rem;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+.checkboxes input[type="checkbox"],
+.checkboxes input[type="radio"] {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -47,15 +47,16 @@ input[type="radio"] {
   position: absolute;
   width: 1px;
 }
-input[type="checkbox"] + label,
+.checkboxes input[type="checkbox"] + label,
 input[type="radio"] + label {
   position: relative;
   padding: 0.5rem 0 0 2rem;
   margin-bottom: 1rem;
   user-select: none;
   color: #fff;
+  top:0;
 }
-input[type="checkbox"] + label:before,
+.checkboxes input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
   content: "";
   position: absolute;
@@ -69,7 +70,7 @@ input[type="radio"] + label:before {
   text-align: center;
   transition: background 200ms ease-out;
 }
-input[type="checkbox"] + label:after,
+.checkboxes input[type="checkbox"] + label:after,
 input[type="radio"] + label:after {
   content: "";
   position: absolute;
@@ -77,7 +78,7 @@ input[type="radio"] + label:after {
   transition: transform 200ms ease-out;
 }
 
-input[type="checkbox"] + label:after {
+.checkboxes input[type="checkbox"] + label:after {
   background-color: transparent;
   content: "";
   display: block;
@@ -92,10 +93,10 @@ input[type="checkbox"] + label:after {
   transform: rotate(45deg);
   transition: border-color 0.3s ease;
 }
-input[type="checkbox"]:checked + label:before {
+.checkboxes input[type="checkbox"]:checked + label:before {
   content: "";
 }
-input[type="checkbox"]:checked + label:after {
+.checkboxes input[type="checkbox"]:checked + label:after {
   content: "";
   opacity: 1;
 }
@@ -183,11 +184,22 @@ table {
 }
 .apply-list {
 	text-align:center;
+	width:90vw;
 }
+
 /*agree,disagree 버튼 css*/
 .apply-list tr {
-	width:90vw;
-	overflow:nowrap;
+
+
+}
+.apply-list tr>td {
+	border-color: hsla(0,0%,100%,.1);
+    padding: 12px 7px;
+    vertical-align: middle;
+    
+    	border-top: .0625rem solid #e3e3e3;
+	color:hsla(0,0%,100%,.7);
+	border-color: hsla(0,0%,100%,.1)
 }
 .apply-list .btn{
 	text-align: center;
@@ -231,16 +243,16 @@ table {
 	width:30%;
 	height:70%;
 	overflow:auto;
-	background:#fefefe;
-	color:#1b1b1b;
+	background:#2d333f;
+	color:#f7f7f7;
 	
 }
 .food-management,.exer-management {
-	bakcground:#fefefe;
+	bakcground:#2d333f;
 	margin:auto;
-	padding:20px;
-	border:1px solid #888;
-	width:80%;
+	padding:0px;
+	
+	width:90%;
 }
 
 
@@ -249,14 +261,16 @@ table {
 /* basic stylings ------------------------------------------ */
 
 .container 		{ 
-  font-family:'Roboto';
+
   width:100%; 
-  margin:20px auto 0; 
+/*   margin:20px auto 0;  */
   display:block; 
-  background:#FFF;
-  padding:10px 50px 50px;
+  padding:30px 50px 50px;
 }
-h2 		 { 
+.container form    {
+	margin-top:30px;
+}
+.modals h2 		 { 
   text-align:center; 
   margin-bottom:50px; 
 }
@@ -266,18 +280,21 @@ h2 		 {
   position:relative; 
   margin-bottom:45px; 
 }
-input 				{
+.container input 				{
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
-  width:300px;
+  width:100%	;
   border:none;
   border-bottom:1px solid #757575;
+  background:#2d333f;
+  color:#fefefe;
+  font-family: Noto Sans kr;
 }
-input:focus 		{ outline:none; }
+.container input:focus 		{ outline:none; }
 
 /* LABEL ======================================= */
-label 				 {
+.container label 				 {
   color:#999; 
   font-size:18px;
   font-weight:normal;
@@ -291,21 +308,21 @@ label 				 {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label 		{
+ input:focus ~ label, input:valid ~  label 		{
   top:-20px;
   font-size:14px;
   color:#5264AE;
 }
 
 /* BOTTOM BARS ================================= */
-.bar 	{ position:relative; display:block; width:300px; }
+.bar 	{ position:relative; display:block; width:auto; }
 .bar:before, .bar:after 	{
   content:'';
   height:2px; 
   width:0;
   bottom:1px; 
   position:absolute;
-  background:#5264AE; 
+  background:#00ccff; 
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;

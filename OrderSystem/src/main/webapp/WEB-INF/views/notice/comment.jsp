@@ -28,7 +28,7 @@
 		
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath}/notice/commentAdd',
+			url:'${pageContext.request.contextPath}/Routine/commentAdd',
 			data:$('#commentForm').serialize(),
 			success:function(data){
 				if(data == 'success'){
@@ -46,7 +46,7 @@
 		
 	    $.ajax({
 	        type:'GET',
-	        url : '${pageContext.request.contextPath}/notice/commentList',
+	        url : '${pageContext.request.contextPath}/Routine/commentList',
 	        dataType : "json",
 	        data:$("#commentForm").serialize(),
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
@@ -97,7 +97,7 @@
 	    var updateContent = $('[name=content_'+code+']').val();
 	    
 	    $.ajax({
-	        url : '${pageContext.request.contextPath}/notice/commentUpdate',
+	        url : '${pageContext.request.contextPath}/Routine/commentUpdate',
 	        type : 'post',
 	        data : {'ncomentContent' : updateContent, 'ncomentId' : code},
 	        success : function(data){
@@ -124,7 +124,7 @@
 	function fn_delete(code){
 		$.ajax({
 			type:'post',
-			url:'${pageContext.request.contextPath}/notice/commentDel',
+			url:'${pageContext.request.contextPath}/Routine/commentDel',
 			data:{'ncomentId':code},
 			success:function(data){
 				if(data == 'success'){

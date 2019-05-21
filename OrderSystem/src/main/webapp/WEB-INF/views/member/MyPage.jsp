@@ -19,6 +19,7 @@
 		<li><a href="proList">트레이너 신청목록</a></li>
 		<li><a href="ExerciseJournalList">운동일지상세목록</a></li>
 		<li><a href="${pageContext.request.contextPath}/menu/list">질문게시판</a></li>
+		<li><a href="${pageContext.request.contextPath}/trainer/waitingForApproval">pt신청 대기 회원</a></li>
 	</ul>
 
 </body>

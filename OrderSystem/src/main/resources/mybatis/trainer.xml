@@ -2,12 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="trainer">
-
+<!-- 승인허가 -->
+<update id="grantApproval">
+	update user_management set
+	reading = 'Y'
+	where username = #{username}
+</update>
+<!-- 클릭한 회원의 기초정보 가져오기 -->
+<select id="userDetailView" resultType="basicInformation">
+	select * from user_basic_information where username = #{username};
+</select>
+<!-- 트레이너 리스트 출력 -->
 <select id="list" resultType="UserVO">
 	select username from user where authority = 'trainer';
 </select>
-
+<!-- pt신청시 회원기초정보를 작성했나 확인 -->
 <select id="selectUserbI" resultType="Integer">
 	select count(*) from user_basic_information where username=#{username};
+</select>
+<!-- pt신청시 user_managerment 테이블에 신청한 회원과 선택한 트레이너의 아이디가 저장됨. -->
+<insert id="apply">
+	insert into user_management(manager,username,reading,apply_date)
+	values(#{manager},#{username},'N',NOW())
+</insert>
+<!-- 트레이너에게 pt신청한 내역이 있나 확인 -->
+<select id="selectApply" resultType="Integer">
+	select count(*) from user_management where username = #{username}
+</select>
+
+<!-- 승인대기회원 -->
+<select id="waitingForApproval" resultType="UserManagement">
+	select username,reading,apply_date from user_management where manager = #{id} and reading = 'N'
 </select>
 </mapper>

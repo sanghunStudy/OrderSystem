@@ -10,7 +10,7 @@ public class TrainerProfile {
 	private String career;
 	private Date applyDate;
 	private Date proDate;
-	private String profile;
+	private String file;
 	
 	public int getApplyNum() {
 		return applyNum;
@@ -54,11 +54,11 @@ public class TrainerProfile {
 	public void setProDate(Date proDate) {
 		this.proDate = proDate;
 	}
-	public String getProfile() {
-		return profile;
+	public String getFile() {
+		return file;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 		

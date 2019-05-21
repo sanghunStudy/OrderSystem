@@ -174,19 +174,20 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/promotion", method=RequestMethod.POST)
-	public String promotion(TrainerProfile pro, HttpSession session, Model model,MultipartFile file) throws IOException {
+	public String promotion(TrainerProfile pro,HttpSession session, Model model, MultipartFile profile) throws IOException {
 		logger.info("promotionPost");
 		
-		if(file != null) {
-			logger.info("originalName:" + file.getOriginalFilename());
-			logger.info("size:" + file.getSize());
-			logger.info("ContentType:" + file.getContentType());
+		if(profile != null) {
+			logger.info("originalName:" + profile.getOriginalFilename());
+			logger.info("size:" + profile.getSize());
+			logger.info("ContentType:" + profile.getContentType());
 		}
-		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
+		String savedName = uploadFile(profile.getOriginalFilename(), profile.getBytes());
 		
 		model.addAttribute("savedName", savedName);
 		
 		String username = (String)session.getAttribute("user");
+		pro.setFile(savedName);
 		pro.setUsername(username);
 		service.promotion(pro);
 	

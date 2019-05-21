@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 
 @Repository
@@ -143,6 +144,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void grant(TrainerProfile pro) {
 		sql.update("user.grant", pro);
+	}
+
+	//운동일지에 뿌려주는 운동종류 리스트
+	@Override
+	public List<TypeOfExercise> typeOfExercise() {
+		// TODO Auto-generated method stub
+		return sql.selectList("user.typeOfExercise");
 	}
 
 }

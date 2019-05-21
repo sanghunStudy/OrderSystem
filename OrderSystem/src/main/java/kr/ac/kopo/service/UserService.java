@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 
@@ -48,4 +49,6 @@ public interface UserService {
 	List<TrainerProfile> proList();
 
 	void grant(TrainerProfile pro);
+
+	List<TypeOfExercise> typeOfExercise();
 }

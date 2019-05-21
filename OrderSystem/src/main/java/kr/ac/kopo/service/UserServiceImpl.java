@@ -11,6 +11,7 @@ import kr.ac.kopo.dao.UserDao;
 import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 
 @Service
@@ -167,6 +168,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void grant(TrainerProfile pro) {
 		dao.grant(pro);
+	}
+
+	//운동일지에 뿌려주는 운동죵류
+	@Override
+	public List<TypeOfExercise> typeOfExercise() {
+		return dao.typeOfExercise();
 	}
 
 }

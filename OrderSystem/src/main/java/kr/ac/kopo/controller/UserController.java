@@ -20,6 +20,7 @@ import kr.ac.kopo.model.ExerciseContents;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TestList;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
@@ -57,7 +58,9 @@ public class UserController {
 	
 	//�슫�룞�씪吏� �깉濡쒖슫 踰꾩쟾
 	@RequestMapping(value="/MyExerciseJournal", method = RequestMethod.GET)
-	public String MyExerciseJournal() {
+	public String MyExerciseJournal(Model model) {
+		List<TypeOfExercise> eTlist = service.typeOfExercise();
+		model.addAttribute("eTlist",eTlist);
 		
 		return path + "MyExerciseJournal2";
 	}

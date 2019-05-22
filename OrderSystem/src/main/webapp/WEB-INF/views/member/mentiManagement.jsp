@@ -149,9 +149,10 @@
 		</div>
 		<div class="exer-modal" id="exer-modal">
 			<div class="exer-management">
+			<div class="modal-header"><h2>운동관리</h2></div>
 				<div class="container">
 					
-					<h2>운동관리</h2>
+					
 					<div class="date-area"><i class="fas fa-angle-left" id="exer_prev"></i><span class="schedule-date"></span><i class="fas fa-angle-right" id="exer_next"></i></div>
 					<form>  
     					<div class="group">      

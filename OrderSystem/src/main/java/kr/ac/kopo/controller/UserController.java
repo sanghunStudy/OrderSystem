@@ -73,7 +73,7 @@ public class UserController {
 			List<TypeOfExercise> eTlist = service.typeOfExercise();
 			model.addAttribute("eTlist",eTlist);
 			//로그인한 사람이 user이면 운동일지 입력 페이지로
-			if(session.getAttribute("user") != null) {
+			if(session.getAttribute("user") != null || session.getAttribute("trainer") != null) {
 				return path + "MyExerciseJournal2";
 			}
 			//아니면 운동 종류 입력 페이지로

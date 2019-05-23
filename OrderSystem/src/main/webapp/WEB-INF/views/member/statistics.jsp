@@ -21,6 +21,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/statistics&menti/charts.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/statistics&menti/statistics.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/SeeMoreJournals.js"></script>
 
 
 <title>나의 운동 차트</title>
@@ -313,6 +314,26 @@ benchDate.reverse();
 	</div>
 </div>
 </div>
-
+<div id="more_exercise_list" class="more_exercise">
+	<div class="content_square">
+		<div class="list-head"><h3>지난 운동 일지</h3></div>
+		<c:choose>
+			<c:when test="">
+				<%-- <c:forEach var="mel" items="${list}">
+					<div>
+						<ul>
+							<li>${mel.exerciseDate}</li>
+							<li>${mel.title}</li>
+							
+						</ul>
+					</div>
+				</c:forEach> --%>
+			</c:when>
+			<c:otherwise>
+				<div class="nothing">지난 운동 일지가 없습니다.</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</div>
 </body>
 </html>

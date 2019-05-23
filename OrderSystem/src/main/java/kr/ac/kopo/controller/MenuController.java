@@ -52,21 +52,12 @@ public class MenuController {
 	String list(SearchVO searchVO,Model model, HttpSession session) {
 		searchVO.pageCalculate(service.total(searchVO));
 		String login = (String)session.getAttribute("user");
-		/*String login;
-		
-		if(session.getAttribute("user").equals("user")) { 
-			login = (String)session.getAttribute("user");
-			model.addAttribute("login",login);
-			}
-		else if(session.getAttribute("admin").equals("admin")) { 
-			login = (String)session.getAttribute("admin");
-			model.addAttribute("login",login);
-			}
-		else if(session.getAttribute("trainer").equals("trainer")) { 
+		if(login==null) {
 			login = (String)session.getAttribute("trainer");
-			model.addAttribute("login",login);
-			}*/
-		
+		}
+		if(login==null) {
+			login = (String)session.getAttribute("admin");
+		}
 		
 		List<Menu> list = service.list(searchVO);
 		
@@ -85,6 +76,12 @@ public class MenuController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	String add(Menu menu, HttpSession session) {
 		String username = (String)session.getAttribute("user");
+		if(username==null) {
+			username = (String)session.getAttribute("trainer");
+		}
+		if(username==null) {
+			username = (String)session.getAttribute("admin");
+		}
 		menu.setId(username);
 		service.add(menu);
 		
@@ -120,6 +117,12 @@ public class MenuController {
 		Menu item = service.item(menuId);
 		List<MenuComment> MComment = service.commentList(menuId);
 		String login = (String)session.getAttribute("user");
+		if(login==null) {
+			login = (String)session.getAttribute("trainer");
+		}
+		if(login==null) {
+			login = (String)session.getAttribute("admin");
+		}
 		
 		model.addAttribute("item", item);
 		model.addAttribute("MCommentList",MComment);
@@ -160,6 +163,12 @@ public class MenuController {
 	@ResponseBody
 	String commnetAdd(MenuComment MComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
+		if(username==null) {
+			username = (String)session.getAttribute("trainer");
+		}
+		if(username==null) {
+			username = (String)session.getAttribute("admin");
+		}
 		if(username != null) {
 			MComment.setId(username);
 			service.commentAdd(MComment);

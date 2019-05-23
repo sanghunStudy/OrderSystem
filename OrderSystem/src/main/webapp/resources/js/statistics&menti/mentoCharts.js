@@ -120,6 +120,7 @@ $(function() {
 			var id = setInterval(frame, 50);
 			var end = $(this).attr('data-code');
 			var kcal = elem.parent().prev().prev();
+			
 			console.log(end);
 
 			function frame() {
@@ -137,6 +138,7 @@ $(function() {
 		
 		var foodModal = document.getElementById('food-modal');
 		var exerModal = document.getElementById('exer-modal');
+		var todayInfo = [];
 				
 		var modalClickEvent = {
 				'food-modal-btn':function() {
@@ -195,10 +197,38 @@ $(function() {
 				$('#exer_prev').next().html(exerToday.format('L dddd'));
 			},
 			"exer_next": function() {
+			
+				
 				exerTomorrow = moment(exerToday).add(1, 'day');
 				exerToday = exerTomorrow;
 
 				$('#exer_next').prev().html(exerToday.format('L dddd'));
+			
+					for(var i in todayInfo) {
+						if(todayInfo[i].date == exerToday.format('L dddd')) {
+							alert(todayInfo[i].date == exerToday.format('L dddd'));
+//							console.log("속성들  " + todayInfo[i].ename);
+//							$('.ename').val(todayInfo[i].ename);
+//							$('.details').val(todayInfo[i].details);
+//							$('.parts').val(todayInfo[i].parts);
+						}
+					}
+				
+			
+				var item = {
+						'date':exerToday.format('L dddd'),
+						'ename':$('.ename').val(),
+						'details':$('.details').val(),
+						'parts':$('.parts').val()
+				}
+				if(item.ename != '' && item.details != '' && item.parts !='' ) {
+					todayInfo.push(item);
+					alert(todayInfo[0].date == exerToday.format('L dddd'));
+				}
+				else
+					alert('값이 비었어요.');
+				console.log(todayInfo);
+				$('form :input').val('');
 			},
 			"food_prev": function() {
 				foodYesterday = moment(foodToday).add(-1, 'day');
@@ -220,10 +250,13 @@ $(function() {
 			if(dateClickEvent.hasOwnProperty(target.id)) {
 				dateClickEvent[target.id].call();
 			}
-		})
+		});
+		
+		
 		
 
 });
+
 
 
 

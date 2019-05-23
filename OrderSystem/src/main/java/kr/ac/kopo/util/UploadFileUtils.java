@@ -142,12 +142,22 @@ public class UploadFileUtils {
 
 	// 썸네일 이미지 생성
 	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
-
+		int dw =100, dh=60;
+		
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
+		int ow = sourceImg.getWidth(); 
+		int oh = sourceImg.getHeight();
+		int nw = ow; int nh = (ow * dh) / dw;
 
-		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+		if(nh > oh) { nw = (oh * dw) / dh; nh = oh; }
+		
+		BufferedImage cropImg = Scalr.crop(sourceImg, (ow-nw)/2, (oh-nh)/2, nw, nh);
+		
+		BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
 
 		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
+		
+		String OriginPath = uploadPath + path + File.separator +  fileName;
 
 		File newFile = new File(thumbnailName);
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);

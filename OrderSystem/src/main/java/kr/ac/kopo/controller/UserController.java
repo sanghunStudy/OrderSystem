@@ -1,7 +1,9 @@
 package kr.ac.kopo.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +12,15 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -31,6 +38,8 @@ import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
+import kr.ac.kopo.util.MediaUtils;
+import kr.ac.kopo.util.UploadFileUtils;
 
 @Controller
 @RequestMapping("/member")
@@ -204,8 +213,68 @@ public class UserController {
 		
 		return path + "promotion";
 	}
+	//Ajax 파일 업로드 produces는 한국어를 정상적으로 전송하기 위한 속성
+		@ResponseBody
+		@RequestMapping(value="/promotion", method = RequestMethod.POST)
+		public ResponseEntity<String> promotion(TrainerProfile pro,HttpSession session, Model model,MultipartFile profile) throws Exception {
+			
+			logger.info("originalName:" + profile.getOriginalFilename());
+			logger.info("size:" + profile.getSize());
+			logger.info("contentType:" + profile.getContentType());
+			
+			String savedName = uploadFile(profile.getOriginalFilename(), profile.getBytes());
+			String username = (String)session.getAttribute("user");
+			pro.setFile(savedName);
+			pro.setUsername(username);
+			service.promotion(pro);
+			
+			//HttpStatus.CREATED : 리소스가 정상적으로 생성되었다는 상태코드.
+			//return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
+			return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, profile.getOriginalFilename(), profile.getBytes()), HttpStatus.CREATED);
+		}
+		
+		//화면에 저장된 파일을 보여주는 컨트롤러 /년/월/일/파일명 형태로 입력 받는다.
+		// displayFile?fileName=/년/월/일/파일명
+		@ResponseBody
+		@RequestMapping(value="/sample/upload/displayFile", method = RequestMethod.GET)
+		public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+			
+			InputStream in = null;
+			ResponseEntity<byte[]> entity = null;
+			
+			logger.info("File name: " + fileName);
+			
+			try {
+				String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+				
+				MediaType mType = MediaUtils.getMediaType(formatName);
+				
+				HttpHeaders headers = new HttpHeaders();
+				
+				in = new FileInputStream(uploadPath + fileName);
+				
+				
+				if(mType != null) {
+					headers.setContentType(mType);
+				}else {
+					fileName = fileName.substring(fileName.indexOf("_")+1);
+					headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+					headers.add("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+				}// else
+				
+				entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+			} finally {
+				in.close();
+			}
+			
+			return entity;
+		}// displayFile
 	
-	@RequestMapping(value="/promotion", method=RequestMethod.POST)
+	/*@RequestMapping(value="/promotion", method=RequestMethod.POST)
 	public String promotion(TrainerProfile pro,HttpSession session, Model model, MultipartFile profile) throws IOException {
 		logger.info("promotionPost");
 		
@@ -224,7 +293,7 @@ public class UserController {
 		service.promotion(pro);
 	
 		return "redirect:MyPage";
-	}
+	} */
 	
 	//업로드된 파일을 저장하는 함수
 	public String uploadFile(String originalName, byte[] fileDate) throws IOException {

@@ -53,12 +53,12 @@ $(function() {
 		    datasets: [{ 
 		        data:[23,20,35,34,27,19,14,15,16,20],
 		        lineTension:0,
-		        label: "RANKING CHANGE",
-		        borderColor: skyblue,
-	
+		        label: "순위",
+		        borderColor: '#f99204',
+		        pointBackgroundColor:  "#f99204",
 //		        pointBackgroundColor:  "#3e95cd",
 //		        backgroundColor:"#3e95cd",
-		        fill: false
+		        fill: true
 		      }
 		    ]
 		  },
@@ -71,8 +71,17 @@ $(function() {
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
 		     
-		    }
+		    },
+		    hover: {
+			      mode:'nearest',
+			      intersect:true
+		    },
+			 tooltips: {
+			          mode: 'index',
+			          intersect: false,
+			}
 		  }
+		   
 		});
 	
 
@@ -102,7 +111,7 @@ $(function() {
 			maintainAspectRatio: false,
 		    title: {
 		      display: true,
-		      text: 'WEIGHT CHANGE OF Menti (in Kg)',
+		      text: '멘티 체중 변화 (in Kg)',
 		      fontColor:'#fff',
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
@@ -139,6 +148,7 @@ $(function() {
 		var foodModal = document.getElementById('food-modal');
 		var exerModal = document.getElementById('exer-modal');
 		var todayInfo = [];
+		var arr= ['풀업','데드리프트','플랫벤치프레스','스쿼트','인클라인벤치프레스'];
 				
 		var modalClickEvent = {
 				'food-modal-btn':function() {
@@ -146,6 +156,7 @@ $(function() {
 				},
 				'exer-modal-btn':function() {
 					exerModal.style.display = "block";
+					autocomplete(document.getElementById('ename'),arr);
 				}
 		}
 			
@@ -159,6 +170,21 @@ $(function() {
 			}			
 			
 		});
+		
+		
+		$('.input-number-increment').click(function() {
+			  var $input = $(this).parents('.input-number-group').find('.input-number');
+			  var val = parseInt($input.val(), 10);
+			  $input.val(val + 1);
+			});
+
+			$('.input-number-decrement').click(function() {
+			  var $input = $(this).parents('.input-number-group').find('.input-number');
+			  var val = parseInt($input.val(), 10);
+			  $input.val(val - 1);
+			})
+
+
 		
 		var notModal = function () {			
 			if(foodModal.style.display == 'block')
@@ -247,17 +273,104 @@ $(function() {
 		document.getElementById('modals').addEventListener('click',function(e) {
 			var target = e.target || e.srcElement;
 			
+			
 			if(dateClickEvent.hasOwnProperty(target.id)) {
 				dateClickEvent[target.id].call();
+			
 			}
 		});
 		
-		
-		
+				
 
 });
 
 
+
+
+
+
+
+function autocomplete(inp,arr) {
+	inp.onclick = function(e) {}
+	inp.addEventListener('click',function(e) {})
+	var currentFocus;
+	
+	inp.addEventListener('input', function(e) {
+		var a, b, i, val = this.value;
+		
+		
+		closeAllLists();
+		
+		if(!val) {return false;}
+		currentFocus = -1;
+		
+		a= document.createElement('div');
+		a.id = this.id + "autocomplete-list";
+		a.className = "autocomplete-items";
+		
+		this.parentNode.appendChild(a);
+		
+		for(i=0; i<arr.length; i++) {
+			if(arr[i].substr(0,val.length).toUpperCase() == val.toUpperCase()) {
+				b = document.createElement('div');
+				b.innerHTML = "<strong>" + arr[i].substr(0,val.length) + "</strong>";
+				b.innerHTML += arr[i].substr(val.length);
+				b.innerHTML += '<img src="' + contextPath + '/resources/images/ExIntroduction/back/pull_up.jpg" width="50px" height="80px">';
+				b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
+				
+					b.addEventListener('click',function (e) {
+						inp.value = this.getElementsByTagName('input')[0].value;
+						closeAllLists();
+					});
+				a.appendChild(b);	
+			}
+		}
+	});
+	
+	inp.addEventListener('keydown',function(e) {
+		var x = document.getElementById(this.id + "autocomplete-list");
+		if (x) x = x.getElementsByTagName('div');
+		if (e.keyCode == 40) {
+			currentFocus++;
+			addActive(x);
+		}
+		else if(e.keyCode == 38) {
+			currentFocus--;
+			addActive(x);
+		}
+		else if(e.keyCode == 13) {
+			e.preventDefault;
+			if(currentFocus > -1) {
+				if (x) x[currentFocus].click();
+			}
+			
+		}
+		
+	})
+	function addActive(x) {
+		if (!x) return false;
+		removeActive(x);
+		if( currentFocus >= x.length ) currentFocus = 0;
+		if (currentFocus < 0 ) currentFocus = (x.length -1);
+		x[currentFocus].classList.add('autocomplete-active');
+	}
+	function removeActive(x) {
+		for(var i = 0; i < x.length; i++) {
+			x[i].classList.remove('automoplete-active');
+		}
+	}
+	function closeAllLists(element) {
+		var x = document.getElementsByClassName('autocomplete-items');
+		for ( var i = 0 ; i < x.length; i++) {
+			if (element != x[i] && element != inp) {
+				x[i].parentNode.removeChild(x[i]);
+			}
+		}
+	}
+	document.addEventListener("click", function (e) {
+	    closeAllLists(e.target);
+	});
+}
 
 
 

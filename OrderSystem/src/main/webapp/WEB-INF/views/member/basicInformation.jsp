@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원 기초정보 조사</title>
 <style>
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 /* Full Source: https://github.com/tamino-martinius/ui-snippets-radiobuttons/blob/master/src/index.css */
 *{margin : 0; padding:0px;}
 body {
@@ -362,6 +363,34 @@ article span {
 .center span {
 	color : white;
 }
+
+
+
+/* 성별 아이콘 radio */
+ input[name='sex'] {
+	 -webkit-appearance: none;
+	 -moz-appearance: none;
+	 -o-appearance: none;
+	 -ms-appearance: none;
+	 appearance: none;
+	 outline: none;
+}
+ input[name='sex']:after {
+	 font-family: 'FontAwesome';
+	 display: inline-block;
+	 text-align: center;
+	 font-size: 80px;
+	 content: attr(data-icon);
+	 padding: 20px 20px;
+	 border-radius: 15px;
+	 color: rgba(0,0,0,0.4);
+	 transition: box-shadow 1s, color 1s;
+}
+ input[name='sex']:checked:after {
+	 box-shadow: 2px 2px 14px rgba(0,0,0,0.4);
+	 color: rgba(255,255,255,0.6);
+}
+ 
 </style>
 
 <script>
@@ -407,20 +436,22 @@ for (let preloadIndex = $preloadElements.length - 1; preloadIndex >= 0; preloadI
 				</div>
 				<div class="row">
 					<p>성 별</p>
-					<div  class="input input--radio">
-						<label>
-							<input type="radio" name="sex" value="남" checked>
-							<span class="input__box"></span>
-			          		<span>남</span>
-		          		</label>
-					</div>
-					<div  class="input input--radio">
-						<label>
-							<input type="radio" name="sex" value="여">
-							<span class="input__box"></span>
-			          		<span>여</span>
-		          		</label>
-					</div>
+<!-- 					<div  class="input input--radio"> -->
+<!-- 						<label> -->
+<!-- 							<input type="radio" name="sex" value="남" checked> -->
+<!-- 							<span class="input__box"></span> -->
+<!-- 			          		<span>남</span> -->
+<!-- 		          		</label> -->
+<!-- 					</div> -->
+<!-- 					<div  class="input input--radio"> -->
+<!-- 						<label> -->
+<!-- 							<input type="radio" name="sex" value="여"> -->
+<!-- 							<span class="input__box"></span> -->
+<!-- 			          		<span>여</span> -->
+<!-- 		          		</label> -->
+<!-- 					</div> -->
+					<input type="radio" name="sex" value="f" data-icon='' />
+					<input type="radio" name="sex" value="m" data-icon='' />
 				</div>
 				<div class="row">
 					<p>키</p>

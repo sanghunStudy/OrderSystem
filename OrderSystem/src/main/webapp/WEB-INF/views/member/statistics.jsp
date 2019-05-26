@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
+<!-- <link href="https://cdn.rawgit.com/YJSoft/Webfonts/0.1/BM_JUA.css" rel="stylesheet" type="text/css" /> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/charts.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/icomoon/style.css"></head>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -149,14 +150,16 @@ benchDate.reverse();
 		<div class="detail"><i class="far fa-plus-square"></i></div>
 
 		<table class="exercise-list table">
-			<tr>
-			    <td>운동명</td>
-			    <td>평균 중량<span style="font-size:8px;">(증가율)</span></td>
-				<td>반복회수<span style="font-size:8px;">(증가율)</span></td>
-				<td>세트 합계<span style="font-size:8px;">(증가율)</span></td>
-				<td>1RM<span style="font-size:8px;">(증가율)</span></td>
-			</tr>
-			
+			<thead>
+				<tr>
+				    <td>운동명</td>
+			    	<td>평균 중량<span style="font-size:8px;">(증가율)</span></td>
+					<td>반복회수<span style="font-size:8px;">(증가율)</span></td>
+					<td>세트 합계<span style="font-size:8px;">(증가율)</span></td>
+					<td>1RM<span style="font-size:8px;">(증가율)</span></td>
+				</tr>
+			</thead>
+			<tbody>
 				<c:forEach var="item" items="${avgLb}" begin="0" varStatus="status">
 				
 				
@@ -192,7 +195,7 @@ benchDate.reverse();
 				</tr>				
 			</c:if>	
 				</c:forEach>	
-
+			</tbody>
 		</table>
 		<script>
 

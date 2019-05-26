@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Anton|Lobster|Noto+Sans+KR:400,500,700|Noto+Sans:400,700|Poppins:300,400,600,700,900|Ubuntu&display=swap&subset=korean');
+
+body,html,p,table,div,span,ul,li,canvas,tr,td,i{margin:0; padding:0;}
 
 
 
@@ -116,14 +116,17 @@ table {
 	border-color: hsla(0,0%,100%,.1);
     padding: 12px 7px;
     vertical-align: middle;
+    font-family: 'S-CoreDream-4Regular','Noto Sans',sans-serif;
 }
 .edit_list, .title {
 	display:inline-block;
 }
 .title{
 	padding:14px 0 10px 14px;
-	color:#fff;
-	font-family: 'Noto Sans KR', 'Noto Sans',sans-serif;
+	color:#f7f7f7;
+/* 	font-family: 'Noto Sans KR', 'Noto Sans',sans-serif; */
+	font-family: 'S-CoreDream-7ExtraBold','Nanum Gothic',sans-serif;
+	
 }
 .logo{
 	margin-top:10px;
@@ -133,7 +136,7 @@ table {
 .fa-edit {font-size:24px; cursor:pointer;}
 .to_item {color: hsla(0,0%,100%,.8);font-weight:600;padding-top: 7px;margin-bottom: 0; font-size:14px;}
 .item_box p{color:#6c757d;}
-#top_line {display:flex; justify-content:center;}
+#top_line {display:flex; justify-content:center;margin-bottom: 14px;}
 /* 마일스톤 progressbar */
 
 .progress-bar {

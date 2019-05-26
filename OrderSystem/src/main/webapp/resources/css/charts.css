@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Anton|Lobster|Noto+Sans+KR:400,500,700|Noto+Sans:400,700|Poppins:300,400,600,700,900|Ubuntu&display=swap&subset=korean');
 body,html,p,table,div,span,ul,li,canvas,tr,td,i{margin:0; padding:0;}
+@font-face { font-family: 'S-CoreDream-9Black'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-4Regular'; src: url(‘https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-7ExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 body{
  background: #1e1e2f;
@@ -87,6 +91,10 @@ display:inline-block;
 .exercise-list{
 	width:100%;
 	font-size:12pt;
+}
+.exercise-list thead td {
+/* 	font-family:'BM JUA','배달의민족 주아',sans-serif; */
+	font-family: 'S-CoreDream-4Regular','Noto Sans',sans-serif;
 }
 .exercise-list th,td{
 	color:rgb(154,154,154);

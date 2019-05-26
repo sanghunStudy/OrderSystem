@@ -22,17 +22,20 @@
 <title>TRAINERBOT 멘티 관리</title>
 </head>
 <body>
+	<script>
+		var contextPath = '${pageContext.request.contextPath}';
+	</script>
 	<div id="fullBox">
 		<div class="menu-box">
 			<div class="logo">
-				<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="logo">
-				<p>TRAINERBOT</p>
+				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="logo">
+				<p>TRAINERBOT</p></a>
 			</div>
 			<ul class="menu-bar">
 				<li class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i><p>운동일지 통계</p></a></li>
-				<li class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i></a><p>운동일지 작성</p></li>
-				<li class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i></a><p>설문조사</p></li>
-				<li class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i></a><p>멘티 관리</p></li>
+				<li class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i><p>운동일지 작성</p></a></li>
+				<li class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i><p>설문조사</p></a></li>
+				<li class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i><p>멘티 관리</p></a></li>
 				<li class="menu-icons"><a href="${pageContext.request.contextPath}/opo/webRtc"><i class="fas fa-comment-dots"></i><p>화상채팅</p></a></li>
 			</ul>
 		</div>
@@ -40,44 +43,60 @@
 			<div class="rank">
 			<div id="ranker" style="position: relative; height:30vh; width:35vw">
 				<div class="title"><img src="${pageContext.request.contextPath}/resources/images/mypage/crown.png" class="crown"><span>RANKING</span></div>
-				<ul>
-					<li>오창영 트레이너</li>
-				</ul>
+				<table>
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Point</td>
+							<td>Menti</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>오창영 님</td>
+							<td>50pt</td>
+							<td>8명</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div id="lineChart Ranking" style="position: relative; height:30vh; width:54vw">
 				<canvas id="line-chart-ranking"></canvas>
 			</div>
 		</div>
 		<div class="menti-apply">
-			<div class="title"><span>멘티 신청</span></div>
+			<div class="title"><span>Menti Apply</span></div>
 			<table class="apply-list">
 				<thead>
-					<tr>
-						<th>체크박스</th>
+					<tr>					
 						<th>Name</th>
 						<th>Date</th>
 						<th>Physical Information</th>
 						<th>Goal</th>
-						<th></th>
-						<th></th>
+						<th colspan="2">Action</th>
+						
 					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1"/><label class="green-background" for="a"></label></div></td>
-					<td>웰시코기</td>
-					<td>2019-05-15</td>
-					<td>키 175cm 몸무게 70kg</td>
-					<td>홀쭉 날씬 s라인</td>
-					<td><div class="agree btn">Agree</div></td>
-					<td><div class="disagree btn">Disagree</div></td>
-				</tr>
+					<tr>					
+						<td>웰시코기</td>
+						<td>2019-05-15</td>
+						<td>키 175cm 몸무게 70kg</td>
+						<td>홀쭉 날씬 s라인</td>
+						<td><div class="agree btn">Agree</div></td>
+						<td><div class="disagree btn">Disagree</div></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="third-line">
 			<div class="latest-log">
 				<div class="title"><span>Latest Log</span></div>
+				<div id="log-items">
+					<div class="log-item"><span class="user-name">오창영님</span>이 <span class="subject">벤치프레스</span>를 완료하였습니다.
+					<span class="log-time">32분 전</span>
+					</div>
+				</div>
 			</div>
 			<div class="menti-weight" style="position: relative; height:38vh; width:60vw">
 				<canvas id="line-chart-mentiWegiht"></canvas>
@@ -131,7 +150,34 @@
       						<span class="bar"></span>
       						<label class="only-modal">음식이름</label>
     					</div>
-      
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>												
+      					
     					<div class="group">      
       						<input type="text" required>
       						<span class="highlight"></span>
@@ -154,13 +200,42 @@
 			<div class="modal-header"><h2>운동관리</h2></div>
 				<div class="container">					
 					<div class="date-area"><i class="fas fa-angle-left" id="exer_prev"></i><span class="schedule-date"></span><i class="fas fa-angle-right" id="exer_next"></i></div>
-					<form>  
+					<form autocomplete="off">  
     					<div class="group">      
-      						<input type="text" required class="ename">
-      						<span class="highlight"></span>
-      						<span class="bar"></span>
-      						<label>운동이름</label>
-    					</div>     
+    						<div class="autocomplete">
+      							<input type="text" required class="ename" id="ename">
+      							<span class="highlight"></span>
+      							<span class="bar"></span>
+      							<label>운동이름</label>
+      						</div>
+    					</div>
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>
+      					<div class="input-group input-number-group">
+  							<div class="input-group-button">
+    							<span class="input-number-decrement">-</span>
+						    </div>
+  							<input class="input-number" type="number" value="1" min="0" max="1000">
+  							<div class="input-group-button">
+    							<span class="input-number-increment">+</span>
+  							</div>
+						</div>	    					     
     					<div class="group">      
       						<input type="text" required class="details">
       						<span class="highlight"></span>

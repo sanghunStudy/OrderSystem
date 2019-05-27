@@ -826,6 +826,242 @@ span.round-tab:hover{
     }
 }
 
+/* ===== Select Box ===== */
+.sel {
+  font-size: 1rem;
+  display: inline-block;
+  margin: 3em 2em;
+  width: 120px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.sel::before {
+  position: absolute;
+  content: '\f063';
+  font-family: 'FontAwesome';
+  font-size: 2em;
+  color:#999;
+  right: 20px;
+  top: calc(50% - 0.5em);
+}
+
+.sel.active::before {
+  transform: rotateX(-180deg);
+}
+
+.sel__placeholder {
+  display: block;
+  font-family: 'Quicksand';
+  font-size: 2.3em;
+  color: #838e95;
+  padding: 0.2em 0.5em;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  visibility: visible;
+}
+
+.sel.active .sel__placeholder {
+  visibility: hidden;
+}
+
+.sel__placeholder::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.2em 0.5em;
+  content: attr(data-placeholder);
+  visibility: hidden;
+}
+
+.sel.active .sel__placeholder::before {
+  visibility: visible;
+}
+
+.sel__box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -4px;
+  display: none;
+  list-style-type: none;
+  text-align: left;
+  font-size: 1em;
+  background-color: #FFF;
+  width: calc(100% + 8px);
+  box-sizing: border-box;
+}
+
+.sel.active .sel__box {
+  display: block;
+  animation: fadeInUp 500ms;
+  height: 200px;
+  overflow: scroll;
+}
+
+.sel__box__options {
+  display: list-item;
+  font-family: 'Quicksand';
+  font-size: 1.5em;
+  color: #838e95;
+  padding: 0.5em 1em;
+  user-select: none;
+}
+
+.sel__box__options::after {
+  content: '\f00c';
+  font-family: 'FontAwesome';
+  font-size: 0.5em;
+  margin-left: 5px;
+  display: none;
+}
+
+.sel__box__options.selected::after {
+  display: inline;
+}
+
+.sel__box__options:hover {
+  background-color: #ebedef;
+}
+
+/* ----- Select Box Black Panther ----- */
+.sel {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.3);
+}
+
+.sel--black-panther {
+  z-index: 3;
+}
+
+/* ----- Select Box Superman ----- */
+.sel--superman {
+/*   display: none; */
+  z-index: 2;
+}
+
+
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+ /*플랜 확인*/
+.cal-container {
+	width:100%;
+}
+ .light {
+	 background-color: #fff;
+}
+
+ .calendar {
+	 width: 380px;
+	 box-shadow: 0px 0px 35px -16px rgba(0, 0, 0, 0.75);
+	 font-family: 'Roboto', sans-serif;
+	 padding: 20px 30px;
+	 color: #363b41;
+	 margin:0 auto;
+}
+ .calendar_header {
+	 border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+ .header_copy {
+	 color: #a39d9e;
+	 font-size: 20px;
+}
+ .calendar_plan {
+	 margin: 20px 0 40px;
+}
+ .cl_plan {
+	 width: 100%;
+	 height: 140px;
+/* 	 background-image: linear-gradient(-222deg, #ff8494, #ffa9b7); */
+	 background-image: linear-gradient( to bottom, #b11a6d,#9b1d85,#881f99 );
+	 box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+	 padding: 30px;
+	 color: #fff;
+}
+ .cl_copy {
+	 font-size: 20px;
+	 margin: 20px 0;
+	 display: inline-block;
+}
+ .cl_add {
+	 display: inline-block;
+	 width: 40px;
+	 height: 40px;
+	 border-radius: 50%;
+	 background-color: #fff;
+	 cursor: pointer;
+	 margin: 0 0 0 65px;
+	 color: #c2c2c2;
+	 padding: 11px 13px;
+}
+ .calendar_events {
+	 color: #a39d9e;
+}
+ .ce_title {
+	 font-size: 14px;
+}
+ .event_item {
+	 margin: 18px 0;
+	 padding: 5px;
+	 cursor: pointer;
+}
+ .event_item:hover {
+	 background-image: linear-gradient(-222deg, #ff8494, #ffa9b7);
+	 box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+}
+ .event_item:hover .ei_Dot {
+	 background-color: #fff;
+}
+ .event_item:hover .ei_Copy, .event_item:hover .ei_Title {
+	 color: #fff;
+}
+ .ei_Dot, .ei_Title {
+	 display: inline-block;
+}
+ .ei_Dot {
+	 border-radius: 50%;
+	 width: 10px;
+	 height: 10px;
+	 background-color: #a39d9e;
+	 box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+}
+ .dot_active {
+	 background-color: #b11a6d;
+}
+ .ei_Title {
+	 margin-left: 10px;
+	 color: #363b41;
+}
+ .ei_Copy {
+	 font-size: 12px;
+	 margin-left: 27px;
+}
+
+ 
 
 @media all and (max-width:1024px) {
 	.container .date-area{font-size:14pt;}

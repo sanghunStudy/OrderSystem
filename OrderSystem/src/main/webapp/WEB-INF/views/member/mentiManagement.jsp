@@ -37,7 +37,7 @@
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="custom.css">
+<!-- <link rel="stylesheet" type="text/css" href="custom.css"> -->
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
@@ -61,20 +61,20 @@
 			<ul class="menu-bar">
 				<li class="menu-icons"><a href="statistics"><i
 						class="fas fa-chart-bar"></i>
-					<p>운동일지 통계</p></a></li>
+						<p>운동일지 통계</p></a></li>
 				<li class="menu-icons"><a href="MyExerciseJournal"><i
 						class="fas fa-book"></i>
-					<p>운동일지 작성</p></a></li>
+						<p>운동일지 작성</p></a></li>
 				<li class="menu-icons"><a href="basicInformation"><i
 						class="fas fa-user-edit"></i>
-					<p>설문조사</p></a></li>
+						<p>설문조사</p></a></li>
 				<li class="menu-icons"><a href="mentiManagement"><i
 						class="fas fa-users"></i>
-					<p>멘티 관리</p></a></li>
+						<p>멘티 관리</p></a></li>
 				<li class="menu-icons"><a
 					href="${pageContext.request.contextPath}/opo/webRtc"><i
 						class="fas fa-comment-dots"></i>
-					<p>화상채팅</p></a></li>
+						<p>화상채팅</p></a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -236,6 +236,83 @@
 									<div class="tab-content">
 										<div class="tab-pane active" role="tabpanel" id="step1">
 											<h3>기간 설정</h3>
+											<div class="selected-menti"></div>
+											<div class="physical-info">
+												<div class="selected-weights"></div>
+												<div class="energy-requirement"></div>
+												<div class="selected-goal"></div>
+											</div>
+											<div class="plan-duration">
+												<div class="start-date">
+													<div class="sel sel--black-panther">
+														<select name="select-year" id="select-year">
+															<option value="" disabled>년</option>
+															<option value="2019">2019</option>
+															<option value="2020">2020</option>
+															<option value="2021">2021</option>
+															<option value="2022">2022</option>
+															<option value="2023">2023</option>
+														</select>
+													</div>
+													<span class="separator">.</span>
+													<div class="sel sel--superman">
+														<select name="select-superpower" id="select-month" onchange="alert(this.options[this.selectedIndex].value);">
+															<option value="" disabled>월</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10</option>
+															<option value="11">11</option>
+															<option value="12">12</option>
+														</select>
+													</div>
+													<span class="separator">.</span>
+													<div class="sel sel--superman">
+														<select name="select-superpower" id="select-day" class="select-day">
+															<option value="" disabled>일</option>
+<!-- 															<option value="1">1</option> -->
+<!-- 															<option value="2">2</option> -->
+<!-- 															<option value="3">3</option> -->
+<!-- 															<option value="4">4</option> -->
+<!-- 															<option value="5">5</option> -->
+<!-- 															<option value="6">6</option> -->
+<!-- 															<option value="7">7</option> -->
+<!-- 															<option value="8">8</option> -->
+<!-- 															<option value="9">9</option> -->
+<!-- 															<option value="10">10</option> -->
+<!-- 															<option value="11">11</option> -->
+<!-- 															<option value="12">12</option> -->
+<!-- 															<option value="13">13</option> -->
+<!-- 															<option value="14">14</option> -->
+<!-- 															<option value="15">15</option> -->
+<!-- 															<option value="16">16</option> -->
+<!-- 															<option value="17">17</option> -->
+<!-- 															<option value="18">18</option> -->
+<!-- 															<option value="19">19</option> -->
+<!-- 															<option value="20">20</option> -->
+<!-- 															<option value="21">21</option> -->
+<!-- 															<option value="22">22</option> -->
+<!-- 															<option value="23">23</option> -->
+<!-- 															<option value="24">24</option> -->
+<!-- 															<option value="25">25</option> -->
+<!-- 															<option value="26">26</option> -->
+<!-- 															<option value="27">27</option> -->
+<!-- 															<option value="28">28</option> -->
+<!-- 															<option value="29">29</option> -->
+<!-- 															<option value="30">30</option> -->
+<!-- 															<option value="31">31</option> -->
+
+														</select>
+													</div>
+												</div>
+												<div class="end-date"></div>
+											</div>
 											<ul class="list-inline">
 
 												<li><button type="button"
@@ -324,8 +401,7 @@
 														class="btn prev-step prev-food">
 														<i class="fa fa-arrow-left"></i>  기간 설정
 													</button></li>
-												<li><button type="button"
-														class="btn add-food">
+												<li><button type="button" class="btn add-food">
 														식단 추가 <i class="fas fa-plus"></i>
 													</button></li>
 												<li><button type="button"
@@ -335,8 +411,53 @@
 											</ul>
 										</div>
 										<div class="tab-pane" role="tabpanel" id="step3">
-											<h3>플랜 확인</h3>
-											<p>플랜확인하는 곳 입니다.</p>
+	<div class="cal-container">							
+  <div class="calendar light">
+    <div class="calendar_header">
+      <h1 class = "header_title">Diet List</h1>
+      <p class="header_copy"> Diet Plan</p>
+    </div>
+    <div class="calendar_plan">
+      <div class="cl_plan">
+        <div class="cl_title">Day</div>
+        <div class="cl_copy">22nd  May  2019</div>
+        <div class="cl_add">
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+    </div>
+    <div class="calendar_events">
+      <p class="ce_title">To Eat List</p>
+      <div class="event_item">
+        <div class="ei_Dot dot_active"></div>
+        <div class="ei_Title">10:30 am</div>
+        <div class="ei_Copy">한솥도시락 현미고기고기</div>
+      </div>
+      <div class="event_item">
+        <div class="ei_Dot"></div>
+        <div class="ei_Title">12:00 pm</div>
+        <div class="ei_Copy">학식</div>
+      </div>
+      <div class="event_item">
+        <div class="ei_Dot"></div>
+        <div class="ei_Title">14:00 pm</div>
+        <div class="ei_Copy">One day 견과류 1봉지<br>#해태 #롯데</div>
+      </div>
+      <div class="event_item">
+        <div class="ei_Dot"></div>
+        <div class="ei_Title">16:30 pm</div>
+        <div class="ei_Copy">프로틴 2알</div>
+      </div>
+      <div class="event_item">
+        <div class="ei_Dot"></div>
+        <div class="ei_Title">18:30 am</div>
+        <div class="ei_Copy">닭가슴살 30g 1팩</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
 											<ul class="list-inline">
 												<li><button type="button"
 														class="btn prev-step prev-food">
@@ -350,7 +471,8 @@
 										</div>
 										<div class="tab-pane" role="tabpanel" id="complete">
 											<h3>확인 및 안내</h3>
-											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의 일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다. </p>
+											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의
+												일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
 											<ul class="list-inline">
 												<li><button type="button"
 														class="btn prev-step prev-food">
@@ -436,7 +558,7 @@
 															class="fas fa-angle-right" id="exer_next"></i>
 													</div>
 													<form autocomplete="off">
-														
+
 														<div class="group">
 															<div class="autocomplete">
 																<input type="text" required class="ename" id="ename">
@@ -486,6 +608,11 @@
 															</div>
 														</div>
 														<div class="group">
+															<input type="text" required class="lb-goal"> <span
+																class="highlight"></span> <span class="bar"></span> <label>목표중량<small>(in
+																	Kg)</small></label>
+														</div>
+														<div class="group">
 															<input type="text" required class="parts"> <span
 																class="highlight"></span> <span class="bar"></span> <label>운동부위</label>
 														</div>
@@ -502,8 +629,7 @@
 												<li><button type="button" class="btn prev-step">
 														<i class="fa fa-arrow-left"></i>  기간 설정
 													</button></li>
-												<li><button type="button"
-														class="btn add-exer">
+												<li><button type="button" class="btn add-exer">
 														운동 추가 <i class="fas fa-plus"></i>
 													</button></li>
 												<li><button type="button" class="btn next-step">
@@ -526,7 +652,8 @@
 										</div>
 										<div class="tab-pane" role="tabpanel" id="step8">
 											<h3>확인 및 안내</h3>
-											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의 일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다. </p>
+											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의
+												일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
 											<ul class="list-inline">
 												<li><button type="button" class="btn prev-step">
 														<i class="fa fa-arrow-left"></i>  플랜확인
@@ -545,5 +672,6 @@
 
 			</div>
 		</div>
+		<div id="alarm"></div>
 </body>
 </html>

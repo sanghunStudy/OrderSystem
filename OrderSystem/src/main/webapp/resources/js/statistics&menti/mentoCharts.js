@@ -23,9 +23,8 @@ function gradientGenerator(color,ctx) {
 
 
 $(function() {
-//	$('.nav-tabs > li a[title]').tooltip();
 
-	 
+	 /* modal 창 tab 이벤트 */
 	    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 	        
 	        var $target = $(e.target);
@@ -154,7 +153,7 @@ $(function() {
 	
 
 	
-	
+	/* progress 바 애니메이션 효과  */
 		$('.multi').each(function() {
 			var elem = $(this);
 			var width = 1;
@@ -203,7 +202,7 @@ $(function() {
 			
 		});
 		
-		
+		/* 모달창 spinner 이벤트  */
 		$('.input-number-increment').click(function(e) {
 			
 			  var $input = $(this).parents('.input-number-group').find('.input-number');
@@ -227,7 +226,55 @@ $(function() {
 
 
 
-		
+		/* ===== Logic for creating fake Select Boxes ===== */
+$('.sel').each(function() {
+  $(this).children('select').css('display', 'none');
+  
+  var $current = $(this);
+  
+  $(this).find('option').each(function(i) {
+    if (i == 0) {
+      $current.prepend($('<div>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__box')
+      }));
+      
+      var placeholder = $(this).text();
+      $current.prepend($('<span>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+        text: placeholder,
+        'data-placeholder': placeholder
+      }));
+      
+      
+      return;
+    }
+    
+    $current.children('div').append($('<span>', {
+      class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+      text: $(this).text()
+    }));
+  });
+});
+
+// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+  $(this).toggleClass('active');
+});
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+  var txt = $(this).text();
+  var index = $(this).index();
+  
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
+  
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+
+});
+
 			
 		
 		var notModal = function () {			
@@ -440,5 +487,44 @@ function prevTab(elem) {
     
 }
 
+function controlDay(val) {
+	alert('g2');
+	var odd = ['1','3','5','7','8','10','12'];
+	var feb = ['2'];
+	if( odd.indexOf(val) == '1') {
+		for (var i =1; i<= 31; i++ ){
+		var option = document.createElement('option');
+		option.value = i;
+		option.innerHTML = i;
+		
+		$('.select-day').each(function() {
+			$('.select-day').append(option);
+		});
+		}
+		
+	}
+	else if(feb.indexOf(val) == '2') {
+		for (var i =1; i<= 28; i++ ){
+			var option = document.createElement('option');
+			option.value = i;
+			option.innerHTML = i;
+			
+			$('.select-day').each(function() {
+				$('.select-day').append(option);
+			});
+			}
+	}
+	else {
+		for (var i =1; i<= 30; i++ ){
+			var option = document.createElement('option');
+			option.value = i;
+			option.innerHTML = i;
+			
+			$('.select-day').each(function() {
+				$('.select-day').append(option);
+			});
+			}
+	}
+}
 
 

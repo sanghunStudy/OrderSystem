@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/icomoon/style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/statistics.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mento.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mentoCharts.css">
@@ -150,49 +149,59 @@
       						<span class="bar"></span>
       						<label class="only-modal">음식이름</label>
     					</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
+						<div class ="spinner">
+    						<div class = "count-spinner">
+    							<span class="sub-title">양(gram)</span>
+      							<div class="input-group input-number-group">
+	  								<div class="input-group-button">
+	    								<span class="input-number-decrement">-</span>
+						    		</div>
+  									<input class="input-number" type="number" value="1" min="0" max="1000">
+  									<div class="input-group-button">
+		    							<span class="input-number-increment">+</span>
+  									</div>
+								</div>
+							</div>
+							<div class="gram-spinner">
+								<span class="sub-title">개수</span>
+      							<div class="input-group input-number-group">
+  									<div class="input-group-button">
+		    							<span class="input-number-decrement">-</span>
+						    		</div>
+  									<input class="input-number" type="number" value="1" min="0" max="1000">
+  									<div class="input-group-button">
+		    							<span class="input-number-increment">+</span>
+  									</div>
+								</div>
+							</div>
 						</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
-						</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
-						</div>												
-      					
-    					<div class="group">      
-      						<input type="text" required>
-      						<span class="highlight"></span>
-      						<span class="bar"></span>
-      						<label class="only-modal">세부내용</label>
-    					</div>
+						
     					<div class="group">      
       						<input type="text" required>
       						<span class="highlight"></span>
       						<span class="bar"></span>
       						<label class="only-modal">칼로리(Kcal)</label>
-    					</div>  					
+    					</div>
+    					<div class="group">      
+      						<input type="text" required>
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label class="only-modal">기타사항</label>
+    					</div>
+    					<div class="nutrient">
+    						<span class="sub-title">영양분</span>
+    						<div class="hash-container">
+	  							<ul class="ks-cboxtags">
+    								<li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">탄수화물</label></li>
+    								<li><input type="checkbox" id="checkboxTwo" value="Cotton Candy" checked><label for="checkboxTwo">단백질</label></li>
+    								<li><input type="checkbox" id="checkboxThree" value="Rarity" checked><label for="checkboxThree">지방</label></li>
+  								</ul>
+							</div>
+						</div>
   					</form>
 				</div>	
-				<div class="save-area"><a href="#" class="button">SAVE</a></div>				
+				<div class="save-area"><a href="#" class="button">SAVE</a></div>
+								
 			</div>
 		</div>
 		<div class="exer-modal" id="exer-modal">
@@ -209,44 +218,52 @@
       							<label>운동이름</label>
       						</div>
     					</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
-						</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
-						</div>
-      					<div class="input-group input-number-group">
-  							<div class="input-group-button">
-    							<span class="input-number-decrement">-</span>
-						    </div>
-  							<input class="input-number" type="number" value="1" min="0" max="1000">
-  							<div class="input-group-button">
-    							<span class="input-number-increment">+</span>
-  							</div>
+    					<div class ="spinner">
+    						<div class = "set-spinner">
+      							<div class="input-group input-number-group">
+	  								<div class="input-group-button">
+	    								<span class="input-number-decrement">-</span>
+						    		</div>
+  									<input class="input-number" type="number" value="1" min="0" max="1000">
+  									<div class="input-group-button">
+		    							<span class="input-number-increment">+</span>
+  									</div>
+								</div>
+							</div>
+							<div class="reps-spinner">
+      							<div class="input-group input-number-group">
+  									<div class="input-group-button">
+		    							<span class="input-number-decrement">-</span>
+						    		</div>
+  									<input class="input-number" type="number" value="1" min="0" max="1000">
+  									<div class="input-group-button">
+		    							<span class="input-number-increment">+</span>
+  									</div>
+								</div>
+							</div>
+							<div class="lb-spinner">
+      							<div class="input-group input-number-group">
+  									<div class="input-group-button">
+		    							<span class="input-number-decrement">-</span>
+						    		</div>
+  									<input class="input-number" type="number" value="1" min="0" max="1000">
+  									<div class="input-group-button">
+	    								<span class="input-number-increment">+</span>
+	  								</div>
+								</div>
+							</div>
 						</div>	    					     
-    					<div class="group">      
-      						<input type="text" required class="details">
-      						<span class="highlight"></span>
-      						<span class="bar"></span>
-      						<label>세부내용</label>
-    					</div>
     					<div class="group">      
       						<input type="text" required class="parts">
       						<span class="highlight"></span>
       						<span class="bar"></span>
       						<label>운동부위</label>
+    					</div>
+    					<div class="group">      
+      						<input type="text" required class="details">
+      						<span class="highlight"></span>
+      						<span class="bar"></span>
+      						<label>기타사항</label>
     					</div>  					
     				<!-- 	<span class="icon-right-arrow" ></span><span class="icon-left-arrow"></span> -->
   					</form>

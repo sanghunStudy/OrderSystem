@@ -185,6 +185,9 @@ $(function() {
 			})
 
 
+		    
+		
+			
 		
 		var notModal = function () {			
 			if(foodModal.style.display == 'block')

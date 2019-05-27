@@ -60,7 +60,13 @@ public class MenuController {
 		}
 		
 		List<Menu> list = service.list(searchVO);
-		
+//		for(int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i).getMenuContent()+"<<<list.get(i).getMenuContent()");
+//			if(list.get(i).getMenuContent().contains("img")) {
+//				list.add(i,setimgChk)
+//			}
+//				
+//		}
 		model.addAttribute("list", list);
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("login",login);

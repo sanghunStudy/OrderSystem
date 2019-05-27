@@ -46,6 +46,7 @@
 			}
 		}
 	}
+	
 </script>
 <script>
 	
@@ -72,14 +73,16 @@
 	
 </script>
 <script>
-	$(function() {
-		
-	});
+$(document).ready(function() {
+// 	alert("djdjdjdj");
+	
+});
+	
 </script>
 </header>
 <body>
 	<div class="container">
-	<div><a class="subtitle">질문</a><span class="route">홈 > 질문</span></div>
+	<div><a class="subtitle" href="${pageContext.request.contextPath}/menu/list">질문하기</a></div>
 	<script>
 		function changeSelect() {
 			document.getElementById("selectForm").submit();
@@ -104,12 +107,12 @@
 		<input type="hidden" name="page" id="page" value="" />
 		<div class="search_area">
 			<div class="search_type">
-			<input type="checkbox" name="searchType" value="menu_name" id="searchType1" class="cb1"
+			<input type="checkbox" name="searchType" value="menu_name" id="searchType1" class="cb1" checked="checked"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">제목</label>
 			<input type="checkbox" name="searchType" value="menu_content" id="searchType2" class="cb2"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if>/>
-			<label class="chkselect" for="searchType2">컨텐츠</label>
+			<label class="chkselect" for="searchType2" id="concheck">컨텐츠</label>
 			</div>
 			<input type="text" name="searchKeyword" class="search_keyword" 
 			maxlength="50" 
@@ -125,22 +128,27 @@
 			<th>글제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
+			<th>조회수</th>
 		</tr>
 		<c:choose>
 			<c:when test="${list.size() > 0}">
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td>${item.menuId}</td>
-						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">&emsp;${item.menuName}</a><a>[${item.cnt}]</a></td>
+						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">&emsp;${item.menuName}</a>
+						<a class="count">[${item.cnt}] </a>
+						<c:if test="${item.imgChk}">
+						<i class="fas fa-image"></i></c:if></td>
 						<td>${item.id}</td>
 						<td id="menuDate${item.menuId}"><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></td>
+						<td>${item.menuViews}</td>
 <%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
 					</tr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="4">등록된 질문이 없습니다.</td>
+					<td colspan="5">등록된 질문이 없습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
@@ -149,8 +157,8 @@
 	<div class="btn_ui">
 		<c:if test="${searchVO.totalPage>1}">
 			<c:if test="${searchVO.page>1}">
-				<div class="page_num"><a href="javascript:fn_formSubmit(1);"><div class="start_btn"><<</div></a></div>
-				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page-1});"><div class="prev_btn"><</div></a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(1);"><<</a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page-1});"><</a></div>
 			</c:if>
 <!-- 			<div class="paging"> -->
 				<c:forEach var="i" begin="${searchVO.pageStart}" end="${searchVO.pageEnd}" step="1">
@@ -168,14 +176,14 @@
 				</c:forEach>
 <!-- 			</div> -->
 			<c:if test="${searchVO.totalPage>searchVO.page}">
-				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page+1});"><div class="next_btn">></div></a></div>
-				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.totalPage});"><div class="endpage_btn">>></div></a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.page+1});">></a></div>
+				<div class="page_num"><a href="javascript:fn_formSubmit(${searchVO.totalPage});">>></a></div>
 			</c:if>
 		</c:if>
 		</div>
 	</div>
 	<c:if test="${login!=null}">
-	<div class="write"><a href="add">질문쓰기</a>${login}</div>
+	<div class="write"><a href="add">글쓰기</a></div>
 	</c:if>
 	</div>
 </body>

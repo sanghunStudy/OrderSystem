@@ -10,7 +10,15 @@ public class Menu {
 	Date menuDate;
 	int menuViews;
 	String id;
+	boolean imgChk;
 	
+
+	public boolean isImgChk() {
+		return imgChk;
+	}
+	public void setImgChk(boolean imgChk) {
+		this.imgChk = imgChk;
+	}
 	public String getId() {
 		return id;
 	}

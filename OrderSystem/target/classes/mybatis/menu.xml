@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="add" parameterType="Menu">
-		insert into menu(menu_name,menu_content,menu_date,id)
-		values(#{menuName},#{menuContent},NOW(),#{id})
+		insert into menu(menu_name,menu_content,menu_date,id,img_chk)
+		values(#{menuName},#{menuContent},NOW(),#{id},#{imgChk})
 	</insert>
 	
 	<select id="item" resultType="Menu">

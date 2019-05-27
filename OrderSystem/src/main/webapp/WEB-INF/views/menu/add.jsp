@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메뉴추가페이지</title>
+<title>질문작성페이지</title>
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link
@@ -14,7 +14,7 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
+<link href="${pageContext.request.contextPath}/resources/css/menu-add.css" rel="stylesheet">
 <!-- include summernote css/js-->
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
@@ -47,6 +47,20 @@
 											}
 
 										});
+					
+					
+						$("#menuSubmit").click(function(){
+							var summernoteVal = $("#summernote").val(); 
+							var imgChk;
+								if($(summernoteVal).find("img").length > 0){
+	// 								console.log(imgChk);
+									imgChk =  true;
+									$("#imgChk").val(imgChk);
+									
+								}
+								$("#menuForm").submit();
+						});
+					
 					});
 
 	function sendFile(file, el) {
@@ -66,23 +80,44 @@
 			}
 		});
 	}
+	
+	
 </script>
-</head>
-<body>
-	<form action="add?${_csrf.parameterName}=${_csrf.token}" method="post"
-		enctype="multipart/form-data">
-		<!-- <sec:csrfInput /> -->
-		<div>
-			<label>질문제목: </label> <input type="text" name="menuName">
-		</div>
-		<div>
-			<label>질문내용: </label>
-			<textarea name="menuContent" id="summernote" value=""></textarea>
-		</div>
 
-		<div>
-			<input type="submit" value="등록">
+</head>
+<header>
+<%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
+
+</header>
+<body>
+<div class="container">
+	<div><a class="subtitle" href="list">질문하기</a></div>
+	<div class="innerbox">
+	<form action="add" method="post"
+		enctype="multipart/form-data" id="menuForm">
+		<!-- <sec:csrfInput /> -->
+		<div class="naming-box">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
+			<label> 제목 </label> <input type="text" name="menuName" class="naming">
 		</div>
+		<div>
+			<textarea name="menuContent" id="summernote" cols="120" rows="50" value=""></textarea>
+		</div>
+		<div class="point-box">
+			<div class="point-set">포인트 설정</div>
+			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다"></div>
+		</div>
+		<div>
+			<input type="hidden" name="imgChk" id="imgChk" value="false">
+		</div>
+		<div class="buttons">
+<!-- 			<input type="submit" value="등록하기"> -->
+			<button type="button" id="menuSubmit">등록하기</button>
+			<div class="Go-back"><a href="list">작성취소</a></div>
+		</div>
+		
 	</form>
+	</div>
+</div>
 </body>
 </html>

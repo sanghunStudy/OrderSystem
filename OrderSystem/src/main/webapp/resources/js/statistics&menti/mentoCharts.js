@@ -23,6 +23,38 @@ function gradientGenerator(color,ctx) {
 
 
 $(function() {
+//	$('.nav-tabs > li a[title]').tooltip();
+
+	 
+	    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+	        
+	        var $target = $(e.target);
+	        if ($target.parent().hasClass('disabled')) {
+	            return false;
+	        }
+	    });
+	      
+	    $(".next-step").click(function (e) {
+	      
+	        var $active = $('.wizard .nav-tabs li.active');
+	    
+	        $active.next().removeClass('disabled');
+	        nextTab($active);
+
+	        $('.wizard .nav-tabs li.active .connecting-line').css({"border-bottom-left-radius": 0, "border-top-left-radius": 0});
+	       
+	    });
+	    $(".prev-step").click(function (e) {
+
+	        var $active = $('.wizard .nav-tabs li.active');
+	        prevTab($active);
+	        
+	        
+	    });
+	
+
+	
+	
 	
 	var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
 		foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
@@ -172,20 +204,29 @@ $(function() {
 		});
 		
 		
-		$('.input-number-increment').click(function() {
+		$('.input-number-increment').click(function(e) {
+			
 			  var $input = $(this).parents('.input-number-group').find('.input-number');
 			  var val = parseInt($input.val(), 10);
+			  if($(e.target).parents('.gram-spinner').attr('class') == 'gram-spinner')
+				  $input.val(val + 10);
+			  else{
 			  $input.val(val + 1);
+			  }
 			});
 
-			$('.input-number-decrement').click(function() {
+			$('.input-number-decrement').click(function(e) {
 			  var $input = $(this).parents('.input-number-group').find('.input-number');
 			  var val = parseInt($input.val(), 10);
+			  if($(e.target).parents('.gram-spinner').attr('class') == 'gram-spinner')
+				  $input.val(val - 10);
+			  else{
 			  $input.val(val - 1);
+			  }
 			})
 
 
-		    
+
 		
 			
 		
@@ -201,12 +242,26 @@ $(function() {
 		$(document).on('mousedown', notModal,
 				function(e) {
 					if (foodModal.style.display =='block') {
-						if (!$(e.target).parents().hasClass('food-modal') && !$(e.target).hasClass('food-modal'))
-							foodModal.style.display = 'none';
+						if (!$(e.target).parents().hasClass('food-modal') && !$(e.target).hasClass('food-modal')){
+							var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
+							if(close == true) {
+								foodModal.style.display = 'none';
+								 $('a[title="Step 5"]').click();
+
+								 
+							}
+						}
 					}
 					else if (exerModal.style.display =='block') {
-						if (!$(e.target).parents().hasClass('exer-modal') && !$(e.target).hasClass('exer-modal'))
+						if (!$(e.target).parents().hasClass('exer-modal') && !$(e.target).hasClass('exer-modal')){
+							var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
+							if(close == true) {
 							exerModal.style.display = 'none';
+							$('a[title="Step 1"]').click();
+						
+							
+							}
+						}
 					}
 
 
@@ -283,7 +338,7 @@ $(function() {
 			}
 		});
 		
-				
+
 
 });
 
@@ -373,6 +428,16 @@ function autocomplete(inp,arr) {
 	document.addEventListener("click", function (e) {
 	    closeAllLists(e.target);
 	});
+}
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+    
+   
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+    
 }
 
 

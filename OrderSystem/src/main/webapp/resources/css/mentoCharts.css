@@ -99,6 +99,8 @@ margin-left: 90px;
 #fullBox{
 	    /* width: 1000px; */
     margin: 0 auto;
+    background: #1e1e2f;
+    color:#f7f7f7;
 }
 .crown {
 	margin-right:5px;

@@ -2,6 +2,8 @@ package kr.ac.kopo.model;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class TrainerProfile {
 	private int applyNum;
 	private String username;
@@ -9,10 +11,26 @@ public class TrainerProfile {
 	private String sex;
 	private String career;
 	private Date applyDate;
+	MultipartFile uploadFile;
+	String upFilename;
 	private Date proDate;
 	private String file;
 	private String trnThum;
 	
+	
+	
+	public String getUpFilename() {
+		return upFilename;
+	}
+	public void setUpFilename(String upFilename) {
+		this.upFilename = upFilename;
+	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	public String getTrnThum() {
 		return trnThum;
 	}

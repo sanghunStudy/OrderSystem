@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.compress.utils.IOUtils;
@@ -207,30 +209,47 @@ public class UserController {
 		return path + "MyPage";
 	}
 	
+	@RequestMapping("/imageUpload")
+	@ResponseBody
+	ResponseEntity<String> profileUpload(MultipartFile file,HttpServletRequest request, HttpServletResponse response) throws IOException, Exception{
+		logger.info("originalName:" + file.getOriginalFilename());
+		logger.info("size:" + file.getSize());
+		logger.info("contentType:" + file.getContentType());
+		
+		
+//		String path = service.profileUpload(file,request,response);
+		return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.CREATED);
+	}
 	//트레이너 신청
 	@RequestMapping(value="/promotion", method=RequestMethod.GET)
 	public String promotion() {
-		
 		return path + "promotion";
 	}
 	//Ajax 파일 업로드 produces는 한국어를 정상적으로 전송하기 위한 속성
-		@ResponseBody
 		@RequestMapping(value="/promotion", method = RequestMethod.POST)
-		public ResponseEntity<String> promotion(TrainerProfile pro,HttpSession session, Model model,MultipartFile profile) throws Exception {
+		public String promotion(TrainerProfile pro,HttpSession session) {
 			
-			logger.info("originalName:" + profile.getOriginalFilename());
-			logger.info("size:" + profile.getSize());
-			logger.info("contentType:" + profile.getContentType());
-			
-			String savedName = uploadFile(profile.getOriginalFilename(), profile.getBytes());
 			String username = (String)session.getAttribute("user");
-			pro.setFile(savedName);
+			
+			if(pro.getUploadFile() != null) {
+				String upFilename = pro.getUploadFile().getOriginalFilename();
+				try {
+					pro.getUploadFile().transferTo(new File(uploadPath + upFilename));
+					
+					pro.setUpFilename(upFilename);
+					
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			pro.setUsername(username);
 			service.promotion(pro);
-			
-			//HttpStatus.CREATED : 리소스가 정상적으로 생성되었다는 상태코드.
-			//return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.CREATED);
-			return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, profile.getOriginalFilename(), profile.getBytes()), HttpStatus.CREATED);
+
+			return path + "MyPage";
 		}
 		
 		//화면에 저장된 파일을 보여주는 컨트롤러 /년/월/일/파일명 형태로 입력 받는다.

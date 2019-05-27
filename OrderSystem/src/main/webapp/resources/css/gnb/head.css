@@ -376,6 +376,11 @@ header #lnb nav>ul ul a:hover:after {
 	left: 12px;
 }
 
-
-/*메뉴아이콘*/
+/* 세션 종료 알림 */
+.session-chk{
+	margin:0 auto;
+	height:200px;
+	width:200px;
+	background:white;
+	
 }

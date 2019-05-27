@@ -1,0 +1,7 @@
+@charset "UTF-8";
+/* 전체 경로 써줘야됨 */
+@import url("/kopo/resources/css/me.css");
+.content-container{
+	width:1024px;
+	margin:0 auto;
+}

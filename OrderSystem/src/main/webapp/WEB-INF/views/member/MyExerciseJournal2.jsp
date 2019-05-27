@@ -9,182 +9,13 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
 <title>운동일지</title>
-
-<style>
-
-/* 전체영역 */
-#allDiv{
-	width:1024px;
-	margin:0 auto;
-}
-
-/* 오른쪽 운동명 전체박스 */
-#infoContainer{
-	float:right;
-	width:550px;
-	margin:0 6px;
-	background:#ebeb;
-}
-
-/* 운동명 개별 박스 */
-#infoContainer div{
-	border:1px solid #eee;
-	margin:5px 20px;
-	height:60px;
-}
-
-.exTitles p{
-	margin:0px;
-	padding:0px;
-}
-
-/* 왼쪽 전체박스 */
-#inputContainer{
-	float:left;
-	width:400px;
-}
-
-/* 검색박스 */
-#SearchBox{
-	height:80px;
-	border:1px solid #eee;
-}
-
-/* 검색인풋박스 */
-#SearchInput{
-	width:324px;
-	line-height:70px;
-	margin:0 auto;
-}
-#createDiv li{
-	list-style: none;
-}
-
-/* 왼쪽 박스 input태그 설정 */
-#createDiv input{
-	width:50px;
-	border:none;
-	border-bottom:1px solid black;
-	margin:0 5px;
-}
-#SearchInput input{
-	width:300px;
-	height:20px;
-	padding:10px;
-}
-.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-.tabs li {
-	background: none;
-	color: #222;
-/* 	display: inline-block; */
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-.tabs li.current {
-	background: #ededed;
-	color: #222;
-}
-
-.tab-content {
-	display: none;
-	background: #ededed;
-	padding: 15px;
-}
-
-.tab-content.current {
-	display: inherit;
-}
-
-/* 새로 생기는 탭태그 */
-#createli {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-#createli li {
-	background: none;
-	color: #222;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-#createli li.current {
-	background: #ededed;
-	color: #222;
-}
-
-.exercise_content {
-	display: block;
-/* 	background: #ededed; */
-	padding: 15px;
-}
-
-.exercise_content {
-	display: inherit;
-}
-
-.icon{
-	font-size:40px;
-}
-</style>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
 <script type="text/javascript">
-	$(function() {
-		//input을 date1로 선언
-		$("#date1")
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd' //Input Display Format 변경
-							,
-							showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-							,
-							showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
-							,
-							changeYear : true //콤보박스에서 년 선택 가능
-							,
-							changeMonth : true //콤보박스에서 월 선택 가능                
-							,
-							showOn : "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-							,
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-							,
-							buttonImageOnly : true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-							,
-							buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
-							,
-							yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
-							,
-							monthNamesShort : [ '1', '2', '3', '4', '5', '6',
-									'7', '8', '9', '10', '11', '12' ] //달력의 월 부분 텍스트
-							,
-							monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
-									'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
-							,
-							dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
-							,
-							dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일',
-									'금요일', '토요일' ] //달력의 요일 부분 Tooltip 텍스트
-							,
-							minDate :0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-// 							minDate : "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-							,
-// 							maxDate: 0
- 							maxDate : "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
-						});
-
-		//초기값을 오늘 날짜로 설정
-		$('#date1').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-
+	$(document).ready(function(){
+		inputDatepicker();
 		//탭메뉴
 		$('ul.tabs li').click(function() {
 			var tab_id = $(this).attr('data-tab');
@@ -208,69 +39,66 @@
 		});
 		
 		//운동명 클릭시 탭메뉴 생성하기
-		$(".itemsName")
-				.on(
-						"click",
-						function() {
-							//클릭한 텍스트 가져오자
-							var exerciseTitle = $(this).attr("title");
-							$("#keyword").val(exerciseTitle);
+		$(".itemsName").on("click",function() {
+			//클릭한 텍스트 가져오자
+			var exerciseTitle = $(this).attr("title");
+			$("#keyword").val(exerciseTitle);
 
-							var createTitle;
-							var createContent;
-							//공통적인 부분(탭메뉴 기본 input태그)
-							var btnItem = "<button id='inputAdd'>+</button><button id='inputDel'>-</button>";
-							var inputItems = 
-									  "<ul class='input_item"+count+"'>"
-									+ "<li>"
-									+"<input type='hidden' name='ExerciseName' value='"+exerciseTitle+"'/>"
-									+"<span>1</span>"
-									+ "<input type='hidden' min='1' name='set' value='1'/>"
-									+ "<input type='number' min='1' name='Reps' value='10'/>"
-									+ "<input type='number' min='1' name='lb'/>"
-									+"</li>"
-									+"</ul>";
-							
-							var delLi = "<span class='deletelis'>X</span>";
-							console.log("선택한 이름"+exerciseTitle);		
-							//선택한 종목이 이미 존재하나 확인
-							var chkTitle = $(".exercise_link:contains("
-									+ exerciseTitle + ")").length;
-							
-							//존재하지 않는다면 (길이가 0) 탭메뉴를 만들어준다.
-							if (chkTitle == 0) {
+			var createTitle;
+			var createContent;
+			//공통적인 부분(탭메뉴 기본 input태그)
+			var btnItem = "<button id='inputAdd'>+</button><button id='inputDel'>-</button>";
+			var inputItems = 
+					  "<ul class='input_item"+count+"'>"
+					+ "<li>"
+					+"<input type='hidden' name='ExerciseName' value='"+exerciseTitle+"'/>"
+					+"<span>1</span>"
+					+ "<input type='hidden' min='1' name='set' value='1'/>"
+					+ "<input type='number' min='1' name='Reps' value='10'/>"
+					+ "<input type='number' min='1' name='lb'/>"
+					+"</li>"
+					+"</ul>";
+			
+			var delLi = "<span class='deletelis'>X</span>";
+			console.log("선택한 이름"+exerciseTitle);		
+			//선택한 종목이 이미 존재하나 확인
+			var chkTitle = $(".exercise_link:contains("
+					+ exerciseTitle + ")").length;
+			
+			//존재하지 않는다면 (길이가 0) 탭메뉴를 만들어준다.
+			if (chkTitle == 0) {
 
-								//탭메뉴 생성
-								//처음 만드는 탭의 내용은 보여준다
-								if (count == 1) {
-									createContent =
-											"<div class='exercise_link current' data-tab='exercise_content"+count+"'>"
-											+ exerciseTitle 
-											+ delLi
-											+ "</div>"
-											+ "<div id='exercise_content"+count+"' class='exercise_content current'>"
-											+ btnItem + inputItems + "</div>";
+				//탭메뉴 생성
+				//처음 만드는 탭의 내용은 보여준다
+				if (count == 1) {
+					createContent =
+							"<div class='exercise_link current' data-tab='exercise_content"+count+"'>"
+							+ exerciseTitle 
+							+ delLi
+							+ "</div>"
+							+ "<div id='exercise_content"+count+"' class='exercise_content current'>"
+							+ btnItem + inputItems + "</div>";
 
-								} else {
-									createContent = 
-											"<div class='exercise_link' data-tab='exercise_content"+count+"'>"
-											+ exerciseTitle 
-											+ delLi
-											+ "</div>"
-											+ "<div id='exercise_content"+count+"' class='exercise_content'>"
-											+ btnItem + inputItems + "</div>";
+				} else {
+					createContent = 
+							"<div class='exercise_link' data-tab='exercise_content"+count+"'>"
+							+ exerciseTitle 
+							+ delLi
+							+ "</div>"
+							+ "<div id='exercise_content"+count+"' class='exercise_content'>"
+							+ btnItem + inputItems + "</div>";
 
-								}
+				}
 
-								$("#createli").append(createTitle);
-								$("#createDiv").append(createContent);
-								// 			$(".exercise_content").css("display","none");
+				$("#createli").append(createTitle);
+				$("#createDiv").append(createContent);
+				// 			$(".exercise_content").css("display","none");
 
-								count++;
-							} else {
-								alert("이미 선택한 종목입니다.");
-							}
-						});
+				count++;
+			} else {
+				alert("이미 선택한 종목입니다.");
+			}
+		});
 	});
 	
 	
@@ -399,9 +227,9 @@
 </head>
 <%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
 <body>
-	<div id="allDiv">
+	<div id="myExercise" class="content-container">
 		<h1>MyExerciseJournal</h1>
-		<input type="text" name="date" id="date1" size="12" disabled="disabled"/>
+		<input type="text" name="date" id="date1" class="input-date" size="12" disabled="disabled"/>
 <!-- 		<div> -->
 <!-- 			<span class="icon"><i class="fas fa-grin"></i></span> -->
 <!-- 			<span class="icon"><i class="far fa-frown"></i></span> -->
@@ -429,7 +257,7 @@
 			<!-- 클릭했을때 생기는 탭메뉴 -->
 			<div id="inputContainer">
 				<div id="SearchBox">
-					<div id="SearchInput">
+					<div id="SearchInput" class="input-auto-box">
 						<input type="text" id="keyWord">
 					</div>
 				</div>

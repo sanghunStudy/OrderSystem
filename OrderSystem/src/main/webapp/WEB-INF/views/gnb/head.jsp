@@ -11,6 +11,18 @@
 <script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script>
+var logoutUri = "${pageContext.request.contextPath}/logout";
+$(document).ready(function(){
+	$("#sessionChk").hide();//세션 종료시간 출력화면 처음에 숨김
+	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
+	if(loginChk){//존재한다면 아래함수 실행
+		clearTime(1.1);//세션 체크 5분 설정
+		setTimer();	//타이머 실행
+	}
+});
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/sesseionChk.js"></script>
 </head>
 <body>
 
@@ -104,6 +116,10 @@
 						</div>
 				</div>
 			</div>
+		</div>
+		<div id="sessionChk" class="session-chk">
+			<p></p>
+			<button type="button" id="sessionExtension" onclick="sessionChk()">세션 시간 연장하기</button>
 		</div>
 	</header>
 </body>

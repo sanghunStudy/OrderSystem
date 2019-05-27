@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+/* 전체영역 */
+#myExercise{
+	width:1024px;
+	margin:0 auto;
+}
+
+/* 오른쪽 운동명 전체박스 */
+#infoContainer{
+	float:right;
+	width:550px;
+	margin:0 6px;
+	background:#ebeb;
+}
+
+/* 운동명 개별 박스 */
+#infoContainer div{
+	border:1px solid #eee;
+	margin:5px 20px;
+	height:60px;
+}
+
+.exTitles p{
+	margin:0px;
+	padding:0px;
+}
+
+/* 왼쪽 전체박스 */
+#inputContainer{
+	float:left;
+	width:400px;
+}
+
+/* 검색박스 */
+#SearchBox{
+	height:80px;
+	border:1px solid #eee;
+}
+
+/* 검색인풋박스 */
+/* #SearchInput{ */
+/* 	width:324px; */
+/* 	line-height:70px; */
+/* 	margin:0 auto; */
+/* } */
+#myExercise .input-auto-box{
+	width:324px;
+	line-height:70px;
+	margin:0 auto;
+}
+#createDiv li{
+	list-style: none;
+}
+
+/* 왼쪽 박스 input태그 설정 */
+#createDiv input{
+	width:50px;
+	border:none;
+	border-bottom:1px solid black;
+	margin:0 5px;
+}
+#SearchInput input{
+	width:300px;
+	height:20px;
+	padding:10px;
+}
+.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.tabs li {
+	background: none;
+	color: #222;
+/* 	display: inline-block; */
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+.tabs li.current {
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+/* 새로 생기는 탭태그 */
+#createli {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#createli li {
+	background: none;
+	color: #222;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+#createli li.current {
+	background: #ededed;
+	color: #222;
+}
+
+.exercise_content {
+	display: block;
+/* 	background: #ededed; */
+	padding: 15px;
+}
+
+.exercise_content {
+	display: inherit;
+}
+
+.icon{
+	font-size:40px;
+}

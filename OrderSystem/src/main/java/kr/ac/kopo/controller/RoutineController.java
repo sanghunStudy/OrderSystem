@@ -391,7 +391,8 @@ public class RoutineController {
 			for (int i = 0; i < commentVO.size(); i++) {
 				HashMap hm = new HashMap();
 				hm.put("c_code", commentVO.get(i).getNcomentId());
-				hm.put("comment", commentVO.get(i).getNcomentContent().replaceAll("<(/)?([a-zA-z]*)(\\s[a-zA-z]*=[^>]*)?(\\s)*(/)?>",""));//html 태그 지우는 정규식
+//				hm.put("comment", commentVO.get(i).getNcomentContent().replaceAll("<(/)?([a-zA-z]*)(\\s[a-zA-z]*=[^>]*)?(\\s)*(/)?>",""));//html 태그 지우는 정규식
+				hm.put("comment", commentVO.get(i).getNcomentContent().replaceAll("<[^>]*>",""));
 				hm.put("writer", commentVO.get(i).getId());
 				hm.put("NcomentDate", commentVO.get(i).getNcomentDate());
 

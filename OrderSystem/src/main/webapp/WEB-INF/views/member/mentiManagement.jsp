@@ -129,8 +129,8 @@
 							<td>2019-05-15</td>
 							<td>키 175cm 몸무게 70kg</td>
 							<td>홀쭉 날씬 s라인</td>
-							<td><div class="agree btn">Agree</div></td>
-							<td><div class="disagree btn">Disagree</div></td>
+							<td><div class="agree btn-t">Agree</div></td>
+							<td><div class="disagree btn-t">Disagree</div></td>
 						</tr>
 					</tbody>
 				</table>
@@ -170,12 +170,12 @@
 						<tr>
 							<td>오창영님</td>
 							<td>
-								<div class="progress-container">
-									<span id="value" class="progress-value"
+								<div class="progress-container-t">
+									<span id="value" class="progress-value-t"
 										style="background-color: #272a3d">1%</span>
 
-									<div class="progress-bar">
-										<div id="bar" class="progress-value multi" data-code="dbVal"
+									<div class="progress-bar-t">
+										<div id="bar" class="progress-value-t multi" data-code="dbVal"
 											style="width: 1%;"></div>
 									</div>
 								</div>
@@ -235,83 +235,104 @@
 								<form role="form">
 									<div class="tab-content">
 										<div class="tab-pane active" role="tabpanel" id="step1">
-											<h3>기간 설정</h3>
-											<div class="selected-menti"></div>
-											<div class="physical-info">
-												<div class="selected-weights"></div>
-												<div class="energy-requirement"></div>
-												<div class="selected-goal"></div>
+											<div class="modal-header">
+												<h2>기간 설정</h2>
 											</div>
-											<div class="plan-duration">
-												<div class="start-date">
-													<div class="sel sel--black-panther">
-														<select name="select-year" id="select-year">
-															<option value="" disabled>년</option>
-															<option value="2019">2019</option>
-															<option value="2020">2020</option>
-															<option value="2021">2021</option>
-															<option value="2022">2022</option>
-															<option value="2023">2023</option>
-														</select>
+											<div class="contents-container">
+												<div class="selected-menti">
+													<div class="subtitle">멘티</div>
+												</div>
+												<div class="physical-info">
+													<div class="selected-weights">
+														<div class="subtitle">체중</div>
 													</div>
-													<span class="separator">.</span>
-													<div class="sel sel--superman">
-														<select name="select-superpower" id="select-month" onchange="alert(this.options[this.selectedIndex].value);">
-															<option value="" disabled>월</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-															<option value="11">11</option>
-															<option value="12">12</option>
-														</select>
+													<div class="energy-requirement">
+														<div class="subtitle">에너지 요구량</div>
 													</div>
-													<span class="separator">.</span>
-													<div class="sel sel--superman">
-														<select name="select-superpower" id="select-day" class="select-day">
-															<option value="" disabled>일</option>
-<!-- 															<option value="1">1</option> -->
-<!-- 															<option value="2">2</option> -->
-<!-- 															<option value="3">3</option> -->
-<!-- 															<option value="4">4</option> -->
-<!-- 															<option value="5">5</option> -->
-<!-- 															<option value="6">6</option> -->
-<!-- 															<option value="7">7</option> -->
-<!-- 															<option value="8">8</option> -->
-<!-- 															<option value="9">9</option> -->
-<!-- 															<option value="10">10</option> -->
-<!-- 															<option value="11">11</option> -->
-<!-- 															<option value="12">12</option> -->
-<!-- 															<option value="13">13</option> -->
-<!-- 															<option value="14">14</option> -->
-<!-- 															<option value="15">15</option> -->
-<!-- 															<option value="16">16</option> -->
-<!-- 															<option value="17">17</option> -->
-<!-- 															<option value="18">18</option> -->
-<!-- 															<option value="19">19</option> -->
-<!-- 															<option value="20">20</option> -->
-<!-- 															<option value="21">21</option> -->
-<!-- 															<option value="22">22</option> -->
-<!-- 															<option value="23">23</option> -->
-<!-- 															<option value="24">24</option> -->
-<!-- 															<option value="25">25</option> -->
-<!-- 															<option value="26">26</option> -->
-<!-- 															<option value="27">27</option> -->
-<!-- 															<option value="28">28</option> -->
-<!-- 															<option value="29">29</option> -->
-<!-- 															<option value="30">30</option> -->
-<!-- 															<option value="31">31</option> -->
-
-														</select>
+													<div class="selected-goal">
+														<div class="subtitle">목표</div>
 													</div>
 												</div>
-												<div class="end-date"></div>
+												<div class="plan-duration">
+													<div class="start-date">
+														<div class="start-date subtitle">시작일</div>
+														<div class="sel sel-year">
+															<select name="select-year" id="select-year">
+																<option value="" disabled>년</option>
+																<option value="2019">2019</option>
+																<option value="2020">2020</option>
+																<option value="2021">2021</option>
+																<option value="2022">2022</option>
+																<option value="2023">2023</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-month">
+															<select name="select-superpower" id="select-month">
+																<option value="" disabled>월</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel--superman">
+															<select name="select-superpower" id="select-day"
+																class="select-day">
+																<option value="" disabled>일</option>
+
+															</select>
+														</div>
+													</div>
+													<div class="end-date">
+														<div class="end-date subtitle">종료일</div>
+														<div class="sel sel-year">
+															<select name="select-year" id="select-year">
+																<option value="" disabled>년</option>
+																<option value="2019">2019</option>
+																<option value="2020">2020</option>
+																<option value="2021">2021</option>
+																<option value="2022">2022</option>
+																<option value="2023">2023</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-month">
+															<select name="select-superpower" id="select-month">
+																<option value="" disabled>월</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-day">
+															<select name="select-superpower" id="select-day"
+																class="select-day">
+																<option value="" disabled>일</option>
+
+															</select>
+														</div>
+													</div>
+												</div>
 											</div>
 											<ul class="list-inline">
 
@@ -381,13 +402,26 @@
 														<div class="hash-container">
 															<ul class="ks-cboxtags">
 																<li><input type="checkbox" id="checkboxOne"
-																	value="Rainbow Dash"><label for="checkboxOne">탄수화물</label></li>
+																	value="carbohydrate"><label for="checkboxOne">탄수화물</label></li>
 																<li><input type="checkbox" id="checkboxTwo"
-																	value="Cotton Candy" checked><label
-																	for="checkboxTwo">단백질</label></li>
+																	value="protein"><label for="checkboxTwo">단백질</label></li>
 																<li><input type="checkbox" id="checkboxThree"
-																	value="Rarity" checked><label
-																	for="checkboxThree">지방</label></li>
+																	value="fat"><label for="checkboxThree">지방</label></li>
+															</ul>
+														</div>
+													</div>
+													<div class="nutrient">
+														<span class="sub-title">식사 시간</span>
+														<div class="hash-container">
+															<ul class="ks-cboxtags">
+																<li><input type="radio" id="radioOne" name="radio"
+																	value="Rainbow Dash" checked><label
+																	for="radioOne" name="">아침</label></li>
+																<li><input type="radio" id="radioTwo" name="radio"
+																	value="Cotton Candy"><label for="radioTwo">점심</label></li>
+																<li><input type="radio" id="radioThree"
+																	name="radio" value="Rarity"><label
+																	for="radioThree">저녁</label></li>
 															</ul>
 														</div>
 													</div>
@@ -411,53 +445,55 @@
 											</ul>
 										</div>
 										<div class="tab-pane" role="tabpanel" id="step3">
-	<div class="cal-container">							
-  <div class="calendar light">
-    <div class="calendar_header">
-      <h1 class = "header_title">Diet List</h1>
-      <p class="header_copy"> Diet Plan</p>
-    </div>
-    <div class="calendar_plan">
-      <div class="cl_plan">
-        <div class="cl_title">Day</div>
-        <div class="cl_copy">22nd  May  2019</div>
-        <div class="cl_add">
-          <i class="fas fa-plus"></i>
-        </div>
-      </div>
-    </div>
-    <div class="calendar_events">
-      <p class="ce_title">To Eat List</p>
-      <div class="event_item">
-        <div class="ei_Dot dot_active"></div>
-        <div class="ei_Title">10:30 am</div>
-        <div class="ei_Copy">한솥도시락 현미고기고기</div>
-      </div>
-      <div class="event_item">
-        <div class="ei_Dot"></div>
-        <div class="ei_Title">12:00 pm</div>
-        <div class="ei_Copy">학식</div>
-      </div>
-      <div class="event_item">
-        <div class="ei_Dot"></div>
-        <div class="ei_Title">14:00 pm</div>
-        <div class="ei_Copy">One day 견과류 1봉지<br>#해태 #롯데</div>
-      </div>
-      <div class="event_item">
-        <div class="ei_Dot"></div>
-        <div class="ei_Title">16:30 pm</div>
-        <div class="ei_Copy">프로틴 2알</div>
-      </div>
-      <div class="event_item">
-        <div class="ei_Dot"></div>
-        <div class="ei_Title">18:30 am</div>
-        <div class="ei_Copy">닭가슴살 30g 1팩</div>
-      </div>
-    </div>
-  </div>
-  </div>
+											<div class="cal-container">
+												<div class="calendar light">
+													<div class="calendar_header">
+														<h1 class="header_title">Diet List</h1>
+														<p class="header_copy">Diet Plan</p>
+													</div>
+													<div class="calendar_plan">
+														<div class="cl_plan">
+															<div class="cl_title">Day</div>
+															<div class="cl_copy">22nd May 2019</div>
+															<div class="cl_add">
+																<i class="fas fa-plus"></i>
+															</div>
+														</div>
+													</div>
+													<div class="calendar_events">
+														<p class="ce_title">To Eat List</p>
+														<div class="event_item">
+															<div class="ei_Dot dot_active"></div>
+															<div class="ei_Title">10:30 am</div>
+															<div class="ei_Copy">한솥도시락 현미고기고기</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">12:00 pm</div>
+															<div class="ei_Copy">학식</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">14:00 pm</div>
+															<div class="ei_Copy">
+																One day 견과류 1봉지<br>#해태 #롯데
+															</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">16:30 pm</div>
+															<div class="ei_Copy">프로틴 2알</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">18:30 am</div>
+															<div class="ei_Copy">닭가슴살 30g 1팩</div>
+														</div>
+													</div>
+												</div>
+											</div>
 
-  
+
 											<ul class="list-inline">
 												<li><button type="button"
 														class="btn prev-step prev-food">
@@ -537,7 +573,9 @@
 								<form role="form">
 									<div class="tab-content">
 										<div class="tab-pane active" role="tabpanel" id="step5">
-											<h3>기간 설정</h3>
+											<div class="modal-header">
+												<h2>기간 설정</h2>
+											</div>
 											<ul class="list-inline">
 
 												<li><button type="button"

@@ -52,7 +52,13 @@ $(function() {
 	    });
 	
 
-	
+	    $('.add-food').click(function (e) {
+	    	$('form :input').val('');
+	    	$('.ks-cboxtags>li>input[type="radio"]').prop("checked",false);
+	    	$('.ks-cboxtags>li>input[type="checkbox"]').prop("checked",false);
+	    	
+	    	
+	    });
 	
 	
 	var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
@@ -253,16 +259,18 @@ $('.sel').each(function() {
       class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
       text: $(this).text()
     }));
+    
   });
 });
 
-// Toggling the `.active` state on the `.sel`.
+// 가짜 셀렉트 박스 선택시 active 클래스 추가
 $('.sel').click(function() {
   $(this).toggleClass('active');
 });
 
-// Toggling the `.selected` state on the options.
-$('.sel__box__options').click(function() {
+
+// 선택박스 값선택
+$(document).on('click','.sel__box__options',function() {
   var txt = $(this).text();
   var index = $(this).index();
   
@@ -272,6 +280,34 @@ $('.sel__box__options').click(function() {
   var $currentSel = $(this).closest('.sel');
   $currentSel.children('.sel__placeholder').text(txt);
   $currentSel.children('select').prop('selectedIndex', index + 1);
+console.log(txt);
+ if($(this).parents().hasClass('sel-month')) {
+	 $(this).parents('.sel-month').next().next().children('div').empty();
+	 	var limit = 0;
+		var odd = ['1','3','5','7','8','10','12'];
+		var feb = ['2'];
+		
+		if( odd.indexOf(txt) >= 0) 
+			limit = 31;	
+		else if(feb.indexOf(txt) >= 0) 
+			limit = 28;
+		else 
+			limit = 30;
+		
+		for(var i =1 ; i <= limit ; i++) {
+//			$('.select-day').parent().children('div').append($('<span>',{
+//	              class: 'sel__box__options sel__box__options-day',
+//	              value: i,
+//	              text: i
+//			}));
+			$(this).parents('.sel-month').next().next().children('div').append($('<span>',{
+	              class: 'sel__box__options sel__box__options-day',
+	              value: i,
+	              text: i
+			}));
+		}
+	
+ }
 
 });
 
@@ -488,7 +524,7 @@ function prevTab(elem) {
 }
 
 function controlDay(val) {
-	alert('g2');
+
 	var odd = ['1','3','5','7','8','10','12'];
 	var feb = ['2'];
 	if( odd.indexOf(val) == '1') {

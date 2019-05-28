@@ -136,6 +136,7 @@ small {
 			var name = document.form1.name.value;
 			var sex = document.form1.sex.value;
 			var career = document.form1.career.value;
+			var thumbnail = document.form1.thumbnail.value;
 
 			if (name == "") {
 				alert("제목을 입력하세요.");
@@ -250,17 +251,16 @@ small {
 
 					}//getImageLink
 				</script>
-				<div class="filebox bs3-primary preview-image"
-					onchange="dropfile();">
-					<label for="input_file">파일 선택</label> <input class="upload-name"
-						value="" disabled="disabled" style="width: 200px;"> <input
-						multiple="multiple" type="file" id="input_file"
-						class="upload-hidden" name="attach">
+			<div class="filebox bs3-primary preview-image">
+			<label for="input_file">파일 선택</label> 
+                            <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
 
-				</div>
+                            
+                          <input type="file" id="input_file" class="upload-hidden" name="uploadFile"> 
+                        </div>
 
 
-			</form>
+			
 
 			<div class="alarm-box">
 				<p class="alarm">
@@ -273,6 +273,7 @@ small {
 		<div class="Btn">
 			<button type="button" id="btnSubmit" class="regiserBtn"
 				onclick="getThumbnail()">등록</button>
+	</form>
 
 			<script>
 				function getThumbnail() {

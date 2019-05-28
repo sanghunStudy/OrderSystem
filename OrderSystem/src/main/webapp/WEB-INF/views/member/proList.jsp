@@ -31,8 +31,9 @@
 			<th>username</th>
 			<th>name</th>
 			<th>sex</th>
-			<th>profile</th>
 			<th>career</th>
+			<th>photo</th>
+			<th>upFilename</th>
 			<th></th>
 		</tr>
 		<c:choose>
@@ -42,8 +43,13 @@
 						<td>${item.username}</td>
 						<td>${item.name}</td>
 						<td>${item.sex}</td>
-						<td>${item.file}</td>
 						<td>${item.career}</td>
+						<td>
+							<c:if test="${item.upFilename != null}">
+							<img src="${pageContext.request.contextPath}/upload/${item.upFilename}">
+							</c:if>
+						</td>
+						<td>${item.upFilename}</td>
 						<td><input name=username type="button" value="수락"
 							onclick="grantDo('${item.username}');" /></td>
 					</tr>

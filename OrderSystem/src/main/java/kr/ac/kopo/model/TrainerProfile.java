@@ -15,10 +15,17 @@ public class TrainerProfile {
 	String upFilename;
 	private Date proDate;
 	private String file;
-	private String trnThum;
+	String thumbnail;
 	
 	
 	
+	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public String getUpFilename() {
 		return upFilename;
 	}
@@ -30,12 +37,6 @@ public class TrainerProfile {
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
-	}
-	public String getTrnThum() {
-		return trnThum;
-	}
-	public void setTrnThum(String trnThum) {
-		this.trnThum = trnThum;
 	}
 	public int getApplyNum() {
 		return applyNum;

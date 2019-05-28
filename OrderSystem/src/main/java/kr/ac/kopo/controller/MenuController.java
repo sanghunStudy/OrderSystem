@@ -67,6 +67,9 @@ public class MenuController {
 //			}
 //				
 //		}
+		for(int i=0; i < list.size(); i++) {
+			list.get(i).setMenuName(list.get(i).getMenuName().replaceAll("<[^>]*>",""));
+		}
 		model.addAttribute("list", list);
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("login",login);
@@ -121,6 +124,7 @@ public class MenuController {
 	String view(Model model, int menuId, HttpSession session) {
 		service.views(menuId);
 		Menu item = service.item(menuId);
+		item.setMenuName(item.getMenuName().replaceAll("<[^>]*>",""));
 		List<MenuComment> MComment = service.commentList(menuId);
 		String login = (String)session.getAttribute("user");
 		if(login==null) {
@@ -129,7 +133,11 @@ public class MenuController {
 		if(login==null) {
 			login = (String)session.getAttribute("admin");
 		}
-		
+		for(int i=0; i < MComment.size(); i++) {
+			System.out.println(MComment.get(i).getMcommentContent()+"<<<<<<<<<<<<태그없애기전");
+			MComment.get(i).setMcommentContent(MComment.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
+			System.out.println(MComment.get(i).getMcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
+		}
 		model.addAttribute("item", item);
 		model.addAttribute("MCommentList",MComment);
 		model.addAttribute("login", login);
@@ -185,10 +193,9 @@ public class MenuController {
 	}
 	
 	@RequestMapping("/commentDel")
-	@ResponseBody
-	String commentsDel(MenuComment MComment) {
-		service.commentDel(MComment);
-		return "success";
+	String commentsDel(int mcommentId, int menuId) {
+		service.commentDel(mcommentId);
+		return "redirect:view?menuId=" + menuId;
 	}
 	
 	@RequestMapping("/commentUpdate")

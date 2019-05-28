@@ -58,7 +58,15 @@
 									$("#imgChk").val(imgChk);
 									
 								}
+							var nameCheck = $("#menuName").val();
+							
+							if(nameCheck == null || nameCheck == ""){
+								alert("제목을 입력하세요");
+							} else if(summernoteVal == null || summernoteVal == "") {
+								alert("내용을 입력하세요");
+							} else {
 								$("#menuForm").submit();
+							}
 						});
 					
 					});
@@ -83,6 +91,7 @@
 	
 	
 </script>
+<script src="https://unpkg.com/vue"></script>	
 
 </head>
 <header>
@@ -96,16 +105,38 @@
 	<form action="add" method="post"
 		enctype="multipart/form-data" id="menuForm">
 		<!-- <sec:csrfInput /> -->
-		<div class="naming-box">
+		<div class="naming-box" id="naming-box">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
-			<label> 제목 </label> <input type="text" name="menuName" class="naming">
+			<label> 제목 </label> <input v-model="t" type="text" name="menuName" class="naming" id="menuName">
+			<a class="char-limit">({{ tl }}/80자)</a>
 		</div>
+		<script>
+			var titleCheck = new Vue({
+				el:'#naming-box',
+				data: {
+					t:'',
+					tl:0,
+					to:''
+				},
+				watch: {
+					t: function(v) {
+						this.tl = Number(v.length);
+						if(this.tl > 80) {
+							alert("더 이상 입력하실 수 없습니다.");
+							this.to = v.substr(0, 80);
+							/* console.log(this.to); */
+							this.t = this.to;
+						}
+					}
+				}
+			});
+		</script>
 		<div>
 			<textarea name="menuContent" id="summernote" cols="120" rows="50" value=""></textarea>
 		</div>
 		<div class="point-box">
 			<div class="point-set">포인트 설정</div>
-			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다"></div>
+			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
 		</div>
 		<div>
 			<input type="hidden" name="imgChk" id="imgChk" value="false">
@@ -119,5 +150,6 @@
 	</form>
 	</div>
 </div>
+
 </body>
 </html>

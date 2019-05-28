@@ -96,7 +96,6 @@ input[class="cb1"] + label,input[class="cb2"] + label {
 	text-align:center;
 	display:table-cell;
 	vertical-align:middle;
-	cursor: pointer;
 }
 input[class="cb1"]:checked + label,input[class="cb2"]:checked + label {
 	color:#fff;
@@ -143,6 +142,4 @@ input[class="cb1"],input[class="cb2"], #concheck {
 .write a:visited {
 	text-decoration:none;
     color:#fff;
-}
-.fa-image {
 }

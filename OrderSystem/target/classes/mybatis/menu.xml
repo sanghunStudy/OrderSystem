@@ -42,7 +42,7 @@
 	</delete>
 	
 	<select id="commentList" resultType="MComment">
-		select * from menu_comment where menu_id=#{menuId}
+		select * from menu_comment where menu_id=#{menuId} order by selection_check desc, mcomment_id desc
 	</select>
 	
 	<insert id="commentAdd" parameterType="MComment">

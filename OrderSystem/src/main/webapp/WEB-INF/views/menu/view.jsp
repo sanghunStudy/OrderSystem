@@ -33,7 +33,7 @@ $(document).ready(function(){
 						alert("댓글입력성공");
 						$('#comment').val("");
 					} else {
-						alert("로그인을 한 후 입력하실 후 있습니다.");
+						alert("로그인 후 등록할 수 있습니다.");
 					}
 				}
 			});
@@ -97,7 +97,7 @@ $(document).ready(function(){
 									<li><a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a></li>
 								</c:if>
 								<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
-									<li><a href="">삭제</a></li>
+									<li><a href="commentDel?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}">삭제</a></li>
 								</c:if>
 							</ul>
 						</div>

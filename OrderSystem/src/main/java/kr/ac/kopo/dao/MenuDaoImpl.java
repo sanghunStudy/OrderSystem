@@ -57,8 +57,8 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public void commentDel(MenuComment mComment) {
-		sql.delete("menu.commentDel", mComment);
+	public void commentDel(int mcommentId) {
+		sql.delete("menu.commentDel", mcommentId);
 	}
 
 	@Override

@@ -26,32 +26,39 @@
 				break;
 			}
 		}
+		var searchContent = $('.search_keyword').val();
 		
 		if(searchTypeCheck == false) {
 			if(page == undefined) {
-				alert("검색할 종류를 선택해주세요");
+				alert("검색할 종류를 선택하세요");
 				return false;
 			} else{
 				document.getElementById('page').value = page;
 				document.getElementById('form1').submit();
 			} 
-		} 
-		else {
+		}
+		else{
 			if(page == undefined){
-				document.getElementById('page').value = 1;
-				document.getElementById('form1').submit();
+				if(searchContent == null || searchContent == ""){
+					alert("검색할 내용을 입력하세요");
+					return false;
+				} else{
+					document.getElementById('page').value = 1;
+					document.getElementById('form1').submit();
+				}
 			}else{
 				document.getElementById('page').value = page;
 				document.getElementById('form1').submit();	
 			}
 		}
+		
 	}
 	
 </script>
 <script>
 	
 	$(function(){
-		$("#searchType1").click(function(){
+	/* 	$("#searchType1").click(function(){
 			if($("#searchType1").prop("checked")){
 				$("input[type=checkbox]").prop("checked",true);
 			}else{
@@ -64,7 +71,7 @@
 			}else{
 				$("input[type=checkbox]").prop("checked",false);
 			}
-		});	
+		});	 */
 	});
 	function chkDel(){
 		$("#chkDel").submit();

@@ -24,7 +24,7 @@ public interface MenuService {
 
 	void commentAdd(MenuComment mComment);
 
-	void commentDel(MenuComment mComment);
+	void commentDel(int mcommentId);
 
 	void commentUpdate(MenuComment mComment);
 

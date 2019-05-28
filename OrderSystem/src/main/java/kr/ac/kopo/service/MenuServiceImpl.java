@@ -57,8 +57,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void commentDel(MenuComment mComment) {
-		dao.commentDel(mComment);
+	public void commentDel(int mcommentId) {
+		dao.commentDel(mcommentId);
 	}
 
 	@Override

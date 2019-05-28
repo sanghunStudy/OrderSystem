@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applyform.css">
 </head>
 <%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
 <body>
@@ -21,6 +22,10 @@
 		<li><a href="${pageContext.request.contextPath}/menu/list">질문게시판</a></li>
 		<li><a href="${pageContext.request.contextPath}/trainer/waitingForApproval">pt신청 대기 회원</a></li>
 	</ul>
-
+	<div id="calcModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		</div>
+	</div>
 </body>
 </html>

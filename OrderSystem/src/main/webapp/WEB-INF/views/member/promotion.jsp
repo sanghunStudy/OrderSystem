@@ -18,7 +18,7 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
 	rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applyform.css">
 <style>
 .fileDrop {
 	width: 100%;
@@ -157,27 +157,27 @@ small {
 </script>
 </head>
 <body>
-	<div class="allContents">
-		<div class="addform">
-
+	<div class="allcontents">
+		<div class="head">
+		</div>
+			<div class="">
 			<h3 class="title">트레이너프로필작성</h3>
 			<!-- action : 에디터에 입력한 html 코드를 전달받을 Controller페이지 URL -->
-			<form action="promotion" method="post" name="form1"
-				enctype="multipart/form-data">
+			<form action="promotion" method="post" name="form1" enctype="multipart/form-data">
 				<input type="hidden" id="thum" value="default" name="thumbnail">
-
 				<div class="freeTitle">
-					<label>이름 &nbsp;&nbsp;</label> <input type="text" name="name"
-						placeholder="이름을 입력해주세요." style="width: 620px"
-						onkeyup="chkword(this,40)"> <label>성별 &nbsp;&nbsp;</label>
-					<input type="text" name="sex" placeholder="성별을 입력해주세요."
-						style="width: 620px" onkeyup="chkword(this,40)"> <label>경력
-						&nbsp;&nbsp;</label> <input type="text" name="career"
-						placeholder="경력을 입력해주세요." style="height: 420px; width: 620px;"
-						onkeyup="chkword(this,40)">
-
+					<div class="textbox">
+					<label>이름 &nbsp;&nbsp;</label> 
+					<input type="text" name="name" placeholder="이름을 입력해주세요." style="width: 620px" 
+					onkeyup="chkword(this,40)">
+					<label>성별 &nbsp;&nbsp;</label>
+					<input type="text" name="sex" placeholder="성별을 입력해주세요." style="width: 620px" onkeyup="chkword(this,40)">
+					<label>경력 &nbsp;&nbsp;</label> 
+					<input type="text" name="career" placeholder="경력을 입력해주세요." style="height: 420px; width: 620px;"
+					onkeyup="chkword(this,40)">
+					</div>
 				</div>
-
+				
 				<script th:inline="javascript">
 					function sendFile(file, el) {
 						var form_data = new FormData();
@@ -229,7 +229,7 @@ small {
 					//파일 이름 처리 : UUID 가짜 이름 제거
 					function getOriginalName(fileName) {
 						if (checkImageType(fileName)) {
-							return;
+							return;0.
 						}
 
 						var idx = fileName.indexOf("_") + 1;
@@ -252,24 +252,17 @@ small {
 					}//getImageLink
 				</script>
 			<div class="filebox bs3-primary preview-image">
-			<label for="input_file">파일 선택</label> 
-                            <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-
-                            
-                          <input type="file" id="input_file" class="upload-hidden" name="uploadFile"> 
-                        </div>
-
-
-			
-
-			<div class="alarm-box">
-				<p class="alarm">
-					첨부파일은 최대 40mb까지 등록이 가능하며 <br>파일 형식은 jpg,gif,psd,png,tif,zop,ms
+			<label for="input_file">파일 선택</label>
+                <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+				<input type="file" id="input_file" class="upload-hidden" name="uploadFile"> 
+            </div>
+				<div class="alarm-box">
+					<p class="alarm">
+					첨부파일은 최대 40mb까지 등록이 가능하며 <br>
+					파일 형식은 jpg,gif,psd,png,tif,zop,ms
 					office,아래한글(hwp),pdf,excel,zip,7z만 가능합니다.
+			     </div>
 			</div>
-		</div>
-
-
 		<div class="Btn">
 			<button type="button" id="btnSubmit" class="regiserBtn"
 				onclick="getThumbnail()">등록</button>

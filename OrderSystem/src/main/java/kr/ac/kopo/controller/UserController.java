@@ -204,8 +204,14 @@ public class UserController {
 	}
 
 	@RequestMapping("/MyPage")
-	public String MyPage() {
-
+	public String MyPage(HttpSession session) {
+		
+		String auth = (String)session.getAttribute("admin");
+		
+		if(auth != null) {
+			return "admin/management";
+		}
+		
 		return path + "MyPage";
 	}
 	

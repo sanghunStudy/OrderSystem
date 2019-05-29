@@ -54,13 +54,12 @@
 			} else if(summernoteVal == null || summernoteVal == "") {
 				alert("내용을 입력하세요");
 			} else {
-				var pointInfo = $('#point-set').val();
+				var pointInfo = $('#pointSet').val();
 				if(pointInfo != null || pointInfo != "" || pointInfo != 0){
 					$.ajax({
 						url:"${pageContext.request.contextPath}/menu/userpoint",
 						type:'GET',
 						success:function(data){
-							alert(data);
 							if(data >= pointInfo){
 								$("#menuForm").submit();
 							}/*  else if (data == pointInfo) {
@@ -71,6 +70,7 @@
 						}
 					});
 				} else { 
+					alert("포인트설정 없이 채택하면 본인의 포인트차감없이 채택자에게 10포인트를 드립니다");
 					$("#menuForm").submit();
 				}
 			}
@@ -87,24 +87,36 @@
 			
 		});
 		
+		function pointboxClose(){
+			
+			$('#point_buttons').animate({
+				width:10,
+				height:10
+			});
+			pointBottons.style.display="none";
+		}
+		
+		function pointSetAndClose(point,pointVal){
+			
+			$('#pointSet').val(point);
+			$('#point-set').text(pointVal);
+			
+			pointboxClose();
+		}
+		
 		$('.point-set').click(function(){
 			var point = $(this).val();
 			var pointVal = $(this).text();
-			if(point == 0){
-				$('#point_buttons').animate({
-					width:10,
-					height:10
-				});
-				pointBottons.style.display="none";
+			
+			if(point == null){
+				pointboxClose();
+				
+			} else if(point == 0){
+				pointSetAndClose(point,pointVal);
+				
 			} else {
 				alert("설정한 포인트는 댓글 채택시 본인의 포인트에서 차감지급됩니다");
-				$('#point-set').val(point);
-				$('#point-set').text(pointVal);
-				$('#point_buttons').animate({
-					width:10,
-					height:10
-				});
-				pointBottons.style.display="none";
+				pointSetAndClose(point,pointVal);
 			}
 		});
 		
@@ -183,8 +195,9 @@
 			</ul>
 		</div>
 		<div class="point-box">
-			<div class="point-setting-complete" name="pointSet" id="point-set">포인트 설정</div>
+			<div class="point-setting-complete" id="point-set">포인트 설정</div>
 			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
+			<input type="hidden" name="pointSet" id="pointSet">
 		</div>
 		<div>
 			<input type="hidden" name="imgChk" id="imgChk" value="false">

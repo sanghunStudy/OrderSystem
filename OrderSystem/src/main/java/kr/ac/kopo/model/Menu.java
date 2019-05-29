@@ -14,6 +14,12 @@ public class Menu {
 	int pointSet;
 	
 
+	public int getPointSet() {
+		return pointSet;
+	}
+	public void setPointSet(int pointSet) {
+		this.pointSet = pointSet;
+	}
 	public boolean isImgChk() {
 		return imgChk;
 	}

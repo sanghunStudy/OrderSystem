@@ -138,6 +138,7 @@ public class MenuController {
 			MComment.get(i).setMcommentContent(MComment.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
 			System.out.println(MComment.get(i).getMcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
 		}
+		System.out.println(item.getPointSet());
 		model.addAttribute("item", item);
 		model.addAttribute("MCommentList",MComment);
 		model.addAttribute("login", login);
@@ -263,7 +264,7 @@ public class MenuController {
 			return "redirect:view?menuId=" + menuId;
 		}
 	}
-	
+	//질문등록할 때 유저포인트체크
 	@RequestMapping(value="/userpoint")
 	@ResponseBody
 	int userpoint(HttpSession session) {

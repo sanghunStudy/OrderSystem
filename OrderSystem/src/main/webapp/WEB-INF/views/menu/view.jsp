@@ -68,17 +68,17 @@ $(document).ready(function(){
 <div id="wrap">
 	<div id="Question">
 		<div id="QuestionTitle">
-			<h2>질문제목 : <span>${item.menuName}</span></h2>
-			<div class="Qn">작성자 : <span>${item.id}</span></div>
+			<div><span>Q</span><span>${item.menuName}</span><span>${item.pointSet}</span></div>
+			
 		</div>
 		<div id="contents">
-		<a>질문내용</a>
-		<div id="content">
-			<span>${item.menuContent}</span>
-		</div>
+			<div id="content">
+				<span>${item.menuContent}</span>
+			</div>
+			<div class="Qn"><span>${item.id}</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
 		</div>
 		<div>
-			<a>작성일 : <span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></a>&emsp;
+			<a>작성일 : </a>&emsp;
 			<a>조회수 : <span>${item.menuViews}</span></a>
 		</div>
 	</div>

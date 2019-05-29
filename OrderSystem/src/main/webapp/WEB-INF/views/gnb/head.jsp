@@ -17,7 +17,7 @@ $(document).ready(function(){
 	$("#sessionChk").hide();//세션 종료시간 출력화면 처음에 숨김
 	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
 	if(loginChk){//존재한다면 아래함수 실행
-		clearTime(1.1);//세션 체크 5분 설정
+		clearTime(5);//세션 체크 5분 설정
 		setTimer();	//타이머 실행
 	}
 });

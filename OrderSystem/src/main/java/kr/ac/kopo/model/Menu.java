@@ -11,6 +11,7 @@ public class Menu {
 	int menuViews;
 	String id;
 	boolean imgChk;
+	int pointSet;
 	
 
 	public boolean isImgChk() {

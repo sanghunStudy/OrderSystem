@@ -173,7 +173,7 @@ public class MenuController {
 		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}*/
 	//댓글ajax그대로인데 jsp에서 못보내던거 수정
-	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
+/*	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody
 	String commnetAdd(MenuComment MComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
@@ -189,6 +189,23 @@ public class MenuController {
 			return "success";
 		} else {
 			return "fail";
+		}
+	} */
+	@RequestMapping(value="/mcommentAdd")
+	String mcommentAdd(MenuComment MComment,HttpSession session) {
+		String username = (String)session.getAttribute("user");
+		if(username==null) {
+			username = (String)session.getAttribute("trainer");
+		}
+		if(username==null) {
+			username = (String)session.getAttribute("admin");
+		}
+		if(username != null) {
+			MComment.setId(username);
+			service.commentAdd(MComment);
+			return "redirect:view?menuId="+MComment.getMenuId();
+		} else {
+			return "redirect:view?menuId="+MComment.getMenuId();
 		}
 	}
 	
@@ -245,5 +262,22 @@ public class MenuController {
 //			mav.addObject("message", "더 이상 채택할 수 없습니다.");
 			return "redirect:view?menuId=" + menuId;
 		}
+	}
+	
+	@RequestMapping(value="/userpoint")
+	@ResponseBody
+	int userpoint(HttpSession session) {
+		String username = (String)session.getAttribute("user");
+		if(username==null) {
+			username = (String)session.getAttribute("trainer");
+		}
+		if(username==null) {
+			username = (String)session.getAttribute("admin");
+		}
+		if(username!=null) {
+			int userpoint = service.userpoint(username);
+			return userpoint;
+		}
+		return -1;
 	}
 }

@@ -36,4 +36,6 @@ public interface MenuService {
 
 	int onlyOnceSelection(int menuId);
 
+	int userpoint(String username);
+
 }

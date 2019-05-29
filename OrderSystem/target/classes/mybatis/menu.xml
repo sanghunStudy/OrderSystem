@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="add" parameterType="Menu">
-		insert into menu(menu_name,menu_content,menu_date,id,img_chk)
-		values(#{menuName},#{menuContent},NOW(),#{id},#{imgChk})
+		insert into menu(menu_name,menu_content,menu_date,id,img_chk,point_set)
+		values(#{menuName},#{menuContent},NOW(),#{id},#{imgChk},#{pointSet})
 	</insert>
 	
 	<select id="item" resultType="Menu">
@@ -83,6 +83,12 @@
 		select distinct COUNT(mc.selection_check)
 		from menu_comment mc JOIN menu m ON mc.menu_id = m.menu_id
 		where mc.menu_id = #{menuId} and mc.selection_check=1
+	</select>
+	
+	<select id="userpoint" parameterType="UserVO" resultType="Integer">
+		select point
+		from user
+		where username=#{username}
 	</select>
 	
 </mapper>

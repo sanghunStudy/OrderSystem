@@ -38,10 +38,31 @@ body{background:#201d2e;text-decoration:none;}
 	text-decoration:none;
 	float:right;
 }
+.point_buttons{
+	display:none;
+	width:10px;
+	height:10px;
+	background:#272a3d;
+	position:relative;
+}
 .point-box {
 	width:900px;
 	height:50px;
 	background:#272a3d;
+}
+.point-setting-complete {
+	width:90px;
+	height:38px;
+	border:1.5px solid #4a4c5b;
+	margin:5px 20px;
+	color:#717278;
+	line-height:34px;
+	vertical-align:middle;
+	text-align:center;
+	float:left;
+	list-style:none;
+	cursor:pointer;
+	transition:0.5s;
 }
 .point-set {
 	width:90px;
@@ -53,6 +74,17 @@ body{background:#201d2e;text-decoration:none;}
 	vertical-align:middle;
 	text-align:center;
 	float:left;
+	list-style:none;
+	cursor:pointer;
+	transition:0.5s;
+}
+.point-set:hover{
+	background:#4a4c5b;
+	color:#fff;
+}
+.point-setting-complete:hover{
+	background:#4a4c5b;
+	color:#fff;
 }
 .point-input {
 	line-height:50px;

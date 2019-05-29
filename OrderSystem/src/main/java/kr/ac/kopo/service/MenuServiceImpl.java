@@ -86,4 +86,9 @@ public class MenuServiceImpl implements MenuService {
 		return dao.onlyOnceSelection(menuId);
 	}
 
+	@Override
+	public int userpoint(String username) {
+		return dao.userpoint(username);
+	}
+
 }

@@ -86,4 +86,9 @@ public class MenuDaoImpl implements MenuDao {
 		return sql.selectOne("menu.onlyOnceSelection",menuId);
 	}
 
+	@Override
+	public int userpoint(String username) {
+		return sql.selectOne("menu.userpoint",username);
+	}
+
 }

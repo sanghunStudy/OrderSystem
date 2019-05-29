@@ -36,4 +36,6 @@ public interface MenuDao {
 
 	int onlyOnceSelection(int menuId);
 
+	int userpoint(String username);
+
 }

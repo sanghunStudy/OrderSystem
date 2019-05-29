@@ -14,7 +14,7 @@
 $(document).ready(function(){
 	//comment.jsp안되서 댓글jsp 여기서 ajax으로 보냄
 	//댓글등록
-	$('#commentAdd').click(function(){
+/* 	$('#commentAdd').click(function(){
 		var commentCheck = document.getElementById("comment").value;
 		var menuId = ${item.menuId};
 
@@ -37,6 +37,16 @@ $(document).ready(function(){
 					}
 				}
 			});
+		}
+	}); */
+	$('#commentAdd').click(function(){
+		var commentCheck = document.getElementById("comment").value;
+		if(${login==null}){
+			alert("로그인 후 등록가능합니다");
+		} else if(commentCheck == null|| commentCheck == ""){
+			alert("내용을 입력하세요");
+		} else {
+			$('#mcommentForm').submit();
 		}
 	});
 	
@@ -72,12 +82,13 @@ $(document).ready(function(){
 			<a>조회수 : <span>${item.menuViews}</span></a>
 		</div>
 	</div>
-	<form>
+	<form action="mcommentAdd" id="mcommentForm">
 	<div id="commentInput">
 		<textarea rows="5" cols="60" id="comment" name="mcommentContent" placeholder="답글을 입력하세요"></textarea>
 		<div id="commentAdd">
 			<a>답글등록</a>
 		</div>
+		<input type="hidden" name="menuId" value="${item.menuId}">
 	</div>
 	</form>
 	<div id="commentOutput">

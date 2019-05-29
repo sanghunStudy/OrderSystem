@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,14 +125,26 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>웰시코기</td>
-							<td>2019-05-15</td>
-							<td>키 175cm 몸무게 70kg</td>
-							<td>홀쭉 날씬 s라인</td>
-							<td><div class="agree btn-t">Agree</div></td>
-							<td><div class="disagree btn-t">Disagree</div></td>
-						</tr>
+						<c:choose>
+							<c:when test="${wfaList.size() > 0}">
+								<c:forEach var="item" items="${wfaList}">
+									<tr>
+										<td class="applicant">${item.username}</td>
+										<td class="apply-date">${item.applyDate}</td>
+										<td>${item.height}cm  ${item.weights}kg</td>
+										<td>${item.goal}</td>
+										<td><div class="agree btn-t">Agree</div></td>
+										<td><div class="disagree btn-t">Disagree</div></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+
+							<c:otherwise>
+								<tr>
+									<td>승인 대기중인 회원이 없습니다.</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>

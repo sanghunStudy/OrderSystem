@@ -152,6 +152,7 @@ th {text-align:-webkit-match-parent;}
 }
 .apply-list thead tr>th {
     font-family: 'S-CoreDream-4Regular','Noto Sans',sans-serif;
+    text-align:center;
     font-size:14px;
 }
 .apply-list tr>td {
@@ -243,7 +244,7 @@ th {text-align:-webkit-match-parent;}
   width:100%; 
 /*   margin:20px auto 0;  */
   display: flex;
-    flex-direction: column;
+    flex-direction: column; 
   padding:30px 50px 10px;
 }
 .contents-container .date-area {
@@ -909,7 +910,6 @@ span.round-tab:hover{
 
 .sel__box__options {
   display: list-item;
-  font-family: 'Quicksand';
   font-size: 14pt;
   color: #838e95;
   padding: 0.5em 1em;

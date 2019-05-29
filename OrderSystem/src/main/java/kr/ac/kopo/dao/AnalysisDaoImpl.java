@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.UserManagement;
 @Repository
 public class AnalysisDaoImpl implements AnalysisDao {
 
@@ -43,6 +44,20 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<ExerciseJournal> getOverallAvg(String id) {
 		return sql.selectList("statistics.getOverallAvg", id);
+	}
+
+	@Override
+	public List<UserManagement> waitingForApproval(String id) {
+		return sql.selectList("trainer.waitingForApproval", id);
+	}
+
+	@Override
+	public int permission(String username) {
+		int cnt = sql.update("trainer.grantApproval", username);
+		if(cnt == 0)
+			return 0;
+		else
+			return cnt;
 	}
 
 }

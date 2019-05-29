@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.dao.AnalysisDao;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.UserManagement;
 @Service
 public class AnalysisServcieImpl implements AnalysisService {
 
@@ -42,6 +43,18 @@ public class AnalysisServcieImpl implements AnalysisService {
 	@Override
 	public List<ExerciseJournal> getOverallAvg(String id) {
 		return dao.getOverallAvg(id);
+	}
+
+	@Override
+	public List<UserManagement> waitingForApproval(String id) {
+	
+		return dao.waitingForApproval(id);
+	}
+
+	@Override
+	public int permission(String username) {
+		
+		return dao.permission(username);
 	}
 
 

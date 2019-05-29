@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.UserManagement;
 
 public interface AnalysisService {
 
@@ -18,6 +19,10 @@ public interface AnalysisService {
 	List<BEsave> getMetabolism(String id);
 
 	List<ExerciseJournal> getOverallAvg(String id);
+
+	List<UserManagement> waitingForApproval(String id);
+
+	int permission(String username);
 
 
 

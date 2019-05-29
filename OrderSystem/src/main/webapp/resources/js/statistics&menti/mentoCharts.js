@@ -23,6 +23,37 @@ function gradientGenerator(color,ctx) {
 
 
 $(function() {
+	var applicant;
+	/* 멘티 승인/허가 버튼 이벤트 */
+//	$(document).on('click','.agree',function() {
+//		
+//	});
+	$('.agree').click(function() {
+		
+		applicant = $(this).parents('tr').children('.applicant').text();
+
+	
+		$.ajax({
+//			contentType:"application/json;charset=UTF-8",
+			type:'post',
+			url:'/kopo/member/permission',
+			dataType:'json',
+			data: {
+				"applicant":applicant
+			},
+			
+			success:function(data) {
+				if(data == 1)
+					alert('성공!');
+				else
+					alert('실패!');
+			}
+		});
+	})
+	
+	$(document).on('click','.disagree',function() {
+		
+	});
 
 	 /* modal 창 tab 이벤트 */
 	    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {

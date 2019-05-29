@@ -3,7 +3,7 @@
 
 <mapper namespace="trainer">
 <!-- 승인허가 -->
-<update id="grantApproval">
+<update id="grantApproval" >
 	update user_management set
 	reading = 'Y'
 	where username = #{username}
@@ -32,6 +32,6 @@
 
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">
-	select username,reading,apply_date from user_management where manager = #{id} and reading = 'N'
+	select username,reading,apply_date,goal,height,weights,etc from user_management where manager = #{id} and reading = 'N'
 </select>
 </mapper>

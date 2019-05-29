@@ -102,5 +102,13 @@ private String statistics(Model model,HttpSession session) {
 		return service.permission(username);
 	
 }
+
+@ResponseBody
+@RequestMapping(value="/applicant", method=RequestMethod.GET)
+	private List<UserManagement> applicantList(HttpSession session) {
+	String id = (String)session.getAttribute("trainer");
+		return service.applicantList(id);
+	
+}
 	
 }

@@ -23,11 +23,23 @@ function gradientGenerator(color,ctx) {
 
 
 $(function() {
-	var applicant;
+	/* 신청회원 비동기적 refresh */
+//	function applicantList() 
+//	{
+//		$.ajax({
+//			type:'get',
+//			url:"kopo/member/applicant",
+//			dataType:"json",
+//			success:function(res) {
+//				var tr = '';
+//				$.each(res,function(key,value) {
+//					tr +='<tr><td class="applicant">' + value.username + '</td>';
+//				});
+//			}
+//		})
+//	}
 	/* 멘티 승인/허가 버튼 이벤트 */
-//	$(document).on('click','.agree',function() {
-//		
-//	});
+	var applicant;
 	$('.agree').click(function() {
 		
 		applicant = $(this).parents('tr').children('.applicant').text();
@@ -39,14 +51,16 @@ $(function() {
 			url:'/kopo/member/permission',
 			dataType:'json',
 			data: {
-				"applicant":applicant
+				"username":applicant
 			},
 			
 			success:function(data) {
-				if(data == 1)
-					alert('성공!');
+				if(data == 1){
+					alert('승인되었습니다.');
+					applicantList();
+				}
 				else
-					alert('실패!');
+					alert('승인이 실패되었습니다.');
 			}
 		});
 	})

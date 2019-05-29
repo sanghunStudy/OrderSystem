@@ -57,6 +57,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.permission(username);
 	}
 
+	@Override
+	public List<UserManagement> applicantList(String id) {
+		return dao.applicantList(id);
+	}
+
 
 
 

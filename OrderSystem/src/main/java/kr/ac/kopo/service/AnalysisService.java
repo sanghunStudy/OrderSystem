@@ -24,6 +24,8 @@ public interface AnalysisService {
 
 	int permission(String username);
 
+	List<UserManagement> applicantList(String id);
+
 
 
 

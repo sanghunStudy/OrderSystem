@@ -25,6 +25,8 @@ public interface AnalysisDao {
 
 	int permission(String username);
 
+	List<UserManagement> applicantList(String id);
+
 
 
 }

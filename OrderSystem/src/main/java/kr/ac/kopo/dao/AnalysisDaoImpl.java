@@ -53,11 +53,13 @@ public class AnalysisDaoImpl implements AnalysisDao {
 
 	@Override
 	public int permission(String username) {
-		int cnt = sql.update("trainer.grantApproval", username);
-		if(cnt == 0)
-			return 0;
-		else
-			return cnt;
+		return sql.update("trainer.grantApproval", username);
+
+	}
+
+	@Override
+	public List<UserManagement> applicantList(String id) {
+		return sql.selectList("trainer.waitingForApproval", id);
 	}
 
 }

@@ -18,7 +18,7 @@
 			},
 			success : function(data) {
 				if (data == 'success') {
-					alert("11");
+					alert("수락되었습니다.");
 				}
 			}
 		});
@@ -34,7 +34,7 @@
 			<th>career</th>
 			<th>photo</th>
 			<th>upFilename</th>
-			<th></th>
+			<th>관리</th>
 		</tr>
 		<c:choose>
 			<c:when test="${proList.size() > 0}">
@@ -50,13 +50,16 @@
 							</c:if>
 						</td>
 						<td>${item.upFilename}</td>
-						<td><input name=username type="button" value="수락"
-							onclick="grantDo('${item.username}');" /></td>
+						<td>
+							<input name=username type="button" value="수락" onclick="grantDo('${item.username}');" />
+							<input name=username type="button" value="거절" onclick="grantDel('${item.username}');" />
+						</td>
+						
 					</tr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<tr colspan="5">
+				<tr colspan="7">
 					<td>등록된 트레이너가 없습니다.</td>
 				</tr>
 			</c:otherwise>

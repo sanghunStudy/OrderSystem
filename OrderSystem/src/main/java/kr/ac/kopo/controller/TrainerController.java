@@ -32,6 +32,7 @@ public class TrainerController {
 			List<UserVO> trainer = service.list();
 			
 			model.addAttribute("trainerList",trainer);
+			
 		return path+"list";
 	}
 	//pt신청 버튼을 눌렀을때 회원 기초 정보가 등록되어 있나 확인

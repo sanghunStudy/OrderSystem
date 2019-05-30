@@ -144,6 +144,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void grant(TrainerProfile pro) {
 		sql.update("user.grant", pro);
+		sql.update("user.grantDo", pro);
 	}
 
 	//운동일지에 뿌려주는 운동종류 리스트

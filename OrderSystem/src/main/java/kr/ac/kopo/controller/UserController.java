@@ -54,7 +54,6 @@ public class UserController {
 	
 	@Autowired
 	UserService service;
-	
 
 	
 //	�쉶�썝 湲곗큹�젙蹂� �엯�젰 �솕硫�
@@ -354,6 +353,7 @@ public class UserController {
 		json.put("url",  "/user/grant");
 		return json;
 	}
+	
 
 	@RequestMapping("/list")
 	public String list(Model model) {

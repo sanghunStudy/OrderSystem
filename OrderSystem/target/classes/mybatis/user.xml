@@ -36,12 +36,15 @@
 	</insert>
 	<!-- 트레이너신청 리스트 -->
 	<select id="proList" resultType="TrainerProfile">
-		select * from trainer_profile
+		select * from trainer_profile where trainer_apply = "N" and delete_apply = "N"
 	</select>
 	<!-- 트레이너 승인 -->
 	<update id="grant" parameterType="TrainerProfile">
 		update user set authority = 'trainer' where username = #{username}
-		updata user set addmission = '승인' where username = #{username}
+	</update>
+	
+	<update id="grantDo" parameterType="TrainerProfile">
+		update trainer_profile set trainer_apply = 'Y' where username = #{username}
 	</update>
 	
 	<select id="select" resultType="UserVO">

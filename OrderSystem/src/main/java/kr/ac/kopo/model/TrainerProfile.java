@@ -15,11 +15,23 @@ public class TrainerProfile {
 	String upFilename;
 	private Date proDate;
 	private String file;
+	private String trainerApply;
+	private String deleteApply;
 	String thumbnail;
 	
 	
-	
-	
+	public String getTrainerApply() {
+		return trainerApply;
+	}
+	public void setTrainerApply(String trainerApply) {
+		this.trainerApply = trainerApply;
+	}
+	public String getDeleteApply() {
+		return deleteApply;
+	}
+	public void setDeleteApply(String deleteApply) {
+		this.deleteApply = deleteApply;
+	}
 	public String getThumbnail() {
 		return thumbnail;
 	}

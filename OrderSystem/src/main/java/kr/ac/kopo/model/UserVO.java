@@ -7,8 +7,21 @@ public class UserVO {
 	private int point;
 	private String authority;
 	private int score;
+	private int menti;
+	private float rank;
 	
-	
+	public int getMenti() {
+		return menti;
+	}
+	public void setMenti(int menti) {
+		this.menti = menti;
+	}
+	public float getRank() {
+		return rank;
+	}
+	public void setRank(float rank) {
+		this.rank = rank;
+	}
 	public int getPoint() {
 		return point;
 	}

@@ -9,6 +9,7 @@ import kr.ac.kopo.dao.AnalysisDao;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.UserManagement;
+import kr.ac.kopo.model.UserVO;
 @Service
 public class AnalysisServcieImpl implements AnalysisService {
 
@@ -65,6 +66,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 	@Override
 	public int applicantDeny(String username) {
 		return dao.applicantDeny(username);
+	}
+
+	@Override
+	public List<UserVO> getRanker() {
+		return dao.getRanker();
 	}
 
 

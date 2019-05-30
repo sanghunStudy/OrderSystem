@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.UserManagement;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.AnalysisService;
 
 
@@ -91,6 +92,8 @@ private String statistics(Model model,HttpSession session) {
 	String id = (String)session.getAttribute("trainer");
 	
 	List<UserManagement> wfaList = service.waitingForApproval(id); 
+	List<UserVO> ranking = service.getRanker();
+	model.addAttribute("rankerList",ranking);
 	model.addAttribute("wfaList",wfaList);
 	
 	return "member/mentiManagement";

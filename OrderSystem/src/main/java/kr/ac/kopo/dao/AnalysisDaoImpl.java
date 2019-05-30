@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.UserManagement;
+import kr.ac.kopo.model.UserVO;
 @Repository
 public class AnalysisDaoImpl implements AnalysisDao {
 
@@ -66,6 +67,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	public int applicantDeny(String username) {
 
 		return sql.delete("trainer.deleteApplicant", username);
+	}
+
+	@Override
+	public List<UserVO> getRanker() {
+		return sql.selectList("user.getRanker");
 	}
 
 }

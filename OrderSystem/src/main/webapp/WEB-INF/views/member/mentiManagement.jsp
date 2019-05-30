@@ -96,11 +96,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>오창영 님</td>
-								<td>50pt</td>
-								<td>8명</td>
-							</tr>
+							<c:choose>
+								<c:when test="${rankerList.size() > 0 }">
+							<c:forEach var="ranker" items="${rankerList}">
+								<tr>
+									<td>${ranker.username}</td>
+									<td>${ranker.point}</td>
+									<td>${ranker.menti}</td>
+								</tr>
+							</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="3">등록된 트레이너가 없습니다.</td>
+								</tr>
+							</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>

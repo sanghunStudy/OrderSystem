@@ -15,7 +15,7 @@
 <header>
 <%-- <jsp:include page="../gnb/header.jsp" flush="true" /> --%>
 <jsp:include page="../gnb/head.jsp" flush="true" />
-<link href="<c:url value="/resources/css/list-style.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/Question/list-style.css" />" rel="stylesheet">
 <script>
 	function fn_formSubmit(page) {
 		var searchTypeCheck = false;

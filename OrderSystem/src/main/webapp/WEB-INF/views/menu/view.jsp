@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${item.menuId}.${item.menuName}</title>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/Question/Question-view.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script>
@@ -50,26 +50,20 @@ $(document).ready(function(){
 		}
 	});
 	
+	var pointOX = document.getElementById('pointOX');
+	var pointGet = ${item.pointSet};
+	if(pointGet <= 0){
+		pointOX.style.display="none";
+	}
 });
 </script>
-<style>
-#wrap {width:1000px; margin:0 auto;}
-#commentAdd {width:100px;height:30px; border:1px solid black;cursor:pointer;float:right;text-align:center;padding-top:3px;box-sizing:border-box;}
-#contents {width:500px; margin:0 auto;}
-#content {width:320px; border:1px solid white; margin:0 auto;}
-#QuestionTitle h2 {width:500px;}
-#qn {width:200px; float:right;}
-#commentInput {width:500px; margin:0 auto;}
-#comment {resize:none;}
-#commentOutput {width:500px; margin:30px auto;}
-</style>
+<script src="https://unpkg.com/vue"></script>
 </head>
 <body>
 <div id="wrap">
 	<div id="Question">
 		<div id="QuestionTitle">
-			<div><span>Q</span><span>${item.menuName}</span><span>${item.pointSet}</span></div>
-			
+			<div class="bigQ">Q</div><div class="zone"><div id="pointOX">${item.pointSet}</div></div><div class="QuestionName">${item.menuName}</div>
 		</div>
 		<div id="contents">
 			<div id="content">
@@ -77,19 +71,43 @@ $(document).ready(function(){
 			</div>
 			<div class="Qn"><span>${item.id}</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
 		</div>
-		<div>
-			<a>작성일 : </a>&emsp;
-			<a>조회수 : <span>${item.menuViews}</span></a>
-		</div>
 	</div>
 	<form action="mcommentAdd" id="mcommentForm">
+	<div>
+		<a>댓글 ${item.cnt}개</a>
+		<c:if test="${login==item.id}">
+			<a>마음에 드는 답변을 하나만 추천 할 수 있습니다.</a>
+		</c:if>
+	</div>
 	<div id="commentInput">
-		<textarea rows="5" cols="60" id="comment" name="mcommentContent" placeholder="답글을 입력하세요"></textarea>
+		<textarea v-model="co" id="comment" name="mcommentContent" placeholder="답글을 입력하세요"></textarea>
 		<div id="commentAdd">
-			<a>답글등록</a>
+			<a>답글하기</a>
 		</div>
+		<a class="char-limit">({{ cl }}/100자)</a>
 		<input type="hidden" name="menuId" value="${item.menuId}">
 	</div>
+	<script>
+			var commentLengthCheck = new Vue({
+				el:'#commentInput',
+				data: {
+					co:'',
+					cl:0,
+					to:''
+				},
+				watch: {
+					co: function(v) {
+						this.cl = Number(v.length);
+						if(this.cl > 100) {
+							alert("더 이상 입력하실 수 없습니다.");
+							this.to = v.substr(0, 100);
+							/* console.log(this.to); */
+							this.co = this.to;
+						}
+					}
+				}
+			});
+		</script>
 	</form>
 	<div id="commentOutput">
 		<c:choose>

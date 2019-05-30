@@ -29,7 +29,8 @@
 	</insert>
 	
 	<select id="item" resultType="Menu">
-		select * from menu where menu_id=#{menuId}
+		select *, (select count(*) from menu_comment mc where mc.menu_id=menu.menu_id) as cnt
+		from menu where menu_id=#{menuId}
 	</select>
 	
 	<update id="update" parameterType="Menu">

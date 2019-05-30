@@ -21,7 +21,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>15</load-on-startup>
 		<!-- 비동기방식 처리설정 -->
 		<async-supported>true</async-supported>
 	</servlet>
@@ -48,7 +48,7 @@
 	
 <!-- 	세션관리 -->
 	<session-config>
- 		<session-timeout>15</session-timeout><!--세션 만료시간 지정 단위는 분 -->
+ 		<session-timeout>1</session-timeout><!--세션 만료시간 지정 단위는 분 -->
 	</session-config>
 
 	<filter>

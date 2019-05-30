@@ -16,7 +16,7 @@ function setTimer(){
 // 		$("#timer").empty();
 // 		$("#timer").append(Lpad(remainMinute_,2) + ":" + Lpad(remainSecond_,2));
 		if(remainSecond < 60){
-			$("#sessionChk").show();
+			$("#sessionChk").css("display","block");
 			$("#sessionChk p").empty();
 			$("#sessionChk p").append("아무 동작이 없으면"+Lpad(remainMinute_,2) + ":" + Lpad(remainSecond_,2)+"후 자동 로그아웃 됩니다.");
 //			console.log(remainSecond);

@@ -378,6 +378,7 @@ header #lnb nav>ul ul a:hover:after {
 
 /* 세션 종료 알림 */
 .session-chk{
+	display:none;
 	margin:0 auto;
 	height:200px;
 	width:200px;

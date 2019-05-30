@@ -59,5 +59,7 @@ public interface UserService {
 	void typeOfExerciseUpdate(TypeOfExercise to);
 
 	void typeOfExerciseDel(int teNum);
+
+	void grantDel(TrainerProfile pro);
 	
 }

@@ -63,5 +63,7 @@ public interface UserDao {
 
 	void typeOfExerciseDel(int teNum);
 
+	void grantDel(TrainerProfile pro);
+
 
 }

@@ -353,6 +353,17 @@ public class UserController {
 		json.put("url",  "/user/grant");
 		return json;
 	}
+	//트레이너 거절
+	@ResponseBody
+	@RequestMapping("/grantDel")
+	public JSONObject grantDel(TrainerProfile pro, HttpSession session) {
+		JSONObject json = new JSONObject();
+	
+		service.grantDel(pro);
+		json.put("success", true);
+		json.put("url",  "/user/grantDel");
+		return json;
+	}
 	
 
 	@RequestMapping("/list")

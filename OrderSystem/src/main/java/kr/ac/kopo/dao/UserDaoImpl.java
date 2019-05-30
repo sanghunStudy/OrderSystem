@@ -140,11 +140,16 @@ public class UserDaoImpl implements UserDao {
 	public List<TrainerProfile> proList() {
 		return sql.selectList("user.proList");
 	}
-
+	//트레이너 신청 승인
 	@Override
 	public void grant(TrainerProfile pro) {
 		sql.update("user.grant", pro);
 		sql.update("user.grantDo", pro);
+	}
+	//트레이너 신청 거절
+	@Override
+	public void grantDel(TrainerProfile pro) {
+		sql.update("user.grantDel", pro);
 	}
 
 	//운동일지에 뿌려주는 운동종류 리스트
@@ -174,5 +179,7 @@ public class UserDaoImpl implements UserDao {
 	public void typeOfExerciseDel(int teNum) {
 		sql.delete("user.typeOfExerciseDel", teNum);
 	}
+
+	
 
 }

@@ -24,6 +24,20 @@
 			}
 		});
 	};
+	function grantDel(code) {
+		$.ajax({
+			type : 'post',
+			url : '${pageContext.request.contextPath}/member/grantDel',
+			data : {
+				"username" : code
+			},
+			success : function(data) {
+				if (data == 'success') {
+					alert("거절되었습니다.");
+				}
+			}
+		});
+	};
 </script>
 <body>
 	<h1>트레이너 신청 목록</h1>

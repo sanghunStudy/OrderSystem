@@ -164,11 +164,17 @@ public class UserServiceImpl implements UserService {
 	public List<TrainerProfile> proList() {
 		return dao.proList();
 	}
-
+	//테리언 신청 승인
 	@Override
 	public void grant(TrainerProfile pro) {
 		dao.grant(pro);
 	}
+	//트레이너 신청 거절
+	@Override
+	public void grantDel(TrainerProfile pro) {
+		dao.grantDel(pro);
+	}
+
 
 	//운동일지에 뿌려주는 운동죵류
 	@Override
@@ -196,5 +202,5 @@ public class UserServiceImpl implements UserService {
 	public void typeOfExerciseDel(int teNum) {
 		dao.typeOfExerciseDel(teNum);
 	}
-
+	
 }

@@ -69,16 +69,13 @@ $(document).ready(function(){
 			<div id="content">
 				<span>${item.menuContent}</span>
 			</div>
-			<div class="Qn"><span>${item.id}</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
+			<div class="Question_writer">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
+			<div class="Qn"><span>${item.id}&emsp;</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
+			</div>
 		</div>
 	</div>
 	<form action="mcommentAdd" id="mcommentForm">
-	<div>
-		<a>댓글 ${item.cnt}개</a>
-		<c:if test="${login==item.id}">
-			<a>마음에 드는 답변을 하나만 추천 할 수 있습니다.</a>
-		</c:if>
-	</div>
 	<div id="commentInput">
 		<textarea v-model="co" id="comment" name="mcommentContent" placeholder="답글을 입력하세요"></textarea>
 		<div id="commentAdd">
@@ -109,26 +106,39 @@ $(document).ready(function(){
 			});
 		</script>
 	</form>
+	<div class="commentCount">
+		<a>댓글 ${item.cnt}개</a>
+		<div class="commentExplanation">
+		<c:if test="${login==item.id}">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/textbbuloon.png" class="notification"><a>마음에 드는 답변을 하나만 채택 할 수 있습니다.</a>
+		</c:if>
+		<c:if test="${login != item.id}">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/textbbuloon.png" class="notification"><a>답변이 채택되면 포인트를 받습니다.</a>
+		</c:if>
+		</div>
+	</div>
 	<div id="commentOutput">
 		<c:choose>
 			<c:when test="${MCommentList.size() > 0}">
 				<div id="commentList">
 					<c:forEach var="MCL" items="${MCommentList}">
-						<div>
-						<c:if test="${MCL.selectionCheck==true}">
-							<h3>채택된 글</h3>
-						</c:if>
-							<ul>
-								<li><span>${MCL.id}</span>님의 답변</li>
-								<li>답변내용 : <span>${MCL.mcommentContent}</span></li>
-								<li>답변일 : <span>${MCL.mcommentDate}</span></li>
-								<c:if test="${login==item.id&&MCL.selectionCheck==false&&login!=MCL.id}">
-									<li><a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a></li>
-								</c:if>
-								<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
-									<li><a href="commentDel?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}">삭제</a></li>
-								</c:if>
-							</ul>
+						<div class="coca">
+							<c:if test="${MCL.selectionCheck==true}">
+								<h3>채택된 글</h3>
+							</c:if>
+							<div class="cola">
+							<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
+							<div class="combo"><span>${MCL.id} &emsp;</span><span>${MCL.mcommentDate}</span></div>
+							<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate"></div>
+							<div class="masi">${MCL.mcommentContent}</div>
+							
+							<c:if test="${login==item.id&&MCL.selectionCheck==false&&login!=MCL.id}">
+								<a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a>
+							</c:if>
+							<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
+								<a href="commentDel?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}">삭제</a>
+							</c:if>
+							
 						</div>
 					</c:forEach>
 				</div>

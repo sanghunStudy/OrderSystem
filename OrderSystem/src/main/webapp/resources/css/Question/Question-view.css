@@ -48,7 +48,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 }
 #contents {
 	width:950px;
-	margin:30px auto 50px auto;
+	margin:30px auto 150px auto;
 	clear:left;
 }
 #content {
@@ -61,6 +61,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	width:200px; float:right;
 }
 #commentInput {
+	clear:left;
 	width:950px;
 	height:250px;
 	background:#272a3d;
@@ -78,7 +79,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	color:#fff;
 	padding:5px;
 	box-sizing:border-box;
-	font-size:13pt;
+	font-size:14pt;
 	
 }
 .char-limit {
@@ -87,8 +88,50 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	vertical-align:middle;
 	margin-right:10px;
 }
+.commentCount {
+	width:950px;
+	margin:50px auto;
+	font-size:15pt;
+}
+.notification {
+	width:25px;
+	margin-right:10px;
+}
+.commentExplanation {
+	font-size:13pt;
+	margin-top:15px;
+}
 #commentOutput {
 	width:950px;
 	margin:30px auto;
 }
-
+.coca {
+	font-size:11pt;
+	margin:10px 0 40px 0;
+}
+.cola {
+	font-size:13pt;
+	margin:10px;
+}
+.personImg {
+	width:30px;
+	margin:10px;
+	float:left;
+}
+.Qn {
+	font-size:13pt;
+	margin-top:10px;
+	float:left;
+}
+.combo {
+	margin-top:10px;
+	float:left;
+}
+.commentUpdate {
+	width:20px;
+	color:#fff;
+	margin:10px 0 0 10px;
+}
+.masi {
+	margin:20px 0 0 30px;
+}

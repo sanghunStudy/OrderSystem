@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 @Repository
@@ -72,6 +73,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<UserVO> getRanker() {
 		return sql.selectList("user.getRanker");
+	}
+
+	@Override
+	public List<MentiPerformance> getMenti(String id) {
+		return sql.selectList("trainer.getMenti", id);
 	}
 
 }

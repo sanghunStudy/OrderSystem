@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.dao.AnalysisDao;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 @Service
@@ -71,6 +72,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 	@Override
 	public List<UserVO> getRanker() {
 		return dao.getRanker();
+	}
+
+	@Override
+	public List<MentiPerformance> getMenti(String id) {
+		return dao.getMenti(id);
 	}
 
 

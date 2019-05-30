@@ -29,7 +29,10 @@
 <select id="selectApply" resultType="Integer">
 	select count(*) from user_management where username = #{username}
 </select>
-
+<!-- 내 멘티 확인 -->
+<select id="getMenti" resultType="MentiPerformance">
+	SELECT username FROM user_management WHERE manager = #{id}
+</select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">
 	select username,reading,apply_date,goal,height,weights,etc from user_management where manager = #{id} and reading = 'N'

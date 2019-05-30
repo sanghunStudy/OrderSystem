@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
+import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 
@@ -31,6 +32,8 @@ public interface AnalysisDao {
 	int applicantDeny(String username);
 
 	List<UserVO> getRanker();
+
+	List<MentiPerformance> getMenti(String id);
 
 
 

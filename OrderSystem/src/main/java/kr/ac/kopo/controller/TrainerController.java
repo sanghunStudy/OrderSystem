@@ -64,7 +64,7 @@ public class TrainerController {
 	
 	//pt신청 승인 대기 회원리스트
 	@RequestMapping(value="waitingForApproval")
-	String waitingForApproval(HttpSession session,Model model) {
+	String waitingForApproval(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("trainer");
 		List<UserManagement> wfaList = service.waitingForApproval(id); 
 		model.addAttribute("wfaList",wfaList);

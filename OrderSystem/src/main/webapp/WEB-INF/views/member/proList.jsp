@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applylist.css">
 </head>
 <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
 <script>
@@ -28,28 +29,30 @@
 	<h1>트레이너 신청 목록</h1>
 	<table border="1">
 		<tr>
-			<th>username</th>
-			<th>name</th>
-			<th>sex</th>
-			<th>career</th>
-			<th>photo</th>
-			<th>upFilename</th>
-			<th>관리</th>
+			<th>사진</th>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>신청일자</th>
+			<th></th>
+			<th></th>
 		</tr>
 		<c:choose>
 			<c:when test="${proList.size() > 0}">
 				<c:forEach var="item" items="${proList}">
 					<tr>
-						<td>${item.username}</td>
-						<td>${item.name}</td>
-						<td>${item.sex}</td>
-						<td>${item.career}</td>
-						<td>
+						<td class="upload-display">
 							<c:if test="${item.upFilename != null}">
+							<div class="upload-thumb-wrap">
 							<img src="${pageContext.request.contextPath}/upload/${item.upFilename}">
+							</div>
 							</c:if>
 						</td>
-						<td>${item.upFilename}</td>
+						<td>${item.username}</td>
+						<td>${item.name}</td>
+						<td>${item.sex}</td>				
+						<td>${item.applyDate}</td>
+						<td><button>상세보기</button></td>
 						<td>
 							<input name=username type="button" value="수락" onclick="grantDo('${item.username}');" />
 							<input name=username type="button" value="거절" onclick="grantDel('${item.username}');" />

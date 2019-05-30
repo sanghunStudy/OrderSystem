@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.upload-thumb-wrap {
+    display: inline-block;
+    width: 61px;
+    padding: 2px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+/* imaged preview */
+.upload-display {
+    margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+    .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+
+.upload-thumb-wrap img {
+	width: 61px;
+   
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.upload-display img {
+    display: block;
+    max-width: 100%;
+    width: 100% \7;
+    height: auto;
+}

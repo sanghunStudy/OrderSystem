@@ -207,11 +207,22 @@
 	</select>
 <!-- 트레이너들 랭킹   -->
 	<select id="getRanker" resultType="UserVO">
-		SELECT user.username,point,count(user_management.manager) menti,ROUND(((user.point + count(user_management.manager) * 100) / 100 + (user.score * 10)),1) rank 
-		FROM user,user_management 
-		WHERE authority = 'trainer' AND user_management.manager = user.username AND user_management.reading = 'Y' 
-		GROUP BY user_management.manager 
-		ORDER BY rank DESC
+		SELECT
+			user.username,point,count(user_management.manager) menti,
+			ROUND(((user.point + count(user_management.manager) * 100) / 100
+			+ (user.score * 10)),1) rank,
+			@RANKT := IF(@LAST > ROUND(((user.point +
+			count(user_management.manager) * 100) / 100 + (user.score * 10)),1),
+			@RANK := @RANK + 1, @RANK) AS ranking
+			,@LAST := ROUND(((user.point + count(user_management.manager) * 100) / 100 +
+			(user.score * 10)),1)
+		FROM 
+			user,user_management,(SELECT @RANK := 1) XX
+		WHERE 
+			authority ='trainer' and user_management.manager = user.username AND
+			user_management.reading = 'Y'
+		GROUP BY user_management.manager
+		ORDER BY ranking DESC,user.score DESC
 		LIMIT 10
 	</select>
 </mapper>

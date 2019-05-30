@@ -9,7 +9,14 @@ public class UserVO {
 	private int score;
 	private int menti;
 	private float rank;
+	private int ranking;
 	
+	public int getRanking() {
+		return ranking;
+	}
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
+	}
 	public int getMenti() {
 		return menti;
 	}

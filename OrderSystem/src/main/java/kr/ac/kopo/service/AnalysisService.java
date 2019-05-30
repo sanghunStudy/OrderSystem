@@ -26,6 +26,8 @@ public interface AnalysisService {
 
 	List<UserManagement> applicantList(String id);
 
+	int applicantDeny(String username);
+
 
 
 

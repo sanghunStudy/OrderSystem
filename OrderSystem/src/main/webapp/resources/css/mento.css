@@ -178,6 +178,9 @@ th {text-align:-webkit-match-parent;}
 .apply-list .btn-t:hover{
 	cursor:pointer;
 }
+.action {
+	display:flex;
+}
 .agree {
 	border:2px solid #82acd8;
 

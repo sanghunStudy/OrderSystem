@@ -62,4 +62,10 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectList("trainer.waitingForApproval", id);
 	}
 
+	@Override
+	public int applicantDeny(String username) {
+
+		return sql.delete("trainer.deleteApplicant", username);
+	}
+
 }

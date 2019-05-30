@@ -34,4 +34,9 @@
 <select id="waitingForApproval" resultType="UserManagement">
 	select username,reading,apply_date,goal,height,weights,etc from user_management where manager = #{id} and reading = 'N'
 </select>
+
+<!-- 승인대기회원 거절 -->
+<delete id="deleteApplicant">
+	DELETE FROM user_management WHERE username = #{username}
+</delete>
 </mapper>

@@ -1,6 +1,7 @@
 
 //그라디언트 생성기
 function gradientGenerator(color,ctx) {
+	
 		if(ctx.canvas.id == 'line-chart-weight')
 			var gradient = ctx.createLinearGradient(0, 0, 50, 275);
 		else 	
@@ -21,53 +22,93 @@ function gradientGenerator(color,ctx) {
 	 
 }
 
+/* 신청회원 list */
+function applicantList() 
+{
+	$.ajax({
+		type:'get',
+		url:'/kopo/member/applicant',
+		success:function(res) {
+			var tr = '';
+			$.each(res,function(key,value) {
+				tr +='<tr><td class="applicant">' + value.username + '</td>';
+				tr +='<td class="apply-date">' + value.applyDate + '</td>';
+				tr +='<td>' + value.height + 'cm   ' + value.weights + 'kg</td>';
+				tr += '<td>' + value.goal + '</td>';
+				tr += '<td colspan="2" class="action"><div class="agree btn-t">Agree</div>';
+				tr += '<div class="disagree btn-t">disagree</div></td>';
+			});
+			$('.applicant-list').html(tr);
+		}
+	})
+}
+
+ 
 
 $(function() {
-	/* 신청회원 비동기적 refresh */
-//	function applicantList() 
-//	{
-//		$.ajax({
-//			type:'get',
-//			url:"kopo/member/applicant",
-//			dataType:"json",
-//			success:function(res) {
-//				var tr = '';
-//				$.each(res,function(key,value) {
-//					tr +='<tr><td class="applicant">' + value.username + '</td>';
-//				});
-//			}
-//		})
-//	}
-	/* 멘티 승인/허가 버튼 이벤트 */
-	var applicant;
-	$('.agree').click(function() {
-		
-		applicant = $(this).parents('tr').children('.applicant').text();
 
-	
-		$.ajax({
-//			contentType:"application/json;charset=UTF-8",
-			type:'post',
-			url:'/kopo/member/permission',
-			dataType:'json',
-			data: {
-				"username":applicant
-			},
-			
-			success:function(data) {
-				if(data == 1){
-					alert('승인되었습니다.');
-					applicantList();
+	/* 멘티 승인or허가 버튼 이벤트 */
+	var applicant;
+	var agreeBtnEvent = {
+			'agree':function(e) {
+					
+						$.ajax({
+							/*
+							 * data를 json 형태 그대로 넘기고 싶을때 아래 contentType 속성설정 후
+							 * JSON.stringify해준 후 보내면 서버단에서 json형태 그대로 받음
+							 */
+						 // contentType:"application/json;charset=UTF-8",
+							type:'post',
+							url:'/kopo/member/permission',
+							dataType:'json',
+							data: {
+								// "와 '를 서버단에서는 구분하여서 '로 설정하여 보내면 서버단에서는 인식을 하지 못해 파라메터가 null값으로 나타남
+								"username":applicant
+							},
+					
+							success:function(data) {
+								if(data == 1){
+									alert('승인되었습니다.');
+									applicantList();
+								}
+								else
+									alert('승인이 실패되었습니다. 나중에 다시 시도해 주세요.');
+							}
+						});
+				},
+			'disagree':function(e) {
+								
+							$.ajax({
+								type:'POST',
+								url:'/kopo/member/applicantDeny',
+								dataType:"JSON",
+								data:{
+									"username":applicant
+								},
+								success:function(data) {
+									if(data == 1) {
+										alert(applicant + '님의 신청을 거부하였습니다.');
+										applicantList();
+									}
+									else
+										alert('오류가 발생하였습니다. 나중에 다시 시도해주세요.');
+								}
+						});
 				}
-				else
-					alert('승인이 실패되었습니다.');
-			}
-		});
-	})
+	}
 	
-	$(document).on('click','.disagree',function() {
+	
+	$('.action').click(function(e) {
+		var target = e.target || e.srcElement;
+
+		if(agreeBtnEvent.hasOwnProperty(target.id)) {
+			applicant = $(this).parents('tr').children('.applicant').text();
+	
+			agreeBtnEvent[target.id].call();
+		}			
 		
 	});
+	
 
 	 /* modal 창 tab 이벤트 */
 	    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
@@ -110,20 +151,21 @@ $(function() {
 		foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
 	
 
-//	var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
-//	var ctxSquat = document.getElementById('line-chart-squat').getContext("2d");
-//	var ctxBench = document.getElementById('line-chart-bench').getContext("2d");
-//	var ctxWeight = document.getElementById('line-chart-weight').getContext("2d");
+// var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
+// var ctxSquat = document.getElementById('line-chart-squat').getContext("2d");
+// var ctxBench = document.getElementById('line-chart-bench').getContext("2d");
+// var ctxWeight =
+// document.getElementById('line-chart-weight').getContext("2d");
 	
-	/* sass 느낌의 색상변수*/
+	/* sass 느낌의 색상변수 */
 	var skyblue = 'rgba(27,138,248,1)';
 	var brightPink = 'rgba(225,78,202,1)';
 	var emerald = 'rgba(0,242,195,1)';
 	var purple = 'rgba(139,103,224,1)';	
-//	var skyblueGrd = gradientGenerator(skyblue,ctxDead);
-//	var brightPinkGrd = gradientGenerator(brightPink,ctxSquat);
-//	var emeraldGrd = gradientGenerator(emerald,ctxBench);
-//	var purpleGrd = gradientGenerator(purple,ctxWeight);
+// var skyblueGrd = gradientGenerator(skyblue,ctxDead);
+// var brightPinkGrd = gradientGenerator(brightPink,ctxSquat);
+// var emeraldGrd = gradientGenerator(emerald,ctxBench);
+// var purpleGrd = gradientGenerator(purple,ctxWeight);
 	
 	
 
@@ -138,8 +180,8 @@ $(function() {
 		        label: "순위",
 		        borderColor: '#f99204',
 		        pointBackgroundColor:  "#f99204",
-//		        pointBackgroundColor:  "#3e95cd",
-//		        backgroundColor:"#3e95cd",
+// pointBackgroundColor: "#3e95cd",
+// backgroundColor:"#3e95cd",
 		        fill: true
 		      }
 		    ]
@@ -177,7 +219,7 @@ $(function() {
 		        label: "상의준",
 		        borderColor: brightPink,
 		        pointBackgroundColor:  "#e14eca",
-//		        backgroundColor:brightPink,
+// backgroundColor:brightPink,
 		        fill: false
 		      },
 		      {
@@ -204,7 +246,7 @@ $(function() {
 	
 
 	
-	/* progress 바 애니메이션 효과  */
+	/* progress 바 애니메이션 효과 */
 		$('.multi').each(function() {
 			var elem = $(this);
 			var width = 1;
@@ -225,7 +267,7 @@ $(function() {
 			}
 		});
 		
-		/*운동관리,식단관리 모달창 이벤트*/
+		/* 운동관리,식단관리 모달창 이벤트 */
 		
 		var foodModal = document.getElementById('food-modal');
 		var exerModal = document.getElementById('exer-modal');
@@ -253,7 +295,7 @@ $(function() {
 			
 		});
 		
-		/* 모달창 spinner 이벤트  */
+		/* 모달창 spinner 이벤트 */
 		$('.input-number-increment').click(function(e) {
 			
 			  var $input = $(this).parents('.input-number-group').find('.input-number');
@@ -340,11 +382,11 @@ console.log(txt);
 			limit = 30;
 		
 		for(var i =1 ; i <= limit ; i++) {
-//			$('.select-day').parent().children('div').append($('<span>',{
-//	              class: 'sel__box__options sel__box__options-day',
-//	              value: i,
-//	              text: i
-//			}));
+// $('.select-day').parent().children('div').append($('<span>',{
+// class: 'sel__box__options sel__box__options-day',
+// value: i,
+// text: i
+// }));
 			$(this).parents('.sel-month').next().next().children('div').append($('<span>',{
 	              class: 'sel__box__options sel__box__options-day',
 	              value: i,
@@ -396,7 +438,7 @@ console.log(txt);
 				});
 				
 		
-		/*모달 contents*/
+		/* 모달 contents */
 		$('.schedule-date').html(moment().format('L dddd'));
 		
 		/* 프락시 패턴를 이용한 이벤트 관리 */
@@ -419,10 +461,10 @@ console.log(txt);
 					for(var i in todayInfo) {
 						if(todayInfo[i].date == exerToday.format('L dddd')) {
 							alert(todayInfo[i].date == exerToday.format('L dddd'));
-//							console.log("속성들  " + todayInfo[i].ename);
-//							$('.ename').val(todayInfo[i].ename);
-//							$('.details').val(todayInfo[i].details);
-//							$('.parts').val(todayInfo[i].parts);
+// console.log("속성들 " + todayInfo[i].ename);
+// $('.ename').val(todayInfo[i].ename);
+// $('.details').val(todayInfo[i].details);
+// $('.parts').val(todayInfo[i].parts);
 						}
 					}
 				

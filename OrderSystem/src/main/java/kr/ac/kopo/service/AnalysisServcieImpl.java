@@ -62,6 +62,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.applicantList(id);
 	}
 
+	@Override
+	public int applicantDeny(String username) {
+		return dao.applicantDeny(username);
+	}
+
 
 
 

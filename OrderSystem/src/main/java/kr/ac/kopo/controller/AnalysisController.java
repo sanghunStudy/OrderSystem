@@ -89,6 +89,7 @@ private String statistics(Model model,HttpSession session) {
 	private String mento(HttpSession session,Model model) {
 	
 	String id = (String)session.getAttribute("trainer");
+	
 	List<UserManagement> wfaList = service.waitingForApproval(id); 
 	model.addAttribute("wfaList",wfaList);
 	
@@ -104,11 +105,19 @@ private String statistics(Model model,HttpSession session) {
 }
 
 @ResponseBody
-@RequestMapping(value="/applicant", method=RequestMethod.GET)
-	private List<UserManagement> applicantList(HttpSession session) {
+@RequestMapping(value="/applicant")
+	private List<UserManagement> applicantList(HttpSession session, Model model) {
 	String id = (String)session.getAttribute("trainer");
+	
 		return service.applicantList(id);
 	
+}
+
+@ResponseBody
+@RequestMapping(value="/applicantDeny", method = RequestMethod.POST)
+	private int applicantDeny(String username) {
+	
+	return service.applicantDeny(username);
 }
 	
 }

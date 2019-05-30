@@ -124,7 +124,7 @@
 
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="applicant-list">
 						<c:choose>
 							<c:when test="${wfaList.size() > 0}">
 								<c:forEach var="item" items="${wfaList}">
@@ -133,15 +133,17 @@
 										<td class="apply-date">${item.applyDate}</td>
 										<td>${item.height}cm  ${item.weights}kg</td>
 										<td>${item.goal}</td>
-										<td><div class="agree btn-t">Agree</div></td>
-										<td><div class="disagree btn-t">Disagree</div></td>
+										<td colspan="2" class="action">
+										<div class="agree btn-t" id="agree">Agree</div>
+										<div class="disagree btn-t" id="disagree">Disagree</div>
+										</td>
 									</tr>
 								</c:forEach>
 							</c:when>
 
 							<c:otherwise>
 								<tr>
-									<td>승인 대기중인 회원이 없습니다.</td>
+									<td colspan="5">승인 대기중인 회원이 없습니다.</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>

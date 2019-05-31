@@ -48,7 +48,7 @@
 	
 <!-- 	세션관리 -->
 	<session-config>
- 		<session-timeout>1</session-timeout><!--세션 만료시간 지정 단위는 분 -->
+ 		<session-timeout>15</session-timeout><!--세션 만료시간 지정 단위는 분 -->
 	</session-config>
 
 	<filter>

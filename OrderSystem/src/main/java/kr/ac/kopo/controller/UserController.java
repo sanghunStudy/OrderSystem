@@ -334,35 +334,36 @@ public class UserController {
 	}
 	//트레이너 신청 리스트
 	@RequestMapping(value="proList")
-	public String proList(Model model2) {
-		
-		List<TrainerProfile> proList = service.proList();
-		
-		model2.addAttribute("proList",proList);
+	public String proList() {
 		
 		return path + "proList";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ajaxProList")
+	public Map<String, Object> ajaxProList() {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<TrainerProfile> proList = service.proList();
+		map.put("proList",proList);
+		
+		return map;
 	}
 	//트레이너 승인
 	@ResponseBody
 	@RequestMapping("/grant")
-	public JSONObject grant(TrainerProfile pro, HttpSession session) {
-		JSONObject json = new JSONObject();
+	public String grant(TrainerProfile pro, HttpSession session) {
 	
 		service.grant(pro);
-		json.put("success", true);
-		json.put("url",  "/user/grant");
-		return json;
+		return "success";
 	}
 	//트레이너 거절
 	@ResponseBody
 	@RequestMapping("/grantDel")
-	public JSONObject grantDel(TrainerProfile pro, HttpSession session) {
-		JSONObject json = new JSONObject();
-	
+	public String grantDel(TrainerProfile pro, HttpSession session) {
+		
 		service.grantDel(pro);
-		json.put("success", true);
-		json.put("url",  "/user/grantDel");
-		return json;
+		
+		return "success";
 	}
 	
 

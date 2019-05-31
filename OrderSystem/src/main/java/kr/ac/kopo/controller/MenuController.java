@@ -174,7 +174,7 @@ public class MenuController {
 		return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}*/
 	//댓글ajax그대로인데 jsp에서 못보내던거 수정
-/*	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
+	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody
 	String commnetAdd(MenuComment MComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
@@ -191,8 +191,18 @@ public class MenuController {
 		} else {
 			return "fail";
 		}
-	} */
-	@RequestMapping(value="/mcommentAdd")
+	} 
+	@ResponseBody
+	@RequestMapping(value="/mcommentList")
+	List<MenuComment> mcommentList(int menuId){
+		List<MenuComment> commentList = service.commentList(menuId);
+		for(int i=0; i < commentList.size(); i++) {
+			commentList.get(i).setMcommentContent(commentList.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
+		}
+		return commentList;
+	}
+	
+/*	@RequestMapping(value="/mcommentAdd")
 	String mcommentAdd(MenuComment MComment,HttpSession session) {
 		String username = (String)session.getAttribute("user");
 		if(username==null) {
@@ -208,12 +218,12 @@ public class MenuController {
 		} else {
 			return "redirect:view?menuId="+MComment.getMenuId();
 		}
-	}
-	
+	}*/
+	@ResponseBody
 	@RequestMapping("/commentDel")
-	String commentsDel(int mcommentId, int menuId) {
+	String commentsDel(int mcommentId) {
 		service.commentDel(mcommentId);
-		return "redirect:view?menuId=" + menuId;
+		return "success";
 	}
 	
 	@RequestMapping("/commentUpdate")

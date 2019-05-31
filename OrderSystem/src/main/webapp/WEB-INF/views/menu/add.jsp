@@ -197,7 +197,7 @@
 		<div class="point-box">
 			<div class="point-setting-complete" id="point-set">포인트 설정</div>
 			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
-			<input type="hidden" name="pointSet" id="pointSet">
+			<input type="hidden" name="pointSet" id="pointSet" value="0">
 		</div>
 		<div>
 			<input type="hidden" name="imgChk" id="imgChk" value="false">

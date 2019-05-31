@@ -130,8 +130,24 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 .commentUpdate {
 	width:20px;
 	color:#fff;
-	margin:10px 0 0 10px;
+	margin:12px 0 0 10px;
+	cursor:pointer;
 }
 .masi {
-	margin:20px 0 0 30px;
+	clear:left;
+	margin:20px 0 0 60px;
+	width:600px;
+}
+.commentDel {
+	width:80px;
+	height:30px;
+	background:#272a3d;
+	text-align:center;
+	line-height:30px;
+	vartical-align:middle;
+	border:1px solid #fff;
+	float:right;
+	cursor:pointer;
+	color:#fff;
+	font-size:11pt;
 }

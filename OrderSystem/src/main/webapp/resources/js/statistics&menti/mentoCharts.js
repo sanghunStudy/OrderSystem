@@ -29,24 +29,66 @@ function applicantList()
 		type:'get',
 		url:'/kopo/member/applicant',
 		success:function(res) {
+
 			var tr = '';
+			if(res.length == 0) {
+				tr +='<tr><td colspan="6">승인 대기중인 회원이 없습니다.</td></tr>';
+			}
+			else{
 			$.each(res,function(key,value) {
 				tr +='<tr><td class="applicant">' + value.username + '</td>';
 				tr +='<td class="apply-date">' + value.applyDate + '</td>';
 				tr +='<td>' + value.height + 'cm   ' + value.weights + 'kg</td>';
 				tr += '<td>' + value.goal + '</td>';
-				tr += '<td colspan="2" class="action"><div class="agree btn-t">Agree</div>';
-				tr += '<div class="disagree btn-t">disagree</div></td>';
+				tr += '<td colspan="2" class="action"><div class="agree btn-t" id="agree">Agree</div>';
+				tr += '<div class="disagree btn-t" id="disagree">disagree</div></td>';
+				tr += '</tr>'
 			});
+			}
 			$('.applicant-list').html(tr);
 		}
 	})
 }
 
- 
+/* 내 멘티 리스트 */
+ function mentiList() {
+	 $.ajax({ 
+		 url:'/kopo/member/myMenti',
+		 type:'GET',
+	 	 success:function(res) {
+	 		var tr = '';
+	 		if(res.length > 0){
+	 		for (var value of res) {
+	 			tr += '<tr>';
+	 			tr += '<td class="my-menti">' + value.username + '</td>';
+	 			tr += '<td><div class="progress-container-t">';
+	 			tr += '<span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>';
+	 			tr += '<div class="progress-bar-t"><div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div>'
+	 			tr += '</div>';	
+				tr += '</td>';
+				tr += '<td><div class="planModal" id="exer-modal-btn">운동관리</div></td>';
+				tr += '<td><div class="planModal" id="food-modal-btn">식단관리</div></td>';
+				tr += '<td>2019.05.07</td>';
+				tr += '<td><button class="chart-menti btn-collection menti-btn">';
+				tr += '<span class="fas fa-chart-bar"></span><span>차트</span>';
+				tr += '</button></td>';
+				tr += '<td><button class="cancel-menti btn-collection menti-btn">';
+				tr += '<span class="icon-cross"></span><span>해지</span>';
+				tr += '</button></td>';		
+				tr += '</tr>';
+	 		}
+	 		}
+	 		else
+	 			tr += '<tr><td colspan="7" style="text-align:center">멘토링중인 멘티가 없습니다.</td></tr>';
+	 		
+	 		$('.myMenti-list').html(tr);
+	 		progressAnime();
+	 	}
+	 });
+ }
 
 $(function() {
-
+	
 	/* 멘티 승인or허가 버튼 이벤트 */
 	var applicant;
 	var agreeBtnEvent = {
@@ -62,7 +104,8 @@ $(function() {
 							url:'/kopo/member/permission',
 							dataType:'json',
 							data: {
-								// "와 '를 서버단에서는 구분하여서 '로 설정하여 보내면 서버단에서는 인식을 하지 못해 파라메터가 null값으로 나타남
+								// "와 '를 서버단에서는 구분하여서 '로 설정하여 보내면 서버단에서는 인식을 하지
+								// 못해 파라메터가 null값으로 나타남
 								"username":applicant
 							},
 					
@@ -70,6 +113,7 @@ $(function() {
 								if(data == 1){
 									alert('승인되었습니다.');
 									applicantList();
+									mentiList();
 								}
 								else
 									alert('승인이 실패되었습니다. 나중에 다시 시도해 주세요.');
@@ -98,17 +142,39 @@ $(function() {
 	}
 	
 	
-	$('.action').click(function(e) {
+	$('.apply-list .applicant-list').on('click','.action',function(e) {
 		var target = e.target || e.srcElement;
-
+		
 		if(agreeBtnEvent.hasOwnProperty(target.id)) {
 			applicant = $(this).parents('tr').children('.applicant').text();
-	
 			agreeBtnEvent[target.id].call();
 		}			
 		
 	});
 	
+	$('.performance').on('click','.cancel-menti',function(e) {
+		e.preventDefault();
+		var menti = $(this).parents('tr').children('.my-menti').text();
+		var terminationCheck = confirm("정말로 " + menti + " 님과의 멘토링 관계를 해지하시겠습니까?");
+		if(terminationCheck == true) {
+		$.ajax({
+			type:'POST',
+			url:'/kopo/member/applicantDeny',
+			dataType:"JSON",
+			data:{
+				"username":menti
+			},
+			success:function(data) {
+				if(data == 1) {
+					alert(menti + '님과 의 멘토링 관계를 해지하였습니다.');
+					mentiList();
+				}
+				else
+					alert('오류가 발생하였습니다. 나중에 다시 시도해주세요.');
+			}
+	});
+		}
+	})
 
 	 /* modal 창 tab 이벤트 */
 	    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
@@ -246,26 +312,7 @@ $(function() {
 	
 
 	
-	/* progress 바 애니메이션 효과 */
-		$('.multi').each(function() {
-			var elem = $(this);
-			var width = 1;
-			var id = setInterval(frame, 50);
-			var end = $(this).attr('data-code');
-			var kcal = elem.parent().prev().prev();
-			
-			console.log(end);
 
-			function frame() {
-				if (width >= 35) {
-					clearInterval(id);
-				} else {
-					width++;
-					elem.css('width',width + '%');
-					elem.parent().prev().html(width + '%');
-				}
-			}
-		});
 		
 		/* 운동관리,식단관리 모달창 이벤트 */
 		
@@ -286,7 +333,7 @@ $(function() {
 			
 		
 		
-		$('.performance').click(function(e) {
+		$('.performance .myMenti-list').on('click','td',function(e) {
 			var target = e.target || e.srcElement;
 
 			if(modalClickEvent.hasOwnProperty(target.id)) {
@@ -509,10 +556,10 @@ console.log(txt);
 		});
 		
 
+		// 프로그레스바 애니메이션
+		progressAnime();
 
 });
-
-
 
 
 
@@ -650,4 +697,31 @@ function controlDay(val) {
 	}
 }
 
+/* progress 바 애니메이션 효과 */
+function progressAnime() {
+
+	$('.multi').each(function() {
+		var elem = $(this);
+		var width = 1;
+		var id = setInterval(frame, 50);
+		var end = $(this).attr('data-code');
+		var kcal = elem.parent().prev().prev();
+		
+		console.log(end);
+
+		function frame() {
+			if (width >= 35) {
+				clearInterval(id);
+			} else {
+				width++;
+				elem.css('width',width + '%');
+				elem.parent().prev().html(width + '%');
+			}
+		}
+	});
+}
+
+function getMentiInfo(menti) {
+	
+}
 

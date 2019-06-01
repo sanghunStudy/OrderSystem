@@ -31,7 +31,10 @@
 </select>
 <!-- 내 멘티 확인 -->
 <select id="getMenti" resultType="MentiPerformance">
-	SELECT username FROM user_management WHERE manager = #{id}
+	SELECT username FROM user_management WHERE manager = #{id} AND reading="Y"
+</select>
+<select id="getMyMenti" resultType="MentiPerformance">
+	SELECT username FROM user_management WHERE manager = #{mento} AND reading="Y"
 </select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">
@@ -40,6 +43,6 @@
 
 <!-- 승인대기회원 거절 -->
 <delete id="deleteApplicant">
-	DELETE FROM user_management WHERE username = #{username}
+	DELETE FROM user_management WHERE username = #{username} AND manager = #{mento}
 </delete>
 </mapper>

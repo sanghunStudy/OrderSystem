@@ -1,6 +1,8 @@
 package kr.ac.kopo.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +13,21 @@ import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
+
 @Repository
 public class AnalysisDaoImpl implements AnalysisDao {
 
-	@Autowired 
+	@Autowired
 	SqlSession sql;
-	
+
 	@Override
 	public List<ExerciseJournal> list(String id) {
-		return sql.selectList("statistics.monthExerList",id);
+		return sql.selectList("statistics.monthExerList", id);
 	}
 
 	@Override
 	public List<ExerciseJournal> getWeight(String id) {
-		return sql.selectList("statistics.getWeight",id);
+		return sql.selectList("statistics.getWeight", id);
 	}
 
 	@Override
@@ -34,14 +37,13 @@ public class AnalysisDaoImpl implements AnalysisDao {
 
 	@Override
 	public List<ExerciseJournal> todayList(String id) {
-		return sql.selectList("statistics.todayList",id);
+		return sql.selectList("statistics.todayList", id);
 	}
 
 	@Override
 	public List<BEsave> getMetabolism(String id) {
 		return sql.selectList("statistics.getMetabolism", id);
 	}
-
 
 	@Override
 	public List<ExerciseJournal> getOverallAvg(String id) {
@@ -65,9 +67,12 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	}
 
 	@Override
-	public int applicantDeny(String username) {
+	public int applicantDeny(String username, String mento) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", username);
+		map.put("mento", mento);
 
-		return sql.delete("trainer.deleteApplicant", username);
+		return sql.delete("trainer.deleteApplicant", map);
 	}
 
 	@Override
@@ -78,6 +83,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<MentiPerformance> getMenti(String id) {
 		return sql.selectList("trainer.getMenti", id);
+	}
+
+	@Override
+	public List<MentiPerformance> getMyMenti(String mento) {		
+		return sql.selectList("trainer.getMyMenti", mento);
 	}
 
 }

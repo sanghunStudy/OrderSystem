@@ -50,6 +50,7 @@
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';
+		var trainer = '${sessionScope.trainer}';
 	</script>
 	<div id="fullBox">
 		<div class="menu-box">
@@ -87,35 +88,37 @@
 							src="${pageContext.request.contextPath}/resources/images/mypage/crown.png"
 							class="crown"><span>RANKING</span>
 					</div>
-					<table>
-						<thead>
-							<tr>
-								<td>RANKING</td>
-								<td>Name</td>
-								<td>Point</td>
-								<td>Menti</td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:choose>
-								<c:when test="${rankerList.size() > 0 }">
-							<c:forEach var="ranker" items="${rankerList}">
+					<div class="ranking-table-box">
+						<table class="ranking-table">
+							<thead>
 								<tr>
-									<td>${ranker.ranking}</td>
-									<td>${ranker.username}</td>
-									<td>${ranker.point}</td>
-									<td>${ranker.menti}</td>
+									<td>순위</td>
+									<td>아이디</td>
+									<td>포인트</td>
+									<td>멘티 수</td>
 								</tr>
-							</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td colspan="4">등록된 트레이너가 없습니다.</td>
-								</tr>
-							</c:otherwise>
-							</c:choose>
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<c:choose>
+									<c:when test="${rankerList.size() > 0 }">
+										<c:forEach var="ranker" items="${rankerList}">
+											<tr>
+												<td>${ranker.ranking}</td>
+												<td>${ranker.username}</td>
+												<td>${ranker.point}</td>
+												<td>${ranker.menti}</td>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="4">랭킹에 등록된 트레이너가 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<div id="lineChart Ranking"
 					style="position: relative; height: 30vh; width: 54vw">
@@ -144,11 +147,11 @@
 									<tr>
 										<td class="applicant">${item.username}</td>
 										<td class="apply-date">${item.applyDate}</td>
-										<td>${item.height}cm  ${item.weights}kg</td>
+										<td>${item.height}cm${item.weights}kg</td>
 										<td>${item.goal}</td>
 										<td colspan="2" class="action">
-										<div class="agree btn-t" id="agree">Agree</div>
-										<div class="disagree btn-t" id="disagree">Disagree</div>
+											<div class="agree btn-t" id="agree">Agree</div>
+											<div class="disagree btn-t" id="disagree">Disagree</div>
 										</td>
 									</tr>
 								</c:forEach>
@@ -168,10 +171,22 @@
 					<div class="title">
 						<span>Latest Log</span>
 					</div>
-					<div id="log-items">
-						<div class="log-item">
-							<span class="user-name">오창영님</span>이 <span class="subject">벤치프레스</span>를
-							완료하였습니다. <span class="log-time">32분 전</span>
+					<div class="contents-wrapper">
+						<div id="log-items">
+							<div class="log-item">
+								<div class="log-detail">
+									<div class="pushpin-box">
+										<span class="icon-pushpin"></span>
+									</div>
+									<div class="log-detail-contents">
+										<span class="user-name">오창영</span>님이 <span class="subject">벤치프레스</span>를
+										완료하였습니다.
+									</div>
+								</div>
+								<div class="log-time-box">
+									<span class="log-time">32분전</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -192,26 +207,46 @@
 							<td>Performance Rate</td>
 							<td colspan="2">Plan Management</td>
 							<td>Date</td>
+							<td colspan="2">Action</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>오창영님</td>
-							<td>
-								<div class="progress-container-t">
-									<span id="value" class="progress-value-t"
-										style="background-color: #272a3d">1%</span>
+					<tbody class="myMenti-list">
+						<c:choose>
+							<c:when test="${myMenti.size() > 0 }">
+								<c:forEach var="menti" items="${myMenti}">
+									<tr>
+										<td class="my-menti">${menti.username}</td>
+										<td>
+											<div class="progress-container-t">
+												<span id="value" class="progress-value-t"
+													style="background-color: #272a3d">1%</span>
 
-									<div class="progress-bar-t">
-										<div id="bar" class="progress-value-t multi" data-code="dbVal"
-											style="width: 1%;"></div>
-									</div>
-								</div>
-							</td>
-							<td><div class="planModal" id="exer-modal-btn">운동관리</div></td>
-							<td><div class="planModal" id="food-modal-btn">식단관리</div></td>
-							<td>2019.05.07</td>
-						</tr>
+												<div class="progress-bar-t">
+													<div id="bar" class="progress-value-t multi"
+														data-code="dbVal" style="width: 1%;"></div>
+												</div>
+											</div>
+										</td>
+										<td><div class="planModal" id="exer-modal-btn">운동관리</div></td>
+										<td><div class="planModal" id="food-modal-btn">식단관리</div></td>
+										<td>2019.05.07</td>
+										<td><button class="chart-menti btn-collection menti-btn">
+												<span class="fas fa-chart-bar"></span><span>차트</span>
+											</button></td>
+										<td><button class="cancel-menti btn-collection menti-btn">
+												<span class="icon-cross"></span><span>해지</span>
+											</button></td>
+
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6">멘토링중인 멘티가 없습니다.</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+
 					</tbody>
 				</table>
 			</div>
@@ -365,8 +400,8 @@
 											<ul class="list-inline">
 
 												<li><button type="button"
-														class="btn next-step next-food">
-														식단 관리  <i class="fa fa-arrow-right"></i>
+														class="modal-btn-collection next-step next-food">
+														<span>식단 관리</span>
 													</button></li>
 											</ul>
 										</div>
@@ -460,15 +495,15 @@
 											</div>
 											<ul class="list-inline">
 												<li><button type="button"
-														class="btn prev-step prev-food">
-														<i class="fa fa-arrow-left"></i>  기간 설정
+														class="modal-btn-collection prev-step prev-food">
+														  <span>기간 설정</span>
 													</button></li>
-												<li><button type="button" class="btn add-food">
-														식단 추가 <i class="fas fa-plus"></i>
+												<li><button type="button" class="modal-btn-collection add-food">
+														<span>식단 추가</span>
 													</button></li>
 												<li><button type="button"
-														class="btn next-step next-food">
-														플랜 확인  <i class="fa fa-arrow-right"></i>
+														class="modal-btn-collection next-step next-food">
+														<span>플랜 확인</span>
 													</button></li>
 											</ul>
 										</div>
@@ -524,28 +559,33 @@
 
 											<ul class="list-inline">
 												<li><button type="button"
-														class="btn prev-step prev-food">
-														<i class="fa fa-arrow-left"></i>  식단관리
+														class="modal-btn-collection prev-step prev-food">
+														  <span>식단관리</span>
 													</button></li>
 												<li><button type="button"
-														class="btn btn-info-full next-step next-food">
-														확인 및 안내  <i class="fa fa-arrow-right"></i>
+														class="modal-btn-collection btn-info-full next-step next-food">
+														<span>확인 및 안내</span>  
 													</button></li>
 											</ul>
 										</div>
 										<div class="tab-pane" role="tabpanel" id="complete">
-											<h3>확인 및 안내</h3>
-											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의
-												일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
-											<ul class="list-inline">
-												<li><button type="button"
-														class="btn prev-step prev-food">
-														<i class="fa fa-arrow-left"></i>  Previous
-													</button></li>
-												<li><button type="button"
-														class="btn btn-info-full next-step next-food">Save
-														and Submit</button></li>
-											</ul>
+											<div class="cal-container">
+												<div class="calendar light">
+													<h3>확인 및 안내</h3>
+													<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의
+														정보교환의 일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
+												</div>
+												<ul class="list-inline">
+													<li><button type="button"
+															class="modal-btn-collection prev-step prev-food">
+															 <span>플랜 확인</span>
+														</button></li>
+													<li><button type="button"
+															class="modal-btn-collection btn-info-full next-step next-food save-submit"><span>저장
+															및 전송</span></button></li>
+												</ul>
+
+											</div>
 										</div>
 										<div class="clearfix"></div>
 									</div>
@@ -604,11 +644,108 @@
 											<div class="modal-header">
 												<h2>기간 설정</h2>
 											</div>
+											<div class="contents-container">
+												<div class="selected-menti">
+													<div class="subtitle">멘티</div>
+												</div>
+												<div class="physical-info">
+													<div class="selected-weights">
+														<div class="subtitle">체중</div>
+													</div>
+													<div class="energy-requirement">
+														<div class="subtitle">에너지 요구량</div>
+													</div>
+													<div class="selected-goal">
+														<div class="subtitle">목표</div>
+													</div>
+												</div>
+												<div class="plan-duration">
+													<div class="start-date">
+														<div class="start-date subtitle">시작일</div>
+														<div class="sel sel-year">
+															<select name="select-year" id="select-year">
+																<option value="" disabled>년</option>
+																<option value="2019">2019</option>
+																<option value="2020">2020</option>
+																<option value="2021">2021</option>
+																<option value="2022">2022</option>
+																<option value="2023">2023</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-month">
+															<select name="select-superpower" id="select-month">
+																<option value="" disabled>월</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel--superman">
+															<select name="select-superpower" id="select-day"
+																class="select-day">
+																<option value="" disabled>일</option>
+
+															</select>
+														</div>
+													</div>
+													<div class="end-date">
+														<div class="end-date subtitle">종료일</div>
+														<div class="sel sel-year">
+															<select name="select-year" id="select-year">
+																<option value="" disabled>년</option>
+																<option value="2019">2019</option>
+																<option value="2020">2020</option>
+																<option value="2021">2021</option>
+																<option value="2022">2022</option>
+																<option value="2023">2023</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-month">
+															<select name="select-superpower" id="select-month">
+																<option value="" disabled>월</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+															</select>
+														</div>
+														<span class="separator">.</span>
+														<div class="sel sel-day">
+															<select name="select-superpower" id="select-day"
+																class="select-day">
+																<option value="" disabled>일</option>
+
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
 											<ul class="list-inline">
 
 												<li><button type="button"
-														class="btn next-step next-exer">
-														플랜 확인  <i class="fa fa-arrow-right"></i>
+														class="modal-btn-collection next-step next-exer">
+														<span>플랜 확인</span> 
+
 													</button></li>
 											</ul>
 										</div>
@@ -692,41 +829,97 @@
 												<!-- 				<div class="save-area"><a href="#" class="button">SAVE</a></div>		 -->
 											</div>
 											<ul class="list-inline">
-												<li><button type="button" class="btn prev-step">
-														<i class="fa fa-arrow-left"></i>  기간 설정
+												<li><button type="button"
+														class="modal-btn-collection prev-step">
+														  <span>기간 설정</span>
 													</button></li>
-												<li><button type="button" class="btn add-exer">
-														운동 추가 <i class="fas fa-plus"></i>
+												<li><button type="button"
+														class="modal-btn-collection add-exer">
+														<span>운동 추가</span> 
 													</button></li>
-												<li><button type="button" class="btn next-step">
-														플랜 확인  <i class="fa fa-arrow-right"></i>
+												<li><button type="button"
+														class="modal-btn-collection next-step">
+														<span>플랜 확인</span>  
 													</button></li>
 											</ul>
 										</div>
 										<div class="tab-pane" role="tabpanel" id="step7">
-											<h3>플랜 확인</h3>
-											<p>플랜 확인하는 곳 입니다.</p>
+											<div class="cal-container">
+												<div class="calendar light">
+													<div class="calendar_header">
+														<h1 class="header_title">Work-out List</h1>
+														<p class="header_copy">Work-out Plan</p>
+													</div>
+													<div class="calendar_plan">
+														<div class="cl_plan">
+															<div class="cl_title">Day</div>
+															<div class="cl_copy">22nd May 2019</div>
+															<div class="cl_add">
+																<i class="fas fa-plus"></i>
+															</div>
+														</div>
+													</div>
+													<div class="calendar_events">
+														<p class="ce_title">To Eat List</p>
+														<div class="event_item">
+															<div class="ei_Dot dot_active"></div>
+															<div class="ei_Title">10:30 am</div>
+															<div class="ei_Copy">한솥도시락 현미고기고기</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">12:00 pm</div>
+															<div class="ei_Copy">학식</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">14:00 pm</div>
+															<div class="ei_Copy">
+																One day 견과류 1봉지<br>#해태 #롯데
+															</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">16:30 pm</div>
+															<div class="ei_Copy">프로틴 2알</div>
+														</div>
+														<div class="event_item">
+															<div class="ei_Dot"></div>
+															<div class="ei_Title">18:30 am</div>
+															<div class="ei_Copy">닭가슴살 30g 1팩</div>
+														</div>
+													</div>
+												</div>
+											</div>
 											<ul class="list-inline">
-												<li><button type="button" class="btn prev-step">
-														<i class="fa fa-arrow-left"></i>  운동 관리
+												<li><button type="button"
+														class="modal-btn-collection prev-step prev-food">
+														  <span>식단관리</span>
 													</button></li>
 												<li><button type="button"
-														class="btn btn-info-full next-step">
-														확인 및 안내  <i class="fa fa-arrow-right"></i>
+														class="modal-btn-collection btn-info-full next-step next-food">
+														<span>확인 및 안내</span>  
 													</button></li>
 											</ul>
 										</div>
 										<div class="tab-pane" role="tabpanel" id="step8">
-											<h3>확인 및 안내</h3>
-											<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의 정보교환의
-												일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
-											<ul class="list-inline">
-												<li><button type="button" class="btn prev-step">
-														<i class="fa fa-arrow-left"></i>  플랜확인
-													</button></li>
-												<li><button type="button"
-														class="btn btn-info-full next-step">저장 및 전송</button></li>
-											</ul>
+											<div class="cal-container">
+												<div class="calendar light">
+													<h3>확인 및 안내</h3>
+													<p>위 운동/식단 관리는 본 웹사이트(TrainerBot)가 작성하는 것이 아닌 회원들간의
+														정보교환의 일종으로 본 사는 결과에 대하여 어떠한 책임도 지지 않습니다.</p>
+												</div>
+												<ul class="list-inline">
+													<li><button type="button"
+															class="modal-btn-collection prev-step">
+															  <span>플랜확인</span>
+														</button></li>
+													<li><button type="button"
+															class="modal-btn-collection btn-info-full save-submit">
+															<span>저장 및 전송</span>
+														</button></li>
+												</ul>
+											</div>
 										</div>
 										<div class="clearfix"></div>
 									</div>

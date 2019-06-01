@@ -29,11 +29,15 @@ public interface AnalysisDao {
 
 	List<UserManagement> applicantList(String id);
 
-	int applicantDeny(String username);
+	int applicantDeny(String username, String mento);
 
 	List<UserVO> getRanker();
 
 	List<MentiPerformance> getMenti(String id);
+
+	List<MentiPerformance> getMyMenti(String mento);
+
+
 
 
 

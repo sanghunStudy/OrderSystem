@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?qcliwz');
-  src:  url('fonts/icomoon.eot?qcliwz#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?qcliwz') format('truetype'),
-    url('fonts/icomoon.woff?qcliwz') format('woff'),
-    url('fonts/icomoon.svg?qcliwz#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?2d37cb');
+  src:  url('fonts/icomoon.eot?2d37cb#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?2d37cb') format('truetype'),
+    url('fonts/icomoon.woff?2d37cb') format('woff'),
+    url('fonts/icomoon.svg?2d37cb#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,9 +24,84 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-right-arrow:before {
+.icon-cancel-circular-button-svgrepo-com:before {
   content: "\e900";
 }
-.icon-left-arrow:before {
-  content: "\e901";
+.icon-TextSVG:before {
+  content: "\7a";
+}
+.icon-RectTable-Seat:before {
+  content: "\65";
+}
+.icon-RoundTable-Seat:before {
+  content: "\72";
+}
+.icon-seatPick:before {
+  content: "\61";
+}
+.icon-Booth-Seat:before {
+  content: "\66";
+}
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-folder-plus:before {
+  content: "\e931";
+}
+.icon-folder-minus:before {
+  content: "\e932";
+}
+.icon-pushpin:before {
+  content: "\e946";
+}
+.icon-undo2:before {
+  content: "\e967";
+}
+.icon-redo2:before {
+  content: "\e968";
+}
+.icon-search:before {
+  content: "\e986";
+}
+.icon-cog:before {
+  content: "\e994";
+}
+.icon-glass2:before {
+  content: "\e9a1";
+}
+.icon-mug:before {
+  content: "\e9a2";
+}
+.icon-spoon-knife:before {
+  content: "\e9a3";
+}
+.icon-bin:before {
+  content: "\62";
+}
+.icon-briefcase:before {
+  content: "\e9ae";
+}
+.icon-man-woman:before {
+  content: "\e9de";
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+}
+.icon-cross:before {
+  content: "\ea0f";
+}
+.icon-checkmark:before {
+  content: "\ea10";
+}
+.icon-enter:before {
+  content: "\ea13";
+}
+.icon-exit:before {
+  content: "\ea14";
+}
+.icon-circle-right:before {
+  content: "\ea42";
+}
+.icon-circle-left:before {
+  content: "\ea44";
 }

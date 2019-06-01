@@ -65,8 +65,8 @@ public class AnalysisServcieImpl implements AnalysisService {
 	}
 
 	@Override
-	public int applicantDeny(String username) {
-		return dao.applicantDeny(username);
+	public int applicantDeny(String username,String mento) {
+		return dao.applicantDeny(username,mento);
 	}
 
 	@Override
@@ -78,6 +78,14 @@ public class AnalysisServcieImpl implements AnalysisService {
 	public List<MentiPerformance> getMenti(String id) {
 		return dao.getMenti(id);
 	}
+
+	@Override
+	public List<MentiPerformance> getMyMenti(String mento) {
+		return dao.getMyMenti(mento);
+	}
+
+
+
 
 
 

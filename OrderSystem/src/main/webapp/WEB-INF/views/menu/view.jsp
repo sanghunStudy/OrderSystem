@@ -12,17 +12,56 @@
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script>
 $(document).ready(function(){
-	var login = ${login};
-	//댓글수정버튼
-	function updateCheck(id) {
-		if(id==login){
-			return '<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate">';
+	//로그인정보가져옴
+	var login = document.getElementById('login').value;
+	
+	//jsp에서 함수 못 읽어서 필요
+	window.co_updateMode = co_updateMode;
+	//댓글수정함수
+	function co_updateMode(code,data){
+		var updateForm ='';
+		updateForm += '<input type="text" class="updateForm" name="content_'+ code +'" value="'+ data +'">';
+		updateForm += '<div class="update_btn" data-code="'+ code +'">수정</div>';
+		var coca = $('.coca').length;
+		for(var i=0; i < coca; i++){
+			if($('.coca:eq('+i+')').attr("data-code") == code){
+				$('.masi:eq('+i+')').html(updateForm);
+			}
+		}
+		
+	}
+	//댓글수정ajax
+	$(document).on("click",'.update_btn',function(){
+		var mcommentId = $(this).attr("data-code");
+		var content = $('[name=content_'+ mcommentId +']').val();
+		$.ajax({
+			url:'${pageContext.request.contextPath}/menu/commentUpdate',
+			type:'post',
+			data:{
+				'mcommentId':mcommentId,
+				'mcommentContent':content
+			},
+			success:function(data){
+				if(data=='success'){
+					commentList();
+				} else {
+					alert("수정실패");
+				}
+			}
+		});
+	});
+	
+	//댓글수정버튼체크
+	function updateCheck(id,commentId,content,sel) {
+		if(id==login&&sel==false){
+			return '<div onclick="co_updateMode('+ commentId +',\''+ content +'\');" class="update_mode"><img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate"></div>';
 		} else {
 			return '';
 		}
 	}
-	function deleteCheck(id,commentcode) {
-		if(id==login){
+	//댓글삭제버튼체크
+	function deleteCheck(id,commentcode,sel) {
+		if(id==login&&sel==false){
 			return '<div class="commentDel" data-code="'+ commentcode +'">삭제</div>';
 		} else {
 			return '';
@@ -41,13 +80,13 @@ $(document).ready(function(){
 				var col = '';
 				var count = 0;
 				$.each(data,function(key,val){
-					col += '<div class="coca"><div class="cola">';
+					col += '<div class="coca" data-code="'+ val.mcommentId +'"><div class="cola">';
 					col += '<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">';
 					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.mcommentDate+'</span></div>';
-					col += updateCheck(val.id);
+					col += updateCheck(val.id,val.mcommentId,val.mcommentContent,val.selectionCheck);
 					col += '</div>';
 					col += '<div class="masi">'+val.mcommentContent+'</div>';
-					col += deleteCheck(val.id,val.mcommentId);
+					col += deleteCheck(val.id,val.mcommentId,val.selectionCheck);
 					col += '</div>'
 					count += 1;
 				});
@@ -83,9 +122,6 @@ $(document).ready(function(){
 		}
 	}); 
 	
-	$(document).on("click",'.commentUpdate',function(){
-		
-	});
 	//댓글삭제ajax
 	$(document).on("click",'.commentDel',function(e){
 		var commentId = $(this).attr("data-code");
@@ -104,8 +140,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-	
+	//포인트 여부확인
 	var pointOX = document.getElementById('pointOX');
 	var pointGet = ${item.pointSet};
 	if(pointGet <= 0){
@@ -115,6 +150,9 @@ $(document).ready(function(){
 </script>
 <script src="https://unpkg.com/vue"></script>
 </head>
+<header>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+</header>
 <body>
 <div id="wrap">
 	<div id="Question">
@@ -130,6 +168,7 @@ $(document).ready(function(){
 			<div class="Qn"><span>${item.id}&emsp;</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
 			</div>
 		</div>
+		<input type="hidden" id="login" value="${login}">
 	</div>
 	<form action="mcommentAdd" id="mcommentForm">
 	<div id="commentInput">
@@ -177,7 +216,7 @@ $(document).ready(function(){
 		<c:choose>
 			<c:when test="${MCommentList.size() > 0}">
 				<c:forEach var="MCL" items="${MCommentList}">
-					<div class="coca">
+					<div class="coca" data-code="${MCL.mcommentId}">
 						<c:if test="${MCL.selectionCheck==true}">
 							<h3>채택된 글</h3>
 						</c:if>
@@ -185,7 +224,8 @@ $(document).ready(function(){
 						<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
 						<div class="combo"><span>${MCL.id} &emsp;</span><span>${MCL.mcommentDate}</span></div>
 						<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
-						<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate">
+						<div onclick="co_updateMode(${MCL.mcommentId},'${MCL.mcommentContent}');" class="update_mode">
+						<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate"></div>
 						</c:if>
 						</div>
 						<div class="masi">${MCL.mcommentContent}</div>
@@ -196,7 +236,6 @@ $(document).ready(function(){
 						<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
 							<div class="commentDel" data-code="${MCL.mcommentId}">삭제</div>
 						</c:if>
-						
 					</div>
 				</c:forEach>
 			</c:when>

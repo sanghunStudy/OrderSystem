@@ -2,7 +2,7 @@
     font-family:'NanumGothic';}
 body{background:#201d2e;text-decoration:none;color:#fff;}
 #wrap {
-	width:1000px; margin:0 auto;
+	width:1000px; margin:70px auto;
 }
 #commentAdd {
 	width:150px;
@@ -90,7 +90,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 }
 .commentCount {
 	width:950px;
-	margin:50px auto;
+	margin:50px auto 0 auto;
 	font-size:15pt;
 }
 .notification {
@@ -107,11 +107,16 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 }
 .coca {
 	font-size:11pt;
-	margin:10px 0 40px 0;
+	margin:50px 0 40px 0;
+	clear:left;
 }
 .cola {
 	font-size:13pt;
 	margin:10px;
+}
+.cola button {
+	background:none;
+	border:0px;
 }
 .personImg {
 	width:30px;
@@ -127,10 +132,14 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	margin-top:10px;
 	float:left;
 }
+.update_mode {
+	width:20px;
+	float:left;
+}
 .commentUpdate {
 	width:20px;
 	color:#fff;
-	margin:12px 0 0 10px;
+	margin:11px 0 0 10px;
 	cursor:pointer;
 }
 .masi {
@@ -139,6 +148,27 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	width:600px;
 }
 .commentDel {
+	width:80px;
+	height:30px;
+	background:#272a3d;
+	text-align:center;
+	line-height:30px;
+	vartical-align:middle;
+	border:1px solid #fff;
+	float:right;
+	cursor:pointer;
+	color:#fff;
+	font-size:11pt;
+	margin-bottom:20px;
+}
+.updateForm {
+	background:#272a3d;
+	width:500px;
+	height:30px;
+	color:#fff;
+	float:left;
+}
+.update_btn {
 	width:80px;
 	height:30px;
 	background:#272a3d;

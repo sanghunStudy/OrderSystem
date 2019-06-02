@@ -37,6 +37,8 @@ public interface AnalysisDao {
 
 	List<MentiPerformance> getMyMenti(String mento);
 
+	void autoDelete();
+
 
 
 

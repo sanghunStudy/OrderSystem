@@ -90,4 +90,9 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectList("trainer.getMyMenti", mento);
 	}
 
+	@Override
+	public void autoDelete() {
+//		sql.delete("trainer.autoDelete");
+	}
+
 }

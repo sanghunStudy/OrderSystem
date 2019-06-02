@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">	
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
       	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 <!-- 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/orderSystem" /> -->
 		<property name="url" value="jdbc:mysql://172.16.143.39:3306/orderSystem" />
+<!-- 		<property name="username" value="root"/> -->
 		<property name="username" value="ordersystem"/>
 		<property name="password" value="1234"/>
  	</bean>  
@@ -24,4 +27,10 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<property name="maxUploadSize" value="60485760"></property>
 	</bean>
+	<!-- scheduler 사용할 클래스 -->
+	<bean id="AutoDelete" class="kr.ac.kopo.util.AutoDelete" />
+	<task:scheduler id="taskScheduler" pool-size="10" /> 
+	<task:scheduled-tasks scheduler="taskScheduler" >
+	<task:scheduled ref="AutoDelete" method="scheduleRun" cron="0 0/1 * * * *" />
+	</task:scheduled-tasks> 
 </beans>

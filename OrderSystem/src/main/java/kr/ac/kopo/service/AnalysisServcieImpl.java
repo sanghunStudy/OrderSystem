@@ -84,6 +84,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getMyMenti(mento);
 	}
 
+	@Override
+	public void autoDelete() {
+		dao.autoDelete();
+	}
+
 
 
 

@@ -36,6 +36,8 @@ public interface AnalysisService {
 
 	List<MentiPerformance> getMyMenti(String mento);
 
+	void autoDelete();
+
 
 
 

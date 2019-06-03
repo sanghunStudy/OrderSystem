@@ -89,7 +89,7 @@ $(document).ready(function() {
 </header>
 <body>
 	<div class="container">
-	<div><a class="subtitle" href="${pageContext.request.contextPath}/menu/list">질문하기</a></div>
+	<div><a class="subtitle" href="${pageContext.request.contextPath}/menu/list">질문게시판</a></div>
 	<script>
 		function changeSelect() {
 			document.getElementById("selectForm").submit();
@@ -142,8 +142,15 @@ $(document).ready(function() {
 				<c:forEach var="item" items="${list}">
 					<tr>
 						<td>${item.menuId}</td>
-						<td id="menuName${item.menuId}"><a href="view?menuId=${item.menuId}">&emsp;${item.menuName}</a>
-						<a class="count">[${item.cnt}] </a>
+						<td id="menuName">
+						
+						<div class="overName">
+						<a href="view?menuId=${item.menuId}">
+						&emsp;${item.menuName}</a>
+						<span class="count">[${item.cnt}] </span></div>
+						
+						
+						
 						<c:if test="${item.imgChk}">
 						<i class="fas fa-image"></i></c:if></td>
 						<td>${item.id}</td>

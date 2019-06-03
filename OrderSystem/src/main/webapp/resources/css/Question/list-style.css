@@ -73,6 +73,19 @@ body{background:#201d2e;text-decoration:none;}
 .posts tr td:nth-child(1),.posts tr td:nth-child(3),.posts tr td:nth-child(4),.posts tr td:nth-child(5) {
     text-align:center;
 }
+.overName {
+	width:300px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	float:left;
+}
+
+.count{
+	color:#d4835e;
+	white-space:normal;
+	overflow:visible;
+}
 .posts tr td:nth-child(1),.posts tr td:nth-child(3) {
 	width:10%;
 }
@@ -82,7 +95,7 @@ body{background:#201d2e;text-decoration:none;}
 .posts tr td:nth-child(4) {
 	width:14%;
 }
-.count{color:#d4835e;}
+
 .search_type {
 	float:left;
 	margin-right:4px;

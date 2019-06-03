@@ -209,7 +209,7 @@ $(document).ready(function(){
 		</div>
 		<div id="contents">
 			<div id="content">
-				<span>${item.menuContent}</span><span>${item.menuViews}</span>
+				<span>${item.menuContent}</span>
 			</div>
 			<div class="Question_writer">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">

@@ -117,12 +117,9 @@ body{background:#201d2e;text-decoration:none;}
 	vertical-align:middle;
 	text-align:center;
 	float:right;
-}
-.Go-back a:visited {
 	color:#fff;
-	text-decoration:none;
 }
-.Go-back a:hover {
+.Go-back:hover {
 	color:#fff;
 	text-decoration:none;
 }

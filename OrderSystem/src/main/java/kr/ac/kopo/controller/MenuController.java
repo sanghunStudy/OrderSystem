@@ -110,7 +110,7 @@ public class MenuController {
 	String update(Menu item) {
 		service.update(item);
 		
-		return "redirect:list";
+		return "redirect:view?menuId="+item.getMenuId();
 	}
 	
 	@RequestMapping("/delete")

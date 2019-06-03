@@ -34,7 +34,8 @@
 	</select>
 	
 	<update id="update" parameterType="Menu">
-		update menu set menu_name=#{menuName},menu_content=#{menuContent}
+		update menu 
+		set menu_name=#{menuName},menu_content=#{menuContent},img_chk=#{imgChk},point_set=#{pointSet}
 		where menu_id=#{menuId}
 	</update>
 	

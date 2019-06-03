@@ -14,29 +14,27 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/Question/question-add.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#summernote').summernote(
-			{
-				height : 600, // set editor height
-				fontNames : [ '맑은고딕', 'Arial',
+		$('#summernote').summernote({
+			height : 600, // set editor height
+			fontNames : [ '맑은고딕', 'Arial',
 							'Arial Black',
-													'Comic Sans MS',
-													'Courier New', ],
-				fontNamesIgnoreCheck : [ '맑은고딕' ],
-				minHeight : null, // set minimum height of editor
-				maxHeight : null, // set maximum height of editor
-				focus : true, // set focus to editable area after initializing summernote
-				callbacks : {
-					onImageUpload : function(files,
-						editor, welEditable) {
-						for (var i = files.length - 1; i >= 0; i--) {
-							sendFile(files[i], this);
-						}
+							'Comic Sans MS',
+							'Courier New', ],
+			fontNamesIgnoreCheck : [ '맑은고딕' ],
+			minHeight : null, // set minimum height of editor
+			maxHeight : null, // set maximum height of editor
+			focus : true, // set focus to editable area after initializing summernote
+			callbacks : {
+				onImageUpload : function(files, editor, welEditable) {
+					for (var i = files.length - 1; i >= 0; i--) {
+						sendFile(files[i], this);
 					}
 				}
-
-			});
+			}
+		});
 					
 		$("#menuSubmit").click(function(){
 			var summernoteVal = $("#summernote").val(); 
@@ -55,70 +53,29 @@
 				alert("내용을 입력하세요");
 			} else {
 				var pointInfo = $('#pointSet').val();
-				if(pointInfo != null || pointInfo != "" || pointInfo != 0){
+				if(pointInfo != null || pointInfo != 0){
 					$.ajax({
 						url:"${pageContext.request.contextPath}/menu/userpoint",
 						type:'GET',
 						success:function(data){
-							if(data >= pointInfo){
+							if(data > pointInfo){
 								$("#menuForm").submit();
-							}/*  else if (data == pointInfo) {
-								
-							}  */else {
+							} else if (data == pointInfo) {
+								var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
+								if(pointzero = true){
+									$("#menuForm").submit();
+								}
+							} else {
 								alert("포인트 설정은 본인의 포인트보다 크게 할 수 없습니다");
 							}
 						}
 					});
-				} else { 
-					alert("포인트설정 없이 채택하면 본인의 포인트차감없이 채택자에게 10포인트를 드립니다");
+				} else if(pointInfo == 0) { 
 					$("#menuForm").submit();
 				}
 			}
 		});
 		
-		var pointBottons = document.getElementById('point_buttons');
-		$('#point-set').click(function(){
-			
-			pointBottons.style.display="block";
-			$('.point_buttons').animate({
-				width:900,
-				height:50
-			});
-			
-		});
-		
-		function pointboxClose(){
-			
-			$('#point_buttons').animate({
-				width:10,
-				height:10
-			});
-			pointBottons.style.display="none";
-		}
-		
-		function pointSetAndClose(point,pointVal){
-			
-			$('#pointSet').val(point);
-			$('#point-set').text(pointVal);
-			
-			pointboxClose();
-		}
-		
-		$('.point-set').click(function(){
-			var point = $(this).val();
-			var pointVal = $(this).text();
-			
-			if(point == null){
-				pointboxClose();
-				
-			} else if(point == 0){
-				pointSetAndClose(point,pointVal);
-				
-			} else {
-				alert("설정한 포인트는 댓글 채택시 본인의 포인트에서 차감지급됩니다");
-				pointSetAndClose(point,pointVal);
-			}
-		});
 		
 	});
 
@@ -152,8 +109,7 @@
 <div class="container">
 	<div><a class="subtitle" href="list">질문하기</a></div>
 	<div class="innerbox">
-	<form action="add" method="post"
-		enctype="multipart/form-data" id="menuForm">
+	<form action="add" method="post" enctype="multipart/form-data" id="menuForm">
 		<!-- <sec:csrfInput /> -->
 		<div class="naming-box" id="naming-box">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
@@ -181,7 +137,7 @@
 				}
 			});
 		</script>
-		<div>
+		<div id="content-box">
 			<textarea name="menuContent" id="summernote" cols="120" rows="50" value=""></textarea>
 		</div>
 		<div class="point_buttons" id="point_buttons">
@@ -205,7 +161,7 @@
 		<div class="buttons">
 <!-- 			<input type="submit" value="등록하기"> -->
 			<button type="button" id="menuSubmit">등록하기</button>
-			<div class="Go-back"><a href="list">작성취소</a></div>
+			<a href="list"><div class="Go-back">작성취소</div></a>
 		</div>
 		
 	</form>

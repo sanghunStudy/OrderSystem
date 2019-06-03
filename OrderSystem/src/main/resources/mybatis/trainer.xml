@@ -24,8 +24,8 @@
 </select>
 <!-- pt신청시 user_managerment 테이블에 신청한 회원과 선택한 트레이너의 아이디가 저장됨. -->
 <insert id="apply">
-	insert into user_management(manager,username,reading,apply_date)
-	values(#{manager},#{username},'N',curdate())
+	insert into user_management(manager,username,reading,apply_date,goal,weights,etc,height)
+	values(#{manager},#{username},'N',curdate(),#{goal},#{weights},#{etc},#{height})
 </insert>
 <!-- 트레이너에게 pt신청한 내역이 있나 확인 -->
 <select id="selectApply" resultType="Integer">

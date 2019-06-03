@@ -9,6 +9,7 @@ public class UserManagement {
 	String goal;
 	float weights;
 	String etc;
+	
 
 
 

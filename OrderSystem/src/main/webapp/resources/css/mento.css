@@ -330,7 +330,11 @@ to {
 	color: #9b1d85;
 	transform: translate(-50%, -50%);
 }
+.food-modal::-webkit-scrollbar,.exer-modal::-webkit-scrollbar { 
 
+    display: none; 
+
+}
 .food-management, .exer-management {
 	bakcground: #2d333f;
 	margin: auto;

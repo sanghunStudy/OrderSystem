@@ -57,7 +57,7 @@ public class TrainerController {
 	//pt신청을 했을때 트레이너한테 회원 아이디가 저장됨
 	@RequestMapping(value="/apply", method=RequestMethod.POST)
 	String apply(UserManagement um, HttpSession session) {
-		System.out.println("오나?");
+		
 		String id = (String)session.getAttribute("user");
 		um.setUsername(id);
 		service.apply(um);

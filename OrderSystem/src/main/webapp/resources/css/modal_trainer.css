@@ -59,6 +59,14 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	margin: 0;
 	padding: 0;
 }
+@font-face {
+	font-family: 'BMJUA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
 .modal {
 	display: none;
@@ -76,7 +84,11 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	color: #9b1d85;
 	transform: translate(-50%, -50%);
 }
+.modal::-webkit-scrollbar { 
 
+    display: none; 
+
+}
 .food-management, .exer-management {
 	bakcground: #2d333f;
 	margin: auto;
@@ -93,7 +105,8 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	margin-bottom: 30px;
 }
 .dmodal .modal-header {
-	height:300px;
+	height: 30vh;
+    min-height: 250px;
 }
 .modal-header h2 {
 	color: #f7f7f7;
@@ -148,7 +161,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	width: 100%;
 	border: none;
 	border-bottom: 1px solid #757575;
-	background: #f7f7f7;
+	background: #ededed;
 	color: #1b1b1b;
 	font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;
 }
@@ -389,19 +402,26 @@ to {
 }
 .contents-box {
     width: 25vw;
+    height: 40vh;
+    min-height: 400px;
     min-width: 400px;
-    position: absolute;
-    top: 280px;
+    max-height: 450px;
+    position: relative;
+    top: -10vh;
     background: #fff;
     padding: 30px 20px;
     transform: translate(-50%,0);
     left: 50%;
+    box-shadow: 0px 0px 35px -16px rgba(0, 0, 0, 0.75)
 }
 .contents-box > div {
 	margin-bottom:30px;
 }
 .contents-box > h2 {
 text-align: center;
+color:black;
+margin-bottom:20px;
+font-family:'BM JUA';
 }
 .profile-header {
 	color:#f7f7f7;
@@ -413,5 +433,104 @@ text-align: center;
 	margin-right:5px;
 }
 .profile-header span {
-	font-size:14pt;
+	font-size:12pt;
+		font-family: 'BMJUA';
+}
+.sex-box p {
+	margin-bottom:30px;
+}
+/* 토글 css */
+.background {
+    width: 75px;
+    height: 75px;
+  position: relative;
+  background: transparent;
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  left:25px;
+      display: flex;
+    justify-content: space-between;
+}
+.background--on {
+  background: transparent;
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+}
+.toggle-body {
+    width: 5rem;
+    height: 2.856rem;
+  position: absolute;
+  top: calc(50% - 4rem / 2);
+  left: calc(50% - 7rem / 2);
+  background: white;
+  border-radius: 2rem;
+  border:2px solid #618bff;
+  animation: angle-reverse 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+
+}
+.toggle-body--on {
+  animation: angle 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  animation-direction: alternate;
+  border:2px solid #ff8fde;
+}
+.toggle-btn {
+width: 1.7rem;
+    height: 1.7rem;
+  position: absolute;
+  top: calc(50% - 2rem / 2.2);
+  left: calc(27% - 2rem / 2);
+  background: white;
+  border-radius: 2rem;
+  background: #618bff;
+  cursor: pointer;
+  transform: translateX(0);
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+      align-items: center;
+}
+.toggle-btn--on {
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  transform: translateX(150%);
+  background: #ff8fde;
+}
+.background span {
+	position:relative;
+	  top: -10px;
+	 
+}
+.male {
+    left: -40px;
+  	
+
+}
+.female{
+	 left: 5px;
+
+    
+}
+.gender {
+	color:#618bff;
+	align-self:center;
+}
+.gender--female {
+	color:#ff8fde;
+}
+@keyframes angle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes angle-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

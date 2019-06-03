@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script>
 var logoutUri = "${pageContext.request.contextPath}/logout";
+
 $(document).ready(function(){
 	
 	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
@@ -21,6 +22,8 @@ $(document).ready(function(){
 		clearTime(5);//세션 체크 5분 설정
 		setTimer();	//타이머 실행
 	}
+	
+
 });
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/sesseionChk.js"></script>
@@ -63,36 +66,54 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<script>
+		
 			$(document).ready(function(){
+				
+				
+				
+			
+				
+				$("#login_btn").click(function() {
+					login();
+				});
+				
+				
+
+			});
+			function login() {
 				var obj = document.loginFrom;
 				
-				$("#login_btn").click(function(){
-					
-						if(obj.username.value.length == 0 || obj.password.value.length == 0){
-							$(".window").css("height","380px");
-							document.getElementById("LoginChk").innerHTML = ("<span style='color:red;'>아이디와 비밀번호를 입력해주세요</span>");
-// 							obj.username.focus();
-						}else{
-							$.ajax({
-								type:"POST",
-								url:"${pageContext.request.contextPath}/LoginChk",
-								data:{
-									"username":obj.username.value,
-									"password":obj.password.value
-								},
-								success:function(data){
-									if(data == 0){
-										$(".window").css("height","380px");
-										document.getElementById("LoginChk").innerHTML = ("<span style='color:green;'>아이디 또는 비밀번호를 다시 확인하세요.</span>");
-										obj.password.focus();
-									}else{
-										obj.submit();
-									}
-								}
-							});
+				if(obj.username.value.length == 0 || obj.password.value.length == 0){
+					$(".window").css("height","380px");
+					document.getElementById("LoginChk").innerHTML = ("<span style='color:red;'>아이디와 비밀번호를 입력해주세요</span>");
+//						obj.username.focus();
+				}else{
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/LoginChk",
+						data:{
+							"username":obj.username.value,
+							"password":obj.password.value
+						},
+						success:function(data){
+							if(data == 0){
+								$(".window").css("height","380px");
+								document.getElementById("LoginChk").innerHTML = ("<span style='color:green;'>아이디 또는 비밀번호를 다시 확인하세요.</span>");
+								obj.password.focus();
+							}else{
+								obj.submit();
+							}
 						}
-				});
-			});
+					});
+				
+		}
+		}
+		
+		function enterkey(){
+			   if(window.event.keyCode ==13){
+			      login();
+			   }
+			}
 		</script>
 		<!-- 		로그인 레이어 팝업 -->
 		<div id="wrap">
@@ -107,7 +128,7 @@ $(document).ready(function(){
 								<ul>
 									<li><i class="far fa-user"></i><input type="text" id="loginUsername" name="username" placeholder="User name" class="inputId"></li>
 									<li><hr></li>
-									<li class="pw"><i class="material-icons">lock_open</i><input type="password" id="loginPassword" name="password" placeholder="Password" class="inputPw"></li>
+									<li class="pw"><i class="material-icons">lock_open</i><input type="password" id="loginPassword" name="password" placeholder="Password" class="inputPw" onkeyup="enterkey();"></li>
 									<li><hr></li>
 									<li id="LoginChk"></li>
 									<li><button type="button" class="login_btn" id="login_btn" value="LogIn">LogIn</button></li>
@@ -120,7 +141,7 @@ $(document).ready(function(){
 		</div>
 		<div id="sessionChk" class="session-chk">
 			<p></p>
-			<button type="button" id="sessionExtension" onclick="sessionChk()">세션 시간 연장하기</button>
+			<button type="button" id="sessionExtension" onclick="sessionChk()"></button>
 		</div>
 	</header>
 </body>

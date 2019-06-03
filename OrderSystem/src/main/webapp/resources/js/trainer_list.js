@@ -23,6 +23,21 @@ function selectUserbI(managerId) {
 	});
 }
 $(function() {
+	
+	const background = document.querySelector('.background');
+	const toggleBody = document.querySelector('.toggle-body');
+	const toggleBtn = document.querySelector('.toggle-btn');
+	const gender = document.querySelectorAll('.gender');
+
+	toggleBtn.addEventListener('click', () => {
+	  background.classList.toggle('background--on');
+	  toggleBody.classList.toggle('toggle-body--on');
+	  toggleBtn.classList.toggle('toggle-btn--on');
+	  toggleBtn.classList.toggle('toggle-btn--scale');
+	  gender[0].classList.toggle('gender--female');
+	  gender[1].classList.toggle('gender--female');
+	});
+	
 	$('.apply').click(function() {
 		$('.apply').val(trainer_username);
 		selectUserbI(trainer_username);
@@ -49,10 +64,13 @@ $(function() {
 			function(e) {
 				var target = e.target || e.srcElement;
 
-				trainer_username = $(this).parents('.item-box').children(
-						'.username').text(); /* 트레이너 리스트부분, 공통모달에는 포함되지 않음 */
+				
 				
 				if (modalClickEvent.hasOwnProperty(target.id)) {
+					/* 트레이너 리스트부분, 공통모달에는 포함되지 않음 */
+					trainer_username = $(this).parents('.item-box').find(
+					'.username').text();
+					
 					photoSrc = $(this).parents('.item-box').find('img').attr('src');
 					trainer = $(this).parents('.item-box').find('.username').text();
 					modalClickEvent[target.id].call();

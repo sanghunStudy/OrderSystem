@@ -58,8 +58,7 @@
 
 	<select id="login" resultType="UserVO">
 		select username,password,authority from user where
-		username=#{username} and
-		password=#{password}
+		username=#{username}
 	</select>
 
 	<select id="list" resultType="UserVO">

@@ -25,6 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -58,7 +59,9 @@ public class UserController {
 	
 	@Autowired
 	UserService service;
-
+	//스프링 시큐리티 비밀번호 암호화
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 //	�쉶�썝 湲곗큹�젙蹂� �엯�젰 �솕硫�
 	@RequestMapping(value="/basicInformation",method=RequestMethod.GET)
@@ -388,6 +391,11 @@ public class UserController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(UserVO item) {
+		String inputPw = item.getPassword();
+		//비번 암호화
+		String rockPw = passEncoder.encode(inputPw);
+		//암호화한 비번 저장
+		item.setPassword(rockPw);
 		service.add(item);
 
 		return "redirect:/";
@@ -416,6 +424,10 @@ public class UserController {
 	public String update(UserVO item) {
 		logger.info("username ->:" + item.getUsername());
 		logger.info("ps ->" + item.getPassword());
+		String inputPw = item.getPassword();
+		//비번 암호화
+		String rockPw = passEncoder.encode(inputPw);
+		item.setPassword(rockPw);
 		service.update(item);
 
 		return "redirect:/";

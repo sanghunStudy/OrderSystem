@@ -7,7 +7,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
     /WEB-INF/spring/root-context.xml
-    
+    /WEB-INF/spring/spring-security.xml
 <!--     /WEB-INF/spring/security-context.xml SpringSecurity 사용 -->
     </param-value>
 	</context-param>

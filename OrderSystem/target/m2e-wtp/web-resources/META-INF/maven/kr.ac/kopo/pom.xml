@@ -263,7 +263,7 @@
 			<version>3.2.3.RELEASE</version>
 		</dependency>
 
-		<!-- 웹소켓 준비 -->
+		<!-- 웹소켓 쪽지 준비 -->
 		<!-- 웹 소켓 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -276,7 +276,13 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
-
+		
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+		<!-- 쪽지 준비 끝 -->
 		<!-- 파일업로드 관련 : 이미지 썸네일 생성 라이브러리 -->
 		<dependency>
 			<groupId>org.imgscalr</groupId>
@@ -288,7 +294,6 @@
 			<artifactId>commons-compress</artifactId>
 			<version>1.8</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>

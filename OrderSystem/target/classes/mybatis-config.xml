@@ -26,6 +26,7 @@
 		<typeAlias type="kr.ac.kopo.model.TypeOfExercise" alias="TypeOfExercise"/>
 		<typeAlias type="kr.ac.kopo.model.UserManagement" alias="UserManagement"/>
 		<typeAlias type="kr.ac.kopo.model.MentiPerformance" alias="MentiPerformance"/>
+		<typeAlias type="kr.ac.kopo.model.MessageRepository" alias="MessageRepository"/>
 	</typeAliases>
 
  	<mappers>
@@ -37,5 +38,6 @@
 		<mapper resource="mybatis/trainer.xml"/>
 		<mapper resource="mybatis/statistics.xml"/>
 		<mapper resource="mybatis/bedata.xml"/>
+		<mapper resource="mybatis/message.xml"/>
 	</mappers>
 </configuration>

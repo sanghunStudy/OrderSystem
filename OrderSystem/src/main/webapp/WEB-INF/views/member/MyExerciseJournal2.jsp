@@ -5,17 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+<script src="${pageContext.request.contextPath}/resources/js/inputDatepicker.js"></script>
 <title>운동일지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
 <script type="text/javascript">
 	$(document).ready(function(){
 		inputDatepicker();
+	
+
+		$(".input-date").change(function(){
+			var inputDateVal = $(".input-date").val();
+			$(".date-value").text(inputDateVal);
+		});
 		//탭메뉴
 		$('ul.tabs li').click(function() {
 			var tab_id = $(this).attr('data-tab');
@@ -47,7 +51,7 @@
 			var createTitle;
 			var createContent;
 			//공통적인 부분(탭메뉴 기본 input태그)
-			var btnItem = "<button id='inputAdd'>+</button><button id='inputDel'>-</button>";
+			var btnItem = "<button id='inputAdd' class='input-btn'>+</button><button id='inputDel' class='input-btn'>-</button>";
 			var inputItems = 
 					  "<ul class='input_item"+count+"'>"
 					+ "<li>"
@@ -225,25 +229,18 @@
 	});
 </script>
 </head>
-<%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
+
 <body>
 	<div id="myExercise" class="content-container">
 		<h1>MyExerciseJournal</h1>
-		<input type="text" name="date" id="date1" class="input-date" size="12" disabled="disabled"/>
-<!-- 		<div> -->
-<!-- 			<span class="icon"><i class="fas fa-grin"></i></span> -->
-<!-- 			<span class="icon"><i class="far fa-frown"></i></span> -->
-<!-- 			<span class="icon"><i class="far fa-tired"></i></span> -->
-<!-- 		</div> -->
-		
-		
 		<div id="infoContainer">
+		<!-- 			오른쪽 운동명 박스 -->
 			<c:choose>
 				<c:when test="${eTlist.size() > 0 }">
 					<c:forEach var="eTlist" items="${eTlist}">
 					<div class="exTitles">
 						<p>${eTlist.teName}</p>
-						<span>${eTlist.teSet}</span><span>${eTlist.teReps}</span><span>${eTlist.teTool}</span><span class="itemsName" title="${eTlist.teName}">담기</span>
+						<span>${eTlist.teSet}set&emsp;｜</span><span>${eTlist.teReps}reps&emsp;｜</span><span>${eTlist.teTool}&emsp;</span><span class="itemsName input-btn" title="${eTlist.teName}">담기</span>
 					</div>
 					</c:forEach>
 				</c:when>
@@ -254,25 +251,33 @@
 			</div>
 
 
-			<!-- 클릭했을때 생기는 탭메뉴 -->
+<!-- 왼쪽박스 -->
 			<div id="inputContainer">
-				<div id="SearchBox">
-					<div id="SearchInput" class="input-auto-box">
-						<input type="text" id="keyWord">
+				<div class="left-top-box">
+				<input type="text" name="date" id="date1" class="input-date" size="12" disabled="disabled"/>
+					<span class="date-value"></span>
+					<div id="SearchBox">
+						<div id="SearchInput" class="input-auto-box">
+							<input type="text" id="keyWord" placeholder="Search">
+						</div>
 					</div>
-				</div>
-				<div>
-				<label>제 목</label>
-				<input type="text" id="inputTitle"/>
-				
-				<label>체 중</label>
-				<input type="number" id="userWeight" min="0"/>
+					<div>
+						<div class="input-box">
+	<!-- 						<label>제 목</label> -->
+								<input type="text" id="inputTitle" class="title-input-box" placeholder="title"/>
+	<!-- 						<label>체 중</label> -->
+							<input type="number" id="userWeight" class="weight-input-box" min="0" placeholder="weight"/>
+						</div>
+					</div>
 				</div>
 				<ul id="createli">
 
 				</ul>
-				<div id="createDiv"></div>
-			<button type="button" id="eJSubmit">작성완료</button>
+				<!-- 클릭했을때 생기는 운동종목 -->
+				<div id="createDiv" class="createDiv"></div>
+				<div class="btn-box">
+				<button type="button" id="eJSubmit" class="eJSubmit input-btn">작성완료</button>
+				</div>
 			</div>
 		
 	</div>

@@ -1,41 +1,54 @@
 @charset "UTF-8";
 
+body{
+	background:#211d2f;
+}
 /* 전체영역 */
 #myExercise{
-	width:1024px;
-	margin:0 auto;
+	color:white;
+	/* 	내부 요소가 float이라 height 지정해줌 수정필요 */
+	height:1200px;
 }
 
+#myExercise h1{
+	margin:0px 0px 50px 0px;
+}
 /* 오른쪽 운동명 전체박스 */
 #infoContainer{
 	float:right;
+/* 	margin-right:0; */
 	width:550px;
 	margin:0 6px;
-	background:#ebeb;
 }
 
-/* 운동명 개별 박스 */
+/* 오른쪽 운동명 개별 박스*/
 #infoContainer div{
-	border:1px solid #eee;
-	margin:5px 20px;
-	height:60px;
+/* 	border:1px solid #e0dbf4; */
+	margin:5px 0px 15px 0px;
+	padding: 0px 0px 5px 15px;
+	background:#272a3d;
 }
 
+
+/* 운동명 */
 .exTitles p{
-	margin:0px;
+	font-size: 20px;
+    font-weight: 680;
+	margin:10px 0px 5px 0px;
 	padding:0px;
 }
 
 /* 왼쪽 전체박스 */
 #inputContainer{
+/* 	margin-left:0; */
 	float:left;
 	width:400px;
+/* 	border: 1px solid #e0dbf4; */
 }
 
 /* 검색박스 */
 #SearchBox{
 	height:80px;
-	border:1px solid #eee;
 }
 
 /* 검색인풋박스 */
@@ -113,16 +126,104 @@
 	color: #222;
 }
 
-.exercise_content {
-	display: block;
-/* 	background: #ededed; */
-	padding: 15px;
-}
-
-.exercise_content {
-	display: inherit;
-}
-
 .icon{
 	font-size:40px;
+}
+.input-box{
+	width:200px;
+	margin:0 auto;
+}
+
+/* 제목 인풋 박스 */
+.title-input-box{
+	width:100px;
+}
+
+/* 체중 인풋 박스 */
+.weight-input-box{
+	width:60px;
+}
+
+/* 생성되는 박스 */
+.createDiv{
+	margin:50px 0px 0px 0px;
+}
+/* 생성된 input박스모음 */
+.exercise_content{
+	padding: 15px;
+	margin:20px 0px 0px 0px;
+	background:#272a3d;
+}
+/* 생성된 운동 제목 */
+.exercise_link{
+	font-weight: 680;
+    font-size: 18px;
+    margin: 16px 0px 0px 60px;
+}
+
+/* 생성된 제목 옆 x표시 */
+.deletelis{
+	margin: 0px 0px 0px 40px;
+	padding:4px;
+	cursor: pointer;
+}
+#inputAdd{
+    width: 23px;
+    height: 23px;
+	margin:0px 0px 0px 50px;
+}
+#inputDel{
+	    width: 23px;
+   height: 23px;
+	margin:0px 0px 0px 50px;
+}
+/* + - 버튼 */
+.input-btn{
+	background-color: black;
+	color: white;
+	border: 1px solid grey;
+	border-radius: 6%;
+	text-weight: lighter !important;
+	cursor: pointer;
+}
+/* 작성완료 버튼 박스 */
+.btn-box{
+	margin:50px 50px;
+	text-align: center;
+}
+/* 작성완료 버튼 */
+.eJSubmit{
+	height:50px;
+	width:150px;
+}
+
+/* 검색 제목 체중있는 박스 */
+.left-top-box{
+    margin: 20px 10px;
+    padding: 10px 10px;
+    height: 160px;
+	background:#272a3d;
+}
+/* 날짜선택 input */
+.input-date{
+/*     margin: 10px 0px 10px 20px; */
+    display: none;
+}
+
+/* 담기버튼 */
+.itemsName{
+	padding: 3px 5px;
+    font-size: 13px;
+}
+/* 달력 아이콘 */
+.ui-datepicker-trigger{
+	width:30px;
+	height:30px;
+    padding: 10px 0px 0px 15px;
+	
+}
+
+/* 달력에서 선택한 날짜 표시하는 span */
+.date-value{
+	
 }

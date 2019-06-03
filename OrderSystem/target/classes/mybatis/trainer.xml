@@ -13,8 +13,10 @@
 	select * from user_basic_information where username = #{username};
 </select>
 <!-- 트레이너 리스트 출력 -->
-<select id="list" resultType="UserVO">
-	select username from user where authority = 'trainer';
+<select id="list" resultType="TrainerProfile">
+	select username,name,sex,career,up_filename
+	FROM trainer_profile
+	WHERE trainer_apply = 'Y'
 </select>
 <!-- pt신청시 회원기초정보를 작성했나 확인 -->
 <select id="selectUserbI" resultType="Integer">

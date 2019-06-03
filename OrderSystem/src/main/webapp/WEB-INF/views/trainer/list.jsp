@@ -7,36 +7,44 @@
 <meta charset="UTF-8">
 <title>트레이너 명단</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/trainer-modal.js"></script>
+
 <script src="${pageContext.request.contextPath }/resources/js/trainer_list.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/resources/css/modal.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/icomoon/style.css">
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
+	href="${pageContext.request.contextPath }/resources/css/modal_trainer.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/resources/css/trainer_list.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" -->
+<!-- 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" -->
+<!-- 	crossorigin="anonymous"> -->
 <link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script>
-
+var context = "${pageContext.request.contextPath}";
 </script>
 </head>
-<body>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+<body>	
 
-	<h1>트레이너 목록</h1>
+	<div id="wrapper">
+	<div class="title"><h1>트레이너 목록</h1></div>	
+	<div class="trainer-list">
 	<c:choose>
 		<c:when test="${trainerList.size() > 0}">
 			<c:forEach var="item" items="${trainerList}">
 				<div class="item-box">
+					<div class="trainer-info">
+					<div class="photo"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" width="100px" height="100px"></div>
+					<div class="trainer-text">
 					<div class="username">${item.username}</div>
+					<div class="career"><img src="${pageContext.request.contextPath}/resources/images/icon/career.png" width="35px" height="35px">${item.career}</div>
+					</div>
+					</div>
 					<c:if test="${user != null}">
 						<div class="modal-btn-box">
 							<button class="modal-btn" id="modal-btn">pt신청</button>
+							<button class="details">상세보기</button>
 						</div>
 
 					</c:if>
@@ -47,13 +55,11 @@
 			<p>등록된 트레이너가 없습니다.</p>
 		</c:otherwise>
 	</c:choose>
-	<form action="apply" method="post" id="trainer" hidden="true">
-		<input id="managerID" type="hidden" name="manager" value="">
-	</form>
-	<!-- Modal  -->
-	<div class="modal-btn-box">
-		<button class="modal-btn" id="modal-btn">모달테스트</button>
 	</div>
+</div>
+	<!-- Modal  -->
+
+
 
 	<div class="modal" id="modal">
 		<div class="modal-container">
@@ -61,17 +67,19 @@
 				<h2>멘토링 신청</h2>
 			</div>
 			<div class="contents-container">
-				<form>
+						<form action="apply" method="post" id="trainer" >
+		<input id="managerID" type="hidden" name="manager" value="">
+	
 					<div class="group">
-						<input type="text" required class="weights"> <span class="highlight"></span>
+						<input type="text" required class="weights" name="weights"> <span class="highlight"></span>
 						<span class="bar"></span> <label class="only-modal">체중</label>
 					</div>
 					<div class="group">
-						<input type="text" required class="height"> <span class="highlight"></span>
+						<input type="text" required class="height" name="height"> <span class="highlight"></span>
 						<span class="bar"></span> <label class="only-modal">키</label>
 					</div>
 					<div class="group">
-						<input type="text" required class="etc"> <span class="highlight"></span>
+						<input type="text" required class="etc" name="etc"> <span class="highlight"></span>
 						<span class="bar"></span> <label class="only-modal">하고싶은 말
 							한줄</label>
 					</div>
@@ -87,5 +95,38 @@
 		</div>
 	</div>
 	<!-- end Modal -->
+		<div class="modal dmodal" id="detail-modal">
+		<div class="modal-container">
+			<div class="modal-header">
+				<h2>멘토링 신청</h2>
+			</div>
+			<div class="contents-container">
+						<form action="apply" method="post" id="trainer" >
+		<input id="managerID" type="hidden" name="manager" value="">
+	
+					<div class="group">
+						<input type="text" required class="weights" name="weights"> <span class="highlight"></span>
+						<span class="bar"></span> <label class="only-modal">체중</label>
+					</div>
+					<div class="group">
+						<input type="text" required class="height" name="height"> <span class="highlight"></span>
+						<span class="bar"></span> <label class="only-modal">키</label>
+					</div>
+					<div class="group">
+						<input type="text" required class="etc" name="etc"> <span class="highlight"></span>
+						<span class="bar"></span> <label class="only-modal">하고싶은 말
+							한줄</label>
+					</div>
+
+				</form>
+			</div>
+			<ul class="list-inline">
+
+				<li><button type="button" class="modal-btn-collection apply">
+						<span>신청</span>
+					</button></li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

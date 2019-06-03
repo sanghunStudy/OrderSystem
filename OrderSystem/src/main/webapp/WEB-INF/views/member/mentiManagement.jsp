@@ -36,9 +36,6 @@
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/mentoCharts.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="custom.css"> -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

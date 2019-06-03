@@ -67,10 +67,10 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	/* 	padding-top:100px; */
 	left: 50%;
 	top: 50%;
-	width: 45vw;
-	height: 90vh;
+	width: 710px;
+	height: 930px;
 	overflow: auto;
-	background: #f7f7f7;
+	background: #ededed;
 	color: #9b1d85;
 	transform: translate(-50%, -50%);
 }
@@ -84,11 +84,23 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 
 .modal-header {
 	display: flex;
-	height: 100px;
+	height: 330px;
 	background: linear-gradient(to bottom, #b11a6d, #9b1d85, #881f99);
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 30px;
+}
+.modal-header img {
+	position: absolute;
+}
+.modal-proImg {
+	width : 170px;
+	height : 170px;
+	border-radius : 50%;
+	background:black;
+	margin: 0 auto;
+	top: 35px;
+    position: absolute;
 }
 
 .modal-header h2 {
@@ -106,7 +118,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	/*   margin:20px auto 0;  */
 	display: flex;
 	flex-direction: column;
-	padding: 30px 50px 10px;
+	padding: 25px 30px 15px;
 }
 
 .contents-container .date-area {
@@ -122,6 +134,17 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 .contents-container form {
 	margin-top: 30px;
 }
+.contents-form {
+	height : 800px;
+	background : #ffffff;
+	top: 260px;
+    position: absolute;
+}
+.contents-form h2 {
+	color : black;
+	text-align: center;
+	text-family:[NotoSansCJKkr];
+}
 
 .modals h2 {
 	text-align: center;
@@ -133,15 +156,24 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	margin-bottom: 45px;
 	font-family: 'BMJUA';
 }
+ .group img {
+	position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 27px;
+}
+
 
 .contents-container input {
 	font-size: 18px;
-	padding: 10px 10px 10px 5px;
+	padding: 15px 10px 15px 5px;
 	display: block;
-	width: 100%;
+	width: 630px;
 	border: solid 1px #757575;
 	border-radius : 50px 50px 50px 50px / 50px 50px 50px 50px ;
-	background: #f7f7f7;
+/* 	background: #f7f7f7; */
+    background-image: url("${pageContext.request.contextPath}/resources/images/icon/idicon.png");
 	color: #1b1b1b;
 	font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;
 }
@@ -155,10 +187,10 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	color: #999;
 	font-size: 18px;
 	font-weight: normal;
-	position: absolute;
+/* 	position: absolute; */
 	pointer-events: none;
-	left: 5px;
-	top: 10px;
+/* 	left: 5px;
+	top: 10px; */
 	transition: 0.2s ease all;
 	-moz-transition: 0.2s ease all;
 	-webkit-transition: 0.2s ease all;

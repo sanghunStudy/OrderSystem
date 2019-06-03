@@ -20,26 +20,39 @@
 	<div class="modal" id="modal">
 		<div class="modal-container">
 			<div class="modal-header">
-				<h2>트레이너 신청</h2>
+				<img src="${pageContext.request.contextPath}/resources/images/icon/photo.png">
+				<div class="modal-proImg">
+					<img src="#">
+				</div>
+				<p>나를 표현해 보세요</p>
 			</div>
 			<div class="contents-container">
+				<div class="contents-form">
+				<h2>TRAINER BOT PROFILE</h2>
 				<form>
-					<h2>TRAINER BOT PROFILE</h2>
 					<div class="group">
+						<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
+						 <label class="only-modal">아이디</label>
 						<input type="text" required class="weights"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">아이디</label>
+						<span class="bar"></span>
 					</div>
 					<div class="group">
+						<img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
+						<label class="only-modal">이름</label>
 						<input type="text" required class="height"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">이름</label>
+						<span class="bar"></span> 
 					</div>
 					<div class="group">
+						<img src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
+						 <label class="only-modal">지역</label>
 						<input type="text" required class="height"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">지역</label>
+						<span class="bar"></span>
 					</div>
 					<div class="group">
+						<img src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
+						<label class="only-modal">경력</label>
 						<input type="text" required class="etc"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">경력</label>
+						<span class="bar"></span> 
 					</div>
 					<div class="group">
 						<input type="radio" required class="etc"><label class="only-modal">남자</label>
@@ -47,13 +60,14 @@
 					</div>
 
 				</form>
-			</div>
-			<ul class="list-inline">
+				<ul class="list-inline">
 
 				<li><button type="button" class="modal-btn-collection apply">
 						<span>신청</span>
 					</button></li>
-			</ul>
+				</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -15,7 +15,7 @@ public interface UserDao {
 
 	void add(UserVO item);
 
-	UserVO item(int id);
+	UserVO item(String id);
 
 	void update(UserVO item);
 

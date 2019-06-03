@@ -67,7 +67,7 @@
 	</select>
 
 	<select id="item" resultType="UserVO">
-		select * from user where
+		select username,password from user where
 		username=#{username}
 	</select>
 
@@ -77,10 +77,11 @@
 		values(#{username}, #{password},"user")
 	</insert>
 
-	<!-- <update id="update"> -->
-	<!-- update user set id=#{id}, pw=#{pw}, -->
-	<!-- nicname=#{nicname} -->
-	<!-- </update> -->
+	<update id="update" parameterType="UserVO">
+	 update user 
+	 set  password=#{password}
+	 where username=#{username}
+	</update>
 
 	<delete id="delete">
 		delete from member where id=#{id}

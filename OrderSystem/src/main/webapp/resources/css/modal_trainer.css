@@ -64,13 +64,15 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	display: none;
 	position: fixed;
 	z-index: 4;
+	    min-width: 450px;
+    min-height: 600px;
 	/* 	padding-top:100px; */
 	left: 50%;
 	top: 50%;
 	width: 30vw;
 	height: 70vh;
 	overflow: auto;
-	background: #f7f7f7;
+	background: #ededed;
 	color: #9b1d85;
 	transform: translate(-50%, -50%);
 }
@@ -90,7 +92,9 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	justify-content: center;
 	margin-bottom: 30px;
 }
-
+.dmodal .modal-header {
+	height:300px;
+}
 .modal-header h2 {
 	color: #f7f7f7;
 	font-family: S-CoreDream-7ExtraBold;
@@ -122,7 +126,10 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 .contents-container form {
 	margin-top: 30px;
 }
-
+.contents-box img {
+	width:48px;
+	height:48px;
+}
 .modals h2 {
 	text-align: center;
 	margin-bottom: 50px;
@@ -371,4 +378,40 @@ to {
 .list-inline > li {
 	display: flex;
     justify-content: center;
+}
+.detail-photo {
+    border-radius: 50%;
+    
+    background: #fff;
+    z-index: 55;
+    width: 150px;
+    height: 150px;
+}
+.contents-box {
+    width: 25vw;
+    min-width: 400px;
+    position: absolute;
+    top: 280px;
+    background: #fff;
+    padding: 30px 20px;
+    transform: translate(-50%,0);
+    left: 50%;
+}
+.contents-box > div {
+	margin-bottom:30px;
+}
+.contents-box > h2 {
+text-align: center;
+}
+.profile-header {
+	color:#f7f7f7;
+}
+.profile-header p{
+	display:inline-block;
+	font-size:22pt;
+	font-weight:600;
+	margin-right:5px;
+}
+.profile-header span {
+	font-size:14pt;
 }

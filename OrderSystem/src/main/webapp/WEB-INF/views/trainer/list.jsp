@@ -35,7 +35,7 @@ var context = "${pageContext.request.contextPath}";
 			<c:forEach var="item" items="${trainerList}">
 				<div class="item-box">
 					<div class="trainer-info">
-					<div class="photo"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" width="100px" height="100px"></div>
+					<div class="photo"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" width="100px" height="100px" class="text"></div>
 					<div class="trainer-text">
 					<div class="username">${item.username}</div>
 					<div class="career"><img src="${pageContext.request.contextPath}/resources/images/icon/career.png" width="35px" height="35px">${item.career}</div>
@@ -44,7 +44,7 @@ var context = "${pageContext.request.contextPath}";
 					<c:if test="${user != null}">
 						<div class="modal-btn-box">
 							<button class="modal-btn" id="modal-btn">pt신청</button>
-							<button class="details">상세보기</button>
+							<button class="details" id="detail-btn">상세보기</button>
 						</div>
 
 					</c:if>
@@ -67,7 +67,7 @@ var context = "${pageContext.request.contextPath}";
 				<h2>멘토링 신청</h2>
 			</div>
 			<div class="contents-container">
-						<form action="apply" method="post" id="trainer" >
+						<form action="apply" method="post" id="trainer" enctype="multipart/form-data" >
 		<input id="managerID" type="hidden" name="manager" value="">
 	
 					<div class="group">
@@ -98,34 +98,30 @@ var context = "${pageContext.request.contextPath}";
 		<div class="modal dmodal" id="detail-modal">
 		<div class="modal-container">
 			<div class="modal-header">
-				<h2>멘토링 신청</h2>
+				<div class="profile-header">
+				<div class="detail-photo"></div>
+				<p class="trainer-name"></p><span>스포츠 트레이너</span>
+				</div>
 			</div>
 			<div class="contents-container">
-						<form action="apply" method="post" id="trainer" >
-		<input id="managerID" type="hidden" name="manager" value="">
-	
-					<div class="group">
-						<input type="text" required class="weights" name="weights"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">체중</label>
+				<div class="contents-box">
+					<h2>TRAINERBOT PROFILE</h2>
+					<div class="id-box">
+					<p>아이디</p>
+					<div><img src="/kopo/resources/images/icon/id-icon.png" ><span></span></div>
 					</div>
-					<div class="group">
-						<input type="text" required class="height" name="height"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">키</label>
+					<div class="career-box">
+					<p>경력</p>
+					<div><img src="/kopo/resources/images/icon/career-icon-background.png"><span></span></div>
 					</div>
-					<div class="group">
-						<input type="text" required class="etc" name="etc"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">하고싶은 말
-							한줄</label>
+					<div class="sex-Box">
+					<p>성별</p>
+					<div><img src="/kopo/resources/images/icon/career-icon-background.png"><span></span></div>
 					</div>
-
-				</form>
+				</div>					
+			
 			</div>
-			<ul class="list-inline">
 
-				<li><button type="button" class="modal-btn-collection apply">
-						<span>신청</span>
-					</button></li>
-			</ul>
 		</div>
 	</div>
 </body>

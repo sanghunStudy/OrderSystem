@@ -1,4 +1,6 @@
 var trainer_username = '';
+var photoSrc = '';
+var trainer = '';
 function selectUserbI(managerId) {
 	var test = this.value;
 
@@ -35,6 +37,9 @@ $(function() {
 		},
 		'detail-btn' : function() {
 			DModal.style.display = "block";
+			$('.detail-photo').css('background',"url('"+photoSrc+")");
+			$('.trainer-name').text(trainer);
+			
 		}
 	}
 
@@ -46,9 +51,13 @@ $(function() {
 
 				trainer_username = $(this).parents('.item-box').children(
 						'.username').text(); /* 트레이너 리스트부분, 공통모달에는 포함되지 않음 */
-
+				
 				if (modalClickEvent.hasOwnProperty(target.id)) {
+					photoSrc = $(this).parents('.item-box').find('img').attr('src');
+					trainer = $(this).parents('.item-box').find('.username').text();
 					modalClickEvent[target.id].call();
+					
+				
 
 				}
 
@@ -81,12 +90,11 @@ $(function() {
 						else if (DModal.style.display == 'block') {
 							if (!$(e.target).parents().hasClass('dmodal')
 									&& !$(e.target).hasClass('dmodal')) {
-								var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
-								if (close == true) {
+								
 									DModal.style.display = 'none';
-									$('form :input').val('');
+									
 
-								}
+								
 							}
 						}
 

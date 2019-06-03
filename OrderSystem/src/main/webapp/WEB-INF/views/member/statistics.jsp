@@ -139,22 +139,22 @@
 		<div id="wrapper">
 			<div class="four-charts">
 				<div id="lineChart dead"
-					style="position: relative; height: 25vh; width: 22vw">
+					style="position: relative; height: 27vh; width: 22vw">
 					<canvas id="line-chart-daed"></canvas>
 
 				</div>
 				<div id="lineChart squat"
-					style="position: relative; height: 25vh; width: 22vw">
+					style="position: relative; height: 27vh; width: 22vw">
 					<canvas id="line-chart-squat"></canvas>
 
 				</div>
 				<div id="lineChart bench"
-					style="position: relative; height: 25vh; width: 22vw">
+					style="position: relative; height: 27vh; width: 22vw">
 					<canvas id="line-chart-bench"></canvas>
 
 				</div>
 				<div id="doughnutChart"
-					style="position: relative; height: 25vh; width: 22vw">
+					style="position: relative; height: 27vh; width: 22vw">
 					<canvas id="doughnut-chart"></canvas>
 					
 				</div>

@@ -97,7 +97,19 @@ $(function() {
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
 		     
-		    }
+		    },
+			 scales: {
+			       xAxes: [
+			    	      {
+			    	        scaleLabel: {
+			    	          display: true,
+			    	          labelString: '사이드바의 운동일지 작성 후 이용하실 수 있습니다',
+			    	          fontColor: '#C7C7CC',
+			    	          fontSize: 11
+			    	        }
+			    	      }
+			    	    ]
+			    	  }
 		  }
 		});
 	
@@ -125,7 +137,19 @@ $(function() {
 		      fontColor:'#fff',
 		      fontSize:16,
 		      fontStyle: 'Noto Sans KR'
-		    }
+		    },
+			 scales: {
+			       xAxes: [
+			    	      {
+			    	        scaleLabel: {
+			    	          display: true,
+			    	          labelString: '사이드바의 운동일지 작성 후 이용하실 수 있습니다',
+			    	          fontColor: '#C7C7CC',
+			    	          fontSize: 11
+			    	        }
+			    	      }
+			    	    ]
+			    	  }
 		  }
 		});
 	

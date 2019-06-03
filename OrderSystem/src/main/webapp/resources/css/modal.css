@@ -1,0 +1,352 @@
+@import
+	url('https://fonts.googleapis.com/css?family=Anton|Lobster|Noto+Sans+KR:400,500,700|Noto+Sans:400,700|Poppins:300,400,600,700,900|Ubuntu&display=swap&subset=korean')
+	;
+
+@font-face {
+	font-family: 'S-CoreDream-9Black';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-3Light';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-8Heavy';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-4Regular';
+	src: url(‘https :// cdn.jsdelivr.net/ gh/ projectnoonnu/ noonfonts_six @ 1.2/
+		S-CoreDream-4Regular.woff ') format(' woff ');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-7ExtraBold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-2ExtraLight';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body, html, p, table, div, span, ul, li, canvas, tr, td, i {
+	margin: 0;
+	padding: 0;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 4;
+	/* 	padding-top:100px; */
+	left: 50%;
+	top: 50%;
+	width: 45vw;
+	height: 90vh;
+	overflow: auto;
+	background: #f7f7f7;
+	color: #9b1d85;
+	transform: translate(-50%, -50%);
+}
+
+.food-management, .exer-management {
+	bakcground: #2d333f;
+	margin: auto;
+	padding: 0px;
+	width: 100%;
+}
+
+.modal-header {
+	display: flex;
+	height: 100px;
+	background: linear-gradient(to bottom, #b11a6d, #9b1d85, #881f99);
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
+.modal-header h2 {
+	color: #f7f7f7;
+	font-family: S-CoreDream-7ExtraBold;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* basic stylings ------------------------------------------ */
+.contents-container {
+	width: 100%;
+	/*   margin:20px auto 0;  */
+	display: flex;
+	flex-direction: column;
+	padding: 30px 50px 10px;
+}
+
+.contents-container .date-area {
+	color: #1b1b1b;
+	font-size: 16pt;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	font-family: 'BMJUA', 'S-CoreDream-7ExtraBold';
+	margin-bottom: 30px;
+}
+
+.contents-container form {
+	margin-top: 30px;
+}
+
+.modals h2 {
+	text-align: center;
+	margin-bottom: 50px;
+}
+/* form starting stylings ------------------------------- */
+.group {
+	position: relative;
+	margin-bottom: 45px;
+	font-family: 'BMJUA';
+}
+
+.contents-container input {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	display: block;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #757575;
+	background: #f7f7f7;
+	color: #1b1b1b;
+	font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;
+}
+
+.contents-container input:focus {
+	outline: none;
+}
+
+/* LABEL ======================================= */
+.contents-container label {
+	color: #999;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label {
+	top: -20px;
+	font-size: 14px;
+	color: #9b1d85;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+	position: relative;
+	display: block;
+	width: auto;
+}
+
+.bar:before, .bar:after {
+	content: '';
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: #9b1d85;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+	left: 50%;
+}
+
+.bar:after {
+	right: 50%;
+}
+
+/* active 상태 */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+	width: 50%;
+}
+
+/* highlight */
+.highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+/* active 상태 */
+input:focus ~ .highlight {
+	-webkit-animation: inputHighlighter 0.3s ease;
+	-moz-animation: inputHighlighter 0.3s ease;
+	animation: inputHighlighter 0.3s ease;
+}
+
+/* animation */
+@
+-webkit-keyframes inputHighlighter {from { background:#9b1d85;
+	
+}
+
+to {
+	width: 0;
+	background: transparent;
+}
+
+}
+@
+-moz-keyframes inputHighlighter {from { background:#9b1d85;
+	
+}
+
+to {
+	width: 0;
+	background: transparent;
+}
+
+}
+@
+keyframes inputHighlighter {from { background:#9b1d85;
+	
+}
+
+to {
+	width: 0;
+	background: transparent;
+}
+
+}
+.next-step:hover, .next-step, .prev-step:hover, .prev-step {
+	position: relative;
+/* 	background-color: #881f99; */
+	font-size: 16px;
+/* 	color: #FFFFFF; */
+}
+.modal-btn-collection {
+  border-radius: 4px;
+  background-color: #881f99;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  padding: 16px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 36px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+}
+
+.modal-btn-collection{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  font-family: S-CoreDream-7ExtraBold;
+}
+
+.next-step:after {
+	content: "\f061";
+    position: absolute;
+    opacity: 0;
+    top: 16px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: -20px;
+    transition: 0.5s;
+}
+.prev-step:after {
+	content: "\f060";
+    position: absolute;
+    opacity: 0;
+    top: 16px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: -20px;
+    transition: 0.5s;
+}
+.add-exer:after,.add-food:after {
+	content: "\f067";
+    position: absolute;
+    opacity: 0;
+    top: 18px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: -20px;
+    transition: 0.5s;
+}
+.save-submit:after {
+	content: "\f574";
+    position: absolute;
+    opacity: 0;
+    top: 17px;
+    display: inline-block; 
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    right: -20px;
+    transition: 0.5s;
+}
+.modal-btn-collection:hover{
+  padding-right: 24px;
+  padding-left:8px;
+}
+
+.modal-btn-collection:hover:after {
+  opacity: 1;
+  right: 10px;
+}

@@ -20,22 +20,30 @@
 	<div class="modal" id="modal">
 		<div class="modal-container">
 			<div class="modal-header">
-				<h2>멘토링 신청</h2>
+				<h2>트레이너 신청</h2>
 			</div>
 			<div class="contents-container">
 				<form>
+					<h2>TRAINER BOT PROFILE</h2>
 					<div class="group">
 						<input type="text" required class="weights"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">체중</label>
+						<span class="bar"></span> <label class="only-modal">아이디</label>
 					</div>
 					<div class="group">
 						<input type="text" required class="height"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">키</label>
+						<span class="bar"></span> <label class="only-modal">이름</label>
+					</div>
+					<div class="group">
+						<input type="text" required class="height"> <span class="highlight"></span>
+						<span class="bar"></span> <label class="only-modal">지역</label>
 					</div>
 					<div class="group">
 						<input type="text" required class="etc"> <span class="highlight"></span>
-						<span class="bar"></span> <label class="only-modal">하고싶은 말
-							한줄</label>
+						<span class="bar"></span> <label class="only-modal">경력</label>
+					</div>
+					<div class="group">
+						<input type="radio" required class="etc"><label class="only-modal">남자</label>
+						<input type="radio" required class="etc"><label class="only-modal">여자</label>
 					</div>
 
 				</form>

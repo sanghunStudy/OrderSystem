@@ -18,7 +18,7 @@
 	href="${pageContext.request.contextPath }/resources/icomoon/style.css">
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
 	function selectUserbI(managerId) {
@@ -49,8 +49,10 @@
 			<c:forEach var="item" items="${trainerList}">
 				${item.username}
 				<c:if test="${user != null}">
-					<button onclick="selectUserbI('${item.username}')"
-						value="${item.username}" class="">pt신청</button>
+					<div class="modal-btn-box">
+						<button class="modal-btn" id="modal-btn">pt신청</button>
+					</div>
+
 				</c:if>
 			</c:forEach>
 		</c:when>
@@ -61,13 +63,16 @@
 	<form action="apply" method="post" id="trainer" hidden="true">
 		<input id="managerID" type="hidden" name="manager" value="">
 	</form>
+	<!-- Modal  -->
 	<div class="modal-btn-box">
 		<button class="modal-btn" id="modal-btn">모달테스트</button>
 	</div>
-	<!-- Modal  -->
+
 	<div class="modal" id="modal">
 		<div class="modal-container">
-			<div class="modal-header"></div>
+			<div class="modal-header">
+				<h2>멘토링 신청</h2>
+			</div>
 			<div class="contents-container">
 				<form>
 					<div class="group">
@@ -82,16 +87,11 @@
 				</form>
 			</div>
 			<ul class="list-inline">
-				<li><button type="button"
-						class="modal-btn-collection prev-step prev-food">
-						  <span>이전</span>
-					</button></li>
-				<li><button type="button" class="modal-btn-collection add-food">
-						<span>추가 버튼</span>
-					</button></li>
-				<li><button type="button"
-						class="modal-btn-collection next-step next-food">
-						<span>다음</span>
+
+				<li><button type="button" class="modal-btn-collection apply"
+						onclick="selectUserbI('${item.username}')"
+						value="${item.username}">
+						<span>신청</span>
 					</button></li>
 			</ul>
 		</div>

@@ -117,7 +117,7 @@ $(document).ready(function() {
 			<input type="checkbox" name="searchType" value="menu_name" id="searchType1" class="cb1" checked="checked"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">제목</label>
-			<input type="checkbox" name="searchType" value="menu_content" id="searchType2" class="cb2"
+			<input type="checkbox" name="searchType" value="menu_content" id="searchType2" class="cb2" checked="checked"
 			<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType2" id="concheck">컨텐츠</label>
 			</div>

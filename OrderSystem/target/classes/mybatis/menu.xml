@@ -76,7 +76,7 @@
 	
 	<update id="pointUp" parameterType="UserVO">
 		update user
-		set point = point + 10
+		set point = point + 10 + #{pointSet}
 		where username = #{id}
 	</update>
 	
@@ -91,5 +91,11 @@
 		from user
 		where username=#{username}
 	</select>
+	
+	<update id="pointDown" parameterType="UserVO">
+		update user
+		set point = point - #{pointSet}
+		where username = #{id}
+	</update>
 	
 </mapper>

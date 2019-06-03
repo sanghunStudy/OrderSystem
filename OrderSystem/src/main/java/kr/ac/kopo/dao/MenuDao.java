@@ -32,10 +32,12 @@ public interface MenuDao {
 
 	void selection(int mcommentId);
 
-	void pointUp(String id);
+	void pointUp(String pointGetUser, int pointSet);
 
 	int onlyOnceSelection(int menuId);
 
 	int userpoint(String username);
+
+	void pointLoseUser(String pointLoseUser, int pointSet);
 
 }

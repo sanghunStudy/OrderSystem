@@ -1,5 +1,6 @@
 package kr.ac.kopo.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -77,8 +78,11 @@ public class MenuDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public void pointUp(String id) {
-		sql.update("menu.pointUp",id);
+	public void pointUp(String pointGetUser,int pointSet) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("id",pointGetUser);
+		map.put("pointSet", pointSet);
+		sql.update("menu.pointUp",map);
 	}
 
 	@Override
@@ -89,6 +93,14 @@ public class MenuDaoImpl implements MenuDao {
 	@Override
 	public int userpoint(String username) {
 		return sql.selectOne("menu.userpoint",username);
+	}
+
+	@Override
+	public void pointLoseUser(String pointLoseUser, int pointSet) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("id",pointLoseUser);
+		map.put("pointSet", pointSet);
+		sql.update("menu.pointDown",map);
 	}
 
 }

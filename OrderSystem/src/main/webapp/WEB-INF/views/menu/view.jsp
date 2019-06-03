@@ -17,6 +17,8 @@ $(document).ready(function(){
 	
 	//jsp에서 함수 못 읽어서 필요
 	window.co_updateMode = co_updateMode;
+	window.choice_comment = choice_comment;
+	
 	//댓글수정함수
 	function co_updateMode(code,data){
 		var updateForm ='';
@@ -50,6 +52,30 @@ $(document).ready(function(){
 			}
 		});
 	});
+	//댓글 채택New버전 ajax
+	function choice_comment(commentId,pointGetUser,point,pointLoseUser) {
+		var choiceCheck = '';
+		var menuId = ${item.menuId};
+// 		console.log(pointGetUser+"    "+pointLoseUser);
+		$.ajax({
+			url:"${pageContext.request.contextPath}/menu/selectionCheck",
+			type:"GET",
+			data:{
+				'menuId':menuId,
+				'mcommentId':commentId,
+				'pointGetUser':pointGetUser,
+				'pointSet':point,
+				'pointLoseUser':pointLoseUser
+			},success:function(data){
+				if(data == "OK"){
+					alert("채택되었습니다");
+					commentList();
+				} else {
+					alert("질문에 채택된 글이 이미 존재합니다");
+				}
+			}
+		});
+	}
 	
 	//댓글수정버튼체크
 	function updateCheck(id,commentId,content,sel) {
@@ -63,6 +89,25 @@ $(document).ready(function(){
 	function deleteCheck(id,commentcode,sel) {
 		if(id==login&&sel==false){
 			return '<div class="commentDel" data-code="'+ commentcode +'">삭제</div>';
+		} else {
+			return '';
+		}
+	}
+	//채택여부체크
+	function selectionCheck(sel){
+		if(sel==true){
+			return '<img src="${pageContext.request.contextPath}/resources/images/icon/checkbox.png" class="check">';
+		} else {
+			return '';
+		}
+	}
+	//댓글채택버튼체크
+	function choiceCheck(id,commentcode,sel){
+		var writer = document.getElementById('writer').value;
+		var point = ${item.pointSet};
+//		console.log(writer + "        "+ point);
+		if(login == writer && sel == false && login != id){
+			return '<div onclick="choice_comment('+commentcode+',\''+id+'\','+point+',\''+writer+'\')" class="choice">채택</div>';
 		} else {
 			return '';
 		}
@@ -81,13 +126,16 @@ $(document).ready(function(){
 				var count = 0;
 				$.each(data,function(key,val){
 					col += '<div class="coca" data-code="'+ val.mcommentId +'"><div class="cola">';
+					col += selectionCheck(val.selectionCheck);
 					col += '<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">';
 					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.mcommentDate+'</span></div>';
 					col += updateCheck(val.id,val.mcommentId,val.mcommentContent,val.selectionCheck);
 					col += '</div>';
 					col += '<div class="masi">'+val.mcommentContent+'</div>';
+					col += choiceCheck(val.id,val.mcommentId,val.selectionCheck);
 					col += deleteCheck(val.id,val.mcommentId,val.selectionCheck);
 					col += '</div>'
+					col += '<hr class="boundaryline">';
 					count += 1;
 				});
 				$('#commentOutput').html(col);
@@ -169,6 +217,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<input type="hidden" id="login" value="${login}">
+		<input type="hidden" id="writer" value="${item.id}">
 	</div>
 	<form action="mcommentAdd" id="mcommentForm">
 	<div id="commentInput">
@@ -176,7 +225,7 @@ $(document).ready(function(){
 		<div id="commentAdd">
 			<a>답글하기</a>
 		</div>
-		<a class="char-limit">({{ cl }}/100자)</a>
+		<a class="char-limit">({{ cl }}/500자)</a>
 		<input type="hidden" name="menuId" value="${item.menuId}">
 	</div>
 	<script>
@@ -190,9 +239,9 @@ $(document).ready(function(){
 				watch: {
 					co: function(v) {
 						this.cl = Number(v.length);
-						if(this.cl > 100) {
+						if(this.cl > 500) {
 							alert("더 이상 입력하실 수 없습니다.");
-							this.to = v.substr(0, 100);
+							this.to = v.substr(0, 500);
 							/* console.log(this.to); */
 							this.co = this.to;
 						}
@@ -218,7 +267,7 @@ $(document).ready(function(){
 				<c:forEach var="MCL" items="${MCommentList}">
 					<div class="coca" data-code="${MCL.mcommentId}">
 						<c:if test="${MCL.selectionCheck==true}">
-							<h3>채택된 글</h3>
+							<img src="${pageContext.request.contextPath}/resources/images/icon/checkbox.png" class="check">
 						</c:if>
 						<div class="cola">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
@@ -231,24 +280,28 @@ $(document).ready(function(){
 						<div class="masi">${MCL.mcommentContent}</div>
 						
 						<c:if test="${login==item.id&&MCL.selectionCheck==false&&login!=MCL.id}">
-							<a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a>
+							<div onclick="choice_comment(${MCL.mcommentId},'${MCL.id}',${item.pointSet},'${item.id}')" class="choice">채택</div>
+						<%-- <a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a> --%>
 						</c:if>
 						<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
 							<div class="commentDel" data-code="${MCL.mcommentId}">삭제</div>
 						</c:if>
 					</div>
+					<hr class="boundaryline">
 				</c:forEach>
 			</c:when>
 		</c:choose>
 	</div>
 	<%-- <jsp:include page="comment.jsp" flush="true" /> --%>
-	<c:if test="${login==item.id}">
-	<span>
-		<a href="update?menuId=${item.menuId}">변경</a>
-		<a href="delete?menuId=${item.menuId}">삭제</a>
-	</span>
-	</c:if>
-	<a href="list">목록으로</a>
+	<div class="floor_btns">
+		<c:if test="${login==item.id}">
+			<div class="gotoAndRun_btns">
+				<a href="update?menuId=${item.menuId}"><div class="gotoUpdate">수정</div></a>
+				<a href="delete?menuId=${item.menuId}"><div class="runDelete">삭제</div></a>
+			</div>
+		</c:if>
+		<a href="list"><div class="gotoList">목록으로</div></a>
+	</div>
 </div>
 </body>
 </html>

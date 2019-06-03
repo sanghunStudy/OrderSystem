@@ -77,8 +77,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void pointUp(String id) {
-		dao.pointUp(id);
+	public void pointUp(String pointGetUser,int pointSet) {
+		dao.pointUp(pointGetUser,pointSet);
 	}
 
 	@Override
@@ -89,6 +89,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int userpoint(String username) {
 		return dao.userpoint(username);
+	}
+
+	@Override
+	public void pointDown(String pointLoseUser, int pointSet) {
+		dao.pointLoseUser(pointLoseUser,pointSet);
 	}
 
 }

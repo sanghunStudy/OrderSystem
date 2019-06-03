@@ -258,8 +258,8 @@ public class MenuController {
 		out.println("/upload/"+str_filename);
 		out.close();
 	}
-	//채택
-	@RequestMapping(value="/selection")
+	//채택 구버전
+/*	@RequestMapping(value="/selection")
 	String selection(int mcommentId,int menuId,String id) {
 		int onlyOnceSelection = service.onlyOnceSelection(menuId);
 		
@@ -273,7 +273,7 @@ public class MenuController {
 //			mav.addObject("message", "더 이상 채택할 수 없습니다.");
 			return "redirect:view?menuId=" + menuId;
 		}
-	}
+	}*/
 	//질문등록할 때 유저포인트체크
 	@RequestMapping(value="/userpoint")
 	@ResponseBody
@@ -290,5 +290,21 @@ public class MenuController {
 			return userpoint;
 		}
 		return -1;
+	}
+	//채택New버전 채택ajax
+	@RequestMapping(value="/selectionCheck")
+	@ResponseBody
+	String selectionCheck(int menuId,int mcommentId, String pointGetUser, int pointSet, String pointLoseUser) {
+		int onlyOnceSelection = service.onlyOnceSelection(menuId);
+		
+		if(onlyOnceSelection == 0) {
+			service.selection(mcommentId);
+			service.pointUp(pointGetUser,pointSet);
+			service.pointDown(pointLoseUser,pointSet);
+			return "OK";
+		}
+		else {
+			return "NO";
+		}
 	}
 }

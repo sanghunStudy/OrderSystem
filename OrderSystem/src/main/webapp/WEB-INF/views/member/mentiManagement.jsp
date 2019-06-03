@@ -39,8 +39,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" type="text/css" href="custom.css"> -->
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -77,6 +76,7 @@
 					href="${pageContext.request.contextPath}/opo/webRtc"><i
 						class="fas fa-comment-dots"></i>
 						<p>화상채팅</p></a></li>
+					<li class="menu-icons"><a href="${pageContext.request.contextPath}/member/promotion"><i class="fas fa-address-card"></i><p>트레이너 신청</p></a></li>	
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -304,16 +304,20 @@
 											<div class="contents-container">
 												<div class="selected-menti">
 													<div class="subtitle">멘티</div>
+													<div class="menti-name"></div>
 												</div>
 												<div class="physical-info">
 													<div class="selected-weights">
 														<div class="subtitle">체중</div>
+														<div class="menti-weights"></div>
 													</div>
 													<div class="energy-requirement">
 														<div class="subtitle">에너지 요구량</div>
+														<div class="menti-emetabolism"></div>
 													</div>
 													<div class="selected-goal">
 														<div class="subtitle">목표</div>
+														<div class="menti-goal"></div>
 													</div>
 												</div>
 												<div class="plan-duration">
@@ -647,16 +651,20 @@
 											<div class="contents-container">
 												<div class="selected-menti">
 													<div class="subtitle">멘티</div>
+													<div class="menti-name"></div>
 												</div>
 												<div class="physical-info">
 													<div class="selected-weights">
 														<div class="subtitle">체중</div>
+														<div class="menti-weights"></div>
 													</div>
 													<div class="energy-requirement">
 														<div class="subtitle">에너지 요구량</div>
+														<div class="menti-emetabolism"></div>
 													</div>
 													<div class="selected-goal">
 														<div class="subtitle">목표</div>
+														<div class="menti-goal"></div>
 													</div>
 												</div>
 												<div class="plan-duration">

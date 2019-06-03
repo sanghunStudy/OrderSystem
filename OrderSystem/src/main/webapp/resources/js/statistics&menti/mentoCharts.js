@@ -87,16 +87,11 @@ function applicantList()
 	 });
  }
 
- /* 멘티 승인이 2주일이상 수락/거절 없을 시 자동으로 리스트에서 삭제 */
-function autoDelete(id,applyDate) {
-	var today = moment();
-	var expireDate = moment(applyDate).add(14,'days');
-
-	alert(moment(today).isAfter(expireDate));
-} 
+ 
 
 /* 플랜관리 모달창 생성시 멘티 개인정보 get */
 function getMentiInfo(menti) {
+
 	
 } 
 
@@ -348,9 +343,12 @@ $(function() {
 		
 		$('.performance .myMenti-list').on('click','td',function(e) {
 			var target = e.target || e.srcElement;
-
+			applicant = $(this).parents('tr').children('.my-menti').text();
+			
 			if(modalClickEvent.hasOwnProperty(target.id)) {
 				modalClickEvent[target.id].call();
+		
+				$('.menti-name').text(applicant);
 			}			
 			
 		});

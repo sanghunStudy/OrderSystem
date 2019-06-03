@@ -218,6 +218,7 @@ li {
 }
 
 .pushpin-box {
+	
 	display: inline-block;
 	width: 25px;
 	margin-bottom: 0px;
@@ -261,4 +262,15 @@ li {
 	margin-bottom: 15px;
 	text-align: center;
 	display: inline-block;
+}
+.menti-name {
+	    align-self: center;
+	    width:500px;
+	    text-align:center;
+}
+.selected-menti{
+	display:flex;
+}
+.physical-info {
+	text-align:center;
 }

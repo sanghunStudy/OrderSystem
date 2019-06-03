@@ -154,7 +154,19 @@ $(function() {
 		      fontStyle: 'Noto Sans KR'
 		     
 		    	  
-		    }
+		    },
+			 scales: {
+			       xAxes: [
+			    	      {
+			    	        scaleLabel: {
+			    	          display: true,
+			    	          labelString: '사이드바의 운동일지 작성 후 이용하실 수 있습니다',
+			    	          fontColor: '#C7C7CC',
+			    	          fontSize: 11
+			    	        }
+			    	      }
+			    	    ]
+			    	  }
 		  }
 		});
 	
@@ -243,7 +255,19 @@ $(function() {
           fontStyle: 'Noto Sans KR', // 기본값 Arial
           sidePadding: 15 // 기본값 20 (%단위)
 				}
-			}
+			},
+			 scales: {
+		       xAxes: [
+		    	      {
+		    	        scaleLabel: {
+		    	          display: true,
+		    	          labelString: '페이지 하단의 계산기 아이콘을 통해 이용하실 수 있습니다',
+		    	          fontColor: '#C7C7CC',
+		    	          fontSize: 11
+		    	        }
+		    	      }
+		    	    ]
+		    	  }
 		}
 	};
 

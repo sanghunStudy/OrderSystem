@@ -8,6 +8,7 @@
 <title>트레이너 명단</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/modal.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/trainer_list.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal.css">
 <link rel="stylesheet"
@@ -20,40 +21,26 @@
 	href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script>
-	function selectUserbI(managerId) {
-		var test = this.value;
-		$.ajax({
-			type : "GET",
-			url : "${pageContext.request.contextPath}/trainer/selectUserbI",
-			success : function(data) {
-				if (data == 0) {
-					alert("회원 기초 정보를 등록하세요");
-				} else if (data == 2) {
-					alert("신청 내역이 존재합니다.");
-				} else {
-					console.log("tq");
-					document.getElementById("managerID").value = managerId;
-					document.getElementById("trainer").submit();
 
-				}
-			}
-		});
-	}
+<script>
+
 </script>
 </head>
 <body>
+
 	<h1>트레이너 목록</h1>
 	<c:choose>
 		<c:when test="${trainerList.size() > 0}">
 			<c:forEach var="item" items="${trainerList}">
-				${item.username}
-				<c:if test="${user != null}">
-					<div class="modal-btn-box">
-						<button class="modal-btn" id="modal-btn">pt신청</button>
-					</div>
+				<div class="item-box">
+					<div class="username">${item.username}</div>
+					<c:if test="${user != null}">
+						<div class="modal-btn-box">
+							<button class="modal-btn" id="modal-btn">pt신청</button>
+						</div>
 
-				</c:if>
+					</c:if>
+				</div>
 			</c:forEach>
 		</c:when>
 		<c:otherwise>
@@ -76,21 +63,24 @@
 			<div class="contents-container">
 				<form>
 					<div class="group">
-						<input type="text" required> <span class="highlight"></span>
+						<input type="text" required class="weights"> <span class="highlight"></span>
 						<span class="bar"></span> <label class="only-modal">체중</label>
 					</div>
 					<div class="group">
-						<input type="text" required> <span class="highlight"></span>
+						<input type="text" required class="height"> <span class="highlight"></span>
 						<span class="bar"></span> <label class="only-modal">키</label>
+					</div>
+					<div class="group">
+						<input type="text" required class="etc"> <span class="highlight"></span>
+						<span class="bar"></span> <label class="only-modal">하고싶은 말
+							한줄</label>
 					</div>
 
 				</form>
 			</div>
 			<ul class="list-inline">
 
-				<li><button type="button" class="modal-btn-collection apply"
-						onclick="selectUserbI('${item.username}')"
-						value="${item.username}">
+				<li><button type="button" class="modal-btn-collection apply">
 						<span>신청</span>
 					</button></li>
 			</ul>

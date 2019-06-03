@@ -13,6 +13,7 @@
 	href="${pageContext.request.contextPath}/resources/css/charts.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/icomoon/style.css">
+
 </head>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -46,7 +47,10 @@
 <style>
 </style>
 
+
 </head>
+ <%@ include file="modal.jsp" %>
+
 <body>
 	<!-- 그래프에 값을 넘기기 위해 쿼리반환값들을 자바스크립트 배열혹은 json object로 복사,변환해줌 -->
 	<c:forEach var="energy" items="${metabolism}">
@@ -130,10 +134,9 @@
 					href="${pageContext.request.contextPath}/opo/webRtc"><i
 						class="fas fa-comment-dots"></i>
 						<p>화상채팅</p></a></li>
-				<li class="menu-icons"><a
-					href="${pageContext.request.contextPath}/member/promotion"><i
-						class="fas fa-address-card"></i>
-					<p>트레이너 신청</p></a></li>
+				<li class="menu-icons"><i
+						class="fas fa-address-card" id="trainer-apply"></i>
+						<p>트레이너 신청</p></a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -156,7 +159,7 @@
 				<div id="doughnutChart"
 					style="position: relative; height: 27vh; width: 22vw">
 					<canvas id="doughnut-chart"></canvas>
-					
+
 				</div>
 
 

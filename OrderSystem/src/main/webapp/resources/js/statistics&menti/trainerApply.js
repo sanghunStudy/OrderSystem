@@ -9,10 +9,8 @@ function proList()
 			
 			$(".pro-list").html("");
 			var tr = '';
-			
-			console.log(res);
+		
 					for (var i=0; i < res.proList.length;i++) { 
-						console.log(res.proList[i].username);
 					
 				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '"></td>';
 				tr += '<td class="apply-date">' + res.proList[i].username + '</td>';

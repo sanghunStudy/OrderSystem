@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
@@ -17,7 +18,7 @@ public class TrainerDaoImpl implements TrainerDao {
 	SqlSession sql;
 	//트레이너 리스트 출력
 	@Override
-	public List<UserVO> list() {
+	public List<TrainerProfile> list() {
 		
 		return sql.selectList("trainer.list");
 	}

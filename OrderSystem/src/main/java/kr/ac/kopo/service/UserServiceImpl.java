@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO item(int id) {
+	public UserVO item(String id) {
 		return dao.item(id);
 	}
 

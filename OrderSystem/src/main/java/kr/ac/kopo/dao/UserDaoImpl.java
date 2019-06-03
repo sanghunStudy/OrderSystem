@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserVO item(int id) {
+	public UserVO item(String id) {
 		return sql.selectOne("user.item", id);
 	}
 

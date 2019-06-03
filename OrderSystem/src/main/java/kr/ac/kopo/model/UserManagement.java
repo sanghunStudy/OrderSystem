@@ -5,16 +5,18 @@ public class UserManagement {
 	String username;
 	char reading;
 	String applyDate;
-	int height;
+	float height;
 	String goal;
 	float weights;
 	String etc;
 
-	public int getHeight() {
+
+
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 

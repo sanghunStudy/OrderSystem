@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
@@ -29,7 +30,7 @@ public class TrainerController {
 	//트레이너 리스트 출력
 	@RequestMapping("/list")
 	String list(Model model) {
-			List<UserVO> trainer = service.list();
+			List<TrainerProfile> trainer = service.list();
 			
 			model.addAttribute("trainerList",trainer);
 			
@@ -40,7 +41,7 @@ public class TrainerController {
 	@ResponseBody
 	int selectUserbI(HttpSession session) {
 		String username = (String)session.getAttribute("user");
-		
+
 		//회원 기초정보 없음
 		if(service.selectUserbI(username) == 0) {
 			return 0;
@@ -56,6 +57,7 @@ public class TrainerController {
 	//pt신청을 했을때 트레이너한테 회원 아이디가 저장됨
 	@RequestMapping(value="/apply", method=RequestMethod.POST)
 	String apply(UserManagement um, HttpSession session) {
+		System.out.println("오나?");
 		String id = (String)session.getAttribute("user");
 		um.setUsername(id);
 		service.apply(um);

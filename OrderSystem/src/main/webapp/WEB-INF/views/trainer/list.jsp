@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>트레이너 명단</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/modal.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/trainer-modal.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/trainer_list.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal.css">

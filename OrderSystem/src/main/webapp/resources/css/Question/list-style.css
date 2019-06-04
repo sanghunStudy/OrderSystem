@@ -68,6 +68,7 @@ body {
 	background: #272a3d;
 	color: #fff;
 	text-align: center;
+	margin-left:5px;
 }
 
 .posts {
@@ -75,6 +76,7 @@ body {
 	border-top: 1px solid #fff;
 	border-collapse: collapse;
 	color: #fff;
+	margin-top:5px;
 }
 
 .posts a:link {

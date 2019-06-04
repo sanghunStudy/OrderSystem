@@ -131,7 +131,7 @@ $(document).ready(function(){
 					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.mcommentDate+'</span></div>';
 					col += updateCheck(val.id,val.mcommentId,val.mcommentContent,val.selectionCheck);
 					col += '</div>';
-					col += '<div class="masi">'+val.mcommentContent+'</div>';
+					col += '<div class="masi"><div class="commentContentBox">'+val.mcommentContent+'</div></div>';
 					col += choiceCheck(val.id,val.mcommentId,val.selectionCheck);
 					col += deleteCheck(val.id,val.mcommentId,val.selectionCheck);
 					col += '</div>'
@@ -277,7 +277,7 @@ $(document).ready(function(){
 						<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate"></div>
 						</c:if>
 						</div>
-						<div class="masi">${MCL.mcommentContent}</div>
+						<div class="masi"><div class="commentContentBox">${MCL.mcommentContent}</div></div>
 						
 						<c:if test="${login==item.id&&MCL.selectionCheck==false&&login!=MCL.id}">
 							<div onclick="choice_comment(${MCL.mcommentId},'${MCL.id}',${item.pointSet},'${item.id}')" class="choice">채택</div>
@@ -292,6 +292,7 @@ $(document).ready(function(){
 			</c:when>
 		</c:choose>
 	</div>
+	<hr class="boundaryline">
 	<%-- <jsp:include page="comment.jsp" flush="true" /> --%>
 	<div class="floor_btns">
 		<c:if test="${login==item.id}">
@@ -302,6 +303,7 @@ $(document).ready(function(){
 		</c:if>
 		<a href="list"><div class="gotoList">목록으로</div></a>
 	</div>
+	<hr class="End-line">
 </div>
 </body>
 </html>

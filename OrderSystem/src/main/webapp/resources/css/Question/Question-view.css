@@ -149,8 +149,11 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	/* clear:left; */
 	float:left;
 	margin:20px 0 0 0;
-	width:760px;
+	width:780px;
 	word-break:break-all;
+}
+.commentContentBox {
+	width:680px;
 }
 .commentDel {
 	width:80px;
@@ -164,10 +167,11 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	cursor:pointer;
 	color:#c46b5f;
 	font-size:11pt;
+	margin-top:20px;
 }
 .updateForm {
 	background:#272a3d;
-	width:500px;
+	width:680px;
 	height:30px;
 	color:#fff;
 	float:left;
@@ -179,10 +183,10 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	text-align:center;
 	line-height:30px;
 	vartical-align:middle;
-	border:1px solid #fff;
+	border:1px solid #006699;
 	float:right;
 	cursor:pointer;
-	color:#fff;
+	color:#006699;
 	font-size:11pt;
 }
 .choice {
@@ -197,6 +201,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	cursor:pointer;
 	color:#409c4b;
 	font-size:11pt;
+	margin-top:20px;
 }
 .check {
 	width:100px;
@@ -256,4 +261,9 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	cursor:pointer;
 	color:#c46b5f;
 	font-size:11pt;
+}
+.End-line {
+	clear:all;
+	margin-bottom:20px;
+	border:0px;
 }

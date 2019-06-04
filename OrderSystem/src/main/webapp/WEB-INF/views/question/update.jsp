@@ -47,36 +47,34 @@ $(document).ready(function(){
 								
 			}
 		var nameCheck = $("#menuName").val();
-						
+		var pointInfo = $('#pointSet').val();
 		if(nameCheck == null || nameCheck == ""){
 			alert("제목을 입력하세요");
 		} else if(summernoteVal == null || summernoteVal == "") {
 			alert("내용을 입력하세요");
-		} else {
-			var pointInfo = $('#pointSet').val();
-			if(pointInfo != null || pointInfo != 0){
-				$.ajax({
-					url:"${pageContext.request.contextPath}/question/userpoint",
-					type:'GET',
-					success:function(data){
-						if(data > pointInfo){
+		} else if(pointInfo == 0) {
+			$("#menuForm").submit();
+		} else if(pointInfo != null || pointInfo != 0){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/question/userpoint",
+				type:'GET',
+				success:function(data){
+					if(data > pointInfo){
+						$("#menuForm").submit();
+					} else if (data == pointInfo) {
+						var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
+						if(pointzero = true){
 							$("#menuForm").submit();
-						} else if (data == pointInfo) {
-							var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
-							if(pointzero = true){
-								$("#menuForm").submit();
-							} else {
-								return false;
-							}
 						} else {
-							alert("포인트 설정은 본인의 포인트보다 크게 할 수 없습니다");
+							return false;
 						}
+					} else {
+						alert("포인트 설정은 본인의 포인트보다 크게 할 수 없습니다");
 					}
-				});
-			} else if(pointInfo == 0) {
-				$("#menuForm").submit();
-			}
+				}
+			});
 		}
+		
 	});
 	
 	

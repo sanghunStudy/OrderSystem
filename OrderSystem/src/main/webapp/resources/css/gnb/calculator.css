@@ -1,6 +1,13 @@
 @charset "UTF-8";
 
 /* The Modal (background) */
+#exam table {
+	    border-spacing: unset;
+    border-collapse: inherit;
+}
+#app label {
+	color:#d9d2da;
+}
 .modal {
 	display: none;
 	position: fixed;

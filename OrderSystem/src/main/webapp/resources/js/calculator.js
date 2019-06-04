@@ -43,7 +43,7 @@ $(document).ready(function() {
 		var Bmetabolism = $('#Bmetabolism').text();
 		var Erequirement = $('#Erequirement').text();
         $.ajax({
-            url:'besave/besave',
+            url:'/kopo/besave/besave',
             type:'POST',
             data:{'Bmetabolism':Bmetabolism,
             	'Erequirement': Erequirement

@@ -185,7 +185,7 @@
 					<i class="far fa-plus-square"></i>
 				</div>
 
-				<table class="exercise-list table">
+				<table class="exercise-list table-t">
 					<thead>
 						<tr>
 							<td>운동명</td>
@@ -308,7 +308,7 @@
 						</div>
 					</div>
 					<div class="to_do_table">
-						<table class="to_do table">
+						<table class="to_do table-t">
 							<tbody>
 								<tr>
 									<td><div class="checkboxes">
@@ -350,7 +350,7 @@
 						</div>
 					</div>
 					<div class="to_do_table">
-						<table class="to_eat table">
+						<table class="to_eat table-t">
 							<tbody>
 								<tr>
 									<td><div class="checkboxes">

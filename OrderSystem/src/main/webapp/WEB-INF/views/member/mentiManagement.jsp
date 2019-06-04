@@ -44,7 +44,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>TRAINERBOT 멘티 관리</title>
 </head>
- <%@ include file="../gnb/nav.jsp" %>
+<%@ include file="../gnb/nav.jsp"%>
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';
@@ -75,7 +75,10 @@
 					href="${pageContext.request.contextPath}/opo/webRtc"><i
 						class="fas fa-comment-dots"></i>
 						<p>화상채팅</p></a></li>
-					<li class="menu-icons"><a href="${pageContext.request.contextPath}/member/promotion"><i class="fas fa-address-card"></i><p>트레이너 신청</p></a></li>	
+				<li class="menu-icons"><a
+					href="${pageContext.request.contextPath}/member/promotion"><i
+						class="fas fa-address-card"></i>
+						<p>트레이너 신청</p></a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -214,7 +217,14 @@
 							<c:when test="${myMenti.size() > 0 }">
 								<c:forEach var="menti" items="${myMenti}">
 									<tr>
-										<td class="my-menti">${menti.username}</td>
+										<td class="my-menti">${menti.username}
+										<span class="hidden target-weights">${menti.weights}</span>
+										<span class="hidden target-weights">${menti.height}</span>
+										<span class="hidden target-weights">${menti.goal}</span>
+										<span class="hidden target-weights">${menti.etc}</span>
+
+	
+										</td>
 										<td>
 											<div class="progress-container-t">
 												<span id="value" class="progress-value-t"
@@ -310,6 +320,10 @@
 														<div class="subtitle">체중</div>
 														<div class="menti-weights"></div>
 													</div>
+													<div class="selected-height">
+														<div class="subtitle">키</div>
+														<div class="menti-height"></div>
+													</div>
 													<div class="energy-requirement">
 														<div class="subtitle">에너지 요구량</div>
 														<div class="menti-emetabolism"></div>
@@ -317,6 +331,10 @@
 													<div class="selected-goal">
 														<div class="subtitle">목표</div>
 														<div class="menti-goal"></div>
+													</div>
+													<div class="selected-etc">
+														<div class="subtitle">할말</div>
+														<div class="menti-etc"></div>
 													</div>
 												</div>
 												<div class="plan-duration">
@@ -501,7 +519,8 @@
 														class="modal-btn-collection prev-step prev-food">
 														  <span>기간 설정</span>
 													</button></li>
-												<li><button type="button" class="modal-btn-collection add-food">
+												<li><button type="button"
+														class="modal-btn-collection add-food">
 														<span>식단 추가</span>
 													</button></li>
 												<li><button type="button"
@@ -584,8 +603,9 @@
 															 <span>플랜 확인</span>
 														</button></li>
 													<li><button type="button"
-															class="modal-btn-collection btn-info-full next-step next-food save-submit"><span>저장
-															및 전송</span></button></li>
+															class="modal-btn-collection btn-info-full next-step next-food save-submit">
+															<span>저장 및 전송</span>
+														</button></li>
 												</ul>
 
 											</div>
@@ -939,27 +959,25 @@
 			</div>
 		</div>
 		<div class="alarm">
- <p class="label">
- 알람창 테스트<br/>흐럇차차찹
- </p>
- <div class="tail"></div>
-</div>
-<!-- 	<nav class="menu"> -->
-<!--    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" /> -->
-<!--    <label class="menu-open-button" for="menu-open" id="priority"> -->
-<!--     <span class="lines line-1"></span> -->
-<!--     <span class="lines line-2"></span> -->
-<!--     <span class="lines line-3"></span> -->
-<!--   </label> -->
+			<p class="label">
+				알람창 테스트<br />흐럇차차찹
+			</p>
+			<div class="tail"></div>
+		</div>
+		<!-- 	<nav class="menu"> -->
+		<!--    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" /> -->
+		<!--    <label class="menu-open-button" for="menu-open" id="priority"> -->
+		<!--     <span class="lines line-1"></span> -->
+		<!--     <span class="lines line-2"></span> -->
+		<!--     <span class="lines line-3"></span> -->
+		<!--   </label> -->
 
-<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
-<!--    <a href="#" class="menu-item green" id="calBtn"> <i class="fas fa-calculator" ></i> </a> -->
-<!--    <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a> -->
-<!--    <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a> -->
-<!--    <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
-<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
-<!-- </nav> -->
-
-
+		<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
+		<!--    <a href="#" class="menu-item green" id="calBtn"> <i class="fas fa-calculator" ></i> </a> -->
+		<!--    <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a> -->
+		<!--    <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a> -->
+		<!--    <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
+		<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
+		<!-- </nav> -->
 </body>
 </html>

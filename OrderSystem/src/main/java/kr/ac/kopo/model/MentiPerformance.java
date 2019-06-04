@@ -5,6 +5,42 @@ public class MentiPerformance {
 	int doneAssignment;
 	int totalAssignment;
 	String chatDay;
+	float height;
+	float weights;
+	String etc;
+	String goal;
+
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
+	public float getWeights() {
+		return weights;
+	}
+
+	public void setWeights(float weights) {
+		this.weights = weights;
+	}
+
+	public String getEtc() {
+		return etc;
+	}
+
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+
+	public String getGoal() {
+		return goal;
+	}
+
+	public void setGoal(String goal) {
+		this.goal = goal;
+	}
 
 	public int getDoneAssignment() {
 		return doneAssignment;

@@ -101,6 +101,8 @@ body {
 }
 .career {
 	font-size:16pt;
+	    display: flex;
+    align-items: center;
 }
 .modal-btn-box button {
 	outline:0;

@@ -39,9 +39,6 @@
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/statistics.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/SeeMoreJournals.js"></script>
-
 
 <title>나의 운동 차트</title>
 <style>
@@ -51,7 +48,7 @@
 </head>
  <%@ include file="modal.jsp" %>
  <%@ include file="../gnb/nav.jsp" %>
-
+ <%@ include file="LastExerciseJournal.jsp" %>
 <body>
 	<!-- 그래프에 값을 넘기기 위해 쿼리반환값들을 자바스크립트 배열혹은 json object로 복사,변환해줌 -->
 	<c:forEach var="energy" items="${metabolism}">
@@ -383,28 +380,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="more_exercise_list" class="more_exercise">
-		<div class="content_square">
-			<div class="list-head">
-				<h3>지난 운동 일지</h3>
-			</div>
-			<c:choose>
-				<c:when test="">
-					<%-- <c:forEach var="mel" items="${list}">
-					<div>
-						<ul>
-							<li>${mel.exerciseDate}</li>
-							<li>${mel.title}</li>
-							
-						</ul>
-					</div>
-				</c:forEach> --%>
-				</c:when>
-				<c:otherwise>
-					<div class="nothing">지난 운동 일지가 없습니다.</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
+	
 </body>
 </html>

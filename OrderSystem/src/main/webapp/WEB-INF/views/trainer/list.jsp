@@ -49,7 +49,7 @@
 									<div class="career">
 										<img
 											src="${pageContext.request.contextPath}/resources/images/icon/career.png"
-											width="35px" height="35px">${item.career}</div>
+											width="35px" height="35px"><div class="career-item">${item.career}</div></div>
 								</div>
 							</div>
 							<c:if test="${user != null}">

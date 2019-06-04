@@ -126,3 +126,8 @@ body {
 	background:#211d2f;
 	padding-bottom: 50px;
 }
+.career-item {
+	display:inline-block;
+	font-size: 12pt;
+font-family: 'S-CoreDream-4Regular','Noto-Sans Kr';
+}

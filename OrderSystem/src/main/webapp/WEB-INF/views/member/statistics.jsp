@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
 	src="${pageContext.request.contextPath}/resources/js/SeeMoreJournals.js"></script>
 
 
-<title>³ªÀÇ ¿îµ¿ Â÷Æ®</title>
+<title>ë‚˜ì˜ ìš´ë™ ì°¨íŠ¸</title>
 <style>
 </style>
 
@@ -53,7 +53,7 @@
  <%@ include file="../gnb/nav.jsp" %>
 
 <body>
-	<!-- ±×·¡ÇÁ¿¡ °ªÀ» ³Ñ±â±â À§ÇØ Äõ¸®¹ÝÈ¯°ªµéÀ» ÀÚ¹Ù½ºÅ©¸³Æ® ¹è¿­È¤Àº json object·Î º¹»ç,º¯È¯ÇØÁÜ -->
+	<!-- ê·¸ëž˜í”„ì— ê°’ì„ ë„˜ê¸°ê¸° ìœ„í•´ ì¿¼ë¦¬ë°˜í™˜ê°’ë“¤ì„ ìžë°”ìŠ¤í¬ë¦½íŠ¸ ë°°ì—´í˜¹ì€ json objectë¡œ ë³µì‚¬,ë³€í™˜í•´ì¤Œ -->
 	<c:forEach var="energy" items="${metabolism}">
 		<script>
 			metabolism = {
@@ -70,19 +70,19 @@
 	</c:forEach>
 	<c:forEach var="avg" items="${avgLb}">
 		<c:choose>
-			<c:when test="${avg.exerciseName eq 'µ¥µå¸®ÇÁÆ®'}">
+			<c:when test="${avg.exerciseName eq 'ë°ë“œë¦¬í”„íŠ¸'}">
 				<script>
 					dead.push('${avg.avgLb}');
 					deadDate.push('${avg.start}');
 				</script>
 			</c:when>
-			<c:when test="${avg.exerciseName eq '½ºÄõÆ®'}">
+			<c:when test="${avg.exerciseName eq 'ìŠ¤ì¿¼íŠ¸'}">
 				<script>
 					squat.push('${avg.avgLb}');
 					squatDate.push('${avg.start}');
 				</script>
 			</c:when>
-			<c:when test="${avg.exerciseName eq 'ÇÃ·§º¥Ä¡ÇÁ·¹½º'}">
+			<c:when test="${avg.exerciseName eq 'í”Œëž«ë²¤ì¹˜í”„ë ˆìŠ¤'}">
 				<script>
 					bench.push('${avg.avgLb}');
 					benchDate.push('${avg.start}');
@@ -104,7 +104,7 @@
 	</script>
 	<c:forEach var="item" items="${overallAvg}">
 		<c:if
-			test="${item.exerciseName eq 'ÇÃ·§º¥Ä¡ÇÁ·¹½º' or item.exerciseName eq 'µ¥µå¸®ÇÁÆ®' or item.exerciseName eq '½ºÄõÆ®' or item.exerciseName eq 'Ç®¾÷' or item.exerciseName eq '¹Ð¸®ÅÍ¸®ÇÁ·¹½º'}">
+			test="${item.exerciseName eq 'í”Œëž«ë²¤ì¹˜í”„ë ˆìŠ¤' or item.exerciseName eq 'ë°ë“œë¦¬í”„íŠ¸' or item.exerciseName eq 'ìŠ¤ì¿¼íŠ¸' or item.exerciseName eq 'í’€ì—…' or item.exerciseName eq 'ë°€ë¦¬í„°ë¦¬í”„ë ˆìŠ¤'}">
 			<script>
 				overallAvg.push('${item.avgLb}');
 			</script>
@@ -121,23 +121,23 @@
 			<ul class="menu-bar">
 				<li class="menu-icons"><a href="statistics"><i
 						class="fas fa-chart-bar"></i>
-						<p>¿îµ¿ÀÏÁö Åë°è</p></a></li>
+						<p>ìš´ë™ì¼ì§€ í†µê³„</p></a></li>
 				<li class="menu-icons"><a href="MyExerciseJournal"><i
 						class="fas fa-book"></i>
-						<p>¿îµ¿ÀÏÁö ÀÛ¼º</p></a></li>
+						<p>ìš´ë™ì¼ì§€ ìž‘ì„±</p></a></li>
 				<li class="menu-icons"><a href="basicInformation"><i
 						class="fas fa-user-edit"></i>
-						<p>¼³¹®Á¶»ç</p></a></li>
+						<p>ì„¤ë¬¸ì¡°ì‚¬</p></a></li>
 				<li class="menu-icons"><a href="mentiManagement"><i
 						class="fas fa-users"></i>
-						<p>¸àÆ¼ °ü¸®</p></a></li>
+						<p>ë©˜í‹° ê´€ë¦¬</p></a></li>
 				<li class="menu-icons"><a
 					href="${pageContext.request.contextPath}/opo/webRtc"><i
 						class="fas fa-comment-dots"></i>
-						<p>È­»óÃ¤ÆÃ</p></a></li>
+						<p>í™”ìƒì±„íŒ…</p></a></li>
 				<li class="menu-icons"><i
 						class="fas fa-address-card" id="trainer-apply"></i>
-						<p>Æ®·¹ÀÌ³Ê ½ÅÃ»</p></a></li>
+						<p>íŠ¸ë ˆì´ë„ˆ ì‹ ì²­</p></a></li>
 			</ul>
 		</div>
 		<div id="wrapper">
@@ -179,7 +179,7 @@
 
 			<div id="exercise-list-box">
 				<div class="title">
-					<span>ÃÖ±Ù ¿îµ¿ ÀÏÁö</span>
+					<span>ìµœê·¼ ìš´ë™ ì¼ì§€</span>
 				</div>
 				<div class="detail">
 					<i class="far fa-plus-square"></i>
@@ -188,11 +188,11 @@
 				<table class="exercise-list table">
 					<thead>
 						<tr>
-							<td>¿îµ¿¸í</td>
-							<td>Æò±Õ Áß·®<span style="font-size: 8px;">(Áõ°¡À²)</span></td>
-							<td>¹Ýº¹È¸¼ö<span style="font-size: 8px;">(Áõ°¡À²)</span></td>
-							<td>¼¼Æ® ÇÕ°è<span style="font-size: 8px;">(Áõ°¡À²)</span></td>
-							<td>1RM<span style="font-size: 8px;">(Áõ°¡À²)</span></td>
+							<td>ìš´ë™ëª…</td>
+							<td>í‰ê·  ì¤‘ëŸ‰<span style="font-size: 8px;">(ì¦ê°€ìœ¨)</span></td>
+							<td>ë°˜ë³µíšŒìˆ˜<span style="font-size: 8px;">(ì¦ê°€ìœ¨)</span></td>
+							<td>ì„¸íŠ¸ í•©ê³„<span style="font-size: 8px;">(ì¦ê°€ìœ¨)</span></td>
+							<td>1RM<span style="font-size: 8px;">(ì¦ê°€ìœ¨)</span></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -201,7 +201,7 @@
 
 
 							<script>
-								/* Äõ¸® Á¶È¸°ª ÀÚ¹Ù½ºÅ©¸³Æ® ¹è¿­·Î º¹»ç*/
+								/* ì¿¼ë¦¬ ì¡°íšŒê°’ ìžë°”ìŠ¤í¬ë¦½íŠ¸ ë°°ì—´ë¡œ ë³µì‚¬*/
 								data = {
 									date : '${item.start}',
 									name : '${item.exerciseName}',
@@ -216,7 +216,7 @@
 
 							<c:if test="${item.start == avgLb[0].start}">
 								<c:if
-									test="${item.exerciseName eq 'ÇÃ·§º¥Ä¡ÇÁ·¹½º' or item.exerciseName eq 'µ¥µå¸®ÇÁÆ®' or item.exerciseName eq '½ºÄõÆ®' or item.exerciseName eq 'Ç®¾÷' or item.exerciseName eq '¹Ð¸®ÅÍ¸®ÇÁ·¹½º'}">
+									test="${item.exerciseName eq 'í”Œëž«ë²¤ì¹˜í”„ë ˆìŠ¤' or item.exerciseName eq 'ë°ë“œë¦¬í”„íŠ¸' or item.exerciseName eq 'ìŠ¤ì¿¼íŠ¸' or item.exerciseName eq 'í’€ì—…' or item.exerciseName eq 'ë°€ë¦¬í„°ë¦¬í”„ë ˆìŠ¤'}">
 									<script>
 										myAvg.push('${item.avgLb}');
 									</script>
@@ -236,7 +236,7 @@
 				<script>
 					var index = -1;
 					var val = document.body.getElementsByClassName('exTitle');
-					/*º¹»çÇÑ ¹è¿­À» ¿îµ¿º°·Î ºÐ¸® */
+					/*ë³µì‚¬í•œ ë°°ì—´ì„ ìš´ë™ë³„ë¡œ ë¶„ë¦¬ */
 					for (var q = 0; q < val.length; q++) {
 						var filteredObj = copyArray.filter(function(item, i) {
 
@@ -245,25 +245,25 @@
 						});
 
 						// 				var value = rateCal(comparison,curVal)
-						/*¿îµ¿º°·Î ºÐ¸®ÇÑ ¹è¿­ÀÇ key°ªº°·Î  Ã¹¹øÂ°°ª°ú µÎ¹øÂ°°ªÀ» °¡Á®¿È*/
+						/*ìš´ë™ë³„ë¡œ ë¶„ë¦¬í•œ ë°°ì—´ì˜ keyê°’ë³„ë¡œ  ì²«ë²ˆì§¸ê°’ê³¼ ë‘ë²ˆì§¸ê°’ì„ ê°€ì ¸ì˜´*/
 						var keys = Object.keys(filteredObj[0]);
 						var value;
 
 						for (var j = 2; j < keys.length; j++) {
 
-							/*°¡Á®¿Â ¿îµ¿¸®½ºÆ®¿¡¼­ ÀÌÀü µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾ÊÀ»°æ¿ì*/
+							/*ê°€ì ¸ì˜¨ ìš´ë™ë¦¬ìŠ¤íŠ¸ì—ì„œ ì´ì „ ë°ì´í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•Šì„ê²½ìš°*/
 							if (filteredObj.length <= 1)
 								value = 'noData';
 
 							else
-								/*°¡Á®¿Â °ªµéÀ» ºñÀ²À» °è»êÇÏ´Â ÇÔ¼ö rateCal¿¡ ³Ñ°Ü ºñÀ²°ªÀ» value °´Ã¼°¡ °¡¸®Å°°ÔÇÔ */
+								/*ê°€ì ¸ì˜¨ ê°’ë“¤ì„ ë¹„ìœ¨ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜ rateCalì— ë„˜ê²¨ ë¹„ìœ¨ê°’ì„ value ê°ì²´ê°€ ê°€ë¦¬í‚¤ê²Œí•¨ */
 								value = rateCal(filteredObj[1][keys[j]],
 										filteredObj[0][keys[j]]);
 
 							var percent = document.createElement("span");
 							percent.className = "percent";
 
-							/*value¸¦ ÀûÇÕÇÑ td¿¡ appendChildÇØÁÜ. value°ª¿¡ µû¸¥ »óÅÂÇ¥½Ã*/
+							/*valueë¥¼ ì í•©í•œ tdì— appendChildí•´ì¤Œ. valueê°’ì— ë”°ë¥¸ ìƒíƒœí‘œì‹œ*/
 							var percentRow = document.body
 									.getElementsByClassName('percentRow');
 
@@ -316,10 +316,10 @@
 												class="green-background" for="a"></label>
 										</div></td>
 									<td><div class="item_box">
-											<div class="to_item">µ¥µå¸®ÇÁÆ®</div>
-											<p>µ¥µå¸®ÇÁÆ® 60kg Áß·®À¸·Î 10È¸¾¿ 3¼¼Æ®</p>
+											<div class="to_item">ë°ë“œë¦¬í”„íŠ¸</div>
+											<p>ë°ë“œë¦¬í”„íŠ¸ 60kg ì¤‘ëŸ‰ìœ¼ë¡œ 10íšŒì”© 3ì„¸íŠ¸</p>
 										</div></td>
-									<td class="parts">µî</td>
+									<td class="parts">ë“±</td>
 									<td>
 										<div class="progress-container">
 											<span id="value" class="progress-value"
@@ -358,10 +358,10 @@
 												class="green-background" for="b"></label>
 										</div></td>
 									<td><div class="item_box">
-											<div class="to_item">¹Ù³ª³ª100g</div>
-											<p>¹Ù³ª³ª º¸ÅëÅ©±â 3°³</p>
+											<div class="to_item">ë°”ë‚˜ë‚˜100g</div>
+											<p>ë°”ë‚˜ë‚˜ ë³´í†µí¬ê¸° 3ê°œ</p>
 										</div></td>
-									<td class="nutrient">Åº¼öÈ­¹°,´Ü¹éÁú</td>
+									<td class="nutrient">íƒ„ìˆ˜í™”ë¬¼,ë‹¨ë°±ì§ˆ</td>
 									<td class="kcal">250Kcal</td>
 									<td>
 										<div class="progress-container">
@@ -386,7 +386,7 @@
 	<div id="more_exercise_list" class="more_exercise">
 		<div class="content_square">
 			<div class="list-head">
-				<h3>Áö³­ ¿îµ¿ ÀÏÁö</h3>
+				<h3>ì§€ë‚œ ìš´ë™ ì¼ì§€</h3>
 			</div>
 			<c:choose>
 				<c:when test="">
@@ -401,7 +401,7 @@
 				</c:forEach> --%>
 				</c:when>
 				<c:otherwise>
-					<div class="nothing">Áö³­ ¿îµ¿ ÀÏÁö°¡ ¾ø½À´Ï´Ù.</div>
+					<div class="nothing">ì§€ë‚œ ìš´ë™ ì¼ì§€ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
 				</c:otherwise>
 			</c:choose>
 		</div>

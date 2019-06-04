@@ -99,6 +99,10 @@ $(function() {
 
 	/* 멘티 승인or허가 버튼 이벤트 */
 	var applicant;
+	var targetWeights;
+	var targetHeight;
+	var targetGoal;
+	var requiredEnergy;
 	var agreeBtnEvent = {
 			'agree':function(e) {
 					
@@ -343,12 +347,19 @@ $(function() {
 		
 		$('.performance .myMenti-list').on('click','td',function(e) {
 			var target = e.target || e.srcElement;
-			applicant = $(this).parents('tr').children('.my-menti').text();
+			applicant = $(this).parents('tr').find('.target-username').text();
+			targetWeights = $(this).parents('tr').find('.target-weights').text();
+			targetHeight = $(this).parents('tr').find('.target-height').text();
+			targetGoal = $(this).parents('tr').find('.target-goal').text();
 			
 			if(modalClickEvent.hasOwnProperty(target.id)) {
 				modalClickEvent[target.id].call();
 		
 				$('.menti-name').text(applicant);
+				$('.menti-weights').text(targetWeights+'kg');
+				$('.menti-height').text(targetHeight+'cm');
+				$('.menti-goal').text(targetGoal);
+				
 			}			
 			
 		});

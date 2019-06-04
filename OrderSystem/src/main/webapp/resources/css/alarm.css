@@ -1,0 +1,38 @@
+/* 알람창 */
+.alarm-box{
+	position:fixed;
+	z-index:10;
+
+    left: 78%;
+	font-size:9pt;
+}
+.alarm-box p {
+	display:inline-block;
+}
+
+.box {
+  width: 300px;
+  margin: 50px auto;
+  background:#e66ad2;
+  padding: 20px;
+  text-align: center;
+  font-weight: 900;
+  color: #fff;
+  font-family: arial;
+  position: relative;
+}
+.sb4:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #e66ad2;
+  border-top: 10px solid #e66ad2;
+  border-bottom: 10px solid transparent;
+  right: 19px;
+  bottom: -19px;
+}
+.fa-bell {
+	margin-right:5px;
+}

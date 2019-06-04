@@ -130,7 +130,7 @@ private String statistics(Model model,HttpSession session) {
 @ResponseBody
 @RequestMapping(value="/myMenti")
 	private List<MentiPerformance> myMenti(String manager,HttpSession session) {
-	System.out.println("접속오냐?");
+
 	String mento= (String)session.getAttribute("trainer");
 	
 	return service.getMyMenti(mento);

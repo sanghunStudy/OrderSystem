@@ -1,14 +1,18 @@
 package kr.ac.kopo.model;
 
 public class MentiPerformance {
+	String manager;
 	String username;
-	int doneAssignment;
-	int totalAssignment;
-	String chatDay;
+	char reading;
+	String applyDate;
 	float height;
+	String goal;
 	float weights;
 	String etc;
-	String goal;
+	String chatDay;
+	int doneAssignment;
+	int totalAssignment;
+	
 
 	public float getHeight() {
 		return height;

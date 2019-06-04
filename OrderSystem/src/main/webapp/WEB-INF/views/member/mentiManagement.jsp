@@ -45,6 +45,7 @@
 <title>TRAINERBOT 멘티 관리</title>
 </head>
 <%@ include file="../gnb/nav.jsp"%>
+<%@ include file="../alarm.jsp"%>
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';
@@ -217,14 +218,11 @@
 							<c:when test="${myMenti.size() > 0 }">
 								<c:forEach var="menti" items="${myMenti}">
 									<tr>
-										<td class="my-menti">${menti.username}
-										<span class="hidden target-weights">${menti.weights}</span>
-										<span class="hidden target-weights">${menti.height}</span>
-										<span class="hidden target-weights">${menti.goal}</span>
-										<span class="hidden target-weights">${menti.etc}</span>
-
-	
-										</td>
+										<td class="my-menti"><span class="target-username">${menti.username}</span>
+											<span class="hidden target-weights">${menti.weights}</span> <span
+											class="hidden target-height">${menti.height}</span> <span
+											class="hidden target-goal">${menti.goal}</span> <span
+											class="hidden target-etc">${menti.etc}</span></td>
 										<td>
 											<div class="progress-container-t">
 												<span id="value" class="progress-value-t"
@@ -311,30 +309,26 @@
 												<h2>기간 설정</h2>
 											</div>
 											<div class="contents-container">
-												<div class="selected-menti">
-													<div class="subtitle">멘티</div>
-													<div class="menti-name"></div>
+												<div class="selected-menti menti-info">
+													<div class="subtitle">멘티     </div>
+													<div class="menti-name info-value"></div>
 												</div>
 												<div class="physical-info">
-													<div class="selected-weights">
-														<div class="subtitle">체중</div>
-														<div class="menti-weights"></div>
+													<div class="selected-weights menti-info">
+														<div class="subtitle">체중     </div>
+														<div class="menti-weights info-value">kg</div>
 													</div>
-													<div class="selected-height">
-														<div class="subtitle">키</div>
-														<div class="menti-height"></div>
+													<div class="selected-height menti-info">
+														<div class="subtitle">키      </div>
+														<div class="menti-height info-value">cm</div>
 													</div>
-													<div class="energy-requirement">
+													<div class="energy-requirement menti-info">
 														<div class="subtitle">에너지 요구량</div>
-														<div class="menti-emetabolism"></div>
+														<div class="menti-emetabolism info-value"></div>
 													</div>
-													<div class="selected-goal">
-														<div class="subtitle">목표</div>
-														<div class="menti-goal"></div>
-													</div>
-													<div class="selected-etc">
-														<div class="subtitle">할말</div>
-														<div class="menti-etc"></div>
+													<div class="selected-goal menti-info">
+														<div class="subtitle">목표     </div>
+														<div class="menti-goal info-value"></div>
 													</div>
 												</div>
 												<div class="plan-duration">
@@ -668,22 +662,26 @@
 												<h2>기간 설정</h2>
 											</div>
 											<div class="contents-container">
-												<div class="selected-menti">
-													<div class="subtitle">멘티</div>
-													<div class="menti-name"></div>
+												<div class="selected-menti menti-info">
+													<div class="subtitle">멘티     </div>
+													<div class="menti-name info-value"></div>
 												</div>
 												<div class="physical-info">
-													<div class="selected-weights">
-														<div class="subtitle">체중</div>
-														<div class="menti-weights"></div>
+													<div class="selected-weights menti-info">
+														<div class="subtitle">체중     </div>
+														<div class="menti-weights info-value"></div>
 													</div>
-													<div class="energy-requirement">
+													<div class="selected-height menti-info">
+														<div class="subtitle">키      </div>
+														<div class="menti-height info-value"></div>
+													</div>
+													<div class="energy-requirement menti-info">
 														<div class="subtitle">에너지 요구량</div>
-														<div class="menti-emetabolism"></div>
+														<div class="menti-emetabolism info-value"></div>
 													</div>
-													<div class="selected-goal">
-														<div class="subtitle">목표</div>
-														<div class="menti-goal"></div>
+													<div class="selected-goal menti-info">
+														<div class="subtitle">목표     </div>
+														<div class="menti-goal info-value"></div>
 													</div>
 												</div>
 												<div class="plan-duration">
@@ -958,26 +956,5 @@
 
 			</div>
 		</div>
-		<div class="alarm">
-			<p class="label">
-				알람창 테스트<br />흐럇차차찹
-			</p>
-			<div class="tail"></div>
-		</div>
-		<!-- 	<nav class="menu"> -->
-		<!--    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" /> -->
-		<!--    <label class="menu-open-button" for="menu-open" id="priority"> -->
-		<!--     <span class="lines line-1"></span> -->
-		<!--     <span class="lines line-2"></span> -->
-		<!--     <span class="lines line-3"></span> -->
-		<!--   </label> -->
-
-		<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
-		<!--    <a href="#" class="menu-item green" id="calBtn"> <i class="fas fa-calculator" ></i> </a> -->
-		<!--    <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a> -->
-		<!--    <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a> -->
-		<!--    <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
-		<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
-		<!-- </nav> -->
 </body>
 </html>

@@ -33,14 +33,14 @@
 </select>
 <!-- 내 멘티 확인 -->
 <select id="getMenti" resultType="MentiPerformance">
-	SELECT username FROM user_management WHERE manager = #{id} AND reading="Y"
+		SELECT username,reading,apply_date,goal,height,weights,etc FROM user_management WHERE manager = #{id} AND reading="Y"
 </select>
 <select id="getMyMenti" resultType="MentiPerformance">
 	SELECT username,reading,apply_date,goal,height,weights,etc FROM user_management WHERE manager = #{mento} AND reading="Y"
 </select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">
-	select username,reading,apply_date,goal,height,weights,etc from user_management where manager = #{id} and reading = 'N'
+	select username,reading,apply_date,goal,weights,height,etc from user_management where manager = #{id} and reading = 'N'
 </select>
 
 <!-- 승인대기회원 거절 -->

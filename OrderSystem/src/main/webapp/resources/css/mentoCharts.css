@@ -263,38 +263,20 @@ li {
 	text-align: center;
 	display: inline-block;
 }
-.menti-name {
-	    align-self: center;
-	    width:500px;
+.menti-info {
+		display:flex;
 	    text-align:center;
 }
-.selected-menti{
-	display:flex;
+.info-value {
+	margin:0 auto;
+	align-self:center;
 }
+
 .physical-info {
 	text-align:center;
 }
 
-/* 알람창 */
-.alarm{
-	position:fixed;
-	z-index:10;
-	
-}
-.alarm .label{
-	color:#ffffff;
-	background-color:#66aa11;
-	border-radius:5px;
-	padding:10px;
-}
-.alarm .tail{
-	left:50%;
-	margin-left:-18px;
-	border-right :18px solid transparent;
-	border-top:18px solid #66aa11;
-	border-left : 18px solid transparent;
-	position:absolute;
-	bottom:-18px;
-	width:0; height:0;
-}
 
+.hidden {
+	display:hidden;
+}

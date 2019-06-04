@@ -274,3 +274,28 @@ li {
 .physical-info {
 	text-align:center;
 }
+
+/* 알람창 */
+.alarm{
+	position:fixed;
+	z-index:10;
+	
+}
+.alarm .label{
+	color:#ffffff;
+	background-color:#66aa11;
+	border-radius:5px;
+	padding:10px;
+}
+.alarm .tail{
+	left:50%;
+	margin-left:-18px;
+	border-right :18px solid transparent;
+	border-top:18px solid #66aa11;
+	border-left : 18px solid transparent;
+	position:absolute;
+	bottom:-18px;
+	width:0; height:0;
+}
+
+

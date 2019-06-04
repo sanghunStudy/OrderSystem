@@ -161,7 +161,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	width: 100%;
 	border: none;
 	border-bottom: 1px solid #757575;
-	background: #ededed;
+	background: #FFF;
 	color: #1b1b1b;
 	font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;
 }
@@ -302,6 +302,7 @@ to {
   position: relative;
   transition: 0.5s;
   font-family: S-CoreDream-7ExtraBold;
+  bottom:8vh;
 }
 
 .next-step:after {
@@ -392,9 +393,13 @@ to {
 	display: flex;
     justify-content: center;
 }
+.text {
+	width:125px;
+	height:125px;
+}
 .detail-photo {
     border-radius: 50%;
-    
+    background-size: contain;
     background: #fff;
     z-index: 55;
     width: 150px;
@@ -407,7 +412,7 @@ to {
     min-width: 400px;
     max-height: 450px;
     position: relative;
-    top: -10vh;
+    top: -8vh;
     background: #fff;
     padding: 30px 20px;
     transform: translate(-50%,0);

@@ -81,10 +81,12 @@ body {
 	flex-direction:row;
 	justify-content: space-between;
 	margin: 30px 0 30px 0;
+	    align-items: center;
 }
 .trainer-list .trainer-info {
 	    display: flex;
     flex-direction: row;
+        align-items: center;
 }
 .photo {
 	    align-self: center;

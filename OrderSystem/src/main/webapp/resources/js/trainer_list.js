@@ -1,6 +1,7 @@
 var trainer_username = '';
 var photoSrc = '';
 var trainer = '';
+var trainerSex = '';
 function selectUserbI(managerId) {
 	var test = this.value;
 
@@ -29,14 +30,14 @@ $(function() {
 	const toggleBtn = document.querySelector('.toggle-btn');
 	const gender = document.querySelectorAll('.gender');
 
-	toggleBtn.addEventListener('click', () => {
-	  background.classList.toggle('background--on');
-	  toggleBody.classList.toggle('toggle-body--on');
-	  toggleBtn.classList.toggle('toggle-btn--on');
-	  toggleBtn.classList.toggle('toggle-btn--scale');
-	  gender[0].classList.toggle('gender--female');
-	  gender[1].classList.toggle('gender--female');
-	});
+//	toggleBtn.addEventListener('click', () => {
+//	  background.classList.toggle('background--on');
+//	  toggleBody.classList.toggle('toggle-body--on');
+//	  toggleBtn.classList.toggle('toggle-btn--on');
+//	  toggleBtn.classList.toggle('toggle-btn--scale');
+//	  gender[0].classList.toggle('gender--female');
+//	  gender[1].classList.toggle('gender--female');
+//	});
 	
 	$('.apply').click(function() {
 		$('.apply').val(trainer_username);
@@ -52,9 +53,19 @@ $(function() {
 		},
 		'detail-btn' : function() {
 			DModal.style.display = "block";
-			$('.detail-photo').css('background',"url('"+photoSrc+")");
+			$('.detail-photo').css('background',"url('"+photoSrc+"'),url('/kopo/resources/images/icon/default-profile-icon.jpg')");
+			$('.detail-photo').css('background-size','contain');
+			
 			$('.trainer-name').text(trainer);
 			
+			if(trainerSex == '여자'){
+				background.className = 'background background--on';
+				toggleBody.className = 'toggle-body toggle-body--on';
+				gender[0].className = 'male gender gender--female';
+				gender[1].className = 'female gender gender--female';
+				toggleBtn.className = 'toggle-btn toggle-btn--on toggle-btn--scale';
+			
+			}
 		}
 	}
 
@@ -73,6 +84,7 @@ $(function() {
 					
 					photoSrc = $(this).parents('.item-box').find('img').attr('src');
 					trainer = $(this).parents('.item-box').find('.username').text();
+					trainerSex = $(this).parents('.item-box').find('.trainer-sex').val();
 					modalClickEvent[target.id].call();
 					
 				

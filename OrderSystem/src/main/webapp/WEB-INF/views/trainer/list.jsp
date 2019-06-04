@@ -37,11 +37,12 @@
 				<c:when test="${trainerList.size() > 0}">
 					<c:forEach var="item" items="${trainerList}">
 						<div class="item-box">
+							<input type="hidden" value = "${item.sex}" class="trainer-sex">
 							<div class="trainer-info">
 								<div class="photo">
 									<img
-										src="${pageContext.request.contextPath}/upload/${item.upFilename}"
-										width="100px" height="100px" class="text">
+										src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
+										class="text">
 								</div>
 								<div class="trainer-text">
 									<div class="username">${item.username}</div>
@@ -77,6 +78,7 @@
 				<h2>멘토링 신청</h2>
 			</div>
 			<div class="contents-container">
+				<div class="contents-box">
 				<form action="apply" method="post" id="trainer"
 					enctype="multipart/form-data">
 					<input id="managerID" type="hidden" name="manager" value="">
@@ -84,12 +86,12 @@
 					<div class="group">
 						<input type="text" required class="weights" name="weights">
 						<span class="highlight"></span> <span class="bar"></span> <label
-							class="only-modal">체중</label>
+							class="only-modal">체중(in kg)</label>
 					</div>
 					<div class="group">
 						<input type="text" required class="height" name="height">
 						<span class="highlight"></span> <span class="bar"></span> <label
-							class="only-modal">키</label>
+							class="only-modal">키(in cm)</label>
 					</div>
 					<div class="group">
 						<input type="text" required class="etc" name="etc"> <span
@@ -98,6 +100,7 @@
 					</div>
 
 				</form>
+				</div>
 			</div>
 			<ul class="list-inline">
 

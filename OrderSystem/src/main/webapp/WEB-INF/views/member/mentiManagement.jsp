@@ -937,6 +937,14 @@
 
 			</div>
 		</div>
-		<div id="alarm"></div>
+		<div class="alarm">
+ <p class="label">
+ 알람창 테스트<br/>흐럇차차찹
+ </p>
+ <div class="tail"></div>
+</div>
+
+
+
 </body>
 </html>

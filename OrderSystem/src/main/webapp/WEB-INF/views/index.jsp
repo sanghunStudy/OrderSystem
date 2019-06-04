@@ -92,12 +92,12 @@
 			<span class="calculatorModal-close">&times;</span>
 			<div class="calculator-tabs">
 
-				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">1RM계산</li>
-					<li class="tab-link" data-tab="tab-2">칼로리계산</li>
+				<ul class="calculatorModal-tabs">
+					<li class="tab-link current" data-tab="calculatorModal-tab-1">1RM계산</li>
+					<li class="tab-link" data-tab="calculatorModal-tab-2">칼로리계산</li>
 				</ul>
 
-				<div id="tab-1" class="tab-content current">
+				<div id="calculatorModal-tab-1" class="calculatorModal-tab-content current">
 					<div id="app">
 						<label>사용중량</label><input v-model="x" type="number" id="kg">
 						<label>반복횟수</label><input v-model="y" type="number" id="reps">
@@ -272,7 +272,7 @@
 						});
 					</script>
 				</div>
-				<div id="tab-2" class="tab-content">
+				<div id="calculatorModal-tab-2" class="calculatorModal-tab-content">
 					<h1>칼로리계산기</h1>
 					<div id="exam">
 						<table border=1>

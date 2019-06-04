@@ -64,12 +64,12 @@
   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
 }
 
-ul.tabs{
+ul.calculatorModal-tabs{
   margin: 0px;
   padding: 0px;
   list-style: none;
 }
-ul.tabs li{
+ul.calculatorModal-tabs li{
   background: none;
   color: #d6d1d8;
   display: inline-block;
@@ -77,31 +77,31 @@ ul.tabs li{
   cursor: pointer;
 }
 
-ul.tabs li.current{
+ul.calculatorModal-tabs li.current{
   background: #272a3d;
   color: #d6d1d8;
 }
 
-.tab-content{
+.calculatorModal-tab-content{
   display: none;
   background: #272a3d;
   padding: 15px;
   position: absolute;
       width: 470px;
 }
-table {
+.calculatorModal table {
 	width:420px;
 }
-table select,input {
+.calculatorModal table select,input {
 	width:170px;
 	margin: 0 0 0 10px;
 }
-.tab-content.current{
+.calculatorModal-tab-content.current{
   display: inherit;
   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
   width:430px;
 }
-#tab-1{
+#calculatorModal-tab-1{
 	width:460px;
 }
 #onet{

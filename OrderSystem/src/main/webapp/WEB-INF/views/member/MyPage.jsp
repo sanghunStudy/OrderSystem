@@ -19,8 +19,6 @@
 		<li><a href="mentiManagement">멘티 관리</a></li>
 		<li><a href="statistics">나의 운동 통계 </a></li>
 		<li><a href="promotion">트레이너 신청</a></li>
-		<li><a href="ExerciseJournalList">운동일지상세목록</a></li>
-		<li><a href="${pageContext.request.contextPath}/menu/list">질문게시판</a></li>
 		<li><a href="${pageContext.request.contextPath}/trainer/waitingForApproval">pt신청 대기 회원</a></li>
 	</ul>
 	<div id="calcModal" class="modal">

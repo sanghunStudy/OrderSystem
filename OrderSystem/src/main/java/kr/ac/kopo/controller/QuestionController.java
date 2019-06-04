@@ -31,21 +31,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.model.MenuComment;
+import kr.ac.kopo.model.Question;
+import kr.ac.kopo.model.QuestionComment;
 import kr.ac.kopo.model.NoticeComment;
-import kr.ac.kopo.service.MenuService;
+import kr.ac.kopo.service.QuestionService;
 import kr.ac.kopo.util.MediaUtils;
 import kr.ac.kopo.util.SearchVO;
 
 @Controller
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/question")
+public class QuestionController {
 	
-	final String path = "menu/";
+	final String path = "question/";
 	
 	@Autowired
-	MenuService service;
+	QuestionService service;
 	
 	
 	@RequestMapping("/list")
@@ -59,7 +59,7 @@ public class MenuController {
 			login = (String)session.getAttribute("admin");
 		}
 		
-		List<Menu> list = service.list(searchVO);
+		List<Question> list = service.list(searchVO);
 //		for(int i=0; i<list.size(); i++) {
 //			System.out.println(list.get(i).getMenuContent()+"<<<list.get(i).getMenuContent()");
 //			if(list.get(i).getMenuContent().contains("img")) {
@@ -83,7 +83,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	String add(Menu menu, HttpSession session) {
+	String add(Question menu, HttpSession session) {
 		String username = (String)session.getAttribute("user");
 		if(username==null) {
 			username = (String)session.getAttribute("trainer");
@@ -99,7 +99,7 @@ public class MenuController {
 	
 	@RequestMapping(value="/update")
 	String update(int menuId, Model model) {
-		Menu item = service.item(menuId);
+		Question item = service.item(menuId);
 		
 		model.addAttribute("item", item);
 		
@@ -107,7 +107,7 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	String update(Menu item) {
+	String update(Question item) {
 		service.update(item);
 		
 		return "redirect:view?menuId="+item.getMenuId();
@@ -123,9 +123,9 @@ public class MenuController {
 	@RequestMapping("/view")
 	String view(Model model, int menuId, HttpSession session) {
 		service.views(menuId);
-		Menu item = service.item(menuId);
+		Question item = service.item(menuId);
 		item.setMenuName(item.getMenuName().replaceAll("<[^>]*>",""));
-		List<MenuComment> MComment = service.commentList(menuId);
+		List<QuestionComment> MComment = service.commentList(menuId);
 		String login = (String)session.getAttribute("user");
 		if(login==null) {
 			login = (String)session.getAttribute("trainer");
@@ -176,7 +176,7 @@ public class MenuController {
 	//댓글ajax그대로인데 jsp에서 못보내던거 수정
 	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody
-	String commnetAdd(MenuComment MComment, HttpSession session) {
+	String commnetAdd(QuestionComment MComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
 		if(username==null) {
 			username = (String)session.getAttribute("trainer");
@@ -193,9 +193,9 @@ public class MenuController {
 		}
 	} 
 	@ResponseBody
-	@RequestMapping(value="/mcommentList")
-	List<MenuComment> mcommentList(int menuId){
-		List<MenuComment> commentList = service.commentList(menuId);
+	@RequestMapping(value="/qcommentList")
+	List<QuestionComment> mcommentList(int menuId){
+		List<QuestionComment> commentList = service.commentList(menuId);
 		for(int i=0; i < commentList.size(); i++) {
 			commentList.get(i).setMcommentContent(commentList.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
 		}
@@ -228,7 +228,7 @@ public class MenuController {
 	
 	@RequestMapping("/commentUpdate")
 	@ResponseBody
-	String commentUpdate(MenuComment MComment) {
+	String commentUpdate(QuestionComment MComment) {
 		service.commentUpdate(MComment);
 		return "success";
 	}

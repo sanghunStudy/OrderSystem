@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Lobster|Noto+Sans+KR:400,500,700|Noto+Sans:400,700|Poppins:300,400,600,700,900|Ubuntu&display=swap&subset=korean');
+
+body,html,p,table,div,span,ul,li,canvas,tr,td,i{margin:0; padding:0;}
+
 .more_exercise {
 	display:none;
 	position: fixed;

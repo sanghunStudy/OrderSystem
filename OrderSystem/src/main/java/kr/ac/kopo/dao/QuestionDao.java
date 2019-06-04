@@ -2,31 +2,31 @@ package kr.ac.kopo.dao;
 
 import java.util.List;
 
-import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.model.MenuComment;
+import kr.ac.kopo.model.Question;
+import kr.ac.kopo.model.QuestionComment;
 import kr.ac.kopo.util.SearchVO;
 
-public interface MenuDao {
+public interface QuestionDao {
 
-	List<Menu> list(SearchVO searchVO);
+	List<Question> list(SearchVO searchVO);
 
-	void add(Menu menu);
+	void add(Question menu);
 
-	Menu item(int menuId);
+	Question item(int menuId);
 
-	void update(Menu item);
+	void update(Question item);
 
 	void delete(int menuId);
 
 	int total(SearchVO searchVO);
 
-	List<MenuComment> commentList(int menuId);
+	List<QuestionComment> commentList(int menuId);
 
-	void commentAdd(MenuComment mComment);
+	void commentAdd(QuestionComment mComment);
 
 	void commentDel(int mcommentId);
 
-	void commentUpdate(MenuComment mComment);
+	void commentUpdate(QuestionComment mComment);
 
 	void views(int menuId);
 

@@ -1,6 +1,6 @@
 package kr.ac.kopo.model;
 
-public class MenuComment {
+public class QuestionComment {
 	private int mcommentId;
 	private String id;
 	private String mcommentContent;

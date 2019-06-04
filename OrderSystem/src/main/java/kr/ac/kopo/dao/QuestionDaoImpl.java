@@ -7,74 +7,74 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.model.MenuComment;
+import kr.ac.kopo.model.Question;
+import kr.ac.kopo.model.QuestionComment;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository
-public class MenuDaoImpl implements MenuDao {
+public class QuestionDaoImpl implements QuestionDao {
 	
 	@Autowired
 	SqlSession sql;
 
 	@Override
-	public List<Menu> list(SearchVO searchVO) {
-		return sql.selectList("menu.list", searchVO);
+	public List<Question> list(SearchVO searchVO) {
+		return sql.selectList("question.list", searchVO);
 	}
 
 	@Override
-	public void add(Menu menu) {
-		sql.insert("menu.add", menu);
+	public void add(Question menu) {
+		sql.insert("question.add", menu);
 	}
 
 	@Override
-	public Menu item(int menuId) {
-		return sql.selectOne("menu.item", menuId);
+	public Question item(int menuId) {
+		return sql.selectOne("question.item", menuId);
 	}
 
 	@Override
-	public void update(Menu item) {
-		sql.update("menu.update", item);
+	public void update(Question item) {
+		sql.update("question.update", item);
 	}
 
 	@Override
 	public void delete(int menuId) {
-		sql.delete("menu.delete", menuId);
+		sql.delete("question.delete", menuId);
 	}
 
 	@Override
 	public int total(SearchVO searchVO) {
-		return sql.selectOne("menu.total", searchVO);
+		return sql.selectOne("question.total", searchVO);
 	}
 
 	@Override
-	public List<MenuComment> commentList(int menuId) {
-		return sql.selectList("menu.commentList", menuId);
+	public List<QuestionComment> commentList(int menuId) {
+		return sql.selectList("question.commentList", menuId);
 	}
 
 	@Override
-	public void commentAdd(MenuComment mComment) {
-		sql.insert("menu.commentAdd",mComment);
+	public void commentAdd(QuestionComment mComment) {
+		sql.insert("question.commentAdd",mComment);
 	}
 
 	@Override
 	public void commentDel(int mcommentId) {
-		sql.delete("menu.commentDel", mcommentId);
+		sql.delete("question.commentDel", mcommentId);
 	}
 
 	@Override
-	public void commentUpdate(MenuComment mComment) {
-		sql.update("menu.commentUpdate", mComment);
+	public void commentUpdate(QuestionComment mComment) {
+		sql.update("question.commentUpdate", mComment);
 	}
 
 	@Override
 	public void views(int menuId) {
-		sql.update("menu.views", menuId);
+		sql.update("question.views", menuId);
 	}
 
 	@Override
 	public void selection(int mcommentId) {
-		sql.update("menu.selection",mcommentId);
+		sql.update("question.selection",mcommentId);
 	}
 
 	@Override
@@ -82,17 +82,17 @@ public class MenuDaoImpl implements MenuDao {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("id",pointGetUser);
 		map.put("pointSet", pointSet);
-		sql.update("menu.pointUp",map);
+		sql.update("question.pointUp",map);
 	}
 
 	@Override
 	public int onlyOnceSelection(int menuId) {
-		return sql.selectOne("menu.onlyOnceSelection",menuId);
+		return sql.selectOne("question.onlyOnceSelection",menuId);
 	}
 
 	@Override
 	public int userpoint(String username) {
-		return sql.selectOne("menu.userpoint",username);
+		return sql.selectOne("question.userpoint",username);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class MenuDaoImpl implements MenuDao {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("id",pointLoseUser);
 		map.put("pointSet", pointSet);
-		sql.update("menu.pointDown",map);
+		sql.update("question.pointDown",map);
 	}
 
 }

@@ -2,7 +2,7 @@ package kr.ac.kopo.model;
 
 import java.util.Date;
 
-public class Menu {
+public class Question {
 	int menuId;
 	String menuName;
 	String menuContent;

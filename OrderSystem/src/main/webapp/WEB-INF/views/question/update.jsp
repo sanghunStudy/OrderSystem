@@ -56,7 +56,7 @@ $(document).ready(function(){
 			var pointInfo = $('#pointSet').val();
 			if(pointInfo != null || pointInfo != 0){
 				$.ajax({
-					url:"${pageContext.request.contextPath}/menu/userpoint",
+					url:"${pageContext.request.contextPath}/question/userpoint",
 					type:'GET',
 					success:function(data){
 						if(data > pointInfo){
@@ -88,7 +88,7 @@ function sendFile(file, el) {
 	$.ajax({
 		data : form_data,
 		type : "POST",
-		url : '${pageContext.request.contextPath}/menu/profileUpload',
+		url : '${pageContext.request.contextPath}/question/profileUpload',
 		cache : false,
 		contentType : false,
 		enctype : 'multipart/form-data',

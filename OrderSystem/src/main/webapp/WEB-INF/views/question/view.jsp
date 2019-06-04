@@ -37,7 +37,7 @@ $(document).ready(function(){
 		var mcommentId = $(this).attr("data-code");
 		var content = $('[name=content_'+ mcommentId +']').val();
 		$.ajax({
-			url:'${pageContext.request.contextPath}/menu/commentUpdate',
+			url:'${pageContext.request.contextPath}/question/commentUpdate',
 			type:'post',
 			data:{
 				'mcommentId':mcommentId,
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		var menuId = ${item.menuId};
 // 		console.log(pointGetUser+"    "+pointLoseUser);
 		$.ajax({
-			url:"${pageContext.request.contextPath}/menu/selectionCheck",
+			url:"${pageContext.request.contextPath}/question/selectionCheck",
 			type:"GET",
 			data:{
 				'menuId':menuId,
@@ -116,7 +116,7 @@ $(document).ready(function(){
 	function commentList() {
 		var menuId = ${item.menuId};
 		$.ajax({
-			url:'${pageContext.request.contextPath}/menu/mcommentList',
+			url:'${pageContext.request.contextPath}/question/qcommentList',
 			type:'GET',
 			data:{
 				'menuId':menuId
@@ -152,7 +152,7 @@ $(document).ready(function(){
 			alert("댓글내용을 입력해 주세요");
 		} else{
 			$.ajax({
-				url:'${pageContext.request.contextPath}/menu/commentAdd',
+				url:'${pageContext.request.contextPath}/question/commentAdd',
 				type:'POST',
 				data:{
 					'mcommentContent':commentCheck,
@@ -174,7 +174,7 @@ $(document).ready(function(){
 	$(document).on("click",'.commentDel',function(e){
 		var commentId = $(this).attr("data-code");
 		$.ajax({
-			url:'${pageContext.request.contextPath}/menu/commentDel',
+			url:'${pageContext.request.contextPath}/question/commentDel',
 			type:'POST',
 			data:{
 				'mcommentId':commentId

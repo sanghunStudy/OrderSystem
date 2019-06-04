@@ -7,14 +7,14 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="kr.ac.kopo.model.MenuComment" alias="MComment"/>
+		<typeAlias type="kr.ac.kopo.model.QuestionComment" alias="QComment"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoardComment" alias="RComment"/>
 		<typeAlias type="kr.ac.kopo.model.NoticeComment" alias="NComment"/>
 		<typeAlias type="kr.ac.kopo.util.FileVO" alias="FileVO"/>
 		<typeAlias type="kr.ac.kopo.util.SearchVO" alias="SearchVO"/>
 		<typeAlias type="kr.ac.kopo.util.PageVO" alias="PageVo"/>
 		<typeAlias type="kr.ac.kopo.model.Routine" alias="Routine"/>
-		<typeAlias type="kr.ac.kopo.model.Menu" alias="Menu"/>
+		<typeAlias type="kr.ac.kopo.model.Question" alias="Question"/>
 		<typeAlias type="kr.ac.kopo.model.ReviewBoard" alias="ReviewBoard"/>
 		<typeAlias type="kr.ac.kopo.model.Bucket" alias="Bucket"/>
 		<typeAlias type="kr.ac.kopo.model.UserVO" alias="UserVO"/>
@@ -32,7 +32,7 @@
  	<mappers>
  		<mapper resource="mybatis/routine.xml" />
 		<mapper resource="mybatis/cart.xml"/>
-		<mapper resource="mybatis/menu.xml"/>
+		<mapper resource="mybatis/question.xml"/>
 		<mapper resource="mybatis/reviewboard.xml"/>
 		<mapper resource="mybatis/user.xml"/>
 		<mapper resource="mybatis/trainer.xml"/>

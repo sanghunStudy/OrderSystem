@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.ac.kopo.dao.MenuDao;
-import kr.ac.kopo.model.Menu;
-import kr.ac.kopo.model.MenuComment;
+import kr.ac.kopo.dao.QuestionDao;
+import kr.ac.kopo.model.Question;
+import kr.ac.kopo.model.QuestionComment;
 import kr.ac.kopo.util.SearchVO;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class QuestionServiceImpl implements QuestionService {
 	
 	@Autowired
-	MenuDao dao;
+	QuestionDao dao;
 
 	@Override
-	public List<Menu> list(SearchVO searchVO) {
+	public List<Question> list(SearchVO searchVO) {
 		return dao.list(searchVO);
 	}
 
 	@Override
-	public void add(Menu menu) {
+	public void add(Question menu) {
 		dao.add(menu);
 	}
 
 	@Override
-	public Menu item(int menuId) {
+	public Question item(int menuId) {
 		return dao.item(menuId);
 	}
 
 	@Override
-	public void update(Menu item) {
+	public void update(Question item) {
 		dao.update(item);
 	}
 
@@ -47,12 +47,12 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuComment> commentList(int menuId) {
+	public List<QuestionComment> commentList(int menuId) {
 		return dao.commentList(menuId);
 	}
 
 	@Override
-	public void commentAdd(MenuComment mComment) {
+	public void commentAdd(QuestionComment mComment) {
 		dao.commentAdd(mComment);
 	}
 
@@ -62,7 +62,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void commentUpdate(MenuComment mComment) {
+	public void commentUpdate(QuestionComment mComment) {
 		dao.commentUpdate(mComment);
 	}
 

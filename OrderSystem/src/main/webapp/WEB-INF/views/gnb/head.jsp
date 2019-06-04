@@ -59,7 +59,7 @@ $(document).ready(function(){
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a></li>
 						<li><a href="${pageContext.request.contextPath}/Routine/list">ROUTINE</a></li>
-						<li><a href="${pageContext.request.contextPath}/menu/list">QUESTION</a></li>
+						<li><a href="${pageContext.request.contextPath}/question/list">QUESTION</a></li>
 						<li><a href="${pageContext.request.contextPath}/trainer/list">PERSONAL TRAINER</a></li>
 					</ul>
 				</nav>

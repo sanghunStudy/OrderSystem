@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="menu">
+<mapper namespace="question">
 	<sql id="includeBoard">
 		<if test="searchKeyword != null and searchKeyword != ''">
 			where menu_id != 0 and (
@@ -17,23 +17,23 @@
 		<include refid="includeBoard" />
 	</select>
 	
-	<select id="list" resultType="Menu" parameterType="searchVO">
+	<select id="list" resultType="Question" parameterType="searchVO">
 		select * , (select count(*) from menu_comment m where m.menu_id=menu.menu_id) as cnt from menu
 		<include refid="includeBoard"/>
 		order by menu_id desc LIMIT ${rowStart-1},${displayRowCount}
 	</select>
 	
-	<insert id="add" parameterType="Menu">
+	<insert id="add" parameterType="Question">
 		insert into menu(menu_name,menu_content,menu_date,id,img_chk,point_set)
 		values(#{menuName},#{menuContent},NOW(),#{id},#{imgChk},#{pointSet})
 	</insert>
 	
-	<select id="item" resultType="Menu">
+	<select id="item" resultType="Question">
 		select *, (select count(*) from menu_comment mc where mc.menu_id=menu.menu_id) as cnt
 		from menu where menu_id=#{menuId}
 	</select>
 	
-	<update id="update" parameterType="Menu">
+	<update id="update" parameterType="Question">
 		update menu 
 		set menu_name=#{menuName},menu_content=#{menuContent},img_chk=#{imgChk},point_set=#{pointSet}
 		where menu_id=#{menuId}
@@ -43,11 +43,11 @@
 		delete from menu where menu_id=#{menuId}
 	</delete>
 	
-	<select id="commentList" resultType="MComment">
+	<select id="commentList" resultType="QComment">
 		select * from menu_comment where menu_id=#{menuId} order by selection_check desc, mcomment_id desc
 	</select>
 	
-	<insert id="commentAdd" parameterType="MComment">
+	<insert id="commentAdd" parameterType="QComment">
 		insert into menu_comment
 		(id,menu_id,mcomment_content,mcomment_date)
 		values(#{id},#{menuId},#{mcommentContent},NOW())
@@ -63,7 +63,7 @@
 		where mcomment_id = #{mcommentId}
 	</update>
 	
-	<update id="views" parameterType="Menu">
+	<update id="views" parameterType="Question">
 		update menu
 		set menu_views= menu_views+1
 		where menu_id=#{menuId}

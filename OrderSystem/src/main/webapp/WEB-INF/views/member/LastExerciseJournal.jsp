@@ -17,15 +17,9 @@
 			</div>
 			<c:choose>
 				<c:when test="">
-					<%-- <c:forEach var="mel" items="${list}">
 					<div>
-						<ul>
-							<li>${mel.exerciseDate}</li>
-							<li>${mel.title}</li>
-							
-						</ul>
+						
 					</div>
-				</c:forEach> --%>
 				</c:when>
 				<c:otherwise>
 					<div class="nothing">지난 운동 일지가 없습니다.</div>

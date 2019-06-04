@@ -85,11 +85,11 @@
 </nav>
 
 <!-- The Modal -->
-	<div id="calcModal" class="modal">
+	<div id="calcModal" class="calculatorModal">
 
 		<!-- Modal content -->
-		<div class="modal-content">
-			<span class="close">&times;</span>
+		<div class="calculatorModal-content">
+			<span class="calculatorModal-close">&times;</span>
 			<div class="calculator-tabs">
 
 				<ul class="tabs">

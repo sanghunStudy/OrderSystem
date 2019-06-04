@@ -8,7 +8,7 @@
 #app label {
 	color:#d9d2da;
 }
-.modal {
+.calculatorModal {
 	display: none;
 	position: fixed;
 	z-index: 10000;
@@ -22,7 +22,7 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.calculatorModal-content {
 	background-color: #201d2e;
 	margin: 15% auto;
 	padding: 20px;
@@ -31,12 +31,12 @@
 	width: 560px;
 	height: 330px;
 }
-.modal-content input {
+.calculatorModal-content input {
 	background-color : #463f47;
 	color : #f9ca08;
 	border: none;
 }
-.modal-content select {
+.calculatorModal-content select {
 	background-color : #463f47;
 	color : #f9ca08;
 	border: none;
@@ -45,14 +45,14 @@
 	color : #f9ca08;
 }
 /* The Close Button */
-.close {
+.calculatorModal-close {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
 }
 
-.close:hover, .close:focus {
+.calculatorModal-close:hover, .calculatorModal-close:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

@@ -50,6 +50,7 @@
 
 </head>
  <%@ include file="modal.jsp" %>
+ <%@ include file="../gnb/nav.jsp" %>
 
 <body>
 	<!-- 그래프에 값을 넘기기 위해 쿼리반환값들을 자바스크립트 배열혹은 json object로 복사,변환해줌 -->

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
 				<div class="modal-proImg">
 					<img src="#">
 				</div>
-				<p>³ª¸¦ Ç¥ÇöÇØ º¸¼¼¿ä</p>
+				<p>ë‚˜ë¥¼ í‘œí˜„í•´ ë³´ì„¸ìš”</p>
 			</div>
 			<div class="contents-container">
 				<div class="contents-form">
@@ -32,38 +32,38 @@
 				<form>
 					<div class="group">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
-						 <label class="only-modal">¾ÆÀÌµð</label>
+						 <label class="only-modal">ì•„ì´ë””</label>
 						<input type="text" required class="weights"> <span class="highlight"></span>
 						<span class="bar"></span>
 					</div>
 					<div class="group">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
-						<label class="only-modal">ÀÌ¸§</label>
+						<label class="only-modal">ì´ë¦„</label>
 						<input type="text" required class="height"> <span class="highlight"></span>
 						<span class="bar"></span> 
 					</div>
 					<div class="group">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
-						 <label class="only-modal">Áö¿ª</label>
+						 <label class="only-modal">ì§€ì—­</label>
 						<input type="text" required class="height"> <span class="highlight"></span>
 						<span class="bar"></span>
 					</div>
 					<div class="group">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
-						<label class="only-modal">°æ·Â</label>
+						<label class="only-modal">ê²½ë ¥</label>
 						<input type="text" required class="etc"> <span class="highlight"></span>
 						<span class="bar"></span> 
 					</div>
 					<div class="group">
-						<input type="radio" required class="etc"><label class="only-modal">³²ÀÚ</label>
-						<input type="radio" required class="etc"><label class="only-modal">¿©ÀÚ</label>
+						<input type="radio" required class="etc"><label class="only-modal">ë‚¨ìž</label>
+						<input type="radio" required class="etc"><label class="only-modal">ì—¬ìž</label>
 					</div>
 
 				</form>
 				<ul class="list-inline">
 
 				<li><button type="button" class="modal-btn-collection apply">
-						<span>½ÅÃ»</span>
+						<span>ì‹ ì²­</span>
 					</button></li>
 				</ul>
 				</div>

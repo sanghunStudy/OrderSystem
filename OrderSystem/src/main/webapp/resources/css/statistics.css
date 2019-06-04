@@ -29,14 +29,14 @@ body {
 }
 
 
-label {
+#toWrapper label {
   cursor: pointer;
   font-size: 1rem;
   line-height: 1rem;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+#toWrapper input[type="checkbox"],
+#toWrapper input[type="radio"] {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -46,16 +46,16 @@ input[type="radio"] {
   position: absolute;
   width: 1px;
 }
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  position: relative;
+#toWrapper input[type="checkbox"] +  label,
+#toWrapper input[type="radio"] +  label {
+ position: relative;
   padding: 0.5rem 0 0 2rem;
   margin-bottom: 1rem;
   user-select: none;
   color: #fff;
 }
-input[type="checkbox"] + label:before,
-input[type="radio"] + label:before {
+#toWrapper input[type="checkbox"] +  label:before,
+#toWrapper input[type="radio"] +  label:before {
   content: "";
   position: absolute;
   top: 0;
@@ -68,15 +68,15 @@ input[type="radio"] + label:before {
   text-align: center;
   transition: background 200ms ease-out;
 }
-input[type="checkbox"] + label:after,
-input[type="radio"] + label:after {
+#toWrapper input[type="checkbox"] +  label:after,
+#toWrapper input[type="radio"] +  label:after {
   content: "";
   position: absolute;
   transform: scale(0);
   transition: transform 200ms ease-out;
 }
 
-input[type="checkbox"] + label:after {
+#toWrapper input[type="checkbox"] +  label:after {
   background-color: transparent;
   content: "";
   display: block;
@@ -91,10 +91,10 @@ input[type="checkbox"] + label:after {
   transform: rotate(45deg);
   transition: border-color 0.3s ease;
 }
-input[type="checkbox"]:checked + label:before {
+#toWrapper input[type="checkbox"]:checked +  label:before {
   content: "";
 }
-input[type="checkbox"]:checked + label:after {
+#toWrapper input[type="checkbox"]:checked +  label:after {
   content: "";
   opacity: 1;
 }

@@ -4,8 +4,20 @@ $(function() {
 	
 	var Modal = document.getElementById('modal');
 
+	const background = document.querySelector('.background');
+	const toggleBody = document.querySelector('.toggle-body');
+	const toggleBtn = document.querySelector('.toggle-btn');
+	const gender = document.querySelectorAll('.gender');
 
-			
+	toggleBtn.addEventListener('click', () => {
+	  background.classList.toggle('background--on');
+	  toggleBody.classList.toggle('toggle-body--on');
+	  toggleBtn.classList.toggle('toggle-btn--on');
+	  toggleBtn.classList.toggle('toggle-btn--scale');
+	  gender[0].classList.toggle('gender--female');
+	  gender[1].classList.toggle('gender--female');
+	});
+	
 	var modalClickEvent = {
 			'trainer-apply':function() {
 				Modal.style.display = "block";
@@ -15,7 +27,7 @@ $(function() {
 				Modal.style.display = "block";
 			}
 	}
-		
+	
 	
 	
 	$('.menu-icons').on('click','i',function(e) {

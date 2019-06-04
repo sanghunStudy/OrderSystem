@@ -184,7 +184,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 
 /* LABEL ======================================= */
 .contents-container label {
-	color: #999;
+	color: #9b1d85;
 	font-size: 18px;
 	font-weight: normal;
 /* 	position: absolute; */
@@ -404,4 +404,109 @@ to {
 .list-inline > li {
 	display: flex;
     justify-content: center;
+}
+
+/*성별 라디오 버튼*/
+.sex-box {
+	margin: auto 0;
+}
+.sex-box p {
+	margin-bottom:30px;
+	font-size: 18px;
+    font-weight: normal;
+}
+/* 토글 css */
+.background {
+    width: 75px;
+    height: 75px;
+  position: relative;
+  background: transparent;
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  left:25px;
+      display: flex;
+    justify-content: space-between;
+}
+.background--on {
+  background: transparent;
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+}
+.toggle-body {
+    width: 5rem;
+    height: 2.856rem;
+  position: absolute;
+  top: calc(50% - 4rem / 2);
+  left: calc(50% - 7rem / 2);
+  background: white;
+  border-radius: 2rem;
+  border:2px solid #618bff;
+  animation: angle-reverse 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+
+}
+.toggle-body--on {
+  animation: angle 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  animation-direction: alternate;
+  border:2px solid #ff8fde;
+}
+.toggle-btn {
+width: 1.7rem;
+    height: 1.7rem;
+  position: absolute;
+  top: calc(50% - 2rem / 2.2);
+  left: calc(27% - 2rem / 2);
+  background: white;
+  border-radius: 2rem;
+  background: #618bff;
+  cursor: pointer;
+  transform: translateX(0);
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+      align-items: center;
+}
+.toggle-btn--on {
+  transition: 0.5s cubic-bezier(0.68, -0.15, 0.265, 1.35);
+  transform: translateX(150%);
+  background: #ff8fde;
+}
+.background span {
+	position:relative;
+	  top: -10px;
+	 
+}
+.male {
+    left: -40px;
+  	
+
+}
+.female{
+	 left: 5px;
+
+    
+}
+.gender {
+	color:#618bff;
+	align-self:center;
+}
+.gender--female {
+	color:#ff8fde;
+}
+@keyframes angle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes angle-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

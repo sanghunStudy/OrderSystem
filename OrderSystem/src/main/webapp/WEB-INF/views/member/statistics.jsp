@@ -321,12 +321,12 @@
 										</div></td>
 									<td class="parts">등</td>
 									<td>
-										<div class="progress-container">
-											<span id="value" class="progress-value"
+										<div class="progress-container-t">
+											<span id="value" class="progress-value-t"
 												style="background-color: #272a3d">1%</span>
 
-											<div class="progress-bar">
-												<div id="bar" class="progress-value multi" data-code="dbVal"
+											<div class="progress-bar-t">
+												<div id="bar" class="progress-value-t multi" data-code="dbVal"
 													style="width: 1%;"></div>
 											</div>
 										</div>
@@ -364,12 +364,12 @@
 									<td class="nutrient">탄수화물,단백질</td>
 									<td class="kcal">250Kcal</td>
 									<td>
-										<div class="progress-container">
-											<span id="value" class="progress-value"
+										<div class="progress-container-t">
+											<span id="value" class="progress-value-t"
 												style="background-color: #272a3d">1%</span>
 
-											<div class="progress-bar">
-												<div id="bar" class="progress-value multi" data-code="dbVal"
+											<div class="progress-bar-t">
+												<div id="bar" class="progress-value-t multi" data-code="dbVal"
 													style="width: 1%;"></div>
 											</div>
 										</div>

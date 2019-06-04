@@ -143,7 +143,7 @@ table {
 #top_line {display:flex; justify-content:center;margin-bottom: 14px;}
 /* 마일스톤 progressbar */
 
-.progress-bar {
+.progress-bar-t {
     background-color: #1b1d2b;
     border-radius: 1.25em;
     width: 200px;
@@ -151,7 +151,7 @@ table {
     display: inline-block;
     vertical-align: middle;
 }
-.progress-value {
+.progress-value-t {
     background-color: #344675;
  	margin-left:3px;
     transition: 0.3s all linear;
@@ -163,7 +163,7 @@ table {
 /*     -webkit-animation: progress 3s ease-in-out forwards; */
 }
 
-.progress-container {
+.progress-container-t {
 	
 }
 

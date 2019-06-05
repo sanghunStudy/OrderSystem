@@ -88,7 +88,7 @@
 	<div class="container">
 		<div>
 			<a class="subtitle"
-				href="${pageContext.request.contextPath}/menu/list">질문게시판</a>
+				href="${pageContext.request.contextPath}/question/list">질문게시판</a>
 		</div>
 		<script>
 			function changeSelect() {

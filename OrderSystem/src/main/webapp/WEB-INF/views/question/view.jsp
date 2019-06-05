@@ -22,7 +22,7 @@ $(document).ready(function(){
 	//댓글수정함수
 	function co_updateMode(code,data){
 		var updateForm ='';
-		updateForm += '<input type="text" class="updateForm" name="content_'+ code +'" value="'+ data +'">';
+		updateForm += '<textarea class="updateForm" name="content_'+ code +'">'+ data +'</textarea>';
 		updateForm += '<div class="update_btn" data-code="'+ code +'">수정</div>';
 		var coca = $('.coca').length;
 		for(var i=0; i < coca; i++){
@@ -36,21 +36,29 @@ $(document).ready(function(){
 	$(document).on("click",'.update_btn',function(){
 		var mcommentId = $(this).attr("data-code");
 		var content = $('[name=content_'+ mcommentId +']').val();
-		$.ajax({
-			url:'${pageContext.request.contextPath}/question/commentUpdate',
-			type:'post',
-			data:{
-				'mcommentId':mcommentId,
-				'mcommentContent':content
-			},
-			success:function(data){
-				if(data=='success'){
-					commentList();
-				} else {
-					alert("수정실패");
-				}
+		if(content.length > 500){
+			var cutOK = confirm("500자를 초과 입력할 수 없습니다\n500자 까지 자르겠습니까?");
+			if(cutOK == true){
+				var cut = content.substr(0,500);
+				$('[name=content_'+ mcommentId +']').val(cut);
 			}
-		});
+		} else {
+			$.ajax({
+				url:'${pageContext.request.contextPath}/question/commentUpdate',
+				type:'post',
+				data:{
+					'mcommentId':mcommentId,
+					'mcommentContent':content
+				},
+				success:function(data){
+					if(data=='success'){
+						commentList();
+					} else {
+						alert("수정실패");
+					}
+				}
+			});
+		}
 	});
 	//댓글 채택New버전 ajax
 	function choice_comment(commentId,pointGetUser,point,pointLoseUser) {
@@ -207,6 +215,7 @@ $(document).ready(function(){
 		<div id="QuestionTitle">
 			<div class="bigQ">Q</div><div class="zone"><div id="pointOX">${item.pointSet}</div></div><div class="QuestionName">${item.menuName}</div>
 		</div>
+		<hr class="boundaryline">
 		<div id="contents">
 			<div id="content">
 				<span>${item.menuContent}</span>

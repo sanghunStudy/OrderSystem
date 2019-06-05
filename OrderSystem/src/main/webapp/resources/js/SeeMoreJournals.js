@@ -10,4 +10,12 @@ $(function(){
 			detailbox.style.display = "none";
 		}
 	});
+	
+	$('.last-exercise-slider').bxSlider({
+		slideWidth:1000,
+		slideMargin:0,
+		maxSlides:1,
+		pager:true
+		
+	});
 });

@@ -52,6 +52,7 @@
 			} else if(summernoteVal == null || summernoteVal == "") {
 				alert("내용을 입력하세요");
 			} else if(pointInfo == 0) {
+				alert("포인트설정 없이 채택하면 본인의 포인트차감없이\n채택자에게 10포인트를 드립니다");
 				$("#menuForm").submit();
 			} else if(pointInfo != null || pointInfo != 0){
 				$.ajax({

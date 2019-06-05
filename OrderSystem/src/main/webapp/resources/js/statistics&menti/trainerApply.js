@@ -13,12 +13,13 @@ function proList()
 					for (var i=0; i < res.proList.length;i++) { 
 					
 				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '"></td>';
+				tr += '<td>' + res.proList[i].applyDate + '</td>';
 				tr += '<td class="apply-date">' + res.proList[i].username + '</td>';
 				tr += '<td>' + res.proList[i].name  +'</td>';
 				tr += '<td>' + res.proList[i].sex + '</td>';
-				tr += '<td>' + res.proList[i].applyDate + '</td>';
-				tr += '<td><input name=username type="button" value="수락" onclick="grantDo('+res.proList[i].username +');" />';
-				tr += '<input name=username type="button" value="거절" onclick="grantDel('+res.proList[i].username +');" /></td>';
+				tr += '<td><input id="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
+				tr += '<td><input id="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].username +');" /></td>';
+				tr += '<td><input id="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].username +');" /></td>';
 					
 			};
 			$('.pro-list').html(tr);

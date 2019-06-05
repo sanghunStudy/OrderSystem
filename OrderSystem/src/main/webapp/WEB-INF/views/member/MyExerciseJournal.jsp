@@ -323,18 +323,21 @@
 		$("inputTitle").val($(this));
 	});
 </script>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath}/resources/css/traindate.css">
 </head>
 <%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
 <body>
-	<div>
+	<div id="container">
+	<div id="search_train">
+	
+	
+	
+	
+	
+	
+	</div>
 		<h1>MyExerciseJournal</h1>
 		<input type="text" name="date" id="date1" size="12" />
-<!-- 		<div> -->
-<!-- 			<span class="icon"><i class="fas fa-grin"></i></span> -->
-<!-- 			<span class="icon"><i class="far fa-frown"></i></span> -->
-<!-- 			<span class="icon"><i class="far fa-tired"></i></span> -->
-<!-- 		</div> -->
-		
 		<label>제 목</label>
 		<input type="text" id="inputTitle"/>
 		

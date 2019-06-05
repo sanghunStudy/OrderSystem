@@ -1,5 +1,63 @@
 @charset "UTF-8";
 
+body {
+    background-color: #211d2f;
+    color: white;
+}
+
+h1 {
+    font-family: 'Nanum Gothic';
+}
+
+table {
+    width: 1250px;
+    height: auto;
+    border-top: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Nanum Gothic';
+    margin-top: 100px;
+}
+
+th, td, .upload-display {
+    border-bottom: 1px solid white;
+}
+
+#container {
+    width: 1250px;
+    height: 800px;
+    margin: 0 auto;
+}
+
+#table_name {
+    background-color: #272a3d;
+    height: 80px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+#info {
+	background-color: #211d2f;
+	color: white;
+}
+
+#accept {
+	border: none;
+	background-color: #211d2f;
+    color: #82acd8;
+}
+
+#reject {
+	border: none;
+	background-color: #211d2f;
+   	color: #d4835e;
+}
+
+.pro-list tr{
+	height: 80px;
+}
+
+
 .upload-thumb-wrap {
     display: inline-block;
     width: 61px;
@@ -35,5 +93,5 @@
     display: block;
     max-width: 100%;
     width: 100% \7;
-    height: auto;
+    height: 80px;
 }

@@ -358,7 +358,7 @@ var myManager = '${mentiProfile.username}';
 										</div></td>
 									<td><div class="item_box">
 											<div class="to_item">바나나100g</div>
-											<p>바나나 보통크기 3개</p>
+											<p class="to_item_contents">바나나 보통크기 3개</p>
 										</div></td>
 									<td class="nutrient">탄 단 지</td>
 									<td class="kcal">250Kcal</td>

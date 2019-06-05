@@ -38,6 +38,7 @@
 					<c:forEach var="item" items="${trainerList}">
 						<div class="item-box">
 							<input type="hidden" value = "${item.sex}" class="trainer-sex">
+							<input type="hidden" value = "${item.name}" class="trainer-sex">
 							<div class="trainer-info">
 								<div class="photo">
 									<img
@@ -126,13 +127,15 @@
 					<div class="id-box">
 						<p>아이디</p>
 						<div>
-							<img src="/kopo/resources/images/icon/id-icon.png"><span></span>
+							<div><img src="/kopo/resources/images/icon/id-icon.png"><span></span></div>
+							<div class="id-content"></div>
 						</div>
 					</div>
 					<div class="career-box">
 						<p>경력</p>
 						<div>
-							<img src="/kopo/resources/images/icon/career-icon-background.png"><span></span>
+							<div><img src="/kopo/resources/images/icon/career-icon-background.png"><span></span></div>
+							<div class="career-contents"></div>
 						</div>
 					</div>
 					<div class="sex-box">

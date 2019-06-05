@@ -107,4 +107,15 @@
 		WHERE mytable.Exercise_date = recentTable.recently
 		GROUP BY mytable.Exercise_name
 	</select>
+	
+<select id="mentiInfo" resultType="TrainerProfile">
+	SELECT tp.username,tp.name,tp.sex,tp.career,tp.pro_date,tp.up_filename
+	FROM trainer_profile tp,user_management um
+	WHERE tp.username = um.manager AND um.username = #{id}
+</select>
+<insert id="doneSubject">
+	INSERT INTO (manager,username,done_subject,done_content,kinds)
+	VALUES (#{manager},#{
+	
+</insert>
 </mapper>

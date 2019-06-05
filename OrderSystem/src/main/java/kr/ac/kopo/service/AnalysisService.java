@@ -5,6 +5,7 @@ import java.util.List;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 
@@ -36,7 +37,11 @@ public interface AnalysisService {
 
 	List<MentiPerformance> getMyMenti(String mento);
 
-	void autoDelete();
+
+
+	TrainerProfile getMentiInfo(String id);
+
+	int doneSubject(String subject, String contents, String manager, String kind, String kind2);
 
 
 

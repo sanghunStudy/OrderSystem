@@ -9,6 +9,7 @@ import kr.ac.kopo.dao.AnalysisDao;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 @Service
@@ -84,9 +85,27 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getMyMenti(mento);
 	}
 
+
 	@Override
-	public void autoDelete() {
-		dao.autoDelete();
+	public TrainerProfile getMentiInfo(String id) {
+		return dao.getMentiInfo(id);
+	}
+
+
+
+	@Override
+	public int doneSubject(String subject, String contents, String manager, String kind, String kind2) {
+		
+		int subjectKind = 0;
+		
+		if(kind == "to_do table-t") {
+			subjectKind = 1;
+		}
+		else if(kind == "to_eat table-t") {
+			subjectKind = 2;
+		}
+		
+		return dao.doneSubject(subject,contents,manager,subjectKind);
 	}
 
 

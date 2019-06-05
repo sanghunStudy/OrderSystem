@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 
@@ -93,6 +94,21 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public void autoDelete() {
 //		sql.delete("trainer.autoDelete");
+	}
+
+	@Override
+	public TrainerProfile getMentiInfo(String id) {
+		return sql.selectOne("statistics.mentiInfo",id);
+	}
+
+	@Override
+	public int doneSubject(String subject, String contents, String manager, int subjectKind) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("subject", subject);
+		map.put("subject", contents);
+		map.put("subject", manager);
+		map.put("subject", subjectKind);
+		return sql.insert("statistics.doneSubject", map);
 	}
 
 }

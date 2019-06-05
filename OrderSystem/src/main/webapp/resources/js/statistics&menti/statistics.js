@@ -75,8 +75,43 @@ $(function() {
 	var subject = $('input[type=checkbox]');
 	$(subject).each(function(index, item) {
 		$(item).click(function() {
+			var doneSubject = $(this).parents('tr').find('.to_item').text();
+			var doneContent= $(this).parents('tr').find('.to_item_cotents').text();
+			var kind = $(this).parents('table').attr('class');
+			console.log($(item));
 			console.log($(item).is(':checked'));
 			console.log($(item).val());
+			
+			var doneCheck  = confirm(doneContent + '를 수행하셨습니까?');
+			if(doneCheck == 'true') {
+				$.ajax({
+					url:'/kopo/member/done',
+					type:'POST',
+					data: {
+						"manager":myManager,
+						"subject":doneSubject,
+						"contents":doneContent,
+						"kind":kind
+					},
+					success:function(data) {
+						if(data == 1) {
+							alert('완료되었습니다.');
+						}
+						else {
+							alert('오류가 발생했습니다. 다시 시도해주세요.');
+						}
+					}	
+						
+						
+					
+					
+				})
+				
+				
+			}
+
+			
+
 		});
 	});
 

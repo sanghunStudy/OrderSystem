@@ -174,4 +174,5 @@ display:inline-block;
 .increase {color:#FF6384;}
 .decrease {color:hsla(210, 94%, 54%, 1);}
 .fixedRate {color:#6c757d;}
-
+#manager-info {background:#272a3d; width:89.5vw;height:auto;    margin-top: 30px; color:hsla(0,0%,100%,.8);}
+.manager-content {padding:12px 15px;}

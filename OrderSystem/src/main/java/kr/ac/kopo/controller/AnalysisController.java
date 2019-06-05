@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.AnalysisService;
@@ -37,7 +38,9 @@ AnalysisService service;
 private String statistics(Model model,HttpSession session) {
 	
 	String id = (String)session.getAttribute("user");
-
+	TrainerProfile profile =  service.getMentiInfo(id);
+		
+	
 	List<ExerciseJournal> todayExercise = service.todayList(id);
 	List<ExerciseJournal> monthExercise = service.list(id);
 	List<ExerciseJournal> weight = service.getWeight(id);
@@ -45,6 +48,7 @@ private String statistics(Model model,HttpSession session) {
 	List<BEsave> metabolism = service.getMetabolism(id);
 	List<ExerciseJournal> overallAvg = service.getOverallAvg(id);
 	
+	model.addAttribute("mentiProfile",profile);
 	model.addAttribute("list",monthExercise);
 	model.addAttribute("todayList",todayExercise);
 	model.addAttribute("weight",weight);
@@ -57,6 +61,16 @@ private String statistics(Model model,HttpSession session) {
 	
 	return "member/statistics";
 }
+
+@ResponseBody
+@RequestMapping(value="/done",method = RequestMethod.POST) 
+	private int doneSubject(String subject, String contents,String manager,String kind,HttpSession session) {
+	
+	String id = (String)session.getAttribute("user");
+	
+	return service.doneSubject(subject,contents,manager,id,kind);
+}
+
 
 //@RequestMapping(value="/statistics2")
 //private String statistics2(String userId, Model model,HttpSession session) {
@@ -135,5 +149,7 @@ private String statistics(Model model,HttpSession session) {
 	
 	return service.getMyMenti(mento);
 }
-	
+
+
+
 }

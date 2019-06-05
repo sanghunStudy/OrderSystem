@@ -44,7 +44,9 @@
 <style>
 </style>
 
-
+<script>
+var myManager = '${mentiProfile.username}';
+</script>
 </head>
  <%@ include file="modal.jsp" %>
  <%@ include file="../gnb/nav.jsp" %>
@@ -314,7 +316,7 @@
 										</div></td>
 									<td><div class="item_box">
 											<div class="to_item">데드리프트</div>
-											<p>데드리프트 60kg 중량으로 10회씩 3세트</p>
+											<p class="to_item_cotents">데드리프트 60kg 중량으로 10회씩 3세트</p>
 										</div></td>
 									<td class="parts">등</td>
 									<td>
@@ -358,7 +360,7 @@
 											<div class="to_item">바나나100g</div>
 											<p>바나나 보통크기 3개</p>
 										</div></td>
-									<td class="nutrient">탄수화물,단백질</td>
+									<td class="nutrient">탄 단 지</td>
 									<td class="kcal">250Kcal</td>
 									<td>
 										<div class="progress-container-t">
@@ -375,6 +377,19 @@
 								</tr>
 							</tbody>
 						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div id ="manager-info">
+				<div class="manager-content">
+				
+					<div class="manager-photo">
+				
+					</div>
+					<div class="manager-score"></div>
+					<div class="manager-profile">
+						<div>${mentiProfile.username}</div>
 					</div>
 				</div>
 			</div>

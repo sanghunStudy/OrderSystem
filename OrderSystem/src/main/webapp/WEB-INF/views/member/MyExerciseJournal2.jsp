@@ -169,8 +169,7 @@
 			var ClickDateStr = $("#date1").val();
 			var DayTitle = $("#inputTitle").val();
 			var userWeight = $("#userWeight").val();
-//	 		console.log("작성완료");
-			
+			var tableVal =0;
 			//배열선언
 			var tableArray = new Array();
 			//배열에 날짜,제목 넣는다
@@ -182,14 +181,11 @@
 			},
 			{
 				"userWeight":userWeight
-			}
-			);
-			
+			});
 			//ul태그중 클래스명이 input_item을 포함하는 것들의 input태그의 값 가져와서 배열에 넣는다.
 			$("ul[class*='input_item']").find("input").each(function(){
-				var tableVal = $(this).prop("value");
-				var tableName = $(this).prop("name");
-				
+				tableVal = $(this).prop("value");
+				var tableName = $(this).prop("name");	
 				tableArray.push(
 						{
 						[tableName]:tableVal
@@ -198,23 +194,33 @@
 				
 			});
 			
-			//json형식으로 바꿔준다.
-			var JsonData = JSON.stringify(tableArray);
-//	 		console.log(JsonData);
+			if(DayTitle.length == 0){
+				alert("제목을 입력하세요");
+			}else if(userWeight.length == 0){
+				alert("체중을 입력하세요");
 			
-			//ajax을 통해서 서버에 전달
-			$.ajax({
-				type:'post',
-				async:false,
-				contentType:'application/json;charset=UTF-8',
-				data:JSON.stringify(tableArray),
-				dataType:'json',
-				url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
-				success:function(res){
-//	 				console.log(res);
-	 				location.href = "MyPage";
-				}
-			});
+
+			}else if(tableVal == 0){
+				alert("하나이상의 운동을 선택 후 모든 항목을 입력해주세요");
+			}else{
+				//json형식으로 바꿔준다.
+				var JsonData = JSON.stringify(tableArray);
+								
+				//ajax을 통해서 서버에 전달
+				$.ajax({
+					type:'post',
+					async:false,
+					contentType:'application/json;charset=UTF-8',
+					data:JSON.stringify(tableArray),
+					dataType:'json',
+					url:'${pageContext.request.contextPath}/member/ExerciseJournalSubmit',
+					success:function(res){
+						alert("등록이 완료 되었습니다.");
+		 				location.href = "MyPage";
+					}
+				});
+			}
+			
 		}else{
 			alert('로그인 후 이용 가능합니다.');
 		}
@@ -222,11 +228,6 @@
 
 	});
 	
-	$(document).on("click",".icon",function(){
-		alert("test");
-		console.log($(this));
-		$("inputTitle").val($(this));
-	});
 </script>
 </head>
 

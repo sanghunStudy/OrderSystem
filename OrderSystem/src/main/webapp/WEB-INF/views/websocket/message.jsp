@@ -27,7 +27,7 @@
 	}
 	
 	function onMessage(e){
-		console.log(e.data + "e.data");
+		console.log(e.data);
 		$("#mCountRes").html(e.data);
 	}
 	$(document).ready(function() {

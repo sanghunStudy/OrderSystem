@@ -1,6 +1,5 @@
 	//달력
 	    function inputDatepicker(){
-			console.log("hihi");
 	    	//input을 date1로 선언
 	    	$(".input-date").datepicker({
 	    			dateFormat : 'yy-mm-dd' //Input Display Format 변경

@@ -76,12 +76,12 @@
     <span class="lines line-3"></span>
   </label>
 
-   <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a>
+   <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
    <a href="#" class="menu-item green" id="calBtn"> <i class="fas fa-calculator" ></i> </a>
    <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
-   <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
    <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a>
-   <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a>
+<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
+<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
 </nav>
 
 <!-- The Modal -->

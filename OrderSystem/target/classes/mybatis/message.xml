@@ -9,4 +9,7 @@
 	<select id="countMessage" resultType="Integer">
 		select count(recipient) from message_repository where recipient = #{username} and reception = 'N';
 	</select>
+	<select id="cuDate" resultType="MessageRepository">
+		select username,message from message_repository where sent_date like "2019-06-04%";
+	</select>
 </mapper>

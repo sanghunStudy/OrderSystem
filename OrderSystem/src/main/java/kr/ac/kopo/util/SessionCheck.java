@@ -43,14 +43,19 @@ public class SessionCheck extends HttpServlet implements Filter {
 //		}
 
 		boolean loggedIn = session != null && session.getAttribute("user") != null || session.getAttribute("trainer") != null || session.getAttribute("admin") != null;
-		boolean loginRequest = httpReq.getRequestURI().equals(loginURI);
-		System.out.println(httpReq.getRequestURI()+"httpReq");
-		System.out.println(loggedIn);
-		if (loggedIn || loginRequest || excludeUrl(httpReq.getRequestURI())) {
-			chain.doFilter(request, response);
-		} else {
-			response.sendRedirect(loginURI);
+		if(loggedIn == true) {
+			System.out.println(loggedIn);
+			boolean loginRequest = httpReq.getRequestURI().equals(loginURI);
+			System.out.println(httpReq.getRequestURI()+"httpReq");
+			if (loggedIn || loginRequest || excludeUrl(httpReq.getRequestURI())) {
+				chain.doFilter(request, response);
+			} else {
+				response.sendRedirect(loginURI);
+			}
+		}else {
+			response.sendRedirect(loginURI);;
 		}
+		
 
 	}
 

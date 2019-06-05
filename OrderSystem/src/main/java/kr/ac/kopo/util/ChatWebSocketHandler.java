@@ -13,6 +13,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import kr.ac.kopo.model.MessageRepository;
+
 @Repository
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
@@ -43,9 +45,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 //		System.out.println(session.getId() + "로부터 메시지 수신 : " + message.getPayload());
 		String username = "user";//현재 로그인한 사용자의 아이디로 바꿔야됨 js에서 session에 존재하는 사용자 아이디를 webSocketSession에 보내줘서 해보자.
-		int mCount =sql.selectOne("message.countMessage", username);
-		CharSequence item = String.valueOf(mCount);
-		System.out.println("쪽지수 :" + mCount);
+//		int mCount =sql.selectOne("message.countMessage", username);
+		MessageRepository items = sql.selectOne("message.cuDate");
+		CharSequence item = String.valueOf(items.getUsername()+"님이 " + items.getMessage()+"를 완료 하였습니다.");
+		System.out.println("쪽지수 :" + items.getUsername() + items.getMessage());
 //		session.sendMessage(new TextMessage(item));
 		
 		for(WebSocketSession s : users.values()) {

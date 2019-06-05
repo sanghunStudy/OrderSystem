@@ -94,18 +94,22 @@ public class AnalysisServcieImpl implements AnalysisService {
 
 
 	@Override
-	public int doneSubject(String subject, String contents, String manager, String kind, String kind2) {
+	public int doneSubject(String subject, String contents, String manager, String id, String kind) {
 		
 		int subjectKind = 0;
+		System.out.println(kind);
+		if(kind.equals("to_do table-t")) {
 		
-		if(kind == "to_do table-t") {
 			subjectKind = 1;
+		
 		}
-		else if(kind == "to_eat table-t") {
+		else if(kind.equals("to_eat table-t")) {
+			
 			subjectKind = 2;
+			
 		}
 		
-		return dao.doneSubject(subject,contents,manager,subjectKind);
+		return dao.doneSubject(subject,contents,manager,subjectKind,id);
 	}
 
 

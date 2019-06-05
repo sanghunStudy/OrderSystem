@@ -114,8 +114,8 @@
 	WHERE tp.username = um.manager AND um.username = #{id}
 </select>
 <insert id="doneSubject">
-	INSERT INTO (manager,username,done_subject,done_content,kinds)
-	VALUES (#{manager},#{
+	INSERT INTO assignment_log(manager,username,done_subject,done_content,kinds,log_time)
+	VALUES (#{manager},#{id},#{subject},#{contents},#{subjectKind},now())
 	
 </insert>
 </mapper>

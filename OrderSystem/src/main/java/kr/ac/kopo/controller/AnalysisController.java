@@ -67,6 +67,7 @@ private String statistics(Model model,HttpSession session) {
 	private int doneSubject(String subject, String contents,String manager,String kind,HttpSession session) {
 	
 	String id = (String)session.getAttribute("user");
+
 	
 	return service.doneSubject(subject,contents,manager,id,kind);
 }

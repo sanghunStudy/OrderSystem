@@ -83,7 +83,9 @@ $(function() {
 			console.log($(item).val());
 			
 			var doneCheck  = confirm(doneContent + '를 수행하셨습니까?');
-			if(doneCheck == 'true') {
+		
+			if(doneCheck == true) {
+			
 				$.ajax({
 					url:'/kopo/member/done',
 					type:'POST',
@@ -94,6 +96,7 @@ $(function() {
 						"kind":kind
 					},
 					success:function(data) {
+						alert(data);
 						if(data == 1) {
 							alert('완료되었습니다.');
 						}

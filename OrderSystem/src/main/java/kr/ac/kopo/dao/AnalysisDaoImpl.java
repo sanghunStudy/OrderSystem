@@ -101,13 +101,16 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectOne("statistics.mentiInfo",id);
 	}
 
+
+
 	@Override
-	public int doneSubject(String subject, String contents, String manager, int subjectKind) {
+	public int doneSubject(String subject, String contents, String manager, int subjectKind, String id) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("subject", subject);
-		map.put("subject", contents);
-		map.put("subject", manager);
-		map.put("subject", subjectKind);
+		map.put("contents", contents);
+		map.put("manager", manager);
+		map.put("subjectKind", subjectKind);
+		map.put("id", id);
 		return sql.insert("statistics.doneSubject", map);
 	}
 

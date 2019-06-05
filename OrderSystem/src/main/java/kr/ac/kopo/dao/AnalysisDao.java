@@ -44,7 +44,8 @@ public interface AnalysisDao {
 
 	TrainerProfile getMentiInfo(String id);
 
-	int doneSubject(String subject, String contents, String manager, int subjectKind);
+
+	int doneSubject(String subject, String contents, String manager, int subjectKind, String id);
 
 
 

@@ -41,7 +41,9 @@ public interface AnalysisService {
 
 	TrainerProfile getMentiInfo(String id);
 
-	int doneSubject(String subject, String contents, String manager, String kind, String kind2);
+	int doneSubject(String subject, String contents, String manager, String id, String kind);
+
+	
 
 
 

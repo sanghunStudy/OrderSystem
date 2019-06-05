@@ -99,6 +99,9 @@ $(function() {
 						alert(data);
 						if(data == 1) {
 							alert('완료되었습니다.');
+							msg = myManager;
+							wsocket.send(msg);
+							console.log("웹소켓 성공 완료?");
 						}
 						else {
 							alert('오류가 발생했습니다. 다시 시도해주세요.');

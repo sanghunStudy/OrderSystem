@@ -33,7 +33,8 @@
 	$(document).ready(function() {
 		connect();
 		$("#submit").click(function(){
-			$("#messageForm").submit();
+			msg = "test";
+			wsocket.send(msg);
 		});
 	});
 	
@@ -50,10 +51,6 @@
 
 <body>
 <span id="mCountRes"></span>
-	<form action="add" method="post" id="messageForm">
-	<input type="text" name="recipient"/>
-	<textarea rows="5" cols="10" name="message"></textarea>
-	<div id="submit">전송</div>
-	</form>
+<div id="submit">전송</div>
 </body>
 </html>

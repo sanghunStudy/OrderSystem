@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="message">
-	<insert id="add">
-		insert into message_repository
-		(username,recipient,message,sent_date,reception)
-		values(#{username},#{recipient},#{message},NOW(),'N')
-	</insert>
-	<select id="countMessage" resultType="Integer">
-		select count(recipient) from message_repository where recipient = #{username} and reception = 'N';
-	</select>
+	
 	<select id="cuDate" resultType="MessageRepository">
-		select username,message from message_repository where sent_date like "2019-06-04%";
+		select * from assignment_log where manager = #{managerName} and log_time = (select max(log_time) from assignment_log where manager = #{managerName});
 	</select>
 </mapper>

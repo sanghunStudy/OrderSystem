@@ -31,7 +31,6 @@
 
  	<mappers>
  		<mapper resource="mybatis/routine.xml" />
-		<mapper resource="mybatis/cart.xml"/>
 		<mapper resource="mybatis/question.xml"/>
 		<mapper resource="mybatis/reviewboard.xml"/>
 		<mapper resource="mybatis/user.xml"/>

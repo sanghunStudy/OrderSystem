@@ -29,11 +29,4 @@ public class MessageController {
 		return path+"message";
 	}
 	
-	@RequestMapping(value="/add", method = RequestMethod.POST)
-	String add(MessageRepository mr, HttpSession session) {
-		String id = (String)session.getAttribute("user");
-		mr.setUsername(id);
-		messageService.add(mr);
-		return "redirect:message";
-	}
 }

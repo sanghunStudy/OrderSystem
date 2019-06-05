@@ -11,6 +11,7 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
 
+//리캡챠
 public class VerifyRecaptcha {
 	 public static final String url = "https://www.google.com/recaptcha/api/siteverify";
 	    private final static String USER_AGENT = "Mozilla/5.0";

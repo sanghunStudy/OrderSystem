@@ -1,28 +1,26 @@
 package kr.ac.kopo.model;
 
-//message_repository db와 연결되는 vo
+//assignment_log db와 연결되는 vo
 public class MessageRepository {
 
-	private int messageNo; //쪽지번호
-	private String username; //발신자
-	private String recipient; //수신자
-	private String message;//내용
-	private String sentDate; //보낸날짜
-	private String readDate; //열람일자
-	private char reception; //수신여부
-	
-	
-	public String getMessage() {
-		return message;
+	private int log_num; //기록번호
+	private String manager; //멘토
+	private String username; //유저
+	private String doneSubject;//한 일
+	private String doneContent; //한 내용
+	private String kinds; //먹기 or 하기
+	private char logTime; //등록시간
+	public int getLog_num() {
+		return log_num;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setLog_num(int log_num) {
+		this.log_num = log_num;
 	}
-	public int getMessageNo() {
-		return messageNo;
+	public String getManager() {
+		return manager;
 	}
-	public void setMessageNo(int messageNo) {
-		this.messageNo = messageNo;
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 	public String getUsername() {
 		return username;
@@ -30,30 +28,33 @@ public class MessageRepository {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getRecipient() {
-		return recipient;
+	public String getDoneSubject() {
+		return doneSubject;
 	}
-	public void setRecipient(String recipient) {
-		this.recipient = recipient;
+	public void setDoneSubject(String doneSubject) {
+		this.doneSubject = doneSubject;
 	}
-	public String getSentDate() {
-		return sentDate;
+	public String getDoneContent() {
+		return doneContent;
 	}
-	public void setSentDate(String sentDate) {
-		this.sentDate = sentDate;
+	public void setDoneContent(String doneContent) {
+		this.doneContent = doneContent;
 	}
-	public String getReadDate() {
-		return readDate;
+	public String getKinds() {
+		return kinds;
 	}
-	public void setReadDate(String readDate) {
-		this.readDate = readDate;
+	public void setKinds(String kinds) {
+		this.kinds = kinds;
 	}
-	public char getReception() {
-		return reception;
+	public char getLogTime() {
+		return logTime;
 	}
-	public void setReception(char reception) {
-		this.reception = reception;
+	public void setLogTime(char logTime) {
+		this.logTime = logTime;
 	}
+	
+	
+	
 	
 	
 	

@@ -31,8 +31,8 @@
 
 	<!-- 트레이너 신청 -->
 	<insert id="promotion" parameterType="TrainerProfile">
-		insert into trainer_profile (apply_num, username, name, sex, career, apply_date, file, up_filename)
-		values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex},#{career}, NOW(), #{file}, #{upFilename})
+		insert into trainer_profile (apply_num, username, name, sex, region ,career, apply_date, up_filename)
+		values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex}, #{region},#{career}, NOW(), #{upFilename})
 	</insert>
 	<!-- 트레이너신청 리스트 -->
 	<select id="proList" resultType="TrainerProfile">

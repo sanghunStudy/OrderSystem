@@ -12,7 +12,7 @@
 <script src="${pageContext.request.contextPath }/resources/js/modal.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal.css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/icomoon/style.css">
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
@@ -20,7 +20,9 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script>
+
 	$(document)
 			.ready(
 					function() {
@@ -64,6 +66,10 @@
 													var src = e.target.result;
 													parent
 															.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+													$('.labelImg').css('width',
+															'50px');
+													$('.labelImg').css(
+															'height', '50px');
 												}
 												reader
 														.readAsDataURL($(this)[0].files[0]);
@@ -123,6 +129,7 @@
 		$("#btnSubmit").click(function() {
 			var name = document.form1.name.value;
 			var sex = document.form1.sex.value;
+			var region = document.form1.region.value;
 			var career = document.form1.career.value;
 			var thumbnail = document.form1.thumbnail.value;
 
@@ -143,158 +150,177 @@
 		event.preventDefault();
 	}
 </script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if ($('.upload-thumb').attr('block')) {
+			$('.labelImg').css('width', '50px');
+			$('.labelImg').css('height', '50px');
+
+		} else {
+			$('.labelImg').css('width', '140px');
+			$('.labelImg').css('height', '140px');
+		}
+		console.log($('.upload-thumb').css('display'));
+	})
+</script>
 </head>
 <body>
 	<div class="modal" id="modal">
 		<div class="modal-container">
 			<div class="modal-header">
 				<div class="filebox bs3-primary preview-image">
-			<label for="input_file">파일 선택</label>
-                <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-				<input type="file" id="input_file" class="upload-hidden" name="uploadFile"> 
-            </div>
-				<img src="${pageContext.request.contextPath}/resources/images/icon/photo.png">
-				<div class="modal-proImg">
-					<img src="#">
+
+					<%--   <img src="${pageContext.request.contextPath}/resources/images/icon/photo.png">  --%>
+					<label for="input_file" class="labelImg"></label>
+					<!-- <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+					<input type="file" id="input_file" class="upload-hidden" name="uploadFile"> -->
 				</div>
 				<p>나를 표현해 보세요</p>
 			</div>
 			<div class="contents-container">
 				<div class="contents-form">
-				<h2>TRAINER BOT PROFILE</h2>
-				<form action="promotion" method="post" name="form1" enctype="multipart/form-data">
-					<div class="group">
+					<h2>TRAINER BOT PROFILE</h2>
+					<form action="promotion" method="post" name="form1"
+						enctype="multipart/form-data">
+						<script th:inline="javascript">
+							function sendFile(file, el) {
+								var form_data = new FormData();
+								form_data.append('file', file);
+								$
+										.ajax({
+											data : form_data,
+											type : "POST",
+											url : '/promotion',
+											cache : false,
+											contentType : false,
+											enctype : 'multipart/form-data',
+											processData : false,
+											success : function(data) {
+												if (checkImageType(data)) {
+													str = "<div class='bc'>"
+															+ "<a href='/sample/upload/displayFile?fileName="
+															+ getImageLink(data)
+															+ "'>"
+															+ "<img src='/sample/upload/displayFile?fileName="
+															+ data
+															+ "'/>"
+															+ "</a>"
+															+ "<small data-src='" + data + "'></small></div>";
+												} else {
+													str = "<div>"
+															+ "<a href='/sample/upload/displayFile?fileName="
+															+ data
+															+ "'>"
+															+ getOriginalName(data)
+															+ "</a>"
+															+ "<small data-src='" + data + "'></small></div>";
+												}//else
+
+												//       		$(el).summernote('editor.insertImage', data);         
+												$(".note-editable").append(str);
+												//             $('#summernote').summernote("insertNode", img_name[0]);
+
+											}
+										});
+							}
+
+							/* 컨트롤러로 부터 전송받은 파일이 이미지 파일인지 확인하는 함수 */
+							function checkImageType(fileName) {
+								var pattern = /jpg$|gif$|png$|jpeg$/i;
+								return fileName.match(pattern);
+							}//checkImageType
+
+							//파일 이름 처리 : UUID 가짜 이름 제거
+							function getOriginalName(fileName) {
+								if (checkImageType(fileName)) {
+									return;
+									0.
+								}
+
+								var idx = fileName.indexOf("_") + 1;
+								return fileName.substr(idx);
+
+							}//getOriginalName
+
+							//이미지 원본 링크 제공
+							function getImageLink(fileName) {
+
+								if (!checkImageType(fileName)) {
+									return;
+								}//if
+
+								var front = fileName.substr(0, 14);
+								var end = fileName.substr(14);
+
+								return front + end;
+
+							}//getImageLink
+						</script>
+						<label for="input_file">파일 선택</label>
+						<input type="hidden" id="thum" value="default" name="thumbnail">
+						<input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+						<input type="file" id="input_file" class="upload-hidden" name="uploadFile">
+						<input type="hidden" value="" class="gender_value" name="sex">
+						<%-- <div class="group">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
 						 <label class="only-modal">아이디</label>
-						<input type="text" name="name" ><span class="highlight"></span>
+						<input type="text" name="username" ><span class="highlight"></span>
 						<span class="bar"></span>
-					</div>
-					<div class="group">
-						<img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
-						<label class="only-modal">이름</label>
-						<input type="text" name="name"> <span class="highlight"></span>
-						<span class="bar"></span> 
-					</div>
-					<div class="group">
-						<img src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
-						 <label class="only-modal">지역</label>
-						<input type="text" name="region"> <span class="highlight"></span>
-						<span class="bar"></span>
-					</div>
-					<div class="group">
-						<img src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
-						<label class="only-modal">경력</label>
-						<input type="text" name="career"> <span class="highlight"></span>
-						<span class="bar"></span> 
-					</div>
-					<div class="group">
-						<label class="only-modal">성별</label>
-						<div class="sex-box">
-						<div class="background">
-						<span class="male gender">남자</span>
-							<div class="toggle-body">
-								<div class="toggle-btn"></div>	
-							</div>
-							<span class="female gender">여자</span>
+					</div> --%>
+						<div class="group">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
+							<label class="only-modal">이름</label> <input type="text"
+								name="name"> <span class="highlight"></span> <span
+								class="bar"></span>
 						</div>
-					</div>
-					</div>
-									
-				<script th:inline="javascript">
-					function sendFile(file, el) {
-						var form_data = new FormData();
-						form_data.append('file', file);
-						$
-								.ajax({
-									data : form_data,
-									type : "POST",
-									url : '/promotion',
-									cache : false,
-									contentType : false,
-									enctype : 'multipart/form-data',
-									processData : false,
-									success : function(data) {
-										if (checkImageType(data)) {
-											str = "<div class='bc'>"
-													+ "<a href='/sample/upload/displayFile?fileName="
-													+ getImageLink(data)
-													+ "'>"
-													+ "<img src='/sample/upload/displayFile?fileName="
-													+ data
-													+ "'/>"
-													+ "</a>"
-													+ "<small data-src='" + data + "'></small></div>";
-										} else {
-											str = "<div>"
-													+ "<a href='/sample/upload/displayFile?fileName="
-													+ data
-													+ "'>"
-													+ getOriginalName(data)
-													+ "</a>"
-													+ "<small data-src='" + data + "'></small></div>";
-										}//else
+						<div class="group">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
+							<label class="only-modal">지역</label> <input type="text"
+								name="region"> <span class="highlight"></span> <span
+								class="bar"></span>
+						</div>
+						<div class="group">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
+							<label class="only-modal">경력</label> <input type="text"
+								name="career"> <span class="highlight"></span> <span
+								class="bar"></span>
+						</div>
+						<div class="group">
+							<label class="only-modal">성별</label>
+							<div class="sex-box">
+								<div class="background">
+									<span class="male gender">남자</span>
+									<div class="toggle-body">
+										<div class="toggle-btn" value="male"></div>
+									</div>
+									<span class="female gender">여자</span>
+								</div>
+							</div>
+						</div>
+					</form>
+					 <script>
+						function getThumbnail() {
+							var prethumbnail = $(".bc").find('img').attr('src');
+							console.log(prethumbnail);
+							var reg = prethumbnail.substr(0, 48);
+							var realName = prethumbnail.substr(48);
+							var thumbnail = reg + 's_' + realName;
+								alert(thumbnail);
+									alert(reg);
+									alert(realName);
+							$('#thum').val(thumbnail);
 
-										//       		$(el).summernote('editor.insertImage', data);         
-										$(".note-editable").append(str);
-										//             $('#summernote').summernote("insertNode", img_name[0]);
-
-									}
-								});
-					}
-
-					/* 컨트롤러로 부터 전송받은 파일이 이미지 파일인지 확인하는 함수 */
-					function checkImageType(fileName) {
-						var pattern = /jpg$|gif$|png$|jpeg$/i;
-						return fileName.match(pattern);
-					}//checkImageType
-
-					//파일 이름 처리 : UUID 가짜 이름 제거
-					function getOriginalName(fileName) {
-						if (checkImageType(fileName)) {
-							return;0.
 						}
-
-						var idx = fileName.indexOf("_") + 1;
-						return fileName.substr(idx);
-
-					}//getOriginalName
-
-					//이미지 원본 링크 제공
-					function getImageLink(fileName) {
-
-						if (!checkImageType(fileName)) {
-							return;
-						}//if
-
-						var front = fileName.substr(0, 14);
-						var end = fileName.substr(14);
-
-						return front + end;
-
-					}//getImageLink
-				</script>
-
-				</form>
-				<script>
-				function getThumbnail() {
-					var prethumbnail = $(".bc").find('img').attr('src');
-
-					var reg = prethumbnail.substr(0, 48);
-					var realName = prethumbnail.substr(48);
-					var thumbnail = reg + 's_' + realName;
-					/* 		alert(thumbnail);
-							alert(reg);
-							alert(realName); */
-					$('#thum').val(thumbnail);
-
-				}
-				</script>
-				<ul class="list-inline">
-
-				<li><button type="button" id="btnSubmit" onclick="getThumbnail()" class="modal-btn-collection apply">
-						<span>신청</span>
-					</button></li>
-				</ul>
+					</script> 
+					<ul class="list-inline">
+						<li><button type="button" id="btnSubmit"
+								onclick="getThumbnail()" class="modal-btn-collection apply">
+								<span>신청</span>
+							</button></li>
+					</ul>
 				</div>
 			</div>
 		</div>

@@ -90,9 +90,9 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	justify-content: center;
 	margin-bottom: 30px;
 }
-.modal-header img {
+/* .modal-header img {
 	position: absolute;
-}
+} */
 .modal-proImg {
 	width : 170px;
 	height : 170px;
@@ -509,4 +509,216 @@ width: 1.7rem;
   100% {
     transform: rotate(0deg);
   }
+}
+
+/* 이미지 썸네일 css */
+@charset "UTF-8";
+*{margin:0; padding: 0;}
+
+
+.allContents{
+	width:666px;
+	margin:0 auto;
+}
+.addform{
+margin-top:80px;
+
+
+}
+.freeTitle{
+    margin-bottom: 18px;
+    width:666px; 
+}
+.title {
+    margin-bottom: 60px;
+    font-weight:bold;
+}
+
+.regiserBtn{
+  width:128px;
+  height:50px;
+  border:2px solid #cccccc;
+  /* float:left; */
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:22px 10px 0px 0px;
+  background:#606060;
+  color:white;
+  font-family:inherit;
+  font-weight:600;
+  margin-left:269px;
+ 
+}
+/* .regiserBtn a{
+  
+  font-size:16px;
+  color:black;
+  text-decoration:none;
+  line-height:37px;
+  
+
+  position:relative;
+  font-family:'Nanum Gothic';
+} */
+
+.Btn{
+	margin-bottom:200px;
+
+}
+
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+}
+
+/* .filebox label {
+    display: inline-block;
+    padding: .5em .75em;
+    color: #999;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+} */
+
+/* named upload */
+.filebox .upload-name {
+	
+   display: inline-block;
+    padding: .5em .175em;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: normal;
+    
+    background-color: #f5f5f5;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+    -webkit-appearance: none;
+    vertical-align: baseline;
+    -moz-appearance: none;
+    appearance: none;
+     
+}
+
+/* imaged preview */
+.filebox .upload-display {
+    margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+    .filebox .upload-display {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+    }
+}
+.upload-thumb{
+	width: 140px;
+	height:140px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto 5px;
+    position: relative;
+    left: 31px;
+    top: -70px;
+	
+}
+.filebox{
+position: relative;
+    left: 80px;
+    top: 40px;
+}
+.filebox .upload-thumb-wrap {
+    display: inline-block;
+   /*  width: 61px; */
+   /*  padding: 2px; */
+    vertical-align: top;
+    border-radius: 50%;
+    /* background-color: #fff; */
+}
+/* .filebox .upload-thumb-wrap img {
+	width: 140px;
+	height:140px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto 5px;
+} */
+
+.filebox .upload-display img {
+    display: block;
+    max-width: 100%;
+    /* width: 100% \7;
+    height: auto; */
+/*     width: 50px;
+    height: 50px; */
+}
+
+/* .filebox.bs3-primary label {
+      color: #fff;
+   background-color: #fff;
+    border-color: #cccccc;
+    border: none;
+     position: relative;
+    left: -53px;
+    top:20px;
+    width: 50px;
+    height: 50px; 
+    border-radius: 50%;
+    background-image: url("/resources/images/icon/photo.png");
+}  */
+.labelImg{
+	   color: #fff;
+   background-color: #fff;
+    border-color: #cccccc;
+    border: none;
+    position: relative;
+    left: -20px;
+    top: -60px;
+   /*  width: 50px;
+    height: 50px; */ 
+    border-radius: 50%;
+	
+}
+
+.filebox input {
+	display: none;
+}
+.alarm{
+	color:grey;
+	font-family:'Nanum Gothic';
+	margin-bottom:15px;
+}
+.alarm-box{
+	width:666px;
+	border-bottom:1px solid #ccc;
+	padding-bottom:15px;
+}
+.btn{
+	margin:0 auto;
 }

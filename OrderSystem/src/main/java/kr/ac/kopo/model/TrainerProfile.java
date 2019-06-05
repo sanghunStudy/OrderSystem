@@ -15,11 +15,18 @@ public class TrainerProfile {
 	String upFilename;
 	private Date proDate;
 	private String file;
+	private String region;
 	private String trainerApply;
 	private String deleteApply;
 	String thumbnail;
 	
 	
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
 	public String getTrainerApply() {
 		return trainerApply;
 	}

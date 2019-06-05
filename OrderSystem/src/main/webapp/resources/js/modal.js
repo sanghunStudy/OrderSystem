@@ -10,12 +10,21 @@ $(function() {
 	const gender = document.querySelectorAll('.gender');
 
 	toggleBtn.addEventListener('click', () => {
+		
 	  background.classList.toggle('background--on');
 	  toggleBody.classList.toggle('toggle-body--on');
 	  toggleBtn.classList.toggle('toggle-btn--on');
 	  toggleBtn.classList.toggle('toggle-btn--scale');
 	  gender[0].classList.toggle('gender--female');
 	  gender[1].classList.toggle('gender--female');
+
+	  if($('.toggle-btn').attr('value') == 'male') 
+		  $('.toggle-btn').attr('value','female');
+	  else
+		  $('.toggle-btn').attr('value','male');
+
+	  $('.gender_value').val($('.toggle-btn').attr('value'));
+	  console.log($('.gender_value').val());
 	});
 	
 	var modalClickEvent = {

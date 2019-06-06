@@ -68,7 +68,7 @@ public class QuestionController {
 //				
 //		}
 		for(int i=0; i < list.size(); i++) {
-			list.get(i).setMenuName(list.get(i).getMenuName().replaceAll("<[^>]*>",""));
+			list.get(i).setQuestionName(list.get(i).getQuestionName().replaceAll("<[^>]*>",""));
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("searchVO", searchVO);
@@ -83,7 +83,7 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	String add(Question menu, HttpSession session) {
+	String add(Question question, HttpSession session) {
 		String username = (String)session.getAttribute("user");
 		if(username==null) {
 			username = (String)session.getAttribute("trainer");
@@ -91,15 +91,15 @@ public class QuestionController {
 		if(username==null) {
 			username = (String)session.getAttribute("admin");
 		}
-		menu.setId(username);
-		service.add(menu);
+		question.setId(username);
+		service.add(question);
 		
 		return "redirect:list";
 	}
 	
 	@RequestMapping(value="/update")
-	String update(int menuId, Model model) {
-		Question item = service.item(menuId);
+	String update(int questionId, Model model) {
+		Question item = service.item(questionId);
 		
 		model.addAttribute("item", item);
 		
@@ -110,22 +110,22 @@ public class QuestionController {
 	String update(Question item) {
 		service.update(item);
 		
-		return "redirect:view?menuId="+item.getMenuId();
+		return "redirect:view?questionId="+item.getQuestionId();
 	}
 	
 	@RequestMapping("/delete")
-	String delete(int menuId) {
-		service.delete(menuId);
+	String delete(int questionId) {
+		service.delete(questionId);
 		
 		return "redirect:list";
 	}
 	
 	@RequestMapping("/view")
-	String view(Model model, int menuId, HttpSession session) {
-		service.views(menuId);
-		Question item = service.item(menuId);
-		item.setMenuName(item.getMenuName().replaceAll("<[^>]*>",""));
-		List<QuestionComment> MComment = service.commentList(menuId);
+	String view(Model model, int questionId, HttpSession session) {
+		service.views(questionId);
+		Question item = service.item(questionId);
+		item.setQuestionName(item.getQuestionName().replaceAll("<[^>]*>",""));
+		List<QuestionComment> QComment = service.commentList(questionId);
 		String login = (String)session.getAttribute("user");
 		if(login==null) {
 			login = (String)session.getAttribute("trainer");
@@ -133,14 +133,14 @@ public class QuestionController {
 		if(login==null) {
 			login = (String)session.getAttribute("admin");
 		}
-		for(int i=0; i < MComment.size(); i++) {
-			System.out.println(MComment.get(i).getMcommentContent()+"<<<<<<<<<<<<태그없애기전");
-			MComment.get(i).setMcommentContent(MComment.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
-			System.out.println(MComment.get(i).getMcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
+		for(int i=0; i < QComment.size(); i++) {
+			System.out.println(QComment.get(i).getQcommentContent()+"<<<<<<<<<<<<태그없애기전");
+			QComment.get(i).setQcommentContent(QComment.get(i).getQcommentContent().replaceAll("<[^>]*>",""));
+			System.out.println(QComment.get(i).getQcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
 		}
 		System.out.println(item.getPointSet());
 		model.addAttribute("item", item);
-		model.addAttribute("MCommentList",MComment);
+		model.addAttribute("QCommentList",QComment);
 		model.addAttribute("login", login);
 		
 		return path + "view";
@@ -176,7 +176,7 @@ public class QuestionController {
 	//댓글ajax그대로인데 jsp에서 못보내던거 수정
 	@RequestMapping(value="/commentAdd", method=RequestMethod.POST)
 	@ResponseBody
-	String commnetAdd(QuestionComment MComment, HttpSession session) {
+	String commnetAdd(QuestionComment QComment, HttpSession session) {
 		String username = (String)session.getAttribute("user");
 		if(username==null) {
 			username = (String)session.getAttribute("trainer");
@@ -185,8 +185,8 @@ public class QuestionController {
 			username = (String)session.getAttribute("admin");
 		}
 		if(username != null) {
-			MComment.setId(username);
-			service.commentAdd(MComment);
+			QComment.setId(username);
+			service.commentAdd(QComment);
 			return "success";
 		} else {
 			return "fail";
@@ -194,10 +194,10 @@ public class QuestionController {
 	} 
 	@ResponseBody
 	@RequestMapping(value="/qcommentList")
-	List<QuestionComment> mcommentList(int menuId){
-		List<QuestionComment> commentList = service.commentList(menuId);
+	List<QuestionComment> mcommentList(int questionId){
+		List<QuestionComment> commentList = service.commentList(questionId);
 		for(int i=0; i < commentList.size(); i++) {
-			commentList.get(i).setMcommentContent(commentList.get(i).getMcommentContent().replaceAll("<[^>]*>",""));
+			commentList.get(i).setQcommentContent(commentList.get(i).getQcommentContent().replaceAll("<[^>]*>",""));
 		}
 		return commentList;
 	}
@@ -221,15 +221,15 @@ public class QuestionController {
 	}*/
 	@ResponseBody
 	@RequestMapping("/commentDel")
-	String commentsDel(int mcommentId) {
-		service.commentDel(mcommentId);
+	String commentsDel(int qcommentId) {
+		service.commentDel(qcommentId);
 		return "success";
 	}
 	
 	@RequestMapping("/commentUpdate")
 	@ResponseBody
-	String commentUpdate(QuestionComment MComment) {
-		service.commentUpdate(MComment);
+	String commentUpdate(QuestionComment QComment) {
+		service.commentUpdate(QComment);
 		return "success";
 	}
 	
@@ -294,11 +294,11 @@ public class QuestionController {
 	//채택New버전 채택ajax
 	@RequestMapping(value="/selectionCheck")
 	@ResponseBody
-	String selectionCheck(int menuId,int mcommentId, String pointGetUser, int pointSet, String pointLoseUser) {
-		int onlyOnceSelection = service.onlyOnceSelection(menuId);
+	String selectionCheck(int questionId,int qcommentId, String pointGetUser, int pointSet, String pointLoseUser) {
+		int onlyOnceSelection = service.onlyOnceSelection(questionId);
 		
 		if(onlyOnceSelection == 0) {
-			service.selection(mcommentId);
+			service.selection(qcommentId);
 			service.pointUp(pointGetUser,pointSet);
 			service.pointDown(pointLoseUser,pointSet);
 			return "OK";

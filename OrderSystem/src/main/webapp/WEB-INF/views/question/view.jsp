@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${item.menuId}.${item.menuName}</title>
+<title>${item.questionId}.${item.questionName}</title>
 <link href="${pageContext.request.contextPath}/resources/css/Question/Question-view.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -34,21 +34,21 @@ $(document).ready(function(){
 	}
 	//댓글수정ajax
 	$(document).on("click",'.update_btn',function(){
-		var mcommentId = $(this).attr("data-code");
-		var content = $('[name=content_'+ mcommentId +']').val();
+		var qcommentId = $(this).attr("data-code");
+		var content = $('[name=content_'+ qcommentId +']').val();
 		if(content.length > 500){
 			var cutOK = confirm("500자를 초과 입력할 수 없습니다\n500자 까지 자르겠습니까?");
 			if(cutOK == true){
 				var cut = content.substr(0,500);
-				$('[name=content_'+ mcommentId +']').val(cut);
+				$('[name=content_'+ qcommentId +']').val(cut);
 			}
 		} else {
 			$.ajax({
 				url:'${pageContext.request.contextPath}/question/commentUpdate',
 				type:'post',
 				data:{
-					'mcommentId':mcommentId,
-					'mcommentContent':content
+					'qcommentId':qcommentId,
+					'qcommentContent':content
 				},
 				success:function(data){
 					if(data=='success'){
@@ -63,14 +63,14 @@ $(document).ready(function(){
 	//댓글 채택New버전 ajax
 	function choice_comment(commentId,pointGetUser,point,pointLoseUser) {
 		var choiceCheck = '';
-		var menuId = ${item.menuId};
+		var questionId = ${item.questionId};
 // 		console.log(pointGetUser+"    "+pointLoseUser);
 		$.ajax({
 			url:"${pageContext.request.contextPath}/question/selectionCheck",
 			type:"GET",
 			data:{
-				'menuId':menuId,
-				'mcommentId':commentId,
+				'questionId':questionId,
+				'qcommentId':commentId,
 				'pointGetUser':pointGetUser,
 				'pointSet':point,
 				'pointLoseUser':pointLoseUser
@@ -122,26 +122,26 @@ $(document).ready(function(){
 	}
 	//댓글list 불러오기 ajax
 	function commentList() {
-		var menuId = ${item.menuId};
+		var questionId = ${item.questionId};
 		$.ajax({
 			url:'${pageContext.request.contextPath}/question/qcommentList',
 			type:'GET',
 			data:{
-				'menuId':menuId
+				'questionId':questionId
 			},
 			success:function(data){
 				var col = '';
 				var count = 0;
 				$.each(data,function(key,val){
-					col += '<div class="coca" data-code="'+ val.mcommentId +'"><div class="cola">';
+					col += '<div class="coca" data-code="'+ val.qcommentId +'"><div class="cola">';
 					col += selectionCheck(val.selectionCheck);
 					col += '<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">';
-					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.mcommentDate+'</span></div>';
-					col += updateCheck(val.id,val.mcommentId,val.mcommentContent,val.selectionCheck);
+					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.qcommentDate+'</span></div>';
+					col += updateCheck(val.id,val.qcommentId,val.qcommentContent,val.selectionCheck);
 					col += '</div>';
-					col += '<div class="masi"><div class="commentContentBox">'+val.mcommentContent+'</div></div>';
-					col += choiceCheck(val.id,val.mcommentId,val.selectionCheck);
-					col += deleteCheck(val.id,val.mcommentId,val.selectionCheck);
+					col += '<div class="masi"><div class="commentContentBox">'+val.qcommentContent+'</div></div>';
+					col += choiceCheck(val.id,val.qcommentId,val.selectionCheck);
+					col += deleteCheck(val.id,val.qcommentId,val.selectionCheck);
 					col += '</div>'
 					col += '<hr class="boundaryline">';
 					count += 1;
@@ -154,7 +154,7 @@ $(document).ready(function(){
 	//댓글등록 ajax
  	$('#commentAdd').click(function(){
 		var commentCheck = document.getElementById("comment").value;
-		var menuId = ${item.menuId};
+		var questionId = ${item.questionId};
 
 		if (commentCheck == "" || commentCheck == null) {
 			alert("댓글내용을 입력해 주세요");
@@ -163,8 +163,8 @@ $(document).ready(function(){
 				url:'${pageContext.request.contextPath}/question/commentAdd',
 				type:'POST',
 				data:{
-					'mcommentContent':commentCheck,
-					'menuId':menuId
+					'qcommentContent':commentCheck,
+					'questionId':questionId
 				},
 				success:function(data){
 					if(data=='success'){
@@ -185,7 +185,7 @@ $(document).ready(function(){
 			url:'${pageContext.request.contextPath}/question/commentDel',
 			type:'POST',
 			data:{
-				'mcommentId':commentId
+				'qcommentId':commentId
 			},
 			success:function(data){
 				if(data=="success"){
@@ -213,29 +213,29 @@ $(document).ready(function(){
 <div id="wrap">
 	<div id="Question">
 		<div id="QuestionTitle">
-			<div class="bigQ">Q</div><div class="zone"><div id="pointOX">${item.pointSet}</div></div><div class="QuestionName">${item.menuName}</div>
+			<div class="bigQ">Q</div><div class="zone"><div id="pointOX">${item.pointSet}</div></div><div class="QuestionName">${item.questionName}</div>
 		</div>
 		<hr class="boundaryline">
 		<div id="contents">
 			<div id="content">
-				<span>${item.menuContent}</span>
+				<span>${item.questionContent}</span>
 			</div>
 			<div class="Question_writer">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
-			<div class="Qn"><span>${item.id}&emsp;</span><span><fmt:formatDate value="${item.menuDate}" pattern="yyyy-MM-dd"/></span></div>
+			<div class="Qn"><span>${item.id}&emsp;</span><span><fmt:formatDate value="${item.questionDate}" pattern="yyyy-MM-dd"/></span></div>
 			</div>
 		</div>
 		<input type="hidden" id="login" value="${login}">
 		<input type="hidden" id="writer" value="${item.id}">
 	</div>
-	<form action="mcommentAdd" id="mcommentForm">
+	<form action="qcommentAdd" id="qcommentForm">
 	<div id="commentInput">
-		<textarea v-model="co" id="comment" name="mcommentContent" placeholder="답글을 입력하세요"></textarea>
+		<textarea v-model="co" id="comment" name="qcommentContent" placeholder="답글을 입력하세요"></textarea>
 		<div id="commentAdd">
 			<a>답글하기</a>
 		</div>
 		<a class="char-limit">({{ cl }}/500자)</a>
-		<input type="hidden" name="menuId" value="${item.menuId}">
+		<input type="hidden" name="questionId" value="${item.questionId}">
 	</div>
 	<script>
 			var commentLengthCheck = new Vue({
@@ -272,28 +272,28 @@ $(document).ready(function(){
 	</div>
 	<div id="commentOutput">
 		<c:choose>
-			<c:when test="${MCommentList.size() > 0}">
-				<c:forEach var="MCL" items="${MCommentList}">
-					<div class="coca" data-code="${MCL.mcommentId}">
-						<c:if test="${MCL.selectionCheck==true}">
+			<c:when test="${QCommentList.size() > 0}">
+				<c:forEach var="QCL" items="${QCommentList}">
+					<div class="coca" data-code="${QCL.qcommentId}">
+						<c:if test="${QCL.selectionCheck==true}">
 							<img src="${pageContext.request.contextPath}/resources/images/icon/checkbox.png" class="check">
 						</c:if>
 						<div class="cola">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
-						<div class="combo"><span>${MCL.id} &emsp;</span><span>${MCL.mcommentDate}</span></div>
-						<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
-						<div onclick="co_updateMode(${MCL.mcommentId},'${MCL.mcommentContent}');" class="update_mode">
+						<div class="combo"><span>${QCL.id} &emsp;</span><span>${QCL.qcommentDate}</span></div>
+						<c:if test="${login==QCL.id&&QCL.selectionCheck==false}">
+						<div onclick="co_updateMode(${QCL.qcommentId},'${QCL.qcommentContent}');" class="update_mode">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/write.png" class="commentUpdate"></div>
 						</c:if>
 						</div>
-						<div class="masi"><div class="commentContentBox">${MCL.mcommentContent}</div></div>
+						<div class="masi"><div class="commentContentBox">${QCL.qcommentContent}</div></div>
 						
-						<c:if test="${login==item.id&&MCL.selectionCheck==false&&login!=MCL.id}">
-							<div onclick="choice_comment(${MCL.mcommentId},'${MCL.id}',${item.pointSet},'${item.id}')" class="choice">채택</div>
+						<c:if test="${login==item.id&&QCL.selectionCheck==false&&login!=QCL.id}">
+							<div onclick="choice_comment(${QCL.qcommentId},'${QCL.id}',${item.pointSet},'${item.id}')" class="choice">채택</div>
 						<%-- <a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a> --%>
 						</c:if>
-						<c:if test="${login==MCL.id&&MCL.selectionCheck==false}">
-							<div class="commentDel" data-code="${MCL.mcommentId}">삭제</div>
+						<c:if test="${login==QCL.id&&QCL.selectionCheck==false}">
+							<div class="commentDel" data-code="${QCL.qcommentId}">삭제</div>
 						</c:if>
 					</div>
 					<hr class="boundaryline">
@@ -306,8 +306,8 @@ $(document).ready(function(){
 	<div class="floor_btns">
 		<c:if test="${login==item.id}">
 			<div class="gotoAndRun_btns">
-				<a href="update?menuId=${item.menuId}"><div class="gotoUpdate">수정</div></a>
-				<a href="delete?menuId=${item.menuId}"><div class="runDelete">삭제</div></a>
+				<a href="update?questionId=${item.questionId}"><div class="gotoUpdate">수정</div></a>
+				<a href="delete?questionId=${item.questionId}"><div class="runDelete">삭제</div></a>
 			</div>
 		</c:if>
 		<a href="list"><div class="gotoList">목록으로</div></a>

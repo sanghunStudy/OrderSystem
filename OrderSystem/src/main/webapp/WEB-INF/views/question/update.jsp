@@ -37,7 +37,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#menuSubmit").click(function(){
+	$("#questionSubmit").click(function(){
 		var summernoteVal = $("#summernote").val(); 
 		var imgChk;
 			if($(summernoteVal).find("img").length > 0){
@@ -46,25 +46,25 @@ $(document).ready(function(){
 				$("#imgChk").val(imgChk);
 								
 			}
-		var nameCheck = $("#menuName").val();
+		var nameCheck = $("#questionName").val();
 		var pointInfo = $('#pointSet').val();
 		if(nameCheck == null || nameCheck == ""){
 			alert("제목을 입력하세요");
 		} else if(summernoteVal == null || summernoteVal == "") {
 			alert("내용을 입력하세요");
 		} else if(pointInfo == 0) {
-			$("#menuForm").submit();
+			$("#questionForm").submit();
 		} else if(pointInfo != null || pointInfo != 0){
 			$.ajax({
 				url:"${pageContext.request.contextPath}/question/userpoint",
 				type:'GET',
 				success:function(data){
 					if(data > pointInfo){
-						$("#menuForm").submit();
+						$("#questionForm").submit();
 					} else if (data == pointInfo) {
 						var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
 						if(pointzero = true){
-							$("#menuForm").submit();
+							$("#questionForm").submit();
 						} else {
 							return false;
 						}
@@ -104,22 +104,22 @@ function sendFile(file, el) {
 <div class="container">
 	<div><a class="subtitle" href="list">질문수정</a></div>
 	<div class="innerbox">
-	<form action="update" method="post" enctype="multipart/form-data" id="menuForm">
+	<form action="update" method="post" enctype="multipart/form-data" id="questionForm">
 		<div>
-			<input name="menuId" type="hidden" value="${item.menuId}" />
-			<input type="hidden" value="${item.menuName}" id="loadMenuName">
+			<input name="questionId" type="hidden" value="${item.questionId}" />
+			<input type="hidden" value="${item.questionName}" id="loadQuestionName">
 		</div>
 		<div class="naming-box" id="naming-box">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
-			<label> 제목 </label> <input v-model="t" type="text" name="menuName" class="naming" id="menuName">
+			<label> 제목 </label> <input v-model="t" type="text" name="questionName" class="naming" id="questionName">
 			<a class="char-limit">({{ tl }}/80자)</a>
 		</div>
 		<script>
-			var loadMenuName = document.getElementById('loadMenuName').value;
+			var loadQuestionName = document.getElementById('loadQuestionName').value;
 			var titleCheck = new Vue({
 				el:'#naming-box',
 				data: {
-					t:loadMenuName,
+					t:loadQuestionName,
 					tl:0,
 					to:''
 				},
@@ -137,7 +137,7 @@ function sendFile(file, el) {
 			});
 		</script>
 		<div>
-			<textarea name="menuContent" id="summernote">${item.menuContent}</textarea>
+			<textarea name="questionContent" id="summernote">${item.questionContent}</textarea>
 		</div>
 		<div class="point_buttons" id="point_buttons">
 			<ul class="point_bar">
@@ -159,8 +159,8 @@ function sendFile(file, el) {
 		</div>
 		<div class="buttons">
 <!-- 			<input type="submit" value="등록하기"> -->
-			<button type="button" id="menuSubmit">수정완료</button>
-			<a href="view?menuId=${item.menuId}"><div class="Go-back">수정취소</div></a>
+			<button type="button" id="questionSubmit">수정완료</button>
+			<a href="view?questionId=${item.questionId}"><div class="Go-back">수정취소</div></a>
 		</div>
 	</form>
 	</div>

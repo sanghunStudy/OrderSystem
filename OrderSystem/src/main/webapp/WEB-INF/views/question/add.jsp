@@ -36,7 +36,7 @@
 			}
 		});
 					
-		$("#menuSubmit").click(function(){
+		$("#questionSubmit").click(function(){
 			var summernoteVal = $("#summernote").val(); 
 			var imgChk;
 				if($(summernoteVal).find("img").length > 0){
@@ -45,7 +45,7 @@
 					$("#imgChk").val(imgChk);
 									
 				}
-			var nameCheck = $("#menuName").val();
+			var nameCheck = $("#questionName").val();
 			var pointInfo = $('#pointSet').val();
 			if(nameCheck == null || nameCheck == ""){
 				alert("제목을 입력하세요");
@@ -53,18 +53,18 @@
 				alert("내용을 입력하세요");
 			} else if(pointInfo == 0) {
 				alert("포인트설정 없이 채택하면 본인의 포인트차감없이\n채택자에게 10포인트를 드립니다");
-				$("#menuForm").submit();
+				$("#questionForm").submit();
 			} else if(pointInfo != null || pointInfo != 0){
 				$.ajax({
 					url:"${pageContext.request.contextPath}/question/userpoint",
 					type:'GET',
 					success:function(data){
 						if(data > pointInfo){
-							$("#menuForm").submit();
+							$("#questionForm").submit();
 						} else if (data == pointInfo) {
 							var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
 							if(pointzero = true){
-								$("#menuForm").submit();
+								$("#questionForm").submit();
 							} else {
 								return false;
 							}
@@ -109,11 +109,11 @@
 <div class="container">
 	<div><a class="subtitle" href="list">질문하기</a></div>
 	<div class="innerbox">
-	<form action="add" method="post" enctype="multipart/form-data" id="menuForm">
+	<form action="add" method="post" enctype="multipart/form-data" id="questionForm">
 		<!-- <sec:csrfInput /> -->
 		<div class="naming-box" id="naming-box">
 			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
-			<label> 제목 </label> <input v-model="t" type="text" name="menuName" class="naming" id="menuName">
+			<label> 제목 </label> <input v-model="t" type="text" name="questionName" class="naming" id="questionName">
 			<a class="char-limit">({{ tl }}/80자)</a>
 		</div>
 		<script>
@@ -138,7 +138,7 @@
 			});
 		</script>
 		<div id="content-box">
-			<textarea name="menuContent" id="summernote" cols="120" rows="50" value=""></textarea>
+			<textarea name="questionContent" id="summernote" cols="120" rows="50" value=""></textarea>
 		</div>
 		<div class="point_buttons" id="point_buttons">
 			<ul class="point_bar">
@@ -160,7 +160,7 @@
 		</div>
 		<div class="buttons">
 <!-- 			<input type="submit" value="등록하기"> -->
-			<button type="button" id="menuSubmit">등록하기</button>
+			<button type="button" id="questionSubmit">등록하기</button>
 			<a href="list"><div class="Go-back">작성취소</div></a>
 		</div>
 		

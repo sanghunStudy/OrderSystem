@@ -10,31 +10,31 @@ public interface QuestionService {
 
 	List<Question> list(SearchVO searchVO);
 
-	void add(Question menu);
+	void add(Question question);
 
-	Question item(int menuId);
+	Question item(int questionId);
 
 	void update(Question item);
 
-	void delete(int menuId);
+	void delete(int questionId);
 	
 	int total(SearchVO searchVO);
 
-	List<QuestionComment> commentList(int menuId);
+	List<QuestionComment> commentList(int questionId);
 
-	void commentAdd(QuestionComment mComment);
+	void commentAdd(QuestionComment qComment);
 
-	void commentDel(int mcommentId);
+	void commentDel(int qcommentId);
 
-	void commentUpdate(QuestionComment mComment);
+	void commentUpdate(QuestionComment qComment);
 
-	void views(int menuId);
+	void views(int questionId);
 
-	void selection(int mcommentId);
+	void selection(int qcommentId);
 
 	void pointUp(String pointGetUser, int pointSet);
 
-	int onlyOnceSelection(int menuId);
+	int onlyOnceSelection(int questionId);
 
 	int userpoint(String username);
 

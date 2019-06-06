@@ -22,13 +22,13 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void add(Question menu) {
-		dao.add(menu);
+	public void add(Question question) {
+		dao.add(question);
 	}
 
 	@Override
-	public Question item(int menuId) {
-		return dao.item(menuId);
+	public Question item(int questionId) {
+		return dao.item(questionId);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void delete(int menuId) {
-		dao.delete(menuId);
+	public void delete(int questionId) {
+		dao.delete(questionId);
 	}
 
 	@Override
@@ -47,33 +47,33 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public List<QuestionComment> commentList(int menuId) {
-		return dao.commentList(menuId);
+	public List<QuestionComment> commentList(int questionId) {
+		return dao.commentList(questionId);
 	}
 
 	@Override
-	public void commentAdd(QuestionComment mComment) {
-		dao.commentAdd(mComment);
+	public void commentAdd(QuestionComment qComment) {
+		dao.commentAdd(qComment);
 	}
 
 	@Override
-	public void commentDel(int mcommentId) {
-		dao.commentDel(mcommentId);
+	public void commentDel(int qcommentId) {
+		dao.commentDel(qcommentId);
 	}
 
 	@Override
-	public void commentUpdate(QuestionComment mComment) {
-		dao.commentUpdate(mComment);
+	public void commentUpdate(QuestionComment qComment) {
+		dao.commentUpdate(qComment);
 	}
 
 	@Override
-	public void views(int menuId) {
-		dao.views(menuId);
+	public void views(int questionId) {
+		dao.views(questionId);
 	}
 
 	@Override
-	public void selection(int mcommentId) {
-		dao.selection(mcommentId);
+	public void selection(int qcommentId) {
+		dao.selection(qcommentId);
 	}
 
 	@Override
@@ -82,8 +82,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public int onlyOnceSelection(int menuId) {
-		return dao.onlyOnceSelection(menuId);
+	public int onlyOnceSelection(int questionId) {
+		return dao.onlyOnceSelection(questionId);
 	}
 
 	@Override

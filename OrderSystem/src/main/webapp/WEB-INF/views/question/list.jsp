@@ -115,13 +115,13 @@
 				<input type="hidden" name="page" id="page" value="" />
 				<div class="search_area">
 					<div class="search_type">
-						<input type="checkbox" name="searchType" value="menu_name"
+						<input type="checkbox" name="searchType" value="question_name"
 							id="searchType1" class="cb1" checked="checked"
-							<c:if test="${fn:indexOf(searchVO.searchType,'menu_name') != -1}">checked="checked"</c:if> />
+							<c:if test="${fn:indexOf(searchVO.searchType,'question_name') != -1}">checked="checked"</c:if> />
 						<label class="chkselect" for="searchType1">제목</label> <input
-							type="checkbox" name="searchType" value="menu_content"
+							type="checkbox" name="searchType" value="question_content"
 							id="searchType2" class="cb2" checked="checked"
-							<c:if test="${fn:indexOf(searchVO.searchType,'menu_content') != -1}">checked="checked"</c:if> />
+							<c:if test="${fn:indexOf(searchVO.searchType,'question_content') != -1}">checked="checked"</c:if> />
 						<label class="chkselect" for="searchType2" id="concheck">컨텐츠</label>
 					</div>
 					<input type="text" name="searchKeyword" class="search_keyword"
@@ -144,13 +144,13 @@
 				<c:when test="${list.size() > 0}">
 					<c:forEach var="item" items="${list}">
 						<tr>
-							<td>${item.menuId}</td>
-							<td id="menuName">
+							<td>${item.questionId}</td>
+							<td id="questionName">
 								<div class="cell1">
 									
 									<div class="overName">
-										<a href="view?menuId=${item.menuId}">
-											&emsp;${item.menuName}</a>
+										<a href="view?questionId=${item.questionId}">
+											&emsp;${item.questionName}</a>
 									</div>
 									<div class="count">[${item.cnt}]</div>
 								</div>
@@ -159,9 +159,9 @@
 								</c:if>
 							</td>
 							<td>${item.id}</td>
-							<td id="menuDate${item.menuId}"><fmt:formatDate
-									value="${item.menuDate}" pattern="yyyy-MM-dd" /></td>
-							<td>${item.menuViews}</td>
+							<td id="questionDate${item.questionId}"><fmt:formatDate
+									value="${item.questionDate}" pattern="yyyy-MM-dd" /></td>
+							<td>${item.questionViews}</td>
 							<%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
 						</tr>
 					</c:forEach>

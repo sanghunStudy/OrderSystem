@@ -4,7 +4,7 @@
 <mapper namespace="question">
 	<sql id="includeBoard">
 		<if test="searchKeyword != null and searchKeyword != ''">
-			where menu_id != 0 and (
+			where question_id != 0 and (
 			<foreach item="item" index="index" collection="searchTypeArr" separator="or">
 				${item} like CONCAT('%',#{searchKeyword},'%')
 			</foreach>
@@ -13,66 +13,66 @@
 	</sql>
 	
 	<select id="total" resultType="Integer" parameterType="searchVO">
-		select COUNT(*) from menu
+		select COUNT(*) from question
 		<include refid="includeBoard" />
 	</select>
 	
 	<select id="list" resultType="Question" parameterType="searchVO">
-		select * , (select count(*) from menu_comment m where m.menu_id=menu.menu_id) as cnt from menu
+		select * , (select count(*) from question_comment q where q.question_id=question.question_id) as cnt from question
 		<include refid="includeBoard"/>
-		order by menu_id desc LIMIT ${rowStart-1},${displayRowCount}
+		order by question_id desc LIMIT ${rowStart-1},${displayRowCount}
 	</select>
 	
 	<insert id="add" parameterType="Question">
-		insert into menu(menu_name,menu_content,menu_date,id,img_chk,point_set)
-		values(#{menuName},#{menuContent},NOW(),#{id},#{imgChk},#{pointSet})
+		insert into question(question_name,question_content,question_date,id,img_chk,point_set)
+		values(#{questionName},#{questionContent},NOW(),#{id},#{imgChk},#{pointSet})
 	</insert>
 	
 	<select id="item" resultType="Question">
-		select *, (select count(*) from menu_comment mc where mc.menu_id=menu.menu_id) as cnt
-		from menu where menu_id=#{menuId}
+		select *, (select count(*) from question_comment qc where qc.question_id=question.question_id) as cnt
+		from question where question_id=#{questionId}
 	</select>
 	
 	<update id="update" parameterType="Question">
-		update menu 
-		set menu_name=#{menuName},menu_content=#{menuContent},img_chk=#{imgChk},point_set=#{pointSet}
-		where menu_id=#{menuId}
+		update question 
+		set question_name=#{questionName},question_content=#{questionContent},img_chk=#{imgChk},point_set=#{pointSet}
+		where question_id=#{questionId}
 	</update>
 	
 	<delete id="delete">
-		delete from menu where menu_id=#{menuId}
+		delete from question where question_id=#{questionId}
 	</delete>
 	
 	<select id="commentList" resultType="QComment">
-		select * from menu_comment where menu_id=#{menuId} order by selection_check desc, mcomment_id desc
+		select * from question_comment where question_id=#{questionId} order by selection_check desc, qcomment_id desc
 	</select>
 	
 	<insert id="commentAdd" parameterType="QComment">
-		insert into menu_comment
-		(id,menu_id,mcomment_content,mcomment_date)
-		values(#{id},#{menuId},#{mcommentContent},NOW())
+		insert into question_comment
+		(id,question_id,qcomment_content,qcomment_date)
+		values(#{id},#{questionId},#{qcommentContent},NOW())
 	</insert>
 	
 	<delete id="commentDel">
-		delete from menu_comment where mcomment_id = #{mcommentId}
+		delete from question_comment where qcomment_id = #{qcommentId}
 	</delete>
 	
 	<update id="commentUpdate">
-		update menu_comment
-		set mcomment_content = #{mcommentContent}, mcomment_date=NOW()
-		where mcomment_id = #{mcommentId}
+		update question_comment
+		set qcomment_content = #{qcommentContent}, qcomment_date=NOW()
+		where qcomment_id = #{qcommentId}
 	</update>
 	
 	<update id="views" parameterType="Question">
-		update menu
-		set menu_views= menu_views+1
-		where menu_id=#{menuId}
+		update question
+		set question_views= question_views+1
+		where question_id=#{questionId}
 	</update>
 	
 	<update id="selection">
-		update menu_comment
+		update question_comment
 		set selection_check = 1
-		where mcomment_id = #{mcommentId}
+		where qcomment_id = #{qcommentId}
 	</update>
 	
 	<update id="pointUp" parameterType="UserVO">
@@ -83,8 +83,8 @@
 	
 	<select id="onlyOnceSelection" resultType="Integer">
 		select distinct COUNT(mc.selection_check)
-		from menu_comment mc JOIN menu m ON mc.menu_id = m.menu_id
-		where mc.menu_id = #{menuId} and mc.selection_check=1
+		from question_comment qc JOIN question q ON qc.question_id = q.question_id
+		where qc.question_id = #{questionId} and qc.selection_check=1
 	</select>
 	
 	<select id="userpoint" parameterType="UserVO" resultType="Integer">

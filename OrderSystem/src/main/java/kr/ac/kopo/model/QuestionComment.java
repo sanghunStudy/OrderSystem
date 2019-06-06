@@ -1,42 +1,42 @@
 package kr.ac.kopo.model;
 
 public class QuestionComment {
-	private int mcommentId;
+	private int qcommentId;
 	private String id;
-	private String mcommentContent;
-	private String mcommentDate;
-	private int menuId;
+	private String qcommentContent;
+	private String qcommentDate;
+	private int questionId;
 	boolean selectionCheck;
 	
-	public int getMcommentId() {
-		return mcommentId;
+	public int getQcommentId() {
+		return qcommentId;
 	}
-	public void setMcommentId(int mcommentId) {
-		this.mcommentId = mcommentId;
+	public void setQcommentId(int qcommentId) {
+		this.qcommentId = qcommentId;
+	}
+	public String getQcommentContent() {
+		return qcommentContent;
+	}
+	public void setQcommentContent(String qcommentContent) {
+		this.qcommentContent = qcommentContent;
+	}
+	public String getQcommentDate() {
+		return qcommentDate;
+	}
+	public void setQcommentDate(String qcommentDate) {
+		this.qcommentDate = qcommentDate;
+	}
+	public int getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getMcommentContent() {
-		return mcommentContent;
-	}
-	public void setMcommentContent(String mcommentContent) {
-		this.mcommentContent = mcommentContent;
-	}
-	public String getMcommentDate() {
-		return mcommentDate;
-	}
-	public void setMcommentDate(String mcommentDate) {
-		this.mcommentDate = mcommentDate;
-	}
-	public int getMenuId() {
-		return menuId;
-	}
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
 	}
 	public boolean isSelectionCheck() {
 		return selectionCheck;

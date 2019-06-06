@@ -3,17 +3,16 @@ package kr.ac.kopo.model;
 import java.util.Date;
 
 public class Question {
-	int menuId;
-	String menuName;
-	String menuContent;
+	int questionId;
+	String questionName;
+	String questionContent;
 	int cnt;
-	Date menuDate;
-	int menuViews;
+	Date questionDate;
+	int questionViews;
 	String id;
 	boolean imgChk;
 	int pointSet;
 	
-
 	public int getPointSet() {
 		return pointSet;
 	}
@@ -32,40 +31,40 @@ public class Question {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getMenuDate() {
-		return menuDate;
-	}
-	public void setMenuDate(Date menuDate) {
-		this.menuDate = menuDate;
-	}
-	public int getMenuViews() {
-		return menuViews;
-	}
-	public void setMenuViews(int menuViews) {
-		this.menuViews = menuViews;
-	}
 	public int getCnt() {
 		return cnt;
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	public int getMenuId() {
-		return menuId;
+	public int getQuestionId() {
+		return questionId;
 	}
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
-	public String getMenuName() {
-		return menuName;
+	public String getQuestionName() {
+		return questionName;
 	}
-	public void setMenuName(String menuName) {
-		this.menuName = menuName;
+	public void setQuestionName(String questionName) {
+		this.questionName = questionName;
 	}
-	public String getMenuContent() {
-		return menuContent;
+	public String getQuestionContent() {
+		return questionContent;
 	}
-	public void setMenuContent(String menuContent) {
-		this.menuContent = menuContent;
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
+	}
+	public Date getQuestionDate() {
+		return questionDate;
+	}
+	public void setQuestionDate(Date questionDate) {
+		this.questionDate = questionDate;
+	}
+	public int getQuestionViews() {
+		return questionViews;
+	}
+	public void setQuestionViews(int questionViews) {
+		this.questionViews = questionViews;
 	}
 }

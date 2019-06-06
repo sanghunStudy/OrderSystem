@@ -23,13 +23,13 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public void add(Question menu) {
-		sql.insert("question.add", menu);
+	public void add(Question question) {
+		sql.insert("question.add", question);
 	}
 
 	@Override
-	public Question item(int menuId) {
-		return sql.selectOne("question.item", menuId);
+	public Question item(int questionId) {
+		return sql.selectOne("question.item", questionId);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public void delete(int menuId) {
-		sql.delete("question.delete", menuId);
+	public void delete(int questionId) {
+		sql.delete("question.delete", questionId);
 	}
 
 	@Override
@@ -48,33 +48,33 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<QuestionComment> commentList(int menuId) {
-		return sql.selectList("question.commentList", menuId);
+	public List<QuestionComment> commentList(int questionId) {
+		return sql.selectList("question.commentList", questionId);
 	}
 
 	@Override
-	public void commentAdd(QuestionComment mComment) {
-		sql.insert("question.commentAdd",mComment);
+	public void commentAdd(QuestionComment qComment) {
+		sql.insert("question.commentAdd",qComment);
 	}
 
 	@Override
-	public void commentDel(int mcommentId) {
-		sql.delete("question.commentDel", mcommentId);
+	public void commentDel(int qcommentId) {
+		sql.delete("question.commentDel", qcommentId);
 	}
 
 	@Override
-	public void commentUpdate(QuestionComment mComment) {
-		sql.update("question.commentUpdate", mComment);
+	public void commentUpdate(QuestionComment qComment) {
+		sql.update("question.commentUpdate", qComment);
 	}
 
 	@Override
-	public void views(int menuId) {
-		sql.update("question.views", menuId);
+	public void views(int questionId) {
+		sql.update("question.views", questionId);
 	}
 
 	@Override
-	public void selection(int mcommentId) {
-		sql.update("question.selection",mcommentId);
+	public void selection(int qcommentId) {
+		sql.update("question.selection",qcommentId);
 	}
 
 	@Override
@@ -86,8 +86,8 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public int onlyOnceSelection(int menuId) {
-		return sql.selectOne("question.onlyOnceSelection",menuId);
+	public int onlyOnceSelection(int questionId) {
+		return sql.selectOne("question.onlyOnceSelection",questionId);
 	}
 
 	@Override

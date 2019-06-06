@@ -42,11 +42,13 @@ $(document).ready(function() {
 	$('.fa-save').click(function() {
 		var Bmetabolism = $('#Bmetabolism').text();
 		var Erequirement = $('#Erequirement').text();
+		var age = $('#age').val();
         $.ajax({
             url:'/kopo/besave/besave',
             type:'POST',
             data:{'Bmetabolism':Bmetabolism,
-            	'Erequirement': Erequirement
+            	'Erequirement': Erequirement,
+            	'age':age
             },
             success:function(data){
             	if(data == 1)

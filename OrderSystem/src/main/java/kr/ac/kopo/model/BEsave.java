@@ -6,6 +6,7 @@ public class BEsave {
 	String BEdate;
 	int Bmetabolism;
 	int Erequirement;
+	int age;
 	
 	public int getBEid() {
 		return BEid;
@@ -37,4 +38,11 @@ public class BEsave {
 	public void setErequirement(int erequirement) {
 		Erequirement = erequirement;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 }

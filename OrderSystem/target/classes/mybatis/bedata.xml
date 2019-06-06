@@ -3,7 +3,7 @@
 
 <mapper namespace="bedata">
 	<insert id="add" parameterType="besave">
-		insert into BEData(username,be_date,b_metabolism,e_requirement)
-		values(#{username},CURDATE(),#{Bmetabolism},#{Erequirement})
+		insert into BEData(username,be_date,b_metabolism,e_requirement,age)
+		values(#{username},CURDATE(),#{Bmetabolism},#{Erequirement},#{age})
 	</insert>
 </mapper>

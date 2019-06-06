@@ -229,7 +229,7 @@
 							</tr>
 							<tr>
 								<td>나이</td>
-								<td><input type="number" v-model="age"></td>
+								<td><input type="number" v-model="age" id="age"></td>
 							</tr>
 							<tr>
 								<td>키</td>

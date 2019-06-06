@@ -32,7 +32,7 @@ function applicantList()
 
 			var tr = '';
 			if(res.length == 0) {
-				tr +='<tr><td colspan="6">승인 대기중인 회원이 없습니다.</td></tr>';
+				tr +='<tr><td colspan="7">승인 대기중인 회원이 없습니다.</td></tr>';
 			}
 			else{
 			$.each(res,function(key,value) {
@@ -60,7 +60,15 @@ function applicantList()
 	 		if(res.length > 0){
 	 		for (var value of res) {
 	 			tr += '<tr>';
-	 			tr += '<td class="my-menti">' + value.username + '</td>';
+	 			tr += '<td class="my-menti">';
+	 			tr += '<span class="target-username">'+ value.username + '</span>';
+	 			tr += '<span class="hidden target-weights">'+value.weights+'</span>';
+	 			tr += '<span class="hidden target-height">'+ value.height +'</span>';
+	 			tr += '<span class="hidden target-goal">' + value.goal +'</span>';
+	 			tr += '<span class="hidden target-etc">' + value.etc + '</span>';
+	 			tr += '<span class="hidden target-eRequirement">' + value.eRequirement + '</span>';
+	 			tr += '<span class="hidden target-eRequirement">'+ value.age +'</span>'
+	 			tr +='</td>';
 	 			tr += '<td><div class="progress-container-t">';
 	 			tr += '<span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>';
 	 			tr += '<div class="progress-bar-t"><div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div>'
@@ -347,18 +355,26 @@ $(function() {
 		
 		$('.performance .myMenti-list').on('click','td',function(e) {
 			var target = e.target || e.srcElement;
-			applicant = $(this).parents('tr').find('.target-username').text();
-			targetWeights = $(this).parents('tr').find('.target-weights').text();
-			targetHeight = $(this).parents('tr').find('.target-height').text();
-			targetGoal = $(this).parents('tr').find('.target-goal').text();
+	
 			
 			if(modalClickEvent.hasOwnProperty(target.id)) {
 				modalClickEvent[target.id].call();
+				var targetData = {
+						name:$(this).parents('tr').find('.target-username').text(),
+						weights:$(this).parents('tr').find('.target-weights').text(),
+						height:$(this).parents('tr').find('.target-height').text(),
+						goal:$(this).parents('tr').find('.target-goal').text(),
+						age:$(this).parents('tr').find('.target-age').text(),
+						energy:$(this).parents('tr').find('.target-eRequirement').text()					
+				}
 		
-				$('.menti-name').text(applicant);
-				$('.menti-weights').text(targetWeights+'kg');
-				$('.menti-height').text(targetHeight+'cm');
-				$('.menti-goal').text(targetGoal);
+				
+				$('.menti-name').text(targetData.name);
+				$('.menti-weights').text(targetData.weights+'kg');
+				$('.menti-height').text(targetData.height+'cm');
+				$('.menti-goal').text(targetData.goal);
+				$('.menti-age').text(targetData.age+'세');
+				$('.menti-emetabolism').text(targetData.energy+'kcal');
 				
 			}			
 			
@@ -388,7 +404,7 @@ $(function() {
 
 
 
-		/* ===== Logic for creating fake Select Boxes ===== */
+		/* 년.월.일 셀렉트 박스  */
 $('.sel').each(function() {
   $(this).children('select').css('display', 'none');
   
@@ -420,8 +436,17 @@ $('.sel').each(function() {
 });
 
 // 가짜 셀렉트 박스 선택시 active 클래스 추가
-$('.sel').click(function() {
+$('.sel').click(function(e) {
+	
   $(this).toggleClass('active');
+  if($(this).hasClass('sel-day') && !$(this).hasClass('.sel__box__options')) {
+	  var monthVal = $(e.target).prev().prev().find('.sel__placeholder-month').text();
+	  console.log(monthVal);
+	  console.log(isNaN(parseInt(monthVal)));
+	  if(isNaN(parseInt(monthVal)) == true)  {
+		  alert('월을 선택해주세요.');
+	  }
+  }
 });
 
 
@@ -436,7 +461,10 @@ $(document).on('click','.sel__box__options',function() {
   var $currentSel = $(this).closest('.sel');
   $currentSel.children('.sel__placeholder').text(txt);
   $currentSel.children('select').prop('selectedIndex', index + 1);
-console.log(txt);
+
+ 
+  
+  
  if($(this).parents().hasClass('sel-month')) {
 	 $(this).parents('.sel-month').next().next().children('div').empty();
 	 	var limit = 0;
@@ -463,7 +491,7 @@ console.log(txt);
 			}));
 		}
 	
- }
+ } 
 
 });
 

@@ -79,12 +79,12 @@ $(function() {
 			var doneContent= $(this).parents('tr').find('.to_item_cotents').text();
 			var kind = $(this).parents('table').attr('class');
 			console.log($(item));
-			console.log($(item).is(':checked'));
+			var isChecked = $(item).is(':checked');
 			console.log($(item).val());
-			
+			if($(item).closest().hasClass() == 'checkboxes' ) 
 			var doneCheck  = confirm(doneContent + '를 수행하셨습니까?');
 		
-			if(doneCheck == true) {
+			if(doneCheck == true && $(item).is(':checked') == true) {
 			
 				$.ajax({
 					url:'/kopo/member/done',

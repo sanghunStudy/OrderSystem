@@ -139,6 +139,7 @@
 							<th>Date</th>
 							<th>Physical Information</th>
 							<th>Goal</th>
+							<th>Want To Say</th>
 							<th colspan="2">Action</th>
 
 						</tr>
@@ -150,8 +151,9 @@
 									<tr>
 										<td class="applicant">${item.username}</td>
 										<td class="apply-date">${item.applyDate}</td>
-										<td>${item.height}cm${item.weights}kg</td>
+										<td>${item.height}cm&nbsp;&nbsp;${item.weights}kg</td>
 										<td>${item.goal}</td>
+										<td>${item.etc}</td>
 										<td colspan="2" class="action">
 											<div class="agree btn-t" id="agree">Agree</div>
 											<div class="disagree btn-t" id="disagree">Disagree</div>
@@ -162,7 +164,7 @@
 
 							<c:otherwise>
 								<tr>
-									<td colspan="5">승인 대기중인 회원이 없습니다.</td>
+									<td colspan="6">승인 대기중인 회원이 없습니다.</td>
 								</tr>
 							</c:otherwise>
 						</c:choose>
@@ -218,11 +220,15 @@
 							<c:when test="${myMenti.size() > 0 }">
 								<c:forEach var="menti" items="${myMenti}">
 									<tr>
-										<td class="my-menti"><span class="target-username">${menti.username}</span>
-											<span class="hidden target-weights">${menti.weights}</span> <span
-											class="hidden target-height">${menti.height}</span> <span
-											class="hidden target-goal">${menti.goal}</span> <span
-											class="hidden target-etc">${menti.etc}</span></td>
+										<td class="my-menti">
+											<span class="target-username">${menti.username}</span>
+											<span class="hidden target-weights">${menti.weights}</span> 
+											<span class="hidden target-height">${menti.height}</span> 
+											<span class="hidden target-goal">${menti.goal}</span> 
+											<span class="hidden target-etc">${menti.etc}</span>
+											<span class="hidden target-eRequirement">${menti.eRequirement}</span>
+											<span class="hidden target-age">${menti.age}</span>
+										</td>
 										<td>
 											<div class="progress-container-t">
 												<span id="value" class="progress-value-t"
@@ -313,6 +319,10 @@
 													<div class="subtitle">멘티     </div>
 													<div class="menti-name info-value"></div>
 												</div>
+												<div class="selected-menti menti-info">
+													<div class="subtitle">나이    </div>
+													<div class="menti-age info-value"></div>
+												</div>												
 												<div class="physical-info">
 													<div class="selected-weights menti-info">
 														<div class="subtitle">체중     </div>
@@ -363,7 +373,7 @@
 															</select>
 														</div>
 														<span class="separator">.</span>
-														<div class="sel sel--superman">
+														<div class="sel sel-day">
 															<select name="select-superpower" id="select-day"
 																class="select-day">
 																<option value="" disabled>일</option>
@@ -666,6 +676,10 @@
 													<div class="subtitle">멘티     </div>
 													<div class="menti-name info-value"></div>
 												</div>
+												<div class="selected-menti menti-info">
+													<div class="subtitle">나이     </div>
+													<div class="menti-age info-value"></div>
+												</div>												
 												<div class="physical-info">
 													<div class="selected-weights menti-info">
 														<div class="subtitle">체중     </div>

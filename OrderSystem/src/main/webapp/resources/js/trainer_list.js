@@ -12,12 +12,16 @@ function selectUserbI(managerId) {
 		success : function(data) {
 			if (data == 0) {
 				alert("회원 기초 정보를 등록하세요");
+
+		
 			} else if (data == 2) {
 				alert("신청 내역이 존재합니다.");
 			} else {
-
+				$('input[name="weights"]').val(parseFloat($('input[name="weights"]').val()).toFixed(1));
+				$('input[name="height"]').val(parseFloat($('input[name="height"]').val()).toFixed(1));
 				document.getElementById("managerID").value = managerId;
 				document.getElementById("trainer").submit();
+				alert('정상적으로 신청되었습니다.');
 
 			}
 		}
@@ -50,13 +54,64 @@ $(function() {
 
 		'modal-btn' : function() {
 			Modal.style.display = "block";
+			
+			/* ===== Logic for creating fake Select Boxes ===== */
+			$('.sel').each(function() {
+			  $(this).children('select').css('display', 'none');
+			  
+			  var $current = $(this);
+			  
+			  $(this).find('option').each(function(i) {
+			    if (i == 0) {
+			      $current.prepend($('<div>', {
+			        class: $current.attr('class').replace(/sel/g, 'sel__box')
+			      }));
+			      
+			      var placeholder = $(this).text();
+			      $current.prepend($('<span>', {
+			        class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+			        text: placeholder,
+			        'data-placeholder': placeholder
+			      }));
+			      
+			      return;
+			    }
+			    
+			    $current.children('div').append($('<span>', {
+			      class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+			      text: $(this).text()
+			    }));
+			  });
+			});
+
+			// Toggling the `.active` state on the `.sel`.
+			$('.sel').click(function() {
+			  $(this).toggleClass('active');
+			});
+
+			// Toggling the `.selected` state on the options.
+			$('.sel__box__options').click(function() {
+			  var txt = $(this).text();
+			  var index = $(this).index();
+			  
+			  $(this).siblings('.sel__box__options').removeClass('selected');
+			  $(this).addClass('selected');
+			  
+			  var $currentSel = $(this).closest('.sel');
+			  $currentSel.children('.sel__placeholder').text(txt);
+			  $currentSel.children('select').prop('selectedIndex', index + 1);
+			  $('.sel__placeholder').css('color','#981d85');
+			});
+
 		},
 		'detail-btn' : function() {
 			DModal.style.display = "block";
 			$('.detail-photo').css('background',"url('"+photoSrc+"'),url('/kopo/resources/images/icon/default-profile-icon.jpg')");
 			$('.detail-photo').css('background-size','contain');
 			
-			$('.trainer-name').text(trainer);
+			$('.trainer-name').text($('.trainer-name').val());
+			$('.id-content').text($('.trainer-id').val());
+			$('.career-contents').text($('.trainer-career').val());
 			
 			if(trainerSex == '여자'){
 				background.className = 'background background--on';
@@ -80,7 +135,7 @@ $(function() {
 				if (modalClickEvent.hasOwnProperty(target.id)) {
 					/* 트레이너 리스트부분, 공통모달에는 포함되지 않음 */
 					trainer_username = $(this).parents('.item-box').find(
-					'.username').text();
+					'.trainer-id').val();
 					
 					photoSrc = $(this).parents('.item-box').find('img').attr('src');
 					trainer = $(this).parents('.item-box').find('.username').text();

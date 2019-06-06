@@ -37,20 +37,28 @@
 				<c:when test="${trainerList.size() > 0}">
 					<c:forEach var="item" items="${trainerList}">
 						<div class="item-box">
-							<input type="hidden" value = "${item.sex}" class="trainer-sex">
-							<input type="hidden" value = "${item.name}" class="trainer-sex">
+							<input type="hidden" value="${item.sex}" class="trainer-sex">
+							<input type="hidden" value="${item.name}" class="trainer-name">
+							<input type="hidden" value="${item.username}" class="trainer-id">
+							<input type="hidden" value="${item.career}"
+								class="trainer-career">
 							<div class="trainer-info">
 								<div class="photo">
 									<img
-										src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
+										src="${pageContext.request.contextPath}/upload/${item.upFilename}"
+										onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
 										class="text">
 								</div>
 								<div class="trainer-text">
-									<div class="username">${item.username}</div>
+									<div class="username">${item.name}<small
+											class="identifier">(${item.username})</small>
+									</div>
 									<div class="career">
 										<img
 											src="${pageContext.request.contextPath}/resources/images/icon/career.png"
-											width="35px" height="35px"><div class="career-item">${item.career}</div></div>
+											width="35px" height="35px">
+										<div class="career-item">${item.career}</div>
+									</div>
 								</div>
 							</div>
 							<c:if test="${user != null}">
@@ -80,27 +88,38 @@
 			</div>
 			<div class="contents-container">
 				<div class="contents-box">
-				<form action="apply" method="post" id="trainer"
-					enctype="multipart/form-data">
-					<input id="managerID" type="hidden" name="manager" value="">
+					<form action="apply" method="post" id="trainer"
+						enctype="multipart/form-data">
+						<input id="managerID" type="hidden" name="manager" value="">
 
-					<div class="group">
-						<input type="text" required class="weights" name="weights">
-						<span class="highlight"></span> <span class="bar"></span> <label
-							class="only-modal">체중(in kg)</label>
-					</div>
-					<div class="group">
-						<input type="text" required class="height" name="height">
-						<span class="highlight"></span> <span class="bar"></span> <label
-							class="only-modal">키(in cm)</label>
-					</div>
-					<div class="group">
-						<input type="text" required class="etc" name="etc"> <span
-							class="highlight"></span> <span class="bar"></span> <label
-							class="only-modal">하고싶은 말 한줄</label>
-					</div>
+						<div class="group">
+							<input type="text" required class="weights" name="weights"
+								autocomplete="off"> <span class="highlight"></span> <span
+								class="bar"></span> <label class="only-modal">체중(in kg)</label>
+						</div>
+						<div class="group">
+							<input type="text" required class="height" name="height"
+								autocomplete="off"> <span class="highlight"></span> <span
+								class="bar"></span> <label class="only-modal">키(in cm)</label>
+						</div>
+						<div class="sel sel--black-panther">
+							<select name="goal" id="select-profession">
+								<option value="" disabled>목표</option>
+								<option value="근육량 증가">근육량 증가</option>
+								<option value="다이어트">다이어트</option>
+								<option value="근력량">근력량 증가</option>
+								<option value="건강">건강 관리</option>
+								<option value="기타">기타</option>
+							
+							</select>
+						</div>
+						<div class="group">
+							<input type="text" required class="etc" name="etc"
+								autocomplete="off"> <span class="highlight"></span> <span
+								class="bar"></span> <label class="only-modal">하고싶은 말 한줄(20자 이내)</label>
+						</div>
 
-				</form>
+					</form>
 				</div>
 			</div>
 			<ul class="list-inline">
@@ -126,26 +145,31 @@
 					<h2>TRAINERBOT PROFILE</h2>
 					<div class="id-box">
 						<p>아이디</p>
-						<div>
-							<div><img src="/kopo/resources/images/icon/id-icon.png"><span></span></div>
-							<div class="id-content"></div>
+						<div class="detail-contents-box commons-padding">
+							<div>
+								<img src="/kopo/resources/images/icon/id-icon.png"><span></span>
+							</div>
+							<div class="id-content commons-padding"></div>
 						</div>
 					</div>
 					<div class="career-box">
 						<p>경력</p>
-						<div>
-							<div><img src="/kopo/resources/images/icon/career-icon-background.png"><span></span></div>
-							<div class="career-contents"></div>
+						<div class="detail-contents-box commons-padding">
+							<div>
+								<img
+									src="/kopo/resources/images/icon/career-icon-background.png"><span></span>
+							</div>
+							<div class="career-contents commons-padding"></div>
 						</div>
 					</div>
 					<div class="sex-box">
 						<p>성별</p>
 						<div class="background">
-						<span class="male gender">남</span>
+							<span class="male gender">남</span>
 							<div class="toggle-body">
-								
+
 								<div class="toggle-btn"></div>
-								
+
 							</div>
 							<span class="female gender">여</span>
 						</div>

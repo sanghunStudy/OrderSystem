@@ -12,7 +12,48 @@ public class MentiPerformance {
 	String chatDay;
 	int doneAssignment;
 	int totalAssignment;
-	
+	int eRequirement;
+	int age;
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public char getReading() {
+		return reading;
+	}
+
+	public void setReading(char reading) {
+		this.reading = reading;
+	}
+
+	public String getApplyDate() {
+		return applyDate;
+	}
+
+	public void setApplyDate(String applyDate) {
+		this.applyDate = applyDate;
+	}
+
+	public int geteRequirement() {
+		return eRequirement;
+	}
+
+	public void seteRequirement(int eRequirement) {
+		this.eRequirement = eRequirement;
+	}
 
 	public float getHeight() {
 		return height;

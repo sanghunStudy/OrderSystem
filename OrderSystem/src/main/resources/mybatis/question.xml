@@ -82,7 +82,7 @@
 	</update>
 	
 	<select id="onlyOnceSelection" resultType="Integer">
-		select distinct COUNT(mc.selection_check)
+		select distinct COUNT(qc.selection_check)
 		from question_comment qc JOIN question q ON qc.question_id = q.question_id
 		where qc.question_id = #{questionId} and qc.selection_check=1
 	</select>

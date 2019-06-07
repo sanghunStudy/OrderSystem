@@ -8,10 +8,10 @@
 
       	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-<!-- 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/orderSystem" /> -->
-		<property name="url" value="jdbc:mysql://172.16.143.39:3306/orderSystem" />
-<!-- 		<property name="username" value="root"/> -->
-		<property name="username" value="ordersystem"/>
+<!--  			<property name="url" value="jdbc:mysql://127.0.0.1:3306/orderSystem" />  -->
+ 		<property name="url" value="jdbc:mysql://172.16.143.39:3306/orderSystem" />
+<!--  		<property name="username" value="root"/>  -->
+ 		<property name="username" value="ordersystem"/>
 		<property name="password" value="1234"/>
  	</bean>  
     
@@ -33,4 +33,9 @@
 	<task:scheduled-tasks scheduler="taskScheduler" >
 	<task:scheduled ref="AutoDelete" method="scheduleRun" cron="0 0/1 * * * *" />
 	</task:scheduled-tasks> 
+	<bean id="AutoSave" class="kr.ac.kopo.util.AutoSave" />
+	<task:scheduler id="AutoSaveScheduler" pool-size="10" />
+	<task:scheduled-tasks scheduler="AutoSaveScheduler">
+	<task:scheduled ref="AutoSave" method="saveItem" cron="0 0/1 * * * *"/>
+	</task:scheduled-tasks>
 </beans>

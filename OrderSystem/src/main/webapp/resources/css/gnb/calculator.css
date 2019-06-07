@@ -85,7 +85,7 @@ ul.calculatorModal-tabs li.current{
 .calculatorModal-tab-content{
   display: none;
   background: #272a3d;
-  padding: 15px;
+  padding: 10px;
   position: absolute;
       width: 470px;
 }
@@ -100,6 +100,7 @@ ul.calculatorModal-tabs li.current{
   display: inherit;
   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
   width:430px;
+  padding: 10px;
 }
 #calculatorModal-tab-1{
 	width:460px;
@@ -109,7 +110,7 @@ ul.calculatorModal-tabs li.current{
 	font-size:10pt;
 	border:1px solid #d6d1d8;
 	margin-top:10px;
-	width:460px;
+	width:100%;
 }
 #onet td{
 	margin:5px;
@@ -137,4 +138,13 @@ ul.calculatorModal-tabs li.current{
     bottom: 0px;
     cursor:pointer;
 	
+}
+.fa-save:hover {
+	color:#f9ca08;
+}
+#exam {
+	position: relative;
+}
+#exam table {
+	width:100%;
 }

@@ -46,43 +46,15 @@
 <title>TRAINERBOT 멘티 관리</title>
 </head>
 <%@ include file="../gnb/nav.jsp"%>
-<%-- <%@ include file="../alarm.jsp"%> --%>
+<%@ include file="../alarm.jsp"%>
+<%@ include file="../gnb/sidebar.jsp"%>
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';
 		var trainer = '${sessionScope.trainer}';
 	</script>
 	<div id="fullBox">
-		<div class="menu-box">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath}"><img
-					src="${pageContext.request.contextPath}/resources/images/logo.png"
-					alt="logo">
-					<p>TRAINERBOT</p></a>
-			</div>
-			<ul class="menu-bar">
-				<li class="menu-icons"><a href="statistics"><i
-						class="fas fa-chart-bar"></i>
-						<p>운동일지 통계</p></a></li>
-				<li class="menu-icons"><a href="MyExerciseJournal"><i
-						class="fas fa-book"></i>
-						<p>운동일지 작성</p></a></li>
-				<li class="menu-icons"><a href="basicInformation"><i
-						class="fas fa-user-edit"></i>
-						<p>설문조사</p></a></li>
-				<li class="menu-icons"><a href="mentiManagement"><i
-						class="fas fa-users"></i>
-						<p>멘티 관리</p></a></li>
-				<li class="menu-icons"><a
-					href="${pageContext.request.contextPath}/opo/webRtc"><i
-						class="fas fa-comment-dots"></i>
-						<p>화상채팅</p></a></li>
-				<li class="menu-icons"><a
-					href="${pageContext.request.contextPath}/member/promotion"><i
-						class="fas fa-address-card"></i>
-						<p>트레이너 신청</p></a></li>
-			</ul>
-		</div>
+
 		<div id="wrapper">
 			<div class="rank">
 				<div id="ranker"

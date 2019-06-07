@@ -91,57 +91,6 @@ li {
 	background: #1e1e2f;
 }
 
-.menu-box {
-	font-family: 'S-CoreDream-4Regular', 'Noto Sans KR', sans-serif;
-	display: block;
-	flex-wrap: wrap;
-	padding-left: 8.5px;
-	margin: 0 auto;
-	width: 55px;
-	height: 600px;
-	border-radius: 6px;
-	background: linear-gradient(130deg, #1d8cf8, #3358f4);
-	position: fixed;
-	margin-left: 20px;
-	top: 15%;
-	z-index: 1;
-	-webkit-transition: width 0.5;
-	transition: width 0.5s;
-	overflow: hidden;
-	overflow-anchor: none;
-}
-
-.menu-bar {
-	margin-top: 15px;
-}
-
-.logo {
-	white-space: nowrap;
-	transition: all .3s ease 0s;
-	color: #fff;
-}
-
-.logo p {
-	position: relative;
-	top: -35px;
-	left: 50px;
-	white-space: nowrap;
-	color: white;
-	font-size: 12px;
-}
-
-.menu-box:hover {
-	width: 200px;
-}
-
-.menu-bar p {
-	position: relative;
-	top: -35px;
-	left: 50px;
-	white-space: nowrap;
-	color: #f7f7f7;;
-	font-size: 12px;
-}
 
 #wrapper {
 	margin-left: 90px;
@@ -160,10 +109,6 @@ li {
 	list-style: none;
 }
 
-.menu-icons a {
-	color: #fff;
-	text-decoration: none;
-}
 
 #fullBox {
 	/* width: 1000px; */
@@ -176,6 +121,7 @@ li {
 .ranking-table{width:100%;}
 .crown {
 	margin-right: 5px;
+	vertical-align: baseline;
 }
 
 .menti-apply {

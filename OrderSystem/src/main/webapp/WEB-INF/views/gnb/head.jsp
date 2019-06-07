@@ -46,7 +46,7 @@ $(document).ready(function(){
 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="#">FAQ</a></li>
+<!-- 				<li><a href="#">FAQ</a></li> -->
 			</ul>
 			<div id="lnb">
 				<h1>

@@ -66,4 +66,5 @@ public interface UserDao {
 	void grantDel(TrainerProfile pro);
 
 
+
 }

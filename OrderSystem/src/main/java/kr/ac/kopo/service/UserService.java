@@ -9,6 +9,7 @@ import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
+import kr.ac.kopo.util.SearchVO;
 
 public interface UserService {
 
@@ -61,5 +62,6 @@ public interface UserService {
 	void typeOfExerciseDel(int teNum);
 
 	void grantDel(TrainerProfile pro);
-	
+
+
 }

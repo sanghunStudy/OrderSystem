@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>트레이너 명단</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <script
 	src="${pageContext.request.contextPath }/resources/js/trainer_list.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal_trainer.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/trainer_list.css">
+<script src="https://code.jquery.com/jquery-3.4.0.js"></script>
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" -->
 <!-- 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" -->
@@ -40,8 +40,7 @@
 							<input type="hidden" value="${item.sex}" class="trainer-sex">
 							<input type="hidden" value="${item.name}" class="trainer-name">
 							<input type="hidden" value="${item.username}" class="trainer-id">
-							<input type="hidden" value="${item.career}"
-								class="trainer-career">
+							<input type="hidden" value="${item.career}" class="trainer-career">
 							<div class="trainer-info">
 								<div class="photo">
 									<img

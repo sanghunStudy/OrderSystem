@@ -10,23 +10,29 @@ h1 {
 }
 
 table {
-    width: 1250px;
+    width: 1024px;
     height: auto;
-    border-top: 1px solid white;
-    border-collapse: collapse;
+  /*   border-top: 1px solid white;
+    border-collapse: collapse; */
     text-align: center;
     font-family: 'Nanum Gothic';
     margin-top: 100px;
 }
 
 th, td, .upload-display {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #dfdfdf;
 }
 
 #container {
-    width: 1250px;
+    width: 1024px;
     height: 800px;
     margin: 0 auto;
+    position: relative;
+    top: 200px;
+}
+.wrap {
+	background-color: #272a3d;
+	
 }
 
 #table_name {

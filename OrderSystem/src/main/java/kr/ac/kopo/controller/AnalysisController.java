@@ -23,6 +23,7 @@ import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.AnalysisService;
+import kr.ac.kopo.service.UserService;
 
 
 
@@ -33,13 +34,25 @@ public class AnalysisController {
 
 @Autowired
 AnalysisService service; 
+@Autowired
+UserService Uservice;
 	
 @RequestMapping(value="/statistics")
-private String statistics(Model model,HttpSession session) {
+private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 	
 	String id = (String)session.getAttribute("user");
 	TrainerProfile profile =  service.getMentiInfo(id);
+	pro.setUsername(id);
+	
+	UserVO point = Uservice.selectUser(id);
+	int po = 50;
+	if(point.getPoint() >= po) {
+		Uservice.promotion(pro);
+	} else {
 		
+	}
+	
+	
 	
 	List<ExerciseJournal> todayExercise = service.todayList(id);
 	List<ExerciseJournal> monthExercise = service.list(id);

@@ -13,6 +13,7 @@ import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -202,5 +203,8 @@ public class UserServiceImpl implements UserService {
 	public void typeOfExerciseDel(int teNum) {
 		dao.typeOfExerciseDel(teNum);
 	}
+
+
+
 	
 }

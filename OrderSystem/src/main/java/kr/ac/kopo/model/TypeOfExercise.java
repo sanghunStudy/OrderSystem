@@ -7,8 +7,15 @@ public class TypeOfExercise {
  String teSet;
  String teReps;
  String teTool;
+ String teImg;
  
- 
+
+public String getTeImg() {
+	return teImg;
+}
+public void setTeImg(String teImg) {
+	this.teImg = teImg;
+}
 public int getTeNum() {
 	return teNum;
 }

@@ -12,21 +12,22 @@
 		set te_name = #{teName},
 		te_set = #{teSet},
 		te_reps = #{teReps},
-		te_tool = #{teTool}
+		te_tool = #{teTool},
+		te_img = #{teImg}
 		where te_num = #{teNum}
 	</update>
 	<!-- 운동종류 하나만 가져오기 -->
 	<select id="typeOfExerciseOne" resultType="TypeOfExercise">
-		select te_num,te_name,te_set,te_reps,te_tool from type_of_exercise where te_num = #{teNum}
+		select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise where te_num = #{teNum}
 	</select>
 	<!-- 운동종류 입력 -->
 	<insert id="typeOfExerciseAdd" >
-		insert into type_of_exercise (te_name,te_set,te_reps,te_tool)
-		values (#{teName},#{teSet},#{teReps},#{teTool})
+		insert into type_of_exercise (te_name,te_set,te_reps,te_tool,te_img)
+		values (#{teName},#{teSet},#{teReps},#{teTool},#{teImg})
 	</insert>
 	<!-- 운동일지에 뿌려주는 운동리스트 -->
 	<select id="typeOfExercise" resultType="TypeOfExercise">
-		select te_num,te_name,te_set,te_reps,te_tool from type_of_exercise
+		select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise
 	</select>
 
 	<!-- 트레이너 신청 -->

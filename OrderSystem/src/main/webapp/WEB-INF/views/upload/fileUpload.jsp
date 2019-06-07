@@ -173,7 +173,7 @@
 									<div>
 										<img src="${pageContext.request.contextPath}/upload${img.filename}">
 										<small data-src="${img.filename}">X</small>
-										<input type="hidden" name="imgAdr" value="${img.filename}">
+										<input type="text" name="imgAdr" value="${img.filename}">
 									</div>
 							</c:forEach>
 							</div>

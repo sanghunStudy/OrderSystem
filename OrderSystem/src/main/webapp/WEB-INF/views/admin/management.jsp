@@ -10,6 +10,7 @@
 	<h1>관리자 페이지</h1>
 	<ul>
 		<li><a href="proList">트레이너 신청 리스트</a></li>
+		<li><a href="MyExerciseJournal">운동일지</a></li>
 	</ul>
 </body>
 </html>

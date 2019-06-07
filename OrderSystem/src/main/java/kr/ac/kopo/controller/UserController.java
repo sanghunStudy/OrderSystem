@@ -32,6 +32,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,7 +115,20 @@ public class UserController {
 		}
 		//관리자로 운동일지 들어가서 운동종류 입력
 		@RequestMapping(value="typeOfExerciseAdd", method = RequestMethod.POST)
-		public String typeOfExerciseAdd(TypeOfExercise to) {
+		public String typeOfExerciseAdd(MultipartFile file,TypeOfExercise to) throws IOException, Exception {
+			String imgUploadPath = uploadPath + File.separator;
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = null;
+			
+			if(file != null) {
+					fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+				
+			}else {
+				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+			
+			to.setTeImg(File.separator + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			System.out.println(to.getTeImg()+"<<<<<<<<<<img");
 			if(to.getTeNum() > 0) {
 				service.typeOfExerciseUpdate(to);
 			}else {

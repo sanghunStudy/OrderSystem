@@ -75,19 +75,6 @@ overflow-anchor: none;
 </style>
 </head>
 <body>
-		<div class="menu-box">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="logo">
-				<p>TRAINERBOT</p></a>
-			</div>
-			<ul class="menu-bar">
-				<li class="menu-icons"><a href="statistics"><i class="fas fa-chart-bar"></i><p>운동일지 통계</p></a></li>
-				<li class="menu-icons"><a href="MyExerciseJournal"><i class="fas fa-book"></i><p>운동일지 작성</p></a></li>
-				<li class="menu-icons"><a href="basicInformation"><i class="fas fa-user-edit"></i><p>설문조사</p></a></li>
-				<li class="menu-icons"><a href="mentiManagement"><i class="fas fa-users"></i><p>멘티 관리</p></a></li>
-				<li class="menu-icons"><a href="${pageContext.request.contextPath}/opo/webRtc"><i class="fas fa-comment-dots"></i><p>화상채팅</p></a></li>
-			</ul>
-		</div>
 	<c:choose>
 		<c:when test="${eTlist.size() > 0}">
 			<ul>

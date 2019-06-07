@@ -33,10 +33,10 @@
 </select>
 <!-- 내 멘티 확인 -->
 <select id="getMenti" resultType="MentiPerformance">
-		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'
+		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'  GROUP BY um.username
 </select>
 <select id="getMyMenti" resultType="MentiPerformance">
-	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'
+	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'  GROUP BY um.username
 </select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">

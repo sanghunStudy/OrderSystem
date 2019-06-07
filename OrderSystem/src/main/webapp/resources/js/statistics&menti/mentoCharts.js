@@ -97,11 +97,7 @@ function applicantList()
 
  
 
-/* 플랜관리 모달창 생성시 멘티 개인정보 get */
-function getMentiInfo(menti) {
 
-	
-} 
 
 $(function() {
 
@@ -201,6 +197,7 @@ $(function() {
 	        
 	        var $target = $(e.target);
 	        if ($target.parent().hasClass('disabled')) {
+	        	alert('하단에 버튼을 이용해 주세요.');
 	            return false;
 	        }
 	    });
@@ -211,7 +208,11 @@ $(function() {
 	    
 	        $active.next().removeClass('disabled');
 	        nextTab($active);
-
+	  
+	       if($active.hasClass('stepactive1')) {
+	    	   setDuration();
+	       }
+	      
 	        $('.wizard .nav-tabs li.active .connecting-line').css({"border-bottom-left-radius": 0, "border-top-left-radius": 0});
 	       
 	    });
@@ -439,10 +440,9 @@ $('.sel').each(function() {
 $('.sel').click(function(e) {
 	
   $(this).toggleClass('active');
-  if($(this).hasClass('sel-day') && !$(this).hasClass('.sel__box__options')) {
+  if($(this).hasClass('sel-day') && !$(e.target).hasClass('sel__box__options-day') && !$(e.target).hasClass('sel__placeholder-day') ) {
 	  var monthVal = $(e.target).prev().prev().find('.sel__placeholder-month').text();
-	  console.log(monthVal);
-	  console.log(isNaN(parseInt(monthVal)));
+
 	  if(isNaN(parseInt(monthVal)) == true)  {
 		  alert('월을 선택해주세요.');
 	  }
@@ -454,7 +454,7 @@ $('.sel').click(function(e) {
 $(document).on('click','.sel__box__options',function() {
   var txt = $(this).text();
   var index = $(this).index();
-  
+
   $(this).siblings('.sel__box__options').removeClass('selected');
   $(this).addClass('selected');
   
@@ -698,6 +698,7 @@ function autocomplete(inp,arr) {
 }
 
 function nextTab(elem) {
+
     $(elem).next().find('a[data-toggle="tab"]').click();
     
    
@@ -771,7 +772,14 @@ function progressAnime() {
 	});
 }
 
-function getMentiInfo(menti) {
-	
+function setDuration() {
+	var startDate;
+	var endDate;
+	console.log($('.start-date .sel__placeholder').text());
+	console.log($('.sel__placeholder-year').text());
+	console.log($('.sel__placeholder-month').text());
+	console.log($('.sel__placeholder-day').text());
 }
+
+
 

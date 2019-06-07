@@ -11,9 +11,9 @@
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-1.9.0.js"
-	integrity="sha256-TXsBwvYEO87oOjPQ9ifcb7wn3IrrW91dhj6EMEtRLvM="
-	crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.9.0.js" -->
+<!-- 	integrity="sha256-TXsBwvYEO87oOjPQ9ifcb7wn3IrrW91dhj6EMEtRLvM=" -->
+<!-- 	crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
 <script type="text/javascript">
 	var wsocket;

@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -45,7 +46,7 @@
 <title>TRAINERBOT 멘티 관리</title>
 </head>
 <%@ include file="../gnb/nav.jsp"%>
-<%@ include file="../alarm.jsp"%>
+<%-- <%@ include file="../alarm.jsp"%> --%>
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';

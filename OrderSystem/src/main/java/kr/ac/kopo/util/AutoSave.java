@@ -4,17 +4,15 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
-import kr.ac.kopo.model.AutoSaveItem;
-import kr.ac.kopo.model.UserVO;
-import kr.ac.kopo.service.AutoSaveService;
+
 
 @Component
 public class AutoSave {
-	@Autowired
-	AutoSaveService service;
+//	@Autowired
+//	AutoSaveService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AutoSave.class);
 	

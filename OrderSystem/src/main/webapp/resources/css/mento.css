@@ -1379,6 +1379,10 @@ to {
 	.cancel-menti>span, .chart-menti>span {
 		font-size: 8px;
 	}
+	.modal-btn-collection {
+		font-size: 10px;
+    	padding: 15px 5%;
+	}
 }
 
 @media all and (min-width:1600px) {

@@ -4,7 +4,7 @@ package kr.ac.kopo.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 
 import kr.ac.kopo.service.AnalysisService;
 @Component
-public class AutoDelete {
+public class AutoImpl {
 	@Autowired
-	AnalysisService service;
+	SqlSession sql;
 	
-	private static final Logger logger = LoggerFactory.getLogger(AutoDelete.class);
+	private static final Logger logger = LoggerFactory.getLogger(AutoImpl.class);
 
 //	@Scheduled(cron="*/30 * * * * *") 
 
@@ -33,10 +33,19 @@ public class AutoDelete {
 	 calendar.add(Calendar.DATE, 14);
 	 logger.info("14일 후? 스케줄 실행 : " + dateFormat.format(calendar.getTime()));
 	 //System.out.println("Request " + getCurrentRequest());
-//	 service.autoDelete();
+
 	}
 
+	@Scheduled(cron ="59 59 23 * * * ")
+	public void AutoDelete() {	
+		try {
+			sql.delete("autoimpl.autoDelete");
+			logger.info("2주이상 처리되지 않은 멘티들을 삭제하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+	}
 
 	
 }

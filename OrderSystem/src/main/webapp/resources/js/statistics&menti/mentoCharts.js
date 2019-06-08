@@ -776,9 +776,8 @@ function setDuration() {
 	var startDate;
 	var endDate;
 	console.log($('.start-date .sel__placeholder').text());
-	console.log($('.sel__placeholder-year').text());
-	console.log($('.sel__placeholder-month').text());
-	console.log($('.sel__placeholder-day').text());
+	console.log($('.end-date .sel__placeholder').text());
+
 }
 
 

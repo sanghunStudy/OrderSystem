@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="autoimpl">
+<delete id="autoDelete">
+	DELETE FROM user_management
+	WHERE curdate() >= STR_TO_DATE(apply_date,'%Y-%m-%d')+14 AND reading = 'N'
+</delete>
+</mapper>

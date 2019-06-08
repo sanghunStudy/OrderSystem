@@ -40,5 +40,6 @@
 		<mapper resource="mybatis/bedata.xml"/>
 		<mapper resource="mybatis/message.xml"/>
 		<mapper resource="mybatis/autosave.xml"/>
+		<mapper resource="mybatis/autoimpl.xml"/>
 	</mappers>
 </configuration>

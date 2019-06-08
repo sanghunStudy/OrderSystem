@@ -7,7 +7,7 @@
 	WHERE curdate() >= STR_TO_DATE(apply_date,'%Y-%m-%d')+14 AND reading = 'N'
 </delete>
 <insert id="autoSave">
-	INSERT INTO month_rank(username,point,menti,rank,ranking,func,month_save_date)
+	INSERT INTO month_rank(username,point,menti,rank,ranking,func,save_date)
 		SELECT
 			user.username,point,count(user_management.manager) menti,
 			ROUND(((user.point + count(user_management.manager) * 100) / 100

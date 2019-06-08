@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +41,7 @@
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>TRAINERBOT 멘티 관리</title>
@@ -48,6 +49,7 @@
 <%@ include file="../gnb/nav.jsp"%>
 <%@ include file="../alarm.jsp"%>
 <%@ include file="../gnb/sidebar.jsp"%>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';

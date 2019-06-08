@@ -209,7 +209,7 @@ $(function() {
 	        $active.next().removeClass('disabled');
 	        nextTab($active);
 	  
-	       if($active.hasClass('stepactive1')) {
+	       if($active.hasClass('stepactive1')) {	    
 	    	   setDuration();
 	       }
 	      
@@ -345,9 +345,11 @@ $(function() {
 		var modalClickEvent = {
 				'food-modal-btn':function() {
 					foodModal.style.display = "block";
+					
 				},
 				'exer-modal-btn':function() {
 					exerModal.style.display = "block";
+					
 					autocomplete(document.getElementById('ename'),arr);
 				}
 		}
@@ -773,9 +775,13 @@ function progressAnime() {
 }
 
 function setDuration() {
+	
 	var startDate;
 	var endDate;
-	console.log($('.start-date .sel__placeholder').text());
+	startDate =$('.start-date .sel__placeholder').text().replace('년월일');
+	startDate = modal.getElementsByClassName('start-date');
+//	var startArray = startDate[0].getElementsByClassName('sel__placeholder');
+	
 	console.log($('.end-date .sel__placeholder').text());
 
 }

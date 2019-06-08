@@ -17,8 +17,13 @@ var curPage = url.substr(url.lastIndexOf('/')+1);
 var curUrl = curPage.replace('#','');
 $(function() {
 	$('.menu-icons').each(function(index,item) {	
-		if($(item).find('a').attr('href') == curUrl)
+		if($(item).find('a').attr('href') == curUrl) {
 			$(item).addClass('curPage');
+			$(item).find('a').addClass('curPage');
+		}
+		else {
+			$(item).find('a').addClass('isNot');
+		}
 	});
 })
 

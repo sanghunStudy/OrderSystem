@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import kr.ac.kopo.service.AnalysisService;
 @Component
 public class AutoImpl {
 	@Autowired
@@ -46,6 +45,16 @@ public class AutoImpl {
 		}
 
 	}
-
+	
+	@Scheduled(cron="0 0 0 * * *") 
+	public void AutoSave() {
+		try {
+			
+			sql.insert("autoimpl.autoSave");
+			logger.info("매일 랭킹정보를 저장합니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

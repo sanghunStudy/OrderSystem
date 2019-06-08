@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>운동일지리스트</title>
+
 </head>
 <body>
 	<c:choose>

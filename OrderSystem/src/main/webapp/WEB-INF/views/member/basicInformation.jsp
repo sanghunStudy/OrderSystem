@@ -392,7 +392,7 @@ article span {
 }
  
 </style>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 //See https://github.com/tamino-martinius/ui-snippets-radiobuttons for Source Files build with webpack
 //See https://github.com/tamino-martinius/ui-snippets-template for Snippet Template
@@ -418,6 +418,7 @@ for (let preloadIndex = $preloadElements.length - 1; preloadIndex >= 0; preloadI
 </script>
 </head>
 <jsp:include page="../gnb/head.jsp" flush="true" />
+<%@ include file="../gnb/sidebar.jsp"%>
 <body>
 
 <div id="bIContainer">

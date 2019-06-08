@@ -44,13 +44,13 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 	TrainerProfile profile =  service.getMentiInfo(id);
 	pro.setUsername(id);
 	
-	UserVO point = Uservice.selectUser(id);
-	int po = 50;
-	if(point.getPoint() >= po) {
-		Uservice.promotion(pro);
-	} else {
-		
-	}
+//	UserVO point = Uservice.selectUser(id);
+//	int po = 50;
+////	if(point.getPoint() >= po) {
+////		Uservice.promotion(pro);
+////	} else {
+////		
+////	}
 	
 	
 	

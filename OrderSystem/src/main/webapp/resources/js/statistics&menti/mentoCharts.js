@@ -551,7 +551,7 @@ $(document).on('click','.sel__box__options',function() {
 				
 		
 		/* 모달 contents */
-		$('.schedule-date').html(moment().format('L dddd'));
+//		$('.schedule-date').html(moment().format('L dddd'));
 		
 		/* 프락시 패턴를 이용한 이벤트 관리 */
 		var dateClickEvent = {
@@ -803,8 +803,12 @@ function setDuration(dateBox,obj) {
 			day:$(obj).find('.end-date .sel__placeholder-day').text()
 	};
 	
-	var momentStart = startDate.year + '' +startDate.month + '' + startDate.day;
-	var endStart = endDate.year + '' +endDate.month + '' + endDate.day;
+	var momentStart = startDate.year + '-' +startDate.month + '-' + startDate.day;
+	var endStart = endDate.year + '-' +endDate.month + '-' + endDate.day;
+	date = moment(momentStart).format('L dddd');
+	dateBox.html(date);
+	
+	return date;
 
 }
 

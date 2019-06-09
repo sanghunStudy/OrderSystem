@@ -149,21 +149,21 @@ function sendFile(file, el) {
 					<button type="button" class="chart-menti btn-collection menti-btn">
 						<span>10 point</span>
 					</button></li>
-				<li class="point-set" id="twenty" value="20">
-					<button type="button" class="chart-menti btn-collection menti-btn">
-						<span>20 point</span>
-					</button></li>
-				<li class="point-set" id="thirty" value="30">
+				<li class="point-set" id="twenty" value="30">
 					<button type="button" class="chart-menti btn-collection menti-btn">
 						<span>30 point</span>
 					</button></li>
-				<li class="point-set" id="forty" value="40">
-					<button type="button" class="chart-menti btn-collection menti-btn">
-						<span>40 point</span>
-					</button></li>
-				<li class="point-set" id="fifty" value="50">
+				<li class="point-set" id="thirty" value="50">
 					<button type="button" class="chart-menti btn-collection menti-btn">
 						<span>50 point</span>
+					</button></li>
+				<li class="point-set" id="forty" value="70">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>70 point</span>
+					</button></li>
+				<li class="point-set" id="fifty" value="100">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>100 point</span>
 					</button></li>
 			</ul>
 		</div>

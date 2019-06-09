@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myinfor">
+
+<select id="userProfile" resultType="UserVO">
+select u.username,u.authority,count(ub.username) as ubChk from user u join user_basic_information ub on u.username = #{id} and u.username = ub.username;
+</select>
+
+<select id="myWriting" resultType="Question">
+select question_id,question_name,id,question_date,question_views from question where id = #{id};
+</select>
+
+<select id="myWritingComment" resultType="QComment">
+select qc.qcomment_id,qc.question_id,q.question_name,qc.qcomment_content,qc.qcomment_date,qc.selection_check from question_comment qc join question q on qc.id = #{id} and qc.question_id = q.question_id;
+</select>
+</mapper>

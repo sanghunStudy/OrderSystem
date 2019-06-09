@@ -10,7 +10,14 @@ public class UserVO {
 	private int menti;
 	private float rank;
 	private int ranking;
+	private int ubChk;//회원 기초정보 여부 체크
 	
+	public int getUbChk() {
+		return ubChk;
+	}
+	public void setUbChk(int ubChk) {
+		this.ubChk = ubChk;
+	}
 	public int getRanking() {
 		return ranking;
 	}

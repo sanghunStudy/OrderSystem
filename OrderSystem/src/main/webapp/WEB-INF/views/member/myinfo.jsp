@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,20 +31,20 @@
 						</div>
 						<div class="myinfo-box">
 							<div>
-								<span>아이디</span><span class="id-val"></span>
+								<span>아이디</span><span class="id-val">${userProfile.username}</span>
 							</div>
 							<div>
-								<span>이름</span><span class="name-valu"></span>
+								<span>권한</span><span class="name-valu">${userProfile.authority}</span>
 							</div>
 							<div>
-								<span>회원기초정보조사 여부</span><span class="isServey"></span>
+								<span>회원기초정보조사 여부</span><span class="isServey">${userProfile.ubChk == 1?"Yes":"N"}</span>
 							</div>
 						</div>
 
 					</div>
 					<div class="update-myinfo">
 						<button class="chart-menti btn-collection menti-btn">
-							<span>수정</span>
+							<span onclick="location.href='${pageContext.request.contextPath}/member/update'">수정</span>
 						</button>
 					</div>
 				</div>
@@ -63,11 +65,50 @@
 			<div class="second-line">
 				<div class="profile-myBoard profile-box">
 					<h3>내가 쓴 게시글</h3>
-					<div class="board-contents contents-box"></div>
+					<div class="board-contents contents-box">
+						<table>
+							<tr>
+								<th>글번호</th>
+								<th>글제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>조회수</th>
+							</tr>
+							<c:choose>
+								<c:when test="${qBoard.size() > 0 }">
+									<tr>		
+										<c:forEach var="qBoard" items="${qBoard}">
+										<td>${qBoard.questionId}</td>
+										<td><a href="${pageContext.request.contextPath}/question/view?questionId=${qBoard.questionId}">${qBoard.questionName}</a></td>
+										<td>${qBoard.id}</td>
+										<td><fmt:formatDate value="${qBoard.questionDate}" pattern="yyyy-MM-dd" /></td>
+										<td>${qBoard.questionViews}</td>
+										</c:forEach>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<p>작성한 게시글이 없습니다.</p>
+								</c:otherwise>
+							</c:choose>
+						</table>
+					</div>
 				</div>
 				<div class="profile-myComment profile-box">
 					<h3>내가 쓴 댓글</h3>
-					<div class="comment-contents contents-box"></div>
+					<div class="comment-contents contents-box">
+							<c:choose>
+								<c:when test="${qBoardComment.size() > 0 }">
+										<c:forEach var="qBComment" items="${qBoardComment}">
+											${qBComment.qcommentContent}
+											${qBComment.qcommentDate}
+											${qBComment.selectionCheck == true?"채택":"채택아님"}
+										</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<p>작성한 댓글이 없습니다.</p>
+								</c:otherwise>
+							</c:choose>
+					</div>
 				</div>
 			</div>
 			<div class="bottom-line">

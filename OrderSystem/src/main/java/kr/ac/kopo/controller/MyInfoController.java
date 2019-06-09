@@ -101,13 +101,25 @@ public class MyInfoController {
 		return "redirect:/";
 	}
 
-	@RequestMapping("/delete")
-	public String delete(int id) {
-		service.delete(id);
-
-		return "redirect:list";
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public String delete(HttpSession session,Model model) {
+		Enumeration em = session.getAttributeNames();
+		String sessionName;
+		String id = null;
+		//받아온 키값으로 현재 세션에 있는 아이디 확인
+		while(em.hasMoreElements()){
+			sessionName = em.nextElement().toString();
+			id = session.getAttribute(sessionName).toString();
+		}
+		model.addAttribute("username", id);
+		return path+"withdrawal";
 	}
-	
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public String delete(String username) {
+		service.delete(username);
+
+		return "redirect:/";
+	}
 //	구글 리캡챠
 	   @ResponseBody
 	    @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)

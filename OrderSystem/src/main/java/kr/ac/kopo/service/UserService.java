@@ -21,7 +21,7 @@ public interface UserService {
 
 	void update(UserVO item);
 
-	void delete(int id);
+	void delete(String username);
 
 	UserVO login(UserVO user);
 

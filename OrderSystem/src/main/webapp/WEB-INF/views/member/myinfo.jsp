@@ -37,14 +37,14 @@
 								<span>권한</span><span class="name-valu">${userProfile.authority}</span>
 							</div>
 							<div>
-								<span>회원기초정보조사 여부</span><span class="isServey">${userProfile.ubChk == 1?"Yes":"N"}</span>
+								<span>기초정보조사</span><span class="isServey">${userProfile.ubChk == 1?"Yes":"N"}</span>
 							</div>
 						</div>
 
 					</div>
 					<div class="update-myinfo">
-						<button class="chart-menti btn-collection menti-btn">
-							<span onclick="location.href='${pageContext.request.contextPath}/member/update'">수정</span>
+						<button class="chart-menti btn-collection menti-btn" onclick="location.href='${pageContext.request.contextPath}/member/update'">
+							<span>수정</span>
 						</button>
 					</div>
 				</div>
@@ -66,31 +66,19 @@
 				<div class="profile-myBoard profile-box">
 					<h3>내가 쓴 게시글</h3>
 					<div class="board-contents contents-box">
-						<table>
-							<tr>
-								<th>글번호</th>
-								<th>글제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
-							</tr>
 							<c:choose>
 								<c:when test="${qBoard.size() > 0 }">
-									<tr>		
-										<c:forEach var="qBoard" items="${qBoard}">
-										<td>${qBoard.questionId}</td>
-										<td><a href="${pageContext.request.contextPath}/question/view?questionId=${qBoard.questionId}">${qBoard.questionName}</a></td>
-										<td>${qBoard.id}</td>
-										<td><fmt:formatDate value="${qBoard.questionDate}" pattern="yyyy-MM-dd" /></td>
-										<td>${qBoard.questionViews}</td>
-										</c:forEach>
-									</tr>
+										<ul>
+											<c:forEach var="qBoard" items="${qBoard}">
+<%-- 												<span>${qBoard.questionId}</span> --%>
+												<li><a href="${pageContext.request.contextPath}/question/view?questionId=${qBoard.questionId}">${qBoard.questionName}</a><fmt:formatDate value="${qBoard.questionDate}" pattern="yyyy-MM-dd" /></li>
+											</c:forEach>
+										</ul>
 								</c:when>
 								<c:otherwise>
 									<p>작성한 게시글이 없습니다.</p>
 								</c:otherwise>
 							</c:choose>
-						</table>
 					</div>
 				</div>
 				<div class="profile-myComment profile-box">
@@ -98,11 +86,18 @@
 					<div class="comment-contents contents-box">
 							<c:choose>
 								<c:when test="${qBoardComment.size() > 0 }">
-										<c:forEach var="qBComment" items="${qBoardComment}">
-											${qBComment.qcommentContent}
-											${qBComment.qcommentDate}
-											${qBComment.selectionCheck == true?"채택":"채택아님"}
-										</c:forEach>
+											<ul>
+											<c:forEach var="qBComment" items="${qBoardComment}">
+												<li class="qbc-content">
+													<span>${qBComment.qcommentContent}</span>
+													<span>${qBComment.qcommentDate}</span>
+												</li>
+												<li class="qbc-question-name">
+													<p>${qBComment.selectionCheck == true?"채택":""}</p>
+													<p><a href="${pageContext.request.contextPath}/question/view?questionId=${qBComment.questionId}">${qBComment.questionName}</a></p>
+												</li>
+											</c:forEach>
+											</ul>
 								</c:when>
 								<c:otherwise>
 									<p>작성한 댓글이 없습니다.</p>
@@ -113,7 +108,7 @@
 			</div>
 			<div class="bottom-line">
 				<p>
-					트레이너봇을 더 이상 이용하지 않는다면 <a href="#">회원탈퇴 바로가기</a>
+					트레이너봇을 더 이상 이용하지 않는다면 <a href="${pageContext.request.contextPath}/member/delete">회원탈퇴 바로가기</a>
 				</p>
 			</div>
 		</div>

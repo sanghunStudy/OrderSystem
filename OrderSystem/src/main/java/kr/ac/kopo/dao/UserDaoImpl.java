@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(int id) {
-		sql.delete("user.delete", id);
+	public void delete(String username) {
+		sql.delete("user.delete", username);
 	}
 
 	@Override

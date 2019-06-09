@@ -84,7 +84,7 @@
 	</update>
 
 	<delete id="delete">
-		delete from member where id=#{id}
+		delete from user where username=#{username}
 	</delete>
 	<!-- 운동일지 제목 입력 -->
 	<insert id="saveCode">

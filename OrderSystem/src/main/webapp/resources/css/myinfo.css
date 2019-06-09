@@ -100,8 +100,47 @@
 	box-shadow: inset -5em 0 0 0 var(--chartColor), inset 5em 0 0 0
 		var(--chartColor);
 }
-.btn-collection { 
+.btn-collection {
+    margin-top: 20px;
 	--color: #ff7f82; 
 	--hover: #ffdc7f; 
 	--chartColor: #1e90ff;
+}
+.myinfo-box > div{
+	margin-top:5px;
+	display: flex;
+    justify-content: space-evenly;
+}
+
+.comment-contents , .board-contents{
+	overflow:scroll;
+	height:205px;
+	position: relative;
+	
+}
+
+.comment-contents ul,.board-contents ul{
+	list-style:none;
+	position: absolute;
+    top: 0px;
+}
+
+.comment-contents a,.board-contents a{
+	text-decoration:none;
+}
+
+.comment-contents::-webkit-scrollbar ,.board-contents::-webkit-scrollbar{
+	display:none;
+}
+
+.qbc-content{
+	color:#fff;
+}
+
+.qbc-question-name{
+	color:gray;
+}
+/* 기초정보 조사 여부 플랙스 안먹어서 대신사용*/
+.isServey{
+	    margin-left: 5px;
 }

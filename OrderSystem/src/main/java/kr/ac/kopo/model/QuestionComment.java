@@ -7,7 +7,14 @@ public class QuestionComment {
 	private String qcommentDate;
 	private int questionId;
 	boolean selectionCheck;
+	private String questionName;
 	
+	public String getQuestionName() {
+		return questionName;
+	}
+	public void setQuestionName(String questionName) {
+		this.questionName = questionName;
+	}
 	public int getQcommentId() {
 		return qcommentId;
 	}

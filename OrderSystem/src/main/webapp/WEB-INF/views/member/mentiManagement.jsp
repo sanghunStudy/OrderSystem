@@ -324,7 +324,7 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-food-start">
+															<select name="select-year" id="select-year-food-start" class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -335,7 +335,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-food-start">
+															<select name="select-superpower" id="select-month-food-start" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -363,7 +363,7 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-food-end">
+															<select name="select-year" id="select-year-food-end" class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -374,7 +374,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-food-end">
+															<select name="select-superpower" id="select-month-food-end" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -684,7 +684,7 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-exer-start">
+															<select name="select-year" id="select-year-exer-start" class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -695,7 +695,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-exer-start">
+															<select name="select-superpower" id="select-month-exer-start" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -712,7 +712,7 @@
 															</select>
 														</div>
 														<span class="separator">.</span>
-														<div class="sel sel--superman">
+														<div class="sel sel-day">
 															<select name="select-superpower" id="select-day-exer-start"
 																class="select-day">
 																<option value="" disabled>일</option>
@@ -723,7 +723,7 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-exer-end">
+															<select name="select-year" id="select-year-exer-end" class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -734,7 +734,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-exer-end">
+															<select name="select-superpower" id="select-month-exer-end" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>

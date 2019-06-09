@@ -211,8 +211,9 @@ $(function() {
 	  
 	       if($active.hasClass('stepactive1')) {	
 	    	
-	    	   var thisModal = getModalName(this);
-	    	   setDuration(thisModal)
+	    	   var dateSpan = getModalName(this);
+	    	   var periodBox = $(this).parents('.list-inline').prev().find('.plan-duration');
+	    	   setDuration(dateSpan,periodBox);
 	       }
 	      
 	        $('.wizard .nav-tabs li.active .connecting-line').css({"border-bottom-left-radius": 0, "border-top-left-radius": 0});
@@ -786,16 +787,24 @@ function progressAnime() {
 	});
 }
 
-function setDuration(modal) {
+function setDuration(dateBox,obj) {
 	
 	var startDate;
 	var endDate;
 	/* 전달받은 스팬태그(날짜)객체에다가 시작일을 넣어주자!*/
-	startDate =$('.start-date .sel__placeholder').text().replace('년월일');
-//	startDate = modal.getElementsByClassName('start-date');
-//	var startArray = startDate[0].getElementsByClassName('sel__placeholder');
+	startDate = {
+			year:$(obj).find('.start-date .select-year').val(),
+			month:$(obj).find('.start-date .select-month').val(),
+			day:$(obj).find('.start-date .sel__placeholder-day').text()
+	};
+	endDate= {
+			year:$(obj).find('.end-date .select-year').val(),
+			month:$(obj).find('.end-date .select-month').val(),
+			day:$(obj).find('.end-date .sel__placeholder-day').text()
+	};
 	
-	console.log($('.end-date .sel__placeholder').text());
+	var momentStart = startDate.year + '' +startDate.month + '' + startDate.day;
+	var endStart = endDate.year + '' +endDate.month + '' + endDate.day;
 
 }
 

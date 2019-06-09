@@ -213,6 +213,13 @@ li {
 		display:flex;
 	    text-align:center;
 }
+.ns-box {
+	display:flex;
+	margin:0 auto;
+}
+.ns-box > div {
+	padding:5px;
+}
 .info-value {
 	margin:0 auto;
 	align-self:center;

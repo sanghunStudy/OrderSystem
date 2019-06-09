@@ -223,17 +223,7 @@ public class UserController {
 		return path + "ExerciseJournalView";
 	}
 
-	@RequestMapping("/MyPage")
-	public String MyPage(HttpSession session) {
-		
-		String auth = (String)session.getAttribute("admin");
-		
-		if(auth != null) {
-			return "admin/management";
-		}
-		
-		return path + "MyPage";
-	}
+
 	
 	@RequestMapping("/imageUpload")
 	@ResponseBody

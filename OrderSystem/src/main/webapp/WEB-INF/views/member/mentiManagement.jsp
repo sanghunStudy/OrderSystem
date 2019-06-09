@@ -203,6 +203,7 @@
 											<span class="hidden target-etc">${menti.etc}</span>
 											<span class="hidden target-eRequirement">${menti.eRequirement}</span>
 											<span class="hidden target-age">${menti.age}</span>
+											<span class="hidden target-sex">${menti.sex}</span>
 										</td>
 										<td>
 											<div class="progress-container-t">
@@ -292,7 +293,10 @@
 											<div class="contents-container">
 												<div class="selected-menti menti-info">
 													<div class="subtitle">멘티     </div>
-													<div class="menti-name info-value"></div>
+													<div class="ns-box">
+														<div class="menti-name info-value"></div>
+														<div class="menti-sex info-value"></div>
+													</div>
 												</div>
 												<div class="selected-menti menti-info">
 													<div class="subtitle">나이    </div>
@@ -320,7 +324,7 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year">
+															<select name="select-year" id="select-year-food-start">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -331,7 +335,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month">
+															<select name="select-superpower" id="select-month-food-start">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -349,7 +353,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-day">
-															<select name="select-superpower" id="select-day"
+															<select name="select-superpower" id="select-day-food-start"
 																class="select-day">
 																<option value="" disabled>일</option>
 
@@ -359,7 +363,7 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year">
+															<select name="select-year" id="select-year-food-end">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -370,7 +374,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month">
+															<select name="select-superpower" id="select-month-food-end">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -388,7 +392,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-day">
-															<select name="select-superpower" id="select-day"
+															<select name="select-superpower" id="select-day-food-end"
 																class="select-day">
 																<option value="" disabled>일</option>
 
@@ -413,7 +417,7 @@
 												<div class="contents-container">
 													<div class="date-area">
 														<i class="fas fa-angle-left" id="food_prev"></i><span
-															class="schedule-date"></span><i
+															class="schedule-date-food"></span><i
 															class="fas fa-angle-right" id="food_next"></i>
 													</div>
 													<div class="group">
@@ -649,7 +653,10 @@
 											<div class="contents-container">
 												<div class="selected-menti menti-info">
 													<div class="subtitle">멘티     </div>
-													<div class="menti-name info-value"></div>
+													<div class="ns-box">
+														<div class="menti-name info-value"></div>
+														<div class="menti-sex info-value"></div>
+													</div>
 												</div>
 												<div class="selected-menti menti-info">
 													<div class="subtitle">나이     </div>
@@ -677,7 +684,7 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year">
+															<select name="select-year" id="select-year-exer-start">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -688,7 +695,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month">
+															<select name="select-superpower" id="select-month-exer-start">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -706,7 +713,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel--superman">
-															<select name="select-superpower" id="select-day"
+															<select name="select-superpower" id="select-day-exer-start"
 																class="select-day">
 																<option value="" disabled>일</option>
 
@@ -716,7 +723,7 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year">
+															<select name="select-year" id="select-year-exer-end">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -727,7 +734,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month">
+															<select name="select-superpower" id="select-month-exer-end">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -745,7 +752,7 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-day">
-															<select name="select-superpower" id="select-day"
+															<select name="select-superpower" id="select-day-exer-end"
 																class="select-day">
 																<option value="" disabled>일</option>
 
@@ -771,7 +778,7 @@
 												<div class="contents-container">
 													<div class="date-area">
 														<i class="fas fa-angle-left" id="exer_prev"></i><span
-															class="schedule-date"></span><i
+															class="schedule-date-exer"></span><i
 															class="fas fa-angle-right" id="exer_next"></i>
 													</div>
 													<form autocomplete="off">

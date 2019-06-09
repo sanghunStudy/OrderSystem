@@ -24,8 +24,8 @@
 </select>
 <!-- pt신청시 user_managerment 테이블에 신청한 회원과 선택한 트레이너의 아이디가 저장됨. -->
 <insert id="apply">
-	insert into user_management(manager,username,reading,apply_date,goal,weights,etc,height)
-	values(#{manager},#{username},'N',curdate(),#{goal},#{weights},#{etc},#{height})
+	insert into user_management(manager,username,reading,apply_date,goal,weights,etc,height,sex)
+	values(#{manager},#{username},'N',curdate(),#{goal},#{weights},#{etc},#{height},(SELECT user_basic_information.sex FROM user_basic_information WHERE user_basic_information.username = #{username} LIMIT 1))
 </insert>
 <!-- 트레이너에게 pt신청한 내역이 있나 확인 -->
 <select id="selectApply" resultType="Integer">
@@ -33,10 +33,10 @@
 </select>
 <!-- 내 멘티 확인 -->
 <select id="getMenti" resultType="MentiPerformance">
-		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'  GROUP BY um.username
+		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'  GROUP BY um.username
 </select>
 <select id="getMyMenti" resultType="MentiPerformance">
-	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'  GROUP BY um.username
+	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'  GROUP BY um.username
 </select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">

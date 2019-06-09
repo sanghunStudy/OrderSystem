@@ -14,6 +14,15 @@ public class MentiPerformance {
 	int totalAssignment;
 	int eRequirement;
 	int age;
+	String sex;
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 
 	public int getAge() {
 		return age;

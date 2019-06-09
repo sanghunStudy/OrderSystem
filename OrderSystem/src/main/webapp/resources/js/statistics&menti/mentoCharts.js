@@ -209,8 +209,10 @@ $(function() {
 	        $active.next().removeClass('disabled');
 	        nextTab($active);
 	  
-	       if($active.hasClass('stepactive1')) {	    
-	    	   setDuration();
+	       if($active.hasClass('stepactive1')) {	
+	    	
+	    	   var thisModal = getModalName(this);
+	    	   setDuration(thisModal)
 	       }
 	      
 	        $('.wizard .nav-tabs li.active .connecting-line').css({"border-bottom-left-radius": 0, "border-top-left-radius": 0});
@@ -368,9 +370,18 @@ $(function() {
 						height:$(this).parents('tr').find('.target-height').text(),
 						goal:$(this).parents('tr').find('.target-goal').text(),
 						age:$(this).parents('tr').find('.target-age').text(),
-						energy:$(this).parents('tr').find('.target-eRequirement').text()					
+						energy:$(this).parents('tr').find('.target-eRequirement').text(),
+						sex:$(this).parents('tr').find('.target-sex').text()
 				}
-		
+				
+				
+				
+				function charToKorean(char) {
+					if(char == 'f')
+						return '여자';
+					else
+						return '남자';
+				}	
 				
 				$('.menti-name').text(targetData.name);
 				$('.menti-weights').text(targetData.weights+'kg');
@@ -378,6 +389,7 @@ $(function() {
 				$('.menti-goal').text(targetData.goal);
 				$('.menti-age').text(targetData.age+'세');
 				$('.menti-emetabolism').text(targetData.energy+'kcal');
+				$('.menti-sex').text(charToKorean(targetData.sex));
 				
 			}			
 			
@@ -774,17 +786,25 @@ function progressAnime() {
 	});
 }
 
-function setDuration() {
+function setDuration(modal) {
 	
 	var startDate;
 	var endDate;
+	/* 전달받은 스팬태그(날짜)객체에다가 시작일을 넣어주자!*/
 	startDate =$('.start-date .sel__placeholder').text().replace('년월일');
-	startDate = modal.getElementsByClassName('start-date');
+//	startDate = modal.getElementsByClassName('start-date');
 //	var startArray = startDate[0].getElementsByClassName('sel__placeholder');
 	
 	console.log($('.end-date .sel__placeholder').text());
 
 }
 
-
+function getModalName(name) {
+	if(name.classList.contains('next-food'))
+		return $('.schedule-date-food');
+	else if(name.classList.contains('next-exer'))
+		return $('.schedule-date-exer');
+	else
+		return '';
+}
 

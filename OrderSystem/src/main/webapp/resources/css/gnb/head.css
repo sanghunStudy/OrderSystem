@@ -199,7 +199,7 @@ header #lnb nav>ul ul {
 	font-family: 'Lato', sans-serif;
 	color: #fffff !important;
 	font-size: 35px;
-	margin: 100px 0 0;
+	margin: 100px 0 0 50px;
 	font-weight: 900;
 	text-transform: uppercase;
 	word-wrap: break-word;
@@ -445,6 +445,7 @@ header #lnb nav>ul ul a:hover:after {
     transform: translate(-50%,50%);
     font-family: 'S-CoreDream-8Heavy';
     border-radius:50%;
+    z-index:1000;
 	
 }
 .session-chk:hover {

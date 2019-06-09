@@ -1,5 +1,6 @@
 * { margin: 0; padding: 0;
-    font-family:'NanumGothic';}
+    /* font-family:'NanumGothic'; */
+    font-family: "Lato", sans-serif;}
 body{background:#201d2e;text-decoration:none;color:#fff;}
 #wrap {
 	width:1000px; margin:70px auto;

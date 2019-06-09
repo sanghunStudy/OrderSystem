@@ -1,7 +1,8 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'NanumGothic';
+	/* font-family: 'NanumGothic'; */
+	font-family: "Lato", sans-serif;
 }
 
 body {

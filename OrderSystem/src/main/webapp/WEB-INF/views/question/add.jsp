@@ -142,16 +142,38 @@
 		</div>
 		<div class="point_buttons" id="point_buttons">
 			<ul class="point_bar">
-				<li class="point-set" id="zero" value="0">0 point</li>
-				<li class="point-set" id="ten" value="10">10 point</li>
-				<li class="point-set" id="twenty" value="20">20 point</li>
-				<li class="point-set" id="thirty" value="30">30 point</li>
-				<li class="point-set" id="forty" value="40">40 point</li>
-				<li class="point-set" id="fifty" value="50">50 point</li>
+				<li class="point-set" id="zero" value="0">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>0 point</span>
+					</button></li>
+				<li class="point-set" id="ten" value="10">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>10 point</span>
+					</button></li>
+				<li class="point-set" id="twenty" value="20">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>20 point</span>
+					</button></li>
+				<li class="point-set" id="thirty" value="30">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>30 point</span>
+					</button></li>
+				<li class="point-set" id="forty" value="40">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>40 point</span>
+					</button></li>
+				<li class="point-set" id="fifty" value="50">
+					<button type="button" class="chart-menti btn-collection menti-btn">
+						<span>50 point</span>
+					</button></li>
 			</ul>
 		</div>
 		<div class="point-box">
-			<div class="point-setting-complete" id="point-set">포인트 설정</div>
+			<div class="point-setting-complete" id="point-set">
+				<button type="button" class="chart-menti btn-collection menti-btn">
+					<span>포인트 설정</span>
+				</button>
+			</div>
 			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
 			<input type="hidden" name="pointSet" id="pointSet" value="0">
 		</div>

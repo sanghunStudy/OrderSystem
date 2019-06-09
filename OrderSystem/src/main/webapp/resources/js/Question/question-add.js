@@ -23,7 +23,7 @@ $(document).ready(function() {
 		function pointSetAndClose(point,pointVal){
 			
 			$('#pointSet').val(point);
-			$('#point-set').text(pointVal);
+			$('#point-set span').text(pointVal);
 			
 			pointboxClose();
 		}

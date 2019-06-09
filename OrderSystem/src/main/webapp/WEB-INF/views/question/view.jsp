@@ -289,7 +289,9 @@ $(document).ready(function(){
 						<div class="masi"><div class="commentContentBox">${QCL.qcommentContent}</div></div>
 						
 						<c:if test="${login==item.id&&QCL.selectionCheck==false&&login!=QCL.id}">
-							<div onclick="choice_comment(${QCL.qcommentId},'${QCL.id}',${item.pointSet},'${item.id}')" class="choice">채택</div>
+							<div onclick="choice_comment(${QCL.qcommentId},'${QCL.id}',${item.pointSet},'${item.id}')" class="choice">
+								채택
+							</div>
 						<%-- <a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a> --%>
 						</c:if>
 						<c:if test="${login==QCL.id&&QCL.selectionCheck==false}">

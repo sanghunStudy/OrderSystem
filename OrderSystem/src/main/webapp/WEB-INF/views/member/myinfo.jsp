@@ -38,6 +38,12 @@
 								<span>회원기초정보조사 여부</span><span class="isServey"></span>
 							</div>
 						</div>
+
+					</div>
+					<div class="update-myinfo">
+						<button class="chart-menti btn-collection menti-btn">
+							<span>수정</span>
+						</button>
 					</div>
 				</div>
 				<div class="profile-myTier profile-box">

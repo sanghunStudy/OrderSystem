@@ -71,3 +71,37 @@
 .myinfo-contents{
 	margin-top:25px;
 }
+.menti-btn {
+	background: none;
+	border: 2px solid;
+	font: inherit;
+	line-height: 1;
+	margin: auto;
+	padding: 1em 2em;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	transition: 0.25s;
+}
+.chart-menti {
+	color: var(--chartColor);
+}
+
+.chart-menti:hover, .chart-menti:focus, .cancel-menti:hover,
+	.cancel-menti:focus {
+	font-family: inherit;
+	color: #f7f7f7;
+}
+
+.chart-menti:hover, .chart-menti:focus {
+	border-color: var(--chartColor);
+	box-shadow: inset -5em 0 0 0 var(--chartColor), inset 5em 0 0 0
+		var(--chartColor);
+}
+.btn-collection { 
+	--color: #ff7f82; 
+	--hover: #ffdc7f; 
+	--chartColor: #1e90ff;
+}

@@ -58,6 +58,7 @@ font-size: 1.4em;
 	float:right;
 }
 .update-left-box{
+	position:relative;
     margin-top: 40px;
 	text-align:center;
 	float:left;
@@ -134,4 +135,64 @@ font-size: 1.4em;
 	margin-top:15px;
 	font-size:15px;
 	font-weight:550;
+}
+
+/* 프로그레스 테스트 */
+/* 
+SETTINGS
+If you need the loader go faster or slower, this is the place to change. Don't forget to update 'time' in the javascript
+*/
+
+
+.loader-container {
+	height: 6px;
+	width: 500px;
+	position: absolute;
+	top: 300px;
+	left: 30px;
+	background-color: transparent;
+/* 	background-image: -webkit-linear-gradient(left, rgb(91, 216, 255), rgb(255, 0, 0)); */
+/* 	background-image: -moz-linear-gradient(left, rgb(91, 216, 255), rgb(255, 0, 0)); */
+/* 	background-image: -o-linear-gradient(left, rgb(91, 216, 255), rgb(255, 0, 0)); */
+/* 	background-image: -ms-linear-gradient(left, rgb(91, 216, 255), rgb(255, 0, 0)); */
+/* 	background-image: linear-gradient(left, rgb(91, 216, 255), rgb(255, 0, 0)); */
+	box-shadow: inset 0 -2px 2px rgba(0,0,0,.4);
+	border-radius: 3px 0 0 3px;
+}
+.run .runner {
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 0%;
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(top, rgb(0, 0, 0), rgb(33, 33, 33));
+	background-image: -moz-linear-gradient(top, rgb(0, 0, 0), rgb(33, 33, 33));
+	background-image: -o-linear-gradient(top, rgb(0, 0, 0), rgb(33, 33, 33));
+	background-image: -ms-linear-gradient(top, rgb(0, 0, 0), rgb(33, 33, 33));
+	background-image: linear-gradient(top, rgb(0, 0, 0), rgb(33, 33, 33));
+  	animation: loader;
+	animation-duration:12000ms;
+}
+.meter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1em;
+  margin-top: .3em;
+  color: #ff0000;
+  animation: meter;
+  animation-duration:10000ms;
+  text-shadow: 0 -1px 0 #333;
+
+}
+
+@keyframes loader {
+    from { width:100% }
+    to { width: 50%; }
+}
+
+@keyframes meter {
+  from { color: rgb(91, 216, 255);}
+  to { color: #ff0000; }
 }

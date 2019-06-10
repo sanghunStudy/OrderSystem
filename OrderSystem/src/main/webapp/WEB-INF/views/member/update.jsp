@@ -12,6 +12,40 @@
   <script>
         $(document).ready(function() {
         	
+        	var Loader = function () {    
+      		  var loader = document.querySelector('.loader-container'),
+      		      meter = document.querySelector('.meter'),
+      		      k, i = 1,
+      		      counter = function () {
+      		        if (i <= 50) {   
+      		          meter.innerHTML = i.toString();
+      		          i++;
+      		        } else {
+      		          window.clearInterval(k);
+      		        }
+      		      };
+
+      			return {
+      		  	init: function (options) {
+      		      options = options || {};
+      		      var time = options.time ? options.time : 0,
+      			        interval = time/100;
+      		      
+      		    	loader.classList.add('run');
+      		      k = window.setInterval(counter, interval); 
+      		      setTimeout(function () {
+//       		      	loader.classList.add('done');
+      		      }, time);
+      		    },
+      		  }
+      		}();
+
+      		Loader.init({
+      		  	// If you have changed the @time in LESS, update this number to the corresponding value. Measured in miliseconds.
+      		  	time: 12000
+      		});
+      		
+      		
         	var obj = document.updateFrm;
             $(".update-submit").click(function() {
             	var currentPw = $(".current-password").val();
@@ -77,7 +111,17 @@
                 }
             });
     	}
+    	
+
 </script>
+<style>
+/* 
+SETTINGS
+If you need the loader go faster or slower, this is the place to change. Don't forget to update 'time' in the javascript
+*/
+
+
+</style>
 </head>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
@@ -91,6 +135,10 @@
 			</div>
 			<div class="tier-info-box">
 				<p>CHALINGER</p>
+			</div>
+			<div class="loader-container">
+			  <div class="meter">0</div>
+			  <span class="runner"></span>
 			</div>
 		</div>
 		<div class="update-right-box">

@@ -118,7 +118,7 @@ public class MyInfoController {
 	public String delete(String username) {
 		service.delete(username);
 
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 //	구글 리캡챠
 	   @ResponseBody

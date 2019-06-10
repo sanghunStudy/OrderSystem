@@ -46,11 +46,11 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 	
 //	UserVO point = Uservice.selectUser(id);
 //	int po = 50;
-////	if(point.getPoint() >= po) {
-////		Uservice.promotion(pro);
-////	} else {
-////		
-////	}
+//	if(point.getPoint() >= po) {
+//		Uservice.promotion(pro);
+//	} else {
+//		
+//	}
 	
 	
 	

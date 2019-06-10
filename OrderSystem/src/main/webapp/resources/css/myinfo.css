@@ -59,7 +59,9 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
    margin: 0;
    padding: 0;
 }
-
+body {
+		background: #1e1e2f;
+}
 #full-box {
 	background: #1e1e2f;
 	width: 100%;

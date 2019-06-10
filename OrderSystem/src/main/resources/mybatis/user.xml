@@ -42,7 +42,7 @@
 	</sql>
 	<!-- 트레이너신청 목록 토탈 -->
 	<select id="total" resultType="Integer" parameterType="searchVO">
-		select COUNT(*) from trainer_profile
+		select COUNT(*) from trainer_profile where trainer_apply = "N" and delete_apply = "N"
 	<include refid="includeBoard" />
 	</select>
 	<!-- 트레이너 신청 -->

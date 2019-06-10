@@ -273,7 +273,7 @@
 							<p><label class="only-modal">아이디</label></p>
 							<div class="input-item-box">
 								<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
-								<input type="text" value="${username}" name="username"><span class="highlight"></span>
+								<input type="text" value="${user}" name="username" readonly><span class="highlight"></span>
 								<span class="bar"></span>
 							</div>
 						</div>

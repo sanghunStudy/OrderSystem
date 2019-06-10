@@ -48,7 +48,4 @@ public interface AnalysisDao {
 	int doneSubject(String subject, String contents, String manager, int subjectKind, String id);
 
 
-
-
-
 }

@@ -43,6 +43,7 @@ public interface AnalysisService {
 
 	int doneSubject(String subject, String contents, String manager, String id, String kind);
 
+
 	
 
 

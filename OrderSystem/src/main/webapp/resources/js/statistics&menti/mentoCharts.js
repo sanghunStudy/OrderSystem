@@ -1,6 +1,8 @@
 	var foodPlan = [];
 	var exerPlan = [];
-//그라디언트 생성기
+	var plan=[];
+	var whatModal;
+// 그라디언트 생성기
 function gradientGenerator(color,ctx) {
 	
 		if(ctx.canvas.id == 'line-chart-weight')
@@ -216,7 +218,7 @@ $(function() {
 			    	
 			    	var dateSpan = getModalName(this);
 			    	var periodBox = $(this).parents('.list-inline').prev().find('.plan-duration');
-			    	duration = setDuration(dateSpan,periodBox);
+			    	duration = setDuration(dateSpan.datePlan,dateSpan.planList,periodBox);
 			    	foodToday = exerToday = duration.momentS;
 			    	foodStart = exerStart = duration.momentS;
 			    	foodEnd = exerEnd = duration.momentE;
@@ -257,9 +259,9 @@ $(function() {
 	
 
 	    $('.add-food,.add-exer').click(function (e) {
-	    	var plan = planner(e.target);
+	    	plan = planner(e.target);
 	    	console.log(plan);
-	    	alert('식단이 추가되었습니다.');
+	    	
 	    	$('.textInput').val('');
 	    	$('.eset').val(1);
 	    	$('.ereps').val(10);
@@ -271,12 +273,39 @@ $(function() {
 	    	
 	    	
 	    });
-	
-	
-// var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
-// foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
-	
-
+	    $('.next-plan').click(function (e) {
+	    	
+	    	getPlanList(whatModal);
+	    });
+		
+	    var DateBtnClickEvent = {
+	    		'cl_add_food':function() {
+	    		
+	    			dateClickEvent["food_next"].call();
+	    			getPlanList(whatModal);
+	    		},
+	    		'cl_minus_food':function() {
+	    			dateClickEvent["food_prev"].call();
+	    			getPlanList(whatModal);
+	    		},
+	    		'cl_add_exer':function() {
+	    			dateClickEvent["exer_next"].call();
+	    			getPlanList(whatModal);
+	    		},
+	    		'cl_minus_exer':function() {
+	    			dateClickEvent["exer_prev"].call();
+	    			getPlanList(whatModal);
+	    		}
+	    };
+	    
+	    $('.cl-btn-box').on('click','i',function(e) {
+	    	var target = e.target || e.srcElement;
+	    	
+	    	if(DateBtnClickEvent.hasOwnProperty(target.id)) {
+	    		DateBtnClickEvent[target.id].call();
+	    	}
+	    });
+	    
 // var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
 // var ctxSquat = document.getElementById('line-chart-squat').getContext("2d");
 // var ctxBench = document.getElementById('line-chart-bench').getContext("2d");
@@ -384,12 +413,12 @@ $(function() {
 		var modalClickEvent = {
 				'food-modal-btn':function() {
 					foodModal.style.display = "block";
+					whatModal = 'F';
 				
-					
 				},
 				'exer-modal-btn':function() {
 					exerModal.style.display = "block";
-					
+					whatModal = 'E';
 					autocomplete(document.getElementById('ename'),arr);
 				}
 		}
@@ -569,7 +598,7 @@ $(document).on('click','.sel__box__options',function() {
 								 $('a[title="Step 5"]').click();
 									foodPlan =[];
 									exerPlan =[];
-								 
+									whatModal = '';
 
 								 
 							}
@@ -584,13 +613,13 @@ $(document).on('click','.sel__box__options',function() {
 							 $('a[title="Step 5"]').click();
 								foodPlan =[];
 								exerPlan =[];
-							 
+								whatModal = '';
 						
 							
 							}
 						}
 					}
-
+					
 
 				});
 				
@@ -614,6 +643,7 @@ $(document).on('click','.sel__box__options',function() {
 				 exerToday = exerYesterDay;
 	
 				$('#exer_prev').next().html(exerToday.format('L dddd'));
+				$('.cl_copy_exer').html(exerToday.format('L dddd'));
 				 }
 			},
 			"exer_next": function() {
@@ -624,6 +654,7 @@ $(document).on('click','.sel__box__options',function() {
 						
 					 exerToday = exerTomorrow;
 						$('#exer_next').prev().html(exerToday.format('L dddd'));
+						$('.cl_copy_exer').html(exerToday.format('L dddd'));
 					// 값 초기화 및 리스트 호출 함수
 					}else if(exerEnd.diff(exerTomorrow,'days') < 0) {
 						alert("종료일을 초과할 수 없습니다."); 
@@ -652,6 +683,7 @@ $(document).on('click','.sel__box__options',function() {
 				 }
 					 
 				$('#food_prev').next().html(foodToday.format('L dddd'));
+				$('.cl_copy_food').html(foodToday.format('L dddd'));
 // }
 
 			},
@@ -664,6 +696,7 @@ $(document).on('click','.sel__box__options',function() {
 				
 				 foodToday = foodTomorrow;
 				$('#food_next').prev().html(foodToday.format('L dddd'));
+				$('.cl_copy_food').html(foodToday.format('L dddd'));
 				// 값 초기화 및 리스트 호출 함수
 				}else if(foodEnd.diff(foodTomorrow,'days') < 0) {
 					alert("종료일을 초과할 수 없습니다."); 
@@ -851,11 +884,11 @@ function progressAnime() {
 	});
 }
 
-function setDuration(dateBox,obj) {
+function setDuration(dateBox,planList,obj) {
 	
 	var startDate;
 	var endDate;
-	/* 전달받은 스팬태그(날짜)객체에다가 시작일을 넣어주자! */
+	
 	startDate = {
 			year:$(obj).find('.start-date .select-year').val(),
 			month:$(obj).find('.start-date .select-month').val(),
@@ -880,7 +913,7 @@ function setDuration(dateBox,obj) {
 	 	eDate = moment(momentEnd).format('L dddd');
 	const fixStart = moment(staticDate);
 	dateBox.html(sDate);
-	
+	planList.html(sDate);
 	
 	return {
 		absStart:fixStart,
@@ -896,9 +929,9 @@ function setDuration(dateBox,obj) {
 
 function getModalName(name) {
 	if(name.classList.contains('next-food'))
-		return $('.schedule-date-food');
+		return {datePlan:$('.schedule-date-food'),planList:$('.cl_copy_food')}
 	else if(name.classList.contains('next-exer'))
-		return $('.schedule-date-exer');
+		return {datePlan:$('.schedule-date-exer'),planList:$('.cl_copy_exer')}
 	else
 		return '';
 }
@@ -906,11 +939,11 @@ function getModalName(name) {
 function planner(obj) {
 
 	var list;
-	console.log(obj);
+	
 	if($(obj).closest('button').hasClass('add-food') == true) {
 		list = {
 			name:$('.fname').val(),
-			gram:$('gram').val(),
+			gram:$('.fgram').val(),
 			count:$('.fcount').val(),
 			kcal:$('.fkcal').val(),
 			etc:$('.fetc').val(),
@@ -920,9 +953,10 @@ function planner(obj) {
 						
 		};
 		foodPlan.push(list);
+		alert('식단이 추가되었습니다.');
 		return foodPlan;
 	}
-	else if ($(obj).closest('button').hasClass('exer-food') == true) {
+	else if ($(obj).closest('button').hasClass('add-exer') == true) {
 		list = {
 			name:$('.ename').val(),
 			set:$('.eset').val(),
@@ -934,9 +968,60 @@ function planner(obj) {
 			date:$('.schedule-date-exer').text()
 		};
 		exerPlan.push(list);
+		alert('운동이 추가되었습니다.');
 		return exerPlan;
 	}
 	list = "";
 
 	
+}
+function getPlanList(whatModal) {
+	
+	var eventItem=document.createElement('div');
+	eventItem.className = 'event_item';	
+	var union= document.createElement('div');
+	union.id = "cl_id";
+	
+	if(	whatModal == 'F') {
+		$(union).empty();
+		eventItem.innerHTML +='<p class="ce_title">To Eat List</p>';
+		for(var i in plan) {
+		
+		
+			if(plan[i].date == $('.cl_copy_food').text()) {
+
+				eventItem.innerHTML += '<div class="ei_Dot"></div>';
+				eventItem.innerHTML += '<div class="ei_Title">' + plan[i].time + '<span class="ei_etc">'+plan[i].etc+'</span></div>';
+				eventItem.innerHTML += '<div class="ei_Copy">' + plan[i].name + ' ' + plan[i].gram + 'gram' + ' ' + plan[i].count + '개    ' + plan[i].kcal + 'kcal</div>';
+				
+			
+			union.appendChild(eventItem);
+			
+		
+			}
+	
+		
+		}
+
+		$('.event_eat').html(union);
+	}
+	else if (whatModal == 'E') {
+		$(union).empty();
+		eventItem.innerHTML +='<p class="ce_title">To Do List</p>';
+		for(var i in plan) {
+			
+			if(plan[i].date == $('.cl_copy_exer').text()) {
+				
+				eventItem.innerHTML += '<div class="ei_Dot"></div>';
+				eventItem.innerHTML += '<div class="ei_Title">' + plan[i].name + '<span class="ei_part">'+plan[i].part+'</span><span class="ei_goal">' + plan[i].goal + 'kg</span></div>';
+				eventItem.innerHTML += '<div class="ei_Copy">' + plan[i].set + ' ' + plan[i].reps + '회' + ' ' + plan[i].lb + 'kg    ' + plan[i].etc + 'kcal</div>';
+			
+				
+		
+				union.appendChild(eventItem);
+			}
+	
+		}
+		$('.event_do').html(union);
+	}
 }

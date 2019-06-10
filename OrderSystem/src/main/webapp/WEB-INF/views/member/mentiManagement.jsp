@@ -511,7 +511,7 @@
 														<span>식단 추가</span>
 													</button></li>
 												<li><button type="button"
-														class="modal-btn-collection next-step next-food">
+														class="modal-btn-collection next-step next-plan">
 														<span>플랜 확인</span>
 													</button></li>
 											</ul>
@@ -525,45 +525,24 @@
 													</div>
 													<div class="calendar_plan">
 														<div class="cl_plan">
-															<div class="cl_title">Day</div>
-															<div class="cl_copy">22nd May 2019</div>
-															<div class="cl_add">
-																<i class="fas fa-plus"></i>
-															</div>
-															<div class="cl_minus">
-																<i class="fas fa-minus"></i>
+															
+																<div class="cl_title">Day</div>
+																<div class="cl_box">
+																<div class="cl_copy_food">22nd May 2019</div>
+																<div class="cl-btn-box">
+																	<div class="cl_add" id="cl_add_food">
+																		<i class="fas fa-plus" id="cl_add_food"></i>
+																	</div>
+																	<div class="cl_minus" id="cl_minus_food">
+																		<i class="fas fa-minus" id="cl_minus_food"></i>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</div>
-													<div class="calendar_events">
+													<div class="calendar_events event_eat">
 														<p class="ce_title">To Eat List</p>
-														<div class="event_item">
-															<div class="ei_Dot dot_active"></div>
-															<div class="ei_Title">10:30 am</div>
-															<div class="ei_Copy">한솥도시락 현미고기고기</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">12:00 pm</div>
-															<div class="ei_Copy">학식</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">14:00 pm</div>
-															<div class="ei_Copy">
-																One day 견과류 1봉지<br>#해태 #롯데
-															</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">16:30 pm</div>
-															<div class="ei_Copy">프로틴 2알</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">18:30 am</div>
-															<div class="ei_Copy">닭가슴살 30g 1팩</div>
-														</div>
+								
 													</div>
 												</div>
 											</div>
@@ -777,7 +756,7 @@
 
 												<li><button type="button"
 														class="modal-btn-collection next-step next-exer">
-														<span>플랜 확인</span> 
+														<span>플랜 작성</span> 
 
 													</button></li>
 											</ul>
@@ -873,7 +852,7 @@
 														<span>운동 추가</span> 
 													</button></li>
 												<li><button type="button"
-														class="modal-btn-collection next-step">
+														class="modal-btn-collection next-step next-plan">
 														<span>플랜 확인</span>  
 													</button></li>
 											</ul>
@@ -888,51 +867,29 @@
 													<div class="calendar_plan">
 														<div class="cl_plan">
 															<div class="cl_title">Day</div>
-															<div class="cl_copy">22nd May 2019</div>
-															<div class="cl_add">
-																<i class="fas fa-plus"></i>
-															</div>
-															<div class="cl_minus">
-																<i class="fas fa-minus"></i>
+															<div class="cl_box">
+																<div class="cl_copy_exer">22nd May 2019</div>
+																<div class="cl-btn-box">
+																	<div class="cl_add" >
+																		<i class="fas fa-plus" id="cl_add_exer"></i>
+																	</div>
+																	<div class="cl_minus" >
+																		<i class="fas fa-minus" id="cl_minus_exer"></i>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</div>
-													<div class="calendar_events">
-														<p class="ce_title">To Eat List</p>
-														<div class="event_item">
-															<div class="ei_Dot dot_active"></div>
-															<div class="ei_Title">10:30 am</div>
-															<div class="ei_Copy">한솥도시락 현미고기고기</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">12:00 pm</div>
-															<div class="ei_Copy">학식</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">14:00 pm</div>
-															<div class="ei_Copy">
-																One day 견과류 1봉지<br>#해태 #롯데
-															</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">16:30 pm</div>
-															<div class="ei_Copy">프로틴 2알</div>
-														</div>
-														<div class="event_item">
-															<div class="ei_Dot"></div>
-															<div class="ei_Title">18:30 am</div>
-															<div class="ei_Copy">닭가슴살 30g 1팩</div>
-														</div>
+													<div class="calendar_events event_do">
+														<p class="ce_title">To Do List</p>
+							
 													</div>
 												</div>
 											</div>
 											<ul class="list-inline">
 												<li><button type="button"
 														class="modal-btn-collection prev-step prev-food">
-														  <span>식단관리</span>
+														  <span>운동관리</span>
 													</button></li>
 												<li><button type="button"
 														class="modal-btn-collection btn-info-full next-step next-food">

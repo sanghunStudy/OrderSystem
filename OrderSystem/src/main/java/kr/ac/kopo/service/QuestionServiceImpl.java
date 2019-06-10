@@ -79,6 +79,13 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void pointUp(String pointGetUser,int pointSet) {
 		dao.pointUp(pointGetUser,pointSet);
+		String trainerCheck = dao.trainerCheck(pointGetUser);
+		System.out.println(trainerCheck);
+		if(trainerCheck.equals("trainer")) {
+			int point = dao.userpoint(pointGetUser);
+			int menti = dao.mentiCount(pointGetUser);
+		}
+		
 	}
 
 	@Override

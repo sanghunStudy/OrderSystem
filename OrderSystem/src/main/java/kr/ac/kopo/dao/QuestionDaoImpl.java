@@ -103,4 +103,14 @@ public class QuestionDaoImpl implements QuestionDao {
 		sql.update("question.pointDown",map);
 	}
 
+	@Override
+	public String trainerCheck(String pointGetUser) {
+		return sql.selectOne("question.trainerCheck",pointGetUser);
+	}
+
+	@Override
+	public int mentiCount(String pointGetUser) {
+		return sql.selectOne("trainer.mentiCount",pointGetUser);
+	}
+
 }

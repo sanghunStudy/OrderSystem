@@ -40,4 +40,8 @@ public interface QuestionDao {
 
 	void pointLoseUser(String pointLoseUser, int pointSet);
 
+	String trainerCheck(String pointGetUser);
+
+	int mentiCount(String pointGetUser);
+
 }

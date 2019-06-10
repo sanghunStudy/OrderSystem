@@ -99,4 +99,7 @@
 		where username = #{id}
 	</update>
 	
+	<select id="trainerCheck" resultType="String">
+		select authority from user where username=#{pointGetUser}
+	</select>
 </mapper>

@@ -41,7 +41,7 @@
 	src="${pageContext.request.contextPath}/resources/js/statistics&menti/commons.js"></script>
 
 <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>TRAINERBOT 멘티 관리</title>
@@ -195,16 +195,14 @@
 							<c:when test="${myMenti.size() > 0 }">
 								<c:forEach var="menti" items="${myMenti}">
 									<tr>
-										<td class="my-menti">
-											<span class="target-username">${menti.username}</span>
-											<span class="hidden target-weights">${menti.weights}</span> 
-											<span class="hidden target-height">${menti.height}</span> 
-											<span class="hidden target-goal">${menti.goal}</span> 
-											<span class="hidden target-etc">${menti.etc}</span>
-											<span class="hidden target-eRequirement">${menti.eRequirement}</span>
-											<span class="hidden target-age">${menti.age}</span>
-											<span class="hidden target-sex">${menti.sex}</span>
-										</td>
+										<td class="my-menti"><span class="target-username">${menti.username}</span>
+											<span class="hidden target-weights">${menti.weights}</span> <span
+											class="hidden target-height">${menti.height}</span> <span
+											class="hidden target-goal">${menti.goal}</span> <span
+											class="hidden target-etc">${menti.etc}</span> <span
+											class="hidden target-eRequirement">${menti.eRequirement}</span>
+											<span class="hidden target-age">${menti.age}</span> <span
+											class="hidden target-sex">${menti.sex}</span></td>
 										<td>
 											<div class="progress-container-t">
 												<span id="value" class="progress-value-t"
@@ -252,7 +250,7 @@
 									<ul class="nav nav-tabs" role="tablist" id="test1">
 										<li role="presentation" class="active stepactive1">
 											<div class="connecting-line border-right"></div> <a
-											href="#step1" id="tab" data-toggle="tab"
+											href="#step1" id="tab" data-toggle="tab" class="dateTest"
 											aria-controls="step1" role="tab" title="Step 1"> <span
 												class="round-tab"> 1 </span>
 												<p>기간 설정</p>
@@ -261,24 +259,24 @@
 										<li role="presentation" class="disabled stepactive2">
 											<div class="connecting-line border-right border-left"></div>
 											<a href="#step2" id="tab" data-toggle="tab"
-											aria-controls="step2" role="tab" title="Step 2"> <span
-												class="round-tab"> 2 </span>
+											aria-controls="step2" role="tab" title="Step 2"
+											class="dateTest"> <span class="round-tab"> 2 </span>
 												<p>식단 관리</p>
 										</a>
 										</li>
 										<li role="presentation" class="disabled stepactive3">
 											<div class="connecting-line border-right border-left"></div>
 											<a href="#step3" id="tab" data-toggle="tab"
-											aria-controls="step3" role="tab" title="Step 3"> <span
-												class="round-tab"> 3 </span>
+											aria-controls="step3" role="tab" title="Step 3"
+											class="dateTest"> <span class="round-tab"> 3 </span>
 												<p>플랜 확인</p>
 										</a>
 										</li>
 										<li role="presentation" class="disabled stepactive4">
 											<div class="connecting-line"></div> <a href="#complete"
 											id="tab" data-toggle="tab" aria-controls="complete"
-											role="tab" title="Complete"> <span class="round-tab">
-													4 </span>
+											class="dateTest" role="tab" title="Complete"> <span
+												class="round-tab"> 4 </span>
 												<p>확인 및 안내</p>
 										</a>
 										</li>
@@ -292,23 +290,23 @@
 											</div>
 											<div class="contents-container">
 												<div class="selected-menti menti-info">
-													<div class="subtitle">멘티     </div>
+													<div class="subtitle">멘티</div>
 													<div class="ns-box">
 														<div class="menti-name info-value"></div>
 														<div class="menti-sex info-value"></div>
 													</div>
 												</div>
 												<div class="selected-menti menti-info">
-													<div class="subtitle">나이    </div>
+													<div class="subtitle">나이</div>
 													<div class="menti-age info-value"></div>
-												</div>												
+												</div>
 												<div class="physical-info">
 													<div class="selected-weights menti-info">
-														<div class="subtitle">체중     </div>
+														<div class="subtitle">체중</div>
 														<div class="menti-weights info-value">kg</div>
 													</div>
 													<div class="selected-height menti-info">
-														<div class="subtitle">키      </div>
+														<div class="subtitle">키</div>
 														<div class="menti-height info-value">cm</div>
 													</div>
 													<div class="energy-requirement menti-info">
@@ -316,7 +314,7 @@
 														<div class="menti-emetabolism info-value"></div>
 													</div>
 													<div class="selected-goal menti-info">
-														<div class="subtitle">목표     </div>
+														<div class="subtitle">목표</div>
 														<div class="menti-goal info-value"></div>
 													</div>
 												</div>
@@ -324,7 +322,8 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-food-start" class="select-year">
+															<select name="select-year" id="select-year-food-start"
+																class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -335,7 +334,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-food-start" class="select-month">
+															<select name="select-superpower"
+																id="select-month-food-start" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -353,8 +353,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-day">
-															<select name="select-superpower" id="select-day-food-start"
-																class="select-day">
+															<select name="select-superpower"
+																id="select-day-food-start" class="select-day">
 																<option value="" disabled>일</option>
 
 															</select>
@@ -363,7 +363,8 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-food-end" class="select-year">
+															<select name="select-year" id="select-year-food-end"
+																class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -374,7 +375,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-food-end" class="select-month">
+															<select name="select-superpower"
+																id="select-month-food-end" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -421,9 +423,9 @@
 															class="fas fa-angle-right" id="food_next"></i>
 													</div>
 													<div class="group">
-														<input type="text" required> <span
-															class="highlight"></span> <span class="bar"></span> <label
-															class="only-modal">음식이름</label>
+														<input type="text" class="fname textInput" required>
+														<span class="highlight"></span> <span class="bar"></span>
+														<label class="only-modal">음식이름</label>
 													</div>
 													<div class="spinner">
 														<div class="gram-spinner">
@@ -432,8 +434,8 @@
 																<div class="input-group-button">
 																	<span class="input-number-decrement">-</span>
 																</div>
-																<input class="input-number" type="number" value="10"
-																	min="0" max="1000" step="10">
+																<input class="input-number fgram" type="number"
+																	value="10" min="0" max="1000" step="10">
 																<div class="input-group-button">
 																	<span class="input-number-increment">+</span>
 																</div>
@@ -445,8 +447,8 @@
 																<div class="input-group-button">
 																	<span class="input-number-decrement">-</span>
 																</div>
-																<input class="input-number" type="number" value="1"
-																	min="0" max="1000">
+																<input class="input-number fcount" type="number"
+																	value="1" min="0" max="1000">
 																<div class="input-group-button">
 																	<span class="input-number-increment">+</span>
 																</div>
@@ -455,25 +457,28 @@
 													</div>
 
 													<div class="group">
-														<input type="text" required> <span
-															class="highlight"></span> <span class="bar"></span> <label
-															class="only-modal">칼로리(Kcal)</label>
+														<input type="text" class="fkcal textInput" required>
+														<span class="highlight"></span> <span class="bar"></span>
+														<label class="only-modal">칼로리(Kcal)</label>
 													</div>
 													<div class="group">
-														<input type="text" required> <span
-															class="highlight"></span> <span class="bar"></span> <label
-															class="only-modal">기타사항</label>
+														<input type="text" class="fetc textInput" required>
+														<span class="highlight"></span> <span class="bar"></span>
+														<label class="only-modal">기타사항</label>
 													</div>
 													<div class="nutrient">
 														<span class="sub-title">영양분</span>
 														<div class="hash-container">
 															<ul class="ks-cboxtags">
 																<li><input type="checkbox" id="checkboxOne"
-																	value="carbohydrate"><label for="checkboxOne">탄수화물</label></li>
+																	name="nutrient" value="탄수화물"><label
+																	for="checkboxOne">탄수화물</label></li>
 																<li><input type="checkbox" id="checkboxTwo"
-																	value="protein"><label for="checkboxTwo">단백질</label></li>
+																	name="nutrient" value="단백질"><label
+																	for="checkboxTwo">단백질</label></li>
 																<li><input type="checkbox" id="checkboxThree"
-																	value="fat"><label for="checkboxThree">지방</label></li>
+																	name="nutrient" value="지방"><label
+																	for="checkboxThree">지방</label></li>
 															</ul>
 														</div>
 													</div>
@@ -482,13 +487,12 @@
 														<div class="hash-container">
 															<ul class="ks-cboxtags">
 																<li><input type="radio" id="radioOne" name="radio"
-																	value="Rainbow Dash" checked><label
-																	for="radioOne" name="">아침</label></li>
+																	value="아침" checked><label for="radioOne"
+																	name="">아침</label></li>
 																<li><input type="radio" id="radioTwo" name="radio"
-																	value="Cotton Candy"><label for="radioTwo">점심</label></li>
+																	value="점심"><label for="radioTwo">점심</label></li>
 																<li><input type="radio" id="radioThree"
-																	name="radio" value="Rarity"><label
-																	for="radioThree">저녁</label></li>
+																	name="radio" value="저녁"><label for="radioThree">저녁</label></li>
 															</ul>
 														</div>
 													</div>
@@ -525,6 +529,9 @@
 															<div class="cl_copy">22nd May 2019</div>
 															<div class="cl_add">
 																<i class="fas fa-plus"></i>
+															</div>
+															<div class="cl_minus">
+																<i class="fas fa-minus"></i>
 															</div>
 														</div>
 													</div>
@@ -614,31 +621,32 @@
 										<li role="presentation" class="active stepactive1">
 											<div class="connecting-line border-right"></div> <a
 											href="#step5" data-toggle="tab" aria-controls="step5"
-											role="tab" title="Step 5"> <span class="round-tab">
-													1 </span>
+											class="dateTest" role="tab" title="Step 5"> <span
+												class="round-tab"> 1 </span>
 												<p>기간 설정</p>
 										</a>
 										</li>
 										<li role="presentation" class="disabled stepactive2">
 											<div class="connecting-line border-right border-left"></div>
 											<a href="#step6" data-toggle="tab" aria-controls="step6"
-											role="tab" title="Step 6"> <span class="round-tab">
-													2 </span>
+											class="dateTest" role="tab" title="Step 6"> <span
+												class="round-tab"> 2 </span>
 												<p>운동 관리</p>
 										</a>
 										</li>
 										<li role="presentation" class="disabled stepactive3">
 											<div class="connecting-line border-right border-left"></div>
 											<a href="#step7" data-toggle="tab" aria-controls="step7"
-											role="tab" title="Step 7"> <span class="round-tab">
-													3 </span>
+											class="dateTest" role="tab" title="Step 7"> <span
+												class="round-tab"> 3 </span>
 												<p>플랜 확인</p>
 										</a>
 										</li>
 										<li role="presentation" class="disabled stepactive4">
 											<div class="connecting-line"></div> <a href="#step8"
 											data-toggle="tab" aria-controls="step8" role="tab"
-											title="Step 8"> <span class="round-tab"> 4 </span>
+											class="dateTest" title="Step 8"> <span class="round-tab">
+													4 </span>
 												<p>확인 및 안내</p>
 										</a>
 										</li>
@@ -652,23 +660,23 @@
 											</div>
 											<div class="contents-container">
 												<div class="selected-menti menti-info">
-													<div class="subtitle">멘티     </div>
+													<div class="subtitle">멘티</div>
 													<div class="ns-box">
 														<div class="menti-name info-value"></div>
 														<div class="menti-sex info-value"></div>
 													</div>
 												</div>
 												<div class="selected-menti menti-info">
-													<div class="subtitle">나이     </div>
+													<div class="subtitle">나이</div>
 													<div class="menti-age info-value"></div>
-												</div>												
+												</div>
 												<div class="physical-info">
 													<div class="selected-weights menti-info">
-														<div class="subtitle">체중     </div>
+														<div class="subtitle">체중</div>
 														<div class="menti-weights info-value"></div>
 													</div>
 													<div class="selected-height menti-info">
-														<div class="subtitle">키      </div>
+														<div class="subtitle">키</div>
 														<div class="menti-height info-value"></div>
 													</div>
 													<div class="energy-requirement menti-info">
@@ -676,7 +684,7 @@
 														<div class="menti-emetabolism info-value"></div>
 													</div>
 													<div class="selected-goal menti-info">
-														<div class="subtitle">목표     </div>
+														<div class="subtitle">목표</div>
 														<div class="menti-goal info-value"></div>
 													</div>
 												</div>
@@ -684,7 +692,8 @@
 													<div class="start-date">
 														<div class="start-date subtitle">시작일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-exer-start" class="select-year">
+															<select name="select-year" id="select-year-exer-start"
+																class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -695,7 +704,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-exer-start" class="select-month">
+															<select name="select-superpower"
+																id="select-month-exer-start" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -713,8 +723,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-day">
-															<select name="select-superpower" id="select-day-exer-start"
-																class="select-day">
+															<select name="select-superpower"
+																id="select-day-exer-start" class="select-day">
 																<option value="" disabled>일</option>
 
 															</select>
@@ -723,7 +733,8 @@
 													<div class="end-date">
 														<div class="end-date subtitle">종료일</div>
 														<div class="sel sel-year">
-															<select name="select-year" id="select-year-exer-end" class="select-year">
+															<select name="select-year" id="select-year-exer-end"
+																class="select-year">
 																<option value="" disabled>년</option>
 																<option value="2019">2019</option>
 																<option value="2020">2020</option>
@@ -734,7 +745,8 @@
 														</div>
 														<span class="separator">.</span>
 														<div class="sel sel-month">
-															<select name="select-superpower" id="select-month-exer-end" class="select-month">
+															<select name="select-superpower"
+																id="select-month-exer-end" class="select-month">
 																<option value="" disabled>월</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -785,9 +797,9 @@
 
 														<div class="group">
 															<div class="autocomplete">
-																<input type="text" required class="ename" id="ename">
-																<span class="highlight"></span> <span class="bar"></span>
-																<label>운동이름</label>
+																<input type="text" required class="ename textInput"
+																	id="ename"> <span class="highlight"></span> <span
+																	class="bar"></span> <label>운동이름</label>
 															</div>
 														</div>
 														<div class="spinner">
@@ -797,8 +809,8 @@
 																	<div class="input-group-button">
 																		<span class="input-number-decrement">-</span>
 																	</div>
-																	<input class="input-number" type="number" value="1"
-																		min="0" max="1000">
+																	<input class="input-number eset" type="number"
+																		value="1" min="0" max="1000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>
 																	</div>
@@ -810,8 +822,8 @@
 																	<div class="input-group-button">
 																		<span class="input-number-decrement">-</span>
 																	</div>
-																	<input class="input-number" type="number" value="1"
-																		min="0" max="1000">
+																	<input class="input-number ereps" type="number"
+																		value="1" min="0" max="1000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>
 																	</div>
@@ -823,7 +835,7 @@
 																	<div class="input-group-button">
 																		<span class="input-number-decrement">-</span>
 																	</div>
-																	<input class="input-number" type="number" value="1"
+																	<input class="input-number elb" type="number" value="1"
 																		min="0" max="1000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>
@@ -833,16 +845,18 @@
 														</div>
 														<div class="group">
 															<input type="text" required class="lb-goal"> <span
-																class="highlight"></span> <span class="bar"></span> <label>목표중량<small>(in
-																	Kg)</small></label>
+																class="highlight textInput"></span> <span class="bar"></span>
+															<label>목표중량<small>(in Kg)</small></label>
 														</div>
 														<div class="group">
 															<input type="text" required class="parts"> <span
-																class="highlight"></span> <span class="bar"></span> <label>운동부위</label>
+																class="highlight textInput"></span> <span class="bar"></span>
+															<label>운동부위</label>
 														</div>
 														<div class="group">
 															<input type="text" required class="details"> <span
-																class="highlight"></span> <span class="bar"></span> <label>기타사항</label>
+																class="highlight textInput"></span> <span class="bar"></span>
+															<label>기타사항</label>
 														</div>
 														<!-- 	<span class="icon-right-arrow" ></span><span class="icon-left-arrow"></span> -->
 													</form>
@@ -877,6 +891,9 @@
 															<div class="cl_copy">22nd May 2019</div>
 															<div class="cl_add">
 																<i class="fas fa-plus"></i>
+															</div>
+															<div class="cl_minus">
+																<i class="fas fa-minus"></i>
 															</div>
 														</div>
 													</div>

@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
 	if(loginChk){//존재한다면 아래함수 실행
-		clearTime(5);//세션 체크 5분 설정
+		clearTime(15);//세션 체크 5분 설정
 		setTimer();	//타이머 실행
 	}
 	

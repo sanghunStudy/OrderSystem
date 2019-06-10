@@ -1,4 +1,5 @@
-
+	var foodPlan = [];
+	var exerPlan = [];
 //그라디언트 생성기
 function gradientGenerator(color,ctx) {
 	
@@ -107,6 +108,10 @@ $(function() {
 	var targetHeight;
 	var targetGoal;
 	var requiredEnergy;
+	var duration;
+	var foodToday,exerToday,foodStart,exerStart;
+
+
 	var agreeBtnEvent = {
 			'agree':function(e) {
 					
@@ -205,16 +210,39 @@ $(function() {
 	    $(".next-step").click(function (e) {
 	      
 	        var $active = $('.wizard .nav-tabs li.active');
-	    
-	        $active.next().removeClass('disabled');
-	        nextTab($active);
-	  
-	       if($active.hasClass('stepactive1')) {	
+
 	    	
-	    	   var dateSpan = getModalName(this);
-	    	   var periodBox = $(this).parents('.list-inline').prev().find('.plan-duration');
-	    	   setDuration(dateSpan,periodBox);
-	       }
+		       if($active.hasClass('stepactive1') || $active.hasClass('stepactive5')) {	
+			    	
+			    	var dateSpan = getModalName(this);
+			    	var periodBox = $(this).parents('.list-inline').prev().find('.plan-duration');
+			    	duration = setDuration(dateSpan,periodBox);
+			    	foodToday = exerToday = duration.momentS;
+			    	foodStart = exerStart = duration.momentS;
+			    	foodEnd = exerEnd = duration.momentE;
+			    	fixDate = duration.absStart;	
+
+			    	if(duration.start == 'Invalid date' || duration.end == 'Invalid date') {
+			    		alert('날짜를 입력해 주세요.')
+			    		return false;
+			    	}else if(duration.comparison < 0) {
+			    		alert('시작일과 종료일이 올바르지 않습니다. 다시 입력해주세요.')
+			    		return false;
+			    	}
+			    	else if(duration.lackToday < 0){
+			    		alert('시작일을 오늘보다 이전으로 설정할 수 없습니다.');
+			    		return false;
+			    	}
+			        $active.next().removeClass('disabled');
+			        nextTab($active);	
+		       }
+		       else {
+			        $active.next().removeClass('disabled');
+			        nextTab($active);	 
+		       }
+		       
+	  
+
 	      
 	        $('.wizard .nav-tabs li.active .connecting-line').css({"border-bottom-left-radius": 0, "border-top-left-radius": 0});
 	       
@@ -228,8 +256,16 @@ $(function() {
 	    });
 	
 
-	    $('.add-food').click(function (e) {
-	    	$('form :input').val('');
+	    $('.add-food,.add-exer').click(function (e) {
+	    	var plan = planner(e.target);
+	    	console.log(plan);
+	    	alert('식단이 추가되었습니다.');
+	    	$('.textInput').val('');
+	    	$('.eset').val(1);
+	    	$('.ereps').val(10);
+	    	$('.elb').val(20);
+	    	$('.fgram').val(10);
+	    	$('.fcount').val(1);
 	    	$('.ks-cboxtags>li>input[type="radio"]').prop("checked",false);
 	    	$('.ks-cboxtags>li>input[type="checkbox"]').prop("checked",false);
 	    	
@@ -237,8 +273,8 @@ $(function() {
 	    });
 	
 	
-	var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
-		foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
+// var exerToday = moment().add(0,'day'),exerYesterday,exerTomorrow,
+// foodToday = moment().add(0,'day'),foodYesterday,foodTomorrow;
 	
 
 // var ctxDead = document.getElementById('line-chart-daed').getContext("2d");
@@ -348,6 +384,7 @@ $(function() {
 		var modalClickEvent = {
 				'food-modal-btn':function() {
 					foodModal.style.display = "block";
+				
 					
 				},
 				'exer-modal-btn':function() {
@@ -420,7 +457,7 @@ $(function() {
 
 
 
-		/* 년.월.일 셀렉트 박스  */
+		/* 년.월.일 셀렉트 박스 */
 $('.sel').each(function() {
   $(this).children('select').css('display', 'none');
   
@@ -528,7 +565,11 @@ $(document).on('click','.sel__box__options',function() {
 							var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
 							if(close == true) {
 								foodModal.style.display = 'none';
+								$('a[title="Step 1"]').click();
 								 $('a[title="Step 5"]').click();
+									foodPlan =[];
+									exerPlan =[];
+								 
 
 								 
 							}
@@ -540,6 +581,10 @@ $(document).on('click','.sel__box__options',function() {
 							if(close == true) {
 							exerModal.style.display = 'none';
 							$('a[title="Step 1"]').click();
+							 $('a[title="Step 5"]').click();
+								foodPlan =[];
+								exerPlan =[];
+							 
 						
 							
 							}
@@ -551,62 +596,80 @@ $(document).on('click','.sel__box__options',function() {
 				
 		
 		/* 모달 contents */
-//		$('.schedule-date').html(moment().format('L dddd'));
+
+		
 		
 		/* 프락시 패턴를 이용한 이벤트 관리 */
 		var dateClickEvent = {
 		
 			"exer_prev": function() {
-				exerYesterday = moment(exerToday).add(-1, 'day');
-				exerToday = exerYesterday;
-
+				
+				  if($('.schedule-date-exer').text() == fixDate.format('L dddd')) {
+						alert("시작일 이전입니다."); 
+						
+						return false;
+				 }else {
+				
+				 exerYesterDay = exerToday.add(-1,'day'); 
+				 exerToday = exerYesterDay;
+	
 				$('#exer_prev').next().html(exerToday.format('L dddd'));
+				 }
 			},
 			"exer_next": function() {
 			
 				
-				exerTomorrow = moment(exerToday).add(1, 'day');
-				exerToday = exerTomorrow;
-
-				$('#exer_next').prev().html(exerToday.format('L dddd'));
-			
-					for(var i in todayInfo) {
-						if(todayInfo[i].date == exerToday.format('L dddd')) {
-							alert(todayInfo[i].date == exerToday.format('L dddd'));
-// console.log("속성들 " + todayInfo[i].ename);
-// $('.ename').val(todayInfo[i].ename);
-// $('.details').val(todayInfo[i].details);
-// $('.parts').val(todayInfo[i].parts);
-						}
+				exerTomorrow = exerToday.add(1,'day'); 
+				 if(exerEnd.diff(exerTomorrow,'days') >= 0) {
+						
+					 exerToday = exerTomorrow;
+						$('#exer_next').prev().html(exerToday.format('L dddd'));
+					// 값 초기화 및 리스트 호출 함수
+					}else if(exerEnd.diff(exerTomorrow,'days') < 0) {
+						alert("종료일을 초과할 수 없습니다."); 
+						return false;
 					}
 				
+
+
 			
-				var item = {
-						'date':exerToday.format('L dddd'),
-						'ename':$('.ename').val(),
-						'details':$('.details').val(),
-						'parts':$('.parts').val()
-				}
-				if(item.ename != '' && item.details != '' && item.parts !='' ) {
-					todayInfo.push(item);
-					alert(todayInfo[0].date == exerToday.format('L dddd'));
-				}
-				else
-					alert('값이 비었어요.');
-				console.log(todayInfo);
+					
 				$('form :input').val('');
 			},
 			"food_prev": function() {
-				foodYesterday = moment(foodToday).add(-1, 'day');
-				foodToday = foodYesterday;
+				
 
+				
+				
+				  if($('.schedule-date-food').text() == fixDate.format('L dddd')) {
+						alert("시작일 이전입니다."); 
+						
+						return false;
+				 }
+				  else{					
+					 foodYesterDay = foodToday.subtract(1,'day'); 
+					 foodToday = foodYesterDay;
+				 }
+					 
 				$('#food_prev').next().html(foodToday.format('L dddd'));
+// }
+
 			},
 			"food_next": function() {
-				foodTomorrow = moment(foodToday).add(1, 'day');
-				foodToday = foodTomorrow;
+			
+				
+				 foodTomorrow = foodToday.add(1,'day');
 
+				 if(foodEnd.diff(foodTomorrow,'days') >= 0) {
+				
+				 foodToday = foodTomorrow;
 				$('#food_next').prev().html(foodToday.format('L dddd'));
+				// 값 초기화 및 리스트 호출 함수
+				}else if(foodEnd.diff(foodTomorrow,'days') < 0) {
+					alert("종료일을 초과할 수 없습니다."); 
+					return false;
+				}
+					
 			}
 		}
 		
@@ -615,6 +678,7 @@ $(document).on('click','.sel__box__options',function() {
 			
 			
 			if(dateClickEvent.hasOwnProperty(target.id)) {
+
 				dateClickEvent[target.id].call();
 			
 			}
@@ -791,7 +855,7 @@ function setDuration(dateBox,obj) {
 	
 	var startDate;
 	var endDate;
-	/* 전달받은 스팬태그(날짜)객체에다가 시작일을 넣어주자!*/
+	/* 전달받은 스팬태그(날짜)객체에다가 시작일을 넣어주자! */
 	startDate = {
 			year:$(obj).find('.start-date .select-year').val(),
 			month:$(obj).find('.start-date .select-month').val(),
@@ -803,12 +867,30 @@ function setDuration(dateBox,obj) {
 			day:$(obj).find('.end-date .sel__placeholder-day').text()
 	};
 	
-	var momentStart = startDate.year + '-' +startDate.month + '-' + startDate.day;
-	var endStart = endDate.year + '-' +endDate.month + '-' + endDate.day;
-	date = moment(momentStart).format('L dddd');
-	dateBox.html(date);
+
+		const staticDate = startDate.year + '-' +startDate.month + '-' + startDate.day;
+
 	
-	return date;
+	var momentStart = startDate.year + '-' +startDate.month + '-' + startDate.day,
+		momentEnd = endDate.year + '-' +endDate.month + '-' + endDate.day,
+	
+	 	sDate = moment(momentStart).format('L dddd'),
+	 	sCompare = moment(momentStart),
+	 	eCompare = moment(momentEnd), 
+	 	eDate = moment(momentEnd).format('L dddd');
+	const fixStart = moment(staticDate);
+	dateBox.html(sDate);
+	
+	
+	return {
+		absStart:fixStart,
+		momentS:sCompare,
+		momentE:eCompare,
+		start:sDate,
+		end:eDate,
+		comparison:eCompare.diff(sCompare,'days'),
+		lackToday:sCompare.diff(moment(),'days')
+	}
 
 }
 
@@ -821,3 +903,40 @@ function getModalName(name) {
 		return '';
 }
 
+function planner(obj) {
+
+	var list;
+	console.log(obj);
+	if($(obj).closest('button').hasClass('add-food') == true) {
+		list = {
+			name:$('.fname').val(),
+			gram:$('gram').val(),
+			count:$('.fcount').val(),
+			kcal:$('.fkcal').val(),
+			etc:$('.fetc').val(),
+			nutrient:$('input[name="nutrient"]:checked').val(),
+			time:$('input[name=radio]:checked').val(),
+			date:$('.schedule-date-food').text()
+						
+		};
+		foodPlan.push(list);
+		return foodPlan;
+	}
+	else if ($(obj).closest('button').hasClass('exer-food') == true) {
+		list = {
+			name:$('.ename').val(),
+			set:$('.eset').val(),
+			reps:$('.ereps').val(),
+			lb:$('.elb').val(),
+			goal:$('.lb-goal').val(),
+			part:$('.parts').val(),
+			etc:$('.details').val(),
+			date:$('.schedule-date-exer').text()
+		};
+		exerPlan.push(list);
+		return exerPlan;
+	}
+	list = "";
+
+	
+}

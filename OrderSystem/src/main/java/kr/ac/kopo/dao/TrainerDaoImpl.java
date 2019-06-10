@@ -55,5 +55,15 @@ public class TrainerDaoImpl implements TrainerDao {
 	public void grantApproval(String username) {
 			sql.update("trainer.grantApproval", username);
 	}
+	//트레이너티어체크
+	@Override
+	public String tierCheck(String username) {
+		return sql.selectOne("trainer.tierCheck", username);
+	}
+	//트레이너멘티수
+	@Override
+	public int mentiCount(String username) {
+		return sql.selectOne("trainer.mentiCount", username);
+	}
 
 }

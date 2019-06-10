@@ -62,6 +62,7 @@
 							</div>
 							<c:if test="${user != null}">
 								<div class="modal-btn-box">
+								<input type="hidden" value="${item.username}" class="trainer-id">
 									<button class="modal-btn" id="modal-btn">pt신청</button>
 									<button class="details" id="detail-btn">상세보기</button>
 								</div>

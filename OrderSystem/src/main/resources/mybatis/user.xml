@@ -62,8 +62,9 @@
 	</update>
 	
 	<update id="grantDo" parameterType="TrainerProfile">
-		update trainer_profile set trainer_apply = 'Y' where username = #{username}
+		update trainer_profile set trainer_apply = 'Y',tier='bronze' where username = #{username}
 	</update>
+	
 	<!-- 트레이너 거절 -->
 	<update id="grantDel" parameterType="TrainerProfile">
 		update trainer_profile set delete_apply = 'Y' where username = #{username}

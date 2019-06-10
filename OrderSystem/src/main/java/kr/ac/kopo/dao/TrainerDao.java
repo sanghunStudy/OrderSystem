@@ -22,5 +22,9 @@ public interface TrainerDao {
 	basicInformation userDetailView(String username);
 	//승인허가
 	void grantApproval(String username);
+	//트레이너티어체크
+	String tierCheck(String username);
+	//트레이너멘티수
+	int mentiCount(String username);
 
 }

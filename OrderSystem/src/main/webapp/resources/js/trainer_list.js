@@ -27,6 +27,24 @@ function selectUserbI(managerId) {
 		}
 	});
 }
+function checkTrainerTier(trainer_username) {
+	$.ajax({
+		url:"trainer/checkTrainerTier",
+		type:"GET",
+		data:{
+			'username':trainer_username
+		},
+		success:function(data) {
+			console.log(data);
+			if(data == "OK") {
+				alert("해당 트레이너에게 멘티 신청이 가능합니다.");
+				selectUserbI(trainer_username);
+			} else {
+				alert("해당 트레이너의 멘티가 꽉 찼습니다.");
+			}
+		}
+	});
+}
 $(function() {
 	
 	const background = document.querySelector('.background');
@@ -45,7 +63,8 @@ $(function() {
 	
 	$('.apply').click(function() {
 		$('.apply').val(trainer_username);
-		selectUserbI(trainer_username);
+		checkTrainerTier(trainer_username);
+		
 	
 	});
 	var Modal = document.getElementById('modal');
@@ -53,6 +72,7 @@ $(function() {
 	var modalClickEvent = {
 
 		'modal-btn' : function() {
+			
 			Modal.style.display = "block";
 			
 			/* ===== Logic for creating fake Select Boxes ===== */
@@ -140,10 +160,9 @@ $(function() {
 					photoSrc = $(this).parents('.item-box').find('img').attr('src');
 					trainer = $(this).parents('.item-box').find('.username').text();
 					trainerSex = $(this).parents('.item-box').find('.trainer-sex').val();
+					
 					modalClickEvent[target.id].call();
 					
-				
-
 				}
 
 			});

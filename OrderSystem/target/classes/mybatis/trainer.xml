@@ -48,4 +48,14 @@
 	DELETE FROM user_management WHERE username = #{username} AND manager = #{mento}
 </delete>
 
+<!-- 트레이너티어체크 -->
+<select id="tierCheck" resultType="String">
+	select tier from trainer_profile where username = #{username}
+</select>
+
+<!-- 트레이너멘티수 -->
+<select id="mentiCount" resultType="Integer">
+	select count(username) from user_management where manager = #{username} and reading = "Y"
+</select>
+
 </mapper>

@@ -55,5 +55,15 @@ public class TrainerServiceImpl implements TrainerService {
 	public void grantApproval(String username) {
 		dao.grantApproval(username);
 	}
+	//트레이너티어체크
+	@Override
+	public String tierCheck(String username) {
+		return dao.tierCheck(username);
+	}
+	//트레이너멘티수
+	@Override
+	public int mentiCount(String username) {
+		return dao.mentiCount(username);
+	}
 
 }

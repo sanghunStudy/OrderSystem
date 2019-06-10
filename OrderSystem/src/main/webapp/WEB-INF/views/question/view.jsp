@@ -181,20 +181,24 @@ $(document).ready(function(){
 	//댓글삭제ajax
 	$(document).on("click",'.commentDel',function(e){
 		var commentId = $(this).attr("data-code");
-		$.ajax({
-			url:'${pageContext.request.contextPath}/question/commentDel',
-			type:'POST',
-			data:{
-				'qcommentId':commentId
-			},
-			success:function(data){
-				if(data=="success"){
-					commentList();
-				} else{
-					alert("삭제실패");
+		var really = confirm("정말 삭제 하시겠습니까?");
+		if(really == true) {
+			$.ajax({
+				url:'${pageContext.request.contextPath}/question/commentDel',
+				type:'POST',
+				data:{
+					'qcommentId':commentId
+				},
+				success:function(data){
+					if(data=="success"){
+						alert("삭제되었습니다.");
+						commentList();
+					} else{
+						alert("삭제실패");
+					}
 				}
-			}
-		});
+			});
+		}
 	});
 	//포인트 여부확인
 	var pointOX = document.getElementById('pointOX');
@@ -202,6 +206,32 @@ $(document).ready(function(){
 	if(pointGet <= 0){
 		pointOX.style.display="none";
 	}
+	//질문삭제
+	$('.runDelete').click(function(){
+		var commentCount = $('#commentCount').text();
+		if(commentCount > 0) {
+			alert("답변이 작성되어 있을 시 질문글을 삭제할 수 없습니다.");
+			return false;
+		}
+		else {
+			var really = confirm("정말 삭제 하시겠습니까?");
+			if(really == true) {
+				alert("삭제되었습니다.");
+				window.location.href="delete?questionId="+${item.questionId};
+			}
+		}
+	});
+	//질문수정
+	$('.gotoUpdate').click(function() {
+		var commentCount = $('#commentCount').text();
+		if(commentCount > 0) {
+			alert("답변이 작성되어 있을 시 질문글을 수정할 수 없습니다.");
+			return false;
+		}
+		else {
+			window.location.href="update?questionId="+${item.questionId};
+		}
+	});
 });
 </script>
 <script src="https://unpkg.com/vue"></script>
@@ -308,8 +338,8 @@ $(document).ready(function(){
 	<div class="floor_btns">
 		<c:if test="${login==item.id}">
 			<div class="gotoAndRun_btns">
-				<a href="update?questionId=${item.questionId}"><div class="gotoUpdate">수정</div></a>
-				<a href="delete?questionId=${item.questionId}"><div class="runDelete">삭제</div></a>
+				<a><div class="gotoUpdate">수정</div></a>
+				<a><div class="runDelete">삭제</div></a>
 			</div>
 		</c:if>
 		<a href="list"><div class="gotoList">목록으로</div></a>

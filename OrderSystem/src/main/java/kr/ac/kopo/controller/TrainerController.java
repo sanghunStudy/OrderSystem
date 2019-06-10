@@ -89,4 +89,26 @@ public class TrainerController {
 		service.grantApproval(username);
 		return "redirect:waitingForApproval";
 	}
+	//pt신청할 때 해당 트레이너 티어,멘티수로 제한
+	@ResponseBody
+	@RequestMapping(value="trainer/checkTrainerTier", method=RequestMethod.GET)
+	String checkTrainerTier(String username) {
+		
+		String tier = service.tierCheck(username);
+		int menti = service.mentiCount(username);
+		
+		if(tier.equals("bronze")&&menti<=5) {
+			return "OK";
+		} else if(tier.equals("silver")&&menti<=10) {
+			return "OK";
+		} else if(tier.equals("gold")&&menti<=15) {
+			return "OK";
+		} else if(tier.equals("platinum")&&menti<=20) {
+			return "OK";
+		} else if(tier.equals("diamond")&&menti<=25) {
+			return "OK";
+		} else {
+			return "NO";
+		}
+	}
 }

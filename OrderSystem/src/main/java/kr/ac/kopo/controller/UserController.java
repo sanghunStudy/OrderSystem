@@ -45,6 +45,7 @@ import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.UserService;
 import kr.ac.kopo.util.MediaUtils;
+import kr.ac.kopo.util.SearchVO;
 import kr.ac.kopo.util.UploadFileUtils;
 import kr.ac.kopo.util.VerifyRecaptcha;
 
@@ -345,16 +346,22 @@ public class UserController {
 	}
 	//트레이너 신청 리스트
 	@RequestMapping(value="proList")
-	public String proList() {
+	public String proList(SearchVO searchVO, Model model) {
+		searchVO.pageCalculate(service.total(searchVO));
+		
+		List<TrainerProfile> proList = service.proList(searchVO);
+		
+		model.addAttribute("proList", proList);
+		model.addAttribute("searchVO", searchVO);
 		
 		return path + "proList";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/ajaxProList")
-	public Map<String, Object> ajaxProList() {
+	public Map<String, Object> ajaxProList(SearchVO searchVO) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<TrainerProfile> proList = service.proList();
+		List<TrainerProfile> proList = service.proList(searchVO);
 		map.put("proList",proList);
 		
 		return map;

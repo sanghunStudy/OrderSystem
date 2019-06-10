@@ -29,16 +29,33 @@
 	<select id="typeOfExercise" resultType="TypeOfExercise">
 		select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise
 	</select>
-
+	
+	<!-- 트레이너신청 목록 페이징 검색 -->
+	<sql id="includeBoard">
+		<if test="searchKeyword != null and searchKeyword != ''">
+			where apply_num != 0 and (
+			<foreach item="item" index="index" collection="searchTypeArr" separator="or">
+				${item} like CONCAT('%',#{searchKeyword},'%')
+			</foreach>
+			)
+		</if>
+	</sql>
+	<!-- 트레이너신청 목록 토탈 -->
+	<select id="total" resultType="Integer" parameterType="searchVO">
+		select COUNT(*) from trainer_profile
+	<include refid="includeBoard" />
+	</select>
 	<!-- 트레이너 신청 -->
 	<insert id="promotion" parameterType="TrainerProfile">
 		insert into trainer_profile (apply_num, username, name, sex, region ,career, apply_date, up_filename)
 		values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex}, #{region},#{career}, NOW(), #{upFilename})
 	</insert>
+	
 	<!-- 트레이너신청 리스트 -->
 	<select id="proList" resultType="TrainerProfile">
 		select * from trainer_profile where trainer_apply = "N" and delete_apply = "N"
 	</select>
+	
 	<!-- 트레이너 승인 -->
 	<update id="grant" parameterType="TrainerProfile">
 		update user set authority = 'trainer' where username = #{username}

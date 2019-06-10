@@ -8,6 +8,7 @@ import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
+import kr.ac.kopo.util.SearchVO;
 
 public interface UserDao {
 
@@ -49,7 +50,7 @@ public interface UserDao {
 
 	void promotion(TrainerProfile pro);
 
-	List<TrainerProfile> proList();
+	List<TrainerProfile> proList(SearchVO searchVO);
 
 	void grant(TrainerProfile pro);
 
@@ -64,6 +65,8 @@ public interface UserDao {
 	void typeOfExerciseDel(int teNum);
 
 	void grantDel(TrainerProfile pro);
+
+	int total(SearchVO searchVO);
 
 
 

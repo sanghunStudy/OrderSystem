@@ -47,7 +47,7 @@ public interface UserService {
 
 	void promotion(TrainerProfile pro);
 
-	List<TrainerProfile> proList();
+	List<TrainerProfile> proList(SearchVO searchVO);
 
 	void grant(TrainerProfile pro);
 
@@ -62,6 +62,8 @@ public interface UserService {
 	void typeOfExerciseDel(int teNum);
 
 	void grantDel(TrainerProfile pro);
+
+	int total(SearchVO searchVO);
 
 
 }

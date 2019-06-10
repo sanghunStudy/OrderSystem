@@ -20,9 +20,8 @@
 </style>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
-	<div id="container">
+	<div id="wrraper">
 	<h1>트레이너 신청 목록</h1>
-	<div class="wrap">
 	<table border="0">
 	   <thead>
 		<tr id="table_name">
@@ -115,7 +114,6 @@
 		</div> 
 		</tbody>
 	</table>
-	</div>
 </div>
 </body>
 </html>

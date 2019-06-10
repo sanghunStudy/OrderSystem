@@ -13,6 +13,7 @@ import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserVO;
+import kr.ac.kopo.util.SearchVO;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -137,8 +138,8 @@ public class UserDaoImpl implements UserDao {
 	}
 	//트레이너 신청리스트
 	@Override
-	public List<TrainerProfile> proList() {
-		return sql.selectList("user.proList");
+	public List<TrainerProfile> proList(SearchVO searchVO) {
+		return sql.selectList("user.proList", searchVO);
 	}
 	//트레이너 신청 승인
 	@Override
@@ -178,6 +179,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void typeOfExerciseDel(int teNum) {
 		sql.delete("user.typeOfExerciseDel", teNum);
+	}
+	//트레이너 신청 목록 토탈
+	@Override
+	public int total(SearchVO searchVO) {
+		return sql.selectOne("user.total", searchVO);
 	}
 
 	

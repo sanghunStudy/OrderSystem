@@ -162,8 +162,8 @@ public class UserServiceImpl implements UserService {
 	}
 	//트레이너신청 리스트
 	@Override
-	public List<TrainerProfile> proList() {
-		return dao.proList();
+	public List<TrainerProfile> proList(SearchVO searchVO) {
+		return dao.proList(searchVO);
 	}
 	//테리언 신청 승인
 	@Override
@@ -202,6 +202,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void typeOfExerciseDel(int teNum) {
 		dao.typeOfExerciseDel(teNum);
+	}
+// 트레이너 신청 목록 페이징 토탈
+	@Override
+	public int total(SearchVO searchVO) {
+		return dao.total(searchVO);
 	}
 
 

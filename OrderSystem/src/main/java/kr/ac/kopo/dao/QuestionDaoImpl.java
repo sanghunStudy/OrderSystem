@@ -113,4 +113,12 @@ public class QuestionDaoImpl implements QuestionDao {
 		return sql.selectOne("trainer.mentiCount",pointGetUser);
 	}
 
+	@Override
+	public void trainerTierLevelUp(String tier, String pointGetUser) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("id",pointGetUser);
+		map.put("tier", tier);
+		sql.update("question.tierLevelUp",map);
+	}
+
 }

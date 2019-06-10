@@ -102,4 +102,11 @@
 	<select id="trainerCheck" resultType="String">
 		select authority from user where username=#{pointGetUser}
 	</select>
+	
+	<update id="tierLevelUp">
+		update trainer_profile
+		set tier = #{tier}
+		where username = #{id}
+	</update>
+	
 </mapper>

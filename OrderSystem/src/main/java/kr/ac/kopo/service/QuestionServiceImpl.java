@@ -79,11 +79,28 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void pointUp(String pointGetUser,int pointSet) {
 		dao.pointUp(pointGetUser,pointSet);
+		
 		String trainerCheck = dao.trainerCheck(pointGetUser);
-		System.out.println(trainerCheck);
+		
 		if(trainerCheck.equals("trainer")) {
 			int point = dao.userpoint(pointGetUser);
 			int menti = dao.mentiCount(pointGetUser);
+			
+			String tier = "";
+			
+			if(point >= 1000 && menti >= 5) {
+				tier = "silver";
+				dao.trainerTierLevelUp(tier,pointGetUser);
+			} else if(point >= 1500 && menti >= 10) {
+				tier = "gold";
+				dao.trainerTierLevelUp(tier,pointGetUser);
+			} else if(point >= 2000 && menti >= 15) {
+				tier = "platinum";
+				dao.trainerTierLevelUp(tier,pointGetUser);
+			} else if(point >= 1500 && menti >= 20) {
+				tier = "diamond";
+				dao.trainerTierLevelUp(tier,pointGetUser);
+			}
 		}
 		
 	}

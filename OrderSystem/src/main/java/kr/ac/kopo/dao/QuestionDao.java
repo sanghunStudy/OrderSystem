@@ -44,4 +44,6 @@ public interface QuestionDao {
 
 	int mentiCount(String pointGetUser);
 
+	void trainerTierLevelUp(String tier, String pointGetUser);
+
 }

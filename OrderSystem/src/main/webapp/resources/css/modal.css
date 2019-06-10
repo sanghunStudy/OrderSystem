@@ -67,8 +67,8 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 	/* 	padding-top:100px; */
 	left: 50%;
 	top: 50%;
-	width: 710px;
-	height: 930px;
+	width: 610px;
+	height: 900px;
 	overflow: auto;
 	background: #ededed;
 	color: #9b1d85;
@@ -132,18 +132,25 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 }
 
 .contents-container form {
-	margin-top: 30px;
+    height: 575px;
 }
 .contents-form {
-	height : 800px;
-	background : #ffffff;
-	top: 260px;
     position: absolute;
+    top: 250px;
+    height: 630px;
+    width: 550px;
+    display: inline-block;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 35px -16px rgba(0, 0, 0, 0.75);
 }
 .contents-form h2 {
 	color : black;
 	text-align: center;
-	text-family:[NotoSansCJKkr];
+	font-family:'Noto Sans';   
+	font-size: 1.9em;
+    font-weight: 510;
 }
 
 .modals h2 {
@@ -153,29 +160,44 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 /* form starting stylings ------------------------------- */
 .group {
 	position: relative;
-	margin-bottom: 45px;
+    margin-bottom: 2px;
 	font-family: 'BMJUA';
 }
  .group img {
 	position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 10px;
-    top: 27px;
+    width: 40px;
+    height: 40px;
+    left: 30px;
+    margin-top: 3px;
 }
 
-
+.group p{
+    margin-top: 5px;
+	margin-left:20px;
+}
 .contents-container input {
-	font-size: 18px;
-	padding: 15px 10px 15px 5px;
-	display: block;
-	width: 630px;
-	border: solid 1px #757575;
-	border-radius : 50px 50px 50px 50px / 50px 50px 50px 50px ;
+	display:block;
+	font-size: 14px;
+	font-family: 'Noto Sans';
+	font-weight:550;
+    width: 400px;
+    padding-top: 15px;
+    margin: 0 auto;
+	/* border: solid 1px #757575;
+	border-radius : 50px 50px 50px 50px / 50px 50px 50px 50px ; */
+	border: none;
 /* 	background: #f7f7f7; */
     background-image: url("${pageContext.request.contextPath}/resources/images/icon/idicon.png");
 	color: #1b1b1b;
-	font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;
+	/*font-family: 'BMJUA', 'S-CoreDream-4Regular', 'Nanum Gothic', sans-serif;*/
+}
+
+.input-item-box{
+	margin: 0 auto;
+	width: 500px;
+    height: 50px;
+	border: solid 1px #757575;
+	border-radius : 50px 50px 50px 50px / 50px 50px 50px 50px ;
 }
 
 .contents-container input:focus {
@@ -185,11 +207,10 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 /* LABEL ======================================= */
 .contents-container label {
 	color: #9b1d85;
-	font-size: 18px;
-	font-weight: normal;
-/* 	position: absolute; */
+	font-family:'Noto Sans Kr';
+	font-size: 15px;
+    font-weight: 780;
 	pointer-events: none;
-/* 	left: 5px;
 	top: 10px; */
 	transition: 0.2s ease all;
 	-moz-transition: 0.2s ease all;
@@ -232,7 +253,7 @@ input:focus ~ label, input:valid ~ label {
 
 /* active 상태 */
 input:focus ~ .bar:before, input:focus ~ .bar:after {
-	width: 50%;
+	width: 40%;
 }
 
 /* highlight */
@@ -305,7 +326,6 @@ to {
   width: 290px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 36px;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
 }
 
@@ -408,7 +428,7 @@ to {
 
 /*성별 라디오 버튼*/
 .sex-box {
-	margin: auto 0;
+	margin-left:20px;
 }
 .sex-box p {
 	margin-bottom:30px;
@@ -649,10 +669,32 @@ margin-top:80px;
 	
 }
 .filebox{
-position: relative;
-    left: 80px;
-    top: 40px;
+	position: relative;
+    top: -35px;
 }
+.img-icon{
+    width: 142px;
+    height: 142px;
+    border-radius: 50%;
+}
+.filebox p{
+	color: #fff;
+	text-align:center;
+    margin-top: 15px;
+}
+
+#input_file{
+	display:none;
+}
+
+.photo-img{
+	position: absolute;
+    left: 100px;
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
 .filebox .upload-thumb-wrap {
     display: inline-block;
    /*  width: 61px; */

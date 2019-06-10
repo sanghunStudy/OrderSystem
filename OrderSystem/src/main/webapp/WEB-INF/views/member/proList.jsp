@@ -20,7 +20,7 @@
 </style>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
-	<div id="wrraper">
+	<div id="wrapper">
 	<h1>트레이너 신청 목록</h1>
 	<table border="0">
 	   <thead>

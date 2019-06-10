@@ -23,7 +23,8 @@ th, td, .upload-display {
     border-bottom: 1px solid #dfdfdf;
 }
 
-#container {
+
+#wrapper {
     width: 1024px;
     height: 800px;
     margin: 0 auto;

@@ -23,26 +23,20 @@
 
 <script>
 
-	$(document)
-			.ready(
-					function() {
-						var fileTarget = $('.filebox .upload-hidden');
-
-						fileTarget.on('change', function() {
-							if (window.FileReader) {
-								// 파일명 추출
-								var filename = $(this)[0].files[0].name;
-							}
-
-							else {
-								// Old IE 파일명 추출
-								var filename = $(this).val().split('/').pop()
-										.split('\\').pop();
-							}
-							;
-
-							$(this).siblings('.upload-name').val(filename);
-						});
+	$(document).ready(function() {
+		//var fileTarget = $('.filebox .upload-hidden');
+		
+		$(".upload-hidden").on('change', function() {
+			if (window.FileReader) {
+					// 파일명 추출
+					var filename = $(this)[0].files[0].name;
+			}else {
+				// Old IE 파일명 추출
+					var filename = $(this).val().split('/').pop().split('\\').pop();
+			};
+			sendFile(filename);
+			$(this).siblings('.upload-name').val(filename);
+		});
 
 						//preview image 
 						var imgTarget = $('.preview-image .upload-hidden');
@@ -169,13 +163,15 @@
 		<div class="modal-container">
 			<div class="modal-header">
 				<div class="filebox bs3-primary preview-image">
-
-					<%--   <img src="${pageContext.request.contextPath}/resources/images/icon/photo.png">  --%>
-					<label for="input_file" class="labelImg"></label>
-					<!-- <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
-					<input type="file" id="input_file" class="upload-hidden" name="uploadFile"> -->
-				</div>
+				<img src="${pageContext.request.contextPath}/resources/images/icon/photo.png" class="photo-img">
+				<a href="javascript:UploadTest()"><img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png" class="img-icon"></a>
+				<input type="text" id="thum">
 				<p>나를 표현해 보세요</p>
+					<%-- <img src="${pageContext.request.contextPath}/resources/images/icon/photo.png">
+					<label for="input_file" class="labelImg"></label>
+					 <input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
+					<input type="file" id="input_file" class="upload-hidden" name="uploadFile">  --%>
+				</div>
 			</div>
 			<div class="contents-container">
 				<div class="contents-form">
@@ -184,19 +180,23 @@
 						enctype="multipart/form-data">
 						<script th:inline="javascript">
 							function sendFile(file, el) {
+								console.log($("#input_file")[0].files[0]);
 								var form_data = new FormData();
-								form_data.append('file', file);
-								$
-										.ajax({
-											data : form_data,
+								form_data.append('file', $("#input_file")[0].files[0]);
+									$.ajax({
+											data :form_data,
+											dataType:"text",
 											type : "POST",
-											url : '/promotion',
-											cache : false,
+											url : '${pageContext.request.contextPath}/Routine//sample/upload/uploadAjax',
+											//cache : false,
 											contentType : false,
 											enctype : 'multipart/form-data',
 											processData : false,
 											success : function(data) {
+												console.log(data);
 												if (checkImageType(data)) {
+													
+													$(".img-icon").attr("src","${pageContext.request.contextPath}/upload"+data);
 													str = "<div class='bc'>"
 															+ "<a href='/sample/upload/displayFile?fileName="
 															+ getImageLink(data)
@@ -255,41 +255,56 @@
 								return front + end;
 
 							}//getImageLink
+							
+							function UploadTest(){
+							$("#input_file").click();
+							
+							}
 						</script>
+						<input type="file" id="input_file" class="upload-hidden" name="uploadFile">						
+						<%--
 						<label for="input_file">파일 선택</label>
 						<input type="hidden" id="thum" value="default" name="thumbnail">
 						<input class="upload-name" value="파일선택" disabled="disabled" style="width: 200px;">
 						<input type="file" id="input_file" class="upload-hidden" name="uploadFile">
 						<input type="hidden" value="" class="gender_value" name="sex">
-						<%-- <div class="group">
-						<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
-						 <label class="only-modal">아이디</label>
-						<input type="text" name="username" ><span class="highlight"></span>
-						<span class="bar"></span>
-					</div> --%>
+						 --%>
 						<div class="group">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
-							<label class="only-modal">이름</label> <input type="text"
-								name="name"> <span class="highlight"></span> <span
-								class="bar"></span>
+							<p><label class="only-modal">아이디</label></p>
+							<div class="input-item-box">
+								<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
+								<input type="text" value="${username}" name="username"><span class="highlight"></span>
+								<span class="bar"></span>
+							</div>
 						</div>
 						<div class="group">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
-							<label class="only-modal">지역</label> <input type="text"
-								name="region"> <span class="highlight"></span> <span
-								class="bar"></span>
+							<p><label class="only-modal">이름</label></p>
+							<div class="input-item-box">
+								<img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
+								<input type="text" name="name"> <span class="highlight"></span> 
+								<span class="bar"></span>
+							</div>
 						</div>
 						<div class="group">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
-							<label class="only-modal">경력</label> <input type="text"
-								name="career"> <span class="highlight"></span> <span
-								class="bar"></span>
+							<p><label class="only-modal">지역</label></p>
+							<div class="input-item-box">
+								<img src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
+								<input type="text" name="region"> <span class="highlight"></span> 
+								<span class="bar"></span>
+							</div>
 						</div>
 						<div class="group">
-							<label class="only-modal">성별</label>
+							 <p><label class="only-modal">경력</label></p>
+							 <div class="input-item-box">
+								 <img src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
+								 <input type="text" name="career"> 
+								 <span class="highlight"></span> 
+								 <span class="bar"></span>
+							 </div>
+						</div>
+						<div class="group">
+							<p><label class="only-modal">성별</label></p>
+							<input type="hidden" class="gender_value" name="sex" value="남자">
 							<div class="sex-box">
 								<div class="background">
 									<span class="male gender">남자</span>
@@ -300,6 +315,15 @@
 								</div>
 							</div>
 						</div>
+						<ul class="list-inline">
+						<li><button type="submit" id="btnSubmit" class="modal-btn-collection apply">
+								<span>신청</span>
+							</button></li>
+						<!--	<li><button type="button" id="btnSubmit"
+								onclick="getThumbnail()" class="modal-btn-collection apply">
+								<span>신청</span>
+							</button></li> -->
+						</ul>
 					</form>
 					 <script>
 						function getThumbnail() {
@@ -315,12 +339,6 @@
 
 						}
 					</script> 
-					<ul class="list-inline">
-						<li><button type="button" id="btnSubmit"
-								onclick="getThumbnail()" class="modal-btn-collection apply">
-								<span>신청</span>
-							</button></li>
-					</ul>
 				</div>
 			</div>
 		</div>

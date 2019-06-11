@@ -34,18 +34,22 @@
         			myTierPoint = item;
         			nextTierPoint = item +500;
         		}
-        		if(nextTierPoint == item){
+        		if(myPoint >= 2500){
+        			console.log("test");
+        			$(".progress-wrap p").html("최고 등급입니다.");
+        		}else if(nextTierPoint == item){
+        			console.log(nextTierPoint);
         			nextTierImg = index;
         			$(".progress-wrap img").attr("src","${pageContext.request.contextPath}/resources/images/grade/"+nextTierImg+"-tier-bg-none.png")
         			$(".progress-wrap p").html(nextTierImg);
+        			myPercent = (myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100;
+              		progress(myPercent);
         		}
 //         		console.log(index + "" + item);
         	});
         	
-        	console.log("myTierPoint" + myTierPoint + "nextTierPoint" + nextTierPoint);
 
-			myPercent = (myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100;
-      		progress(myPercent);
+			
         	var obj = document.updateFrm;
             $(".update-submit").click(function() {
             	var currentPw = $(".current-password").val();
@@ -158,7 +162,7 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 				  </ul>
 				  <div class="progress-bar"></div>
 				</div>
-				<img src="">
+				<img src="${pageContext.request.contextPath}/resources/images/grade/${item.tier}-tier-bg-none.png">
 				<p></p>
 			</div>
 		</div>

@@ -12,56 +12,39 @@
   <script>
   var myTier = '${item.tier}';
   var myPoint = '${item.point}';
-  var nextTierPoint =1000;
-  var myTierPoint = 0;
-  var myPercent = 0;
-  var obj = 0;
-  
-  
-const array = Array(Array());
-	
-	array[0][0] = obj = {"bronze":500};
-	array[0][1] = obj = {"silver":1000};
-	array[0][2] = obj = {"gold":1500};
-	array[0][3] = obj = {"platinum":2000};
-	array[0][4] = obj = {"diamond":2500};
-	
-
-
-//   var map1 = new Map();
-// var items;  
-//   map1.set("bronze",500);
-//   map1.set("silver",1000);
-//   map1.set("gold",1500);
-//   map1.set("platinum",2000);
-//   map1.set("diamond",2500);
+  var nextTierImg; //내 다음티어
+  var nextTierPoint = 0;//내 티어의 다음 티어를 구해서 포인트 넣어줘야됨
+  var myTierPoint = 0;//내 티어의 기준 포인트
+  var myPercent = 0;//다음 승급까지의 내 퍼센트
+  var map1 = new Map();
+  var items;
+  map1.set("unranked",0);
+  map1.set("bronze",500);
+  map1.set("silver",1000);
+  map1.set("gold",1500);
+  map1.set("platinum",2000);
+  map1.set("diamond",2500);
 
   //현포 / 다음단계포인트 * 100
   				
         $(document).ready(function() {
-        	console.log(array);
         	
-//         	for(var i=0; i<array.length; i++){
-//         			console.log(array[i]);
-//         		if(myTier == array[i]){
-//         			console.log(">>>>>>>>>>"+array[i]);
-//         			for(var j=0; j<array[i].length; j++){
-//         				console.log(array[i][j]);
-//         			}	
-//         		}
-        		
-//         	}
+        	map1.forEach(function(item,index,map){
+        		if(myTier == index){
+        			myTierPoint = item;
+        			nextTierPoint = item +500;
+        		}
+        		if(nextTierPoint == item){
+        			nextTierImg = index;
+        			$(".progress-wrap img").attr("src","${pageContext.request.contextPath}/resources/images/grade/"+nextTierImg+"-tier-bg-none.png")
+        			$(".progress-wrap p").html(nextTierImg);
+        		}
+//         		console.log(index + "" + item);
+        	});
         	
-//         	for(var item in tierGrade){
-//         		if(myTier == item){
-//         			myTierPoint = tierGrade[item];
-//         			console.log("tierGrade[item] "+tierGrade[item]);
-//         			console.log("next tierGrade[item] "+tierGrade[item])
-//         		}
-//         		console.log("item = " + item);
-//         	}
+        	console.log("myTierPoint" + myTierPoint + "nextTierPoint" + nextTierPoint);
+
 			myPercent = (myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100;
-//       		console.log((myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100);
       		progress(myPercent);
         	var obj = document.updateFrm;
             $(".update-submit").click(function() {
@@ -157,13 +140,15 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 	<form action="update" method="post" name="updateFrm" class="update-frm">
 		<div class="update-left-box">
 			<div class="tier-box">
-				<img src="${pageContext.request.contextPath}/resources/images/grade/chalinger-tier-bg-none.png">
+			<h4>Current Tier</h4>
+			<img src="${pageContext.request.contextPath}/resources/images/grade/${item.tier}-tier-bg-none.png">
+<%-- 				<img src="${pageContext.request.contextPath}/resources/images/grade/chalinger-tier-bg-none.png"> --%>
 			</div>
 			<div class="tier-info-box">
-				<p>CHALINGER</p>
+				<p>${item.tier}</p>
 			</div>
 			<div class="progress-wrap">
-				<h4>Next Grade</h4>
+				<h4>Next Tier</h4>
 				<div class="progress-container">
 				  <ul>
 				    <li></li>
@@ -173,6 +158,8 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 				  </ul>
 				  <div class="progress-bar"></div>
 				</div>
+				<img src="">
+				<p></p>
 			</div>
 		</div>
 		<div class="update-right-box">

@@ -4,7 +4,7 @@
 <mapper namespace="myinfor">
 
 <select id="userProfile" resultType="UserVO">
-select u.username,u.authority,count(ub.username) as ubChk from user u join user_basic_information ub on u.username = #{id} and u.username = ub.username;
+select u.username,u.authority,tier,point,count(ub.username) as ubChk from user u join user_basic_information ub on u.username = #{id} and u.username = ub.username;
 </select>
 
 <select id="myWriting" resultType="Question">

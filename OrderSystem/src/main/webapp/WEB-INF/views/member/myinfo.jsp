@@ -53,11 +53,11 @@
 
 					<div class="tier-contents contents-box">
 						<div class="tier-box">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/chalinger-tier.png">
+						<img src="${pageContext.request.contextPath}/resources/images/grade/${userProfile.tier}-tier-bg-none.png">
+<%-- 							<img src="${pageContext.request.contextPath}/resources/images/chalinger-tier.png"> --%>
 						</div>
 						<div class="tier-info-box">
-							<p>CHALINGER</p>
+							<p>${userProfile.tier}</p>
 						</div>
 					</div>
 				</div>

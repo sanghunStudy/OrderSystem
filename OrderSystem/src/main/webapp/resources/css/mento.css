@@ -462,7 +462,7 @@ input:focus ~ label, input:valid ~ label {
 
 /* active 상태 */
 input:focus ~ .bar:before, input:focus ~ .bar:after {
-	width: 50%;
+	width: 60%;
 }
 
 /* highlight */

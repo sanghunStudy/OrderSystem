@@ -8,7 +8,7 @@
 <!-- <link -->
 <!-- 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" -->
 <!-- 	rel="stylesheet"> -->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 <script src="${pageContext.request.contextPath }/resources/js/modal.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal.css">
@@ -159,7 +159,7 @@
 <body>
 	<div class="modal" id="modal">
 		<div class="modal-container">
-			<div class="modal-header">
+			<div class="modal-applyheader">
 				<div class="filebox bs3-primary preview-image">
 				<img src="${pageContext.request.contextPath}/resources/images/icon/photo.png" class="photo-img">
 				<a href="javascript:UploadTest()"><img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png" class="img-icon"></a>

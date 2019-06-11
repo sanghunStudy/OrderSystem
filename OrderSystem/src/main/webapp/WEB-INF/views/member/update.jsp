@@ -136,6 +136,7 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 
 </style>
 </head>
+<%@ include file="../gnb/sidebar.jsp"%>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
 <div class="update-wrap">

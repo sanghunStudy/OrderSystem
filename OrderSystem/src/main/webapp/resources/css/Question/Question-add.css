@@ -35,6 +35,7 @@ body{background:#303030;text-decoration:none;}
 	height:40px;
 	background:#282828;
 	border:0.1px solid gray;
+	color:#fff;
 }
 .naming-box input {
 	
@@ -117,12 +118,12 @@ body{background:#303030;text-decoration:none;}
 	line-height:50px;
 	vertical-align:meddle;
 }
-.pointExplanation {
+#pointExplanation {
 	width:750px;
 	height:38px;
 	background:none;
-	color:#bbbbbb;
 	border:0px;
+	color:#969696;
 }
 .buttons {
 	width:900px;
@@ -150,6 +151,7 @@ body{background:#303030;text-decoration:none;}
 	color:#fff;
 	text-decoration:none;
 }
+/* 썸머노트에디터 css */
 .note-editable {
 	background-color: #282828 !important;
 	color: white !important;

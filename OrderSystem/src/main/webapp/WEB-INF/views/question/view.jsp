@@ -135,6 +135,7 @@ $(document).ready(function(){
 				$.each(data,function(key,val){
 					col += '<div class="coca" data-code="'+ val.qcommentId +'"><div class="cola">';
 					col += selectionCheck(val.selectionCheck);
+					col += '<img src="${pageContext.request.contextPath}/resources/images/grade-border/'+ val.tier +'-tier-border.png" class="tierborderStart" alt="'+ val.tier +'">';
 					col += '<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">';
 					col += '<div class="combo"><span>'+val.id+' &emsp;</span><span>'+val.qcommentDate+'</span></div>';
 					col += updateCheck(val.id,val.qcommentId,val.qcommentContent,val.selectionCheck);

@@ -52,7 +52,7 @@
 			} else if(summernoteVal == null || summernoteVal == "") {
 				alert("내용을 입력하세요");
 			} else if(pointInfo == 0) {
-				alert("포인트설정 없이 답글을 채택하면 본인의 포인트차감없이\n답글이 채택된 에게 10포인트를 드립니다");
+				alert("포인트설정 없이 답글을 채택하면 본인의 포인트차감없이\n답글이 채택된 분에게 10포인트를 드립니다");
 				$("#questionForm").submit();
 			} else if(pointInfo != null || pointInfo != 0){
 				$.ajax({
@@ -174,7 +174,7 @@
 					<span>포인트 설정</span>
 				</button>
 			</div>
-			<div class="point-input"><div id="pointExplanation">채택한 답변자에게 추가 포인트를 드립니다</div></div>
+			<div class="point-input"><div id="pointExplanation"><span>채택한 답변자에게 추가 포인트를 드립니다</span></div></div>
 			<input type="hidden" name="pointSet" id="pointSet" value="0">
 		</div>
 		<div>

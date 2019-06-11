@@ -50,7 +50,7 @@
 
 <!-- 트레이너티어체크 -->
 <select id="tierCheck" resultType="String">
-	select tier from trainer_profile where username = #{username}
+	select tier from user where username = #{username}
 </select>
 
 <!-- 트레이너멘티수 -->

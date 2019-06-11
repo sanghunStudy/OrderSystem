@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.Question;
 import kr.ac.kopo.model.QuestionComment;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Repository
@@ -119,6 +120,11 @@ public class QuestionDaoImpl implements QuestionDao {
 		map.put("id",pointGetUser);
 		map.put("tier", tier);
 		sql.update("question.tierLevelUp",map);
+	}
+
+	@Override
+	public List<UserVO> tierCheck() {
+		return sql.selectList("question.tierCheck");
 	}
 
 }

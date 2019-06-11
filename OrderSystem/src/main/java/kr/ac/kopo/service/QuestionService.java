@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.ac.kopo.model.Question;
 import kr.ac.kopo.model.QuestionComment;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.util.SearchVO;
 
 public interface QuestionService {
@@ -39,5 +40,7 @@ public interface QuestionService {
 	int userpoint(String username);
 
 	void pointDown(String pointLoseUser, int pointSet);
+
+	List<UserVO> tierCheck();
 
 }

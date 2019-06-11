@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.dao.QuestionDao;
 import kr.ac.kopo.model.Question;
 import kr.ac.kopo.model.QuestionComment;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.util.SearchVO;
 
 @Service
@@ -118,6 +119,11 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void pointDown(String pointLoseUser, int pointSet) {
 		dao.pointLoseUser(pointLoseUser,pointSet);
+	}
+
+	@Override
+	public List<UserVO> tierCheck() {
+		return dao.tierCheck();
 	}
 
 }

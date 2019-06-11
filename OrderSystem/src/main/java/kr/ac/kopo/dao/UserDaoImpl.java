@@ -146,6 +146,7 @@ public class UserDaoImpl implements UserDao {
 	public void grant(TrainerProfile pro) {
 		sql.update("user.grant", pro);
 		sql.update("user.grantDo", pro);
+		sql.update("question.startTier",pro);
 	}
 	//트레이너 신청 거절
 	@Override

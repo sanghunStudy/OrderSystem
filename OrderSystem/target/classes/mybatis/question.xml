@@ -104,9 +104,19 @@
 	</select>
 	
 	<update id="tierLevelUp">
-		update trainer_profile
+		update user
 		set tier = #{tier}
 		where username = #{id}
 	</update>
+	
+	<update id="startTier" parameterType="TrainerProfile">
+		update user
+		set tier = "bronze"
+		where username = #{username}
+	</update>
+	
+	<select id="tierCheck" resultType="UserVO">
+		select username,point,tier from user
+	</select>
 	
 </mapper>

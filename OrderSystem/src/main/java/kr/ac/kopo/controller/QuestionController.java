@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.model.Question;
 import kr.ac.kopo.model.QuestionComment;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.NoticeComment;
 import kr.ac.kopo.service.QuestionService;
 import kr.ac.kopo.util.MediaUtils;
@@ -60,16 +61,13 @@ public class QuestionController {
 		}
 		
 		List<Question> list = service.list(searchVO);
-//		for(int i=0; i<list.size(); i++) {
-//			System.out.println(list.get(i).getMenuContent()+"<<<list.get(i).getMenuContent()");
-//			if(list.get(i).getMenuContent().contains("img")) {
-//				list.add(i,setimgChk)
-//			}
-//				
-//		}
+		
 		for(int i=0; i < list.size(); i++) {
 			list.get(i).setQuestionName(list.get(i).getQuestionName().replaceAll("<[^>]*>",""));
 		}
+		
+		
+		
 		model.addAttribute("list", list);
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("login",login);
@@ -124,8 +122,11 @@ public class QuestionController {
 	String view(Model model, int questionId, HttpSession session) {
 		service.views(questionId);
 		Question item = service.item(questionId);
+		
 		item.setQuestionName(item.getQuestionName().replaceAll("<[^>]*>",""));
+		
 		List<QuestionComment> QComment = service.commentList(questionId);
+		
 		String login = (String)session.getAttribute("user");
 		if(login==null) {
 			login = (String)session.getAttribute("trainer");
@@ -138,10 +139,12 @@ public class QuestionController {
 			QComment.get(i).setQcommentContent(QComment.get(i).getQcommentContent().replaceAll("<[^>]*>",""));
 			System.out.println(QComment.get(i).getQcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
 		}
+//		List<UserVO> tier = service.tierCheck();
 		System.out.println(item.getPointSet());
 		model.addAttribute("item", item);
 		model.addAttribute("QCommentList",QComment);
 		model.addAttribute("login", login);
+//		model.addAttribute("tier",tier);
 		
 		return path + "view";
 	}

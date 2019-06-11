@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.ac.kopo.model.Question;
 import kr.ac.kopo.model.QuestionComment;
+import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.util.SearchVO;
 
 public interface QuestionDao {
@@ -45,5 +46,7 @@ public interface QuestionDao {
 	int mentiCount(String pointGetUser);
 
 	void trainerTierLevelUp(String tier, String pointGetUser);
+
+	List<UserVO> tierCheck();
 
 }

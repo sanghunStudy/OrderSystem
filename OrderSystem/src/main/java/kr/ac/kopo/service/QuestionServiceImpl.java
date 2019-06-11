@@ -54,6 +54,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public void commentAdd(QuestionComment qComment) {
+		String username = qComment.getId();
+		String tier = dao.tierCheck(username);
+		qComment.setTier(tier);
 		dao.commentAdd(qComment);
 	}
 
@@ -119,11 +122,6 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void pointDown(String pointLoseUser, int pointSet) {
 		dao.pointLoseUser(pointLoseUser,pointSet);
-	}
-
-	@Override
-	public List<UserVO> tierCheck() {
-		return dao.tierCheck();
 	}
 
 }

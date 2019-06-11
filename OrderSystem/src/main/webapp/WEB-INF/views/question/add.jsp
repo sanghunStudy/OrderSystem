@@ -174,7 +174,7 @@
 					<span>포인트 설정</span>
 				</button>
 			</div>
-			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
+			<div class="point-input"><div id="pointExplanation">채택한 답변자에게 추가 포인트를 드립니다</div></div>
 			<input type="hidden" name="pointSet" id="pointSet" value="0">
 		</div>
 		<div>

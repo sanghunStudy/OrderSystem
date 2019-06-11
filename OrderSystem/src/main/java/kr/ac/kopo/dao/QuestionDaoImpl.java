@@ -123,8 +123,8 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public List<UserVO> tierCheck() {
-		return sql.selectList("question.tierCheck");
+	public String tierCheck(String username) {
+		return sql.selectOne("question.tierCheck",username);
 	}
 
 }

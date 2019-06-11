@@ -49,8 +49,8 @@
 	
 	<insert id="commentAdd" parameterType="QComment">
 		insert into question_comment
-		(id,question_id,qcomment_content,qcomment_date)
-		values(#{id},#{questionId},#{qcommentContent},NOW())
+		(id,question_id,qcomment_content,qcomment_date,tier)
+		values(#{id},#{questionId},#{qcommentContent},NOW(),#{tier})
 	</insert>
 	
 	<delete id="commentDel">
@@ -115,8 +115,8 @@
 		where username = #{username}
 	</update>
 	
-	<select id="tierCheck" resultType="UserVO">
-		select username,point,tier from user
+	<select id="tierCheck" resultType="String">
+		select tier from user where username = #{username}
 	</select>
 	
 </mapper>

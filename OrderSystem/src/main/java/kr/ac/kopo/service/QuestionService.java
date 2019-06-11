@@ -41,6 +41,4 @@ public interface QuestionService {
 
 	void pointDown(String pointLoseUser, int pointSet);
 
-	List<UserVO> tierCheck();
-
 }

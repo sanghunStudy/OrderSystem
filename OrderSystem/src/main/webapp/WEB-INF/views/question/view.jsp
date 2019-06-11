@@ -232,6 +232,13 @@ $(document).ready(function(){
 			window.location.href="update?questionId="+${item.questionId};
 		}
 	});
+	
+	var commentLength = $('.tierborderStart').length;
+	for(var i=0; i < commentLength; i++) {
+		var writeDayTiers = $('.tierborderStart:eq('+i+')').attr("alt");
+		$('.tierborderStart:eq('+i+')').attr("src","${pageContext.request.contextPath}/resources/images/grade-border/"+writeDayTiers+"-tier-border.png");
+	}
+	
 });
 </script>
 <script src="https://unpkg.com/vue"></script>
@@ -308,6 +315,7 @@ $(document).ready(function(){
 						<c:if test="${QCL.selectionCheck==true}">
 							<img src="${pageContext.request.contextPath}/resources/images/icon/checkbox.png" class="check">
 						</c:if>
+						<img src="" class="tierborderStart" alt="${QCL.tier}">
 						<div class="cola">
 						<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
 						<div class="combo"><span>${QCL.id} &emsp;</span><span>${QCL.qcommentDate}</span></div>

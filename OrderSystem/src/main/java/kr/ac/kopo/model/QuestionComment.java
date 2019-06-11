@@ -8,7 +8,14 @@ public class QuestionComment {
 	private int questionId;
 	boolean selectionCheck;
 	private String questionName;
+	String tier;
 	
+	public String getTier() {
+		return tier;
+	}
+	public void setTier(String tier) {
+		this.tier = tier;
+	}
 	public String getQuestionName() {
 		return questionName;
 	}

@@ -125,6 +125,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	font-size:11pt;
 	margin:50px 0 0 0;
 	clear:left;
+	position:relative;
 }
 .cola {
 	font-size:13pt;
@@ -224,7 +225,6 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 }
 .boundaryline {
 	clear:left;
-	margin-top:60px;
 	border:0px;
 }
 .floor_btns {
@@ -280,4 +280,11 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	clear:all;
 	margin-bottom:20px;
 	border:0px;
+}
+.tierborderStart {
+	width:200px;
+	margin-left:5px;
+	position:absolute;
+	top:-25px;
+	z-index:0;
 }

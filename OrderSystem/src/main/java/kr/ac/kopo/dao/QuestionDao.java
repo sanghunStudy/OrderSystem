@@ -47,6 +47,7 @@ public interface QuestionDao {
 
 	void trainerTierLevelUp(String tier, String pointGetUser);
 
-	List<UserVO> tierCheck();
+	String tierCheck(String username);
+	
 
 }

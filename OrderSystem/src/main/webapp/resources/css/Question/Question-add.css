@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0;
     /* font-family:'NanumGothic'; */
     font-family: "Lato", sans-serif;}
-body{background:#201d2e;text-decoration:none;}
+body{background:#303030;text-decoration:none;}
 .container {
     width: 1024px;
     margin: 20px auto 0 auto;
@@ -33,6 +33,11 @@ body{background:#201d2e;text-decoration:none;}
 .naming {
 	width:815px;
 	height:40px;
+	background:#282828;
+	border:0.1px solid gray;
+}
+.naming-box input {
+	
 }
 .char-limit, .char-limit:hover {
 	color:#0692a4;
@@ -43,13 +48,13 @@ body{background:#201d2e;text-decoration:none;}
 	display:none;
 	width:10px;
 	height:10px;
-	background:#272a3d;
+	background:#282828;
 	position:relative;
 }
 .point-box {
 	width:900px;
 	height:50px;
-	background:#272a3d;
+	background:#282828;
 }
 /* .point-setting-complete { */
 /* 	width:90px; */
@@ -112,11 +117,11 @@ body{background:#201d2e;text-decoration:none;}
 	line-height:50px;
 	vertical-align:meddle;
 }
-.point-input input {
+.pointExplanation {
 	width:750px;
 	height:38px;
-	background:#272a3d;
-	color:#717278;
+	background:none;
+	color:#bbbbbb;
 	border:0px;
 }
 .buttons {
@@ -144,6 +149,22 @@ body{background:#201d2e;text-decoration:none;}
 .Go-back:hover {
 	color:#fff;
 	text-decoration:none;
+}
+.note-editable {
+	background-color: #282828 !important;
+	color: white !important;
+}
+.note-toolbar {
+	background-color: #282828 !important;
+}
+.note-btn {
+	background-color: #535353 !important;
+}
+.note-btn i, .note-btn span {
+	color:#fff !important;
+}
+.note-resizebar {
+	background-color: #535353 !important;
 }
 /* 버튼 호버 css */
 .menti-btn {

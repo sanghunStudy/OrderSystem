@@ -139,12 +139,11 @@ public class QuestionController {
 			QComment.get(i).setQcommentContent(QComment.get(i).getQcommentContent().replaceAll("<[^>]*>",""));
 			System.out.println(QComment.get(i).getQcommentContent()+"<<<<<<<<<<<<<<<태그없앤후");
 		}
-//		List<UserVO> tier = service.tierCheck();
+
 		System.out.println(item.getPointSet());
 		model.addAttribute("item", item);
 		model.addAttribute("QCommentList",QComment);
 		model.addAttribute("login", login);
-//		model.addAttribute("tier",tier);
 		
 		return path + "view";
 	}

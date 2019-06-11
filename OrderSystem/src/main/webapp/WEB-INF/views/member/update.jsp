@@ -11,22 +11,24 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
   var myTier = '${item.tier}';
-  var myPoint = '${item.mileage}';
+  var myPoint = '${item.point}';
   var nextTierPoint =1000;
   var myTierPoint = 0;
   var myPercent = 0;
-const array = Array(Array(),Array());
-array[0].push("bronze");
-array[0].push("silver");
-array[0].push("gold");
-array[0].push("platinum");
-array[0].push("diamond");
-array[1].push("500");
-array[1].push("1000");
-array[1].push("1500");
-array[1].push("2000");
-array[1].push("2500");
-  //   var map1 = new Map();
+  var obj = 0;
+  
+  
+const array = Array(Array());
+	
+	array[0][0] = obj = {"bronze":500};
+	array[0][1] = obj = {"silver":1000};
+	array[0][2] = obj = {"gold":1500};
+	array[0][3] = obj = {"platinum":2000};
+	array[0][4] = obj = {"diamond":2500};
+	
+
+
+//   var map1 = new Map();
 // var items;  
 //   map1.set("bronze",500);
 //   map1.set("silver",1000);

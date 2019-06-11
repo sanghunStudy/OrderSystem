@@ -4,7 +4,7 @@ public class UserVO {
 
 	private String username;
 	private String password;
-	private int mileage;
+	private int point;
 	private String authority;
 	private String tier;
 	private int score;
@@ -43,12 +43,11 @@ public class UserVO {
 	public void setRank(float rank) {
 		this.rank = rank;
 	}
-
-	public int getMileage() {
-		return mileage;
+	public int getPoint() {
+		return point;
 	}
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	public String getAuthority() {
 		return authority;

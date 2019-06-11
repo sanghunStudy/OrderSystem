@@ -35,31 +35,8 @@ $(function() {
 			eatToday = eatTomorrow;
 
 			$('#eat_next').prev().html(eatToday.format('L dddd'));
-		},
-		"exer_prev": function() {
-			exerYesterday = moment(exerToday).add(-1, 'day');
-			exerToday = exerYesterday;
-
-			$('#exer_prev').next().html(exerToday.format('L dddd'));
-		},
-		"exer_next": function() {
-			exerTomorrow = moment(exerToday).add(1, 'day');
-			exerToday = exerTomorrow;
-
-			$('#exer_next').prev().html(exerToday.format('L dddd'));
-		},
-		"food_prev": function() {
-			foodYesterday = moment(foodToday).add(-1, 'day');
-			foodToday = foodYesterday;
-
-			$('#food_prev').next().html(foodToday.format('L dddd'));
-		},
-		"food_next": function() {
-			foodTomorrow = moment(foodToday).add(1, 'day');
-			foodToday = foodTomorrow;
-
-			$('#food_next').prev().html(foodToday.format('L dddd'));
 		}
+
 	}
 
 	document.getElementById('toWrapper').addEventListener('click', function(e) {
@@ -73,17 +50,20 @@ $(function() {
 
 	/* 여러개의 체크박스를 가져와 개별 클릭 이벤트 체크 */
 	var subject = $('input[type=checkbox]');
+
 	$(subject).each(function(index, item) {
 		$(item).click(function() {
+		
 			var doneSubject = $(this).parents('tr').find('.to_item').text();
 			var doneContent= $(this).parents('tr').find('.to_item_cotents').text();
 			var kind = $(this).parents('table').attr('class');
-			console.log($(item));
-			var isChecked = $(item).is(':checked');
-			console.log($(item).val());
-			if($(item).closest().hasClass() == 'checkboxes' ) 
-			var doneCheck  = confirm(doneContent + '를 수행하셨습니까?');
 		
+			var isChecked = $(item).is(':checked');
+		
+			if(item.parentNode.classList.contains('checkboxes')){ 
+				var doneCheck  = confirm(doneContent + '를 수행하셨습니까?');
+		
+			}
 			if(doneCheck == true && $(item).is(':checked') == true) {
 			
 				$.ajax({

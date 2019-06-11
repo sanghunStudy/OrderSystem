@@ -48,7 +48,7 @@
 var myManager = '${mentiProfile.username}';
 </script>
 </head>
- <%@ include file="modal.jsp" %>
+
  <%@ include file="../gnb/nav.jsp" %>
  <%@ include file="LastExerciseJournal.jsp" %>
  <%@ include file="../alarm.jsp"%>

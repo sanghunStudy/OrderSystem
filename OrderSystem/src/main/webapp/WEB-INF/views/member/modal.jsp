@@ -5,19 +5,17 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	data-layout-decorate="~{sample/layout/sampleLayout}">
 <head>
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
+<!-- <link -->
+<!-- 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" -->
+<!-- 	rel="stylesheet"> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/modal.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/resources/css/modal.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/icomoon/style.css">
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/images/favicon (1).ico">
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- <link rel="stylesheet" type="text/css" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 

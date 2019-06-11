@@ -722,6 +722,25 @@ $(document).on('click','.sel__box__options',function() {
 			location.href="statistics?name="+ $(this).parents('tr').find('.target-username').text();
 		})
 		
+		$('.save-submit').click(function() {
+			$.ajax({
+//				contentType:"application/json",
+				url:'/kopo/member/writePlan',
+				type:'POST',
+				traditional:true,
+				data:{
+					"plan":plan
+				},
+//				data:JSON.stringify({
+//					"plan":plan
+//				}),
+				success:function(data) {
+					alert('플랜이 저장되었습니다.');
+				}
+				
+			});
+		})
+		
 		// 프로그레스바 애니메이션
 		progressAnime();
 
@@ -949,7 +968,7 @@ function planner(obj) {
 			name:$('.fname').val(),
 			gram:$('.fgram').val(),
 			count:$('.fcount').val(),
-			kcal:parseFloat($('.fkcal').val(),toFixed(1)),
+			kcal:parseFloat($('.fkcal').val()).toFixed(1),
 			etc:$('.fetc').val(),
 			nutrient:$('input[name="nutrient"]:checked').val(),
 			time:$('input[name=radio]:checked').val(),
@@ -966,7 +985,7 @@ function planner(obj) {
 			set:$('.eset').val(),
 			reps:$('.ereps').val(),
 			lb:$('.elb').val(),
-			goal:parseFloat($('.lb-goal').val().toFixed(1)),
+			goal:parseFloat($('.lb-goal').val()).toFixed(1),
 			part:$('.parts').val(),
 			etc:$('.details').val(),
 			date:$('.schedule-date-exer').text()

@@ -2,6 +2,7 @@ package kr.ac.kopo.controller;
 
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session,Ht
 @ResponseBody
 @RequestMapping(value="/done",method = RequestMethod.POST) 
 	private int doneSubject(String subject, String contents,String manager,String kind,HttpSession session) {
-	
+	System.out.println("들옴?");
 	String id = (String)session.getAttribute("user");
 
 	
@@ -169,7 +170,14 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session,Ht
 	
 	return service.getMyMenti(mento);
 }
-
+@ResponseBody
+@RequestMapping(value="/writePlan",method=RequestMethod.POST)
+	private void savePlan(String[] plan) {
+	System.out.println(Arrays.toString(plan));
+		for(int i=0; i<plan.length; i++) {
+			System.out.println(plan[i].toString());
+		}
+}
 
 
 }

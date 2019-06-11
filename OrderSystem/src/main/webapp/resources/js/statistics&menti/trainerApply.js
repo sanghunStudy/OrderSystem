@@ -9,24 +9,28 @@ function proList()
 			
 			$(".pro-list").html("");
 			var tr = '';
-		
+			var defaultImage  ='/kopo/resources/images/icon/default-profile-icon.jpg';
 					for (var i=0; i < res.proList.length;i++) { 
 					
-				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '"></td>';
+//				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="this.src=' + defaultImage +'" class="psa"></td>';
+						tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="defaultImage(this)" class="psa"></td>';						
 				tr += '<td>' + res.proList[i].applyDate + '</td>';
 				tr += '<td class="apply-date">' + res.proList[i].username + '</td>';
 				tr += '<td>' + res.proList[i].name  +'</td>';
 				tr += '<td>' + res.proList[i].sex + '</td>';
-				tr += '<td><input id="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
-				tr += '<td><input id="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].username +');" /></td>';
-				tr += '<td><input id="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].username +');" /></td>';
+				tr += '<td><input class="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
+				tr += '<td><input class="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].username +');" /></td>';
+				tr += '<td><input class="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].username +');" /></td>';
 					
 			};
 			$('.pro-list').html(tr);
 		}
 	});
 }
-
+function defaultImage(obj) {
+	console.log(obj.setAttribute('src','/kopo/resources/images/icon/default-profile-icon.jpg'));
+}
+//onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="psa"
 	/* 트레이너 승인or허가 버튼 이벤트 */
 	function grantDo(code) {
 	
@@ -49,7 +53,7 @@ function proList()
 	
 	function grantDel(code) {
 		$.ajax({
-			type : 'post',
+			type : 'post', 
 			url : path+'/member/grantDel',
 			data : {
 				"username" : code

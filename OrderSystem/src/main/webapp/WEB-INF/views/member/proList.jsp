@@ -41,7 +41,7 @@
 						<td class="upload-display">
 							<c:if test="${item.upFilename != null}">
 							<div class="upload-thumb-wrap">
-							<img src="${pageContext.request.contextPath}/upload/${item.upFilename}">
+							<img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="psa">
  							</div> 
 							</c:if>
  						</td>
@@ -51,10 +51,10 @@
 						<td>${item.sex}</td>	
 						<td><button>상세보기</button></td>
  						<td>
-							<input id="accept" name=username type="button" value="수락" onclick="grantDo();" />
+							<input class="accept" name=username type="button" value="수락" onclick="grantDo();" />
 						</td>
  						<td>
-							<input id="reject" name=username type="button" value="거절" onclick="grantDel();" />
+							<input class="reject" name=username type="button" value="거절" onclick="grantDel();" />
 						</td>
 						
 						

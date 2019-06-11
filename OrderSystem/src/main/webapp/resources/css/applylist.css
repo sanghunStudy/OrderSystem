@@ -12,8 +12,8 @@ h1 {
 table {
     width: 1024px;
     height: auto;
-  /*   border-top: 1px solid white;
-    border-collapse: collapse; */
+   	/*border-top: 1px solid white;*/
+    border-collapse: collapse;
     text-align: center;
     font-family: 'Nanum Gothic';
     margin-top: 100px;
@@ -39,22 +39,27 @@ th, td, .upload-display {
 #table_name {
     background-color: #272a3d;
     height: 80px;
+    border-top: 1px solid white;
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
 
-#info {
-	background-color: #211d2f;
+.info {
+	width: 60px;
+	height: 20px;
+	background-color: #3b60ae;
+	border-radius: 5px;
+	border: none;
 	color: white;
 }
 
-#accept {
+.accept {
 	border: none;
 	background-color: #211d2f;
     color: #82acd8;
 }
 
-#reject {
+.reject {
 	border: none;
 	background-color: #211d2f;
    	color: #d4835e;
@@ -63,7 +68,10 @@ th, td, .upload-display {
 .pro-list tr{
 	height: 80px;
 }
-
+.psa {
+	width:50px;
+	height:50px;
+}
 
 .upload-thumb-wrap {
     display: inline-block;
@@ -81,8 +89,9 @@ th, td, .upload-display {
 
 @media(min-width: 768px) {
     .upload-display {
-        display: inline-block;
+        display: table-cell;
         margin-right: 5px;
+        text-align: -webkit-center;
         margin-bottom: 0;
     }
 }
@@ -100,5 +109,5 @@ th, td, .upload-display {
     display: block;
     max-width: 100%;
     width: 100% \7;
-    height: 80px;
+/*     height: 80px; */
 }

@@ -724,16 +724,16 @@ $(document).on('click','.sel__box__options',function() {
 		
 		$('.save-submit').click(function() {
 			$.ajax({
-//				contentType:"application/json",
+				contentType:"application/json; charset=UTF-8",
 				url:'/kopo/member/writePlan',
 				type:'POST',
 				traditional:true,
-				data:{
-					"plan":plan
-				},
-//				data:JSON.stringify({
+//				data:{
 //					"plan":plan
-//				}),
+//				},
+				data:JSON.stringify({
+					"plan":plan
+				}),
 				success:function(data) {
 					alert('플랜이 저장되었습니다.');
 				}

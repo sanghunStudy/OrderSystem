@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
@@ -103,21 +105,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session,Ht
 //	}
 //	String id = userId;
 //
-//	List<ExerciseJournal> todayExercise = service.todayList(id);
-//	List<ExerciseJournal> monthExercise = service.list(id);
-//	List<ExerciseJournal> weight = service.getWeight(id);
-//	List<ExerciseJournal> avgLb = service.getavgLb(id);
-//	List<BEsave> metabolism = service.getMetabolism(id);
-//	List<ExerciseJournal> overallAvg = service.getOverallAvg(id);
-//	
-//	model.addAttribute("list",monthExercise);
-//	model.addAttribute("todayList",todayExercise);
-//	model.addAttribute("weight",weight);
-//	model.addAttribute("avgLb",avgLb);
-//	model.addAttribute("metabolism",metabolism);
-//	model.addAttribute("overallAvg",overallAvg);
-//	
-//	return "member/statistics";
+
 //}
 
 @RequestMapping(value="/mentiManagement")
@@ -170,14 +158,35 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session,Ht
 	
 	return service.getMyMenti(mento);
 }
+
 @ResponseBody
 @RequestMapping(value="/writePlan",method=RequestMethod.POST)
-	private void savePlan(String[] plan) {
-	System.out.println(Arrays.toString(plan));
-		for(int i=0; i<plan.length; i++) {
-			System.out.println(plan[i].toString());
+	private void savePlan(@RequestBody Map<String,Object> plan)  {
+	System.out.println("plan"+plan.get("plan").toString());
+	System.out.println("plan.size()"+plan.size());
+		for(int i=0; i<plan.size(); i++) {
+			System.out.println(plan.get("plan").toString()+" for 안쪽");
+			String[] planList = plan.get("plan").toString().split(",");
+			for(String item : planList) System.out.println(item+ "<<<<<아이템");
 		}
 }
+
+//@ResponseBody
+//@RequestMapping(value="/writePlan",method=RequestMethod.POST)
+//	private void savePlan(String[] plan) throws JsonProcessingException {
+//	System.out.println(Arrays.toString(plan));
+//	
+//	ObjectMapper mapper = new ObjectMapper();
+//
+//	JSONPObject json = new JSONPObject("JSON.parse", plan);
+//
+//	String jsonStr = mapper.writeValueAsString(json);
+//	System.out.println(jsonStr);
+//
+//		for(int i=0; i<plan.length; i++) {
+//			System.out.println(Arrays.toString(plan[i]));
+//		}
+//}
 
 
 }

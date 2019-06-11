@@ -4,8 +4,9 @@ public class UserVO {
 
 	private String username;
 	private String password;
-	private int point;
+	private int mileage;
 	private String authority;
+	private String tier;
 	private int score;
 	private int menti;
 	private float rank;
@@ -27,6 +28,12 @@ public class UserVO {
 	public int getMenti() {
 		return menti;
 	}
+	public String getTier() {
+		return tier;
+	}
+	public void setTier(String tier) {
+		this.tier = tier;
+	}
 	public void setMenti(int menti) {
 		this.menti = menti;
 	}
@@ -36,11 +43,12 @@ public class UserVO {
 	public void setRank(float rank) {
 		this.rank = rank;
 	}
-	public int getPoint() {
-		return point;
+
+	public int getMileage() {
+		return mileage;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
 	}
 	public String getAuthority() {
 		return authority;

@@ -3,245 +3,244 @@
 
 <mapper namespace="user">
 <!-- 운동종류 삭제 -->
-	<delete id="typeOfExerciseDel">
-		delete from type_of_exercise where te_num = #{teNum}
-	</delete>
-	<!-- 운동종류 수정 -->
-	<update id="typeOfExerciseUpdate" parameterType="TypeOfExercise">
-		update type_of_exercise
-		set te_name = #{teName},
-		te_set = #{teSet},
-		te_reps = #{teReps},
-		te_tool = #{teTool},
-		te_img = #{teImg}
-		where te_num = #{teNum}
-	</update>
-	<!-- 운동종류 하나만 가져오기 -->
-	<select id="typeOfExerciseOne" resultType="TypeOfExercise">
-		select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise where te_num = #{teNum}
-	</select>
-	<!-- 운동종류 입력 -->
-	<insert id="typeOfExerciseAdd" >
-		insert into type_of_exercise (te_name,te_set,te_reps,te_tool,te_img)
-		values (#{teName},#{teSet},#{teReps},#{teTool},#{teImg})
-	</insert>
-	<!-- 운동일지에 뿌려주는 운동리스트 -->
-	<select id="typeOfExercise" resultType="TypeOfExercise">
-		select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise
-	</select>
-	
-	<!-- 트레이너신청 목록 페이징 검색 -->
-	<sql id="includeBoard">
-		<if test="searchKeyword != null and searchKeyword != ''">
-			where apply_num != 0 and (
-			<foreach item="item" index="index" collection="searchTypeArr" separator="or">
-				${item} like CONCAT('%',#{searchKeyword},'%')
-			</foreach>
-			)
-		</if>
-	</sql>
-	<!-- 트레이너신청 목록 토탈 -->
-	<select id="total" resultType="Integer" parameterType="searchVO">
-		select COUNT(*) from trainer_profile where trainer_apply = "N" and delete_apply = "N"
-	<include refid="includeBoard" />
-	</select>
-	<!-- 트레이너 신청 -->
-	<insert id="promotion" parameterType="TrainerProfile">
-		insert into trainer_profile (apply_num, username, name, sex, region ,career, apply_date, up_filename)
-		values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex}, #{region},#{career}, NOW(), #{upFilename})
-	</insert>
-	
-	<!-- 트레이너신청 리스트 -->
-	<select id="proList" resultType="TrainerProfile">
-		select * from trainer_profile where trainer_apply = "N" and delete_apply = "N"
-	</select>
-	
-	<!-- 트레이너 승인 -->
-	<update id="grant" parameterType="TrainerProfile">
-		update user set authority = 'trainer' where username = #{username}
-	</update>
-	
-	<update id="grantDo" parameterType="TrainerProfile">
-		update trainer_profile set trainer_apply = 'Y',tier='bronze' where username = #{username}
-	</update>
-	
-	<!-- 트레이너 거절 -->
-	<update id="grantDel" parameterType="TrainerProfile">
-		update trainer_profile set delete_apply = 'Y' where username = #{username}
-	</update>
-	
-	<select id="select" resultType="UserVO">
-		select * from user where username
-		= #{username}
-	</select>
+   <delete id="typeOfExerciseDel">
+      delete from type_of_exercise where te_num = #{teNum}
+   </delete>
+   <!-- 운동종류 수정 -->
+   <update id="typeOfExerciseUpdate" parameterType="TypeOfExercise">
+      update type_of_exercise
+      set te_name = #{teName},
+      te_set = #{teSet},
+      te_reps = #{teReps},
+      te_tool = #{teTool},
+      te_img = #{teImg}
+      where te_num = #{teNum}
+   </update>
+   <!-- 운동종류 하나만 가져오기 -->
+   <select id="typeOfExerciseOne" resultType="TypeOfExercise">
+      select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise where te_num = #{teNum}
+   </select>
+   <!-- 운동종류 입력 -->
+   <insert id="typeOfExerciseAdd" >
+      insert into type_of_exercise (te_name,te_set,te_reps,te_tool,te_img)
+      values (#{teName},#{teSet},#{teReps},#{teTool},#{teImg})
+   </insert>
+   <!-- 운동일지에 뿌려주는 운동리스트 -->
+   <select id="typeOfExercise" resultType="TypeOfExercise">
+      select te_num,te_name,te_set,te_reps,te_tool,te_img from type_of_exercise
+   </select>
+   
+   <!-- 트레이너신청 목록 페이징 검색 -->
+   <sql id="includeBoard">
+      <if test="searchKeyword != null and searchKeyword != ''">
+         where apply_num != 0 and (
+         <foreach item="item" index="index" collection="searchTypeArr" separator="or">
+            ${item} like CONCAT('%',#{searchKeyword},'%')
+         </foreach>
+         )
+      </if>
+   </sql>
+   <!-- 트레이너신청 목록 토탈 -->
+   <select id="total" resultType="Integer" parameterType="searchVO">
+      select COUNT(*) from trainer_profile where trainer_apply = "N" and delete_apply = "N"
+   <include refid="includeBoard" />
+   </select>
+   <!-- 트레이너 신청 -->
+   <insert id="promotion" parameterType="TrainerProfile">
+      insert into trainer_profile (apply_num, username, name, sex, region ,career, apply_date, up_filename)
+      values((select ifnull(max(b.apply_num) + 1,1) from trainer_profile b),#{username},#{name},#{sex}, #{region},#{career}, NOW(), #{upFilename})
+   </insert>
+   
+   <!-- 트레이너신청 리스트 -->
+   <select id="proList" resultType="TrainerProfile">
+      select * from trainer_profile where trainer_apply = "N" and delete_apply = "N"
+   </select>
+   
+   <!-- 트레이너 승인 -->
+   <update id="grant" parameterType="TrainerProfile">
+      update user set authority = 'trainer' where username = #{username}
+   </update>
+   
+   <update id="grantDo" parameterType="TrainerProfile">
+      update trainer_profile set trainer_apply = 'Y',tier='bronze' where username = #{username}
+   </update>
+   
+   <!-- 트레이너 거절 -->
+   <update id="grantDel" parameterType="TrainerProfile">
+      update trainer_profile set delete_apply = 'Y' where username = #{username}
+   </update>
+   
+   <select id="select" resultType="UserVO">
+      select * from user where username
+      = #{username}
+   </select>
 
-	<select id="login" resultType="UserVO">
-		select username,password,authority from user where
-		username=#{username}
-	</select>
+   <select id="login" resultType="UserVO">
+      select username,password,authority from user where
+      username=#{username}
+   </select>
 
-	<select id="list" resultType="UserVO">
-		select username from user
-	</select>
+   <select id="list" resultType="UserVO">
+      select username from user
+   </select>
 
-	<select id="item" resultType="UserVO">
-		select username,password from user where
-		username=#{username}
-	</select>
+   <select id="item" resultType="UserVO">
+      select username,password,mileage,tier from user where username=#{username};
+   </select>
 
-	<insert id="add" parameterType="UserVO">
-		insert into user(username,
-		password, authority)
-		values(#{username}, #{password},"user")
-	</insert>
+   <insert id="add" parameterType="UserVO">
+      insert into user(username,
+      password, authority)
+      values(#{username}, #{password},"user")
+   </insert>
 
-	<update id="update" parameterType="UserVO">
-	 update user 
-	 set  password=#{password}
-	 where username=#{username}
-	</update>
+   <update id="update" parameterType="UserVO">
+    update user 
+    set  password=#{password}
+    where username=#{username}
+   </update>
 
-	<delete id="delete">
-		delete from user where username=#{username}
-	</delete>
-	<!-- 운동일지 제목 입력 -->
-	<insert id="saveCode">
-		insert into exercise_item (id,Exercise_date,title,userWeight)
-		values(#{id},#{ExerciseDate},#{title},#{userWeight})
-	</insert>
-	<!-- 운동일지 운동 종목 입력 -->
-	<insert id="saveTitle">
-		insert into
-		exercise_title(Exercise_code,Exercise_name)
-		values((select
-		ifnull(max(exercise_code),0) from exercise_item),#{ExerciseName})
-	</insert>
-	<!-- 운동일지 운동 횟수 입력 -->
-	<insert id="saveContents" parameterType="java.util.HashMap">
-		insert into
-		exercise_contents(Exercise_title_code,Exercise_set,Exercise_reps,Exercise_lb)
-		values((select ifnull(max(Exercise_title_code),0) from
-		exercise_title),${ExerciseSet},${ExerciseReps},${ExerciseLb})
-	</insert>
-	<!-- 운동일지 사용자에 맞는 제목 출력 -->
-	<select id="exerciseJournal" resultType="ExerciseJournal">
-		select distinct
-		ei.Exercise_code,ei.exercise_date as start,ei.title, ei.userWeight, et.Exercise_name,
-		ec.Exercise_set, ec.Exercise_reps, ec.Exercise_lb
-		from exercise_item ei, exercise_title et, exercise_contents ec
-		where ei.Exercise_code=et.Exercise_code and et.Exercise_title_code=ec.Exercise_title_code
-		 and id = #{id}
-	</select>
-	<!-- <resultMap type="ExerciseJournal" id="EJMap"> -->
-	<!-- <id property="ExerciseCode" column="Exercise_code"></id> -->
-	<!-- <result property="ExerciseName" column="Exercise_name"/> -->
-	<!-- <collection property="details" ofType="ExerciseContents" javaType="ArrayList"> -->
-	<!-- <result property="ExerciseSet" column="Exercise_set"/> -->
-	<!-- <result property="ExerciseReps" column="Exercise_reps"/> -->
-	<!-- <result property="ExerciseLb" column="Exercise_lb"/> -->
-	<!-- </collection> -->
-	<!-- </resultMap> -->
-
+   <delete id="delete">
+      delete from user where username=#{username}
+   </delete>
+   <!-- 운동일지 제목 입력 -->
+   <insert id="saveCode">
+      insert into exercise_item (id,Exercise_date,title,userWeight)
+      values(#{id},#{ExerciseDate},#{title},#{userWeight})
+   </insert>
+   <!-- 운동일지 운동 종목 입력 -->
+   <insert id="saveTitle">
+      insert into
+      exercise_title(Exercise_code,Exercise_name)
+      values((select
+      ifnull(max(exercise_code),0) from exercise_item),#{ExerciseName})
+   </insert>
+   <!-- 운동일지 운동 횟수 입력 -->
+   <insert id="saveContents" parameterType="java.util.HashMap">
+      insert into
+      exercise_contents(Exercise_title_code,Exercise_set,Exercise_reps,Exercise_lb)
+      values((select ifnull(max(Exercise_title_code),0) from
+      exercise_title),${ExerciseSet},${ExerciseReps},${ExerciseLb})
+   </insert>
+   <!-- 운동일지 사용자에 맞는 제목 출력 -->
+   <select id="exerciseJournal" resultType="ExerciseJournal">
+      select distinct
+      ei.Exercise_code,ei.exercise_date as start,ei.title, ei.userWeight, et.Exercise_name,
+      ec.Exercise_set, ec.Exercise_reps, ec.Exercise_lb
+      from exercise_item ei, exercise_title et, exercise_contents ec
+      where ei.Exercise_code=et.Exercise_code and et.Exercise_title_code=ec.Exercise_title_code
+       and id = #{id}
+   </select>
+   <!-- <resultMap type="ExerciseJournal" id="EJMap"> -->
+   <!-- <id property="ExerciseCode" column="Exercise_code"></id> -->
+   <!-- <result property="ExerciseName" column="Exercise_name"/> -->
+   <!-- <collection property="details" ofType="ExerciseContents" javaType="ArrayList"> -->
+   <!-- <result property="ExerciseSet" column="Exercise_set"/> -->
+   <!-- <result property="ExerciseReps" column="Exercise_reps"/> -->
+   <!-- <result property="ExerciseLb" column="Exercise_lb"/> -->
+   <!-- </collection> -->
+   <!-- </resultMap> -->
 
 
-		<resultMap type="ExerciseContents" id="ExerciseContents">
-		<result property="ExerciseContentsCode"
-			column="Exercise_contents_code" />
-		<result property="ExerciseSet" column="Exercise_set" />
-		<result property="ExerciseReps" column="Exercise_reps" />
-		<result property="ExerciseLb" column="Exercise_lb" />
-	</resultMap>
 
-	<resultMap type="ExerciseJournal" id="EJMapOne">
-		<id property="ExerciseCode" column="Exercise_code"></id>
-		<result property="ExerciseName" column="Exercise_name" />
-		<collection property="details"
-			resultMap="ExerciseContents" />
-	</resultMap>
+      <resultMap type="ExerciseContents" id="ExerciseContents">
+      <result property="ExerciseContentsCode"
+         column="Exercise_contents_code" />
+      <result property="ExerciseSet" column="Exercise_set" />
+      <result property="ExerciseReps" column="Exercise_reps" />
+      <result property="ExerciseLb" column="Exercise_lb" />
+   </resultMap>
 
-	<!-- 운동일지 클릭한 내용 출력 -->
-	<select id="exerciseJournalOne" parameterType="Integer"
-		resultMap="EJMapOne">
-		select
-		et.Exercise_name,ec.Exercise_contents_code,
-		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
-		from exercise_title et
-		join exercise_contents ec
-		on et.Exercise_title_code =
-		ec.Exercise_title_code
-		where et.Exercise_code = #{exerciseCode}	
-	</select>
+   <resultMap type="ExerciseJournal" id="EJMapOne">
+      <id property="ExerciseCode" column="Exercise_code"></id>
+      <result property="ExerciseName" column="Exercise_name" />
+      <collection property="details"
+         resultMap="ExerciseContents" />
+   </resultMap>
 
-	<resultMap type="ExerciseContents" id="ExerciseContentsU">
-		<result property="ExerciseContentsCode"
-			column="Exercise_contents_code" />
-		<result property="ExerciseSet" column="Exercise_set" />
-		<result property="ExerciseReps" column="Exercise_reps" />
-		<result property="ExerciseLb" column="Exercise_lb" />
-	</resultMap>
+   <!-- 운동일지 클릭한 내용 출력 -->
+   <select id="exerciseJournalOne" parameterType="Integer"
+      resultMap="EJMapOne">
+      select
+      et.Exercise_name,ec.Exercise_contents_code,
+      ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+      from exercise_title et
+      join exercise_contents ec
+      on et.Exercise_title_code =
+      ec.Exercise_title_code
+      where et.Exercise_code = #{exerciseCode}   
+   </select>
 
-	<resultMap type="ExerciseJournal" id="EJUMap">
-		<id property="ExerciseCode" column="Exercise_code"></id>
-		<result property="ExerciseName" column="Exercise_name" />
-		<collection property="details"
-			resultMap="ExerciseContentsU" />
-	</resultMap>
-	<select id="exerciseJournalUpdate" resultMap="EJUMap">
-		select
-		et.Exercise_name,ec.Exercise_contents_code,
-		ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
-		from exercise_title et
-		join exercise_contents ec
-		on et.Exercise_title_code =
-		ec.Exercise_title_code
-		where et.Exercise_code = #{exerciseCode}
-	</select>
-	<!-- 수정처리 -->
-	<update id="exerciseJournalUpdateSubmit">
-		update exercise_contents
-		set Exercise_reps =
-		#{ExerciseReps},
-		Exercise_lb = #{ExerciseLb}
-		where
-		Exercise_contents_code = #{ExerciseContentsCode}
-	</update>
+   <resultMap type="ExerciseContents" id="ExerciseContentsU">
+      <result property="ExerciseContentsCode"
+         column="Exercise_contents_code" />
+      <result property="ExerciseSet" column="Exercise_set" />
+      <result property="ExerciseReps" column="Exercise_reps" />
+      <result property="ExerciseLb" column="Exercise_lb" />
+   </resultMap>
 
-	<!-- 운동일지 삭제처리 -->
-	<delete id="exerciseJournalDel">
-		delete from exercise_item where Exercise_code =
-		#{ExerciseCode}
-	</delete>
-<!-- 	기초정보 있나 확인 -->
-	<insert id="basicInformation" parameterType="basicInformation">
-		insert into user_basic_information(username,age,sex,height,weight,drinking,frequency,purpose,job,dictum)
-		value(#{username},#{age},#{sex},#{height},#{weight},#{drinking},#{frequency},#{purpose},#{job},#{dictum})
-	</insert>
-<!-- 	아이디 중복확인 -->
-	<select id="idChk" resultType="Integer">
-		select count(*) from user where username=#{username}
-	</select>
-<!-- 	로그인시 아이디 비번확인 -->
-	<select id="LoginChk" resultType="Integer">
-		select count(*) from user where username=#{username} and password=#{password}
-	</select>
+   <resultMap type="ExerciseJournal" id="EJUMap">
+      <id property="ExerciseCode" column="Exercise_code"></id>
+      <result property="ExerciseName" column="Exercise_name" />
+      <collection property="details"
+         resultMap="ExerciseContentsU" />
+   </resultMap>
+   <select id="exerciseJournalUpdate" resultMap="EJUMap">
+      select
+      et.Exercise_name,ec.Exercise_contents_code,
+      ec.Exercise_set,ec.Exercise_reps,ec.Exercise_lb
+      from exercise_title et
+      join exercise_contents ec
+      on et.Exercise_title_code =
+      ec.Exercise_title_code
+      where et.Exercise_code = #{exerciseCode}
+   </select>
+   <!-- 수정처리 -->
+   <update id="exerciseJournalUpdateSubmit">
+      update exercise_contents
+      set Exercise_reps =
+      #{ExerciseReps},
+      Exercise_lb = #{ExerciseLb}
+      where
+      Exercise_contents_code = #{ExerciseContentsCode}
+   </update>
+
+   <!-- 운동일지 삭제처리 -->
+   <delete id="exerciseJournalDel">
+      delete from exercise_item where Exercise_code =
+      #{ExerciseCode}
+   </delete>
+<!--    기초정보 있나 확인 -->
+   <insert id="basicInformation" parameterType="basicInformation">
+      insert into user_basic_information(username,age,sex,height,weight,drinking,frequency,purpose,job,dictum)
+      value(#{username},#{age},#{sex},#{height},#{weight},#{drinking},#{frequency},#{purpose},#{job},#{dictum})
+   </insert>
+<!--    아이디 중복확인 -->
+   <select id="idChk" resultType="Integer">
+      select count(*) from user where username=#{username}
+   </select>
+<!--    로그인시 아이디 비번확인 -->
+   <select id="LoginChk" resultType="Integer">
+      select count(*) from user where username=#{username} and password=#{password}
+   </select>
 <!-- 트레이너들 랭킹   -->
-	<select id="getRanker" resultType="UserVO">
-		SELECT
-			user.username,point,count(user_management.manager) menti,
-			ROUND(((user.point + count(user_management.manager) * 100) / 100
-			+ (user.score * 10)),1) rank,
-			@RANKT := IF(@LAST > ROUND(((user.point +
-			count(user_management.manager) * 100) / 100 + (user.score * 10)),1),
-			@RANK := @RANK + 1, @RANK) AS ranking
-			,@LAST := ROUND(((user.point + count(user_management.manager) * 100) / 100 +
-			(user.score * 10)),1)
-		FROM 
-			user,user_management,(SELECT @RANK := 1) XX
-		WHERE 
-			authority ='trainer' and user_management.manager = user.username AND
-			user_management.reading = 'Y'
-		GROUP BY user_management.manager
-		ORDER BY ranking DESC,user.score DESC
-		LIMIT 10
-	</select>
+   <select id="getRanker" resultType="UserVO">
+      SELECT
+         user.username,point,count(user_management.manager) menti,
+         ROUND(((user.point + count(user_management.manager) * 100) / 100
+         + (user.score * 10)),1) rank,
+         @RANKT := IF(@LAST > ROUND(((user.point +
+         count(user_management.manager) * 100) / 100 + (user.score * 10)),1),
+         @RANK := @RANK + 1, @RANK) AS ranking
+         ,@LAST := ROUND(((user.point + count(user_management.manager) * 100) / 100 +
+         (user.score * 10)),1)
+      FROM 
+         user,user_management,(SELECT @RANK := 1) XX
+      WHERE 
+         authority ='trainer' and user_management.manager = user.username AND
+         user_management.reading = 'Y'
+      GROUP BY user_management.manager
+      ORDER BY ranking DESC,user.score DESC
+      LIMIT 10
+   </select>
 </mapper>

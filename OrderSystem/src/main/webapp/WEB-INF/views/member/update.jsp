@@ -10,42 +10,57 @@
    <!-- 여기에 스크립트 추가 -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
+  var myTier = '${item.tier}';
+  var myPoint = '${item.mileage}';
+  var nextTierPoint =1000;
+  var myTierPoint = 0;
+  var myPercent = 0;
+const array = Array(Array(),Array());
+array[0].push("bronze");
+array[0].push("silver");
+array[0].push("gold");
+array[0].push("platinum");
+array[0].push("diamond");
+array[1].push("500");
+array[1].push("1000");
+array[1].push("1500");
+array[1].push("2000");
+array[1].push("2500");
+  //   var map1 = new Map();
+// var items;  
+//   map1.set("bronze",500);
+//   map1.set("silver",1000);
+//   map1.set("gold",1500);
+//   map1.set("platinum",2000);
+//   map1.set("diamond",2500);
+
+  //현포 / 다음단계포인트 * 100
+  				
         $(document).ready(function() {
+        	console.log(array);
         	
-        	var Loader = function () {    
-      		  var loader = document.querySelector('.loader-container'),
-      		      meter = document.querySelector('.meter'),
-      		      k, i = 1,
-      		      counter = function () {
-      		        if (i <= 50) {   
-      		          meter.innerHTML = i.toString();
-      		          i++;
-      		        } else {
-      		          window.clearInterval(k);
-      		        }
-      		      };
-
-      			return {
-      		  	init: function (options) {
-      		      options = options || {};
-      		      var time = options.time ? options.time : 0,
-      			        interval = time/100;
-      		      
-      		    	loader.classList.add('run');
-      		      k = window.setInterval(counter, interval); 
-      		      setTimeout(function () {
-//       		      	loader.classList.add('done');
-      		      }, time);
-      		    },
-      		  }
-      		}();
-
-      		Loader.init({
-      		  	// If you have changed the @time in LESS, update this number to the corresponding value. Measured in miliseconds.
-      		  	time: 12000
-      		});
-      		
-      		
+//         	for(var i=0; i<array.length; i++){
+//         			console.log(array[i]);
+//         		if(myTier == array[i]){
+//         			console.log(">>>>>>>>>>"+array[i]);
+//         			for(var j=0; j<array[i].length; j++){
+//         				console.log(array[i][j]);
+//         			}	
+//         		}
+        		
+//         	}
+        	
+//         	for(var item in tierGrade){
+//         		if(myTier == item){
+//         			myTierPoint = tierGrade[item];
+//         			console.log("tierGrade[item] "+tierGrade[item]);
+//         			console.log("next tierGrade[item] "+tierGrade[item])
+//         		}
+//         		console.log("item = " + item);
+//         	}
+			myPercent = (myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100;
+//       		console.log((myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100);
+      		progress(myPercent);
         	var obj = document.updateFrm;
             $(".update-submit").click(function() {
             	var currentPw = $(".current-password").val();
@@ -112,7 +127,16 @@
             });
     	}
     	
-
+    	//프로그레스바
+    	function progress(myPercent){
+    		console.log(myPercent);
+  		  if ($('.progress-bar').width() < 500) {
+	  		  $('.progress-bar').animate({
+	  		    width: "+="+ myPercent*5  +"px"
+	  		  });
+  			}
+    	}
+  		
 </script>
 <style>
 /* 
@@ -136,9 +160,17 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 			<div class="tier-info-box">
 				<p>CHALINGER</p>
 			</div>
-			<div class="loader-container">
-			  <div class="meter">0</div>
-			  <span class="runner"></span>
+			<div class="progress-wrap">
+				<h4>Next Grade</h4>
+				<div class="progress-container">
+				  <ul>
+				    <li></li>
+				    <li></li>
+				    <li></li>
+				    <li></li>
+				  </ul>
+				  <div class="progress-bar"></div>
+				</div>
 			</div>
 		</div>
 		<div class="update-right-box">

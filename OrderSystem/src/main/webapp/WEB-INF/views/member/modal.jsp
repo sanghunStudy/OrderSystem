@@ -268,7 +268,7 @@
 						<input type="hidden" value="" class="gender_value" name="sex">
 						 --%>
 						<div class="group">
-							<p><label class="only-modal">아이디</label></p>
+							<p><label class="only-modal" id="apply-modal">아이디</label></p>
 							<div class="input-item-box">
 								<img src="${pageContext.request.contextPath}/resources/images/icon/idicon.png">
 								<input type="text" value="${user}" name="username" readonly><span class="highlight"></span>
@@ -276,7 +276,7 @@
 							</div>
 						</div>
 						<div class="group">
-							<p><label class="only-modal">이름</label></p>
+							<p><label class="only-modal" id="apply-modal">이름</label></p>
 							<div class="input-item-box">
 								<img src="${pageContext.request.contextPath}/resources/images/icon/nameicon.png">
 								<input type="text" name="name"> <span class="highlight"></span> 
@@ -284,7 +284,7 @@
 							</div>
 						</div>
 						<div class="group">
-							<p><label class="only-modal">지역</label></p>
+							<p><label class="only-modal" id="apply-modal">지역</label></p>
 							<div class="input-item-box">
 								<img src="${pageContext.request.contextPath}/resources/images/icon/regionicon.png">
 								<input type="text" name="region"> <span class="highlight"></span> 
@@ -292,7 +292,7 @@
 							</div>
 						</div>
 						<div class="group">
-							 <p><label class="only-modal">경력</label></p>
+							 <p><label class="only-modal" id="apply-modal">경력</label></p>
 							 <div class="input-item-box">
 								 <img src="${pageContext.request.contextPath}/resources/images/icon/careericon.png">
 								 <input type="text" name="career"> 
@@ -301,7 +301,7 @@
 							 </div>
 						</div>
 						<div class="group">
-							<p><label class="only-modal">성별</label></p>
+							<p><label class="only-modal" id="apply-modal">성별</label></p>
 							<input type="hidden" class="gender_value" name="sex" value="남자">
 							<div class="sex-box">
 								<div class="background">

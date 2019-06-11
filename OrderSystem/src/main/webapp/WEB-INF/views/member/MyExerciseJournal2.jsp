@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<!-- <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <jsp:include page="../gnb/head.jsp" flush="true" />
+<%@ include file="../gnb/sidebar.jsp"%>
 <script src="${pageContext.request.contextPath}/resources/js/inputDatepicker.js"></script>
 <title>운동일지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css">
@@ -231,7 +232,7 @@
 	
 </script>
 </head>
-<%@ include file="../gnb/sidebar.jsp"%>
+
 <body>
 	<div id="myExercise" class="content-container">
 		<h1>MyExerciseJournal</h1>

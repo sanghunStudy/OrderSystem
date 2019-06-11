@@ -5,6 +5,7 @@ package kr.ac.kopo.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sun.org.glassfish.external.statistics.Statistic;
+
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
@@ -40,9 +41,9 @@ AnalysisService service;
 UserService Uservice;
 	
 @RequestMapping(value="/statistics")
-private String statistics(Model model,TrainerProfile pro, HttpSession session) {
-	
-	String id = (String)session.getAttribute("user");
+private String statistics(Model model,TrainerProfile pro, HttpSession session,HttpServletRequest request) {
+
+	String id = request.getParameter("name");
 	TrainerProfile profile =  service.getMentiInfo(id);
 	pro.setUsername(id);
 	
@@ -53,6 +54,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 //	} else {
 //		
 //	}
+
 	
 	
 	
@@ -88,7 +90,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 }
 
 
-//@RequestMapping(value="/statistics2")
+//@RequestMapping(value="/menti-statistics")
 //private String statistics2(String userId, Model model,HttpSession session) {
 //	//String id = (String)session.getAttribute("user");
 //	
@@ -121,7 +123,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 	private String mento(HttpSession session,Model model) {
 	
 	String id = (String)session.getAttribute("trainer");
-	
+	if(id != null) { 
 	List<UserManagement> wfaList = service.waitingForApproval(id); 
 	List<UserVO> ranking = service.getRanker();
 	List<MentiPerformance> MPerformance = service.getMenti(id);
@@ -130,6 +132,8 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session) {
 	model.addAttribute("wfaList",wfaList);
 	
 	return "member/mentiManagement";
+	}
+	else return "index";
 }
 
 @ResponseBody

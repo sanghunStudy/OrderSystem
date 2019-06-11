@@ -13,6 +13,8 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 <script>
+
+	var ChkAuthority = '${sessionScope.trainer}';
 	var url = document.location.href;
 	var curPage = url.substr(url.lastIndexOf('/') + 1);
 	var curUrl = curPage.replace('#', '');
@@ -30,6 +32,12 @@
 			$('.menu-box').toggle('fast');
 		})
 	})
+	
+	function trainerChk() {
+		if (ChkAuthority == '') {
+			alert('트레이너만 이용할 수 있습니다.');
+		}
+	}
 </script>
 </head>
 <body>
@@ -53,7 +61,7 @@
 			<li class="menu-icons"><a href="MyPage"><i
 					class="fas fa-user-cog"></i>
 					<p>내 정보</p></a></li>
-			<li class="menu-icons"><a href="statistics"><i
+			<li class="menu-icons"><a href="statistics?name=${sessionScope.trainer}${sessionScope.user}"><i
 					class="fas fa-chart-bar"></i>
 					<p>운동일지 통계</p></a></li>
 
@@ -63,7 +71,7 @@
 			<li class="menu-icons"><a href="basicInformation"><i
 					class="fas fa-user-edit"></i>
 					<p>설문조사</p></a></li>
-			<li class="menu-icons"><a href="mentiManagement"><i
+			<li class="menu-icons"><a href="mentiManagement" onclick=trainerChk()><i
 					class="fas fa-users"></i>
 					<p>멘티 관리</p></a></li>
 			<li class="menu-icons"><a

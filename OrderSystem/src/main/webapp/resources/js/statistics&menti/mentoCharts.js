@@ -298,7 +298,7 @@ $(function() {
 	    		}
 	    };
 	    
-	    $('.cl-btn-box').on('click','i',function(e) {
+	    document.getElementById('cl-btn-box').addEventListener('click',function(e) {
 	    	var target = e.target || e.srcElement;
 	    	
 	    	if(DateBtnClickEvent.hasOwnProperty(target.id)) {
@@ -647,11 +647,11 @@ $(document).on('click','.sel__box__options',function() {
 				 }
 			},
 			"exer_next": function() {
-			
-				
-				exerTomorrow = exerToday.add(1,'day'); 
+		
+			exerTomorrow = exerToday.add(1,'day'); 
+	
 				 if(exerEnd.diff(exerTomorrow,'days') >= 0) {
-						
+					
 					 exerToday = exerTomorrow;
 						$('#exer_next').prev().html(exerToday.format('L dddd'));
 						$('.cl_copy_exer').html(exerToday.format('L dddd'));
@@ -669,7 +669,6 @@ $(document).on('click','.sel__box__options',function() {
 			},
 			"food_prev": function() {
 				
-
 				
 				
 				  if($('.schedule-date-food').text() == fixDate.format('L dddd')) {
@@ -688,17 +687,18 @@ $(document).on('click','.sel__box__options',function() {
 
 			},
 			"food_next": function() {
-			
+				var foodTomorrow;
 				
 				 foodTomorrow = foodToday.add(1,'day');
 
 				 if(foodEnd.diff(foodTomorrow,'days') >= 0) {
-				
+	
 				 foodToday = foodTomorrow;
 				$('#food_next').prev().html(foodToday.format('L dddd'));
 				$('.cl_copy_food').html(foodToday.format('L dddd'));
 				// 값 초기화 및 리스트 호출 함수
 				}else if(foodEnd.diff(foodTomorrow,'days') < 0) {
+					 foodTomorrow = foodToday.add(-1,'day');
 					alert("종료일을 초과할 수 없습니다."); 
 					return false;
 				}
@@ -717,7 +717,11 @@ $(document).on('click','.sel__box__options',function() {
 			}
 		});
 		
-
+		$('.chart-menti').on('click',function(e) {
+		
+			location.href="statistics?name="+ $(this).parents('tr').find('.target-username').text();
+		})
+		
 		// 프로그레스바 애니메이션
 		progressAnime();
 
@@ -945,7 +949,7 @@ function planner(obj) {
 			name:$('.fname').val(),
 			gram:$('.fgram').val(),
 			count:$('.fcount').val(),
-			kcal:$('.fkcal').val(),
+			kcal:parseFloat($('.fkcal').val(),toFixed(1)),
 			etc:$('.fetc').val(),
 			nutrient:$('input[name="nutrient"]:checked').val(),
 			time:$('input[name=radio]:checked').val(),
@@ -962,7 +966,7 @@ function planner(obj) {
 			set:$('.eset').val(),
 			reps:$('.ereps').val(),
 			lb:$('.elb').val(),
-			goal:$('.lb-goal').val(),
+			goal:parseFloat($('.lb-goal').val().toFixed(1)),
 			part:$('.parts').val(),
 			etc:$('.details').val(),
 			date:$('.schedule-date-exer').text()

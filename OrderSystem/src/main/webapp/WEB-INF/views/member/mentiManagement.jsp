@@ -529,11 +529,11 @@
 																<div class="cl_title">Day</div>
 																<div class="cl_box">
 																<div class="cl_copy_food">22nd May 2019</div>
-																<div class="cl-btn-box">
-																	<div class="cl_add" id="cl_add_food">
+																<div class="cl-btn-box" id="cl-btn-box">
+																	<div class="cl_add" >
 																		<i class="fas fa-plus" id="cl_add_food"></i>
 																	</div>
-																	<div class="cl_minus" id="cl_minus_food">
+																	<div class="cl_minus">
 																		<i class="fas fa-minus" id="cl_minus_food"></i>
 																	</div>
 																</div>

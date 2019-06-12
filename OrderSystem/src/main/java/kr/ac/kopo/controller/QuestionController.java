@@ -91,6 +91,7 @@ public class QuestionController {
 		}
 		question.setId(username);
 		service.add(question);
+		service.pointUp(username,0);
 		
 		return "redirect:list";
 	}

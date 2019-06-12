@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0;
     /* font-family:'NanumGothic'; */
     font-family: "Lato", sans-serif;}
-body{background:#303030;text-decoration:none;}
+body{background:#201d2e;text-decoration:none;}
 .container {
     width: 1024px;
     margin: 20px auto 0 auto;
@@ -33,7 +33,7 @@ body{background:#303030;text-decoration:none;}
 .naming {
 	width:815px;
 	height:40px;
-	background:#282828;
+	background:#272a3d;
 	border:0.1px solid gray;
 	color:#fff;
 }
@@ -49,13 +49,13 @@ body{background:#303030;text-decoration:none;}
 	display:none;
 	width:10px;
 	height:10px;
-	background:#282828;
+	background:#272a3d;
 	position:relative;
 }
 .point-box {
 	width:900px;
 	height:50px;
-	background:#282828;
+	background:#272a3d;
 }
 /* .point-setting-complete { */
 /* 	width:90px; */
@@ -153,20 +153,20 @@ body{background:#303030;text-decoration:none;}
 }
 /* 썸머노트에디터 css */
 .note-editable {
-	background-color: #282828 !important;
+	background-color: #272a3d !important;
 	color: white !important;
 }
 .note-toolbar {
-	background-color: #282828 !important;
+	background-color: #272a3d !important;
 }
 .note-btn {
-	background-color: #535353 !important;
+	background-color: #424868 !important;
 }
 .note-btn i, .note-btn span {
 	color:#fff !important;
 }
 .note-resizebar {
-	background-color: #535353 !important;
+	background-color: #424868 !important;
 }
 /* 버튼 호버 css */
 .menti-btn {
@@ -202,5 +202,6 @@ body{background:#303030;text-decoration:none;}
 .btn-collection { 
 	--color: #ff7f82; 
 	--hover: #ffdc7f; 
-	--chartColor: #1e90ff;
+/* 	--chartColor: #1e90ff; */
+	--chartColor: #006699;
 }

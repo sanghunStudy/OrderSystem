@@ -58,7 +58,7 @@ body {
 	border: 1px solid #fff;
 	float: left;
 	margin-right: 4px;
-	background: #201d2e;
+	background: none;
 	color: #fff;
 }
 
@@ -165,7 +165,7 @@ input[class="cb1"]+label, input[class="cb2"]+label {
 
 input[class="cb1"]:checked+label, input[class="cb2"]:checked+label {
 	color: #fff;
-	background-color: #201d2e;
+	background-color: none;
 }
 
 input[class="cb1"], input[class="cb2"], #concheck {

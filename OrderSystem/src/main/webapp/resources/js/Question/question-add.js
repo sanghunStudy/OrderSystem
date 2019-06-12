@@ -2,12 +2,16 @@ $(document).ready(function() {
 		
 		var pointBottons = document.getElementById('point_buttons');
 		$('#point-set').click(function(){
-			
-			pointBottons.style.display="block";
-			$('.point_buttons').animate({
-				width:900,
-				height:50
-			});
+			if($('#point_buttons').css("display") == 'none'){
+				pointBottons.style.display="block";
+				$('.point_buttons').animate({
+					width:900,
+					height:50
+				});
+			}
+			else {
+				pointboxClose();
+			}
 			
 		});
 		

@@ -53,7 +53,10 @@
 				alert("내용을 입력하세요");
 			} else if(pointInfo == 0) {
 				alert("포인트설정 없이 답글을 채택하면 본인의 포인트차감없이\n답글이 채택된 분에게 10포인트를 드립니다");
-				$("#questionForm").submit();
+				var reallyOK = confirm("이대로 질문 하시겠습니까?");
+				if(reallyOK == true){
+					$("#questionForm").submit();
+				}
 			} else if(pointInfo != null || pointInfo != 0){
 				$.ajax({
 					url:"${pageContext.request.contextPath}/question/userpoint",

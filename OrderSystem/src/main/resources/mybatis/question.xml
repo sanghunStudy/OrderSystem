@@ -119,4 +119,12 @@
 		select tier from user where username = #{username}
 	</select>
 	
+	<select id="userCommentCount" resultType="Integer">
+		select count(id) from question_comment where question_id = #{code} and id = #{id}
+	</select>
+	
+	<select id="questionWriter" resultType="String">
+		select id from question where question_id = #{questionId}
+	</select>
+	
 </mapper>

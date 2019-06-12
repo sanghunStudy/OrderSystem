@@ -57,7 +57,15 @@ public class QuestionServiceImpl implements QuestionService {
 		String username = qComment.getId();
 		String tier = dao.tierCheck(username);
 		qComment.setTier(tier);
-		dao.commentAdd(qComment);
+		String questionWriter = dao.questionWriter(qComment.getQuestionId());
+		int yourCommentCount = dao.userCommentCount(username,qComment.getQuestionId());
+		
+		if(username != questionWriter && yourCommentCount == 0) {
+			dao.commentAdd(qComment);
+			dao.pointUp(username, 0);
+		} else {
+			dao.commentAdd(qComment);
+		}
 	}
 
 	@Override

@@ -127,4 +127,17 @@ public class QuestionDaoImpl implements QuestionDao {
 		return sql.selectOne("question.tierCheck",username);
 	}
 
+	@Override
+	public int userCommentCount(String username, int questionId) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("id",username);
+		map.put("code", questionId);
+		return sql.selectOne("question.userCommentCount",map);
+	}
+
+	@Override
+	public String questionWriter(int questionId) {
+		return sql.selectOne("question.questionWriter",questionId);
+	}
+
 }

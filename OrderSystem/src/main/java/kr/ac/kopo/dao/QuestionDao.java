@@ -48,6 +48,10 @@ public interface QuestionDao {
 	void trainerTierLevelUp(String tier, String pointGetUser);
 
 	String tierCheck(String username);
+
+	int userCommentCount(String username, int questionId);
+
+	String questionWriter(int questionId);
 	
 
 }

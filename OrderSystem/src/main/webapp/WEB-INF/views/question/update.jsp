@@ -53,7 +53,10 @@ $(document).ready(function(){
 		} else if(summernoteVal == null || summernoteVal == "") {
 			alert("내용을 입력하세요");
 		} else if(pointInfo == 0) {
-			$("#questionForm").submit();
+			var reallyOK = confirm("이대로 수정 하시겠습니까?");
+			if(reallyOK == true){
+				$("#questionForm").submit();
+			}
 		} else if(pointInfo != null || pointInfo != 0){
 			$.ajax({
 				url:"${pageContext.request.contextPath}/question/userpoint",

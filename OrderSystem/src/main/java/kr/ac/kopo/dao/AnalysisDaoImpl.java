@@ -114,4 +114,5 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.insert("statistics.doneSubject", map);
 	}
 
+
 }

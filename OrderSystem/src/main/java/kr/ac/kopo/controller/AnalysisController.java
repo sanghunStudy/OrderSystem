@@ -44,14 +44,15 @@ AnalysisService service;
 UserService Uservice;
 	
 @RequestMapping(value="/statistics")
-private String statistics(Model model,TrainerProfile pro, HttpSession session,HttpServletRequest request) {
+private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSession session,HttpServletRequest request) {
 
 	String id = request.getParameter("name");
 	TrainerProfile profile =  service.getMentiInfo(id);
 	pro.setUsername(id);
 	
-//	UserVO point = Uservice.selectUser(id);
-//	int po = 50;
+	UserVO point = Uservice.item(id);
+	int userPoint = point.getPoint();
+	System.out.println(userPoint + "<<<<<<<<<<<<<<< 포린트");
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);
 //	} else {
@@ -68,6 +69,7 @@ private String statistics(Model model,TrainerProfile pro, HttpSession session,Ht
 	List<BEsave> metabolism = service.getMetabolism(id);
 	List<ExerciseJournal> overallAvg = service.getOverallAvg(id);
 	
+	model.addAttribute("userPoint", userPoint);
 	model.addAttribute("mentiProfile",profile);
 	model.addAttribute("list",monthExercise);
 	model.addAttribute("todayList",todayExercise);

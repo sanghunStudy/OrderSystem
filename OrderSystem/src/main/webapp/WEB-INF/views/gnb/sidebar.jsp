@@ -13,8 +13,9 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 <script>
-
+	var userPoint = "${userPoint}";
 	var ChkAuthority = '${sessionScope.trainer}';
+	var ChkApplyAuthority = '${sessionScope.user}';
 	var url = document.location.href;
 	var curPage = url.substr(url.lastIndexOf('/') + 1);
 	var curUrl = curPage.replace('#', '');
@@ -34,7 +35,12 @@
 	})
 	
 	function trainerChk() {
-		if (ChkAuthority == '') {
+		if (ChkApplyAuthority == '' && userPoint >= 500) {
+			alert('트레이너만 이용할 수 있습니다.');
+		}
+	}
+	function userChk() {
+		if (ChkApplyAuthority == '') {
 			alert('트레이너만 이용할 수 있습니다.');
 		}
 	}

@@ -46,6 +46,12 @@
 
 <script>
 var myManager = '${mentiProfile.username}';
+var userPoint = "${userPoint}";
+
+window.onload = function() {
+	var userPoint = '${userPoint}';
+	alert(userPoint +" <<<< 포인트");
+}
 </script>
 </head>
 

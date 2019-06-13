@@ -1,6 +1,8 @@
 package kr.ac.kopo.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,6 +112,18 @@ public class AnalysisServcieImpl implements AnalysisService {
 		}
 		
 		return dao.doneSubject(subject,contents,manager,subjectKind,id);
+	}
+
+	@Override
+	public void insertPlan(Map<String, Object> plan) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String name = "";
+		map.put("name", name);
+		for(int i=0; i<plan.size(); i++) {
+			System.out.println(plan.get("plan").toString()+" for 안쪽");
+			String[] planList = plan.get("plan").toString().split(",");
+			for(String item : planList) System.out.println(item+ "<<<<<아이템");
+		}
 	}
 
 

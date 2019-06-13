@@ -164,13 +164,9 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 @ResponseBody
 @RequestMapping(value="/writePlan",method=RequestMethod.POST)
 	private void savePlan(@RequestBody Map<String,Object> plan)  {
-	System.out.println("plan"+plan.get("plan").toString());
-	System.out.println("plan.size()"+plan.size());
-		for(int i=0; i<plan.size(); i++) {
-			System.out.println(plan.get("plan").toString()+" for 안쪽");
-			String[] planList = plan.get("plan").toString().split(",");
-			for(String item : planList) System.out.println(item+ "<<<<<아이템");
-		}
+	
+		service.insertPlan(plan);
+
 }
 
 //@ResponseBody

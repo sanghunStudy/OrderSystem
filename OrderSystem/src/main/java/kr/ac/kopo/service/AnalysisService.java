@@ -1,6 +1,7 @@
 package kr.ac.kopo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.ExerciseJournal;
@@ -42,6 +43,8 @@ public interface AnalysisService {
 	TrainerProfile getMentiInfo(String id);
 
 	int doneSubject(String subject, String contents, String manager, String id, String kind);
+
+	void insertPlan(Map<String, Object> plan);
 
 
 

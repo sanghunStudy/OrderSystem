@@ -224,8 +224,8 @@ public class QuestionController {
 	}*/
 	@ResponseBody
 	@RequestMapping("/commentDel")
-	String commentsDel(int qcommentId) {
-		service.commentDel(qcommentId);
+	String commentsDel(QuestionComment QComment) {
+		service.commentDel(QComment);
 		return "success";
 	}
 	

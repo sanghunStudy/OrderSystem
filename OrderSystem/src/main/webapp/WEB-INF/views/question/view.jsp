@@ -182,13 +182,15 @@ $(document).ready(function(){
 	//댓글삭제ajax
 	$(document).on("click",'.commentDel',function(e){
 		var commentId = $(this).attr("data-code");
+		var questionId = ${item.questionId};
 		var really = confirm("정말 삭제 하시겠습니까?");
 		if(really == true) {
 			$.ajax({
 				url:'${pageContext.request.contextPath}/question/commentDel',
 				type:'POST',
 				data:{
-					'qcommentId':commentId
+					'qcommentId':commentId,
+					'questionId':questionId
 				},
 				success:function(data){
 					if(data=="success"){

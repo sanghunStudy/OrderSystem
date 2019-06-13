@@ -105,21 +105,21 @@ public class QuestionDaoImpl implements QuestionDao {
 	}
 
 	@Override
-	public String trainerCheck(String pointGetUser) {
-		return sql.selectOne("question.trainerCheck",pointGetUser);
+	public String trainerCheck(String username) {
+		return sql.selectOne("question.trainerCheck",username);
 	}
 
 	@Override
-	public int mentiCount(String pointGetUser) {
-		return sql.selectOne("trainer.mentiCount",pointGetUser);
+	public int mentiCount(String username) {
+		return sql.selectOne("trainer.mentiCount",username);
 	}
 
 	@Override
-	public void trainerTierLevelUp(String tier, String pointGetUser) {
+	public void trainerTierLevelUpDown(String tier, String username) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
-		map.put("id",pointGetUser);
+		map.put("id",username);
 		map.put("tier", tier);
-		sql.update("question.tierLevelUp",map);
+		sql.update("question.tierLevelUpDown",map);
 	}
 
 	@Override
@@ -138,6 +138,16 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public String questionWriter(int questionId) {
 		return sql.selectOne("question.questionWriter",questionId);
+	}
+
+	@Override
+	public String commentWriter(int qcommentId) {
+		return sql.selectOne("question.commentWritet",qcommentId);
+	}
+
+	@Override
+	public void pointDown(String username) {
+		sql.update("question.minusPoint",username);
 	}
 
 }

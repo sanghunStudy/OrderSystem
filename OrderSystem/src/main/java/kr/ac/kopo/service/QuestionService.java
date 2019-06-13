@@ -25,7 +25,7 @@ public interface QuestionService {
 
 	void commentAdd(QuestionComment qComment);
 
-	void commentDel(int qcommentId);
+	void commentDel(QuestionComment QComment);
 
 	void commentUpdate(QuestionComment qComment);
 

@@ -213,3 +213,6 @@ font-size: 1.4em;
    transition: width 600ms ease-in-out;
   }
 
+.small-point {
+	font-size:14pt;
+}

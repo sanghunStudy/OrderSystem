@@ -33,16 +33,21 @@
         		if(myTier == index){
         			myTierPoint = item;
         			nextTierPoint = item +500;
+        			$('.next-point').html("/ "+nextTierPoint);
+        			console.log(nextTierPoint);
         		}
         		if(myPoint >= 2500){
-        			console.log("test");
+//         			console.log("test");
         			$(".progress-wrap p").html("최고 등급입니다.");
         		}else if(nextTierPoint == item){
-        			console.log(nextTierPoint);
+//         			console.log(nextTierPoint);
         			nextTierImg = index;
         			$(".progress-wrap img").attr("src","${pageContext.request.contextPath}/resources/images/grade/"+nextTierImg+"-tier-bg-none.png")
         			$(".progress-wrap p").html(nextTierImg);
         			myPercent = (myPoint-myTierPoint)/(nextTierPoint-myTierPoint)*100;
+        			if(myPercent > 100){
+        				myPercent = 98;
+        			}
               		progress(myPercent);
         		}
 //         		console.log(index + "" + item);
@@ -153,16 +158,15 @@ If you need the loader go faster or slower, this is the place to change. Don't f
 				<p>${item.tier}</p>
 			</div>
 			<div class="progress-wrap">
-				<h4>Next Tier</h4>
+				<h5>${item.point} <span class="next-point"></span></h5>
 				<div class="progress-container">
 				  <ul>
-				    <li></li>
-				    <li></li>
 				    <li></li>
 				    <li></li>
 				  </ul>
 				  <div class="progress-bar"></div>
 				</div>
+				<h4>Next Tier</h4>
 				<img src="${pageContext.request.contextPath}/resources/images/grade/${item.tier}-tier-bg-none.png">
 				<p></p>
 			</div>

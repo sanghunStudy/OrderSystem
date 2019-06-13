@@ -100,10 +100,10 @@
 	</update>
 	
 	<select id="trainerCheck" resultType="String">
-		select authority from user where username=#{pointGetUser}
+		select authority from user where username=#{username}
 	</select>
 	
-	<update id="tierLevelUp">
+	<update id="tierLevelUpDown">
 		update user
 		set tier = #{tier}
 		where username = #{id}
@@ -126,5 +126,15 @@
 	<select id="questionWriter" resultType="String">
 		select id from question where question_id = #{questionId}
 	</select>
+	
+	<select id="commentWritet" resultType="String">
+		select id from question_comment where qcomment_id = #{qcommentId}
+	</select>
+	
+	<update id="minusPoint">
+		update user
+		set point = point - 10
+		where username = #{username}
+	</update>
 	
 </mapper>

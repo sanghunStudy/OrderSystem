@@ -45,13 +45,17 @@ public interface QuestionDao {
 
 	int mentiCount(String pointGetUser);
 
-	void trainerTierLevelUp(String tier, String pointGetUser);
+	void trainerTierLevelUpDown(String tier, String username);
 
 	String tierCheck(String username);
 
 	int userCommentCount(String username, int questionId);
 
 	String questionWriter(int questionId);
+
+	String commentWriter(int qcommentId);
+
+	void pointDown(String username);
 	
 
 }

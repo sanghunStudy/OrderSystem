@@ -57,20 +57,33 @@ public class QuestionServiceImpl implements QuestionService {
 		String username = qComment.getId();
 		String tier = dao.tierCheck(username);
 		qComment.setTier(tier);
+		
 		String questionWriter = dao.questionWriter(qComment.getQuestionId());
 		int yourCommentCount = dao.userCommentCount(username,qComment.getQuestionId());
 		
-		if(username != questionWriter && yourCommentCount == 0) {
+//		System.out.println(questionWriter +"      "+ username);
+//		System.out.println(!username.equals(questionWriter));
+		
+		if(!username.equals(questionWriter) && yourCommentCount == 0) {
 			dao.commentAdd(qComment);
-			dao.pointUp(username, 0);
+			pointUp(username, 0);
 		} else {
 			dao.commentAdd(qComment);
 		}
 	}
 
 	@Override
-	public void commentDel(int qcommentId) {
-		dao.commentDel(qcommentId);
+	public void commentDel(QuestionComment QComment) {
+		String commentWriter = dao.commentWriter(QComment.getQcommentId());
+		int yourCommentCount = dao.userCommentCount(commentWriter, QComment.getQuestionId());
+//		System.out.println(commentWriter+"      "+yourCommentCount);
+//		System.out.println(yourCommentCount == 1);
+		if(yourCommentCount == 1) {
+			dao.commentDel(QComment.getQcommentId());
+			dao.pointDown(commentWriter);
+		} else {
+			dao.commentDel(QComment.getQcommentId());
+		}
 	}
 
 	@Override
@@ -102,16 +115,16 @@ public class QuestionServiceImpl implements QuestionService {
 			
 			if(point >= 1000 && menti >= 5) {
 				tier = "silver";
-				dao.trainerTierLevelUp(tier,pointGetUser);
+				dao.trainerTierLevelUpDown(tier,pointGetUser);
 			} else if(point >= 1500 && menti >= 10) {
 				tier = "gold";
-				dao.trainerTierLevelUp(tier,pointGetUser);
+				dao.trainerTierLevelUpDown(tier,pointGetUser);
 			} else if(point >= 2000 && menti >= 15) {
 				tier = "platinum";
-				dao.trainerTierLevelUp(tier,pointGetUser);
-			} else if(point >= 1500 && menti >= 20) {
+				dao.trainerTierLevelUpDown(tier,pointGetUser);
+			} else if(point >= 2500 && menti >= 20) {
 				tier = "diamond";
-				dao.trainerTierLevelUp(tier,pointGetUser);
+				dao.trainerTierLevelUpDown(tier,pointGetUser);
 			}
 		}
 		
@@ -130,6 +143,28 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void pointDown(String pointLoseUser, int pointSet) {
 		dao.pointLoseUser(pointLoseUser,pointSet);
+		
+		String trainerCheck = dao.trainerCheck(pointLoseUser);
+		
+		if(trainerCheck.equals("trainer")) {
+			int point = dao.userpoint(pointLoseUser);
+			
+			String tier = "";
+			
+			if(point < 1000) {
+				tier = "bronze";
+				dao.trainerTierLevelUpDown(tier,pointLoseUser);
+			} else if(point < 1500) {
+				tier = "silver";
+				dao.trainerTierLevelUpDown(tier,pointLoseUser);
+			} else if(point < 2000) {
+				tier = "gold";
+				dao.trainerTierLevelUpDown(tier,pointLoseUser);
+			} else if(point < 2500) {
+				tier = "platinum";
+				dao.trainerTierLevelUpDown(tier,pointLoseUser);
+			}
+		}
 	}
 
 }

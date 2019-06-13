@@ -33,17 +33,7 @@
 			$('.menu-box').toggle('fast');
 		})
 	})
-	
-	function trainerChk() {
-		if (ChkApplyAuthority == '' && userPoint >= 500) {
-			alert('트레이너만 이용할 수 있습니다.');
-		}
-	}
-	function userChk() {
-		if (ChkApplyAuthority == '') {
-			alert('트레이너만 이용할 수 있습니다.');
-		}
-	}
+
 </script>
 </head>
  <%@ include file="../member/modal.jsp" %>

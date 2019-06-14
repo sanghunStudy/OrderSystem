@@ -146,6 +146,7 @@ body{background:#201d2e;text-decoration:none;}
 	text-align:center;
 	float:right;
 	color:#fff;
+	cursor:pointer;
 }
 .Go-back:hover {
 	color:#fff;

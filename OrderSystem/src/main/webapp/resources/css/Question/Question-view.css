@@ -186,10 +186,11 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 .updateForm {
 	background:#272a3d;
 	width:680px;
-	max-height:250px;
-	resize:vertical;
+	min-height:30px;
+	resize:none;
 	color:#fff;
 	float:left;
+	overflow:visible;
 }
 .update_btn {
 	width:80px;

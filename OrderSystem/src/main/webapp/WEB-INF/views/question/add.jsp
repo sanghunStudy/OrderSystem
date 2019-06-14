@@ -55,7 +55,10 @@
 				alert("포인트설정 없이 답글을 채택하면 본인의 포인트차감없이\n답글이 채택된 분에게 10포인트를 드립니다");
 				var reallyOK = confirm("이대로 질문 하시겠습니까?");
 				if(reallyOK == true){
+					alert("질문이 등록되었습니다.");
 					$("#questionForm").submit();
+				} else {
+					return false;
 				}
 			} else if(pointInfo != null || pointInfo != 0){
 				$.ajax({
@@ -63,10 +66,17 @@
 					type:'GET',
 					success:function(data){
 						if(data > pointInfo){
-							$("#questionForm").submit();
+							var really = confirm("이대로 등록 하시겠습니까?");
+							if(really == true) {
+								alert("질문이 등록되었습니다.");
+								$("#questionForm").submit();
+							} else {
+								return false;
+							}
 						} else if (data == pointInfo) {
-							var pointzero = confirm("답글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
-							if(pointzero = true){
+							var pointzero = confirm("이대로 등록시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
+							if(pointzero == true){
+								alert("질문이 등록되었습니다.");
 								$("#questionForm").submit();
 							} else {
 								return false;
@@ -76,6 +86,15 @@
 						}
 					}
 				});
+			}
+		});
+		
+		$('.Go-back').click(function(){
+			var really = confirm("작성을 취소하시면 현재 작성한 내용이 사라집니다. 괜찮겠습니까?");
+			if(really == true){
+				window.location.href="list";
+			} else {
+				return false;
 			}
 		});
 
@@ -250,7 +269,7 @@
 		<div class="buttons">
 <!-- 			<input type="submit" value="등록하기"> -->
 			<button type="button" id="questionSubmit">등록하기</button>
-			<a href="list"><div class="Go-back">작성취소</div></a>
+			<a><div class="Go-back">작성취소</div></a>
 		</div>
 		
 	</form>

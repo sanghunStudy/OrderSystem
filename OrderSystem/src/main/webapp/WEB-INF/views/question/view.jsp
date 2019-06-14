@@ -18,6 +18,7 @@ $(document).ready(function(){
 	//jsp에서 함수 못 읽어서 필요
 	window.co_updateMode = co_updateMode;
 	window.choice_comment = choice_comment;
+// 	window.resize = resize;
 	
 	//댓글수정함수
 	function co_updateMode(code,data){
@@ -52,37 +53,52 @@ $(document).ready(function(){
 				},
 				success:function(data){
 					if(data=='success'){
+						alert("답변이 수정 되었습니다.");
 						commentList();
 					} else {
-						alert("수정실패");
+						alert("수정이 실패하였습니다.");
 					}
 				}
 			});
 		}
 	});
+	//댓글수정텍스트에리어자동수정
+// 	$(document).on('keydown keyup',"updateForm", function () {
+//   		$(this).height(1).height( $(this).prop('scrollHeight')+12 );	
+// 	});
+// 	function resize(obj) {
+// 		  obj.style.height = "1px";
+// 		  obj.style.height = (12+obj.scrollHeight)+"px";
+// 		}
 	//댓글 채택New버전 ajax
 	function choice_comment(commentId,pointGetUser,point,pointLoseUser) {
 		var choiceCheck = '';
 		var questionId = ${item.questionId};
 // 		console.log(pointGetUser+"    "+pointLoseUser);
-		$.ajax({
-			url:"${pageContext.request.contextPath}/question/selectionCheck",
-			type:"GET",
-			data:{
-				'questionId':questionId,
-				'qcommentId':commentId,
-				'pointGetUser':pointGetUser,
-				'pointSet':point,
-				'pointLoseUser':pointLoseUser
-			},success:function(data){
-				if(data == "OK"){
-					alert("채택되었습니다");
-					commentList();
-				} else {
-					alert("질문에 채택된 글이 이미 존재합니다");
+		var really = confirm("이 글을 채택 하시겠습니까?");
+		if(really == true) {
+			$.ajax({
+				url:"${pageContext.request.contextPath}/question/selectionCheck",
+				type:"GET",
+				data:{
+					'questionId':questionId,
+					'qcommentId':commentId,
+					'pointGetUser':pointGetUser,
+					'pointSet':point,
+					'pointLoseUser':pointLoseUser
+				},success:function(data){
+					if(data == "OK"){
+						alert("채택되었습니다");
+						commentList();
+					} else {
+						alert("질문에 채택된 글이 이미 존재합니다");
+					}
 				}
-			}
-		});
+			});
+		} else {
+			return false;
+		}
+		
 	}
 	
 	//댓글수정버튼체크
@@ -160,22 +176,28 @@ $(document).ready(function(){
 		if (commentCheck == "" || commentCheck == null) {
 			alert("댓글내용을 입력해 주세요");
 		} else{
-			$.ajax({
-				url:'${pageContext.request.contextPath}/question/commentAdd',
-				type:'POST',
-				data:{
-					'qcommentContent':commentCheck,
-					'questionId':questionId
-				},
-				success:function(data){
-					if(data=='success'){
-						$('#comment').val("");
-						commentList();
-					} else {
-						alert("로그인 후 등록할 수 있습니다.");
+			var really = confirm("이대로 등록하시겠습니까?");
+			if(really == true) {
+				$.ajax({
+					url:'${pageContext.request.contextPath}/question/commentAdd',
+					type:'POST',
+					data:{
+						'qcommentContent':commentCheck,
+						'questionId':questionId
+					},
+					success:function(data){
+						if(data=='success'){
+							$('#comment').val("");
+							commentList();
+						} else {
+							alert("로그인 후 등록할 수 있습니다.");
+						}
 					}
-				}
-			});
+				});
+			} else {
+				return false;
+			}
+			
 		}
 	}); 
 	

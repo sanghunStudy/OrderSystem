@@ -55,6 +55,7 @@ $(document).ready(function(){
 		} else if(pointInfo == 0) {
 			var reallyOK = confirm("이대로 수정 하시겠습니까?");
 			if(reallyOK == true){
+				alert("질문이 수정되었습니다.");
 				$("#questionForm").submit();
 			}
 		} else if(pointInfo != null || pointInfo != 0){
@@ -63,10 +64,18 @@ $(document).ready(function(){
 				type:'GET',
 				success:function(data){
 					if(data > pointInfo){
-						$("#questionForm").submit();
+						var really = confirm("이대로 수정하시겠습니까?");
+						if(really == true) {
+							alert("질문이 수정되었습니다.");
+							$("#questionForm").submit();
+						} else {
+							return false;
+						}
+						
 					} else if (data == pointInfo) {
-						var pointzero = confirm("댓글 채택시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
-						if(pointzero = true){
+						var pointzero = confirm("이대로 질문등록시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
+						if(pointzero == true){
+							alert("질문이 수정되었습니다.");
 							$("#questionForm").submit();
 						} else {
 							return false;

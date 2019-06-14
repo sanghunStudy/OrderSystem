@@ -44,7 +44,7 @@ $(document).ready(function() {
 				pointSetAndClose(point,pointVal);
 				
 			} else {
-				alert("설정한 포인트는 댓글 채택시 본인의 포인트에서 차감지급됩니다");
+				alert("설정한 포인트는 질문 등록시 본인의 포인트에서 차감됩니다.\n그리고 답변 채택시 채택된 사람에게 지급됩니다.");
 				pointSetAndClose(point,pointVal);
 			}
 		});

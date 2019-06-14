@@ -92,6 +92,7 @@ public class QuestionController {
 		question.setId(username);
 		service.add(question);
 		service.pointUp(username,0);
+		service.pointDown(username, question.getPointSet());
 		
 		return "redirect:list";
 	}
@@ -303,7 +304,6 @@ public class QuestionController {
 		if(onlyOnceSelection == 0) {
 			service.selection(qcommentId);
 			service.pointUp(pointGetUser,pointSet);
-			service.pointDown(pointLoseUser,pointSet);
 			return "OK";
 		}
 		else {

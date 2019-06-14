@@ -1,7 +1,9 @@
 	var foodPlan = [];
 	var exerPlan = [];
+	var param = {};
 	var plan=[];
 	var whatModal;
+	var length =0;
 // 그라디언트 생성기
 function gradientGenerator(color,ctx) {
 	
@@ -260,8 +262,8 @@ $(function() {
 
 	    $('.add-food,.add-exer').click(function (e) {
 	    	plan = planner(e.target);
-	    	console.log(plan);
-	    	
+//	    	console.log(plan);
+	    	console.log(param);
 	    	$('.textInput').val('');
 	    	$('.eset').val(1);
 	    	$('.ereps').val(10);
@@ -723,19 +725,21 @@ $(document).on('click','.sel__box__options',function() {
 		})
 		
 		$('.save-submit').click(function() {
+			console.log(param);
 			$.ajax({
-				contentType:"application/json; charset=UTF-8",
+//				contentType:"application/json; charset=UTF-8",
 				url:'/kopo/member/writePlan',
 				type:'POST',
 				traditional:true,
-//				data:{
+				data:param
+					
+				,
+//				data:JSON.stringify({
 //					"plan":plan
-//				},
-				data:JSON.stringify({
-					"plan":plan
-				}),
+//				}),
 				success:function(data) {
 					alert('플랜이 저장되었습니다.');
+					length = 0;
 				}
 				
 			});
@@ -934,6 +938,7 @@ function setDuration(dateBox,planList,obj) {
 	 	sCompare = moment(momentStart),
 	 	eCompare = moment(momentEnd), 
 	 	eDate = moment(momentEnd).format('L dddd');
+	
 	const fixStart = moment(staticDate);
 	dateBox.html(sDate);
 	planList.html(sDate);
@@ -963,8 +968,12 @@ function planner(obj) {
 
 	var list;
 	
+
 	if($(obj).closest('button').hasClass('add-food') == true) {
+		
 		list = {
+			code:1,
+			date:$('.schedule-date-food').text(),	
 			name:$('.fname').val(),
 			gram:$('.fgram').val(),
 			count:$('.fcount').val(),
@@ -972,15 +981,22 @@ function planner(obj) {
 			etc:$('.fetc').val(),
 			nutrient:$('input[name="nutrient"]:checked').val(),
 			time:$('input[name=radio]:checked').val(),
-			date:$('.schedule-date-food').text()
-						
+			menti:$('.menti-name').text(),
+			mento:trainer
+		
 		};
+	
+
+				
 		foodPlan.push(list);
+		length++;
+		makeList(list,length);
 		alert('식단이 추가되었습니다.');
 		return foodPlan;
 	}
 	else if ($(obj).closest('button').hasClass('add-exer') == true) {
 		list = {
+			code:2,
 			name:$('.ename').val(),
 			set:$('.eset').val(),
 			reps:$('.ereps').val(),
@@ -1046,5 +1062,27 @@ function getPlanList(whatModal) {
 	
 		}
 		$('.event_do').html(union);
+	}
+}
+
+function makeList(list,length) {
+
+	for(var i=0;i<length;i++) {
+
+		param['list['+ i + '].code'] = list.code;
+		param['list['+ i + '].eatDate'] = list.date;
+		param['list['+ i + '].eatName'] = list.name;
+		param['list['+ i + '].eatGram'] = list.gram;
+		param['list['+ i + '].eatCount'] = list.count;
+		param['list['+ i + '].eatKcal'] = list.kcal;
+		param['list['+ i + '].eatEtc'] = list.etc;
+		param['list['+ i + '].eatNutrient'] = list.nutrient;
+		param['list['+ i + '].eatTime'] = list.time;
+		param['list['+ i + '].username'] = list.menti;
+		param['list['+ i + '].manager'] = list.mento;
+		
+		
+	
+
 	}
 }

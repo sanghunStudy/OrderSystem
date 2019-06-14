@@ -54,11 +54,14 @@
 	<script>
 		var contextPath = '${pageContext.request.contextPath}';
 		var trainer = '${sessionScope.trainer}';
-	</script>
-	<c:forEach var="item" items="${dailyRanking}">
-		<script>
 		var dailyRank = [];
 		var rankDate = [];
+	</script>
+
+
+	<c:forEach var="item" items="${dailyRanking}">
+		<script>
+
 		var rankInfo = {
 				date:'${item.saveDate}',
 				ranking:parseInt('${item.ranking}')
@@ -68,10 +71,17 @@
 		</script>
 		
 	</c:forEach>
+
+
 	<script>
-	dailyRank.reverse();
-	rankDate.reverse();
+	
+	if(dailyRank.length > 0 && rankDate > 0) {
+		dailyRank.reverse();
+		rankDate.reverse();
+	}
+
 	</script>
+
 	<div id="fullBox">
 
 		<div id="wrapper">
@@ -86,11 +96,12 @@
 					<div class="ranking-table-box">
 						<table class="ranking-table">
 							<thead>
-								<tr>
+								<tr class="ranking-table-title">
 									<td>순위</td>
 									<td>아이디</td>
 									<td>포인트</td>
 									<td>멘티 수</td>
+									<td>등급</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -102,6 +113,7 @@
 												<td>${ranker.username}</td>
 												<td>${ranker.point}</td>
 												<td>${ranker.menti}</td>
+												<td><img src="${pageContext.request.contextPath}/resources/images/grade/${ranker.tier}-tier-bg-none.png" class="tier-icon"></td>
 											</tr>
 										</c:forEach>
 									</c:when>

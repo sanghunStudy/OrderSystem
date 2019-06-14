@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
@@ -53,6 +55,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	
 	UserVO point = Uservice.item(id);
 	int userPoint = point.getPoint();
+	System.out.println(userPoint + "<<<<<<<<<<<<<<< 포린트");
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);
 //	} else {
@@ -164,13 +167,23 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	return service.getMyMenti(mento);
 }
 
+//@ResponseBody
+//@RequestMapping(value="/writePlan",method=RequestMethod.POST)
+//	private void savePlan(@RequestBody Map<String,Object> plan)  {
+//	
+//		service.insertPlan(plan);
+//
+//}
+
 @ResponseBody
 @RequestMapping(value="/writePlan",method=RequestMethod.POST)
-	private void savePlan(@RequestBody Map<String,Object> plan)  {
+	private void savePlan(@ModelAttribute("planner") Planner planner)  {
 	
-		service.insertPlan(plan);
+	
+		service.insertPlan(planner);
 
 }
+
 
 //@ResponseBody
 //@RequestMapping(value="/writePlan",method=RequestMethod.POST)

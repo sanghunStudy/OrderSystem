@@ -122,7 +122,20 @@
 	SELECT username,point,menti,rank,ranking,func,save_date
 	FROM daily_rank
 	WHERE username = #{id}
-	ORDER BY save_date DESC
+	GROUP BY save_date
+	ORDER BY save_date DESC	
 	LIMIT 10
 </select>
+<insert id="addExerPlan" parameterType="Planner">
+	INSERT INTO do_Planner (do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username)
+	VALUES (
+	<foreach collection="doList" item="doList" separator=",">
+		#{doList}
+	</foreach>
+	
+	)
+</insert>
+<insert id="addFoodPlan" parameterType="Planner">
+
+</insert>
 </mapper>

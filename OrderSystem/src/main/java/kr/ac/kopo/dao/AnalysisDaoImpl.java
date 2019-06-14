@@ -12,6 +12,7 @@ import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
@@ -118,6 +119,18 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<DailyRank> getMyDailyRanking(String id) {
 		return sql.selectList("statistics.getMyDailyRanking", id);
+	}
+
+
+
+	@Override
+	public void addExerPlan(Planner planner) {
+		sql.insert("statistics.addExerPlan", planner);
+	}
+
+	@Override
+	public void addFoodPlan(Planner planner) {
+		sql.insert("statistics.addFoodPlan", planner);
 	}
 
 

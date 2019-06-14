@@ -119,6 +119,11 @@ li {
 
 .ranking-table-box {padding:1em 2em;}
 .ranking-table{width:100%;}
+.ranking-table tr{text-align:center;}
+.ranking-table-title {    font-family: 'S-CoreDream-4Regular', 'Noto Sans', sans-serif;
+    text-align: center;
+    font-size: 14px;
+    font-weight:700;}
 .crown {
 	margin-right: 5px;
 	vertical-align: baseline;
@@ -233,4 +238,8 @@ li {
 
 .hidden {
 	display:hidden;
+}
+.tier-icon {
+	width:40px;
+	height:40px;
 }

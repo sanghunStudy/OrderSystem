@@ -226,7 +226,7 @@
 <!-- 트레이너들 랭킹   -->
    <select id="getRanker" resultType="UserVO">
       SELECT
-         user.username,point,count(user_management.manager) menti,
+         user.username,point,count(user_management.manager) menti,user.tier,
          ROUND(((user.point + count(user_management.manager) * 100) / 100
          + (user.score * 10)),1) rank,
          @RANKT := IF(@LAST > ROUND(((user.point +
@@ -241,6 +241,6 @@
          user_management.reading = 'Y'
       GROUP BY user_management.manager
       ORDER BY ranking DESC,user.score DESC
-      LIMIT 10
+      LIMIT 5
    </select>
 </mapper>

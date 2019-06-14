@@ -7,6 +7,7 @@ import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
@@ -45,7 +46,7 @@ public interface AnalysisService {
 
 	int doneSubject(String subject, String contents, String manager, String id, String kind);
 
-	void insertPlan(Map<String, Object> plan);
+	void insertPlan(Planner planner);
 
 	List<DailyRank> getMyDailyRanking(String id);
 

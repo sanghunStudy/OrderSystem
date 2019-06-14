@@ -20,7 +20,7 @@ public class TrainerProfile {
 	private String deleteApply;
 	String thumbnail;
 	String tier;
-	
+	int menti;//트레이너별 멘티수
 	public String getRegion() {
 		return region;
 	}
@@ -110,6 +110,12 @@ public class TrainerProfile {
 	}
 	public void setTier(String tier) {
 		this.tier = tier;
+	}
+	public int getMenti() {
+		return menti;
+	}
+	public void setMenti(int menti) {
+		this.menti = menti;
 	}
 	
 		

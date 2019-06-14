@@ -133,5 +133,15 @@ body {
 .career-item {
 	display:inline-block;
 	font-size: 12pt;
-font-family: 'S-CoreDream-4Regular','Noto-Sans Kr';
+	font-family: 'S-CoreDream-4Regular','Noto-Sans Kr';
+}
+
+.trainer-menti-count{
+	width:200px;
+	text-align:right;	
+}
+.trainer-menti-count p{
+	font-size: 16px;
+    font-weight: 550;
+    margin-bottom: 10px;
 }

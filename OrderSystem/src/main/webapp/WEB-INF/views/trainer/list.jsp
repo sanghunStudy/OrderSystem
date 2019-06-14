@@ -60,6 +60,30 @@
 										<div class="career-item">${item.career}</div>
 									</div>
 								</div>
+								<div class="trainer-menti-count">
+									<p>보유 멘티수</p>
+									<c:choose>
+										<c:when test='${item.tier == "bronze"}'>
+											<span>${item.menti}/5</span>
+										</c:when>
+										<c:when test='${item.tier == "silver"}'>
+											<span>${item.menti}/10</span>
+										</c:when>
+										<c:when test='${item.tier == "gold"}'>
+											<span>${item.menti}/15</span>
+										</c:when>
+										<c:when test='${item.tier == "platinum"}'>
+											<span>${item.menti}/20</span>
+										</c:when>
+										<c:when test='${item.tier == "diamond"}'>
+											<span>${item.menti}/25</span>
+										</c:when>
+										<c:otherwise>
+											<span>${item.menti}/∞</span>
+										</c:otherwise>
+										
+									</c:choose>
+								</div>
 							</div>
 							<c:if test="${user != null}">
 								<div class="modal-btn-box">

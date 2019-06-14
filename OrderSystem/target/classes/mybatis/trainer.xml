@@ -14,10 +14,17 @@
 </select>
 <!-- 트레이너 리스트 출력 -->
 <select id="list" resultType="TrainerProfile">
-	select u.tier,tp.username,tp.name,tp.sex,tp.career,tp.up_filename
-	FROM trainer_profile tp join user u
-	on tp.trainer_apply = 'Y'
-	and tp.username = u.username;
+select u.tier,u.authority,tp.username,tp.name,tp.sex,tp.career,tp.up_filename,count(b.grade) as menti
+   FROM user u 
+	join trainer_profile tp
+   on tp.username = u.username
+   and tp.trainer_apply = 'Y'
+	left OUTER JOIN (
+	select manager,username, count(um.username) as grade
+	from user_management um
+	where um.reading = 'Y'
+	group by username) as b on (b.manager = tp.username)
+   group by tp.username;
 </select>
 <!-- pt신청시 회원기초정보를 작성했나 확인 -->
 <select id="selectUserbI" resultType="Integer">

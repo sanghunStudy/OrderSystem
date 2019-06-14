@@ -37,7 +37,6 @@ function checkTrainerTier(trainer_username) {
 		success:function(data) {
 			console.log(data);
 			if(data == "OK") {
-				alert("해당 트레이너에게 멘티 신청이 가능합니다.");
 				selectUserbI(trainer_username);
 			} else {
 				alert("해당 트레이너의 멘티가 꽉 찼습니다.");

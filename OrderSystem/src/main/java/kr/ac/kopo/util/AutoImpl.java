@@ -35,7 +35,7 @@ public class AutoImpl {
 
 	}
 
-	@Scheduled(cron ="59 59 23 * * * ")
+	@Scheduled(cron ="0 0 11 * * * ")
 	public void AutoDelete() {	
 		try {
 			sql.delete("autoimpl.autoDelete");
@@ -46,7 +46,7 @@ public class AutoImpl {
 
 	}
 	
-	@Scheduled(cron="0 0 0 * * *") 
+	@Scheduled(cron="0 0 11 * * *") 
 	public void AutoSave() {
 		try {
 			

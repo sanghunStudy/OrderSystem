@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import kr.ac.kopo.model.BEsave;
+import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.TrainerProfile;
@@ -118,6 +119,8 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	List<UserManagement> wfaList = service.waitingForApproval(id); 
 	List<UserVO> ranking = service.getRanker();
 	List<MentiPerformance> MPerformance = service.getMenti(id);
+//	List<DailyRank> myRanking = service.getMyRanking();
+	
 	model.addAttribute("myMenti",MPerformance);
 	model.addAttribute("rankerList",ranking);
 	model.addAttribute("wfaList",wfaList);

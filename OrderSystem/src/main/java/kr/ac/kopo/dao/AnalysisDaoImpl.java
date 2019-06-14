@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.BEsave;
+import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.TrainerProfile;
@@ -112,6 +113,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		map.put("subjectKind", subjectKind);
 		map.put("id", id);
 		return sql.insert("statistics.doneSubject", map);
+	}
+
+	@Override
+	public List<DailyRank> getMyDailyRanking(String id) {
+		return sql.selectList("statistics.getMyDailyRanking", id);
 	}
 
 

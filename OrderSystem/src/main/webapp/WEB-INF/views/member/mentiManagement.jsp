@@ -55,6 +55,23 @@
 		var contextPath = '${pageContext.request.contextPath}';
 		var trainer = '${sessionScope.trainer}';
 	</script>
+	<c:forEach var="item" items="${dailyRanking}">
+		<script>
+		var dailyRank = [];
+		var rankDate = [];
+		var rankInfo = {
+				date:'${item.saveDate}',
+				ranking:parseInt('${item.ranking}')
+		}
+		dailyRank.push(rankInfo.ranking);
+		rankDate.push(rankInfo.date);
+		</script>
+		
+	</c:forEach>
+	<script>
+	dailyRank.reverse();
+	rankDate.reverse();
+	</script>
 	<div id="fullBox">
 
 		<div id="wrapper">

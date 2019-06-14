@@ -27,6 +27,7 @@
 		<typeAlias type="kr.ac.kopo.model.UserManagement" alias="UserManagement"/>
 		<typeAlias type="kr.ac.kopo.model.MentiPerformance" alias="MentiPerformance"/>
 		<typeAlias type="kr.ac.kopo.model.MessageRepository" alias="MessageRepository"/>
+		<typeAlias type="kr.ac.kopo.model.DailyRank" alias="DailyRank"/>
 		
 	</typeAliases>
 

@@ -118,4 +118,11 @@
 	VALUES (#{manager},#{id},#{subject},#{contents},#{subjectKind},now())
 	
 </insert>
+<select id="getMyDailyRanking" resultType="DailyRank">
+	SELECT username,point,menti,rank,ranking,func,save_date
+	FROM daily_rank
+	WHERE username = #{id}
+	ORDER BY save_date DESC
+	LIMIT 10
+</select>
 </mapper>

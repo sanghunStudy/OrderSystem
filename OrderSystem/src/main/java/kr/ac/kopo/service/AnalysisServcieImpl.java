@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.dao.AnalysisDao;
 import kr.ac.kopo.model.BEsave;
+import kr.ac.kopo.model.DailyRank;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.TrainerProfile;
@@ -124,6 +125,11 @@ public class AnalysisServcieImpl implements AnalysisService {
 			String[] planList = plan.get("plan").toString().split(",");
 			for(String item : planList) System.out.println(item+ "<<<<<아이템");
 		}
+	}
+
+	@Override
+	public List<DailyRank> getMyDailyRanking(String id) {
+		return dao.getMyDailyRanking(id);
 	}
 
 

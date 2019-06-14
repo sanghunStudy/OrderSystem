@@ -328,9 +328,9 @@ $(function() {
 	var ranking = new Chart(document.getElementById("line-chart-ranking"), {
 		  type: 'line',
 		  data: {
-		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
+		    labels:rankDate,
 		    datasets: [{ 
-		        data:[23,20,35,34,27,19,14,15,16,20],
+		        data:dailyRank,
 		        lineTension:0,
 		        label: "순위",
 		        borderColor: '#f99204',

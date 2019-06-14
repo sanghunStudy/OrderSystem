@@ -88,7 +88,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 @ResponseBody
 @RequestMapping(value="/done",method = RequestMethod.POST) 
 	private int doneSubject(String subject, String contents,String manager,String kind,HttpSession session) {
-	System.out.println("들옴?");
+
 	String id = (String)session.getAttribute("user");
 
 	
@@ -119,11 +119,12 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	List<UserManagement> wfaList = service.waitingForApproval(id); 
 	List<UserVO> ranking = service.getRanker();
 	List<MentiPerformance> MPerformance = service.getMenti(id);
-//	List<DailyRank> myRanking = service.getMyRanking();
+	List<DailyRank> myRanking = service.getMyDailyRanking(id);
 	
 	model.addAttribute("myMenti",MPerformance);
 	model.addAttribute("rankerList",ranking);
 	model.addAttribute("wfaList",wfaList);
+	model.addAttribute("dailyRanking",myRanking);
 	
 	return "member/mentiManagement";
 	}

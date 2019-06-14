@@ -145,29 +145,15 @@ public class AnalysisServcieImpl implements AnalysisService {
 
 	@Override
 	public void insertPlan(Planner planner) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-		
-		if (planner.getEatList().get(0).getCode() == 1) {
-//			for (int i = 0; i < planner.getList().size(); i++) {
-//				System.out.println(planner.getList().get(i).getEatTime());
-//				map.put("eatDate",planner.getList().get(i).getEatDate());
-//				map.put("eatName",planner.getList().get(i).getEatName());
-//				map.put("eatGram",planner.getList().get(i).getEatGram());
-//				map.put("eatCount",planner.getList().get(i).getEatCount());
-//				map.put("eatKcal",planner.getList().get(i).getEatKcal());
-//				map.put("eatEtc",planner.getList().get(i).getEatEtc());
-//				map.put("eatNutrient",planner.getList().get(i).getEatNutrient());
-//				map.put("eatTime",planner.getList().get(i).getEatTime());
-//				
-//			}
-			System.out.println("먹기");
+		System.out.println(planner.getEatList() == null);
+		if (planner.getEatList() != null) {
+	
 			dao.addFoodPlan(planner);
 		}
-		else if(planner.getDoList().get(0).getCode() == 2) {
-//			for (int i = 0; i < planner.getList2().size(); i++) {
-//				System.out.println(planner.getList2().get(i).getDoSet());
-//			}
-			System.out.println("운동");
+			
+		else if(planner.getEatList() == null) {
+
+			System.out.println(planner.getDoList().get(0).getUsername());
 			dao.addExerPlan(planner);
 		}
 

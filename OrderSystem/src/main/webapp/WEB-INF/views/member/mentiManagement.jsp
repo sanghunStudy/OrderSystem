@@ -818,7 +818,7 @@
 																		<span class="input-number-decrement">-</span>
 																	</div>
 																	<input class="input-number eset" type="number"
-																		value="1" min="0" max="1000">
+																		value="5" min="0" max="1000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>
 																	</div>
@@ -831,7 +831,7 @@
 																		<span class="input-number-decrement">-</span>
 																	</div>
 																	<input class="input-number ereps" type="number"
-																		value="1" min="0" max="1000">
+																		value="10" min="0" max="10000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>
 																	</div>
@@ -843,7 +843,7 @@
 																	<div class="input-group-button">
 																		<span class="input-number-decrement">-</span>
 																	</div>
-																	<input class="input-number elb" type="number" value="1"
+																	<input class="input-number elb" type="number" value="20"
 																		min="0" max="1000">
 																	<div class="input-group-button">
 																		<span class="input-number-increment">+</span>

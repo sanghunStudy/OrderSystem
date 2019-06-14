@@ -127,15 +127,23 @@
 	LIMIT 10
 </select>
 <insert id="addExerPlan" parameterType="Planner">
-	INSERT INTO do_Planner (do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username)
-	VALUES (
-	<foreach collection="doList" item="doList" separator=",">
-		#{doList}
+	INSERT INTO do_planner (do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username)
+	VALUES 
+	<foreach collection="doList" item="item" separator=",">
+	(#{item.doDate},#{item.doName},#{item.doSet},#{item.doReps},#{item.doLb},#{item.doGoal},#{item.doPart},#{item.doEtc},#{item.manager},#{item.username})
 	</foreach>
 	
-	)
+	
 </insert>
 <insert id="addFoodPlan" parameterType="Planner">
+	INSERT INTO eat_planner (eat_date,eat_name,eat_gram,eat_count,eat_kcal,eat_etc,eat_nutrient,eat_time,manager,username)
+<!-- 	VALUES (#{eatList.eatDate},#{eatList.eatName},#{eatList.eatGram},#{eatList.eatCount},#{eatList.eatKcal},#{eatList.eatEtc},#{eatList.Nutrient},#{eatList.eatTime},#{eatList.manager},#{eatList.username}) -->
+	VALUES 
+	<foreach collection="eatList" item="item" separator=",">
+	(#{item.eatDate},#{item.eatName},#{item.eatGram},#{item.eatCount},#{item.eatKcal},#{item.eatEtc},#{item.eatNutrient},#{item.eatTime},#{item.manager},#{item.username})
+	</foreach>
+	
 
+	
 </insert>
 </mapper>

@@ -130,6 +130,7 @@ public class AnalysisDaoImpl implements AnalysisDao {
 
 	@Override
 	public void addFoodPlan(Planner planner) {
+		
 		sql.insert("statistics.addFoodPlan", planner);
 	}
 

@@ -179,7 +179,7 @@ $(function() {
 	
 	$('.performance').on('click','.cancel-menti',function(e) {
 		e.preventDefault();
-		var menti = $(this).parents('tr').children('.my-menti').text();
+		var menti = $(this).closest('tr').find('.my-menti .target-username').text();
 		var terminationCheck = confirm("정말로 " + menti + " 님과의 멘토링 관계를 해지하시겠습니까?");
 		if(terminationCheck == true) {
 		$.ajax({
@@ -262,16 +262,9 @@ $(function() {
 
 	    $('.add-food,.add-exer').click(function (e) {
 	    	plan = planner(e.target);
-//	    	console.log(plan);
+// console.log(plan);
 	    	console.log(param);
-	    	$('.textInput').val('');
-	    	$('.eset').val(1);
-	    	$('.ereps').val(10);
-	    	$('.elb').val(20);
-	    	$('.fgram').val(10);
-	    	$('.fcount').val(1);
-	    	$('.ks-cboxtags>li>input[type="radio"]').prop("checked",false);
-	    	$('.ks-cboxtags>li>input[type="checkbox"]').prop("checked",false);
+	    	inputClear();
 	    	
 	    	
 	    });
@@ -291,6 +284,7 @@ $(function() {
 	    			getPlanList(whatModal);
 	    		},
 	    		'cl_add_exer':function() {
+	    		
 	    			dateClickEvent["exer_next"].call();
 	    			getPlanList(whatModal);
 	    		},
@@ -298,13 +292,15 @@ $(function() {
 	    			dateClickEvent["exer_prev"].call();
 	    			getPlanList(whatModal);
 	    		}
+	    		
 	    };
 	    
-	    document.getElementById('cl-btn-box').addEventListener('click',function(e) {
+	    $('.cl-btn-box').click(function(e) {
 	    	var target = e.target || e.srcElement;
 	    	
 	    	if(DateBtnClickEvent.hasOwnProperty(target.id)) {
 	    		DateBtnClickEvent[target.id].call();
+	    	
 	    	}
 	    });
 	    
@@ -641,12 +637,14 @@ $(document).on('click','.sel__box__options',function() {
 						return false;
 				 }else {
 				
-				 exerYesterDay = exerToday.add(-1,'day'); 
+				 exerYesterDay = exerToday.subtract(1,'day'); 
 				 exerToday = exerYesterDay;
 	
 				$('#exer_prev').next().html(exerToday.format('L dddd'));
 				$('.cl_copy_exer').html(exerToday.format('L dddd'));
+				inputClear();
 				 }
+				  
 			},
 			"exer_next": function() {
 		
@@ -657,6 +655,7 @@ $(document).on('click','.sel__box__options',function() {
 					 exerToday = exerTomorrow;
 						$('#exer_next').prev().html(exerToday.format('L dddd'));
 						$('.cl_copy_exer').html(exerToday.format('L dddd'));
+						 inputClear();
 					// 값 초기화 및 리스트 호출 함수
 					}else if(exerEnd.diff(exerTomorrow,'days') < 0) {
 						alert("종료일을 초과할 수 없습니다."); 
@@ -667,7 +666,7 @@ $(document).on('click','.sel__box__options',function() {
 
 			
 					
-				$('form :input').val('');
+				
 			},
 			"food_prev": function() {
 				
@@ -727,16 +726,16 @@ $(document).on('click','.sel__box__options',function() {
 		$('.save-submit').click(function() {
 			console.log(param);
 			$.ajax({
-//				contentType:"application/json; charset=UTF-8",
+// contentType:"application/json; charset=UTF-8",
 				url:'/kopo/member/writePlan',
 				type:'POST',
 				traditional:true,
 				data:param
 					
 				,
-//				data:JSON.stringify({
-//					"plan":plan
-//				}),
+// data:JSON.stringify({
+// "plan":plan
+// }),
 				success:function(data) {
 					alert('플랜이 저장되었습니다.');
 					length = 0;
@@ -970,6 +969,8 @@ function planner(obj) {
 	
 
 	if($(obj).closest('button').hasClass('add-food') == true) {
+		kcal = parseFloat($('.fkcal').val()).toFixed(1) || 0;
+		if(isNaN(kcal)) kcal = 0;
 		
 		list = {
 			code:1,
@@ -977,11 +978,11 @@ function planner(obj) {
 			name:$('.fname').val(),
 			gram:$('.fgram').val(),
 			count:$('.fcount').val(),
-			kcal:parseFloat($('.fkcal').val()).toFixed(1),
+			kcal:kcal,
 			etc:$('.fetc').val(),
-			nutrient:$('input[name="nutrient"]:checked').val(),
+			nutrient:$('input[name="nutrient"]:checked').val() || '',
 			time:$('input[name=radio]:checked').val(),
-			menti:$('.menti-name').text(),
+			menti:$('.food-modal .menti-name').text(),
 			mento:trainer
 		
 		};
@@ -995,18 +996,24 @@ function planner(obj) {
 		return foodPlan;
 	}
 	else if ($(obj).closest('button').hasClass('add-exer') == true) {
+		goal = parseFloat($('.lb-goal').val()).toFixed(1) || 0;
+		if(isNaN(goal)) goal = 0;
 		list = {
 			code:2,
 			name:$('.ename').val(),
 			set:$('.eset').val(),
 			reps:$('.ereps').val(),
 			lb:$('.elb').val(),
-			goal:parseFloat($('.lb-goal').val()).toFixed(1),
+			goal:goal,
 			part:$('.parts').val(),
 			etc:$('.details').val(),
-			date:$('.schedule-date-exer').text()
+			date:$('.schedule-date-exer').text(),
+			menti:$('.exer-modal .menti-name').text(),
+			mento:trainer
 		};
 		exerPlan.push(list);
+		length++;
+		makeList(list,length);
 		alert('운동이 추가되었습니다.');
 		return exerPlan;
 	}
@@ -1066,23 +1073,53 @@ function getPlanList(whatModal) {
 }
 
 function makeList(list,length) {
-
-	for(var i=0;i<length;i++) {
-
-		param['list['+ i + '].code'] = list.code;
-		param['list['+ i + '].eatDate'] = list.date;
-		param['list['+ i + '].eatName'] = list.name;
-		param['list['+ i + '].eatGram'] = list.gram;
-		param['list['+ i + '].eatCount'] = list.count;
-		param['list['+ i + '].eatKcal'] = list.kcal;
-		param['list['+ i + '].eatEtc'] = list.etc;
-		param['list['+ i + '].eatNutrient'] = list.nutrient;
-		param['list['+ i + '].eatTime'] = list.time;
-		param['list['+ i + '].username'] = list.menti;
-		param['list['+ i + '].manager'] = list.mento;
-		
-		
 	
+var codeVal;
+if(list.code == 1) {
+	codeVal = 'eat';
+	for(var i=0;i<length;i++) {
+		
+		param[codeVal+'List['+ i + '].code'] = list.code;
+		param[codeVal+'List['+ i + '].eatDate'] = list.date;
+		param[codeVal+'List['+ i + '].eatName'] = list.name;
+		param[codeVal+'List['+ i + '].eatGram'] = list.gram;
+		param[codeVal+'List['+ i + '].eatCount'] = list.count;
+		param[codeVal+'List['+ i + '].eatKcal'] = list.kcal;
+		param[codeVal+'List['+ i + '].eatEtc'] = list.etc;
+		param[codeVal+'List['+ i + '].eatNutrient'] = list.nutrient;
+		param[codeVal+'List['+ i + '].eatTime'] = list.time;
+		param[codeVal+'List['+ i + '].username'] = list.menti;
+		param[codeVal+'List['+ i + '].manager'] = list.mento;
 
 	}
+}
+else if(list.code == 2)
+	codeVal = 'do';
+	for(var i=0;i<length;i++) {
+	
+		param[codeVal+'List['+ i + '].code'] = list.code;
+		param[codeVal+'List['+ i + '].doDate'] = list.date;
+		param[codeVal+'List['+ i + '].doName'] = list.name;
+		param[codeVal+'List['+ i + '].doSet'] = list.set;
+		param[codeVal+'List['+ i + '].doReps'] = list.reps;
+		param[codeVal+'List['+ i + '].doLb'] = list.lb;
+		param[codeVal+'List['+ i + '].doGoal'] = list.goal;
+		param[codeVal+'List['+ i + '].doPart'] = list.part;
+		param[codeVal+'List['+ i + '].doEtc'] = list.etc;
+		param[codeVal+'List['+ i + '].username'] = list.menti;
+		param[codeVal+'List['+ i + '].manager'] = list.mento;
+
+}
+
+
+}
+function inputClear() {
+	$('.textInput').val('');
+	$('.eset').val(1);
+	$('.ereps').val(10);
+	$('.elb').val(20);
+	$('.fgram').val(10);
+	$('.fcount').val(1);
+	$('.ks-cboxtags>li>input[type="radio"]').prop("checked",false);
+	$('.ks-cboxtags>li>input[type="checkbox"]').prop("checked",false);
 }

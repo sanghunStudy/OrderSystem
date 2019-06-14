@@ -53,7 +53,6 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	
 	UserVO point = Uservice.item(id);
 	int userPoint = point.getPoint();
-	System.out.println(userPoint + "<<<<<<<<<<<<<<< 포린트");
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);
 //	} else {

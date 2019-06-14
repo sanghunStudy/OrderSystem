@@ -440,7 +440,7 @@ to {
 
 /*성별 라디오 버튼*/
 .sex-box {
-	margin-left: 20px;
+	margin-left: 50px;
 }
 
 .sex-box p {
@@ -510,11 +510,11 @@ to {
 }
 
 .male {
-	left: -40px;
+	left: -52px;
 }
 
 .female {
-	left: 5px;
+	left: 20px;
 }
 
 .gender {

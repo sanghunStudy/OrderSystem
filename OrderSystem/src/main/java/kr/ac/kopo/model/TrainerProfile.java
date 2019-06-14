@@ -19,7 +19,7 @@ public class TrainerProfile {
 	private String trainerApply;
 	private String deleteApply;
 	String thumbnail;
-	
+	String tier;
 	
 	public String getRegion() {
 		return region;
@@ -104,6 +104,12 @@ public class TrainerProfile {
 	}
 	public void setFile(String file) {
 		this.file = file;
+	}
+	public String getTier() {
+		return tier;
+	}
+	public void setTier(String tier) {
+		this.tier = tier;
 	}
 	
 		

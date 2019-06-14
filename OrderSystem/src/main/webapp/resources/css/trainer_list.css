@@ -89,6 +89,7 @@ body {
         align-items: center;
 }
 .photo {
+	    width: 220px;
 	    align-self: center;
 	    padding:15px 15px;
 	

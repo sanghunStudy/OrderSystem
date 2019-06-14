@@ -394,6 +394,7 @@ to {
     justify-content: center;
 }
 .text {
+    margin-left: 20px;
 	width:125px;
 	height:125px;
 }

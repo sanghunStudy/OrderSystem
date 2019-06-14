@@ -43,6 +43,7 @@
 							<input type="hidden" value="${item.career}" class="trainer-career">
 							<div class="trainer-info">
 								<div class="photo">
+								<img src="${pageContext.request.contextPath}/resources/images/grade-border/${item.tier}-tier-border.png" class="trainer-tier-border" alt="${item.tier}"/>
 									<img
 										src="${pageContext.request.contextPath}/upload/${item.upFilename}"
 										onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"

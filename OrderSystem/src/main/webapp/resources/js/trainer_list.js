@@ -157,7 +157,8 @@ $(function() {
 					trainer_username = $(this).parents('.item-box').find(
 					'.trainer-id').val();
 					
-					photoSrc = $(this).parents('.item-box').find('img').attr('src');
+//					photoSrc = $(this).parents('.item-box').find('img').attr('src');
+					photoSrc = $(this).parents('.item-box').find('.text').attr('src');
 					trainer = $(this).parents('.item-box').find('.username').text();
 					trainerSex = $(this).parents('.item-box').find('.trainer-sex').val();
 					

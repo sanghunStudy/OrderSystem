@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="add" parameterType="Question">
-		insert into question(question_name,question_content,question_date,id,img_chk,point_set)
-		values(#{questionName},#{questionContent},NOW(),#{id},#{imgChk},#{pointSet})
+		insert into question(question_name,question_content,question_date,id,img_chk,point_set,hash_tag)
+		values(#{questionName},#{questionContent},NOW(),#{id},#{imgChk},#{pointSet},#{hashTag})
 	</insert>
 	
 	<select id="item" resultType="Question">

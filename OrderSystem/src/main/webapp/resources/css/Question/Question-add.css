@@ -170,12 +170,12 @@ body{background:#201d2e;text-decoration:none;}
 }
 .addTag {
 	list-style:none;
-	width:100px;
-	height:35px;
+	width:130px;
+	height:40px;
 	color:#fff;
 	background:#006699;
-	border-radius: 17.5px;
-	line-height:35px;
+	border-radius: 20px;
+	line-height:40px;
 	vartical-align:middle;
 	text-align:center;
 	position:relative;
@@ -186,6 +186,7 @@ body{background:#201d2e;text-decoration:none;}
 	float:right;
 	margin-right:8px;
 	cursor:pointer;
+	font-weight:bold;
 }
 .delTag:hover {
 	color:#303030;

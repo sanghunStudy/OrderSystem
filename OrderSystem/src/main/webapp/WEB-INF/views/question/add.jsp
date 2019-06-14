@@ -35,7 +35,7 @@
 				}
 			}
 		});
-					
+		//질문등록
 		$("#questionSubmit").click(function(){
 			var summernoteVal = $("#summernote").val(); 
 			var imgChk;
@@ -47,6 +47,9 @@
 				}
 			var nameCheck = $("#questionName").val();
 			var pointInfo = $('#pointSet').val();
+			var HashTagVal = HashTagSave();
+			$('#hash-tag-val').val(HashTagVal);
+//				console.log(HashTagVal);
 			if(nameCheck == null || nameCheck == ""){
 				alert("제목을 입력하세요");
 			} else if(summernoteVal == null || summernoteVal == "") {
@@ -88,7 +91,14 @@
 				});
 			}
 		});
-		
+		function HashTagSave(){
+			var Tie = "";
+			for(var i=0; i < exist.length; i++){
+				Tie += exist[i] + ", ";
+			}
+			return Tie;
+		}
+		//작성취소
 		$('.Go-back').click(function(){
 			var really = confirm("작성을 취소하시면 현재 작성한 내용이 사라집니다. 괜찮겠습니까?");
 			if(really == true){
@@ -97,17 +107,19 @@
 				return false;
 			}
 		});
-
+		//해시태그등록준비
 		var hashTag = "";
 		var exist=[];
 		var counter = 0;
 		var Doppelganger = 0;
+		var pattern = /[~!@$%^&*()_+|<>?:{}]/;
+		//해시태그등록
 		$('#hash-tag').on("keyup",function (e) {
 //			console.log(e);
 //			console.log(e.key);
 // 			console.log(exist);
 
-			if(e.key === "Enter" || e.key === " ") {
+			if(e.key === "Enter" || e.key === " " || (new RegExp(/[^a-zA-Z가-힣]/)).test(e.key)) {
 				Doppelganger = 0;
 				for(var i=0; i < exist.length; i++){
 					if(exist[i] === hashTag) {
@@ -119,22 +131,20 @@
  				}
 				if(Doppelganger == 0){
 					exist[counter] = hashTag;
-					$('#hash-tag-list').append('<li class="addTag">'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
+					$('#hash-tag-list').append('<li class="addTag">#'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
 					hashTag = "";
 					$('#hash-tag').val("");
 					console.log(exist[counter]);
 					counter++;
 				}
+				console.log(exist);
 				
-			} else if(e.key === "Backspace") {
-				var cut = hashTag.substr(0, (hashTag.length) -1);
-				hashTag = cut;
-				console.log(hashTag);
 			} else {
-				hashTag += e.key;
+				hashTag = $('#hash-tag').val();
  				console.log(hashTag);
 			}
 		});
+		//해시태그삭제
 		$(document).on("click", ".delTag", function() {
 			var Tagcode = $(this).attr("idx");
 			exist[Tagcode] = "";
@@ -203,25 +213,11 @@
 			});
 		</script>
 		<div class="hash-tag" id="hashTag">
-			<input type="hidden" value="" name="hash-tag" id="hash-tag-val">
-			<input type="text" id="hash-tag" v-model="typing" placeholder="해시태그를 입력하세요">
+			<input type="hidden" value="" name="hashTag" id="hash-tag-val">
+			<input type="text" id="hash-tag" v-model="typing" placeholder="#해시태그를 입력하세요">
 			<ul id="hash-tag-list">
 			</ul>
 		</div>
-		<script>
-//  			var HashTag = new Vue({
-// 				el:'#hashTag',
-// 				data: {
-// 					typing:'',
-// 					tag:''
-// 				},
-// 				watch: {
-// 					typing: function(v) {
-// 						hashTag = v;
-// 					}
-// 				}
-// 			});
-		</script>
 		<div id="content-box">
 			<textarea name="questionContent" id="summernote" cols="120" rows="50" value=""></textarea>
 		</div>

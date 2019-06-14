@@ -12,6 +12,7 @@ public class Question {
 	String id;
 	boolean imgChk;
 	int pointSet;
+	String hashTag;
 	
 	public int getPointSet() {
 		return pointSet;
@@ -67,4 +68,11 @@ public class Question {
 	public void setQuestionViews(int questionViews) {
 		this.questionViews = questionViews;
 	}
+	public String getHashTag() {
+		return hashTag;
+	}
+	public void setHashTag(String hashTag) {
+		this.hashTag = hashTag;
+	}
+	
 }

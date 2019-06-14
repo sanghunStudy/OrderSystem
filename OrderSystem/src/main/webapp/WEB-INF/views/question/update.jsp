@@ -185,7 +185,7 @@ function sendFile(file, el) {
 					<span>${item.pointSet} point</span>
 				</button>
 			</div>
-			<div class="point-input"><input id="point" placeholder="채택한 답변자에게 추가 포인트를 드립니다" type="number"></div>
+			<div class="point-input"><div id="pointExplanation"><span>채택한 답변자에게 추가 포인트를 드립니다</span></div></div>
 			<input type="hidden" name="pointSet" id="pointSet" value="${item.pointSet}">
 		</div>
 		<div>

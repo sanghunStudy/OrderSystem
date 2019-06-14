@@ -78,8 +78,51 @@
 				});
 			}
 		});
-		
-		
+
+		var hashTag = "";
+		var exist=[];
+		var counter = 0;
+		var Doppelganger = 0;
+		$('#hash-tag').on("keyup",function (e) {
+//			console.log(e);
+//			console.log(e.key);
+// 			console.log(exist);
+
+			if(e.key === "Enter" || e.key === " ") {
+				Doppelganger = 0;
+				for(var i=0; i < exist.length; i++){
+					if(exist[i] === hashTag) {
+						alert("같은 태그가 존재합니다.");
+						hashTag = "";
+						$('#hash-tag').val("");
+						Doppelganger = 1;
+					}
+ 				}
+				if(Doppelganger == 0){
+					exist[counter] = hashTag;
+					$('#hash-tag-list').append('<li class="addTag">'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
+					hashTag = "";
+					$('#hash-tag').val("");
+					console.log(exist[counter]);
+					counter++;
+				}
+				
+			} else if(e.key === "Backspace") {
+				var cut = hashTag.substr(0, (hashTag.length) -1);
+				hashTag = cut;
+				console.log(hashTag);
+			} else {
+				hashTag += e.key;
+ 				console.log(hashTag);
+			}
+		});
+		$(document).on("click", ".delTag", function() {
+			var Tagcode = $(this).attr("idx");
+			exist[Tagcode] = "";
+			$(this).parent().remove();
+			console.log(exist);
+		});
+
 	});
 
 	function sendFile(file, el) {
@@ -140,6 +183,26 @@
 				}
 			});
 		</script>
+		<div class="hash-tag" id="hashTag">
+			<input type="hidden" value="" name="hash-tag" id="hash-tag-val">
+			<input type="text" id="hash-tag" v-model="typing" placeholder="해시태그를 입력하세요">
+			<ul id="hash-tag-list">
+			</ul>
+		</div>
+		<script>
+//  			var HashTag = new Vue({
+// 				el:'#hashTag',
+// 				data: {
+// 					typing:'',
+// 					tag:''
+// 				},
+// 				watch: {
+// 					typing: function(v) {
+// 						hashTag = v;
+// 					}
+// 				}
+// 			});
+		</script>
 		<div id="content-box">
 			<textarea name="questionContent" id="summernote" cols="120" rows="50" value=""></textarea>
 		</div>
@@ -180,6 +243,7 @@
 			<div class="point-input"><div id="pointExplanation"><span>채택한 답변자에게 추가 포인트를 드립니다</span></div></div>
 			<input type="hidden" name="pointSet" id="pointSet" value="0">
 		</div>
+		
 		<div>
 			<input type="hidden" name="imgChk" id="imgChk" value="false">
 		</div>

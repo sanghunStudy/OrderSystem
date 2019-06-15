@@ -291,22 +291,26 @@
 								<c:choose>
 									<c:when test="${doList.size() > 0 }">
 										<c:forEach var="item" items="${doList}">
-											
+
 											<tr>
 												<td><div class="checkboxes">
-														<input id="a" type="checkbox" tabindex="1" /><label class="green-background" for="a"></label>
+														<input id="a" type="checkbox" tabindex="1" /><label
+															class="green-background" for="a"></label>
 													</div></td>
 												<td><div class="item_box">
 														<div class="to_item">${item.doName}</div>
-														<p class="to_item_cotents">${item.doName} ${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
+														<p class="to_item_cotents">${item.doName}
+															${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
 													</div></td>
 												<td class="parts">${item.doPart}</td>
 												<td>
 													<div class="progress-container-t">
-														<span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>
+														<span id="value" class="progress-value-t"
+															style="background-color: #272a3d">1%</span>
 
 														<div class="progress-bar-t">
-															<div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div>
+															<div id="bar" class="progress-value-t multi"
+																data-code="dbVal" style="width: 1%;"></div>
 														</div>
 													</div>
 												</td>
@@ -319,29 +323,7 @@
 									</c:otherwise>
 
 								</c:choose>
-<!-- 								<tr> -->
-<!-- 									<td><div class="checkboxes"> -->
-<!-- 											<input id="a" type="checkbox" tabindex="1" /><label -->
-<!-- 												class="green-background" for="a"></label> -->
-<!-- 										</div></td> -->
-<!-- 									<td><div class="item_box"> -->
-<!-- 											<div class="to_item">데드리프트</div> -->
-<!-- 											<p class="to_item_cotents">데드리프트 60kg 중량으로 10회씩 3세트</p> -->
-<!-- 										</div></td> -->
-<!-- 									<td class="parts">등</td> -->
-<!-- 									<td> -->
-<!-- 										<div class="progress-container-t"> -->
-<!-- 											<span id="value" class="progress-value-t" -->
-<!-- 												style="background-color: #272a3d">1%</span> -->
 
-<!-- 											<div class="progress-bar-t"> -->
-<!-- 												<div id="bar" class="progress-value-t multi" -->
-<!-- 													data-code="dbVal" style="width: 1%;"></div> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 									</td> -->
-<!-- 									<td><i class="fas fa-edit"></i></td> -->
-<!-- 								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -361,30 +343,63 @@
 					<div class="to_do_table">
 						<table class="to_eat table-t">
 							<tbody class="to-eat-body">
-								<tr>
-									<td><div class="checkboxes">
-											<input id="b" type="checkbox" tabindex="2" /><label
-												class="green-background" for="b"></label>
-										</div></td>
-									<td><div class="item_box">
-											<div class="to_item">바나나100g</div>
-											<p class="to_item_contents">바나나 보통크기 3개</p>
-										</div></td>
-									<td class="nutrient">탄 단 지</td>
-									<td class="kcal">250Kcal</td>
-									<td>
-										<div class="progress-container-t">
-											<span id="value" class="progress-value-t"
-												style="background-color: #272a3d">1%</span>
+								<c:choose>
+									<c:when test="${eatList.size() > 0}">
+										<c:forEach var="item" items="${eatList}">
+											<tr>
+												<td><div class="checkboxes">
+														<input id="b" type="checkbox" tabindex="2" /><label
+															class="green-background" for="b"></label>
+													</div></td>
+												<td><div class="item_box">
+														<div class="to_item">${item.eatName}${item.eatGram}</div>
+														<p class="to_item_contents">${item.eatName}
+															${item.eatCount}개 ${item.eatGram}gram</p>
+														<p>${item.eatEtc}</p>
+													</div></td>
+												<td class="nutrient">${item.eatNutrient}</td>
+												<td class="kcal">${item.eatKcal}</td>
+												<td>
+													<div class="progress-container-t">
+														<span id="value" class="progress-value-t"
+															style="background-color: #272a3d">1%</span>
+														<div class="progress-bar-t">
+															<div id="bar" class="progress-value-t multi"
+																data-code="dbVal" style="width: 1%;"></div>
+														</div>
+													</div>
+												</td>
+												<td><i class="fas fa-edit"></i></td>
+												</tr>											
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+									</c:otherwise>
+								</c:choose>
+								<!-- 								<tr> -->
+								<!-- 									<td><div class="checkboxes"> -->
+								<!-- 											<input id="b" type="checkbox" tabindex="2" /><label -->
+								<!-- 												class="green-background" for="b"></label> -->
+								<!-- 										</div></td> -->
+								<!-- 									<td><div class="item_box"> -->
+								<!-- 											<div class="to_item">바나나100g</div> -->
+								<!-- 											<p class="to_item_contents">바나나 보통크기 3개</p> -->
+								<!-- 										</div></td> -->
+								<!-- 									<td class="nutrient">탄 단 지</td> -->
+								<!-- 									<td class="kcal">250Kcal</td> -->
+								<!-- 									<td> -->
+								<!-- 										<div class="progress-container-t"> -->
+								<!-- 											<span id="value" class="progress-value-t" -->
+								<!-- 												style="background-color: #272a3d">1%</span> -->
 
-											<div class="progress-bar-t">
-												<div id="bar" class="progress-value-t multi"
-													data-code="dbVal" style="width: 1%;"></div>
-											</div>
-										</div>
-									</td>
-									<td><i class="fas fa-edit"></i></td>
-								</tr>
+								<!-- 											<div class="progress-bar-t"> -->
+								<!-- 												<div id="bar" class="progress-value-t multi" -->
+								<!-- 													data-code="dbVal" style="width: 1%;"></div> -->
+								<!-- 											</div> -->
+								<!-- 										</div> -->
+								<!-- 									</td> -->
+								<!-- 									<td><i class="fas fa-edit"></i></td> -->
+								<!-- 								</tr> -->
 							</tbody>
 						</table>
 					</div>

@@ -88,17 +88,19 @@ display:inline-block;
 .toDo{
 	 display:inline-block;
  background:#272a3d;
- height:300px;
+ height:400px;
  width:43vw;
  margin-right:3vw;
  color:#fff;
+     overflow: scroll;
 }
 .toEat{
  display:inline-block;
  background:#272a3d;
- height:300px;
+ height:400px;
   width:43vw;
   color:#fff;
+      overflow: scroll;
 }
 
 .detail {

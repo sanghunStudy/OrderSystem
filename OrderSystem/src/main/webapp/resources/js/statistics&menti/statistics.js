@@ -44,7 +44,7 @@ function getEatList(date) {
 				tr +='<td><div class="item_box"><div class="to_item">' + value.eatName + '</div>';
 				tr +='<p class="to_item_cotents">' + value.eatName + ' ' + value.eatCount + '개 ' + value.eatGram + 'gram </p><p>' + value.etc + '</p</div></td>';
 				tr += '<td class="nutrient">' + value.eatNutrient + '</td>';
-				tr += '<td class="kcal>' + value.eatKcal + '</td>';
+				tr += '<td class="kcal">' + value.eatKcal + 'kcal</td>';
 				tr += '<td><div class="progress-container-t"><span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>';
 				tr += '<div class="progress-bar-t"><div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div></div></div></td>';
 				tr += '<td><i class="fas fa-edit"></i></td>';

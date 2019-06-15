@@ -12,7 +12,8 @@
 	
 </script>
 <title>질문게시판</title>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 </head>
 <header>
 	<%-- <jsp:include page="../gnb/header.jsp" flush="true" /> --%>
@@ -80,16 +81,60 @@
 	</script>
 	<script>
 		$(document).ready(function() {
-			// 	alert("djdjdjdj");
-
+			$('#hashTag').on("keyup",function(e){
+				if(e.key === "Enter" || e.key === " " || (new RegExp(/[^a-zA-Z가-힣]/)).test(e.key)) {
+					hashTagSubmit();
+				}
+			});
+			var hashType = $('[name=hashTagCheck]').val();
+// 			console.log(hashType);
+// 			console.log(hashType == "hash_tag");
+			if(hashType == "hash_tag"){
+				var hashTag_searchKeyword = $('.search_keyword').val();
+				$('.search_keyword').val("");
+				$('.hashTag_searchKeyword').append('<li class="addTag">'+ hashTag_searchKeyword +'</li>');
+			}
 		});
+		function hashTagSubmit() {
+			
+// 			var searchTypeCheck = false;
+// 			var searchType ="";
+// 			var arr_SearchType = document.getElementsByName("searchTypeCheck");
+// 			console.log(arr_SearchType);
+// 			for (var i = 0; i < arr_SearchType.length; i++) {
+// 				if (arr_SearchType[i].checked == true) {
+// 					searchTypeCheck = true;
+// 					searchType = arr_SearchType[i].value;
+// 					break;
+// 				}
+// 			}
+// 			console.log(searchType);
+// 			console.log(page);
+// 			$('#searchType').val(searchType);
+// 			if(searchTypeCheck == false){
+// 				alert("검색할 종류를 선택하세요");
+// 				return false;
+// 			}
+			if (page == undefined) {
+				if ($('#hashTag').val() == null || $('#hashTag').val() == "") {
+					alert("검색할 내용을 입력하세요");
+					return false;
+				} else {
+					document.getElementById('page').value = 1;
+					document.getElementById('hashTagForm').submit();
+				}
+			} else {
+				document.getElementById('page').value = page;
+				document.getElementById('hashTagForm').submit();
+			}
+		}
+		
 	</script>
 </header>
 <body>
 	<div class="container">
 		<div>
-			<a class="subtitle"
-				href="${pageContext.request.contextPath}/question/list">질문게시판</a>
+			<a class="subtitle" href="${pageContext.request.contextPath}/question/list">질문게시판</a>
 		</div>
 		<script>
 			function changeSelect() {
@@ -97,6 +142,7 @@
 			}
 		</script>
 		<div class="middle_zone">
+			<ul class="hashTag_searchKeyword"></ul>
 			<form id="selectForm" name="selectForm">
 				<select name="displayRowCount" onchange="changeSelect()"
 					class="amount_select">
@@ -132,6 +178,20 @@
 						onclick="fn_formSubmit();">
 				</div>
 			</form>
+			<input type="hidden" id="hashTagCheck" name="hashTagCheck" value="${searchVO.searchType}">
+			<form id="hashTagForm" name="hashTagForm" method="post">
+				<div>
+<!-- 					<ul class="searchType-cboxtags"> -->
+<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType1" value="question_name"><label for="searchType1">제목</label></li> -->
+<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType2" value="question_content"><label for="searchType2">내용</label></li> -->
+<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType3" value="hash_tag"><label for="searchType3">해시태그</label></li> -->
+<!--     				</ul> -->
+					<input type="hidden" name="searchType" value="hash_tag">
+<!-- 					<input type="hidden" name="searchType" id="searchType" value=""> -->
+					<input type="text" name="searchKeyword" id="hashTag" maxlength="50" placeholder="#해시태그로 검색">
+				</div>
+			</form>
+			
 		</div>
 		<table class="posts">
 			<tr>

@@ -26,8 +26,9 @@ body {
 }
 
 .middle_zone {
-	height: 42px;
-	margin-top: 100px;
+	margin: 100px 0 10px 0;
+	position:relative;
+	
 }
 
 .totalposts {
@@ -37,7 +38,7 @@ body {
 
 .amount_select {
 	width: 150px;
-	height: 35px;
+	height: 40px;
 	border: 1px solid #fff;
 	float: left;
 	margin-right: 4px;
@@ -77,7 +78,7 @@ body {
 	border-top: 1px solid #fff;
 	border-collapse: collapse;
 	color: #fff;
-	margin-top:5px;
+	margin-top:20px;
 }
 
 .posts a:link {
@@ -220,4 +221,102 @@ input[class="cb1"], input[class="cb2"], #concheck {
 .write a:visited {
 	text-decoration: none;
 	color: #fff;
+}
+#hashTag {
+	width:300px;
+	height:40px;
+	background:#272a3d;
+	border:none;
+	color:#fff;
+	margin-left:20px;
+	padding-left:20px;
+}
+.addTag {
+	list-style:none;
+	width:130px;
+	height:40px;
+	color:#fff;
+	background:#006699;
+	border-radius: 20px;
+	line-height:40px;
+	vartical-align:middle;
+	text-align:center;
+	margin:0 10px 10px 0;
+}
+/* input[type="checkbox"] { */
+/* 	width:0; */
+/* 	display:none; */
+/* } */
+/* .searchType { */
+/* 	color:#fff; */
+/* 	float:left; */
+/* 	margin-right:4px; */
+/* 	cursor:pointer; */
+/* } */
+/* 검색종류선택버튼 */
+.searchType-cboxtags {
+    list-style: none;
+    margin:0 0 10px 0;
+}
+.searchType-cboxtags li{
+  display: inline;
+}
+.searchType-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+.searchType-cboxtags li label {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.searchType-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+.searchType-cboxtags li input[type="radio"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+.searchType-cboxtags li input[type="radio"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+.searchType-cboxtags li input[type="radio"] {
+  display: absolute;
+}
+.searchType-cboxtags li input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.searchType-cboxtags li input[type="radio"]:focus + label {
+  border: 2px solid #e9a1ff;
 }

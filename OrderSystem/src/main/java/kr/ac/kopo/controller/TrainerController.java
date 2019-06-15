@@ -41,7 +41,6 @@ public class TrainerController {
 	@ResponseBody
 	int selectUserbI(HttpSession session) {
 		String username = (String)session.getAttribute("user");
-
 		//회원 기초정보 없음
 		if(service.selectUserbI(username) == 0) {
 			return 0;

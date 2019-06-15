@@ -35,7 +35,7 @@
 	
 	<update id="update" parameterType="Question">
 		update question 
-		set question_name=#{questionName},question_content=#{questionContent},img_chk=#{imgChk},point_set=#{pointSet}
+		set question_name=#{questionName},question_content=#{questionContent},img_chk=#{imgChk},point_set=#{pointSet},hash_tag=#{hashTag}
 		where question_id=#{questionId}
 	</update>
 	

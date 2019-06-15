@@ -62,7 +62,7 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 }
 #contents {
 	width:950px;
-	margin:auto auto 150px auto;
+	margin:auto auto 50px auto;
 	clear:left;
 }
 #content {
@@ -288,4 +288,23 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	position:absolute;
 	top:-25px;
 	z-index:0;
+}
+.hashTagList {
+	width:100%;
+	clear:left;
+}
+.hashTagItem {
+	list-style:none;
+	width:100px;
+	height:30px;
+	color:#fff;
+	background:#006699;
+	border-radius: 15px;
+	line-height:30px;
+	vartical-align:middle;
+	text-align:center;
+	position:relative;
+	display:inline-block;
+	margin:0 10px 10px 0;
+	font-size:10pt;
 }

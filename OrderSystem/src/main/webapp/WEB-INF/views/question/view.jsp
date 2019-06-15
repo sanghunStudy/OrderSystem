@@ -44,22 +44,28 @@ $(document).ready(function(){
 				$('[name=content_'+ qcommentId +']').val(cut);
 			}
 		} else {
-			$.ajax({
-				url:'${pageContext.request.contextPath}/question/commentUpdate',
-				type:'post',
-				data:{
-					'qcommentId':qcommentId,
-					'qcommentContent':content
-				},
-				success:function(data){
-					if(data=='success'){
-						alert("답변이 수정 되었습니다.");
-						commentList();
-					} else {
-						alert("수정이 실패하였습니다.");
+			var really = confirm("이대로 수정하시겠습니까?");
+			if(really == true) {
+				$.ajax({
+					url:'${pageContext.request.contextPath}/question/commentUpdate',
+					type:'post',
+					data:{
+						'qcommentId':qcommentId,
+						'qcommentContent':content
+					},
+					success:function(data){
+						if(data=='success'){
+							alert("답변이 수정 되었습니다.");
+							commentList();
+						} else {
+							alert("수정이 실패하였습니다. 나중에 다시 시도해 주세요.");
+						}
 					}
-				}
-			});
+				});
+			} else {
+				return false;
+			}
+			
 		}
 	});
 	//댓글수정텍스트에리어자동수정
@@ -187,6 +193,7 @@ $(document).ready(function(){
 					},
 					success:function(data){
 						if(data=='success'){
+							alert("답글이 등록되었습니다.");
 							$('#comment').val("");
 							commentList();
 						} else {
@@ -257,13 +264,23 @@ $(document).ready(function(){
 			window.location.href="update?questionId="+${item.questionId};
 		}
 	});
-	
+	//댓글테두리
 	var commentLength = $('.tierborderStart').length;
 	for(var i=0; i < commentLength; i++) {
 		var writeDayTiers = $('.tierborderStart:eq('+i+')').attr("alt");
 		$('.tierborderStart:eq('+i+')').attr("src","${pageContext.request.contextPath}/resources/images/grade-border/"+writeDayTiers+"-tier-border.png");
 	}
-	
+	//해시태그출력
+	if($('#hashTag').val() != ""){
+		var hashTagAll = $('#hashTag').val();
+		var hashTagList = hashTagAll.split(",");
+//	 	console.log(hashTagList);
+		for(var i=0; i < hashTagList.length; i++) {
+			if(hashTagList[i] != ""){
+				$('.hashTagList').append('<li class="hashTagItem">#'+ hashTagList[i] +'</li>');
+			}
+		}
+	}
 });
 </script>
 <script src="https://unpkg.com/vue"></script>
@@ -286,9 +303,11 @@ $(document).ready(function(){
 			<img src="${pageContext.request.contextPath}/resources/images/icon/normalperson.png" class="personImg">
 			<div class="Qn"><span>${item.id}&emsp;</span><span><fmt:formatDate value="${item.questionDate}" pattern="yyyy-MM-dd"/></span></div>
 			</div>
+			<ul class="hashTagList"></ul>
 		</div>
 		<input type="hidden" id="login" value="${login}">
 		<input type="hidden" id="writer" value="${item.id}">
+		<input type="hidden" id="hashTag" value="${item.hashTag}">
 	</div>
 	<form action="qcommentAdd" id="qcommentForm">
 	<div id="commentInput">

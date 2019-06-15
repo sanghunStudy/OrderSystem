@@ -91,10 +91,16 @@
 				});
 			}
 		});
+		//해시태그 저장준비
 		function HashTagSave(){
 			var Tie = "";
 			for(var i=0; i < exist.length; i++){
-				Tie += exist[i] + ", ";
+				if((i+1) != exist.length){
+					Tie += exist[i] + ",";
+				} else {
+					Tie += exist[i];
+				}
+				
 			}
 			return Tie;
 		}
@@ -112,7 +118,6 @@
 		var exist=[];
 		var counter = 0;
 		var Doppelganger = 0;
-		var pattern = /[~!@$%^&*()_+|<>?:{}]/;
 		//해시태그등록
 		$('#hash-tag').on("keyup",function (e) {
 //			console.log(e);
@@ -134,14 +139,14 @@
 					$('#hash-tag-list').append('<li class="addTag">#'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
 					hashTag = "";
 					$('#hash-tag').val("");
-					console.log(exist[counter]);
+// 					console.log(exist[counter]);
 					counter++;
 				}
 				console.log(exist);
 				
 			} else {
 				hashTag = $('#hash-tag').val();
- 				console.log(hashTag);
+//  				console.log(hashTag);
 			}
 		});
 		//해시태그삭제

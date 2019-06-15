@@ -48,6 +48,9 @@ $(document).ready(function(){
 			}
 		var nameCheck = $("#questionName").val();
 		var pointInfo = $('#pointSet').val();
+		var HashTagVal = HashTagSave();
+		$('#hash-tag-val').val(HashTagVal);
+		console.log($('#hash-tag-val').val());
 		if(nameCheck == null || nameCheck == ""){
 			alert("제목을 입력하세요");
 		} else if(summernoteVal == null || summernoteVal == "") {
@@ -88,7 +91,76 @@ $(document).ready(function(){
 		}
 		
 	});
-	
+	//작성취소
+	$('.Go-back').click(function(){
+		var really = confirm("작성을 취소하시면 현재 작성한 내용이 사라집니다. 괜찮겠습니까?");
+		if(really == true){
+			window.location.href="view?questionId="+${item.questionId};
+		} else {
+			return false;
+		}
+	});
+	//해시태그출력
+	var hashTagAll = $('#hashTagVal').val();
+	var hashTagList = hashTagAll.split(",");
+	console.log(hashTagAll);
+	console.log(hashTagList);
+	for(var i=0; i < hashTagList.length; i++) {
+		if(hashTagList[i] != ""){
+			$('#hash-tag-list').append('<li class="addTag">#'+ hashTagList[i] +'<span class="delTag" idx="'+ i +'">X</span></li>');
+		}
+	}
+	//해시태그 저장준비
+	function HashTagSave(){
+		var Tie = "";
+		for(var i=0; i < hashTagList.length; i++){
+			if((i+1) != hashTagList.length){
+				Tie += hashTagList[i] + ",";
+			} else {
+				Tie += hashTagList[i];
+			}
+			
+		}
+		return Tie;
+	}
+	//해시태그등록준비
+	var hashTag = "";
+	var counter = hashTagList.length;
+	var Doppelganger = 0;
+	//해시태그등록
+	$('#hash-tag').on("keyup",function (e) {
+		if(e.key === "Enter" || e.key === " " || (new RegExp(/[^a-zA-Z가-힣]/)).test(e.key)) {
+			Doppelganger = 0;
+			for(var i=0; i < hashTagList.length; i++){
+				if(hashTagList[i] === hashTag) {
+					alert("같은 태그가 존재합니다.");
+					hashTag = "";
+					$('#hash-tag').val("");
+					Doppelganger = 1;
+				}
+				}
+			if(Doppelganger == 0){
+				hashTagList[counter] = hashTag;
+				$('#hash-tag-list').append('<li class="addTag">#'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
+				hashTag = "";
+				$('#hash-tag').val("");
+//					console.log(exist[counter]);
+				counter++;
+			}
+			console.log(hashTagList);
+			
+		} else {
+			hashTag = $('#hash-tag').val();
+//				console.log(hashTag);
+		}
+	});
+	//해시태그삭제
+	$(document).on("click", ".delTag", function() {
+		var Tagcode = $(this).attr("idx");
+		hashTagList[Tagcode] = "";
+		$(this).parent().remove();
+		console.log(hashTagList);
+	});
 	
 });
 
@@ -148,6 +220,13 @@ function sendFile(file, el) {
 				}
 			});
 		</script>
+		<div class="hash-tag" id="hashTag">
+			<input type="hidden" id="hashTagVal" value="${item.hashTag}">
+			<input type="hidden" value="" name="hashTag" id="hash-tag-val">
+			<input type="text" id="hash-tag" v-model="typing" placeholder="#해시태그를 입력하세요">
+			<ul id="hash-tag-list">
+			</ul>
+		</div>
 		<div>
 			<textarea name="questionContent" id="summernote">${item.questionContent}</textarea>
 		</div>
@@ -194,7 +273,7 @@ function sendFile(file, el) {
 		<div class="buttons">
 <!-- 			<input type="submit" value="등록하기"> -->
 			<button type="button" id="questionSubmit">수정완료</button>
-			<a href="view?questionId=${item.questionId}"><div class="Go-back">수정취소</div></a>
+			<a><div class="Go-back">수정취소</div></a>
 		</div>
 	</form>
 	</div>

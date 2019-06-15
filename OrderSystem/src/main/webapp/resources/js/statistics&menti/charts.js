@@ -388,24 +388,7 @@ $(function() {
 		});
 	
 	
-		$('.multi').each(function() {
-			var elem = $(this);
-			var width = 1;
-			var id = setInterval(frame, 50);
-			var end = $(this).attr('data-code');
-			var kcal = elem.parent().prev().prev();
-			console.log(end);
-
-			function frame() {
-				if (width >= 35) {
-					clearInterval(id);
-				} else {
-					width++;
-					elem.css('width',width + '%');
-					elem.parent().prev().html(width + '%');
-				}
-			}
-		});
+		$('.multi').each(progressAnime);
 			
 		
 
@@ -416,4 +399,21 @@ $(function() {
 });
 
 
+function progressAnime() {
+	var elem = $(this);
+	var width = 1;
+	var id = setInterval(frame, 50);
+	var end = $(this).attr('data-code');
+	var kcal = elem.parent().prev().prev();
+	console.log(end);
 
+	function frame() {
+		if (width >= 35) {
+			clearInterval(id);
+		} else {
+			width++;
+			elem.css('width',width + '%');
+			elem.parent().prev().html(width + '%');
+		}
+	}
+}

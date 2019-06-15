@@ -51,6 +51,7 @@ body {
 }
 #toWrapper input[type="checkbox"] +  label,
 #toWrapper input[type="radio"] +  label {
+	transform: scale(0.9);
  position: relative;
   padding: 0.5rem 0 0 2rem;
   margin-bottom: 1rem;

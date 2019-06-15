@@ -4,6 +4,8 @@
 	var plan=[];
 	var whatModal;
 	var length =0;
+	var today = moment().format('l').split('.');
+	if (today[1].substr(0,1) == '0') today[1] = today[1].replace('0','');
 // 그라디언트 생성기
 function gradientGenerator(color,ctx) {
 	
@@ -105,7 +107,7 @@ function applicantList()
 
 
 $(function() {
-
+	
 	/* 멘티 승인or허가 버튼 이벤트 */
 	var applicant;
 	var targetWeights;
@@ -262,8 +264,8 @@ $(function() {
 
 	    $('.add-food,.add-exer').click(function (e) {
 	    	plan = planner(e.target);
-// console.log(plan);
 	    	console.log(param);
+	 
 	    	inputClear();
 	    	
 	    	
@@ -406,7 +408,7 @@ $(function() {
 		var foodModal = document.getElementById('food-modal');
 		var exerModal = document.getElementById('exer-modal');
 		var todayInfo = [];
-		var arr= ['풀업','데드리프트','플랫벤치프레스','스쿼트','인클라인벤치프레스'];
+		
 				
 		var modalClickEvent = {
 				'food-modal-btn':function() {
@@ -417,7 +419,7 @@ $(function() {
 				'exer-modal-btn':function() {
 					exerModal.style.display = "block";
 					whatModal = 'E';
-					autocomplete(document.getElementById('ename'),arr);
+					autocomplete(document.getElementById('ename'),typeOfExercise,teImg);
 				}
 		}
 			
@@ -438,7 +440,7 @@ $(function() {
 						energy:$(this).parents('tr').find('.target-eRequirement').text(),
 						sex:$(this).parents('tr').find('.target-sex').text()
 				}
-				
+		
 				
 				
 				function charToKorean(char) {
@@ -448,6 +450,27 @@ $(function() {
 						return '남자';
 				}	
 				
+				$('.sel__placeholder-day').each(function() {
+				 	var limit = 0;
+					var odd = ['1','3','5','7','8','10','12'];
+					var feb = ['2'];
+					
+					if(odd.indexOf($(this).closest('.sel-day').prev().prev().find('.sel__placeholder-month').text != 1)) {
+						$(this).next().find('.sel__box__options-day').each(function() {
+							if(parseInt($(this).text()) > 30) $(this).css('display','none'); 
+						})
+					}
+					else if(feb.indexOf($(this).closest('.sel-day').prev().prev().find('.sel__placeholder-month').text != 1)) {
+						$(this).next().find('.sel__box__options-day').each(function() {
+							if(parseInt($(this).text()) > 28) $(this).css('display','none'); 
+						})
+					}
+					
+				});
+				
+				$('.sel__placeholder-year').text(today[0]);
+				$('.sel__placeholder-month').text(today[1]);
+				$('.sel__placeholder-day').text(today[2]);
 				$('.menti-name').text(targetData.name);
 				$('.menti-weights').text(targetData.weights+'kg');
 				$('.menti-height').text(targetData.height+'cm');
@@ -485,6 +508,7 @@ $(function() {
 
 
 		/* 년.월.일 셀렉트 박스 */
+
 $('.sel').each(function() {
   $(this).children('select').css('display', 'none');
   
@@ -558,11 +582,7 @@ $(document).on('click','.sel__box__options',function() {
 			limit = 30;
 		
 		for(var i =1 ; i <= limit ; i++) {
-// $('.select-day').parent().children('div').append($('<span>',{
-// class: 'sel__box__options sel__box__options-day',
-// value: i,
-// text: i
-// }));
+
 			$(this).parents('.sel-month').next().next().children('div').append($('<span>',{
 	              class: 'sel__box__options sel__box__options-day',
 	              value: i,
@@ -585,41 +605,46 @@ $(document).on('click','.sel__box__options',function() {
 	
 
 		// 모달창 닫기
-		$(document).on('mousedown', notModal,
-				function(e) {
-					if (foodModal.style.display =='block') {
-						if (!$(e.target).parents().hasClass('food-modal') && !$(e.target).hasClass('food-modal')){
-							var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
-							if(close == true) {
-								foodModal.style.display = 'none';
-								$('a[title="Step 1"]').click();
-								 $('a[title="Step 5"]').click();
-									foodPlan =[];
-									exerPlan =[];
-									whatModal = '';
-
-								 
-							}
-						}
-					}
-					else if (exerModal.style.display =='block') {
-						if (!$(e.target).parents().hasClass('exer-modal') && !$(e.target).hasClass('exer-modal')){
-							var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
-							if(close == true) {
-							exerModal.style.display = 'none';
+		$(document).on('mousedown', notModal,closeModal);
+		
+		function closeModal(e) {
+		
+				if (foodModal.style.display =='block') {
+					if (!$(e.target).parents().hasClass('food-modal') && !$(e.target).hasClass('food-modal')){
+						var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
+						if(close == true) {
+							foodModal.style.display = 'none';
 							$('a[title="Step 1"]').click();
 							 $('a[title="Step 5"]').click();
 								foodPlan =[];
 								exerPlan =[];
+								param = {};
+								count = 0;
 								whatModal = '';
-						
-							
-							}
+
+							 
 						}
 					}
+				}
+				else if (exerModal.style.display =='block') {
+					if (!$(e.target).parents().hasClass('exer-modal') && !$(e.target).hasClass('exer-modal')){
+						var close = confirm("창을 닫게 되면 입력한 정보가 사라집니다. 정말로 닫으시겠습니까?");
+						if(close == true) {
+						exerModal.style.display = 'none';
+						$('a[title="Step 1"]').click();
+						 $('a[title="Step 5"]').click();
+							foodPlan =[];
+							exerPlan =[];
+							whatModal = '';
 					
+						
+						}
+					}
+				}
+				
 
-				});
+			
+		}
 				
 		
 		/* 모달 contents */
@@ -724,7 +749,13 @@ $(document).on('click','.sel__box__options',function() {
 		})
 		
 		$('.save-submit').click(function() {
+			console.log(Object.keys(param).length);
 			console.log(param);
+			if(Object.keys(param).length == 0) {
+				alert('전송할 플랜이 없습니다.');
+				
+				return false;
+			}
 			$.ajax({
 // contentType:"application/json; charset=UTF-8",
 				url:'/kopo/member/writePlan',
@@ -738,7 +769,17 @@ $(document).on('click','.sel__box__options',function() {
 // }),
 				success:function(data) {
 					alert('플랜이 저장되었습니다.');
+					count = 0;
 					length = 0;
+					exerModal.style.display = 'none';
+					foodModal.style.display = 'none';
+					$('a[title="Step 1"]').click();
+					 $('a[title="Step 5"]').click();
+						foodPlan =[];
+						exerPlan =[];
+						param = {};
+						count = 0;
+						whatModal = '';
 				}
 				
 			});
@@ -747,13 +788,22 @@ $(document).on('click','.sel__box__options',function() {
 		// 프로그레스바 애니메이션
 		progressAnime();
 
+		
+		//문서 온로드시 날짜 초기값을 오늘로 설정
+	$('.start-date .select-year').val(today[0]);
+	$('.start-date .select-month').val(today[1]);
+	$('.start-date .select-day').val(today[2]);
+	$('.end-date .select-year').val(today[0]);
+	$('.end-date .select-month').val(today[1]);
+	$('.end-date .select-day').val(today[2]);
+	
 });
 
 
 
 
 
-function autocomplete(inp,arr) {
+function autocomplete(inp,arr,imgArr) {
 	inp.onclick = function(e) {}
 	inp.addEventListener('click',function(e) {})
 	var currentFocus;
@@ -776,9 +826,10 @@ function autocomplete(inp,arr) {
 		for(i=0; i<arr.length; i++) {
 			if(arr[i].substr(0,val.length).toUpperCase() == val.toUpperCase()) {
 				b = document.createElement('div');
-				b.innerHTML = "<strong>" + arr[i].substr(0,val.length) + "</strong>";
-				b.innerHTML += arr[i].substr(val.length);
-				b.innerHTML += '<img src="' + contextPath + '/resources/images/ExIntroduction/back/pull_up.jpg" width="50px" height="80px">';
+				b.className = 'autocomplete-item-box';
+				b.innerHTML = '<div class="auto-text-box"><span class="cur-char">' + arr[i].substr(0,val.length) + "</span>";
+				b.innerHTML += '<span class="left-char">'+ arr[i].substr(val.length) + '</span></div>';
+				b.innerHTML += '<img src="' + contextPath + '/upload'+ imgArr[i] + '">';
 				b.innerHTML += '<input type="hidden" value="' + arr[i] + '">';
 				
 					b.addEventListener('click',function (e) {
@@ -909,11 +960,12 @@ function progressAnime() {
 		}
 	});
 }
+var startDate;
+var endDate;
 
 function setDuration(dateBox,planList,obj) {
 	
-	var startDate;
-	var endDate;
+
 	
 	startDate = {
 			year:$(obj).find('.start-date .select-year').val(),
@@ -928,7 +980,8 @@ function setDuration(dateBox,planList,obj) {
 	
 
 		const staticDate = startDate.year + '-' +startDate.month + '-' + startDate.day;
-
+//	const staticDate = moment();
+//	console.log(staticDate);
 	
 	var momentStart = startDate.year + '-' +startDate.month + '-' + startDate.day,
 		momentEnd = endDate.year + '-' +endDate.month + '-' + endDate.day,
@@ -941,6 +994,7 @@ function setDuration(dateBox,planList,obj) {
 	const fixStart = moment(staticDate);
 	dateBox.html(sDate);
 	planList.html(sDate);
+
 	
 	return {
 		absStart:fixStart,
@@ -1071,46 +1125,48 @@ function getPlanList(whatModal) {
 		$('.event_do').html(union);
 	}
 }
-
+var count =0;
 function makeList(list,length) {
 	
 var codeVal;
 if(list.code == 1) {
 	codeVal = 'eat';
-	for(var i=0;i<length;i++) {
+
+//	for(var i=0;i<length;i++) {
 		
-		param[codeVal+'List['+ i + '].code'] = list.code;
-		param[codeVal+'List['+ i + '].eatDate'] = list.date;
-		param[codeVal+'List['+ i + '].eatName'] = list.name;
-		param[codeVal+'List['+ i + '].eatGram'] = list.gram;
-		param[codeVal+'List['+ i + '].eatCount'] = list.count;
-		param[codeVal+'List['+ i + '].eatKcal'] = list.kcal;
-		param[codeVal+'List['+ i + '].eatEtc'] = list.etc;
-		param[codeVal+'List['+ i + '].eatNutrient'] = list.nutrient;
-		param[codeVal+'List['+ i + '].eatTime'] = list.time;
-		param[codeVal+'List['+ i + '].username'] = list.menti;
-		param[codeVal+'List['+ i + '].manager'] = list.mento;
+		param[codeVal+'List['+ count + '].code'] = list.code;
+		param[codeVal+'List['+ count + '].eatDate'] = list.date;
+		param[codeVal+'List['+ count + '].eatName'] = list.name;
+		param[codeVal+'List['+ count + '].eatGram'] = list.gram;
+		param[codeVal+'List['+ count + '].eatCount'] = list.count;
+		param[codeVal+'List['+ count + '].eatKcal'] = list.kcal;
+		param[codeVal+'List['+ count + '].eatEtc'] = list.etc;
+		param[codeVal+'List['+ count + '].eatNutrient'] = list.nutrient;
+		param[codeVal+'List['+ count + '].eatTime'] = list.time;
+		param[codeVal+'List['+ count + '].username'] = list.menti;
+		param[codeVal+'List['+ count + '].manager'] = list.mento;
 
-	}
+//	}
+		count++;
 }
-else if(list.code == 2)
+else if(list.code == 2) {
 	codeVal = 'do';
-	for(var i=0;i<length;i++) {
+//	for(var i=0;i<length;i++) {
 	
-		param[codeVal+'List['+ i + '].code'] = list.code;
-		param[codeVal+'List['+ i + '].doDate'] = list.date;
-		param[codeVal+'List['+ i + '].doName'] = list.name;
-		param[codeVal+'List['+ i + '].doSet'] = list.set;
-		param[codeVal+'List['+ i + '].doReps'] = list.reps;
-		param[codeVal+'List['+ i + '].doLb'] = list.lb;
-		param[codeVal+'List['+ i + '].doGoal'] = list.goal;
-		param[codeVal+'List['+ i + '].doPart'] = list.part;
-		param[codeVal+'List['+ i + '].doEtc'] = list.etc;
-		param[codeVal+'List['+ i + '].username'] = list.menti;
-		param[codeVal+'List['+ i + '].manager'] = list.mento;
-
+		param[codeVal+'List['+ count + '].code'] = list.code;
+		param[codeVal+'List['+ count + '].doDate'] = list.date;
+		param[codeVal+'List['+ count + '].doName'] = list.name;
+		param[codeVal+'List['+ count + '].doSet'] = list.set;
+		param[codeVal+'List['+ count + '].doReps'] = list.reps;
+		param[codeVal+'List['+ count + '].doLb'] = list.lb;
+		param[codeVal+'List['+ count + '].doGoal'] = list.goal;
+		param[codeVal+'List['+ count + '].doPart'] = list.part;
+		param[codeVal+'List['+ count + '].doEtc'] = list.etc;
+		param[codeVal+'List['+ count + '].username'] = list.menti;
+		param[codeVal+'List['+ count + '].manager'] = list.mento;
+		count ++;
+//}
 }
-
 
 }
 function inputClear() {

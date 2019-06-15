@@ -3,11 +3,13 @@ package kr.ac.kopo.controller;
 
 
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.StyledEditorKit.ForegroundAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +27,13 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.DailyRank;
+import kr.ac.kopo.model.DoPlanner;
+import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.AnalysisService;
@@ -55,7 +60,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	
 	UserVO point = Uservice.item(id);
 	int userPoint = point.getPoint();
-	System.out.println(userPoint + "<<<<<<<<<<<<<<< 포린트");
+
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);
 //	} else {
@@ -71,6 +76,8 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	List<ExerciseJournal> avgLb = service.getavgLb(id);
 	List<BEsave> metabolism = service.getMetabolism(id);
 	List<ExerciseJournal> overallAvg = service.getOverallAvg(id);
+	List<DoPlanner> doList = service.getDoList(id);
+	List<EatPlanner> eatList = service.getEatList(id);
 	
 	model.addAttribute("userPoint", userPoint);
 	model.addAttribute("mentiProfile",profile);
@@ -80,11 +87,42 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	model.addAttribute("avgLb",avgLb);
 	model.addAttribute("metabolism",metabolism);
 	model.addAttribute("overallAvg",overallAvg);
-
+	model.addAttribute("doList", doList);
+	model.addAttribute("eatList", eatList);
 
 	
 	
 	return "member/statistics";
+}
+
+@ResponseBody
+@RequestMapping(value = "/getDoList")
+	private List<DoPlanner> getDoList(HttpSession session,String date) {
+	System.out.println(date);
+	Enumeration em = session.getAttributeNames();
+	String sessionName;
+	String id = null;
+	//받아온 키값으로 현재 세션에 있는 아이디 확인
+	while(em.hasMoreElements()){
+		sessionName = em.nextElement().toString();
+		id = session.getAttribute(sessionName).toString();
+	}
+	return service.getAjaxDoList(id,date);
+}
+
+@ResponseBody
+@RequestMapping(value = "/getEatList")
+private List<EatPlanner> getEatList(HttpSession session,String date) {
+	
+	Enumeration em = session.getAttributeNames();
+	String sessionName;
+	String id = null;
+	//받아온 키값으로 현재 세션에 있는 아이디 확인
+	while(em.hasMoreElements()){
+		sessionName = em.nextElement().toString();
+		id = session.getAttribute(sessionName).toString();
+	}
+	return service.getAjaxEatList(id,date);
 }
 
 @ResponseBody
@@ -113,6 +151,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 
 //}
 
+//멘티관리 컨트롤러
 @RequestMapping(value="/mentiManagement")
 	private String mento(HttpSession session,Model model) {
 	
@@ -122,11 +161,24 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	List<UserVO> ranking = service.getRanker();
 	List<MentiPerformance> MPerformance = service.getMenti(id);
 	List<DailyRank> myRanking = service.getMyDailyRanking(id);
+	List<TypeOfExercise> typeOfExercise = service.getExerList();
+//	String doubleSlashStr = "";
+//	
+//	
+//	
+//	
+//	for(int i =0 ; i < typeOfExercise.size(); i++) {
+//		doubleSlashStr = typeOfExercise.get(i).getTeImg().toString().replace("\\", "\\\\");
+//
+//	
+//	}
+	
 	
 	model.addAttribute("myMenti",MPerformance);
 	model.addAttribute("rankerList",ranking);
 	model.addAttribute("wfaList",wfaList);
 	model.addAttribute("dailyRanking",myRanking);
+	model.addAttribute("typeOfExercise", typeOfExercise);
 	
 	return "member/mentiManagement";
 	}
@@ -166,7 +218,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	
 	return service.getMyMenti(mento);
 }
-
+//requestbody로 값을 받아오는데는 성공했으나 정규화 하는 과정에서 비효율적이어서 실패
 //@ResponseBody
 //@RequestMapping(value="/writePlan",method=RequestMethod.POST)
 //	private void savePlan(@RequestBody Map<String,Object> plan)  {
@@ -175,6 +227,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 //
 //}
 
+//modelattribute를 통해 모델의 필드와 js 배열의 값들과 일치시켜줌으로써 값과 정규화 모두 성공적.
 @ResponseBody
 @RequestMapping(value="/writePlan",method=RequestMethod.POST)
 	private void savePlan(@ModelAttribute("planner") Planner planner)  {
@@ -184,7 +237,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 
 }
 
-
+//JSON parsing으로 배열출력 시도 실패
 //@ResponseBody
 //@RequestMapping(value="/writePlan",method=RequestMethod.POST)
 //	private void savePlan(String[] plan) throws JsonProcessingException {

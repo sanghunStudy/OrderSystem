@@ -397,6 +397,7 @@ to {
     margin-left: 20px;
 	width:125px;
 	height:125px;
+	border-radius: 50%;
 }
 .detail-photo {
     border-radius: 50%;

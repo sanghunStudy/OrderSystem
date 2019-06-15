@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -45,19 +45,19 @@
 </style>
 
 <script>
-var myManager = '${mentiProfile.username}';
-var userPoint = "${userPoint}";
-
-window.onload = function() {
-	var userPoint = '${userPoint}';
-}
+	var myManager = '${mentiProfile.username}';
+	var userPoint = "${userPoint}";
+	var contextPath = '${pageContext.request.contextPath}';
+	window.onload = function() {
+		var userPoint = '${userPoint}';
+	}
 </script>
 </head>
 
- <%@ include file="../gnb/nav.jsp" %>
- <%@ include file="LastExerciseJournal.jsp" %>
- <%@ include file="../alarm.jsp"%>
- <%@ include file="../gnb/sidebar.jsp"%>
+<%@ include file="../gnb/nav.jsp"%>
+<%@ include file="LastExerciseJournal.jsp"%>
+<%@ include file="../alarm.jsp"%>
+<%@ include file="../gnb/sidebar.jsp"%>
 <body>
 	<!-- 그래프에 값을 넘기기 위해 쿼리반환값들을 자바스크립트 배열혹은 json object로 복사,변환해줌 -->
 	<c:forEach var="energy" items="${metabolism}">
@@ -287,30 +287,61 @@ window.onload = function() {
 					</div>
 					<div class="to_do_table">
 						<table class="to_do table-t">
-							<tbody>
-								<tr>
-									<td><div class="checkboxes">
-											<input id="a" type="checkbox" tabindex="1" /><label
-												class="green-background" for="a"></label>
-										</div></td>
-									<td><div class="item_box">
-											<div class="to_item">데드리프트</div>
-											<p class="to_item_cotents">데드리프트 60kg 중량으로 10회씩 3세트</p>
-										</div></td>
-									<td class="parts">등</td>
-									<td>
-										<div class="progress-container-t">
-											<span id="value" class="progress-value-t"
-												style="background-color: #272a3d">1%</span>
+							<tbody class="to-do-body">
+								<c:choose>
+									<c:when test="${doList.size() > 0 }">
+										<c:forEach var="item" items="${doList}">
+											
+											<tr>
+												<td><div class="checkboxes">
+														<input id="a" type="checkbox" tabindex="1" /><label class="green-background" for="a"></label>
+													</div></td>
+												<td><div class="item_box">
+														<div class="to_item">${item.doName}</div>
+														<p class="to_item_cotents">${item.doName} ${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
+													</div></td>
+												<td class="parts">${item.doPart}</td>
+												<td>
+													<div class="progress-container-t">
+														<span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>
 
-											<div class="progress-bar-t">
-												<div id="bar" class="progress-value-t multi" data-code="dbVal"
-													style="width: 1%;"></div>
-											</div>
-										</div>
-									</td>
-									<td><i class="fas fa-edit"></i></td>
-								</tr>
+														<div class="progress-bar-t">
+															<div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div>
+														</div>
+													</div>
+												</td>
+												<td><i class="fas fa-edit"></i></td>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+
+									</c:otherwise>
+
+								</c:choose>
+<!-- 								<tr> -->
+<!-- 									<td><div class="checkboxes"> -->
+<!-- 											<input id="a" type="checkbox" tabindex="1" /><label -->
+<!-- 												class="green-background" for="a"></label> -->
+<!-- 										</div></td> -->
+<!-- 									<td><div class="item_box"> -->
+<!-- 											<div class="to_item">데드리프트</div> -->
+<!-- 											<p class="to_item_cotents">데드리프트 60kg 중량으로 10회씩 3세트</p> -->
+<!-- 										</div></td> -->
+<!-- 									<td class="parts">등</td> -->
+<!-- 									<td> -->
+<!-- 										<div class="progress-container-t"> -->
+<!-- 											<span id="value" class="progress-value-t" -->
+<!-- 												style="background-color: #272a3d">1%</span> -->
+
+<!-- 											<div class="progress-bar-t"> -->
+<!-- 												<div id="bar" class="progress-value-t multi" -->
+<!-- 													data-code="dbVal" style="width: 1%;"></div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</td> -->
+<!-- 									<td><i class="fas fa-edit"></i></td> -->
+<!-- 								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -329,7 +360,7 @@ window.onload = function() {
 					</div>
 					<div class="to_do_table">
 						<table class="to_eat table-t">
-							<tbody>
+							<tbody class="to-eat-body">
 								<tr>
 									<td><div class="checkboxes">
 											<input id="b" type="checkbox" tabindex="2" /><label
@@ -347,8 +378,8 @@ window.onload = function() {
 												style="background-color: #272a3d">1%</span>
 
 											<div class="progress-bar-t">
-												<div id="bar" class="progress-value-t multi" data-code="dbVal"
-													style="width: 1%;"></div>
+												<div id="bar" class="progress-value-t multi"
+													data-code="dbVal" style="width: 1%;"></div>
 											</div>
 										</div>
 									</td>
@@ -359,13 +390,11 @@ window.onload = function() {
 					</div>
 				</div>
 			</div>
-			
-			<div id ="manager-info">
+
+			<div id="manager-info">
 				<div class="manager-content">
-				
-					<div class="manager-photo">
-				
-					</div>
+
+					<div class="manager-photo"></div>
 					<div class="manager-score"></div>
 					<div class="manager-profile">
 						<div>${mentiProfile.username}</div>
@@ -374,6 +403,6 @@ window.onload = function() {
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

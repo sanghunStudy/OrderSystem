@@ -18,6 +18,7 @@ import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 
@@ -119,6 +120,7 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.doneSubject(subject, contents, manager, subjectKind, id);
 	}
 
+	//받아온 plan을 map에 넣어서 정규화시키려다가 불필요한 코드가 생성되어 방향선회
 //	@Override
 //	public void insertPlan(Map<String, Object> plan) {
 //		Map<String, Object> map = new HashMap<String, Object>();
@@ -142,10 +144,10 @@ public class AnalysisServcieImpl implements AnalysisService {
 	public List<DailyRank> getMyDailyRanking(String id) {
 		return dao.getMyDailyRanking(id);
 	}
-
+	//운동플랜과 식단플랜을 구분해주는 서비스
 	@Override
 	public void insertPlan(Planner planner) {
-		System.out.println(planner.getEatList() == null);
+		
 		if (planner.getEatList() != null) {
 	
 			dao.addFoodPlan(planner);
@@ -153,10 +155,34 @@ public class AnalysisServcieImpl implements AnalysisService {
 			
 		else if(planner.getEatList() == null) {
 
-			System.out.println(planner.getDoList().get(0).getUsername());
 			dao.addExerPlan(planner);
 		}
 
+	}
+
+	@Override
+	public List<TypeOfExercise> getExerList() {
+		return dao.getExerList();
+	}
+
+	@Override
+	public List<DoPlanner> getDoList(String id) {
+		return dao.getDoList(id);
+	}
+
+	@Override
+	public List<EatPlanner> getEatList(String id) {
+		return dao.getEatList(id);
+	}
+
+	@Override
+	public List<DoPlanner> getAjaxDoList(String id,String date) {
+		return dao.getAjaxDoList(id,date);
+	}
+
+	@Override
+	public List<EatPlanner> getAjaxEatList(String id,String date) {
+		return dao.getAjaxEatList(id,date);
 	}
 
 }

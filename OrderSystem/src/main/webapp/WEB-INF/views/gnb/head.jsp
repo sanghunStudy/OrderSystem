@@ -128,7 +128,7 @@ $(document).ready(function(){
 								<ul>
 									<li><i class="far fa-user"></i><input type="text" id="loginUsername" name="username" placeholder="User name" class="inputId"></li>
 									<li><hr></li>
-									<li class="pw"><i class="material-icons">lock_open</i><input type="password" id="loginPassword" name="password" placeholder="Password" class="inputPw" onkeyup="enterkey();"></li>
+									<li class="pw"><i class="material-icons">lock_open</i><input type="password" id="loginPassword" name="password" placeholder="Password" class="inputPw" onkeyup="enterkey();" autocomplete="off"></li>
 									<li><hr></li>
 									<li id="LoginChk"></li>
 									<li><button type="button" class="login_btn" id="login_btn" value="LogIn">LogIn</button></li>

@@ -143,7 +143,28 @@
 	(#{item.eatDate},#{item.eatName},#{item.eatGram},#{item.eatCount},#{item.eatKcal},#{item.eatEtc},#{item.eatNutrient},#{item.eatTime},#{item.manager},#{item.username})
 	</foreach>
 	
-
-	
 </insert>
+
+<select id="typeOfExercise" resultType="TypeOfExercise">
+	SELECT te_name, replace(te_img,"\\","\\\\") te_img FROM type_of_exercise
+</select>
+
+<select id="getDoList" resultType="DoPlanner">
+	SELECT do_num,do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username FROM do_planner 
+	WHERE username = #{id} AND STR_TO_DATE(do_date, "%Y.%m.%d") = curdate()
+</select>
+
+<select id="getEatList" resultType="EatPlanner">
+	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_etc,eat_nutrient,eat_time,manager,username FROM eat_planner 
+	WHERE username = #{id} AND STR_TO_DATE(eat_date, "%Y.%m.%d") = curdate()
+</select>
+<select id="getAjaxDoList" resultType="DoPlanner">
+	SELECT do_num,do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username FROM do_planner 
+	WHERE username = #{id} AND STR_TO_DATE(#{date}, "%Y.%m.%d") = curdate()
+</select>
+<select id="getAjaxEatList" resultType="EatPlanner">
+	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_etc,eat_nutrient,eat_time,manager,username FROM eat_planner 
+	WHERE username = #{id} AND STR_TO_DATE(#{date}, "%Y.%m.%d") = curdate()
+</select>
+
 </mapper>

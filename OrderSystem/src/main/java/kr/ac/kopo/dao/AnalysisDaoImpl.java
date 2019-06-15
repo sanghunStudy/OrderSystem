@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.model.BEsave;
 import kr.ac.kopo.model.DailyRank;
+import kr.ac.kopo.model.DoPlanner;
+import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
+import kr.ac.kopo.model.TypeOfExercise;
 import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 
@@ -132,6 +135,39 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	public void addFoodPlan(Planner planner) {
 		
 		sql.insert("statistics.addFoodPlan", planner);
+	}
+
+	@Override
+	public List<TypeOfExercise> getExerList() {
+		return sql.selectList("statistics.typeOfExercise");
+	}
+
+	@Override
+	public List<DoPlanner> getDoList(String id) {
+		return sql.selectList("statistics.getDoList", id);
+	}
+
+	@Override
+	public List<EatPlanner> getEatList(String id) {
+		return sql.selectList("statistics.getEatList", id);
+	}
+
+	@Override
+	public List<DoPlanner> getAjaxDoList(String id,String date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+	
+		map.put("id", id);
+		map.put("date", date);
+		return sql.selectList("statistics.getAjaxDoList",map);
+	}
+
+	@Override
+	public List<EatPlanner> getAjaxEatList(String id,String date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("date", date);
+		return sql.selectList("statistics.getAjaxEatList", map);
 	}
 
 

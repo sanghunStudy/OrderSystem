@@ -182,7 +182,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 .modal .contents-container input {
 	display: block;
 	font-size: 14px;
-	font-family: 'Noto Sans';
+	font-family: 'BM JUA';
 	font-weight: 550;
 	width: 400px;
 	padding-top: 15px;
@@ -233,14 +233,17 @@ input:focus ~ label, input:valid ~ label {
 .modal .bar {
 	position: relative;
 	display: block;
-	width: auto;
+	position: relative;
+    display: block;
+    left: 50px;
+    width: 400px;
 }
 
 .modal .bar:before,.modal .bar:after {
 	content: '';
 	height: 2px;
 	width: 0;
-	bottom: 1px;
+	bottom: 0px;
 	position: absolute;
 	background: #9b1d85;
 	transition: 0.2s ease all;

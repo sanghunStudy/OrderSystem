@@ -1,4 +1,61 @@
+function getDoList(date) {
+	console.log(date);
+	$.ajax({
+		url:contextPath + '/member/getDoList',
+		type:'GET',
+		data:{
+			date:date
+		},
+		success:function(res) {
+			console.log(res);
+			var tr = '';
+			
+			$.each(res,function(key,value) {
+				tr +='<tr><td><div class="checkboxes"><input id="a" type="checkbox" tabindex="1" /><label class="green-background" for="a"></label></div></td>'; 
+				tr +='<td><div class="item_box"><div class="to_item">' + value.doName + '</div>';
+				tr +='<p class="to_item_cotents">' + value.doName + ' ' + value.doLb + '중량으로 ' + value.doReps + '회씩' + value.deSet+ '세트 </p></div></td>';
+				tr += '<td class="parts">' + value.doPart + '</td>';
+				tr += '<td><div class="progress-container-t"><span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>';
+				tr += '<div class="progress-bar-t"><div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div></div></div></td>';
+				tr += '<td><i class="fas fa-edit"></i></td>';
+				tr += '</tr>';
+			});
+			
+			$('.to-do-body').html(tr);
+			$('.multi').each(progressAnime);
+		}
+	})
+}
 
+function getEatList(date) {
+	console.log(date);
+	$.ajax({
+		url:contextPath + '/member/getEatList',
+		type:'GET',
+		data:{
+			date:date
+		},
+		success:function(res) {
+			console.log(res);
+			var tr = '';
+
+			$.each(res,function(key,value) {
+				tr +='<tr><td><div class="checkboxes"><input id="b" type="checkbox" tabindex="2" /><label class="green-background" for="b"></label></div></td>'; 
+				tr +='<td><div class="item_box"><div class="to_item">' + value.eatName + '</div>';
+				tr +='<p class="to_item_cotents">' + value.eatName + ' ' + value.eatCount + '개 ' + value.eatGram + 'gram </p><p>' + value.etc + '</p</div></td>';
+				tr += '<td class="nutrient">' + value.eatNutrient + '</td>';
+				tr += '<td class="kcal>' + value.eatKcal + '</td>';
+				tr += '<td><div class="progress-container-t"><span id="value" class="progress-value-t" style="background-color: #272a3d">1%</span>';
+				tr += '<div class="progress-bar-t"><div id="bar" class="progress-value-t multi" data-code="dbVal" style="width: 1%;"></div></div></div></td>';
+				tr += '<td><i class="fas fa-edit"></i></td>';
+				tr += '</tr>';
+			});
+			
+			$('.to-eat-body').html(tr);
+			$('.multi').each(progressAnime);
+		}
+	})
+}
 
 
 $(function() {
@@ -16,12 +73,14 @@ $(function() {
 			doToday = doYesterday;
 
 			$('#do_prev').next().html(doToday.format('L dddd'));
+			getDoList(doToday.format('L dddd'));
 		},
 		"do_next" : function() {
 			doTomorrow = moment(doToday).add(1, 'day');
 			doToday = doTomorrow;
 
 			$('#do_next').prev().html(doToday.format('L dddd'));
+			getDoList(doToday.format('L dddd'));
 
 		},
 		"eat_prev" : function() {
@@ -29,12 +88,14 @@ $(function() {
 			eatToday = eatYesterday;
 
 			$('#eat_prev').next().html(eatToday.format('L dddd'));
+			getEatList(eatToday.format('L dddd'));
 		},
 		"eat_next" : function() {
 			eatTomorrow = moment(eatToday).add(1, 'day');
 			eatToday = eatTomorrow;
 
 			$('#eat_next').prev().html(eatToday.format('L dddd'));
+			getEatList(eatToday.format('L dddd'));
 		}
 
 	}

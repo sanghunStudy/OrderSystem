@@ -64,7 +64,7 @@ body {
 	font-family: 'Noto-Sans Kr';
 }
 #wrapper {
-	background-color: #272a3d;
+/* 	background-color: #272a3d; */
 	width:1024px;
 	color:#f7f7f7;
 	   margin: 0 auto;
@@ -77,11 +77,12 @@ body {
 	
 }
 .trainer-list .item-box {
+    border-bottom: 1px solid rgba(213,213,213,0.2);
 	display:flex;
 	flex-direction:row;
 	justify-content: space-between;
-	margin: 30px 0 30px 0;
-	    align-items: center;
+    align-items: center;
+    height: 166px;
 }
 .trainer-list .trainer-info {
 	    display: flex;
@@ -92,18 +93,21 @@ body {
 	    width: 220px;
 	    align-self: center;
 	    padding:15px 15px;
-	
 }
 .username  {
 	color:#82acd8;
-	font-size:24pt;
+	font-size:16pt;
 	font-weight:600;
-	margin-bottom:14px;
+/* 	margin-bottom:14px; */
 }
 .career {
 	font-size:16pt;
-	    display: flex;
+    display: flex;
     align-items: center;
+}
+.career-img{
+	width:22px; 
+	height:22px;
 }
 .modal-btn-box button {
 	outline:0;
@@ -135,7 +139,10 @@ body {
 	font-size: 12pt;
 	font-family: 'S-CoreDream-4Regular','Noto-Sans Kr';
 }
-
+.career-item p{
+	display:inline-block;
+	margin-left:10px;
+}
 .trainer-menti-count{
 	width:200px;
 	text-align:right;	
@@ -144,4 +151,24 @@ body {
 	font-size: 16px;
     font-weight: 550;
     margin-bottom: 10px;
+}
+.profile-img{
+    width: 100%;
+}
+.item-box:first-child{
+	border-top: 1px solid rgba(213,213,213,0.2);
+}
+.trainer-tier-border{
+    width: 145px;
+    transition:0.2s;	
+}
+.trainer-text{
+    margin-left: 30px;
+    line-height: 30px;
+    
+}
+.menti-count{
+	font-size: 16.5px;
+    color: #e95d07;
+    font-weight: 600;
 }

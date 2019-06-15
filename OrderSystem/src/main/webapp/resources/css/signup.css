@@ -5,29 +5,32 @@ body{
 }
 
 #sinup_container {
-	top:20px;
+	top:80px;
     width: 1000px; 
     margin: 0 auto; 
     position: relative;
     color: white;
-    height:1000px;
+	font-family: 'Nanum Square';
 }
 #sinup_container h1 {
     position: relative;
     top: 50px;
     margin-left: 5%;
     /*font-family: 'Adobe Gothic Std';*/
-    font-family:Trade Gothic LT W01 Cn No-_18,sans-serif;
+/*     font-family:Trade Gothic LT W01 Cn No-_18,sans-serif; */
+	font-family: 'Nanum Square';
     font-size: 60px;
     line-height:70px;
 }
 .joinbox > h2 {
-    font-family: 'Adobe Gothic Std';
+/*     font-family: 'Adobe Gothic Std'; */
     font-size: 50px;
     letter-spacing: 3px;
 }
 .singup_content_box{
     margin-top:100px;
+    display:grid;
+    grid-template-columns: 500px 500px;
 }
 
 .singup_content_box ul *{
@@ -68,7 +71,7 @@ body{
 
 .singup_content_box li {
     list-style: none;
-    font-family: 'Adobe Gothic Std';
+/*     font-family: 'Adobe Gothic Std'; */
     font-size: 40px;
     position: relative;
 }
@@ -88,7 +91,8 @@ body{
 }
 
 .joinbox {
-    float:right;  
+    float:right;
+    padding-left:150px;  
 }
 
 .singup_content_box input {
@@ -114,4 +118,14 @@ body{
     border-radius:5px;
     background-color:white;
     color:black;
+}
+
+.singup-title-img-box{	
+	position: relative;
+}
+.singup-title-img-box img{	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }

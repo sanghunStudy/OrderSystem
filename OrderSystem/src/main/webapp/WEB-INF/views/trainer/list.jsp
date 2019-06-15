@@ -40,61 +40,59 @@
 							<input type="hidden" value="${item.sex}" class="trainer-sex">
 							<input type="hidden" value="${item.name}" class="trainer-name">
 							<input type="hidden" value="${item.username}" class="trainer-id">
-							<input type="hidden" value="${item.career}" class="trainer-career">
+							<input type="hidden" value="${item.career}"
+								class="trainer-career">
 							<div class="trainer-info">
 								<div class="photo">
-								<img src="${pageContext.request.contextPath}/resources/images/grade-border/${item.tier}-tier-border.png" class="trainer-tier-border" alt="${item.tier}"/>
 									<img
 										src="${pageContext.request.contextPath}/upload/${item.upFilename}"
 										onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
-										class="text">
+										class="text profile-img">
+									<%-- 								<img src="${pageContext.request.contextPath}/resources/images/grade-border/${item.tier}-tier-border.png" class="trainer-tier-border" alt="${item.tier}"/> --%>
 								</div>
 								<div class="trainer-text">
-									<div class="username">${item.name}<small
-											class="identifier">(${item.username})</small>
+									<div class="username">
+										${item.name} <small class="identifier">(${item.username})</small>
 									</div>
 									<div class="career">
-										<img
-											src="${pageContext.request.contextPath}/resources/images/icon/career.png"
-											width="35px" height="35px">
-										<div class="career-item">${item.career}</div>
+										<div class="career-item">
+											<img src="${pageContext.request.contextPath}/resources/images/icon/career.png" class="career-img" /><p>${item.career}</p>
+										</div>
+									</div>
+									<div>
+										<p class="menti-count">보유 멘티수</p>
+										<c:choose>
+											<c:when test='${item.tier == "bronze"}'>
+												<span>${item.menti} / 5</span>
+											</c:when>
+											<c:when test='${item.tier == "silver"}'>
+												<span>${item.menti} / 10</span>
+											</c:when>
+											<c:when test='${item.tier == "gold"}'>
+												<span>${item.menti} / 15</span>
+											</c:when>
+											<c:when test='${item.tier == "platinum"}'>
+												<span>${item.menti} / 20</span>
+											</c:when>
+											<c:when test='${item.tier == "diamond"}'>
+												<span>${item.menti} / 25</span>
+											</c:when>
+											<c:otherwise>
+												<span>${item.menti} / ∞</span>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
-								<div class="trainer-menti-count">
-									<p>보유 멘티수</p>
-									<c:choose>
-										<c:when test='${item.tier == "bronze"}'>
-											<span>${item.menti}/5</span>
-										</c:when>
-										<c:when test='${item.tier == "silver"}'>
-											<span>${item.menti}/10</span>
-										</c:when>
-										<c:when test='${item.tier == "gold"}'>
-											<span>${item.menti}/15</span>
-										</c:when>
-										<c:when test='${item.tier == "platinum"}'>
-											<span>${item.menti}/20</span>
-										</c:when>
-										<c:when test='${item.tier == "diamond"}'>
-											<span>${item.menti}/25</span>
-										</c:when>
-										<c:otherwise>
-											<span>${item.menti}/∞</span>
-										</c:otherwise>
-										
-									</c:choose>
-								</div>
 							</div>
-							<c:if test="${user != null}">
-								<div class="modal-btn-box">
-								<input type="hidden" value="${item.username}" class="trainer-id">
-									<button class="modal-btn" id="modal-btn">pt신청</button>
-									<button class="details" id="detail-btn">상세보기</button>
-								</div>
-
-							</c:if>
-						</div>
-					</c:forEach>
+								<c:if test="${user != null}">
+									<div class="modal-btn-box">
+										<input type="hidden" value="${item.username}" class="trainer-id">
+										<button class="modal-btn" id="modal-btn">pt신청</button>
+										<button class="details" id="detail-btn">상세보기</button>
+									</div>
+								</c:if>
+							</div>
+						</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<p>등록된 트레이너가 없습니다.</p>
@@ -135,13 +133,14 @@
 								<option value="근력량">근력량 증가</option>
 								<option value="건강">건강 관리</option>
 								<option value="기타">기타</option>
-							
+
 							</select>
 						</div>
 						<div class="group">
 							<input type="text" required class="etc" name="etc"
 								autocomplete="off"> <span class="highlight"></span> <span
-								class="bar"></span> <label class="only-modal">하고싶은 말 한줄(20자 이내)</label>
+								class="bar"></span> <label class="only-modal">하고싶은 말
+								한줄(20자 이내)</label>
 						</div>
 
 					</form>

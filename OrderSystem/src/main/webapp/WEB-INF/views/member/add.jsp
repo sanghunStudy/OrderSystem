@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/signup.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -113,21 +114,24 @@ var obj;
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
         <div id="sinup_container" >
-                <h1>
-                    THE RIGHT
-                    <br>
-                    EXERCISE FOR ME
-                </h1>
+<!--                 <h1> -->
+<!--                     THE RIGHT -->
+<!--                     <br> -->
+<!--                     EXERCISE FOR ME -->
+<!--                 </h1> -->
                 <div class="singup_content_box">
-                    <div class="choosebox">
-                        <h2>CHOOSE JOIN</h2>
-                        <!--<img src="graybox.PNG" class="graybox">-->
-                        <span class="graybox"></span>
-                        <ul>
-                            <li>Member</li>
-<!--                             <li>Trainer</li> -->
-                        </ul>
-                    </div>
+                <div class="singup-title-img-box">
+                <img src="${pageContext.request.contextPath}/resources/images/nopain-nogain.png" alt="nopain-nogain"/>
+                </div>
+<!--                     <div class="choosebox"> -->
+<!--                         <h2>CHOOSE JOIN</h2> -->
+<!--                         <img src="graybox.PNG" class="graybox"> -->
+<!--                         <span class="graybox"></span> -->
+<!--                         <ul> -->
+<!--                             <li>Member</li> -->
+<!--                            <li>Trainer</li> -->
+<!--                         </ul> -->
+<!--                     </div> -->
                     <div class="joinbox">
                         <h2>JOIN</h2>
                         <form action="add" method="post" name="fr">

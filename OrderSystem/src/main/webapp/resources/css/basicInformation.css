@@ -1,0 +1,136 @@
+@charset "UTF-8";
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+*{
+  box-sizing:border-box;
+}
+#bi-body{
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container{
+  background: white;
+  max-width: 700px;
+  width: 100%;
+  padding: 100px;
+  border-radius: 3px;
+}
+.buttons-container{
+  margin-top: 3em;
+}
+
+.bI-btn{
+  -webkit-appearance: none;
+  padding: 1em 2em;
+  width: 140px;
+  text-align: center;
+}
+.btn-white{
+    background: white;
+}
+.btn-submit{
+    background: black;
+    color: white;
+}
+
+.float-right{
+  float: right;
+}
+
+.radio-container{
+  display: inline-block;
+}
+.bi-text-input-box{
+opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.bi-text-input-box ~ label {
+  opacity: 1;
+  border: 1px solid grey;
+  padding: 10px 20px;
+  background: white;
+  color: black;
+}
+
+.bi-text-input-box:active + label {
+  opacity: 1;
+  border: 1px solid grey;
+  background: black;
+  color: white;
+}
+
+.bi-text-input-box:checked + label {
+  opacity: 1;
+  border: 1px solid grey;
+  background: black;
+  color: white;
+}
+.error-message{
+  color: red;
+  margin-top: 20px;
+  display: none;
+}
+.bi-text-input-box{
+  border: 1px solid black;
+  padding: 10px;
+  width: 100%;
+}
+.btn-submit{
+  display: none;
+}
+.btn-submit:disabled{
+  background: #333;
+  color: #777;
+}
+.slide-container{
+  transition: ease-in .3s all;
+  position: relative;
+  top: 0;
+}
+
+form#questionnaire-form{
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+.slide{
+  height: 200px;
+  width: 100%;
+}
+.slide h2{
+  margin-top: 0;
+}
+}
+.form-container button,.form-container label{
+  cursor: pointer;
+}
+
+/* 성별 아이콘 radio */
+ input[name='sex'] {
+	 -webkit-appearance: none;
+	 -moz-appearance: none;
+	 -o-appearance: none;
+	 -ms-appearance: none;
+	 appearance: none;
+	 outline: none;
+}
+ input[name='sex']:after {
+	 font-family: 'FontAwesome';
+	 display: inline-block;
+	 text-align: center;
+	 font-size: 80px;
+	 content: attr(data-icon);
+	 padding: 20px 20px;
+	 border-radius: 15px;
+	 color: rgba(0,0,0,0.4);
+	 transition: box-shadow 1s, color 1s;
+}
+ input[name='sex']:checked:after {
+	 box-shadow: 2px 2px 14px rgba(0,0,0,0.4);
+	 color: rgba(255,255,255,0.6);
+}

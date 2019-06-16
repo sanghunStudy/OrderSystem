@@ -77,7 +77,8 @@ public class UserController {
 		String id = (String)session.getAttribute("user");
 		bI.setUsername(id);
 		service.basicInformation(bI);
-		return "redirect:MyPage";
+//		return "redirect:MyPage";
+		return "redirect:/trainer/list";
 	}
 	
 	@RequestMapping(value = "/ExerciseJournal", method = RequestMethod.GET)

@@ -10,15 +10,18 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>회원가입</title>
 <script>
-
 var obj;
 	$(document).ready(function(){
 		//유효성검사				
 		$("#SignUp").click(function(){
 			obj = document.fr;
 			
-			if(obj.username.value.length == 0){
+			if(obj.username.value.length <8 || obj.username.value.length > 10){
+				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+			}else if(obj.username.value.length == 0){
 				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>아이디를 입력해주세요</span>");
+			}else if(/^[^a-z]|^a-z0-9]+|^([a-z]+|[0-9]+)$/.test(obj.username.value)){
+				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
 			}else{
 				$.ajax({
 					type:"POST",
@@ -29,10 +32,13 @@ var obj;
 					success:function(data){
 						if(data == 0){
 							document.getElementById("idchk").innerHTML = ("<span style='color:green;'>사용 가능한 아이디 입니다.</span>");
-
-							
-								if(obj.password.value.length == 0){
+								
+								if(obj.password.value.length <8 || obj.password.value.length >10){
+									document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+								}else if(obj.password.value.length == 0){
 									document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>비밀번호를 입력해주세요</span>");
+								}else if(/^[^a-z]|^a-z0-9]+|^([a-z]+|[0-9]+)$/.test(obj.password.value)){
+									document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
 								}else{
 									document.getElementById("pwchk").innerHTML = ("");
 								}
@@ -40,7 +46,9 @@ var obj;
 								if(obj.repassword.value.length > 0){
 									if(obj.password.value.length > 0 && repassword.value.length > 0){
 										if(obj.password.value == obj.repassword.value){
+											
 // 											document.getElementById("rePwchk").innerHTML = ("<span style='color:green;'>비밀번호가 일치합니다.</span>");
+											alert("회원 가입이 완료 되었습니다.");
 											obj.submit();
 										}else{
 											document.getElementById("rePwchk").innerHTML = ("<span style='color:red;'>비밀번호를 확인 해주세요</span>");
@@ -66,8 +74,14 @@ var obj;
 	
 		//아이디 공백 검사 및 중복체크
 		function userNameChk(){
+			
 			obj = document.fr;
-			if(obj.username.value.length > 0){
+			if(obj.username.value.length <8 || obj.username.value.length > 10){
+				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+			}else if(/^[^a-z]|^a-z0-9]+|^([a-z]+|[0-9]+)$/.test(obj.username.value)){
+				document.getElementById("idchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+			}else if(obj.username.value.length > 0){
+				
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/idChk",
@@ -89,10 +103,17 @@ var obj;
 		
 		//비밀번호 공백 검사
 		function userPasswordChk(){
-			if(obj.password.value.length > 0){
+			obj = document.fr;
+			if(obj.password.value.length <8 || obj.password.value.length >10){
+				document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+			}else if(obj.password.length > 0){
 				document.getElementById("pwchk").innerHTML = ("");
-			}else{
+			}else if(/^[^a-z]|^a-z0-9]+|^([a-z]+|[0-9]+)$/.test(obj.password.value)){
+				document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>첫글자 영문 숫자 조합의 8~10자로 구성해주세요</span>");
+			}else if(obj.password.length == 0){
 				document.getElementById("pwchk").innerHTML = ("<span style='color:red;'>비밀번호를 입력해주세요</span>");			
+			}else{
+				document.getElementById("pwchk").innerHTML = ("");
 			}
 		}
 		

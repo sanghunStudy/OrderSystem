@@ -125,6 +125,7 @@ last_input.onkeyup = () =>{
   var submit = document.querySelector('.btn-submit');
   submit.addEventListener('click', function(e){
     e.preventDefault();
+    alert("기초정보 조사가 완료되었습니다. 이제 PT신청이 가능합니다!");
     $("#questionnaire-form").submit();
   })
 }

@@ -37,6 +37,23 @@
 		function trainerChk() {
 			alert('g2');
 		}
+	
+	function selectUserbI() {
+		$.ajax({
+			type : "GET",
+			url : "/kopo/trainer/selectUserbI",
+			success : function(data) {
+				if (data == 0) {
+			
+				} else if (data == 2) {
+					alert("신청 내역이 존재합니다.");
+					location.href="/kopo/member/MyPage";
+				} else {
+
+				}
+			}
+		});
+	}
 </script>
 </head>
  <%@ include file="../member/modal.jsp" %>
@@ -69,8 +86,8 @@
 					class="fas fa-book"></i>
 					<p>운동일지 작성</p></a></li>
 			<li class="menu-icons"><a href="basicInformation"><i
-					class="fas fa-user-edit"></i>
-					<p>설문조사</p></a></li>
+					class="fas fa-user-edit" onclick="selectUserbI()"></i>
+					<p>기초정보 조사</p></a></li>
 			<li class="menu-icons"><a href="mentiManagement" onclick=trainerChk()><i
 					class="fas fa-users"></i>
 					<p>멘티 관리</p></a></li>

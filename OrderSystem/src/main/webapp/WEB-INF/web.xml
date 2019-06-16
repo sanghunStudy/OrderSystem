@@ -60,5 +60,7 @@
 		<filter-name>SessionCheck</filter-name>
 		<url-pattern>/member/*</url-pattern>
 		<url-pattern>/m*</url-pattern>
+		<url-pattern>/question/add</url-pattern>
+		<url-pattern>/question/update</url-pattern>
 	</filter-mapping>
 </web-app>

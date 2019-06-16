@@ -53,7 +53,7 @@
 	}
 </script>
 </head>
-
+<jsp:include page="../gnb/head.jsp" flush="true" />
 <%@ include file="../gnb/nav.jsp"%>
 <%@ include file="LastExerciseJournal.jsp"%>
 <%@ include file="../alarm.jsp"%>

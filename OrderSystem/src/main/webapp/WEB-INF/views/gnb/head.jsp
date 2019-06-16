@@ -69,12 +69,12 @@ $(document).ready(function(){
 						
 					</ul>
 					<ul class="sub-function">
-						<li><a href="#"><i class="fas fa-bell"></i></a></li>
+			
 										
 										<c:choose>
 					<c:when
   						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}"> 
-												<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li>
+<%-- 												<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
 						<li><a href="#" class="openMask">LOGIN</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li> 
 					</c:when>
@@ -82,7 +82,8 @@ $(document).ready(function(){
 						<li><a href="${pageContext.request.contextPath}/member/MyPage"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
 						${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li> 
 <%-- 						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li>  --%>
-		<li><a href="#"><i class="fas fa-bars"></i></a></li>
+			<li><a href="#"><i class="fas fa-bell"></i></a></li>
+<!-- 		<li><a href="#"><i class="fas fa-bars"></i></a></li> -->
 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> 
 					</c:otherwise> 
 				</c:choose> 

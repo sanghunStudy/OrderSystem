@@ -84,7 +84,7 @@ header {
 	width: 100%;
 	font-weight: 760;
 	padding: 0 30px;
-	height: 70px;
+/* 	height: 70px; */
 	z-index: 9999;
 }
 /* .nav-up{ */
@@ -104,14 +104,17 @@ header h1 {
 	margin-right: auto;
 	top: -10px;
 	line-height: 30px;
-	font-family: "Masque";
+	width: 100px;
+    height: 100px;
 }
 
 header h1 a {
 	color: white;
 	text-decoration-line: none;
 }
-
+header h1 img{
+	width:100%;
+}
 /*상단 전체 박스*/
 header #lnb {
 	display: flex;
@@ -147,7 +150,7 @@ header #lnb nav {
 
 header #lnb nav>ul {
 	display: inline-block;
-	overflow: hidden;
+/* 	overflow: hidden; */
 }
 
 header #lnb nav>ul:hover {

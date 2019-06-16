@@ -92,6 +92,11 @@ body {
 	vertical-align:middle;
 }
 
+.boundaryline {
+	clear:left;
+	border:0px;
+}
+
 .posts {
 	width: 100%;
 /* 	border-top: 1px solid #fff; */
@@ -244,15 +249,16 @@ input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
 	color: #fff;
 }
 #hashTag {
-	width:300px;
+	width:350px;
 	height:40px;
 	background:#272a3d;
 	border:none;
 	color:#fff;
-	margin-left:20px;
 	padding-left:20px;
 	border-radius:20px;
 	box-sizing:border-box;
+	float:right;
+	display:none;
 }
 .addTag {
 	list-style:none;
@@ -279,10 +285,8 @@ input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
 /* 검색종류선택버튼 */
 .searchType-cboxtags {
     list-style: none;
-    margin:0 0 10px 0;
-}
-.searchType-cboxtags li{
-  display: inline;
+    width:120px;
+    float:right;
 }
 .searchType-cboxtags li label{
     display: inline-block;
@@ -291,7 +295,6 @@ input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
     color: #adadad;
     border-radius: 25px;
     white-space: nowrap;
-    margin: 0;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -320,26 +323,26 @@ input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
     transition: transform .3s ease-in-out;
 }
 
-.searchType-cboxtags li input[type="radio"]:checked + label::before {
+.searchType-cboxtags li input[type="checkbox"]:checked + label::before {
     content: "\f00c";
     transform: rotate(-360deg);
     transition: transform .3s ease-in-out;
 }
 
-.searchType-cboxtags li input[type="radio"]:checked + label {
+.searchType-cboxtags li input[type="checkbox"]:checked + label {
     border: 2px solid #1bdbf8;
     background-color: #12bbd4;
     color: #fff;
     transition: all .2s;
 }
 
-.searchType-cboxtags li input[type="radio"] {
+.searchType-cboxtags li input[type="checkbox"] {
   display: absolute;
 }
-.searchType-cboxtags li input[type="radio"] {
+.searchType-cboxtags li input[type="checkbox"] {
   position: absolute;
   opacity: 0;
 }
-.searchType-cboxtags li input[type="radio"]:focus + label {
+.searchType-cboxtags li input[type="checkbox"]:focus + label {
   border: 2px solid #e9a1ff;
 }

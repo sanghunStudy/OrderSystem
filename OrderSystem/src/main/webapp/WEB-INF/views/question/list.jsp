@@ -94,6 +94,15 @@
 				$('.search_keyword').val("");
 				$('.hashTag_searchKeyword').append('<li class="addTag">#'+ hashTag_searchKeyword +'</li>');
 			}
+			$('#searchType3').click(function() {
+				if($('#hashTag').css("display") == "none"){
+					$('#hashTag').css("display","block");
+					$('.search_area').css("display","none");
+				} else {
+					$('#hashTag').css("display","none");
+					$('.search_area').css("display","block");
+				}
+			})
 		});
 		function hashTagSubmit() {
 			
@@ -181,17 +190,15 @@
 			<input type="hidden" id="hashTagCheck" name="hashTagCheck" value="${searchVO.searchType}">
 			<form id="hashTagForm" name="hashTagForm" method="post">
 				<div>
-<!-- 					<ul class="searchType-cboxtags"> -->
-<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType1" value="question_name"><label for="searchType1">제목</label></li> -->
-<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType2" value="question_content"><label for="searchType2">내용</label></li> -->
-<!--     					<li><input type="radio" name="searchTypeCheck" id="searchType3" value="hash_tag"><label for="searchType3">해시태그</label></li> -->
-<!--     				</ul> -->
 					<input type="hidden" name="searchType" value="hash_tag">
 <!-- 					<input type="hidden" name="searchType" id="searchType" value=""> -->
 					<input type="text" name="searchKeyword" id="hashTag" maxlength="50" placeholder="#해시태그로 검색">
 				</div>
 			</form>
-			
+			<ul class="searchType-cboxtags">
+    			<li><input type="checkbox" name="searchTypeCheck" id="searchType3"><label for="searchType3">hash-tag</label></li>
+    		</ul>
+			<hr class="boundaryline">
 		</div>
 		<table class="posts">
 			<tr>

@@ -10,7 +10,10 @@
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script>
 var logoutUri = "${pageContext.request.contextPath}/logout";
@@ -32,36 +35,57 @@ $(document).ready(function(){
 
 	<header id="header_nav">
 		<div id="nav_box">
-			<ul class="login">
-				<c:choose>
-					<c:when
-						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}">
-						<%-- 						<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
-						<li><a href="#" class="openMask">LOGIN</a></li>
-						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li>
-						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li>
-						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
-					</c:otherwise>
-				</c:choose>
-<!-- 				<li><a href="#">FAQ</a></li> -->
-			</ul>
+<!-- 			<ul class="login"> -->
+<%-- 				<c:choose> --%>
+<%-- 					<c:when --%>
+<%-- 						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}"> --%>
+<%-- 												<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
+<!-- 						<li><a href="#" class="openMask">LOGIN</a></li> -->
+<%-- 						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<%-- 						<li><a>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li> --%>
+<%-- 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> --%>
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+<!-- <!-- 				<li><a href="#">FAQ</a></li> --> -->
+<!-- 			</ul> -->
 			<div id="lnb">
 				<h1>
-					<a id="tbqjf" class="animate one"
-						href="${pageContext.request.contextPath}/"> <span>T</span><span>r</span><span>a</span><span>i</span><span>n</span><span>e</span><span>r</span><span>B</span><span>o</span><span>t</span>
-					</a>
-					<%-- <a href="${pageContext.request.contextPath}/">TRAINING BOT</a> --%>
+					<a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/images/main-logo.png"></a>
+<!-- 					<a id="tbqjf" class="animate one" -->
+<%-- 						href="${pageContext.request.contextPath}/"> <span>T</span><span>r</span><span>a</span><span>i</span><span>n</span><span>e</span><span>r</span><span>B</span><span>o</span><span>t</span> --%>
+<!-- 					</a> -->
+<%-- 					<a href="${pageContext.request.contextPath}/">TRAINING BOT</a> --%>
 				</h1>
 				<nav>
 					<ul>
-						<li><a href="#"><i class="fas fa-bell"></i></a></li>
+						
 						<li><a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a></li>
 <%-- 						<li><a href="${pageContext.request.contextPath}/Routine/list">ROUTINE</a></li> --%>
 						<li><a href="${pageContext.request.contextPath}/question/list">QUESTION</a></li>
 						<li><a href="${pageContext.request.contextPath}/trainer/list">PERSONAL TRAINER</a></li>
+						
+					</ul>
+					<ul class="sub-function">
+						<li><a href="#"><i class="fas fa-bell"></i></a></li>
+										
+										<c:choose>
+					<c:when
+  						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}"> 
+												<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li>
+						<li><a href="#" class="openMask">LOGIN</a></li>
+						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li> 
+					</c:when>
+					<c:otherwise> 
+						<li><a href="${pageContext.request.contextPath}/member/MyPage"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
+						${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li> 
+<%-- 						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li>  --%>
+		<li><a href="#"><i class="fas fa-bars"></i></a></li>
+						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> 
+					</c:otherwise> 
+				</c:choose> 
 					</ul>
 				</nav>
 			</div>

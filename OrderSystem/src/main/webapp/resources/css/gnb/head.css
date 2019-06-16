@@ -115,14 +115,14 @@ header h1 a {
 /*상단 전체 박스*/
 header #lnb {
 	display: flex;
-	margin: 0 auto;
-	top: 0;
-	width: 1024px;
+/* 	margin: 0 auto; */
+/* 	top: 0; */
+/* 	width: 1024px; */
 }
 
 /*로그인*/
 header .login {
-	float: right;
+/* 	float: right; */
 	list-style: none;
 }
 
@@ -164,7 +164,7 @@ header #lnb nav>ul>li>a {
 	display: block;
 	margin: 0 0 0 50px;
 	height: 40px;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 40px;
 	text-decoration-line: none;
 	color: white;
@@ -553,4 +553,12 @@ font-weight:600
 }
 #sessionExtension{
 		color:#ea9206;
+}
+.profile-img{
+	border-radius:50%;
+	width:30px;
+	
+}
+.sub-function i {
+	    font-size: 20pt;
 }

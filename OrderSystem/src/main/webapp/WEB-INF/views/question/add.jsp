@@ -192,7 +192,7 @@
 	<form action="add" method="post" enctype="multipart/form-data" id="questionForm">
 		<!-- <sec:csrfInput /> -->
 		<div class="naming-box" id="naming-box">
-			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png" class="searchimg">
 			<label> 제목 </label> <input v-model="t" type="text" name="questionName" class="naming" id="questionName">
 			<a class="char-limit">({{ tl }}/80자)</a>
 		</div>

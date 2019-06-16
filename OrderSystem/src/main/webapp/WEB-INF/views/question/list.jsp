@@ -92,7 +92,7 @@
 			if(hashType == "hash_tag"){
 				var hashTag_searchKeyword = $('.search_keyword').val();
 				$('.search_keyword').val("");
-				$('.hashTag_searchKeyword').append('<li class="addTag">'+ hashTag_searchKeyword +'</li>');
+				$('.hashTag_searchKeyword').append('<li class="addTag">#'+ hashTag_searchKeyword +'</li>');
 			}
 		});
 		function hashTagSubmit() {
@@ -165,16 +165,16 @@
 						<input type="checkbox" name="searchType" value="question_name"
 							id="searchType1" class="cb1" checked="checked"
 							<c:if test="${fn:indexOf(searchVO.searchType,'question_name') != -1}">checked="checked"</c:if> />
-						<label class="chkselect" for="searchType1">제목</label> <input
+						<label class="chkselect" for="searchType1" id="concheck">제목</label> <input
 							type="checkbox" name="searchType" value="question_content"
 							id="searchType2" class="cb2" checked="checked"
 							<c:if test="${fn:indexOf(searchVO.searchType,'question_content') != -1}">checked="checked"</c:if> />
-						<label class="chkselect" for="searchType2" id="concheck">컨텐츠</label>
+						<label class="chkselect" for="searchType2" id="concheck2">컨텐츠</label>
 					</div>
-					<input type="text" name="searchKeyword" class="search_keyword"
+					<input type="text" name="searchKeyword" class="search_keyword" placeholder="검색어를 입력하세요"
 						maxlength="50" value='<c:out value="${searchVO.searchKeyword}"/>'
 						onkeydown="if(event.keyCode == 13) {fn_formSubmit();}"> <input
-						type="button" name="btn_search" value="검색" class="search_btn"
+						type="button" name="btn_search" value="" class="search_btn"
 						onclick="fn_formSubmit();">
 				</div>
 			</form>

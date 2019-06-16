@@ -42,40 +42,59 @@ body {
 	border: 1px solid #fff;
 	float: left;
 	margin-right: 4px;
-	padding-left: 5px;
+	padding-left: 10px;
 	background: #201d2e;
 	color: #fff;
+	border-radius:20px;
+}
+.amount_select option {
+	width:100px;
+	height:10px;
+	border-radius:5px;
 }
 
 .search_area {
-	width: 400px;
+	width: 350px;
+	height:40px;
 	float: right;
-	color: #fff;
+	color: #303030;
+	background:#272a3d;
+	border-radius:20px;
+	line-height:40px;
+	vertical-align:middle;
+	padding-left:20px;
+	box-sizing:border-box;
 }
 
 .search_keyword {
-	width: 280px;
-	height: 33px;
-	border: 1px solid #fff;
-	float: left;
-	margin-right: 4px;
-	background: none;
+	width: 270px;
+	height: 40px;
+/* 	border: 1px solid #fff; */
+	border:none;
+	background:none;
 	color: #fff;
+	float: left;
+	padding:0 5px 0 5px;
+	box-sizing:border-box;
 }
 
 .search_btn {
-	width: 45px;
-	height: 35px;
-	float: left;
-	background: #272a3d;
-	color: #fff;
+	width: 60px;
+	height: 40px;
+	float: right;
+	background: #006699 url("/kopo/resources/images/icon/search_btn.png") no-repeat center;
+	background-size: 30px;
+	color: #303030;
 	text-align: center;
-	margin-left:5px;
+	border:none;
+	border-radius:0 20px 20px 0;
+	line-height:40px;
+	vertical-align:middle;
 }
 
 .posts {
 	width: 100%;
-	border-top: 1px solid #fff;
+/* 	border-top: 1px solid #fff; */
 	border-collapse: collapse;
 	color: #fff;
 	margin-top:20px;
@@ -94,6 +113,7 @@ body {
 .posts th {
 	height: 44px;
 	border-bottom: 2px solid #fff;
+	background:#272a3d;
 }
 
 .posts td {
@@ -169,7 +189,8 @@ input[class="cb1"]:checked+label, input[class="cb2"]:checked+label {
 	background-color: none;
 }
 
-input[class="cb1"], input[class="cb2"], #concheck {
+input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
+	width:0;
 	display: none;
 }
 
@@ -230,6 +251,8 @@ input[class="cb1"], input[class="cb2"], #concheck {
 	color:#fff;
 	margin-left:20px;
 	padding-left:20px;
+	border-radius:20px;
+	box-sizing:border-box;
 }
 .addTag {
 	list-style:none;

@@ -22,6 +22,15 @@ body{background:#201d2e;text-decoration:none;}
 	margin:0 auto;
 	margin-top:50px;
 }
+.searchimg {
+	width:20px;
+	text-align:center;
+	transform:scale(3);             /*  default */
+	-webkit-transform:scale(3);  /*  크롬 */
+	-moz-transform:scale(3);     /* FireFox */
+	-o-transform:scale(3);        /* Opera */
+	overflow:hidden;
+}
 .naming-box {
 	margin-bottom:40px;
 }

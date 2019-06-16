@@ -12,7 +12,12 @@ function selectUserbI(managerId) {
 		success : function(data) {
 			if (data == 0) {
 				alert("회원 기초 정보를 등록하세요");
-
+				var bIChk = confirm("회원 기초정보 조사를 하시겠습니까?");
+				if(bIChk == true){
+					location.href="/kopo/member/basicInformation";
+				}else if(bIChk == false){
+					return;
+				}
 		
 			} else if (data == 2) {
 				alert("신청 내역이 존재합니다.");

@@ -49,8 +49,7 @@ public class RootController {
 			}else if(userAuthority.getAuthority().equals("admin")) {
 				session.setAttribute("admin", userAuthority.getUsername());
 			}
-		return "member/bIChk";
-//		return "redirect:.";
+		return "redirect:.";
 	}
 
 	@RequestMapping("/logout")

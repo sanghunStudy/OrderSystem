@@ -8,7 +8,7 @@ public class DoPlanner {
 	private String doName;
 	private int doSet;
 	private int doReps;
-	private float doLb;
+	private int doLb;
 	private String doGoal;
 	private String doPart;
 	private String doEtc;
@@ -69,7 +69,7 @@ public class DoPlanner {
 		return doLb;
 	}
 
-	public void setDoLb(float doLb) {
+	public void setDoLb(int doLb) {
 		this.doLb = doLb;
 	}
 

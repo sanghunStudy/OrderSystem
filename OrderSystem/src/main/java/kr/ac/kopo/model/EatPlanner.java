@@ -6,17 +6,40 @@ public class EatPlanner {
 	private int code;
 	private String eatDate;
 	private String eatName;
-	private float eatGram;
+	private int eatGram;
 	private int eatCount;
-	private float eatKcal;
+	private int eatKcal;
 	private String eatEtc;
 	private String eatNutrient;
 	private String eatTime;
 	private String manager;
 	private String username;
+	private int needKcal;
 
+	public int getEatGram() {
+		return eatGram;
+	}
 
-	
+	public void setEatGram(int eatGram) {
+		this.eatGram = eatGram;
+	}
+
+	public int getEatKcal() {
+		return eatKcal;
+	}
+
+	public void setEatKcal(int eatKcal) {
+		this.eatKcal = eatKcal;
+	}
+
+	public int getNeedKcal() {
+		return needKcal;
+	}
+
+	public void setNeedKcal(int needKcal) {
+		this.needKcal = needKcal;
+	}
+
 	public int getCode() {
 		return code;
 	}
@@ -49,28 +72,12 @@ public class EatPlanner {
 		this.eatName = eatName;
 	}
 
-	public float getEatGram() {
-		return eatGram;
-	}
-
-	public void setEatGram(float eatGram) {
-		this.eatGram = eatGram;
-	}
-
 	public int getEatCount() {
 		return eatCount;
 	}
 
 	public void setEatCount(int eatCount) {
 		this.eatCount = eatCount;
-	}
-
-	public float getEatKcal() {
-		return eatKcal;
-	}
-
-	public void setEatKcal(float eatKcal) {
-		this.eatKcal = eatKcal;
 	}
 
 	public String getEatEtc() {

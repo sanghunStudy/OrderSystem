@@ -408,7 +408,7 @@ function progressAnime() {
 	console.log(end);
 
 	function frame() {
-		if (width >= 35) {
+		if (width >= end) {
 			clearInterval(id);
 		} else {
 			width++;

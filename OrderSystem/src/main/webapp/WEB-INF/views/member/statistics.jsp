@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,22 +121,22 @@
 		<div id="wrapper">
 			<div class="four-charts">
 				<div id="lineChart dead"
-					style="position: relative; height: 27vh; width: 22vw">
+					style="position: relative; height: 30vh; width: 22vw">
 					<canvas id="line-chart-daed"></canvas>
 
 				</div>
 				<div id="lineChart squat"
-					style="position: relative; height: 27vh; width: 22vw">
+					style="position: relative; height: 30vh; width: 22vw">
 					<canvas id="line-chart-squat"></canvas>
 
 				</div>
 				<div id="lineChart bench"
-					style="position: relative; height: 27vh; width: 22vw">
+					style="position: relative; height: 30vh; width: 22vw">
 					<canvas id="line-chart-bench"></canvas>
 
 				</div>
 				<div id="doughnutChart"
-					style="position: relative; height: 27vh; width: 22vw">
+					style="position: relative; height: 30vh; width: 22vw">
 					<canvas id="doughnut-chart"></canvas>
 
 				</div>
@@ -290,12 +290,13 @@
 							<tbody class="to-do-body">
 								<c:choose>
 									<c:when test="${doList.size() > 0 }">
-										<c:forEach var="item" items="${doList}">
+										<c:forEach var="item" items="${doList}" varStatus="status">
 
 											<tr>
 												<td><div class="checkboxes">
-														<input id="a" type="checkbox" tabindex="1" /><label
-															class="green-background" for="a"></label>
+														<input id="dChk${status.index}" type="checkbox"
+															tabindex="1" class="check-list" /><label
+															class="green-background" for="dChk${status.index}"></label>
 													</div></td>
 												<td><div class="item_box">
 														<div class="to_item">${item.doName}</div>
@@ -306,11 +307,23 @@
 												<td>
 													<div class="progress-container-t">
 														<span id="value" class="progress-value-t"
-															style="background-color: #272a3d">1%</span>
+															style="background-color: #272a3d">0%</span>
 
 														<div class="progress-bar-t">
-															<div id="bar" class="progress-value-t multi"
-																data-code="dbVal" style="width: 1%;"></div>
+															<c:set var="Numb" value="${item.doGoal}"></c:set>
+															<fmt:parseNumber var="i" value="${Numb}"
+																integerOnly="true"></fmt:parseNumber>
+															<c:choose>
+
+																<c:when test="${i ne 0}">
+																	<div id="bar" class="progress-value-t multi"
+																		data-code="${item.doLb/i * 100}" style="width: 0%;"></div>
+																</c:when>
+																<c:otherwise>
+																	<div id="bar" class="progress-value-t multi"
+																		data-code="0" style="width: 0%;"></div>
+																</c:otherwise>
+															</c:choose>
 														</div>
 													</div>
 												</td>
@@ -345,61 +358,42 @@
 							<tbody class="to-eat-body">
 								<c:choose>
 									<c:when test="${eatList.size() > 0}">
-										<c:forEach var="item" items="${eatList}">
+										<c:forEach var="item" items="${eatList}" varStatus="status">
 											<tr>
 												<td><div class="checkboxes">
-														<input id="b" type="checkbox" tabindex="2" /><label
-															class="green-background" for="b"></label>
+														<input id="eChk${status.index}" type="checkbox"
+															tabindex="2" class="check-list" /><label
+															class="green-background" for="eChk${status.index}"></label>
 													</div></td>
 												<td><div class="item_box">
-														<div class="to_item">${item.eatName}${item.eatGram}</div>
+														<div class="to_item">
+															<span class="eat-time">${item.eatTime}</span>&nbsp;&nbsp;${item.eatName}
+														</div>
 														<p class="to_item_contents">${item.eatName}
 															${item.eatCount}개 ${item.eatGram}gram</p>
 														<p>${item.eatEtc}</p>
 													</div></td>
 												<td class="nutrient">${item.eatNutrient}</td>
-												<td class="kcal">${item.eatKcal}</td>
+												<td class="kcal">${item.eatKcal}kcal</td>
 												<td>
 													<div class="progress-container-t">
 														<span id="value" class="progress-value-t"
-															style="background-color: #272a3d">1%</span>
+															style="background-color: #272a3d">0%</span>
 														<div class="progress-bar-t">
 															<div id="bar" class="progress-value-t multi"
-																data-code="dbVal" style="width: 1%;"></div>
+																data-code="${item.eatKcal/item.needKcal * 100}"
+																style="width: 0%;"></div>
 														</div>
 													</div>
 												</td>
 												<td><i class="fas fa-edit"></i></td>
-												</tr>											
+											</tr>
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
 									</c:otherwise>
 								</c:choose>
-								<!-- 								<tr> -->
-								<!-- 									<td><div class="checkboxes"> -->
-								<!-- 											<input id="b" type="checkbox" tabindex="2" /><label -->
-								<!-- 												class="green-background" for="b"></label> -->
-								<!-- 										</div></td> -->
-								<!-- 									<td><div class="item_box"> -->
-								<!-- 											<div class="to_item">바나나100g</div> -->
-								<!-- 											<p class="to_item_contents">바나나 보통크기 3개</p> -->
-								<!-- 										</div></td> -->
-								<!-- 									<td class="nutrient">탄 단 지</td> -->
-								<!-- 									<td class="kcal">250Kcal</td> -->
-								<!-- 									<td> -->
-								<!-- 										<div class="progress-container-t"> -->
-								<!-- 											<span id="value" class="progress-value-t" -->
-								<!-- 												style="background-color: #272a3d">1%</span> -->
 
-								<!-- 											<div class="progress-bar-t"> -->
-								<!-- 												<div id="bar" class="progress-value-t multi" -->
-								<!-- 													data-code="dbVal" style="width: 1%;"></div> -->
-								<!-- 											</div> -->
-								<!-- 										</div> -->
-								<!-- 									</td> -->
-								<!-- 									<td><i class="fas fa-edit"></i></td> -->
-								<!-- 								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -407,17 +401,49 @@
 			</div>
 
 			<div id="manager-info">
+<!-- 				<div class="title" style="margin-bottom: 10px;">트레이너 프로필</div> -->
+					<div class="manager-photo">
+						<img
+							src="${pageContext.request.contextPath}/upload/${mentiProfile.upFilename}"
+							onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
+							class="psa">
+					</div>
 				<div class="manager-content">
 
-					<div class="manager-photo"></div>
-					<div class="manager-score"></div>
 					<div class="manager-profile">
-						<div>${mentiProfile.username}</div>
+						<div class="trainer-name">
+							${mentiProfile.name}<span class="small-id">${mentiProfile.username}</span></div>
+						<div class="sub-info">
+							 #${mentiProfile.sex}&nbsp;  &nbsp; #${mentiProfile.region}</div>
+						<div class="trainer-tier">
+							${mentiProfile.tier}</div>
+						<div>${mentiProfile.career}</div>	
+						<div>
+							<p>저는 여러분들의 곁에서 항상 최선을다해 성실히 하겠습니다.</p>
+<!-- 							<img -->
+<%-- 								src="${pageContext.request.contextPath}/resources/images/grade/${mentiProfile.tier}-tier-bg-none.png"> --%>
+						</div>
+												<div class="manager-score">
+							<div class="rate">
+								<input type="radio" id="star5" name="rate" value="5" /> <label for="star5" title="text">5 stars</label> 
+								<input type="radio" id="star4" name="rate" value="4" /> <label for="star4"title="text">4 stars</label> 
+								<input type="radio" id="star3" name="rate" value="3" /> <label for="star3" title="text">3stars</label> 
+								<input type="radio" id="star2" name="rate" value="2" /> <label for="star2" title="text">2 stars</label> 
+								<input type="radio" id="star1" name="rate" value="1" /> <label for="star1"title="text">1 star</label>
+							</div>
+						</div>
 					</div>
+					<div class="profile-right">
+						<div>
+							<div class="reservation btn-t" id="reservation">화상채팅 예약</div>
+						</div>					
+
+
+					</div>
+
 				</div>
+
 			</div>
 		</div>
-	</div>
-
 </body>
 </html>

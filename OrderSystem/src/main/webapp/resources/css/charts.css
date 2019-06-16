@@ -122,5 +122,101 @@ display:inline-block;
 .increase {color:#FF6384;}
 .decrease {color:hsla(210, 94%, 54%, 1);}
 .fixedRate {color:#6c757d;}
-#manager-info {background:#272a3d; width:89.5vw;height:auto;    margin-top: 30px; color:hsla(0,0%,100%,.8);}
-.manager-content {padding:12px 15px;}
+#manager-info {background:#272a3d; width:89.5vw;height:auto;margin-top: 30px; color:hsla(0,0%,100%,.8); font-family: 'S-CoreDream-4Regular';display:flex;margin-bottom:20px;}
+.manager-content {padding:20px 40px;display:flex;    width: 100%;    justify-content: space-between;
+}
+
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+        width: 180px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.trainer-name {
+	font-size:24pt;
+	font-weight:600;
+	font-family: 'S-CoreDream-8Heavy';
+	color:#00ccff;
+}
+.manager-profile > div > span {
+	    margin-right: 20%;
+}
+.sub-info {
+	color:#6c757d;
+}
+/*agree,disagree 버튼 css*/
+.btn-t {
+	text-align: center;
+	text-transform: uppercase;
+	flex: 1 1 auto;
+	margin: 10px;
+	position: relative;
+	overflow: hidden;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	padding: 6px 12px 6px 12px;
+}
+
+.btn-t:hover {
+	cursor: pointer;
+}
+
+.action {
+	display: flex;
+}
+
+.reservation {
+	border: 2px solid #82acd8;
+	color: #82acd8;
+}
+
+.reservation:hover {
+	color: #f7f7f7;
+	box-shadow: inset 30em 0 0 0 #82acd8;
+}
+.profile-right {
+display: flex;
+    align-items: flex-end;
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+}
+.manager-profile > div {
+	padding-bottom:10px;
+}
+.trainer-tier{
+	text-transform:uppercase;
+}

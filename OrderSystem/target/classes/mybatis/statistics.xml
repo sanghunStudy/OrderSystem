@@ -76,7 +76,7 @@
 	SELECT be_id,username,be_date,b_metabolism,e_requirement
 	FROM bedata
 	WHERE username=#{username}
-	ORDER BY be_date desc limit 1
+	ORDER BY be_id desc limit 1
 	
 	</select>
 	
@@ -109,9 +109,9 @@
 	</select>
 	
 <select id="mentiInfo" resultType="TrainerProfile">
-	SELECT tp.username,tp.name,tp.sex,tp.career,tp.pro_date,tp.up_filename
-	FROM trainer_profile tp,user_management um
-	WHERE tp.username = um.manager AND um.username = #{id}
+	SELECT tp.username,tp.name,tp.sex,tp.career,tp.pro_date,tp.up_filename,region,tier
+	FROM trainer_profile tp,user_management um,user u
+	WHERE tp.username = um.manager AND u.username = um.manager AND um.username = #{id}
 </select>
 <insert id="doneSubject">
 	INSERT INTO assignment_log(manager,username,done_subject,done_content,kinds,log_time)
@@ -155,16 +155,18 @@
 </select>
 
 <select id="getEatList" resultType="EatPlanner">
-	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_etc,eat_nutrient,eat_time,manager,username FROM eat_planner 
-	WHERE username = #{id} AND STR_TO_DATE(eat_date, "%Y.%m.%d") = curdate()
+	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_Kcal,eat_etc,eat_nutrient,eat_time,manager,eat_planner.username,IFNULL(b.e_requirement,0) need_kcal  
+	FROM eat_planner left outer join (SELECT be_id,be_date,e_requirement,username FROM bedata WHERE username=#{id} ORDER BY be_id DESC limit 1) as b  on (b.username = eat_planner.username)
+	WHERE eat_planner.username = #{id} AND STR_TO_DATE(eat_date, "%Y.%m.%d") = curdate()
 </select>
 <select id="getAjaxDoList" resultType="DoPlanner">
 	SELECT do_num,do_date,do_name,do_set,do_reps,do_lb,do_goal,do_part,do_etc,manager,username FROM do_planner 
 	WHERE username = #{id} AND do_date = STR_TO_DATE(substring(#{date},1,10), "%Y.%m.%d")
 </select>
 <select id="getAjaxEatList" resultType="EatPlanner">
-	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_Kcal,eat_etc,eat_nutrient,eat_time,manager,username FROM eat_planner 
-	WHERE username = "1" AND eat_date = STR_TO_DATE(substring(#{date},1,10), "%Y.%m.%d")
+	SELECT eat_num,eat_date,eat_name,eat_gram,eat_count,eat_gram,eat_Kcal,eat_etc,eat_nutrient,eat_time,manager,eat_planner.username,IFNULL(b.e_requirement,0) need_kcal 
+	FROM eat_planner left outer join (SELECT be_id,be_date,e_requirement,username FROM bedata WHERE username=#{id} ORDER BY be_id DESC limit 1) as b  on (b.username = eat_planner.username)
+	WHERE eat_planner.username = #{id} AND eat_date = STR_TO_DATE(substring(#{date},1,10), "%Y.%m.%d")  
 </select>
 
 </mapper>

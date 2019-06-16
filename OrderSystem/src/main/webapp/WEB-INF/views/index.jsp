@@ -62,7 +62,7 @@
 				<p class="section3_sub_title">Build Your Body Yourself with your
 					own Trainer</p>
 				<div>
-					<p>GET Started</p>
+					<p onclick="location.href='${pageContext.request.contextPath}/question/list'">GET Started</p>
 				</div>
 			</div>
 		</div>

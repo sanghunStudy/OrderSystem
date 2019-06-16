@@ -9,53 +9,63 @@
 <script src="${pageContext.request.contextPath}/resources/js/basicInformation.js"></script>
 <link rel ="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/basicInformation.css"/>
 </head>
-<%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
-<%-- <%@ include file="../gnb/sidebar.jsp"%> --%>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+<%@ include file="../gnb/sidebar.jsp"%>
 <body id="bi-body">
 <div class="form-container cf-form">
+<div class="bi-title-box">
+	<p id="bi-title">회원 기초정보 조사</p>
+</div>
   <form id="questionnaire-form" action="basicInformation" method="post">
     <div class="slide-container">
       <div class="slide">
-        <h2> 당신의 나이를 입력해주세요...! </h2>
+        <h3> 당신의 나이를 입력해주세요 </h3>
         <div class="radio-container">
-        	<input type="number" id="match_1" name="age" min="0">
+        	<div class="group">
+        	<input type="number" id="match_1" name="age" class="bi-age" min="0" required="required">
+        	<span class="highlight"></span>
+        	<span class="bar"></span>
+        	<label class="bi-input-label">나이</label>
+        	</div>
         </div>
         <div class="error-message">당신의 나이를 입력해주세요..!</div>
       </div>
       <div class="slide">
-        <h2>당신의 성별을 선택 해주세요..!</h2>
+        <h3>당신의 성별을 선택 해주세요</h3>
 	        <div class="radio-container">
 				<input type="radio" name="sex" id="q2_match_1" value="f" data-icon='' />
 			</div>
 			<div class="radio-container">
 				<input type="radio" name="sex" id="q2_match_2" value="m" data-icon='' />
 	        </div>
-<!--         <div class="radio-container"> -->
-<!--           <input type="radio" id="q2_match_1" name="recital_year" value="yes"> -->
-<!--           <label for="q2_match_1"> 남</label> -->
-<!--         </div> -->
-<!--         <div class="radio-container"> -->
-<!--           <input type="radio" id="q2_match_2" name="recital_year" value="no">  -->
-<!--           <label for="q2_match_2"> 여</label> -->
-<!--         </div> -->
         <div class="error-message">당신의 성별을 선택 해주세요..!</div>
       </div>
       <div class="slide">
-        <h2>당신의 신장을 입력해주세요..!</h2>
+        <h3>당신의 신장을 입력해주세요</h3>
 			<div class="radio-container">
-				<input type="number" id="q3_match_1" name="height" min="0"  class="input_value">
+	        	<div class="group">
+	        	<input type="number" id="q3_match_1" class="bi-height" name="height" min="0" placeholder="cm">
+	        	<span class="highlight"></span>
+	        	<span class="bar"></span>
+	        	<label class="bi-input-label">신장</label>
+	        	</div>
 			</div>
         <div class="error-message">당신의 신장을 입력해주세요..!</div>
       </div>
       <div class="slide">
-        <h2>당신의 체중을 입력해주세요..!</h2>
+        <h3>당신의 체중을 입력해주세요</h3>
         	<div class="radio-container">
-        		<input type="number" name="weight" min="0"  class="input_value">
+	        	<div class="group">
+		        	<input type="number" class="bi-weight" name="weight" min="0" placeholder="kg">
+		        	<span class="highlight"></span>
+		        	<span class="bar"></span>
+		        	<label class="bi-input-label">체중</label>
+	        	</div>
       		</div>
       	<div class="error-message">당신의 체중을 입력해주세요..!</div>
       </div>
       <div class="slide">
-        <h2>일주일에 술을 얼마나 드시나요? </h2>
+        <h3>일주일에 술을 얼마나 드시나요 ?</h3>
         <div class="radio-container">
         	<input type="radio" class="bi-text-input-box" id="drinkingMatch" name="drinking" value="거의 마시지 않는다." checked>
         	<label for="drinkingMatch">0회</label>
@@ -75,7 +85,7 @@
         <div class="error-message">음주 빈도를 선택해주세요..!!</div>
       </div>
       <div class="slide">
-        <h2>일주일에 몇 번 운동을 하시나요?</h2>
+        <h3>일주일에 몇 번 운동을 하시나요 ?</h3>
         <div class="radio-container">
 			<input type="radio" class="bi-text-input-box" id="frequency" name="frequency" value="거의 하지 않는다." checked>
         	<label for="frequency">0회</label>
@@ -95,7 +105,7 @@
         <div class="error-message">운동 빈도를 선택해주세요..!! </div>
       </div>
       <div class="slide">
-        <h2>운동을 통하여 얻고싶은 것이 무엇인가요?</h2>
+        <h3>운동을 통하여 얻고싶은 것이 무엇인가요 ?</h3>
         <div class="radio-container">
         	<input type="radio" class="bi-text-input-box" id="purpose" name="purpose" value="다이어트" checked>
         	<label for="purpose">다이어트</label>
@@ -115,7 +125,7 @@
         <div class="error-message">운동을 통해 얻고 싶은 효과를 선택해주세요..!! </div>
       </div>
       <div class="slide">
-        <h2>어떤 직종에 종사하시나요?</h2>
+        <h3>어떤 직종에 종사하시나요 ?</h3>
         <div class="radio-container">
         	<input type="radio" class="bi-text-input-box" id="job" name="job" value="활동량이 거의 없는 직업" checked>
         	<label for="job">활동량이 거의 없는 직업</label>
@@ -127,9 +137,14 @@
         <div class="error-message">어떤 직종에 종사하시는지 선택해주세요..!!</div>
       </div>
       <div class="slide">
-      	<h2>설문에 응해주셔서 감사합니다.. 마지막으로 하고싶은 말을 입력해주세요..!!</h2>
+      	<h3>설문에 응해주셔서 감사합니다. 마지막으로 하고싶은 말을 입력해주세요.</h3>
       	<div class="radio-container">
-      	 	<input type="text" name="dictum" id="last_input">
+        	<div class="group">
+	        	<input type="text" name="dictum" id="last_input">
+	        	<span class="highlight"></span>
+	        	<span class="bar"></span>
+	        	<label class="bi-input-label">하고싶은 말</label>
+        	</div>
       	</div>
       		<div class="error-message">하고싶은 말을 입력해주세요..!</div>
       </div>
@@ -137,8 +152,14 @@
   </form>
   <div class="buttons-container">
 <!--     <button class="btn-white btn-previous bI-btn">이전</button> -->
-    <button class="btn-white btn-next bI-btn">다음</button>
+	<div class="icon btn-white btn-next">
+	  <div class="arrow"></div>
+	</div>
+<!--     <button class="btn-white btn-next bI-btn">다음</button> -->
     <button class="float-right btn-submit bI-btn" disabled>Submit</button>
+  </div>
+  <div class="bi-footer">
+  	<P>본 설문서는 TRAINER BOT에서 여러가지 피드백, 원활한 회원관리 운영에 대한 중요한<br /> 자료이오니 성심껏 작성해 주시기 바랍니다. </P>
   </div>
 </div>
 

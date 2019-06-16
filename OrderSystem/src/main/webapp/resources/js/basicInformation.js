@@ -7,8 +7,30 @@ var slideNumber = 0;
 var url = "ENTER GOOGLE SHEET URL HERE";
 var $form = $('form');
 
-next.addEventListener('click', function(){
-  changePosition("next");
+
+$("input[type='number']").on("propertychange change keyup paste input", function() {
+    var numberVal = $(this).val();
+	if($(this).hasClass("bi-age") && numberVal > 100){
+    	alert("나이를 100이상 입력 불가능합니다.");
+    	$(this).val('');
+    }else if($(this).hasClass("bi-height") && numberVal > 260){
+      	alert("키를 260이상 입력 불가능합니다.");
+    	$(this).val('');  	
+    }else if($(this).hasClass("bi-weight") && numberVal > 595){
+      	alert("체중을 595이상 입력 불가능합니다.(기네스북 기준 최고 체중)");
+    	$(this).val('');    	
+    }
+});
+
+
+//$("#match_1").on("propertychange change keyup paste input", function() {
+//    var currentVal = $(this).val();
+//    console.log(currentVal);
+//});
+
+next.addEventListener('click', function(e){
+	console.log(e);
+	changePosition("next");
 });
 
 //previous.addEventListener('click', function(){
@@ -104,18 +126,19 @@ last_input.onkeyup = () =>{
   submit.addEventListener('click', function(e){
     e.preventDefault();
     $("#questionnaire-form").submit();
-//    var jqxhr = $.ajax({
-//      url: url,
-//      method: "GET",
-//      dataType: "json",
-//      data: $form.serializeArray(),
-//      success: function(){
-//        var container = document.querySelector('.form-container');
-//        
-//        container.style.top = "0px";
-//        container.innerHTML = "<h2>Thank you! We have received your entry and we'll get back to you on the email you entered.";
-//        
-//      }
-//    })
   })
+}
+
+const $icon = document.querySelector('.icon');
+const $arrow = document.querySelector('.arrow');
+
+$icon.onclick = () => {
+  $arrow.animate([
+    {left: '0'},
+    {left: '10px'},
+    {left: '0'}
+  ],{
+    duration: 700,
+    iterations: Infinity
+  });
 }

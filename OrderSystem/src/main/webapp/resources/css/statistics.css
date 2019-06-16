@@ -195,14 +195,14 @@ table {
 	color:rgb(154,154,154);
 }
 .manager-photo {
-    width: 367px;
-    height: 300px;
+    width: 250px;
+    height: 200px;
    
 }
 
 .psa{
-	width:100%;
-	height:100%;
+	height: 100%;
+
 }
 .small-id{
 	font-size:16pt;

@@ -185,4 +185,10 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.getAjaxEatList(id,date);
 	}
 
+	@Override
+	public void saveScore(int score, String mento) {
+		dao.saveScore(score,mento);
+		dao.avgScore(score,mento);
+	}
+
 }

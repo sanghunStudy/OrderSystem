@@ -57,6 +57,7 @@ $(document).ready(function(){
 				</h1>
 				<nav>
 					<ul>
+						<li><a href="#"><i class="fas fa-bell"></i></a></li>
 						<li><a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a></li>
 <%-- 						<li><a href="${pageContext.request.contextPath}/Routine/list">ROUTINE</a></li> --%>
 						<li><a href="${pageContext.request.contextPath}/question/list">QUESTION</a></li>

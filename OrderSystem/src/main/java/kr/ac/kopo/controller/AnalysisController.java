@@ -134,7 +134,12 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	
 	return service.doneSubject(subject,contents,manager,id,kind);
 }
-
+@ResponseBody
+@RequestMapping(value="/submitRate",method=RequestMethod.POST)
+	private void submitScore(int score,String mento) {
+	
+	 service.saveScore(score,mento);
+}
 
 //@RequestMapping(value="/menti-statistics")
 //private String statistics2(String userId, Model model,HttpSession session) {

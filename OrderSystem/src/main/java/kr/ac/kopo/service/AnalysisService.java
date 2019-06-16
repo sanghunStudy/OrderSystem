@@ -63,6 +63,8 @@ public interface AnalysisService {
 
 	List<EatPlanner> getAjaxEatList(String id, String date);
 
+	void saveScore(int score, String mento);
+
 
 
 

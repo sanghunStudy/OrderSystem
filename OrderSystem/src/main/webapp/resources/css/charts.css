@@ -123,15 +123,15 @@ display:inline-block;
 .decrease {color:hsla(210, 94%, 54%, 1);}
 .fixedRate {color:#6c757d;}
 #manager-info {background:#272a3d; width:89.5vw;height:auto;margin-top: 30px; color:hsla(0,0%,100%,.8); font-family: 'S-CoreDream-4Regular';display:flex;margin-bottom:20px;}
-.manager-content {padding:20px 40px;display:flex;    width: 100%;    justify-content: space-between;
+.manager-content {padding:10px 40px;display:flex;    width: 100%;    justify-content: space-between;
 }
 
 
 .rate {
     float: left;
-    height: 46px;
+    /* height: 46px; */
     padding: 0 10px;
-        width: 180px;
+    /* width: 180px; */
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -215,7 +215,7 @@ display: flex;
     /* justify-content: space-around; */
 }
 .manager-profile > div {
-	padding-bottom:10px;
+	padding-bottom:5px;
 }
 .trainer-tier{
 	text-transform:uppercase;

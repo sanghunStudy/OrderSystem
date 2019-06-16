@@ -32,8 +32,11 @@
 			
 			$('.menu-box').toggle('fast');
 		})
-	})
 
+	})
+		function trainerChk() {
+			alert('g2');
+		}
 </script>
 </head>
  <%@ include file="../member/modal.jsp" %>

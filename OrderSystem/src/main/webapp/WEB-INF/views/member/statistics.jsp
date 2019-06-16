@@ -300,8 +300,7 @@
 													</div></td>
 												<td><div class="item_box">
 														<div class="to_item">${item.doName}</div>
-														<p class="to_item_cotents">${item.doName}
-															${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
+														<p class="to_item_cotents">${item.doName}&nbsp;${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
 													</div></td>
 												<td class="parts">${item.doPart}</td>
 												<td>
@@ -369,8 +368,7 @@
 														<div class="to_item">
 															<span class="eat-time">${item.eatTime}</span>&nbsp;&nbsp;${item.eatName}
 														</div>
-														<p class="to_item_contents">${item.eatName}
-															${item.eatCount}개 ${item.eatGram}gram</p>
+														<p class="to_item_contents">${item.eatName}&nbsp;${item.eatCount}개 ${item.eatGram}gram</p>
 														<p>${item.eatEtc}</p>
 													</div></td>
 												<td class="nutrient">${item.eatNutrient}</td>

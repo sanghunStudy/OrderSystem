@@ -170,5 +170,18 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectList("statistics.getAjaxEatList", map);
 	}
 
+	@Override
+	public void saveScore(int score, String mento) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("score", score);
+		map.put("mento", mento);
+		sql.update("statistics.saveScore", map);
+	}
+
+	@Override
+	public void avgScore(int score, String mento) {
+		sql.update("statistics.calScore",mento);
+	}
+
 
 }

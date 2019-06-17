@@ -18,7 +18,17 @@
 		<collection property="details" resultMap="ExerciseContents" />
 	</resultMap>
 
-
+	<select id="getLatestLog" resultType="MessageRepository">
+		select a.log_num,a.manager,a.username,a.done_subject,a.done_content,a.kinds,
+			case 
+			when hour(timediff(now(),a.log_time))<![CDATA[ < 1]]> THEN concat(minute(timediff(now(),a.log_time)), '분전')
+			when hour(timediff(now(),a.log_time))<![CDATA[ < 24 ]]>THEN concat(minute(timediff(now(),a.log_time)), '시간전')
+			else concat(datediff(now(),a.log_time),'일전')end as log_time 
+		from assignment_log a 
+		where manager = #{id}
+		order by a.log_time desc;
+	</select>
+	
 	<select id="todayList" resultMap="EJMap">
 		SELECT
 		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,

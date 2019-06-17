@@ -9,7 +9,7 @@ public class MessageRepository {
 	private String doneSubject;//한 일
 	private String doneContent; //한 내용
 	private String kinds; //먹기 or 하기
-	private char logTime; //등록시간
+	private String logTime; //등록시간
 	public int getLog_num() {
 		return log_num;
 	}
@@ -46,12 +46,13 @@ public class MessageRepository {
 	public void setKinds(String kinds) {
 		this.kinds = kinds;
 	}
-	public char getLogTime() {
+	public String getLogTime() {
 		return logTime;
 	}
-	public void setLogTime(char logTime) {
+	public void setLogTime(String logTime) {
 		this.logTime = logTime;
 	}
+
 	
 	
 	

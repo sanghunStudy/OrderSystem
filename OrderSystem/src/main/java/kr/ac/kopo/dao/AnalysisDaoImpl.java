@@ -14,6 +14,7 @@ import kr.ac.kopo.model.DoPlanner;
 import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.MessageRepository;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
@@ -181,6 +182,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public void avgScore(int score, String mento) {
 		sql.update("statistics.calScore",mento);
+	}
+
+	@Override
+	public List<MessageRepository> getLatestLog(String id) {
+		return sql.selectList("statistics.getLatestLog", id);
 	}
 
 

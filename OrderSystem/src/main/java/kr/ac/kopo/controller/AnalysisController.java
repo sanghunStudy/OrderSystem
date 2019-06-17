@@ -31,6 +31,7 @@ import kr.ac.kopo.model.DoPlanner;
 import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.MessageRepository;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
@@ -167,6 +168,8 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	List<MentiPerformance> MPerformance = service.getMenti(id);
 	List<DailyRank> myRanking = service.getMyDailyRanking(id);
 	List<TypeOfExercise> typeOfExercise = service.getExerList();
+	List<MessageRepository> mr = service.getLatestLog(id);
+
 //	String doubleSlashStr = "";
 //	
 //	
@@ -184,7 +187,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	model.addAttribute("wfaList",wfaList);
 	model.addAttribute("dailyRanking",myRanking);
 	model.addAttribute("typeOfExercise", typeOfExercise);
-	
+	model.addAttribute("latestLog",mr);
 	return "member/mentiManagement";
 	}
 	else return "/member/myinfo";

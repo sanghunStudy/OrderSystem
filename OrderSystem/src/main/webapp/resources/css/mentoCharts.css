@@ -61,7 +61,7 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 }
 
 body {
-	background: #1e1e2f;
+	    background: #1e1e2f !important;
 	font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
 	color: hsla(0, 0%, 100%, .7);
 }
@@ -89,6 +89,7 @@ li {
 
 .rank {
 	background: #1e1e2f;
+	    margin-top: 100px;
 }
 
 

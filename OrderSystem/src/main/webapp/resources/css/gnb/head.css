@@ -183,14 +183,18 @@ header #lnb nav>ul>li>a:after {
 	width: 0%;
 	position: absolute;
 	left: 50%;
-	bottom: 0;
+	bottom: -10;
 	height: 2px;
 	transition: all 0.5s;
+	color:#FFF;
+	background:#FFF;
 }
 
 header #lnb nav>ul>li>a:hover:after {
 	left: 0;
 	width: 100%;
+	color:#FFF;
+	background:#FFF;
 }
 
 header #lnb nav>ul ul {
@@ -333,9 +337,9 @@ header #lnb nav>ul ul a:after {
 	width: 0%;
 	position: absolute;
 	left: 50%;
-	bottom: -10;
+	bottom: -15px;
 	height: 2px;
-	background: black;
+	background: #FFF;
 	transition: all 0.5s;
 }
 

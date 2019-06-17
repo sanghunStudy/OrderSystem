@@ -337,7 +337,7 @@ header #lnb nav>ul ul a:after {
 	width: 0%;
 	position: absolute;
 	left: 50%;
-	bottom: -15px;
+/* 	bottom: -15px; */
 	height: 2px;
 	background: #FFF;
 	transition: all 0.5s;

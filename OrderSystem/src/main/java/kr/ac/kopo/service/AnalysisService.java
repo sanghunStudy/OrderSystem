@@ -64,9 +64,11 @@ public interface AnalysisService {
 
 	List<EatPlanner> getAjaxEatList(String id, String date);
 
-	void saveScore(int score, String mento);
+	void saveScore(int score, String mento, String userName);
 
 	List<MessageRepository> getLatestLog(String id);
+
+	int countScore(String mento, String userName);
 
 
 

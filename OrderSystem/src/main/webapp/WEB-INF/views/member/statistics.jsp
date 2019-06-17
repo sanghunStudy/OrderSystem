@@ -300,7 +300,7 @@
 													</div></td>
 												<td><div class="item_box">
 														<div class="to_item">${item.doName}</div>
-														<p class="to_item_cotents">${item.doName}&nbsp;${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
+														<p class="to_item_contents">${item.doName}&nbsp;${item.doLb}kg 중량으로 ${item.doReps}회씩 ${item.doSet}세트</p>
 													</div></td>
 												<td class="parts">${item.doPart}</td>
 												<td>
@@ -365,10 +365,8 @@
 															class="green-background" for="eChk${status.index}"></label>
 													</div></td>
 												<td><div class="item_box">
-														<div class="to_item">
-															<span class="eat-time">${item.eatTime}</span>&nbsp;&nbsp;${item.eatName}
-														</div>
-														<p class="to_item_contents">${item.eatName}&nbsp;${item.eatCount}개 ${item.eatGram}gram</p>
+														<div class="to_item"><span class="eat-time">${item.eatTime}</span>${item.eatName}</div>
+														<p class="to_item_contents">${item.eatName}  ${item.eatCount}개   ${item.eatGram}gram</p>
 														<p>${item.eatEtc}</p>
 													</div></td>
 												<td class="nutrient">${item.eatNutrient}</td>
@@ -421,7 +419,7 @@
 <!-- 							<img -->
 <%-- 								src="${pageContext.request.contextPath}/resources/images/grade/${mentiProfile.tier}-tier-bg-none.png"> --%>
 						</div>
-												<div class="manager-score">
+						<div class="manager-score">
 							<div class="rate">
 								<input type="radio" id="star5" name="rate" value="5" /> <label for="star5" title="text">5 stars</label> 
 								<input type="radio" id="star4" name="rate" value="4" /> <label for="star4"title="text">4 stars</label> 

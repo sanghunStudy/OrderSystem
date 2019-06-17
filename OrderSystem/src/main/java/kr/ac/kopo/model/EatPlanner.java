@@ -8,7 +8,7 @@ public class EatPlanner {
 	private String eatName;
 	private int eatGram;
 	private int eatCount;
-	private int eatKcal;
+	private float eatKcal;
 	private String eatEtc;
 	private String eatNutrient;
 	private String eatTime;
@@ -24,11 +24,12 @@ public class EatPlanner {
 		this.eatGram = eatGram;
 	}
 
-	public int getEatKcal() {
+	
+	public float getEatKcal() {
 		return eatKcal;
 	}
 
-	public void setEatKcal(int eatKcal) {
+	public void setEatKcal(float eatKcal) {
 		this.eatKcal = eatKcal;
 	}
 

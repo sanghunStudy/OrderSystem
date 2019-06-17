@@ -171,12 +171,14 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectList("statistics.getAjaxEatList", map);
 	}
 
+	//별점 등록
 	@Override
-	public void saveScore(int score, String mento) {
+	public void saveScore(int score, String mento,String userName) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("score", score);
 		map.put("mento", mento);
-		sql.update("statistics.saveScore", map);
+		map.put("userName", userName);
+		sql.insert("statistics.saveScore", map);
 	}
 
 	@Override
@@ -187,6 +189,14 @@ public class AnalysisDaoImpl implements AnalysisDao {
 	@Override
 	public List<MessageRepository> getLatestLog(String id) {
 		return sql.selectList("statistics.getLatestLog", id);
+	}
+
+	@Override
+	public int countScore(String mento, String userName) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mento", mento);
+		map.put("userName", userName);
+		return sql.selectOne("statistics.countScore", map);
 	}
 
 

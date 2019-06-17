@@ -67,11 +67,13 @@ public interface AnalysisDao {
 
 	List<EatPlanner> getAjaxEatList(String id, String date);
 
-	void saveScore(int score, String mento);
+	void saveScore(int score, String mento, String userName);
 
 	void avgScore(int score, String mento);
 
 	List<MessageRepository> getLatestLog(String id);
+
+	int countScore(String mento, String userName);
 
 
 

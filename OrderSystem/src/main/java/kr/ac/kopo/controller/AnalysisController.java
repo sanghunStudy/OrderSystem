@@ -137,9 +137,24 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 }
 @ResponseBody
 @RequestMapping(value="/submitRate",method=RequestMethod.POST)
-	private void submitScore(int score,String mento) {
+	private void submitScore(int score,String mento,HttpSession session) {
+	String userName = session.getAttribute("user").toString();
+	 service.saveScore(score,mento,userName);
+}
+
+//별점 평가여부 확인
+@ResponseBody
+@RequestMapping(value="/countScore",method=RequestMethod.POST)
+	private int countScore(String mento,HttpSession session) {
+	String userName = session.getAttribute("user").toString();
+	int countScore =  service.countScore(mento,userName);
+	if(countScore == 0) {
 	
-	 service.saveScore(score,mento);
+		return 0;
+	}else {
+		return 1;
+	}
+	 
 }
 
 //@RequestMapping(value="/menti-statistics")

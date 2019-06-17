@@ -62,7 +62,8 @@ $(function() {
 				 	targetChk = $(this);
 					var doneSubject = $(this).parents('tr').find('.item_box .to_item')
 							.text();
-					var doneContent = $(this).closest('tr').find('.item_box .to_item_contents').text();
+					var doneContent = $(this).closest('tr').find('.to_item_contents').text();
+//					var doneContent = $(this).closest('tr').find('.item_box .to_item_contents').text();
 					var kind = $(this).parents('table').attr('class');
 					
 					var isChecked = $(this).is(':checked');
@@ -81,7 +82,7 @@ $(function() {
 								"kind" : kind
 							},
 							success : function(data) {
-								alert(data);
+//								alert(data);
 								if (data == 1) {
 									alert('완료되었습니다.');
 									msg = myManager;
@@ -105,25 +106,43 @@ $(function() {
 //	}
 	$('input[name="rate"]').click(function() {
 		var score = this.value;
-		
-		var answer = confirm('정말 트레이너에게' + score + '점을 주시겠습니까?');
-		if (answer == true) {
 		$.ajax({
-			url:contextPath +'/member/submitRate',
+			url:contextPath +'/member/countScore',
 			type:'POST',
 			data:{
-				score:score,
 				mento:myManager
 			},
-			success:function(result) {
-				alert('트레이너 평가가 완료되었습니다.');
-				$('input[name="rate"]').attr('disabled',true);
-				
+			success:function(res){
+				if(res == 0){
+					saveScore();
+				}else{
+				alert("트레이너 평가는 한번만 가능합니다.");
+				}
 			}
-		})
+		});
+		
+		function saveScore(){
+			
+			
+			var answer = confirm('정말 트레이너에게' + score + '점을 주시겠습니까?');
+			if (answer == true) {
+			$.ajax({
+				url:contextPath +'/member/submitRate',
+				type:'POST',
+				data:{
+					score:score,
+					mento:myManager
+				},
+				success:function(result) {
+					alert('트레이너 평가가 완료되었습니다.');
+					$('input[name="rate"]').attr('disabled',true);
+					
+				}
+			})
+			}
+			else 
+				return false;
 		}
-		else 
-			return false;
 	});
 	
 	function getDoList(date) {

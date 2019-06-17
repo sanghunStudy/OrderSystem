@@ -82,7 +82,7 @@ $(document).ready(function(){
 						<li><a href="${pageContext.request.contextPath}/member/MyPage"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
 						${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li> 
 <%-- 						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li>  --%>
-			<li><a href="#"><i class="fas fa-bell"></i></a></li>
+			<li><button class="alarm-icon"><i class="fas fa-bell"></i></a></button></li>
 <!-- 		<li><a href="#"><i class="fas fa-bars"></i></a></li> -->
 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> 
 					</c:otherwise> 

@@ -1,12 +1,11 @@
 $(function(){
-	$('#tbqjf').mouseenter(function(){
-    	var classes =  $(this).attr('class');
-        $(this).attr('class', 'animate');
-        var indicator = $(this);
-        setTimeout(function(){ 
-        	$(indicator).addClass(classes);
-        }, 20);
-    });
+	
+	
+	
+	$('.alarm-icon').click(function(e) {
+
+		$('.alarm-box').css('display','block');
+	})
 
     //검은 막 띄우기
     $(".openMask").click(function(e){

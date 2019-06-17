@@ -40,9 +40,6 @@ import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.service.AnalysisService;
 import kr.ac.kopo.service.UserService;
 
-
-
-
 @RequestMapping("/member")
 @Controller
 public class AnalysisController {
@@ -61,6 +58,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	
 	UserVO point = Uservice.item(id);
 	int userPoint = point.getPoint();
+	System.out.println(userPoint + "<<<<<<<<포인트");
 
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);

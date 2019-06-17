@@ -1,9 +1,8 @@
 
-var userPoint = "${userPoint}";
-var ChkApplyAuthority = '${sessionScope.user}';
-
+	var userPoint = '${userPoint}';
+	var ChkApplyAuthority = '${sessionScope.user}';
 $(function() {
-   
+	
    var Modal = document.getElementById('modal');
 
    const background = document.querySelector('.background');
@@ -31,6 +30,8 @@ $(function() {
    
    var modalClickEvent = {
          'trainer-apply':function() {
+        	 alert(ChkApplyAuthority);
+        	 alert(userPoint);
      		if (userPoint <= 500 || ChkApplyAuthority == "") {
     			alert('테스트');
     			location.href = "/kopo";

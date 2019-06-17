@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applylist.css">
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applylist.css">
 </head>
 <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
 <script>
+	var username = "${username}";
 	var path = "${pageContext.request.contextPath}";
 	window.onload = function(){
 		proList();
@@ -63,55 +65,10 @@
 			</c:when>
 			<c:otherwise>
  				<tr> 
- 					<td colspan="7">등록된 트레이너가 없습니다.</td>
+ 					<td colspan="7">신청된 트레이너가 없습니다.</td>
  				</tr>
 			</c:otherwise>
 		</c:choose>
-		<div class="paging_btns">
-			<div class="btn_ui">
-				<c:if test="${searchVO.totalPage>1}">
-					<c:if test="${searchVO.page>1}">
-						<div class="page_num">
-							<a href="javascript:fn_formSubmit(1);"><<</a>
-						</div>
-						<div class="page_num">
-							<a href="javascript:fn_formSubmit(${searchVO.page-1});"><</a>
-						</div>
-					</c:if>
-					<!-- 			<div class="paging"> -->
-					<c:forEach var="i" begin="${searchVO.pageStart}"
-						end="${searchVO.pageEnd}" step="1">
-						<c:url var="pageLink" value="list">
-							<c:param name="page" value="${i}" />
-						</c:url>
-						<c:choose>
-							<c:when test="${i eq searchVO.page}">
-								<div class="page_num">
-									<div class="nowpage">
-										<c:out value="${i}" />
-									</div>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<a href="javascript:fn_formSubmit(${i});"><div
-										class="page_num">
-										<c:out value="${i}" />
-									</div></a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<!-- 			</div> -->
-					<c:if test="${searchVO.totalPage>searchVO.page}">
-						<div class="page_num">
-							<a href="javascript:fn_formSubmit(${searchVO.page+1});">></a>
-						</div>
-						<div class="page_num">
-							<a href="javascript:fn_formSubmit(${searchVO.totalPage});">>></a>
-						</div>
-					</c:if>
-				</c:if>
-			</div>
-		</div> 
 		</tbody>
 	</table>
 </div>

@@ -203,7 +203,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	model.addAttribute("latestLog",mr);
 	return "member/mentiManagement";
 	}
-	else return "/member/myinfo";
+	else return "redirect:/member/MyPage";
 }
 
 @ResponseBody

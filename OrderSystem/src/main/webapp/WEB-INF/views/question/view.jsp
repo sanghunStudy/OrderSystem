@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>${item.questionId}.${item.questionName}</title>
-<link href="${pageContext.request.contextPath}/resources/css/Question/Question-view.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script>
 $(document).ready(function(){
@@ -115,9 +116,10 @@ $(document).ready(function(){
 			return '';
 		}
 	}
+	var adminOK = $('#adminOK');
 	//댓글삭제버튼체크
 	function deleteCheck(id,commentcode,sel) {
-		if(id==login&&sel==false){
+		if(id==login&&sel==false||adminOK){
 			return '<div class="commentDel" data-code="'+ commentcode +'">삭제</div>';
 		} else {
 			return '';
@@ -287,9 +289,10 @@ $(document).ready(function(){
 </head>
 <header>
 <jsp:include page="../gnb/head.jsp" flush="true" />
+<link href="${pageContext.request.contextPath}/resources/css/Question/Question-view.css" rel="stylesheet">
 </header>
 <body>
-<div id="wrap">
+<div id="container">
 	<div id="Question">
 		<div id="QuestionTitle">
 			<div class="bigQ">Q</div><div class="zone"><div id="pointOX">${item.pointSet}</div></div><div class="QuestionName">${item.questionName}</div>
@@ -308,6 +311,7 @@ $(document).ready(function(){
 		<input type="hidden" id="login" value="${login}">
 		<input type="hidden" id="writer" value="${item.id}">
 		<input type="hidden" id="hashTag" value="${item.hashTag}">
+		<input type="hidden" id="adminOK" value="${!(sessionScope.admin eq null)}">
 	</div>
 	<form action="qcommentAdd" id="qcommentForm">
 	<div id="commentInput">
@@ -376,7 +380,7 @@ $(document).ready(function(){
 							</div>
 						<%-- <a href="selection?mcommentId=${MCL.mcommentId}&menuId=${item.menuId}&id=${MCL.id}">채택</a> --%>
 						</c:if>
-						<c:if test="${login==QCL.id&&QCL.selectionCheck==false}">
+						<c:if test="${login==QCL.id&&QCL.selectionCheck==false||!(sessionScope.admin eq null)}">
 							<div class="commentDel" data-code="${QCL.qcommentId}">삭제</div>
 						</c:if>
 					</div>
@@ -398,5 +402,6 @@ $(document).ready(function(){
 	</div>
 	<hr class="End-line">
 </div>
+<jsp:include page="../gnb/footer.jsp" flush="true" />
 </body>
 </html>

@@ -142,7 +142,7 @@
 // 					console.log(exist[counter]);
 					counter++;
 				}
-				console.log(exist);
+// 				console.log(exist);
 				
 			} else {
 				hashTag = $('#hash-tag').val();
@@ -154,7 +154,7 @@
 			var Tagcode = $(this).attr("idx");
 			exist[Tagcode] = "";
 			$(this).parent().remove();
-			console.log(exist);
+// 			console.log(exist);
 		});
 
 	});
@@ -182,12 +182,12 @@
 
 </head>
 <header>
-<%-- <jsp:include page="../gnb/head.jsp" flush="true" /> --%>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 
 </header>
 <body>
 <div class="container">
-	<div><a class="subtitle" href="list">질문하기</a></div>
+	<div><a class="subtitle">질문하기</a></div>
 	<div class="innerbox">
 	<form action="add" method="post" enctype="multipart/form-data" id="questionForm">
 		<!-- <sec:csrfInput /> -->
@@ -276,6 +276,6 @@
 	</form>
 	</div>
 </div>
-
+<jsp:include page="../gnb/footer.jsp" flush="true" />
 </body>
 </html>

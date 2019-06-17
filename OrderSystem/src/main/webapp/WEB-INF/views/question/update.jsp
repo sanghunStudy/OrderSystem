@@ -103,8 +103,8 @@ $(document).ready(function(){
 	//해시태그출력
 	var hashTagAll = $('#hashTagVal').val();
 	var hashTagList = hashTagAll.split(",");
-	console.log(hashTagAll);
-	console.log(hashTagList);
+// 	console.log(hashTagAll);
+// 	console.log(hashTagList);
 	for(var i=0; i < hashTagList.length; i++) {
 		if(hashTagList[i] != ""){
 			$('#hash-tag-list').append('<li class="addTag">#'+ hashTagList[i] +'<span class="delTag" idx="'+ i +'">X</span></li>');
@@ -147,7 +147,7 @@ $(document).ready(function(){
 //					console.log(exist[counter]);
 				counter++;
 			}
-			console.log(hashTagList);
+// 			console.log(hashTagList);
 			
 		} else {
 			hashTag = $('#hash-tag').val();
@@ -159,7 +159,7 @@ $(document).ready(function(){
 		var Tagcode = $(this).attr("idx");
 		hashTagList[Tagcode] = "";
 		$(this).parent().remove();
-		console.log(hashTagList);
+// 		console.log(hashTagList);
 	});
 	
 });
@@ -184,9 +184,12 @@ function sendFile(file, el) {
 </script>
 <script src="https://unpkg.com/vue"></script>
 </head>
+<header>
+<jsp:include page="../gnb/head.jsp" flush="true" />
+</header>
 <body>
 <div class="container">
-	<div><a class="subtitle" href="list">질문수정</a></div>
+	<div><a class="subtitle">질문수정</a></div>
 	<div class="innerbox">
 	<form action="update" method="post" enctype="multipart/form-data" id="questionForm">
 		<div>
@@ -194,7 +197,7 @@ function sendFile(file, el) {
 			<input type="hidden" value="${item.questionName}" id="loadQuestionName">
 		</div>
 		<div class="naming-box" id="naming-box">
-			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png">
+			<img src="${pageContext.request.contextPath}/resources/images/icon/add-search.png" class="searchimg">
 			<label> 제목 </label> <input v-model="t" type="text" name="questionName" class="naming" id="questionName">
 			<a class="char-limit">({{ tl }}/80자)</a>
 		</div>
@@ -278,5 +281,6 @@ function sendFile(file, el) {
 	</form>
 	</div>
 </div>
+<jsp:include page="../gnb/footer.jsp" flush="true" />
 </body>
 </html>

@@ -2,7 +2,7 @@
     /* font-family:'NanumGothic'; */
     font-family: "Lato", sans-serif;}
 body{background:#201d2e;text-decoration:none;color:#fff;}
-#wrap {
+#container {
 	width:1000px; margin:70px auto;
 }
 #commentAdd {
@@ -23,8 +23,9 @@ body{background:#201d2e;text-decoration:none;color:#fff;}
 	color:#fff;
 }
 #QuestionTitle {
-	width:950px;
-	max-width:950px;
+	width:1000px;
+	max-width:1000px;
+	margin:0 auto;
 }
 .bigQ {
 	width:120px;

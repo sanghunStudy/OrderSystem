@@ -183,6 +183,22 @@ body {
 	width: 14%;
 }
 
+.posts tr td:nth-child(6) {
+	width: 10%;
+}
+
+.listDel {
+	width:60px;
+	height:30px;
+	border-radius:15px;
+	background:#c46b5f;
+	line-height:30px;
+	vertical-align:middle;
+	text-align:center;
+	cursor:pointer;
+	margin:0 auto;
+}
+
 .search_type {
 	float: left;
 	margin-right: 4px;

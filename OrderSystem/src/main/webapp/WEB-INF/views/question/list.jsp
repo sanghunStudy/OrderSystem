@@ -103,6 +103,14 @@
 					$('.search_area').css("display","block");
 				}
 			})
+			$('.listDel').click(function() {
+				var listOne = $(this).attr("data-code");
+				var really = confirm("이 글을 삭제 하시겠습니까?");
+				if(really == true){
+					alert("글이 삭제되었습니다.");
+					window.location.href="delete?questionId="+listOne;
+				}
+			});
 		});
 		function hashTagSubmit() {
 			
@@ -207,6 +215,14 @@
 				<th>작성자</th>
 				<th>작성일</th>
 				<th>조회수</th>
+				<c:choose>
+					<c:when test="${sessionScope.admin eq null}">
+						
+					</c:when>
+					<c:otherwise>
+						<th>관리</th>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 			<c:choose>
 				<c:when test="${list.size() > 0}">
@@ -230,6 +246,14 @@
 							<td id="questionDate${item.questionId}"><fmt:formatDate
 									value="${item.questionDate}" pattern="yyyy-MM-dd" /></td>
 							<td>${item.questionViews}</td>
+							<c:choose>
+								<c:when test="${sessionScope.admin eq null}">
+										
+								</c:when>
+								<c:otherwise>
+									<td><div class="listDel" data-code="${item.questionId}">삭제</div></td>
+								</c:otherwise>
+							</c:choose>
 							<%-- 						<td><button type="button" onclick="cartAdd(${item.menuId});">담기</button></td> --%>
 						</tr>
 					</c:forEach>

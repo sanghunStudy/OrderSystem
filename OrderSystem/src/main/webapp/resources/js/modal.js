@@ -1,6 +1,5 @@
 
-	var userPoint = '${userPoint}';
-	var ChkApplyAuthority = '${sessionScope.user}';
+
 $(function() {
 	
    var Modal = document.getElementById('modal');
@@ -30,16 +29,17 @@ $(function() {
    
    var modalClickEvent = {
          'trainer-apply':function() {
-        	 alert(ChkApplyAuthority);
-        	 alert(userPoint);
-     		if (userPoint <= 500 || ChkApplyAuthority == "") {
-    			alert('테스트');
-    			location.href = "/kopo";
-    		
-    		}
-     		else 
-     			Modal.style.display = "block";
-
+        	 $.ajax({
+     			type : 'post',
+     			url : '/kopo/trainer/getPoint',
+     			success : function(res) {
+     				if (res.userPoint < 500 || res.userAuthority != "user") {
+     	    			location.href = "/kopo";
+     	    		}else{ 
+     	     			Modal.style.display = "block";
+     	    		}
+     			}	
+     		});
          },
          'modal-btn':function() {
             Modal.style.display = "block";

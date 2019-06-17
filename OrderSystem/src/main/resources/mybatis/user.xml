@@ -85,7 +85,7 @@
    </select>
 
    <select id="item" resultType="UserVO">
-      select username,password,point,tier from user where username=#{username};
+      select username,password,point,tier,authority from user where username=#{username};
    </select>
 
    <insert id="add" parameterType="UserVO">

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -19,11 +20,15 @@ import kr.ac.kopo.model.UserManagement;
 import kr.ac.kopo.model.UserVO;
 import kr.ac.kopo.model.basicInformation;
 import kr.ac.kopo.service.TrainerService;
+import kr.ac.kopo.service.UserService;
 @Controller
 @RequestMapping("/trainer")
 public class TrainerController {
 
 	final String path = "trainer/";
+	
+	@Autowired
+	UserService Uservice;
 	
 	@Autowired
 	TrainerService service;
@@ -109,5 +114,24 @@ public class TrainerController {
 		} else {
 			return "NO";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/getPoint")
+	Map<String,Object> getUserPoint(UserVO user, HttpSession session, HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		String id = (String)session.getAttribute("user");
+		if(id == null) {
+			map.put("userPoint",0);
+			map.put("userAuthority",null);			
+		}else {
+			UserVO point = Uservice.item(id);
+			int userPoint = point.getPoint();
+			String userAuthority = point.getAuthority();
+			map.put("userPoint",userPoint);
+			map.put("userAuthority",userAuthority);
+			}
+		return map;
+				
 	}
 }

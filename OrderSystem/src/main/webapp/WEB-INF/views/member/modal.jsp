@@ -20,9 +20,6 @@
 <title>Insert title here</title>
 
 <script>
-	var userPoint = '${userPoint}';
-	var ChkApplyAuthority = '${sessionScope.user}';
-	
 	$(document).ready(function() {
 		//var fileTarget = $('.filebox .upload-hidden');
 		

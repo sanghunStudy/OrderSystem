@@ -56,9 +56,7 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	TrainerProfile profile =  service.getMentiInfo(id);
 	pro.setUsername(id);
 	
-	UserVO point = Uservice.item(id);
-	int userPoint = point.getPoint();
-	System.out.println(userPoint + "<<<<<<<<포인트");
+	
 
 //	if(point.getPoint() >= po) {
 //		Uservice.promotion(pro);
@@ -78,7 +76,6 @@ private String statistics(UserVO user, Model model,TrainerProfile pro, HttpSessi
 	List<DoPlanner> doList = service.getDoList(id);
 	List<EatPlanner> eatList = service.getEatList(id);
 	
-	model.addAttribute("userPoint", userPoint);
 	model.addAttribute("mentiProfile",profile);
 	model.addAttribute("list",monthExercise);
 	model.addAttribute("todayList",todayExercise);

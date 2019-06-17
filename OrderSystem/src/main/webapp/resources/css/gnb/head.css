@@ -178,7 +178,7 @@ header #lnb nav>ul>li>a {
 	font-family: 'Ubuntu', sans-serif;
 }
 
-header #lnb nav>ul>li>a:after {
+header #lnb nav>.drop-down-menu>ul>li>a:after {
 	content: "";
 	width: 0%;
 	position: absolute;
@@ -209,115 +209,7 @@ header #lnb nav>ul ul {
 	z-index: 9999;
 }
 
-/*로고 */
-.animate {
-	font-family: 'Lato', sans-serif;
-	color: #fffff !important;
-	font-size: 35px;
-	margin: 100px 0 0 50px;
-	font-weight: 900;
-	text-transform: uppercase;
-	word-wrap: break-word;
-}
 
-.animate span {
-	display: inline-block;
-}
-
-.animate span:nth-of-type(2) {
-	animation-delay: .05s;
-}
-
-.animate span:nth-of-type(3) {
-	animation-delay: .1s;
-}
-
-.animate span:nth-of-type(4) {
-	animation-delay: .15s;
-}
-
-.animate span:nth-of-type(5) {
-	animation-delay: .2s;
-}
-
-.animate span:nth-of-type(6) {
-	animation-delay: .25s;
-}
-
-.animate span:nth-of-type(7) {
-	animation-delay: .3s;
-}
-
-.animate span:nth-of-type(8) {
-	animation-delay: .35s;
-}
-
-.animate span:nth-of-type(9) {
-	animation-delay: .4s;
-}
-
-.animate span:nth-of-type(10) {
-	animation-delay: .45s;
-}
-
-.animate span:nth-of-type(11) {
-	animation-delay: .5s;
-}
-
-.animate span:nth-of-type(12) {
-	animation-delay: .55s;
-}
-
-.animate span:nth-of-type(13) {
-	animation-delay: .6s;
-}
-
-.animate span:nth-of-type(14) {
-	animation-delay: .65s;
-}
-
-.animate span:nth-of-type(15) {
-	animation-delay: .7s;
-}
-
-.animate span:nth-of-type(16) {
-	animation-delay: .75s;
-}
-
-.animate span:nth-of-type(17) {
-	animation-delay: .8s;
-}
-
-.animate span:nth-of-type(18) {
-	animation-delay: .85s;
-}
-
-.animate span:nth-of-type(19) {
-	animation-delay: .9s;
-}
-
-.animate span:nth-of-type(20) {
-	animation-delay: .95s;
-}
-
-/* Animation One */
-.one span {
-	color: #fffff;
-	opacity: 0;
-	transform: translate(-150px, -50px) rotate(-180deg) scale(3);
-	animation: revolveScale .4s forwards;
-}
-
-@keyframes revolveScale {
-	60% {
-		transform: translate(20px, 20px) rotate(30deg) scale(.3);
-	}
-
-	100% {
-		transform: translate(0) rotate(0) scale(1);
-		opacity: 1;
-	}
-}
 header #lnb nav>ul:hover ul {
 	opacity: 1;
 }
@@ -326,13 +218,13 @@ header #lnb nav>ul ul li {
 	line-height: 39px;
 }
 
-header #lnb nav>ul ul a {
+header .drop-down-menu a {
 	position: relative;
 	font-size: 16px;
 	color: white;
 }
 
-header #lnb nav>ul ul a:after {
+header .drop-down-menu a:after {
 	content: "";
 	width: 0%;
 	position: absolute;
@@ -343,7 +235,7 @@ header #lnb nav>ul ul a:after {
 	transition: all 0.5s;
 }
 
-header #lnb nav>ul ul a:hover:after {
+header .drop-down-menu a:hover:after {
 	left: 0;
 	width: 100%;
 }

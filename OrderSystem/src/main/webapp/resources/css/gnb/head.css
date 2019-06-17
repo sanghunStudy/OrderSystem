@@ -565,3 +565,20 @@ font-weight:600
 .sub-function i {
 	    font-size: 20pt;
 }
+.alarm-icon {
+	    position: relative;
+    display: block;
+    margin: 0 0 0 50px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+    text-decoration-line: none;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+        background: none;
+    border: 0;
+    outline: 0;
+    cursor:pointer;
+}
+}
+}

@@ -20,21 +20,21 @@
 	<div class="inputArea">
 				
 				<input type="file" id="teImg" name="file" value="${to.teImg}"/>
-				<label for="teImg" class="input-image"><img src="${pageContext.request.contextPath}/resources/images/icon/exer-management.png" class="input-image-box"></label>
-				
+				<label for="teImg" class="input-image">
 				
 			<c:choose>
 				<c:when test="${to.teImg != null}">
 					<div class="select_img">
-						<img src="${pageContext.request.contextPath}/upload${to.teImg}" /> 
+						<img src="${pageContext.request.contextPath}/upload${to.teImg}" class="input-image-box"/> 
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="select_img">
-					
+						<img src="${pageContext.request.contextPath}/resources/images/icon/exer-management.png" class="input-image-box">
 					</div>
 				</c:otherwise>
 			</c:choose>
+			</label>
 			<script>
 				$("#teImg").change(function(){
 					if(this.files && this.files[0]){
@@ -77,7 +77,7 @@
 		
 		
 		<input class="add" type="submit" value="등록 완료">
-		<a href="#"><button class="main">마이페이지로</button></a>
+		<a href="${pageContext.request.contextPath}/member/MyPage"><button type="button" class="main">마이페이지로</button></a>
 	</form>
 	</div>
 	</div>

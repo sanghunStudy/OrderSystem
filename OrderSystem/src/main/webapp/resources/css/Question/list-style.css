@@ -103,6 +103,7 @@ body {
 	border-collapse: collapse;
 	color: #fff;
 	margin-top:20px;
+/* 	background:#272a3d; */
 }
 
 .posts a:link {
@@ -118,8 +119,17 @@ body {
 .posts th {
 	height: 44px;
 	border-bottom: 2px solid #fff;
-	background:#272a3d;
+	background:linear-gradient( to bottom, #006699,#1f5699,#1f3f99 );
+	color:#fff;
 }
+
+/* .posts th:nth-child(1) { */
+/* 	border-radius:20px 0 0 0; */
+/* } */
+
+/* .posts th:nth-child(5) { */
+/* 	border-radius:0 20px 0 0; */
+/* } */
 
 .posts td {
 	height: 56px;
@@ -254,7 +264,7 @@ input[class="cb1"], input[class="cb2"], #concheck, #concheck2 {
 	background:#272a3d;
 	border:none;
 	color:#fff;
-	padding-left:20px;
+	padding-left:25px;
 	border-radius:20px;
 	box-sizing:border-box;
 	float:right;

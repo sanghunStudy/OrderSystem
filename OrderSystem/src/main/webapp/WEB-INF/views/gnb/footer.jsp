@@ -22,7 +22,7 @@
                 </div>
                 COPYRIGHT 2010 BY KOREA POLYTECHNICS. ALL RIGHTS RESERVED.<br>
                 <br>
-                제작자: 김건우 배상훈 상의준 송영채 오창영 윤성운<br>
+               	 제작자: 김건우 배상훈 상의준 송영채 오창영 윤성운<br>
                 TEL: 042-670-0613
             </div>
         </div>

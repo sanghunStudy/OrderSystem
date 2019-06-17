@@ -9,6 +9,7 @@ body {
 	overflow: hidden;
 }
 
+
 /*각각의 영역을 풀스크린에 맞게 설정*/
 .section0, .section1, .section2, .section3, .section3_item {
 	width: 100%;

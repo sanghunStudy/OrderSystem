@@ -80,7 +80,7 @@ body {
 	color: rgb(247, 90, 49);
 }
 
-.section3_item div {
+#start-btn {
 	margin: 0 auto;
 	width: 200px;
 	height: 80px;
@@ -88,7 +88,7 @@ body {
 	cursor: pointer;
 }
 
-.section3_item div:hover {
+#start-btn:hover {
 	background-color: red;
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;

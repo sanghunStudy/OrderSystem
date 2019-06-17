@@ -20,6 +20,7 @@
 <!-- 네비바 -->
 <jsp:include page="gnb/head.jsp" flush="true" />
 
+
 <body>
 	<div id="container">
 		<div class="section0"></div>
@@ -61,12 +62,14 @@
 				</p>
 				<p class="section3_sub_title">Build Your Body Yourself with your
 					own Trainer</p>
-				<div>
+				<div id="start-btn">
 					<p onclick="location.href='${pageContext.request.contextPath}/question/list'">GET Started</p>
 				</div>
+				<jsp:include page="gnb/footer.jsp" flush="true" />
 			</div>
 		</div>
 	</div>
+	
 	
 	<nav class="menu">
    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
@@ -396,6 +399,25 @@
 		</div>
 
 	</div>
-
 </body>
+
+<!-- <footer>
+        <div id="foot-wrap">
+            <div id="menu-info">
+                <a href="#">TRAINING</a> | <a href="#">QUESTION</a> | <a href="#" class="no-word">PERSONAL TRAINER</a>
+            </div>
+            <div id="main-info">
+                <div id="foot-logo">
+                    <div id="logo-info">
+                        <img src="logo.png">
+                        <span>TRAINER BOT</span>
+                    </div>
+                </div>
+                COPYRIGHT 2010 BY KOREA POLYTECHNICS. ALL RIGHTS RESERVED.<br>
+                <br>
+                제작자: 김건우 배상훈 상의준 송영채 오창영 윤성운<br>
+                TEL: 042-670-0613
+            </div>
+        </div>
+    </footer> -->
 </html>

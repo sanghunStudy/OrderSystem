@@ -25,7 +25,14 @@
 
 <body>
 	<div id="container">
-		<div class="section0"></div>
+		<div class="section0">
+			
+			<p class="section-introduce">02   Our Second Project</p>
+			<p class="section-title">Are you satisfied with <br>your body?</p>
+			<p class="section-article">Now you are in perfect shape with trainer bot</p>
+			<div class="section-footer"><img src="${pageContext.request.contextPath}/resources/images/main/play.png" class="play-icon"><span>Now let's get it start</span></div>
+		
+		</div>
 		<div class="section1">
 			<div id="carousel_section">
 				<ul>
@@ -56,7 +63,61 @@
 				</ul>
 			</div>
 		</div>
-		<div class="section2"></div>
+		<div class="section2">
+			<div class="section2-wrap">
+				<div class="first-line">
+					<div class="section2-box">
+						<div class="section2-item-box">
+							<div class="section2-image-box"><img src="${pageContext.request.contextPath}/resources/images/main/second-section/business4.png"></div>
+							<div class="section2-contents-box">
+								<div class="section2-contents-title">디지털 솔루션</div>
+								<p class="section2-contents-text">사용자들이 민감하게 반응하고 빠르게 확산되는 디지털 기반의 운동 정보들을 커뮤니티를 통해서 솔루션을 제공합니다.</p>
+							</div>
+						</div>
+					</div>
+					<div class="section2-box">
+						<div class="section2-item-box">
+							<div class="section2-image-box"><img src="${pageContext.request.contextPath}/resources/images/main/second-section/business6.png"></div>
+							<div class="section2-contents-box">
+								<div class="section2-contents-title">마일리지 시스템</div>
+								<p class="section2-contents-text">커뮤니티 활성화를 위해 마일리지 제도를 도입하여 일정 포인트 이상의 회원들에겐 트레이너가 될 수 있는 자격이 주어집니다.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="second-line">
+					<div class="section2-box">
+						<div class="section2-item-box">
+							<div class="section2-image-box"><img src="${pageContext.request.contextPath}/resources/images/main/second-section/business7.png"></div>
+							<div class="section2-contents-box">
+								<div class="section2-contents-title">데이터 시각화</div>
+								<p class="section2-contents-text">운동일지 기능을 통해 작성된 데이터를 시각화하여 그래프로 나타냅니다.</p>
+							</div>
+						</div>
+					</div>
+					<div class="section2-box">
+						<div class="section2-item-box">
+							<div class="section2-image-box"><img src="${pageContext.request.contextPath}/resources/images/main/second-section/business2.png"></div>
+							<div class="section2-contents-box">
+								<div class="section2-contents-title">화상 채팅</div>
+								<p class="section2-contents-text">트레이너들은 정확하고 체계적인 솔루션제공을 위해 회원들과 화상통화를 할 수 있습니다.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="last-line">
+					<div class="section2-box">
+						<div class="section2-item-box">
+							<div class="section2-image-box"><img src="${pageContext.request.contextPath}/resources/images/main/second-section/business5.png"></div>
+							<div class="section2-contents-box">
+								<div class="section2-contents-title">맞춤 플랜</div>
+								<p class="section2-contents-text">사용자들 간의 멘토/멘티 시스템을 바탕으로 트레이너가 작성한  효율적이고 최적화 된  개인별 맞춤 플랜으로 운동할 수 있습니다.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
 		<div class="section3">
 			<div class="section3_item">
 				<p class="section3_title">

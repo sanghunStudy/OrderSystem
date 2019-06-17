@@ -34,7 +34,7 @@
 	}
 	
 	function onMessage(e){
-		console.log(e.data);
+	
 // 		$("#mCountRes").html(e.data);
 		$(".box p").html(e.data);
 	}
@@ -59,7 +59,7 @@
 var logoutUri = "${pageContext.request.contextPath}/logout";
 
 $(document).ready(function(){
-	
+	console.log('${userInfo.point}');
 	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
 	if(loginChk){//존재한다면 아래함수 실행
 		clearTime(15);//세션 체크 5분 설정
@@ -119,17 +119,17 @@ $(document).ready(function(){
 						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li> 
 					</c:when>
 					<c:otherwise> 
-						<li><a href="${pageContext.request.contextPath}/member/MyPage" class="gnb-btn-icon"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
+						<li><a href="${pageContext.request.contextPath}/member/MyPage" class="gnb-btn-icon"><img src="${pageContext.request.contextPath}/upload/${userPhoto}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
 						<span>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</span></a></li> 
-
+			<li><span class="user-point">${userPoint}point</span></li>
 			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell" id="bell"></i></button></li>
-			<li><button class="gnb-btn-icon drop-down"><i class="fas fa-sort-down"></i></button></li>
+			<li class="bell-li"><button class="gnb-btn-icon drop-down"><i class="fas fa-sort-down"></i></button></li>
 
-			<li>	<div class="toggle-box">
+			<li><div class="toggle-box">
 		<span class="menu-toggle"></span>
 		<span class="menu-toggle"></span>
 		<span class="menu-toggle"></span>
-	</div></li>
+			</div></li>
 					
 						
 			<div class="drop-down-menu">

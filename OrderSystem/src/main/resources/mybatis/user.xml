@@ -76,7 +76,7 @@
    </select>
 
    <select id="login" resultType="UserVO">
-      select username,password,authority from user where
+      select username,password,authority,point,tier,profile_photo from user where
       username=#{username}
    </select>
 

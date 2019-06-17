@@ -57,7 +57,7 @@
 <%-- 							<img src="${pageContext.request.contextPath}/resources/images/chalinger-tier.png"> --%>
 						</div>
 						<div class="tier-info-box">
-							<p>${userProfile.tier}</p>
+							<p class="tier-font">${userProfile.tier}</p>
 						</div>
 					</div>
 				</div>
@@ -88,13 +88,17 @@
 								<c:when test="${qBoardComment.size() > 0 }">
 											<ul>
 											<c:forEach var="qBComment" items="${qBoardComment}">
-												<li class="qbc-content">
+												<li class="qbc-item">
+												<div class="qbc-content">
+													<div>
 													<span>${qBComment.qcommentContent}</span>
-													<span>${qBComment.qcommentDate}</span>
-												</li>
-												<li class="qbc-question-name">
-													<p>${qBComment.selectionCheck == true?"채택":""}</p>
-													<p><a href="${pageContext.request.contextPath}/question/view?questionId=${qBComment.questionId}">${qBComment.questionName}</a></p>
+													<span><c:if test="${qBComment.selectionCheck == true}"><img src="/kopo/resources/images/s_check.png" class="check_img"></c:if></span>
+													</div>
+													<div><span>${qBComment.qcommentDate}</span></div>
+												</div>
+												
+													
+												<div class="qbc-question-name">	<span><a href="${pageContext.request.contextPath}/question/view?questionId=${qBComment.questionId}">${qBComment.questionName}</a></span></div>
 												</li>
 											</c:forEach>
 											</ul>

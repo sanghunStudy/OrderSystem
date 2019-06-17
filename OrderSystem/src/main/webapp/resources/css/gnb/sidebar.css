@@ -26,6 +26,7 @@
 	white-space: nowrap;
 	transition: all .3s ease 0s;
 	color: #fff;
+	margin-top:10px;
 }
 
 .logo p {

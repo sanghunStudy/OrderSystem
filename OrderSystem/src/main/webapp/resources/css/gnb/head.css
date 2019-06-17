@@ -78,21 +78,21 @@ html, body {
 header {
     position: fixed;
     top: 0%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    /* left: 50%; */
+    /* transform: translate(-50%, 0); */
     /* background: #000000; */
-    width: 100%;
+    /* width: 100%; */
     font-weight: 760;
-    padding: 0 30px;
+    /* padding: 0 30px; */
     height: 75px;
-   z-index: 3;
+    z-index: 3;
 }
 /* .nav-up{ */
 /* 	top:-100px; */
 /* } */
 #nav_box {
-	width: 1024px; 
-	margin: 0 auto;
+    width: 100vw;
+    /* margin: 0 auto; */
 }
 
 .nav-up{
@@ -101,8 +101,8 @@ header {
 /*로고*/
 header h1 {
 	position: relative;
-	margin-right: auto;
-	
+/* 	margin-right: auto; */
+	margin-left: 5vw;
 	line-height: 30px;
 	width: 100px;
     height: 100px;
@@ -112,17 +112,19 @@ header h1 {
 header h1 a {
 	color: white;
 	text-decoration-line: none;
+	margin-left: 10vw;
 }
 header h1 img{
 	width:100%;
 }
 /*상단 전체 박스*/
 header #lnb {
-	justify-content:center;
-	display: flex;
-/* 	margin: 0 auto; */
-/* 	top: 0; */
-/* 	width: 1024px; */
+justify-content: space-between;
+    display: flex;
+    /* margin: 0 auto; */
+    width: 100vw;
+    /* top: 0; */
+    /* width: 1024px; */
 }
 
 /*로그인*/
@@ -148,6 +150,7 @@ header .login li a {
 header #lnb nav {
 	text-align: center;
 	font-size: 0;
+    margin-right: 10vw;
 }
 
 header #lnb nav>ul {
@@ -210,7 +213,10 @@ header #lnb nav>ul ul {
 }
 
 
-header #lnb nav>ul:hover ul {
+/* header #lnb nav>ul:hover ul { */
+/* 	opacity: 1; */
+/* } */
+.block{
 	opacity: 1;
 }
 
@@ -505,7 +511,7 @@ font-weight:600
 
 .toggle-box {
     position: relative;
-    left: 50px;
+      left: 20px;
 
     z-index: 50;
     cursor: pointer;
@@ -525,7 +531,7 @@ font-weight:600
 	display:block;
 	width:150px;
 	position:relative;
-	left: 150px;
+	left: 250px;
 	
 }
 .sub-function li {
@@ -533,6 +539,20 @@ font-weight:600
 }
 .drop-down-menu a {
 	text-decoration:none;
+}
+.user-point {
+	display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 14px;
+    text-decoration-line: none;
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+    background: none;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    padding: 0 10px;
 }
 @media all and (max-width:1024px) {
 	.menu-box {

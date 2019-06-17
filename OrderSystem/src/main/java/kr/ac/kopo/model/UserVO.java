@@ -13,8 +13,15 @@ public class UserVO {
 	private int ranking;
 	private int ubChk;//회원 기초정보 여부 체크
 	private String upFilename;
+	private String profilePhoto;
 	
 	
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
 	public int getUbChk() {
 		return ubChk;
 	}

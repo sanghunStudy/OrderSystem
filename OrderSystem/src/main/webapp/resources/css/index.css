@@ -1,5 +1,33 @@
 @charset "UTF-8";
 
+
+@import url('https://fonts.googleapis.com/css?family=Chivo:700|Oswald:400,500,700|Roboto:400,700&display=swap');
+@font-face {
+	font-family: 'S-CoreDream-8Heavy';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-4Regular';
+	src: url(‘https :// cdn.jsdelivr.net/ gh/ projectnoonnu/ noonfonts_six @ 1.2/
+		S-CoreDream-4Regular.woff ') format(' woff ');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'S-CoreDream-7ExtraBold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -13,8 +41,48 @@ body {
 .section0, .section1, .section2, .section3, .section3_item {
 	width: 100%;
 	height: 100vh;
+	
 }
 
+.section-introduce{
+
+    color: #ccc;
+    padding-top: 35vh;
+    padding-left: 12vw;
+    font-weight: 700;
+    font-size: 24pt;
+    font-family: 'Roboto', sans-serif;
+}
+.section-title {
+    color: #FEF8FA;
+    padding-top: 8vh;
+    font-size: 50pt;
+    padding-left: 12vw;
+    font-family: 'Chivo', sans-serif;
+}
+.section-article{
+	 
+    color: #ccc;
+    padding-top: 3vh;
+    padding-left: 12vw;
+    font-weight: 400;
+    font-size: 20pt;
+    font-family: 'Roboto', sans-serif;
+}
+.section-footer {
+	    align-items: center;
+	    display: flex;
+	    color: #fef8fa;
+    padding-top: 8vh;
+    padding-left: 12vw;
+    font-weight: 400;
+    font-size: 28pt;
+    font-family: 'Roboto', sans-serif;
+}
+.section-footer img {
+	margin-right:25px;
+}
+}
 #section1_title {
 	color: white;
 	font-weight: 760;
@@ -23,7 +91,7 @@ body {
 
 /*메인 첫번째 영역 사진*/
 .section0 {
-	background: white url("/kopo/resources/images/main/main1.png") no-repeat;
+	background: white url("/kopo/resources/images/main/main1.jpg") no-repeat;
 	background-size: cover;
 }
 /*메인 두번째 영역*/
@@ -34,8 +102,63 @@ body {
 }
 /*메인 세번째 영역 사진*/
 .section2 {
-	background: white url("/kopo/resources/images/main/main2.png") no-repeat;
-	background-size: cover;
+	background: black;
+	
+}
+.section2-box {
+	border:3px solid #fa4046;
+    width: 37.6vw;
+	height:25vh;
+	display:flex;
+}
+.section2-wrap{
+    padding-top: 100px;
+    width: 80vw;
+    margin: 0 auto;
+	
+}
+.first-line {
+	display:flex;
+}
+.first-line > div {
+	margin:10px;
+}
+.second-line{
+	display:flex;
+}
+.second-line > div {
+	margin:10px;
+}
+.last-line{
+	display:flex;
+}
+.last-line > div{
+	margin:10px;
+}
+.section2-item-box{
+	    padding: 20px 15px;
+    display: flex;
+	
+}
+.section2-contents-title{
+	color:#fb4047;
+	font-size:24pt;
+	font-weight:700;
+	margin-bottom: 25px;
+	font-family: 'S-CoreDream-8Heavy';
+}
+.section2-contents-box{
+	    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.section2-contents-text{
+	color:#f7f7f7;
+	font-family: 'S-CoreDream-4Regular';
+}
+.section2-image-box{
+	    display: flex;
+    align-items: center;
 }
 /*메인 마지막 영역*/
 .section3 {

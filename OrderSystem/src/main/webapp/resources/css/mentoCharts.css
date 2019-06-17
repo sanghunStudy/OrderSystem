@@ -152,6 +152,7 @@ li {
 .latest-log {
 	display: flex;
 	margin-right: 15px;
+	height:38vh;
 	width: 29vw;
 	flex-direction: column;
 	overflow: scroll;

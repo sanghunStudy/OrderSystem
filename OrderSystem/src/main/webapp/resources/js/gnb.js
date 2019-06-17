@@ -1,6 +1,18 @@
 $(function(){
+$('.bell-li,.drop-down-menu').on('mouseover',function() {
 	
+	$('.drop-down-menu > ul').css('opacity',1);
+})	
+$('.drop-down-menu').on('mouseleave',function() {
 	
+	$('.drop-down-menu > ul').css('opacity',0);
+})	
+//$('.bell-li').on('click',function() {
+//	
+//	$('.drop-down-menu > ul').toggle(300,function() {
+//		
+//	});
+//})		
 	
 $('.alarm-icon').click(function() {
 	$('.alarm-box-header').toggle(300,function() {

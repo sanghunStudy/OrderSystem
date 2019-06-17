@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,8 +24,8 @@ public class RootController {
 	BCryptPasswordEncoder passEncoder;
 
 	@RequestMapping("/")
-	String index() {
-
+	String index(UserVO user) {
+		
 		return "index";
 	}
 
@@ -33,7 +34,7 @@ public class RootController {
 		return "login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	String login(UserVO user, HttpSession session) {
+	String login(UserVO user, HttpSession session,Model model) {
 		
 		UserVO userAuthority = service.login(user);
 //		String rawPw = user.getPassword();
@@ -44,11 +45,19 @@ public class RootController {
 //		System.out.println(passMatch +"passMatch");
 			if(userAuthority.getAuthority().equals("user")) {
 				session.setAttribute("user", userAuthority.getUsername());
+				session.setAttribute("userPoint", userAuthority.getPoint());
+				session.setAttribute("userPhoto", userAuthority.getProfilePhoto());
 			}else if(userAuthority.getAuthority().equals("trainer")) {
 				session.setAttribute("trainer", userAuthority.getUsername());
+				session.setAttribute("userPoint", userAuthority.getPoint());
+				session.setAttribute("userPhoto", userAuthority.getProfilePhoto());
 			}else if(userAuthority.getAuthority().equals("admin")) {
 				session.setAttribute("admin", userAuthority.getUsername());
+				session.setAttribute("userPhoto", userAuthority.getProfilePhoto());
 			}
+		
+			
+			
 		return "redirect:.";
 	}
 

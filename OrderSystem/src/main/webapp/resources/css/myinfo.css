@@ -1,7 +1,7 @@
 @import
    url('https://fonts.googleapis.com/css?family=Anton|Lobster|Noto+Sans+KR:400,500,700|Noto+Sans:400,700|Poppins:300,400,600,700,900|Ubuntu&display=swap&subset=korean')
    ;
-
+@import url('https://fonts.googleapis.com/css?family=Chivo:700&display=swap');
 @font-face {
    font-family: 'S-CoreDream-9Black';
    src:
@@ -195,11 +195,14 @@ padding: 10px 15px;
 	position: relative;
 	
 }
-
+.board-contents > ul > li {
+	color:#f7f7f7;
+}
 .comment-contents ul,.board-contents ul{
 	list-style:none;
 	position: absolute;
     top: 0px;
+    width: 100%;
 }
 
 .comment-contents a,.board-contents a{
@@ -212,12 +215,35 @@ padding: 10px 15px;
 
 .qbc-content{
 	color:#fff;
+	    display: flex;
+    justify-content: space-between;
 }
 
 .qbc-question-name{
 	color:gray;
+	margin-top: 5px;
 }
 /* 기초정보 조사 여부 플랙스 안먹어서 대신사용*/
 .isServey{
 	    margin-left: 5px;
+}
+.id-val,.name-valu,.isServey {
+	color:#F7f7f7;
+}
+.contents-box > ul > li {
+	    padding: 10px;
+/*     display: flex; */
+/*     justify-content: space-between; */
+    width: 100%;
+}
+.contents-box > ul > li > p{
+	display:inline-block;
+}
+.tier-font {
+	font-family: 'Chivo', sans-serif;
+	    text-transform: uppercase;
+	font-size:20pt;
+}
+.check_img {
+	width:15px;
 }

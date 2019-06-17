@@ -180,6 +180,8 @@ body, html, p, table, div, span, ul, li, canvas, tr, td, i {
 }
 
 .modal .contents-container input {
+    padding-left: 10px;
+    padding-bottom: 5px;
 	display: block;
 	font-size: 14px;
 	font-family: 'BM JUA';

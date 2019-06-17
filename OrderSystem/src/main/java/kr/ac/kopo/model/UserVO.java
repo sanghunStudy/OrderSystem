@@ -12,6 +12,8 @@ public class UserVO {
 	private float rank;
 	private int ranking;
 	private int ubChk;//회원 기초정보 여부 체크
+	private String upFilename;
+	
 	
 	public int getUbChk() {
 		return ubChk;
@@ -72,6 +74,12 @@ public class UserVO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getUpFilename() {
+		return upFilename;
+	}
+	public void setUpFilename(String upFilename) {
+		this.upFilename = upFilename;
 	}
 	
 	

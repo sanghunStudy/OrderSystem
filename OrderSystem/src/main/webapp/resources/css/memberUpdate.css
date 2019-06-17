@@ -131,6 +131,7 @@ font-size: 1.4em;
 		var(--chartColor);
 }
 .btn-collection {
+    cursor: pointer;
 	--color: #ff7f82; 
 	--hover: #ffdc7f; 
 	--chartColor: #1e90ff;

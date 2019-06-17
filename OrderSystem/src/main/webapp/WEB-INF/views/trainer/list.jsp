@@ -205,4 +205,5 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="../gnb/footer.jsp" flush="true" />
 </html>

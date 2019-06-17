@@ -199,26 +199,5 @@ var obj;
                 </div>
             </div>
     </body>
-
-<!-- 	<center> -->
-<!-- 		<h1>회원가입 페이지</h1> -->
-<!-- 		<form action="add" method="post"> -->
-<!-- 			<table> -->
-<!-- 				<tr> -->
-<!-- 					<td>아이디</td> -->
-<!-- 					<td><input type="text" name="username"></td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td>비밀번호</td> -->
-<!-- 					<td><input type="password" name="password"></td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan="2" align="center"><input type="submit" -->
-<!-- 						value="가입하기"></td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-
-<!-- 		</form> -->
-<!-- 	</center> -->
-</body>
+<jsp:include page="../gnb/footer.jsp" flush="true" />
 </html>

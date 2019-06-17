@@ -11,7 +11,7 @@
 	<footer>
         <div id="foot-wrap">
             <div id="menu-info">
-                <a href="#">TRAINING</a> | <a href="#">QUESTION</a> | <a href="#" class="no-word">PERSONAL TRAINER</a>
+                <a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a> | <a href="${pageContext.request.contextPath}/question/list">QUESTION</a> | <a href="${pageContext.request.contextPath}/trainer/list" class="no-word">PERSONAL TRAINER</a>
             </div>
             <div id="main-info">
                 <div id="foot-logo">

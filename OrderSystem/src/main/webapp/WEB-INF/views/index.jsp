@@ -10,11 +10,13 @@
 <title>메인페이지 입니다.</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/index.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/gnb/calculator.css">
-<script src="https://unpkg.com/vue"></script>	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/gnb/calculator.css">
+<script src="https://unpkg.com/vue"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/calculator.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/calculator.js"></script>
 
 </head>
 <!-- 네비바 -->
@@ -63,31 +65,52 @@
 				<p class="section3_sub_title">Build Your Body Yourself with your
 					own Trainer</p>
 				<div id="start-btn">
-					<p onclick="location.href='${pageContext.request.contextPath}/question/list'">GET Started</p>
+					<p
+						onclick="location.href='${pageContext.request.contextPath}/question/list'">GET
+						Started</p>
 				</div>
-				<jsp:include page="gnb/footer.jsp" flush="true" />
+
+				<div id="foot-wrap">
+					<div id="menu-info">
+						<a href="${pageContext.request.contextPath}/ExIntroduction/chest">TRAINING</a>
+						| <a href="${pageContext.request.contextPath}/question/list">QUESTION</a>
+						| <a href="${pageContext.request.contextPath}/trainer/list"
+							class="no-word">PERSONAL TRAINER</a>
+					</div>
+					<div id="main-info">
+						<div id="foot-logo">
+							<div id="logo-info">
+								<img
+									src="${pageContext.request.contextPath}/resources/images/logo.png">
+								<span>TRAINER BOT</span>
+							</div>
+						</div>
+						<!--                 COPYRIGHT 2010 BY KOREA POLYTECHNICS. ALL RIGHTS RESERVED.<br> -->
+						<!--                 <br> -->
+						<!--                	 제작자: 김건우 배상훈 상의준 송영채 오창영 윤성운<br> -->
+						<!--                 TEL: 042-670-0613 -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	
+
 	<nav class="menu">
-   <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
-   <label class="menu-open-button" for="menu-open">
-    <span class="lines line-1"></span>
-    <span class="lines line-2"></span>
-    <span class="lines line-3"></span>
-  </label>
+		<input type="checkbox" href="#" class="menu-open" name="menu-open"
+			id="menu-open" /> <label class="menu-open-button" for="menu-open">
+			<span class="lines line-1"></span> <span class="lines line-2"></span>
+			<span class="lines line-3"></span>
+		</label> <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i>
+		</a> <a href="#" class="menu-item green" id="calBtn"> <i
+			class="fas fa-calculator"></i>
+		</a> <a href="#" class="menu-item red"> <i class="fa fa-heart"></i>
+		</a> <a href="#" class="menu-item orange"> <i class="fa fa-star"></i>
+		</a>
+		<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
+		<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
+	</nav>
 
-   <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
-   <a href="#" class="menu-item green" id="calBtn"> <i class="fas fa-calculator" ></i> </a>
-   <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
-   <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a>
-<!--    <a href="#" class="menu-item blue"> <i class="fa fa-anchor"></i> </a> -->
-<!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
-</nav>
-
-<!-- The Modal -->
+	<!-- The Modal -->
 	<div id="calcModal" class="calculatorModal">
 
 		<!-- Modal content -->
@@ -100,7 +123,8 @@
 					<li class="tab-link" data-tab="calculatorModal-tab-2">칼로리계산</li>
 				</ul>
 
-				<div id="calculatorModal-tab-1" class="calculatorModal-tab-content current">
+				<div id="calculatorModal-tab-1"
+					class="calculatorModal-tab-content current">
 					<div id="app">
 						<label>사용중량</label><input v-model="x" type="number" id="kg">
 						<label>반복횟수</label><input v-model="y" type="number" id="reps">

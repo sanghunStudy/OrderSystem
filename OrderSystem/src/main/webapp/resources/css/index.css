@@ -9,7 +9,6 @@ body {
 	overflow: hidden;
 }
 
-
 /*각각의 영역을 풀스크린에 맞게 설정*/
 .section0, .section1, .section2, .section3, .section3_item {
 	width: 100%;
@@ -158,7 +157,72 @@ body {
 }
 /*fadeInup 끝*/
 
+#foot-wrap {
+    width: 100%;
+    /* height: 200px; */
+    top: 10px;
+    position: relative;
+    /* border-top: 0.5px solid #303030; */
+    color: white;
+    font-family: 'Ubuntu', sans-serif;
+}
 
+
+#foot-wrap a {
+    color: white;
+    text-decoration: none;
+}
+
+#foot-wrap a:visited {
+    color: white;
+}
+
+#menu-info {
+    font-size: 12px;
+    width: 500px;
+    position: relative;
+    word-spacing: 20px;
+    top: 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#main-info {
+    width: 500px;
+    text-align: center;
+    font-size: 12px;
+    color: #a3a3a3;
+    position: relative;
+    top: 70px;
+    margin: 0 auto;
+}
+
+#foot-logo {
+    position: relative;
+    margin: 0 auto;
+    display: table;
+}
+
+#logo-info {
+    padding-bottom: 30px;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#logo-info img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+#logo-info span{
+    color: white;
+    font-size: 30px;
+}
+
+.no-word {
+    word-spacing: 0px;
+}
 
 /* 캐러셀 설정 */
 #carousel_section {

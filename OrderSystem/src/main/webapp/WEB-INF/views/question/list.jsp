@@ -292,5 +292,6 @@
 			</div>
 		</c:if>
 	</div>
+	<jsp:include page="../gnb/footer.jsp" flush="true" />
 </body>
 </html>

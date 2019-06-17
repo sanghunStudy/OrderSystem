@@ -195,17 +195,35 @@
 						<div id="log-items">
 							<div class="log-item">
 								<div class="log-detail">
-									<div class="pushpin-box">
-										<span class="icon-pushpin"></span>
-									</div>
+
 									<div class="log-detail-contents">
-										<span class="user-name">오창영</span>님이 <span class="subject">벤치프레스</span>를
-										완료하였습니다.
+										<c:choose>
+											<c:when test="${latestLog.size() > 0}">
+												<c:forEach var="log" items="${latestLog}">
+												<div class="log-item-box">
+													<div class="log-contents-box">
+													<div class="pushpin-box">
+														<span class="icon-pushpin"></span>
+													</div>
+													<span class="user-name">${log.username}</span>님이<span class="subject">${log.doneSubject}</span>를 완료하였습니다.
+													</div>
+													<div class="log-time-box">
+														<span class="log-time">${log.logTime}</span>
+													</div>
+													</div>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<p>등록된 로그가 없습니다.</p>
+											</c:otherwise>
+										</c:choose>
+<!-- 										<span class="user-name">오창영</span>님이 <span class="subject">벤치프레스</span>를 -->
+<!-- 										완료하였습니다. -->
 									</div>
 								</div>
-								<div class="log-time-box">
-									<span class="log-time">32분전</span>
-								</div>
+<!-- 								<div class="log-time-box"> -->
+<!-- 									<span class="log-time">32분전</span> -->
+<!-- 								</div> -->
 							</div>
 						</div>
 					</div>

@@ -9,6 +9,7 @@ import kr.ac.kopo.model.DoPlanner;
 import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.MessageRepository;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
@@ -63,7 +64,11 @@ public interface AnalysisService {
 
 	List<EatPlanner> getAjaxEatList(String id, String date);
 
-	void saveScore(int score, String mento);
+	void saveScore(int score, String mento, String userName);
+
+	List<MessageRepository> getLatestLog(String id);
+
+	int countScore(String mento, String userName);
 
 
 

@@ -16,6 +16,7 @@ import kr.ac.kopo.model.DoPlanner;
 import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.MessageRepository;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
@@ -186,9 +187,19 @@ public class AnalysisServcieImpl implements AnalysisService {
 	}
 
 	@Override
-	public void saveScore(int score, String mento) {
-		dao.saveScore(score,mento);
-		dao.avgScore(score,mento);
+	public void saveScore(int score, String mento,String userName) {
+		dao.saveScore(score,mento,userName);
+//		dao.avgScore(score,mento);
+	}
+
+	@Override
+	public List<MessageRepository> getLatestLog(String id) {
+		return dao.getLatestLog(id);
+	}
+
+	@Override
+	public int countScore(String mento, String userName) {
+		return dao.countScore(mento,userName);
 	}
 
 }

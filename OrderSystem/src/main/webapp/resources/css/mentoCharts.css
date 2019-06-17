@@ -153,12 +153,19 @@ li {
 	margin-right: 15px;
 	width: 29vw;
 	flex-direction: column;
+	overflow: scroll;
 }
 
 .log-detail {
 	display: flex;
+	width:100%;
 }
-
+.log-detail-contents {
+	width:inherit;
+}
+.log-contents-box span{
+	padding:0 5px;
+}
 .log-item {
 	font-size: 9.5pt;
 	display: flex;
@@ -167,7 +174,13 @@ li {
 	align-items: center;
 	justify-content: space-between;
 }
-
+.log-item-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top: .0625rem solid #e3e3e3;
+    border-color: hsla(0, 0%, 100%, .1);
+}
 .pushpin-box {
 	
 	display: inline-block;

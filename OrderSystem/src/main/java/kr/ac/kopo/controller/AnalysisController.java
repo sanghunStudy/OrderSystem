@@ -31,6 +31,7 @@ import kr.ac.kopo.model.DoPlanner;
 import kr.ac.kopo.model.EatPlanner;
 import kr.ac.kopo.model.ExerciseJournal;
 import kr.ac.kopo.model.MentiPerformance;
+import kr.ac.kopo.model.MessageRepository;
 import kr.ac.kopo.model.Planner;
 import kr.ac.kopo.model.TrainerProfile;
 import kr.ac.kopo.model.TypeOfExercise;
@@ -136,9 +137,24 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 }
 @ResponseBody
 @RequestMapping(value="/submitRate",method=RequestMethod.POST)
-	private void submitScore(int score,String mento) {
+	private void submitScore(int score,String mento,HttpSession session) {
+	String userName = session.getAttribute("user").toString();
+	 service.saveScore(score,mento,userName);
+}
+
+//별점 평가여부 확인
+@ResponseBody
+@RequestMapping(value="/countScore",method=RequestMethod.POST)
+	private int countScore(String mento,HttpSession session) {
+	String userName = session.getAttribute("user").toString();
+	int countScore =  service.countScore(mento,userName);
+	if(countScore == 0) {
 	
-	 service.saveScore(score,mento);
+		return 0;
+	}else {
+		return 1;
+	}
+	 
 }
 
 //@RequestMapping(value="/menti-statistics")
@@ -167,6 +183,8 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	List<MentiPerformance> MPerformance = service.getMenti(id);
 	List<DailyRank> myRanking = service.getMyDailyRanking(id);
 	List<TypeOfExercise> typeOfExercise = service.getExerList();
+	List<MessageRepository> mr = service.getLatestLog(id);
+
 //	String doubleSlashStr = "";
 //	
 //	
@@ -184,7 +202,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	model.addAttribute("wfaList",wfaList);
 	model.addAttribute("dailyRanking",myRanking);
 	model.addAttribute("typeOfExercise", typeOfExercise);
-	
+	model.addAttribute("latestLog",mr);
 	return "member/mentiManagement";
 	}
 	else return "/member/myinfo";

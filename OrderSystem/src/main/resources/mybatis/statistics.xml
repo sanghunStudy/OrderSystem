@@ -18,7 +18,17 @@
 		<collection property="details" resultMap="ExerciseContents" />
 	</resultMap>
 
-
+	<select id="getLatestLog" resultType="MessageRepository">
+		select a.log_num,a.manager,a.username,a.done_subject,a.done_content,a.kinds,
+			case 
+			when hour(timediff(now(),a.log_time))<![CDATA[ < 1]]> THEN concat(minute(timediff(now(),a.log_time)), '분전')
+			when hour(timediff(now(),a.log_time))<![CDATA[ < 24 ]]>THEN concat(minute(timediff(now(),a.log_time)), '시간전')
+			else concat(datediff(now(),a.log_time),'일전')end as log_time 
+		from assignment_log a 
+		where manager = #{id}
+		order by a.log_time desc;
+	</select>
+	
 	<select id="todayList" resultMap="EJMap">
 		SELECT
 		ei.Exercise_date,et.Exercise_name,ec.Exercise_contents_code,
@@ -168,11 +178,11 @@
 	FROM eat_planner left outer join (SELECT be_id,be_date,e_requirement,username FROM bedata WHERE username=#{id} ORDER BY be_id DESC limit 1) as b  on (b.username = eat_planner.username)
 	WHERE eat_planner.username = #{id} AND eat_date = STR_TO_DATE(substring(#{date},1,10), "%Y.%m.%d")  
 </select>
-<update id="saveScore">
-	UPDATE user SET avg_score = avg_score + #{score},count_score = count_score + 1 WHERE username = #{mento}
-</update>
-<update id="calScore">
-	UPDATE user SET score = avg_score / count_score WHERE username=#{mento}
-</update>
-
+<insert id="saveScore">
+insert into star_rate (mento,menti,is_eval,score)
+values(#{mento},#{userName},1,#{score})
+</insert>
+<select id="countScore" resultType="Integer">
+select count(*) from star_rate where mento = #{mento} and menti = #{userName};
+</select>
 </mapper>

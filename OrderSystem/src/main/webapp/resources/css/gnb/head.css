@@ -102,7 +102,7 @@ header {
 header h1 {
 	position: relative;
 	margin-right: auto;
-	top: -15px;
+	
 	line-height: 30px;
 	width: 100px;
     height: 100px;
@@ -152,7 +152,7 @@ header #lnb nav {
 
 header #lnb nav>ul {
     display: inline-block;
-    vertical-align: middle;
+
 }
 
 header #lnb nav>ul:hover {
@@ -162,16 +162,17 @@ header #lnb nav>ul:hover {
 header #lnb nav>ul>li {
 	display: inline-block;
 	position: relative;
-	vertical-align: middle;
+	 line-height: 75px;
+	     vertical-align: middle;
 }
 /*네비바 메뉴 a태그*/
 header #lnb nav>ul>li>a {
 	position: relative;
 /* 	display: block; */
 	margin: 0 0 0 50px;
-	height: 40px;
+/* 	height: 40px; */
 	font-size: 14px;
-	line-height: 40px;
+/* 	line-height: 40px; */
 	text-decoration-line: none;
 	color: white;
 	font-family: 'Ubuntu', sans-serif;
@@ -569,7 +570,7 @@ font-weight:600
 }
 .sub-function .profile-img{
 	border-radius:50%;
-	width:30px;
+	width:40px;
 	
 }
 .sub-function i {
@@ -582,11 +583,8 @@ font-weight:600
 	    display: flex;
     align-items: center;
     	    position: relative;
-   
-  
-    height: 40px;
     font-size: 14px;
-    line-height: 40px;
+  
     text-decoration-line: none;
     color: white;
     font-family: 'Ubuntu', sans-serif;
@@ -596,26 +594,35 @@ font-weight:600
     cursor:pointer;
       padding: 0 10px;
 }
+.gnb-btn-icon i {
+
+}
 .gnb-btn-icon img {
 	margin-right: 10px;
+}
+.fa-sort-down {
+	      line-height: 4px;
+}
+#bell {
+	    line-height: 15px;
 }
 
 .toggle-box {
     position: relative;
     left: 50px;
-    top: -3px;
+
     z-index: 50;
     cursor: pointer;
     display: none;
 }
 
 .toggle-box span {
-	margin-top: 4px;
-	height: 2px;
-	width: 20px;
-	background: #fff;
-	display: block;
-	border-radius:6px;
+    margin-top: 5px;
+    height: 3px;
+    width: 22px;
+    background: #fff;
+    display: block;
+    border-radius: 6px;
 	
 }
 .drop-down-menu {
@@ -625,7 +632,12 @@ font-weight:600
 	left: 150px;
 	
 }
+.sub-function li {
 
+}
+.drop-down-menu a {
+	text-decoration:none;
+}
 @media all and (max-width:1024px) {
 	.menu-box {
 		display: none;

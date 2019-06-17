@@ -36,6 +36,7 @@ public class PageVO {
 	}
 
 	public void setRowStart(int rowStart) {
+		System.out.println(rowStart+"<<<rowStart");
 		this.rowStart = rowStart;
 	}
 

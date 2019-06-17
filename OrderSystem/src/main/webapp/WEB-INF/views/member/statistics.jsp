@@ -50,6 +50,7 @@
 	var contextPath = '${pageContext.request.contextPath}';
 	window.onload = function() {
 		var userPoint = '${userPoint}';
+		alert(userPoint);
 	}
 </script>
 </head>

@@ -57,12 +57,14 @@ th, td, .upload-display {
 	border: none;
 	background-color: #211d2f;
     color: #82acd8;
+    cursor : pointer;
 }
 
 .reject {
 	border: none;
 	background-color: #211d2f;
    	color: #d4835e;
+   	cursor : pointer;
 }
 
 .pro-list tr{

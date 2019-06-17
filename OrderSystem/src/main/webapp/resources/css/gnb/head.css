@@ -84,7 +84,7 @@ header {
 	width: 100%;
 	font-weight: 760;
 	padding: 0 30px;
-/* 	height: 70px; */
+height: 75px;
 	z-index: 9999;
 }
 /* .nav-up{ */
@@ -149,8 +149,8 @@ header #lnb nav {
 }
 
 header #lnb nav>ul {
-	display: inline-block;
-/* 	overflow: hidden; */
+    display: inline-block;
+    vertical-align: middle;
 }
 
 header #lnb nav>ul:hover {
@@ -160,11 +160,12 @@ header #lnb nav>ul:hover {
 header #lnb nav>ul>li {
 	display: inline-block;
 	position: relative;
+	vertical-align: middle;
 }
 /*네비바 메뉴 a태그*/
 header #lnb nav>ul>li>a {
 	position: relative;
-	display: block;
+/* 	display: block; */
 	margin: 0 0 0 50px;
 	height: 40px;
 	font-size: 14px;
@@ -412,12 +413,19 @@ header #lnb nav>ul ul a:hover:after {
 	font-size: 25px;
 	border-radius: 25px;
 	border:0px;
-	background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+	background:silver;
+	cursor:pointer;
+	
+  background-size: 0 5px, auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  transition: all .2s ease-out;
 }
 
 .login_btn:hover {
 /* 	background: #555555; */
-	background: -webkit-linear-gradient(left, #969696, #969696, #969696);
+/* 	background: -webkit-linear-gradient(left, #969696, #969696, #969696); */
+	background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
 }
 
 .login_box ul {
@@ -426,10 +434,10 @@ header #lnb nav>ul ul a:hover:after {
 /* 유저 아이콘 */
 .far {
 	font-size: 16pt;
-	color: grey;
+	color: #FFF;
 	position: absolute;
 	left: 15px;
-	top: 53px;
+/* 	top: 53px; */
 }
 /* 자물쇠 아이콘 */
 .material-icons {
@@ -557,7 +565,7 @@ font-weight:600
 #sessionExtension{
 		color:#ea9206;
 }
-.profile-img{
+.sub-function .profile-img{
 	border-radius:50%;
 	width:30px;
 	
@@ -580,5 +588,10 @@ font-weight:600
     outline: 0;
     cursor:pointer;
 }
+.gnb-btn-icon {
+	    display: flex;
+    align-items: center;
 }
+.gnb-btn-icon img {
+	margin-right: 10px;
 }

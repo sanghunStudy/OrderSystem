@@ -1,13 +1,13 @@
 /* 알람창 */
-.alarm-box{
+.alarm-box-header{
 	position:fixed;
 	z-index:10;
-
-    left: 78%;
+    top: 30px;
+    left: 70%;
 	font-size:9pt;
 	display:none;
 }
-.alarm-box p {
+.alarm-box-header p {
 	display:inline-block;
 }
 
@@ -36,4 +36,7 @@
 }
 .fa-bell {
 	margin-right:5px;
+}
+.alarm-icon{
+	color:#FFF;
 }

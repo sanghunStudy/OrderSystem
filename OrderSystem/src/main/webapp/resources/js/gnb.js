@@ -2,11 +2,11 @@ $(function(){
 	
 	
 	
-	$('.alarm-icon').click(function(e) {
-
-		$('.alarm-box').css('display','block');
-	})
-
+$('.alarm-icon').click(function() {
+	$('.alarm-box-header').toggle(300,function() {
+		
+	});
+})
     //검은 막 띄우기
     $(".openMask").click(function(e){
         e.preventDefault();

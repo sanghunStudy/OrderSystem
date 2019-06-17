@@ -59,8 +59,8 @@
 
 </head>
 <body>
-	<div class="alarm-box">
-<div class="box sb4"><i class="far fa-bell"></i><p>추가된 알림이 없습니다.</p></div>
+	<div class="alarm-box-header">
+<div class="box sb4"><i class="far fa-bell alarm-icon"></i><p>추가된 알림이 없습니다.</p></div>
 		</div>
 </body>
 </html>

@@ -35,7 +35,8 @@
 
 	})
 		function trainerChk() {
-			alert('g2');
+			if(ChkAuthority == '')
+				alert('트레이너만 이용할 수 있습니다.');
 		}
 	
 	function selectUserbI() {
@@ -92,7 +93,7 @@
 					class="fas fa-users"></i>
 					<p>멘티 관리</p></a></li>
 			<li class="menu-icons"><a
-				href="${pageContext.request.contextPath}/opo/webRtc" target="_blank"><i
+				href="${pageContext.request.contextPath}/opo/webRtc"><i
 					class="fas fa-comment-dots"></i>
 					<p>화상채팅</p></a></li>
 			<li class="menu-icons"><i class="fas fa-address-card"

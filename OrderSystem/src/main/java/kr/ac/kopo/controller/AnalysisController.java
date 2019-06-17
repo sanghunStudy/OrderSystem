@@ -187,7 +187,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	
 	return "member/mentiManagement";
 	}
-	else return "index";
+	else return "/member/myinfo";
 }
 
 @ResponseBody

@@ -47,7 +47,7 @@
 									<img
 										src="${pageContext.request.contextPath}/upload/${item.upFilename}"
 										onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'"
-										class="text profile-img">
+										class="profile-img trainer-list-profile">
 									<%-- 								<img src="${pageContext.request.contextPath}/resources/images/grade-border/${item.tier}-tier-border.png" class="trainer-tier-border" alt="${item.tier}"/> --%>
 								</div>
 								<div class="trainer-text">
@@ -205,5 +205,4 @@
 		</div>
 	</div>
 </body>
-<jsp:include page="../gnb/footer.jsp" flush="true" />
 </html>

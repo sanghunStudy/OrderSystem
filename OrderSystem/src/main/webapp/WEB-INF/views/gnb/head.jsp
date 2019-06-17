@@ -15,6 +15,46 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/alarm.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
+<script type="text/javascript">
+	var wsocket;
+	var msg = "테스트";
+	function connect() {
+		wsocket = new SockJS("<c:url value="/message"/>");
+		wsocket.onopen = onOpen;
+		//서버로부터 메시지를 받으면 호출되는 함수 지정
+		wsocket.onmessage = onMessage;
+// 		wsocket.onclose = onClose;
+		
+	}
+	function onOpen(evt) {
+		msg="테스트값";
+		wsocket.send(msg);
+	}
+	
+	function onMessage(e){
+		console.log(e.data);
+// 		$("#mCountRes").html(e.data);
+		$(".box p").html(e.data);
+	}
+	$(document).ready(function() {
+		connect();
+// 		var subject = $('input[type=checkbox]');
+// 		$(subject).each(function(index, item){
+// 			$(item).click(function(){
+// 				console.log("alarm.jsp 체크박스 클릭 실행");
+// 				msg = myManager;
+// 				wsocket.send(msg);
+// 			});
+// 		})
+// 		$("#submit").click(function(){
+// 			msg = myManager;
+// 			wsocket.send(msg);
+// 		});
+	});
+	
+</script>
 <script>
 var logoutUri = "${pageContext.request.contextPath}/logout";
 
@@ -74,16 +114,16 @@ $(document).ready(function(){
 										<c:choose>
 					<c:when
   						test="${sessionScope.user eq null and sessionScope.admin eq null and sessionScope.trainer eq null}"> 
-<%-- 												<li><a href="<c:url value="/login"/>" id="openMask">LOGIN</a></li> --%>
+
 						<li><a href="#" class="openMask">LOGIN</a></li>
 						<li><a href="${pageContext.request.contextPath}/member/add">JOIN</a></li> 
 					</c:when>
 					<c:otherwise> 
-						<li><a href="${pageContext.request.contextPath}/member/MyPage"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
-						${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</a></li> 
-<%-- 						<li><a href="${pageContext.request.contextPath}/member/MyPage">MY PAGE</a></li>  --%>
-			<li><button class="alarm-icon"><i class="fas fa-bell"></i></a></button></li>
-<!-- 		<li><a href="#"><i class="fas fa-bars"></i></a></li> -->
+						<li><a href="${pageContext.request.contextPath}/member/MyPage" class="gnb-btn-icon"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
+						<span>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</span></a></li> 
+
+			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell"></i></a></button></li>
+
 						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> 
 					</c:otherwise> 
 				</c:choose> 
@@ -168,6 +208,9 @@ $(document).ready(function(){
 		<div id="sessionChk" class="session-chk">
 			<p></p>
 			<button type="button" id="sessionExtension" onclick="sessionChk()"></button>
+		</div>
+			<div class="alarm-box-header">
+<div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div>
 		</div>
 	</header>
 </body>

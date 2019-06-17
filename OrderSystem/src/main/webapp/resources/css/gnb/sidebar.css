@@ -101,28 +101,28 @@
 	color: #FFF;
 }
 
-.toggle-box {
-	position: absolute;
-	left: 15px;
-	top: 60px;
-	z-index:50;
-	cursor:pointer;
-	display:none;
-}
+/* .toggle-box { */
+/* 	position: absolute; */
+/* 	left: 15px; */
+/* 	top: 60px; */
+/* 	z-index:50; */
+/* 	cursor:pointer; */
+/* 	display:none; */
+/* } */
 
-.toggle-box span {
-	margin-top: 4px;
-	height: 2px;
-	width: 20px;
-	background: #fff;
-	display: block;
-	border-radius:6px;
+/* .toggle-box span { */
+/* 	margin-top: 4px; */
+/* 	height: 2px; */
+/* 	width: 20px; */
+/* 	background: #fff; */
+/* 	display: block; */
+/* 	border-radius:6px; */
 	
-}
+/* } */
 
-@media all and (max-width:1024px) {
-	.menu-box {
-		display: none;
-	}
-	.toggle-box{display:block;}
-}
+/* @media all and (max-width:1024px) { */
+/* 	.menu-box { */
+/* 		display: none; */
+/* 	} */
+/* 	.toggle-box{display:block;} */
+/* } */

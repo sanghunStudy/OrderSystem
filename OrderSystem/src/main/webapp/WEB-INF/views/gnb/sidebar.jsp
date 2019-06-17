@@ -59,11 +59,11 @@
 </head>
  <%@ include file="../member/modal.jsp" %>
 <body>
-	<div class="toggle-box">
-		<span class="menu-toggle"></span>
-		<span class="menu-toggle"></span>
-		<span class="menu-toggle"></span>
-	</div>
+<!-- 	<div class="toggle-box"> -->
+<!-- 		<span class="menu-toggle"></span> -->
+<!-- 		<span class="menu-toggle"></span> -->
+<!-- 		<span class="menu-toggle"></span> -->
+<!-- 	</div> -->
 	<div class="menu-box">
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}">

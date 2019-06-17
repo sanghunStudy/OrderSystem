@@ -67,7 +67,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	/* font-family : 'Nanum Gothic'; */
-	font-family: Lato;
+
 }
 
 * {
@@ -76,16 +76,16 @@ html, body {
 }
 /*네비바*/
 header {
-	position: fixed;
-	top: 0%;
-	left: 50%;
-	transform: translate(-50%, 0);
-/* 	background: #000000; */
-	width: 100%;
-	font-weight: 760;
-	padding: 0 30px;
-height: 75px;
-	z-index: 9999;
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    /* background: #000000; */
+    width: 100%;
+    font-weight: 760;
+    padding: 0 30px;
+    height: 75px;
+   z-index: 3;
 }
 /* .nav-up{ */
 /* 	top:-100px; */
@@ -102,10 +102,11 @@ height: 75px;
 header h1 {
 	position: relative;
 	margin-right: auto;
-	top: -10px;
+	top: -15px;
 	line-height: 30px;
 	width: 100px;
     height: 100px;
+    margin: 0;
 }
 
 header h1 a {
@@ -117,6 +118,7 @@ header h1 img{
 }
 /*상단 전체 박스*/
 header #lnb {
+	justify-content:center;
 	display: flex;
 /* 	margin: 0 auto; */
 /* 	top: 0; */
@@ -571,12 +573,17 @@ font-weight:600
 	
 }
 .sub-function i {
-	    font-size: 20pt;
+	    font-size: 20px;
 }
 .alarm-icon {
-	    position: relative;
-    display: block;
-    margin: 0 0 0 50px;
+  margin: 0 0 0 50px;
+}
+.gnb-btn-icon {
+	    display: flex;
+    align-items: center;
+    	    position: relative;
+   
+  
     height: 40px;
     font-size: 14px;
     line-height: 40px;
@@ -587,11 +594,41 @@ font-weight:600
     border: 0;
     outline: 0;
     cursor:pointer;
-}
-.gnb-btn-icon {
-	    display: flex;
-    align-items: center;
+      padding: 0 10px;
 }
 .gnb-btn-icon img {
 	margin-right: 10px;
+}
+
+.toggle-box {
+    position: relative;
+    left: 50px;
+    top: -3px;
+    z-index: 50;
+    cursor: pointer;
+    display: none;
+}
+
+.toggle-box span {
+	margin-top: 4px;
+	height: 2px;
+	width: 20px;
+	background: #fff;
+	display: block;
+	border-radius:6px;
+	
+}
+.drop-down-menu {
+	display:block;
+	width:150px;
+	position:relative;
+	left: 150px;
+	
+}
+
+@media all and (max-width:1024px) {
+	.menu-box {
+		display: none;
+	}
+	.toggle-box{display:block;}
 }

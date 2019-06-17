@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/gnb/head.css">
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <script src="${pageContext.request.contextPath}/resources/js/gnb.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -73,7 +73,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<header id="header_nav">
+	<header id="header_nav" class="nav-up">
 		<div id="nav_box">
 <!-- 			<ul class="login"> -->
 <%-- 				<c:choose> --%>
@@ -122,9 +122,22 @@ $(document).ready(function(){
 						<li><a href="${pageContext.request.contextPath}/member/MyPage" class="gnb-btn-icon"><img src="${pageContext.request.contextPath}/upload/${item.upFilename}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
 						<span>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</span></a></li> 
 
-			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell"></i></a></button></li>
+			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell"></i></button></li>
+			<li><button class="gnb-btn-icon drop-down"><i class="fas fa-sort-down"></i></button></li>
 
-						<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li> 
+			<li>	<div class="toggle-box">
+		<span class="menu-toggle"></span>
+		<span class="menu-toggle"></span>
+		<span class="menu-toggle"></span>
+	</div></li>
+					
+						
+			<div class="drop-down-menu">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/member/MyPage">My Page</a></li>
+					<li><a href="${pageContext.request.contextPath}/logout">LOGOUT</a></li>
+				</ul>
+			</div>
 					</c:otherwise> 
 				</c:choose> 
 					</ul>

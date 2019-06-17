@@ -8,30 +8,21 @@
 <title>운동 종류 입력</title>
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/train-add.css"> 
 </head>
 <body>
+<div id="wrapper">
+	<div id="container1">
+	<h1>운동 등록하기</h1>
+	<div id="train-enter">
 	<form action="typeOfExerciseAdd" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="teNum"
-			value="${to.teNum == null?0 : to.teNum}">
-		<div>
-			<label>운동명</label> <input type="text" name="teName"
-				value="${to.teName}">
-		</div>
-		<div>
-			<label>추천 세트수</label> <input type="text" name="teSet"
-				value="${to.teSet}">
-		</div>
-		<div>
-			<label>추천 횟수</label> <input type="text" name="teReps"
-				value="${to.teReps}">
-		</div>
-		<div>
-			<label>사용하는 기구</label> <input type="text" name="teTool"
-				value="${to.teTool}">
-		</div>
-		<div class="inputArea">
-			<label>이미지</label>
+	
+	<div class="inputArea">
+				
 				<input type="file" id="teImg" name="file" value="${to.teImg}"/>
+				<label for="teImg" class="input-image"><img src="${pageContext.request.contextPath}/resources/images/icon/exer-management.png" class="input-image-box"></label>
+				
+				
 			<c:choose>
 				<c:when test="${to.teImg != null}">
 					<div class="select_img">
@@ -40,7 +31,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="select_img">
-						<img src="" />
+					
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -50,14 +41,46 @@
 						var reader =new FileReader;
 						reader.onload = function(data){
 							console.log(data.target.result);
-							$(".select_img img").attr("src", data.target.result).width(500);
+							$(".input-image-box").attr("src", data.target.result).width(200);
 						}
 						reader.readAsDataURL(this.files[0]);
 					}
 				});
 			</script>
 		</div>
-		<input type="submit" value="등록 완료">
+	
+	<div id="content-box">
+		<input type="hidden" name="teNum"
+			value="${to.teNum == null?0 : to.teNum}">
+		<div id="title-box">
+			<p>운동명</p>
+			<input type="text" name="teName" value="${to.teName}">
+		</div>
+		
+		<div id="set-box">
+			<p>추천 세트수</p>
+			<input type="text" name="teSet" value="${to.teSet}">
+		</div>
+		
+		<div id="reps-box">
+			<p>추천 횟수</p>
+			<input type="text" name="teReps" value="${to.teReps}">
+		</div>
+		
+		<div id="machine-box">
+			<p>사용하는 기구</p>
+			<input type="text" name="teTool" value="${to.teTool}">
+		</div>
+		
+		</div>
+		
+		
+		
+		<input class="add" type="submit" value="등록 완료">
+		<a href="#"><button class="main">마이페이지로</button></a>
 	</form>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

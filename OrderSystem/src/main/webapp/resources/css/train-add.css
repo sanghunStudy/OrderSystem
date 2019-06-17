@@ -1,0 +1,169 @@
+#wrapper {
+    width: 100%;
+    height: 1500px;
+    background-color: #211d2f;
+    color: white;
+}
+
+#container1 {
+    width: 1000px;
+    height: 950px;
+    top: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#train-enter {
+    width: 1000px;
+    height: 900px;
+    margin: 0 auto;
+    top: 10px;
+    position: relative;
+    
+}
+
+#content-box {
+    width: 1000px;
+    height: 250px;
+    position: relative;
+    top: 250px;
+    display: table;
+    text-align: center;
+}
+
+#content-box p {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+#content-box input{
+    width: 200px;
+    height: 30px;
+    margin-top: 50px;
+    border-radius: 30px;
+    font-size: 25px;
+}
+
+.inputArea{
+    width: 300px;
+    height: 300px;
+    top: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#title-box {
+    width: 250px;
+
+    display: table-cell;
+    background-color: #272a3d;
+}
+
+#title-box:hover {
+    width: 250px;
+    display: table-cell;
+    background-color: black;
+}
+
+
+#set-box {
+    width: 250px;
+
+    display: table-cell;
+    background-color: #272a3d;
+}
+
+#set-box:hover {
+    width: 250px;
+
+    display: table-cell;
+    background-color: black;
+}
+
+#reps-box {
+    width: 250px;
+
+    display: table-cell;
+    background-color: #272a3d;
+
+}
+
+#reps-box:hover {
+    width: 250px;
+
+    display: table-cell;
+    background-color: black;
+}
+
+#machine-box {
+    width: 250px;
+
+    display: table-cell;
+    background-color: #272a3d;
+}
+
+#machine-box:hover {
+    width: 250px;
+
+    display: table-cell;
+    background-color: black;
+}
+
+.train-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.add {
+    width: 100px;
+    height: 50px;
+    top: 300px;
+    background-color: #006699;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    margin-left: 400px;
+    position: relative;
+}
+.inputArea {
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    background: #272a3d;
+    padding: 50px;
+    border: 4px solid #FFF;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+.inputArea:hover { background:#1a1c28;}
+.inputArea input[type="file"] { /* 파일 필드 숨기기 */ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
+.inputArea img { width: 100%; }
+.input-image{cursor:pointer;}
+/* .input-image:hover{  background: #272a3d;} */
+
+
+
+.main {
+    width: 100px;
+    height: 50px;
+    top: 300px;
+    background-color: #303030;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    position: relative;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:visited {
+	color: white;
+}
+
+.select_img img {
+	border-radius: 50%;
+}

@@ -41,10 +41,10 @@ select u.tier,u.score,u.authority,tp.username,tp.name,tp.sex,tp.career,tp.up_fil
 </select>
 <!-- 내 멘티 확인 -->
 <select id="getMenti" resultType="MentiPerformance">
-		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'  GROUP BY um.username
+		SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date),um.total_assignment,um.done_assignment FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{id} AND reading='Y'  GROUP BY um.username
 </select>
 <select id="getMyMenti" resultType="MentiPerformance">
-	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date) FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'  GROUP BY um.username
+	SELECT um.username,reading,apply_date,goal,height,weights,etc,e_requirement,age,sex,MAX(be_date),um.total_assignment,um.done_assignment FROM user_management um LEFT JOIN bedata ON  um.username = bedata.username  WHERE manager = #{mento} AND reading='Y'  GROUP BY um.username
 </select>
 <!-- 승인대기회원 -->
 <select id="waitingForApproval" resultType="UserManagement">

@@ -205,5 +205,16 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		
 	}
 
+	@Override
+	public void updateTotalSubject(int totalSubject) {
+		sql.update("statistics.updateTotalSubject",totalSubject);
+		
+	}
+
+	@Override
+	public void updateDoneSubject(String id) {
+		sql.update("statistics.updateDoneSubject", id);
+	}
+
 
 }

@@ -77,6 +77,10 @@ public interface AnalysisDao {
 
 	void getAvgScore(String mento);
 
+	void updateTotalSubject(int totalSubject);
+
+	void updateDoneSubject(String id);
+
 
 
 }

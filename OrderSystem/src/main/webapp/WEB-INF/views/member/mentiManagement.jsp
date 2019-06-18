@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +86,7 @@
 
 	<script>
 	
-	if(dailyRank.length > 0 && rankDate > 0) {
+	if(dailyRank.length > 0) {
 		dailyRank.reverse();
 		rankDate.reverse();
 	}
@@ -261,15 +262,24 @@
 											<span class="hidden target-age">${menti.age}</span> <span
 											class="hidden target-sex">${menti.sex}</span></td>
 										<td>
-											<div class="progress-container-t">
-												<span id="value" class="progress-value-t"
-													style="background-color: #272a3d">1%</span>
+																						<div class="progress-container-t">
+																									<span id="value" class="progress-value-t"
+															style="background-color: #272a3d">0%</span>
+														<div class="progress-bar-t">
 
-												<div class="progress-bar-t">
-													<div id="bar" class="progress-value-t multi"
-														data-code="dbVal" style="width: 1%;"></div>
-												</div>
-											</div>
+															<c:choose>
+
+																<c:when test="${menti.doneAssignment ne 0 && menti.totalAssignment ne 0 }">
+																	<div id="bar" class="progress-value-t multi"
+																		data-code="${menti.doneAssignment/menti.totalAssignment * 100}" style="width: 0%;"></div>
+																</c:when>
+																<c:otherwise>
+																	<div id="bar" class="progress-value-t multi"
+																		data-code="0" style="width: 0%;"></div>
+																</c:otherwise>
+															</c:choose>
+														</div>
+														</div>
 										</td>
 										<td><div class="planModal" id="exer-modal-btn">운동관리</div></td>
 										<td><div class="planModal" id="food-modal-btn">식단관리</div></td>

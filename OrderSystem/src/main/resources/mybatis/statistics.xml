@@ -190,4 +190,11 @@ UPDATE user SET user.score = (SELECT AVG(score)
 FROM  star_rate WHERE mento=#{mento})
 WHERE username = #{mento}
 </update>
+<update id="updateTotalSubject">
+UPDATE user_management SET total_assignment = total_assignment + #{totalSubject}
+</update>
+<update id="updateDoneSubject">
+UPDATE user_management SET done_assignment = done_assignment + 1 WHERE username = #{id}
+
+</update>
 </mapper>

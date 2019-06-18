@@ -107,7 +107,7 @@ public class AnalysisServcieImpl implements AnalysisService {
 	public int doneSubject(String subject, String contents, String manager, String id, String kind) {
 
 		int subjectKind = 0;
-		System.out.println(kind);
+	
 		if (kind.equals("to_do table-t")) {
 
 			subjectKind = 1;
@@ -117,7 +117,7 @@ public class AnalysisServcieImpl implements AnalysisService {
 			subjectKind = 2;
 
 		}
-
+		dao.updateDoneSubject(id);
 		return dao.doneSubject(subject, contents, manager, subjectKind, id);
 	}
 
@@ -150,13 +150,18 @@ public class AnalysisServcieImpl implements AnalysisService {
 	public void insertPlan(Planner planner) {
 		
 		if (planner.getEatList() != null) {
+			int totalSubject = planner.getEatList().size();
+		
 	
 			dao.addFoodPlan(planner);
-		}
+			dao.updateTotalSubject(totalSubject);
+		}	
 			
 		else if(planner.getEatList() == null) {
-
+			int totalSubject = planner.getDoList().size();
+		
 			dao.addExerPlan(planner);
+			dao.updateTotalSubject(totalSubject);
 		}
 
 	}

@@ -395,7 +395,9 @@
 					</div>
 				</div>
 			</div>
-
+			<script>
+				
+			</script>
 			<div id="manager-info">
 <!-- 				<div class="title" style="margin-bottom: 10px;">트레이너 프로필</div> -->
 					<div class="manager-photo">

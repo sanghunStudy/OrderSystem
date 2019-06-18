@@ -58,7 +58,6 @@
 				alert("포인트설정 없이 답글을 채택하면 본인의 포인트차감없이\n답글이 채택된 분에게 10포인트를 드립니다");
 				var reallyOK = confirm("이대로 질문 하시겠습니까?");
 				if(reallyOK == true){
-					alert("질문이 등록되었습니다.");
 					$("#questionForm").submit();
 				} else {
 					return false;
@@ -71,7 +70,6 @@
 						if(data > pointInfo){
 							var really = confirm("이대로 등록 하시겠습니까?");
 							if(really == true) {
-								alert("질문이 등록되었습니다.");
 								$("#questionForm").submit();
 							} else {
 								return false;
@@ -79,7 +77,6 @@
 						} else if (data == pointInfo) {
 							var pointzero = confirm("이대로 등록시 본인의 포인트가 0이 됩니다. 괜찮겠습니까?");
 							if(pointzero == true){
-								alert("질문이 등록되었습니다.");
 								$("#questionForm").submit();
 							} else {
 								return false;

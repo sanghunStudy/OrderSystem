@@ -117,22 +117,27 @@
 </script>
 <script>
 	$(document).ready(function() {
-		$("#btnSubmit").click(function() {
-			var name = document.getElementByName('name').value;
-			var sex = document.form1.sex.value;
-			var region = document.form1.region.value;
-			var career = document.form1.career.value;
-			var thumbnail = document.form1.thumbnail.value;
-			console.log(name);
+// 		$("#btnSubmit").click(function() {
+// 			var name = document.getElementByName('name').value;
+// 			var sex = document.form1.sex.value;
+// 			var region = document.form1.region.value;
+// 			var career = document.form1.career.value;
+// 			var thumbnail = document.form1.thumbnail.value;
+// 			console.log(name);
 
-			if (name == "" || name == null) {
-				alert("제목을 입력하세요.");
-				document.form1.name.focus();
-				return;
+// 			if (name == "" || name == null) {
+// 				alert("제목을 입력하세요.");
+// 				document.form1.name.focus();
+// 				return;
+// 			};
+// 			document.form1.submit();
+// 		});
+		$('#btnSubmit').click(function() {
+			var really = confirm("이대로 신청하시겠습니까");
+			if(really == true) {
+				alert("신청되었습니다.");
+				$('#form1').submit();
 			}
-			;
-
-			document.form1.submit();
 		});
 
 	});
@@ -174,7 +179,7 @@
 			<div class="contents-container">
 				<div class="contents-form">
 					<h2>TRAINER BOT PROFILE</h2>
-					<form action="promotion" method="post" name="form1"
+					<form action="promotion" method="post" name="form1" id="form1"
 						enctype="multipart/form-data">
 						<script th:inline="javascript">
 							function sendFile(file, el) {

@@ -23,7 +23,12 @@ $('.alarm-icon').click(function() {
 			},
 			type:'GET',
 			success:function(res){
-				console.log(res);//리스트
+				var itemsList;
+//				console.log(res);//리스트
+				res.forEach(function(e){
+					itemsList +='<div class="box sb4"><i class="far fa-bell" ></i><p>'+ e.username +'님이'+e.doneSubject +'를 완료 하였습니다.</p></div>';
+				});
+				$(".alarm-box-header").html(itemsList);
 				$.ajax({
 					url:'/kopo/alram/alramUpdate',
 					data:{

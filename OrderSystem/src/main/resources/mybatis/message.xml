@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="alramList" resultType="MessageRepository">
-	select username,done_subject,done_content,log_time,log_reading from assignment_log where manager = #{id}
+	select username,done_subject,done_content,log_time,log_reading from assignment_log where manager = #{id} order by log_time desc
 	</select>
 	<update id="alramUpdate">
 		update assignment_log

@@ -16,31 +16,34 @@ $('.drop-down-menu').on('mouseleave',function() {
 	
 $('.alarm-icon').click(function() {
 	$('.alarm-box-header').toggle(300,function() {
-		$.ajax({
-			url:'/kopo/alram/alramList',
-			data:{
-				"id":trainerChk
-			},
-			type:'GET',
-			success:function(res){
-				var itemsList;
-//				console.log(res);//리스트
-				res.forEach(function(e){
-					itemsList +='<div class="box sb4"><i class="far fa-bell" ></i><p>'+ e.username +'님이'+e.doneSubject +'를 완료 하였습니다.</p></div>';
-				});
-				$(".alarm-box-header").html(itemsList);
-				$.ajax({
-					url:'/kopo/alram/alramUpdate',
-					data:{
-						"id":trainerChk
-					},
-					type:'GET',
-					success:function(){
-						$("#bell").text("0");
+		var itemsList;
+		if(trainerChk){
+			$.ajax({
+				url:'/kopo/alram/alramList',
+				type:'GET',
+				success:function(res){
+					if(res.length > 0){
+						res.forEach(function(e){
+							itemsList +='<div class="box sb4"><i class="far fa-bell" ></i><p>'+ e.username +'님이'+e.doneSubject +'를 완료 하였습니다.</p></div>';
+						});
+						$(".alarm-box-header").html(itemsList);
+						$.ajax({
+							url:'/kopo/alram/alramUpdate',
+							type:'GET',
+							success:function(){
+								$("#bell").text("0");
+							}
+						});
+					}else{
+						itemsList = '<div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div>';
+						$(".alarm-box-header").html(itemsList);
 					}
-				});
-			}
-		});
+				}
+			});
+		}else{
+			itemsList = '<div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div>';
+			$(".alarm-box-header").html(itemsList);
+		}
 	});
 })
     //검은 막 띄우기

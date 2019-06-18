@@ -36,7 +36,7 @@
 	function onMessage(e){
 	
 // 		$("#mCountRes").html(e.data);
-		$(".box p").html(e.data);
+// 		$(".box p").html(e.data);
 	}
 	$(document).ready(function() {
 		connect();
@@ -64,7 +64,6 @@ $(document).ready(function(){
 	if(loginChk){//존재한다면 아래함수 실행
 		clearTime(15);//세션 체크 5분 설정
 		setTimer();	//타이머 실행
-		
 	}
 	
 	
@@ -73,16 +72,15 @@ $(document).ready(function(){
 
 var trainerChk = "${trainer}";
 setInterval(function alram(){
-	$.ajax({
-		url:'${pageContext.request.contextPath}/alram/count',
-		data:{
-			"id":trainerChk
-		},
-		type:'GET',
-		success:function(res){
-			$("#bell").text(res);
-		}
-	});
+	if(trainerChk){
+		$.ajax({
+			url:'${pageContext.request.contextPath}/alram/count',
+			type:'GET',
+			success:function(res){
+				$("#bell").text(res);
+			}
+		});
+	}
 },1000);
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/sesseionChk.js"></script>
@@ -239,7 +237,7 @@ setInterval(function alram(){
 			<button type="button" id="sessionExtension" onclick="sessionChk()"></button>
 		</div>
 			<div class="alarm-box-header">
-<div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div>
+<!-- <div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div> -->
 		</div>
 	</header>
 </body>

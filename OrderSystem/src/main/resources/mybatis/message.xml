@@ -5,4 +5,17 @@
 	<select id="cuDate" resultType="MessageRepository">
 		select * from assignment_log where manager = #{managerName} and log_time = (select max(log_time) from assignment_log where manager = #{managerName});
 	</select>
+	
+	<select id="countMessage" resultType="Integer">
+	select count(log_reading) from assignment_log where manager = #{username} and log_reading = 0
+	</select>
+	
+	<select id="alramList" resultType="MessageRepository">
+	select username,done_subject,done_content,log_time from assignment_log where manager = #{id} and log_reading = 0
+	</select>
+	<update id="alramUpdate">
+		update assignment_log
+		set log_reading = 1
+		where manager = #{id}
+	</update>
 </mapper>

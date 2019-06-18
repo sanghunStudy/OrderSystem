@@ -64,10 +64,26 @@ $(document).ready(function(){
 	if(loginChk){//존재한다면 아래함수 실행
 		clearTime(15);//세션 체크 5분 설정
 		setTimer();	//타이머 실행
+		
 	}
 	
-
+	
 });
+
+
+var trainerChk = "${trainer}";
+setInterval(function alram(){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/alram/count',
+		data:{
+			"id":trainerChk
+		},
+		type:'GET',
+		success:function(res){
+			$("#bell").text(res);
+		}
+	});
+},1000);
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/sesseionChk.js"></script>
 </head>

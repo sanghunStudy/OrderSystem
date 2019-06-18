@@ -18,8 +18,9 @@
 	<form action="typeOfExerciseAdd" method="post" enctype="multipart/form-data">
 	
 	<div class="inputArea">
-				
+<!-- 				<input type="file" id="teImg" name="file" value="null"/> -->
 				<input type="file" id="teImg" name="file" value="${to.teImg}"/>
+				<input type="hidden" name="demoFile" value="${to.teImg}"/>
 				<label for="teImg" class="input-image">
 				
 			<c:choose>
@@ -77,7 +78,7 @@
 		
 		
 		<input class="add" type="submit" value="등록 완료">
-		<a href="${pageContext.request.contextPath}/member/MyExerciseJournal"><button type="button" class="main">관리메뉴로</button></a>
+		<a href="${pageContext.request.contextPath}/member/MyExerciseJournal"><button type="button" class="main">마이페이지로</button></a>
 	</form>
 	</div>
 	</div>

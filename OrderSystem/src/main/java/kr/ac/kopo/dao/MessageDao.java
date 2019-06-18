@@ -1,5 +1,7 @@
 package kr.ac.kopo.dao;
 
+import java.util.List;
+
 import kr.ac.kopo.model.MessageRepository;
 
 public interface MessageDao {
@@ -9,4 +11,9 @@ public interface MessageDao {
 
 	//메세지 개수 카운트
 	int countMessage(String username);
+
+	List<MessageRepository> alram(String id);
+
+	void alramUpdate(String id);
+
 }

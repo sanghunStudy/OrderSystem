@@ -47,7 +47,6 @@
 <title>TRAINERBOT 멘티 관리</title>
 </head>
 <%@ include file="../gnb/nav.jsp"%>
-<%@ include file="../alarm.jsp"%>
 <%@ include file="../gnb/sidebar.jsp"%>
 <jsp:include page="../gnb/head.jsp" flush="true" />
 <body>

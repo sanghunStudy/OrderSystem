@@ -30,27 +30,42 @@
 			<p class="section-introduce">02   Our Second Project</p>
 			<p class="section-title">Are you satisfied with <br>your body?</p>
 			<p class="section-article">Now you are in perfect shape with trainer bot</p>
-			<div class="section-footer"><img src="${pageContext.request.contextPath}/resources/images/main/play.png" class="play-icon"><span>Now let's get it start</span></div>
+			<div class="section-footer"><img src="${pageContext.request.contextPath}/resources/images/main/play.png" class="play-icon"><span>Let's get it start</span></div>
 		
 		</div>
 		<div class="section1">
 			<div id="carousel_section">
 				<ul>
-					<li><img
-						src="${pageContext.request.contextPath}/resources/images/main/dumbel.png">
+					<li class="first-carousel bgBlur"><img
+						src="${pageContext.request.contextPath}/resources/images/main/section1-dumbel.jpg" class="shadow-fileter">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+						<filter id="shadow">
+						  <fePointLight x = "50" y = "100" z = "200"/>
+						</filter>
+						</svg>
 						<div class="section1_item">
-							<span>팔운동 </span><span id="section1_title">" 덤벨 "</span>
+							<div class="section1-title"><span>팔운동 </span><span id="section1_title">" 덤벨 "</span></div>
 							<p>
 								덤벨기구는 마치 바벨을 축소시켜 놓은듯한 생김새를 가지고 있다.<br> 크기가 작고 아주 가벼운 중량부터
 								사용 가능하여 초보자가 최소한<br> 비용으로 홈에서 운동을 하고자 할때 유용하게 쓸수 있다. 하지만<br>
 								덤벨 운동은 초보자가 컨트롤하기 까다로워 올바른 자세를 잘<br> 익혀야 한다.
 							</p>
 						</div></li>
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <filter id="blur">
+        <feGaussianBlur stdDeviation="6" />
+      <feComponentTransfer>
+    <feFuncR type="linear" slope="2"/>
+    <feFuncG type="linear" slope="2"/>
+    <feFuncB type="linear" slope="2"/>
+    </feComponentTransfer>
+    </filter>
+</svg>
 
-					<li><img
-						src="${pageContext.request.contextPath}/resources/images/main/ca2.png">
+					<li class="second-carousel bgBlur"><img
+						src="/kopo/resources/images/main/exer-a.png" class="shadow-fileter">
 						<div class="section1_item">
-							<span>팔운동 </span><span id="section1_title">＂덤벨 컬＂</span>
+							<div class="section1-title"><span>팔운동 </span><span id="section1_title">＂덤벨 컬＂</span></div>
 							<p>
 								바벨 컬에 비해 상완이두근의 선명도를 높일 수 있는 운동이다.<br> 선 자세와 앉은 자세(벤치,
 								짐볼)에서 운동이 가능하며, 그립을 <br> 잡는 방향에 따라 발현되는 근육이 달라지며, 양팔을 동시에 <br>

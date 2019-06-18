@@ -168,21 +168,26 @@ body {
 
 /*캐러셀 text*/
 .section1_item {
-	right: 10%;
+/* 	right: 10%; */
 	/* display:none; */
-	width: 500px;
-	height: 200px;
+/* 	width: 500px; */
+/* 	height: 200px; */
+	left:57vw;
 	position: absolute;
-	top: 30%;
-	background-color: black;
+	top: 60vh;
+/* 	background-color: black; */
 	font-weight: bold;
 	color: white;
 	text-align: left;
-	line-height: 40px;
+	line-height: 2;
+		font-family: 'S-CoreDream-7ExtraBold';
+		    border: 3px solid #F7f7f7;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.2);
 }
 
 .section1_item span {
-	color: rgb(247, 90, 49);
+/* 	color: rgb(247, 90, 49); */
 }
 
 .section3_item {
@@ -360,6 +365,7 @@ body {
 	height: 100%;
 	position: relative;
 	overflow: hidden;
+
 }
 
 #carousel_section>ul>li {
@@ -370,13 +376,15 @@ body {
 }
 
 #carousel_section>ul>li>img {
-	list-style: none;
-	width: 900px;
-	height: 680px;
-	object-fit: cover;
-	position: absolute;
-	left: 5%;
-	top: 10%;
+list-style: none;
+    width: 50vw;
+/*     height: 680px; */
+    object-fit: cover;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    	filter: drop-shadow(.5rem .5rem .1rem black);
 }
 
 /*로고*/
@@ -701,5 +709,57 @@ a {
 
 .credit a:hover {
    text-decoration: underline;
+}
+.first-carousel {
+background:url('/kopo/resources/images/main/section1-dumbel.jpg');
+	background-size:cover;
+}
+.bgBlur {
 
+width:200px;
+height:250px;
+position: relative;
+z-index:1;
+float:left;
+margin:10px;
+overflow:hidden;
+	
+}
+.bgBlur:before {
+	content: '';
+  position: absolute;
+  top: 0; left:0; right:0; bottom:0;
+  background: inherit;
+  z-index:-1;
+  filter: blur(5px); 
+  -webkit-filter: blur(6px); 
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+  filter: url(#blur);
+}
+.second-carousel {
+	background:url('/kopo/resources/images/main/exer-a.png');
+		background-size:cover;
 
+}
+svg {
+height:0
+}
+.shadow-fileter:before{
+		content: '';
+  position: absolute;
+  top: 0; left:0; right:0; bottom:0;
+  background: inherit;
+  z-index:-1;
+  filter: blur(5px); 
+  -webkit-filter: blur(6px); 
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+	filter:url(#shadow);
+}
+.section1-title {
+    font-size: 36pt;
+    margin-bottom: 25px;
+}

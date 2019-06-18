@@ -1245,7 +1245,7 @@ display:inline-block;
 	height: 40px;
 	border-radius: 50%;
 	background-color: #fff;
-	cursor: pointer;
+/* 	cursor: pointer; */
 
 	color: #c2c2c2;
 	padding: 11px 13px;
@@ -1256,7 +1256,7 @@ display:inline-block;
 	height: 40px;
 	border-radius: 50%;
 	background-color: #fff;
-	cursor: pointer;
+/* 	cursor: pointer; */
 		color: #c2c2c2;
 	padding: 11px 13px;
 }

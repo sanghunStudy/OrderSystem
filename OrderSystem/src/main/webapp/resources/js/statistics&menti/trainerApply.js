@@ -1,4 +1,10 @@
 
+$(document).ready(function() {
+	
+});
+function DateFormatReady(date) {
+	$("#txtDate").val($.datepicker.formatDate('yyyy-mm-dd', new Date()));
+}
 /* 트레이너 신청 list */
 function proList() 
 {
@@ -15,12 +21,12 @@ function proList()
 //				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="this.src=' + defaultImage +'" class="psa"></td>';
 						tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="defaultImage(this)" class="psa"></td>';						
 				tr += '<td>' + res.proList[i].applyDate + '</td>';
-				tr += '<td class="apply-date">' + res.proList[i].username + '</td>';
+				tr += '<td>' + res.proList[i].username + '</td>';
 				tr += '<td>' + res.proList[i].name  +'</td>';
 				tr += '<td>' + res.proList[i].sex + '</td>';
 				tr += '<td><input class="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
-				tr += '<td><input class="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].username +');" /></td>';
-				tr += '<td><input class="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].username +');" /></td>';
+				tr += '<td><input class="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].applyNum +');" /></td>';
+				tr += '<td><input class="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].applyNum +');" /></td>';
 					
 			};
 			$('.pro-list').html(tr);
@@ -38,7 +44,7 @@ function defaultImage(obj) {
 			type : 'post',
 			url : path+'/member/grant',
 			data : {
-				"username" : code
+				"applyNum" : code
 			},
 			success : function(data) {
 				if (data == 'success') {
@@ -56,7 +62,7 @@ function defaultImage(obj) {
 			type : 'post', 
 			url : path+'/member/grantDel',
 			data : {
-				"username" : code
+				"applyNum" : code
 			},
 			success : function(data) {
 				if (data == 'success') {

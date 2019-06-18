@@ -112,7 +112,7 @@
 	<update id="startTier" parameterType="TrainerProfile">
 		update user
 		set tier = "bronze"
-		where username = #{username}
+		where username = (select username from trainer_profile where apply_num = #{applyNum})
 	</update>
 	
 	<select id="tierCheck" resultType="String">

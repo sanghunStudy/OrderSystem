@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Trainer Approval</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/applylist.css">
 </head>
 <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
@@ -47,11 +48,13 @@
  							</div> 
 							</c:if>
  						</td>
-						<td>${item.applyDate}</td>
+						<td>
+						<fmt:formatDate value="${item.applyDate}" pattern="yyyy-MM-dd" />
+						</td>
 						<td>${item.username}</td>
 						<td>${item.name}</td>
 						<td>${item.sex}</td>	
-						<td><button>상세보기</button></td>
+						<td><button class="info">상세보기</button></td>
  						<td>
 							<input class="accept" name=username type="button" value="수락" onclick="grantDo();" />
 						</td>

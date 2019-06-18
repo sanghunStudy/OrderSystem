@@ -58,16 +58,16 @@
    
    <!-- 트레이너 승인 -->
    <update id="grant" parameterType="TrainerProfile">
-      update user set authority = 'trainer' where username = #{username}
+      update user set authority = 'trainer' where username = (select username from trainer_profile where apply_num = #{applyNum})
    </update>
    
    <update id="grantDo" parameterType="TrainerProfile">
-      update trainer_profile set trainer_apply = 'Y' where username = #{username}
+      update trainer_profile set trainer_apply = 'Y' where apply_num = #{applyNum}
    </update>
    
    <!-- 트레이너 거절 -->
    <update id="grantDel" parameterType="TrainerProfile">
-      update trainer_profile set delete_apply = 'Y' where username = #{username}
+      update trainer_profile set delete_apply = 'Y' where apply_num = #{applyNum}
    </update>
    
    <select id="select" resultType="UserVO">

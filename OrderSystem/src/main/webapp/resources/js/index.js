@@ -1,6 +1,10 @@
 var scrollEvent = false;
 var count = 0;
 
+function fnMove(){
+    var offset = $("#section1").offset();
+    $('html, body').animate({scrollTop : offset.top}, 400);
+}
 
 
 
@@ -9,6 +13,7 @@ var count = 0;
 $(window).load(function(){
 //    console.log("로딩완료");
     go();
+    
 });
 
 //로딩완료

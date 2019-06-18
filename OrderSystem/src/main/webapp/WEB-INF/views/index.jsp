@@ -14,6 +14,7 @@
 	href="${pageContext.request.contextPath}/resources/css/gnb/calculator.css">
 <script src="https://unpkg.com/vue"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/calculator.js"></script>
@@ -30,10 +31,14 @@
 			<p class="section-introduce">02   Our Second Project</p>
 			<p class="section-title">Are you satisfied with <br>your body?</p>
 			<p class="section-article">Now you are in perfect shape with trainer bot</p>
-			<div class="section-footer"><img src="${pageContext.request.contextPath}/resources/images/main/play.png" class="play-icon"><span>Let's get it start</span></div>
-		
+			<div class="section-footer"><img src="${pageContext.request.contextPath}/resources/images/main/play.png" class="play-icon" onclick="fnMove()"><span>Let's get it start</span></div>
+		<script>
+
+
+
+		</script>
 		</div>
-		<div class="section1">
+		<div class="section1" id="section1">
 			<div id="carousel_section">
 				<ul>
 					<li class="first-carousel bgBlur"><img

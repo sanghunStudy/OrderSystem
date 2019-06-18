@@ -763,3 +763,6 @@ height:0
     font-size: 36pt;
     margin-bottom: 25px;
 }
+.play-icon {
+	cursor:pointer;
+}

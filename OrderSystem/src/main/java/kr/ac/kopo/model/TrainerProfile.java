@@ -21,6 +21,14 @@ public class TrainerProfile {
 	String thumbnail;
 	String tier;
 	int menti;//트레이너별 멘티수
+	int score;
+	
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
 	public String getRegion() {
 		return region;
 	}

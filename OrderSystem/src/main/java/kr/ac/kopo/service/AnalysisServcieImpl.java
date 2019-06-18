@@ -189,7 +189,7 @@ public class AnalysisServcieImpl implements AnalysisService {
 	@Override
 	public void saveScore(int score, String mento,String userName) {
 		dao.saveScore(score,mento,userName);
-//		dao.avgScore(score,mento);
+		dao.getAvgScore(mento);
 	}
 
 	@Override

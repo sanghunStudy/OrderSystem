@@ -75,6 +75,8 @@ public interface AnalysisDao {
 
 	int countScore(String mento, String userName);
 
+	void getAvgScore(String mento);
+
 
 
 }

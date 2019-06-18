@@ -14,7 +14,7 @@
 </select>
 <!-- 트레이너 리스트 출력 -->
 <select id="list" resultType="TrainerProfile">
-select u.tier,u.authority,tp.username,tp.name,tp.sex,tp.career,tp.up_filename,count(b.grade) as menti
+select u.tier,u.score,u.authority,tp.username,tp.name,tp.sex,tp.career,tp.up_filename,count(b.grade) as menti
    FROM user u 
 	join trainer_profile tp
    on tp.username = u.username

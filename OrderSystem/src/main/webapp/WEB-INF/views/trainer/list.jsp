@@ -35,7 +35,7 @@
 		<div class="trainer-list">
 			<c:choose>
 				<c:when test="${trainerList.size() > 0}">
-					<c:forEach var="item" items="${trainerList}">
+					<c:forEach var="item" items="${trainerList}" varStatus="status">
 						<div class="item-box">
 							<input type="hidden" value="${item.sex}" class="trainer-sex">
 							<input type="hidden" value="${item.name}" class="trainer-name">
@@ -83,6 +83,21 @@
 										</c:choose>
 									</div>
 								</div>
+							</div>
+							<div class="star-rate">
+							<script>
+							console.log('${item.score}');
+							</script>
+								<div class="manager-score">
+									<div class="rate">
+										<input type="radio" id="star5" name="rate${status.index}"  value="5" ${(item.score ==  5)?'checked':''} disabled/> <label for="star5" title="text">5 stars</label>			 
+										<input type="radio" id="star4" name="rate${status.index}" value="4" ${(item.score ==  4)?'checked':''} disabled/> <label for="star4"title="text">4 stars</label> 
+										<input type="radio" id="star3" name="rate${status.index}" value="3" ${(item.score ==  3)?'checked':''} disabled/> <label for="star3" title="text">3stars</label> 
+										<input type="radio" id="star2" name="rate${status.index}" value="2" ${(item.score ==  2)?'checked':''} disabled/> <label for="star2" title="text">2 stars</label> 
+										<input type="radio" id="star1" name="rate${status.index}" value="1" ${(item.score ==  1)?'checked':''} disabled/> <label for="star1"title="text">1 star</label>
+									</div>
+								</div>
+
 							</div>
 								<c:if test="${user != null}">
 									<div class="modal-btn-box">

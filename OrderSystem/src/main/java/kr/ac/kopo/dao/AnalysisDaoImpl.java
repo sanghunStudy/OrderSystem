@@ -199,5 +199,11 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		return sql.selectOne("statistics.countScore", map);
 	}
 
+	@Override
+	public void getAvgScore(String mento) {
+		sql.update("statistics.getAvgScore", mento);
+		
+	}
+
 
 }

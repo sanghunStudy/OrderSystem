@@ -185,4 +185,9 @@ values(#{mento},#{userName},1,#{score})
 <select id="countScore" resultType="Integer">
 select count(*) from star_rate where mento = #{mento} and menti = #{userName};
 </select>
+<update id="getAvgScore">
+UPDATE user SET user.score = (SELECT AVG(score) 
+FROM  star_rate WHERE mento=#{mento})
+WHERE username = #{mento}
+</update>
 </mapper>

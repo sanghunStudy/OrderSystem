@@ -23,6 +23,9 @@ th, td, .upload-display {
     border-bottom: 1px solid #dfdfdf;
 }
 
+.nolist {
+	margin:20px 0;
+}
 
 #wrapper {
     width: 1024px;

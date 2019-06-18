@@ -68,7 +68,7 @@
 			</c:when>
 			<c:otherwise>
  				<tr> 
- 					<td colspan="7">신청된 트레이너가 없습니다.</td>
+ 					<td colspan="7" class="nolist">신청된 트레이너가 없습니다.</td>
  				</tr>
 			</c:otherwise>
 		</c:choose>

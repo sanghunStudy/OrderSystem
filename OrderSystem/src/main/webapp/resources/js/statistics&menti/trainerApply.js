@@ -16,19 +16,24 @@ function proList()
 			$(".pro-list").html("");
 			var tr = '';
 			var defaultImage  ='/kopo/resources/images/icon/default-profile-icon.jpg';
-					for (var i=0; i < res.proList.length;i++) { 
+			if(res.length > 0) {
+				for (var i=0; i < res.proList.length;i++) { 
 					
-//				tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="this.src=' + defaultImage +'" class="psa"></td>';
-						tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="defaultImage(this)" class="psa"></td>';						
-				tr += '<td>' + res.proList[i].applyDate + '</td>';
-				tr += '<td>' + res.proList[i].username + '</td>';
-				tr += '<td>' + res.proList[i].name  +'</td>';
-				tr += '<td>' + res.proList[i].sex + '</td>';
-				tr += '<td><input class="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
-				tr += '<td><input class="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].applyNum +');" /></td>';
-				tr += '<td><input class="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].applyNum +');" /></td>';
-					
-			};
+//					tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="this.src=' + defaultImage +'" class="psa"></td>';
+							tr += '<tr><td class="upload-display"><img src="' + path + '/upload/' + res.proList[i].upFilename + '" onError="defaultImage(this)" class="psa"></td>';						
+					tr += '<td>' + res.proList[i].applyDate + '</td>';
+					tr += '<td>' + res.proList[i].username + '</td>';
+					tr += '<td>' + res.proList[i].name  +'</td>';
+					tr += '<td>' + res.proList[i].sex + '</td>';
+					tr += '<td><input class="info" name=username type="button" value="상세보기" onclick="grantDo('+res.proList[i].username +');" /></td>';
+					tr += '<td><input class="accept" name=username type="button" value="수락" onclick="grantDo('+res.proList[i].applyNum +');" /></td>';
+					tr += '<td><input class="reject" name=username type="button" value="거절" onclick="grantDel('+res.proList[i].applyNum +');" /></td>';
+						
+				};
+			} else {
+				tr += '<tr><td colspan="7" class="nolist">신청한 트레이너가 없습니다.</td></tr>';
+			}
+				
 			$('.pro-list').html(tr);
 		}
 	});

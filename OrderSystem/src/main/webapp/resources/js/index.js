@@ -52,6 +52,7 @@ function go(){
         $(".section1_item").addClass("animated animatedFadeInUp fadeInUp");
     }else if(count == 2){
         // alert("3번째 영역");
+    	$(".section2-wrap").addClass("animated animatedFadeInUp fadeInUp");
     }else if(count == 3){
         // alert("4번째 영역");
         $(".section3_item").addClass("animated animatedFadeInUp fadeInUp");

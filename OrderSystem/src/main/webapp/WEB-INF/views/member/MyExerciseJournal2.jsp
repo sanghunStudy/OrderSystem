@@ -59,9 +59,9 @@
 					+ "<li>"
 					+"<input type='hidden' name='ExerciseName' value='"+exerciseTitle+"'/>"
 					+"<span>1</span>"
-					+ "<input type='hidden' min='1' name='set' value='1'/>"
-					+ "<input type='number' min='1' name='Reps' value='10'/>"
-					+ "<input type='number' min='1' name='lb'/>"
+					+ "<input type='hidden' min='1' name='set' value='1'/> set "
+					+ "<input type='number' min='1' name='Reps' value='10'/>reps "
+					+ "<input type='number' min='1' name='lb'/>kg"
 					+"</li>"
 					+"</ul>";
 			
@@ -143,9 +143,9 @@
 						var addInput = "<li><span>"
 								+ inputNum
 								+ "</span>"
-								+ "<input type='hidden' min='1' name='set' value='"+ inputNum +"'/>"
-								+ "<input type='number' min='1' name='Reps' value='10'/>"
-								+ "<input type='number' min='1' name='lb'/></li>";
+								+ "<input type='hidden' min='1' name='set' value='"+ inputNum +"'/> set "
+								+ "<input type='number' min='1' name='Reps' value='10'/>reps "
+								+ "<input type='number' min='1' name='lb'/>kg</li>";
 						//해당 ul에 li를 추가해준다.
 						$("." + divClass).append(addInput);
 					});

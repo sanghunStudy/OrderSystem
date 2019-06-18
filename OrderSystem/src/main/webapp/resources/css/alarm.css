@@ -1,38 +1,59 @@
 /* 알람창 */
+::-webkit-scrollbar {
+
+display:none;
+
+}
 .alarm-box-header{
-	position:fixed;
-	z-index:10;
-    top: 60px;
-    left: 70%;
-	font-size:9pt;
-	display:none;
+    position: fixed;
+    z-index: 10;
+    top: 100px;
+    left: 69vw;
+    font-size: 9pt;
+    height: 36vh;
+
+    display: none;
+    background: #3e3e3d;
+ 
+    
+}
+.alarm-box-inner {
+	    overflow: scroll;
+	   -ms-overflow-style: none;
+	   height: inherit;
 }
 .alarm-box-header p {
 	display:inline-block;
 }
 
 .box {
-  width: 300px;
-  margin: 50px auto;
-  background:#e66ad2;
-  padding: 20px;
-  text-align: center;
-  font-weight: 900;
-  color: #fff;
-  font-family: arial;
-  position: relative;
+    width: 17vw;
+/*     margin: 50px auto; */
+    /* background: #e66ad2; */
+    border-top: #ccc;
+    padding: 20px 10px;
+border-top: .0625rem solid #e3e3e3;
+    border-color: hsla(0, 0%, 100%, .1);
+    text-align: center;
+    font-weight: 900;
+    color: #fff;
+    font-family: arial;
+    position: relative;
+
 }
-.sb4:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 10px solid transparent;
-  border-right: 10px solid #e66ad2;
-  border-top: 10px solid #e66ad2;
-  border-bottom: 10px solid transparent;
-  right: 19px;
-  bottom: -19px;
+.alarm-box-header:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #3e3e3d;
+    border-top: 10px solid #3e3e3d;
+    border-bottom: 10px solid transparent;
+    right: 12px;
+    top: -10.5px;
+    /* bottom: 50px; */
+    transform: rotate(315deg);
 }
 .fa-bell {
 	margin-right:5px;

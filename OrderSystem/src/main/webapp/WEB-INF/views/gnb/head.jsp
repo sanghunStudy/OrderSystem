@@ -136,7 +136,7 @@ setInterval(function alram(){
 						<li><a href="${pageContext.request.contextPath}/member/MyPage" class="gnb-btn-icon"><img src="${pageContext.request.contextPath}/upload/${userPhoto}" onError="javascript:this.src='/kopo/resources/images/icon/default-profile-icon.jpg'" class="profile-img">
 						<span>${sessionScope.user}${sessionScope.trainer}${sessionScope.admin}</span></a></li> 
 			<li><span class="user-point">${userPoint}point</span></li>
-			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell" id="bell"></i></button></li>
+			<li><button class="alarm-icon gnb-btn-icon" ><i class="fas fa-bell"></i><span id="bell"></span></button></li>
 			<li class="bell-li"><button class="gnb-btn-icon drop-down"><i class="fas fa-sort-down"></i></button></li>
 
 			<li><div class="toggle-box">
@@ -237,7 +237,9 @@ setInterval(function alram(){
 			<button type="button" id="sessionExtension" onclick="sessionChk()"></button>
 		</div>
 			<div class="alarm-box-header">
+			<div class="alarm-box-inner">
 <!-- <div class="box sb4"><i class="far fa-bell" ></i><p>추가된 알림이 없습니다.</p></div> -->
+			</div>
 		</div>
 	</header>
 </body>

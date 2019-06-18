@@ -508,7 +508,15 @@ font-weight:600
 	      line-height: 4px;
 }
 #bell {
-	    line-height: 15px;
+	   line-height: 15px;
+    color: #f7f7f7;
+    font-weight: 700;
+    position: relative;
+    left: -6px;
+    top: -6px;
+    width: 20px;
+    font-size: 14px;
+    background: #de1738;
 }
 
 .toggle-box {
@@ -533,7 +541,7 @@ font-weight:600
 	display:block;
 	width:150px;
 	position:relative;
-	left: 250px;
+    left: 17vw;
 	
 }
 .sub-function li {

@@ -52,6 +52,8 @@
 //				console.log(HashTagVal);
 			if(nameCheck == null || nameCheck == ""){
 				alert("제목을 입력하세요");
+			} else if(nameCheck.length < 2){
+				alert("제목은 2자 이상 입력하세요");
 			} else if(summernoteVal == null || summernoteVal == "") {
 				alert("내용을 입력하세요");
 			} else if(pointInfo == 0) {

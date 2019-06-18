@@ -216,5 +216,10 @@ public class AnalysisDaoImpl implements AnalysisDao {
 		sql.update("statistics.updateDoneSubject", id);
 	}
 
+	@Override
+	public List<ExerciseJournal> getMentiWeight(String id) {
+		return sql.selectList("statistics.getMentiWeight", id);
+	}
+
 
 }

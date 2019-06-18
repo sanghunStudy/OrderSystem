@@ -197,4 +197,10 @@ UPDATE user_management SET total_assignment = total_assignment + #{totalSubject}
 UPDATE user_management SET done_assignment = done_assignment + 1 WHERE username = #{id}
 
 </update>
+<select id="getMentiWeight" resultType="ExerciseJournal">
+SELECT id,Exercise_date start,avg(userWeight) 
+FROM exercise_item ei,user_management um 
+WHERE Exercise_date between date_ADD(curdate(),INTERVAL -10 DAY) AND curdate() AND um.username = ei.id AND um.manager = #{id}
+GROUP BY start
+</select>
 </mapper>

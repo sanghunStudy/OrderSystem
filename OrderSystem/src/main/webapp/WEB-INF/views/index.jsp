@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인페이지 입니다.</title>
+<title>TRAINERBOT_MAIN</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/index.css">
 <link rel="stylesheet" type="text/css"

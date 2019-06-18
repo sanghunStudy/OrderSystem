@@ -8,7 +8,7 @@ display:none;
     position: fixed;
     z-index: 10;
     top: 100px;
-    left: 69vw;
+left: 65vw;
     font-size: 9pt;
     height: 36vh;
 
@@ -27,7 +27,7 @@ display:none;
 }
 
 .box {
-    width: 17vw;
+    width: 20vw;
 /*     margin: 50px auto; */
     /* background: #e66ad2; */
     border-top: #ccc;

@@ -171,7 +171,7 @@ $(function() {
 													+ value.doName + ' '
 													+ value.doLb + 'kg중량으로 '
 													+ value.doReps + '회씩'
-													+ value.deSet
+													+ value.doSet
 													+ '세트 </p></div></td>';
 											tr += '<td class="parts">'
 													+ value.doPart + '</td>';

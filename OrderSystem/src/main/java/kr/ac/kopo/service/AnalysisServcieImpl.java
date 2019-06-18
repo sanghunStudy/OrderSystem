@@ -207,4 +207,9 @@ public class AnalysisServcieImpl implements AnalysisService {
 		return dao.countScore(mento,userName);
 	}
 
+	@Override
+	public List<ExerciseJournal> getMentiWeight(String id) {
+		return dao.getMentiWeight(id);
+	}
+
 }

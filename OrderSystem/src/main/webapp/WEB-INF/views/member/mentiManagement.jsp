@@ -58,8 +58,10 @@
 		var rankDate = [];
 		var typeOfExercise = [];
 		var teImg = [];
-
+	
+		
 	</script>
+
 	<c:forEach var="item" items="${typeOfExercise}">
 	
 	<script>
@@ -252,6 +254,12 @@
 						<c:choose>
 							<c:when test="${myMenti.size() > 0 }">
 								<c:forEach var="menti" items="${myMenti}">
+									<c:forEach var="item" items="${weightChart}">
+										<script>
+// 											console.log('${menti.username}');
+// 											console.log('${item.id}');
+										</script>
+									</c:forEach>
 									<tr>
 										<td class="my-menti"><span class="target-username">${menti.username}</span>
 											<span class="hidden target-weights">${menti.weights}</span> <span
@@ -266,7 +274,9 @@
 																									<span id="value" class="progress-value-t"
 															style="background-color: #272a3d">0%</span>
 														<div class="progress-bar-t">
-
+														<script>
+												
+														</script>
 															<c:choose>
 
 																<c:when test="${menti.doneAssignment ne 0 && menti.totalAssignment ne 0 }">

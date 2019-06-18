@@ -97,12 +97,11 @@ function applicantList()
 	 			tr += '<tr><td colspan="7" style="text-align:center">멘토링중인 멘티가 없습니다.</td></tr>';
 	 		
 	 		$('.myMenti-list').html(tr);
-	 		$('.multi').each(progressAnime);
+	 		$('.multi').each(progressAnime());
 	 	}
 	 });
  }
 
- 
 
 
 
@@ -116,8 +115,13 @@ $(function() {
 	var requiredEnergy;
 	var duration;
 	var foodToday,exerToday,foodStart,exerStart;
+	var tenDaysAgo = [];
+	
+	for(var d=10;d>0;d--) {
+		tenDaysAgo.push(moment().subtract(d, 'days').format('L'))
+	}
 
-
+	
 	var agreeBtnEvent = {
 			'agree':function(e) {
 					
@@ -358,7 +362,19 @@ $(function() {
 			 tooltips: {
 			          mode: 'index',
 			          intersect: false,
-			}
+			},
+			 scales: {
+			       xAxes: [
+			    	      {
+			    	        scaleLabel: {
+			    	          display: true,
+			    	          labelString: '일별 랭킹은 매일 오전 10시에 업데이트 됩니다.',
+			    	          fontColor: '#C7C7CC',
+			    	          fontSize: 11
+			    	        }
+			    	      }
+			    	    ]
+			    	  }
 		  }
 		   
 		});
@@ -368,7 +384,7 @@ $(function() {
 	new Chart(document.getElementById("line-chart-mentiWegiht"), {
 		  type: 'line',
 		  data: {
-		    labels: ["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],
+		    labels: tenDaysAgo, /*["4/12","4/18","4/25","4/26","4/27","4/29","5/1","5/2","5/3","5/4"],*/
 		    datasets: [{ 
 		        data: [72,73,73,75,78,70,85,85,94,97],
 		        label: "상의준",
@@ -944,8 +960,7 @@ function progressAnime() {
 	var id = setInterval(frame, 50);
 	var end = $(this).attr('data-code');
 	var kcal = elem.parent().prev().prev();
-	console.log($(this));
-	console.log(end);
+
 
 	function frame() {
 		if (width >= end) {

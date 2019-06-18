@@ -70,6 +70,8 @@ public interface AnalysisService {
 
 	int countScore(String mento, String userName);
 
+	List<ExerciseJournal> getMentiWeight(String id);
+
 
 
 

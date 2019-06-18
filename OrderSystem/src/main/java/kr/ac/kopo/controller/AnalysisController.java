@@ -179,6 +179,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	List<DailyRank> myRanking = service.getMyDailyRanking(id);
 	List<TypeOfExercise> typeOfExercise = service.getExerList();
 	List<MessageRepository> mr = service.getLatestLog(id);
+	List<ExerciseJournal> weightChart = service.getMentiWeight(id);
 
 //	String doubleSlashStr = "";
 //	
@@ -198,6 +199,7 @@ private List<EatPlanner> getEatList(HttpSession session,String date) {
 	model.addAttribute("dailyRanking",myRanking);
 	model.addAttribute("typeOfExercise", typeOfExercise);
 	model.addAttribute("latestLog",mr);
+	model.addAttribute("weightChart", weightChart);
 	return "member/mentiManagement";
 	}
 	else return "redirect:/member/MyPage";

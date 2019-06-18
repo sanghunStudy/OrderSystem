@@ -81,6 +81,8 @@ public interface AnalysisDao {
 
 	void updateDoneSubject(String id);
 
+	List<ExerciseJournal> getMentiWeight(String id);
+
 
 
 }

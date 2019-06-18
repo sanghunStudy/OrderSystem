@@ -16,7 +16,7 @@ $('.drop-down-menu').on('mouseleave',function() {
 	
 $('.alarm-icon').click(function() {
 	$('.alarm-box-header').toggle(300,function() {
-		var itemsList;
+		var itemsList = "";
 		if(trainerChk){
 			$.ajax({
 				url:'/kopo/alram/alramList',

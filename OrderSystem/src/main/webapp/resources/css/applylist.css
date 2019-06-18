@@ -51,6 +51,7 @@ th, td, .upload-display {
 	border-radius: 5px;
 	border: none;
 	color: white;
+	cursor: pointer;
 }
 
 .accept {

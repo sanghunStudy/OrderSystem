@@ -9,10 +9,11 @@
 <meta name="viewport" content="width=device-width, minimum-sclae=1, maximum-sclae=1, initial-scale=1, user-scalable=no">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/train-info.css">
 </head>
+<jsp:include page="../gnb/head.jsp" flush="true" />
 <body>
 <div id="wrapper">
 	<div id="container1">
-	<h1>운동종류 관리</h1>
+	<h1>운동종류 관리</h1> 
 	<div id="train-box">
 	<c:choose>
 		<c:when test="${eTlist.size() > 0}">

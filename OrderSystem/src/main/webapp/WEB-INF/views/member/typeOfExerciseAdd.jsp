@@ -77,7 +77,7 @@
 		
 		
 		<input class="add" type="submit" value="등록 완료">
-		<a href="${pageContext.request.contextPath}/member/MyPage"><button type="button" class="main">마이페이지로</button></a>
+		<a href="${pageContext.request.contextPath}/member/MyExerciseJournal"><button type="button" class="main">관리메뉴로</button></a>
 	</form>
 	</div>
 	</div>

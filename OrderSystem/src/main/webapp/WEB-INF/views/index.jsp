@@ -37,12 +37,8 @@
 			<div id="carousel_section">
 				<ul>
 					<li class="first-carousel bgBlur"><img
-						src="${pageContext.request.contextPath}/resources/images/main/section1-dumbel.jpg" class="shadow-fileter">
-						<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-						<filter id="shadow">
-						  <fePointLight x = "50" y = "100" z = "200"/>
-						</filter>
-						</svg>
+						src="${pageContext.request.contextPath}/resources/images/main/exer-c.png" class="shadow-fileter">
+	
 						<div class="section1_item">
 							<div class="section1-title"><span>팔운동 </span><span id="section1_title">" 덤벨 "</span></div>
 							<p>

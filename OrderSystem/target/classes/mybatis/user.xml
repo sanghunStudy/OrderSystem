@@ -240,7 +240,7 @@
          authority ='trainer' and user_management.manager = user.username AND
          user_management.reading = 'Y'
       GROUP BY user_management.manager
-      ORDER BY ranking DESC,user.score DESC
+      ORDER BY ranking ASC,user.score DESC
       LIMIT 5
    </select>
 </mapper>

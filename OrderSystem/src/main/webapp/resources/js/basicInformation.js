@@ -124,9 +124,17 @@ last_input.onkeyup = () =>{
 
   var submit = document.querySelector('.btn-submit');
   submit.addEventListener('click', function(e){
+	  var last_input = document.getElementById('last_input');
+	  if(last_input.value == ""){
+		  alert("하고싶은 말을 입력해주세요");
+		  var error = slides[slideNumber].querySelector(".error-message");
+		  if(error) error.style.display = "block";  
+	  }else{
+		  if(error) error.style.display = "none";
     e.preventDefault();
     alert("기초정보 조사가 완료되었습니다. 이제 PT신청이 가능합니다!");
     $("#questionnaire-form").submit();
+	  }
   })
 }
 

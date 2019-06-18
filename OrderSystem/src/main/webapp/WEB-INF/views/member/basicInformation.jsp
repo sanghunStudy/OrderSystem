@@ -156,7 +156,7 @@
 	  <div class="arrow"></div>
 	</div>
 <!--     <button class="btn-white btn-next bI-btn">다음</button> -->
-    <button class="float-right btn-submit bI-btn" disabled>Submit</button>
+    <button class="float-right btn-submit bI-btn">Submit</button>
   </div>
   <div class="bi-footer">
   	<P>본 설문서는 TRAINER BOT에서 여러가지 피드백, 원활한 회원관리 운영에 대한 중요한<br /> 자료이오니 성심껏 작성해 주시기 바랍니다. </P>

@@ -59,7 +59,7 @@
 var logoutUri = "${pageContext.request.contextPath}/logout";
 
 $(document).ready(function(){
-	console.log('${userInfo.point}');
+// 	console.log('${userInfo.point}');
 	var loginChk = "${user}${trainer}${admin}";// 권한별 세션이 존재하나 확인
 	if(loginChk){//존재한다면 아래함수 실행
 		clearTime(15);//세션 체크 5분 설정
@@ -70,9 +70,11 @@ $(document).ready(function(){
 });
 
 
-var trainerChk = "${trainer}";
-setInterval(function alram(){
-	if(trainerChk){
+var trainerAuthorityChk = "${trainer}";
+setInterval(function tAalram(){
+	
+	if(trainerAuthorityChk != ""){
+// 		console.log(trainerChk);
 		$.ajax({
 			url:'${pageContext.request.contextPath}/alram/count',
 			type:'GET',

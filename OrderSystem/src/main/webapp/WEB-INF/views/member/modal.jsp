@@ -118,13 +118,14 @@
 <script>
 	$(document).ready(function() {
 		$("#btnSubmit").click(function() {
-			var name = document.form1.name.value;
+			var name = document.getElementByName('name').value;
 			var sex = document.form1.sex.value;
 			var region = document.form1.region.value;
 			var career = document.form1.career.value;
 			var thumbnail = document.form1.thumbnail.value;
+			console.log(name);
 
-			if (name == "") {
+			if (name == "" || name == null) {
 				alert("제목을 입력하세요.");
 				document.form1.name.focus();
 				return;
@@ -313,7 +314,7 @@
 							</div>
 						</div>
 						<ul class="list-inline">
-						<li><button type="submit" id="btnSubmit" class="modal-btn-collection apply">
+						<li><button type="button" id="btnSubmit" class="modal-btn-collection apply">
 								<span>신청</span>
 							</button></li>
 						<!--	<li><button type="button" id="btnSubmit"

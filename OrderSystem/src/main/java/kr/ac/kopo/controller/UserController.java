@@ -269,7 +269,7 @@ public class UserController {
 			pro.setUsername(username);
 			service.promotion(pro);
 
-			return path + "MyPage";
+			return "redirect:MyPage";
 		}
 		
 		//화면에 저장된 파일을 보여주는 컨트롤러 /년/월/일/파일명 형태로 입력 받는다.

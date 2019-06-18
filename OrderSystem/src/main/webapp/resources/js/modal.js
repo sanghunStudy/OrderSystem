@@ -34,8 +34,10 @@ $(function() {
      			url : '/kopo/trainer/getPoint',
      			success : function(res) {
      				if (res.userPoint < 500 || res.userAuthority != "user") {
-     	    			location.href = "/kopo";
-     	    		}else{ 
+     					alert("포인트가 부족하거나 이미 트레이너 승급자입니다.");
+     	    			location.href = "/kopo/member/MyPage";     	    			
+     	    		}else{
+     	    			alert("트레이너 신청서를 작성해주세요.");
      	     			Modal.style.display = "block";
      	    		}
      			}	

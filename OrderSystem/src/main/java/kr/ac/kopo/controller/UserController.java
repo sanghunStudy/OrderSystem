@@ -117,26 +117,28 @@ public class UserController {
 		}
 		//관리자로 운동일지 들어가서 운동종류 입력
 		@RequestMapping(value="typeOfExerciseAdd", method = RequestMethod.POST)
-		public String typeOfExerciseAdd(MultipartFile file,TypeOfExercise to) throws IOException, Exception {
+		public String typeOfExerciseAdd(MultipartFile file,TypeOfExercise to, String demoFile) throws IOException, Exception {
 			String imgUploadPath = uploadPath + File.separator;
 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 			String fileName = null;
-			
-			if(file != null) {
+
+			if(file.getOriginalFilename() != "") {
 					fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-				
+					to.setTeImg(File.separator + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 			}else {
-				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+//				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+				fileName = demoFile;
+				to.setTeImg(demoFile);
 			}
 			
-			to.setTeImg(File.separator + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			
 			System.out.println(to.getTeImg()+"<<<<<<<<<<img");
 			if(to.getTeNum() > 0) {
 				service.typeOfExerciseUpdate(to);
 			}else {
 				service.typeOfExerciseAdd(to);
 			}
-			
+//			
 			return "redirect:MyExerciseJournal";
 		}
 	

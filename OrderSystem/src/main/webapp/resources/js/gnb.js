@@ -16,7 +16,26 @@ $('.drop-down-menu').on('mouseleave',function() {
 	
 $('.alarm-icon').click(function() {
 	$('.alarm-box-header').toggle(300,function() {
-		
+		$.ajax({
+			url:'/kopo/alram/alramList',
+			data:{
+				"id":trainerChk
+			},
+			type:'GET',
+			success:function(res){
+				console.log(res);//리스트
+				$.ajax({
+					url:'/kopo/alram/alramUpdate',
+					data:{
+						"id":trainerChk
+					},
+					type:'GET',
+					success:function(){
+						$("#bell").text("0");
+					}
+				});
+			}
+		});
 	});
 })
     //검은 막 띄우기

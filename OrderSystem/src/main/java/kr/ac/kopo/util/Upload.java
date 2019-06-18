@@ -1,4 +1,4 @@
-package kr.ac.kopo.controller;
+package kr.ac.kopo.util;
 
 import java.io.File;
 import java.io.IOException;

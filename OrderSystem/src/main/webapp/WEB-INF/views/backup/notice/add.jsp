@@ -111,7 +111,7 @@
 		</table>
 		<input type="submit" value="작성완료" />
 		<div>
-		<jsp:include page="../upload/fileUpload.jsp" flush="true" />
+		<jsp:include page="../../upload/fileUpload.jsp" flush="true" />
 		</div>
 		
 	</form>

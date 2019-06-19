@@ -167,7 +167,7 @@ $(function() {
 													+ '"></label></div></td>';
 											tr += '<td><div class="item_box"><div class="to_item">'
 													+ value.doName + '</div>';
-											tr += '<p class="to_item_cotents">'
+											tr += '<p class="to_item_contents">'
 													+ value.doName + ' '
 													+ value.doLb + 'kg중량으로 '
 													+ value.doReps + '회씩'
@@ -209,7 +209,7 @@ $(function() {
 													+ '"></label></div></td>';
 											tr += '<td><div class="item_box"><div class="to_item">'
 													+ value.eatName + '</div>';
-											tr += '<p class="to_item_cotents">'
+											tr += '<p class="to_item_contents">'
 													+ value.eatName + ' '
 													+ value.eatCount + '개 '
 													+ value.eatGram

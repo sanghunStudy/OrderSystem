@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -362,9 +365,17 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping("/ajaxProList")
-	public Map<String, Object> ajaxProList(SearchVO searchVO) {
+	public Map<String, Object> ajaxProList(SearchVO searchVO) throws ParseException {
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<TrainerProfile> proList = service.proList(searchVO);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		for (int i=0;i < proList.size(); i++) {
+//			System.out.println(proList.get(i).getApplyDate());
+//			System.out.println(format.format(proList.get(i).getApplyDate()));
+			String date = format.format(proList.get(i).getApplyDate());
+			Date dates = format.parse(date);
+			proList.get(i).setApplyDate(dates);
+		}
 		map.put("proList",proList);
 		
 		return map;

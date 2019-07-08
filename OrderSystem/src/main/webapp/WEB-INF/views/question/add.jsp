@@ -126,23 +126,28 @@
 			if(e.key === "Enter" || e.key === " " || (new RegExp(/[^a-zA-Z가-힣]/)).test(e.key)) {
 				Doppelganger = 0;
 				for(var i=0; i < exist.length; i++){
-					if(exist[i] === hashTag) {
+					if(exist[i] === hashTag && exist[i] != "") {
 						alert("같은 태그가 존재합니다.");
 						hashTag = "";
 						$('#hash-tag').val("");
 						Doppelganger = 1;
 					}
  				}
-				if(Doppelganger == 0){
-					exist[counter] = hashTag;
-					$('#hash-tag-list').append('<li class="addTag">#'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>')
-					hashTag = "";
-					$('#hash-tag').val("");
-// 					console.log(exist[counter]);
-					counter++;
+				if(hashTag == null || hashTag == ""){
+					alert("태그내용을 입력하세요");
+				} else if(hashTag.length > 7){
+					alert("태그내용은 7자를 초과할 수 없습니다.");
+				} else {
+					if(Doppelganger == 0){
+						exist[counter] = hashTag;
+						$('#hash-tag-list').append('<li class="addTag">#'+hashTag+'<span class="delTag" idx="'+counter+'">X</span></li>');
+						hashTag = "";
+						$('#hash-tag').val("");
+//	 					console.log(exist[counter]);
+						counter++;
+					}
+//	 				console.log(exist);
 				}
-// 				console.log(exist);
-				
 			} else {
 				hashTag = $('#hash-tag').val();
 //  				console.log(hashTag);
